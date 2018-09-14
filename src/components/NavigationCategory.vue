@@ -1,0 +1,40 @@
+<template>
+    <div class="navigation-category">
+        <font-awesome-icon :icon="icon" v-if="icon"></font-awesome-icon>
+        <span>{{ name }}</span>
+    </div>
+</template>
+
+<script>
+  import FontAwesomeIcon from '@fortawesome/vue-fontawesome/src/components/FontAwesomeIcon';
+
+  export default {
+    components: { FontAwesomeIcon },
+    props: {
+      name: {
+        type: String,
+        required: true
+      },
+      icon: String
+    },
+    name: 'navigation-category'
+  }
+</script>
+
+<style lang="scss">
+    .navigation-category {
+        padding: .75em 1em;
+        width: 100%;
+        box-sizing: border-box;
+        background: rgba(black, 0.4);
+        text-transform: uppercase;
+        font-size: 0.9em;
+        color: var(--color-text-disabled);
+        display: flex;
+        align-items: center;
+
+        > svg {
+            margin-right: 0.5em;
+        }
+    }
+</style>

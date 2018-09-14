@@ -1,0 +1,18 @@
+.title {
+  text-align: center;
+  position: relative;
+
+  &:after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    border-bottom: 2px solid var(--color-main);
+    left: 50%;
+    bottom: -0.25em;
+    margin-left: -20px;
+  }
+}
+
+.subtitle {
+  text-align: center;
+}

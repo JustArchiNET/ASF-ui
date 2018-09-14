@@ -1,0 +1,22 @@
+.main-container {
+  padding: 1em 1.5em;
+}
+
+.main-container--center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  border-top: 3px solid #c7c7c7;
+  background: #fff;
+  max-width: 100%;
+  padding: 1em 1.5em;
+  border-radius: 3px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.container--small {
+  width: 600px;
+}
