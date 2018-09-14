@@ -1,6 +1,5 @@
 <template>
     <div class="navigation-category">
-        <font-awesome-icon :icon="icon" v-if="icon"></font-awesome-icon>
         <span>{{ name }}</span>
     </div>
 </template>
@@ -14,8 +13,7 @@
       name: {
         type: String,
         required: true
-      },
-      icon: String
+      }
     },
     name: 'navigation-category'
   }
@@ -33,8 +31,8 @@
         display: flex;
         align-items: center;
 
-        > svg {
-            margin-right: 0.5em;
+        .app--small-navigation & {
+            display: none;
         }
     }
 </style>

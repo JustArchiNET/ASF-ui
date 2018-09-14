@@ -23,6 +23,7 @@
         justify-content: center;
         cursor: pointer;
         height: var(--navigation-height);
+        transition: ease-in-out width .3s;
 
         .logo {
             font-size: 1.25em;
@@ -30,6 +31,16 @@
 
         .logo--small {
             display: none;
+        }
+
+        .app--small-navigation & {
+            .logo--big {
+                display: none;
+            }
+
+            .logo--small {
+                display: block;
+            }
         }
     }
 </style>

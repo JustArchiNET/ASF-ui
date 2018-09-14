@@ -1,7 +1,7 @@
 <template>
     <router-link tag="div" :to="to" class="navigation-link" active-class="navigation-link--active" :exact="true">
-        <font-awesome-icon :icon="icon" v-if="icon"></font-awesome-icon>
-        <span>{{ name }}</span>
+        <span class="navigation-link__icon" v-if="icon"><font-awesome-icon :icon="icon"></font-awesome-icon></span>
+        <span class="navigation-link__name">{{ name }}</span>
     </router-link>
 </template>
 
@@ -15,7 +15,10 @@
         to: {
           required: true
         },
-        icon: String
+        icon: {
+          type: String,
+          default: 'wrench'
+        }
       },
       name: 'navigation-link'
     }
@@ -34,7 +37,7 @@
         border-left: 3px solid transparent;
 
         &.navigation-link--active, &:hover {
-            background: rgba(black, 0.2);
+            background: var(--color-navigation-dark);
             color: var(--color-text);
         }
 
@@ -42,7 +45,40 @@
             border-color: var(--color-main);
         }
 
-        > svg {
+        .app--small-navigation & {
+            padding: .95em 0;
+
+            .navigation-link__icon {
+                display: inline-flex;
+                width: var(--navigation-width);
+
+                > svg {
+                    margin: 0 auto;
+                }
+            }
+
+            .navigation-link__name {
+                display: none;
+            }
+
+            &:hover {
+                position: relative;
+
+                > .navigation-link__name {
+                    background: var(--color-navigation-dark);
+                    position: absolute;
+                    left: calc(var(--navigation-width) - 3px);
+                    width: 12em;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    padding: 0 1.25em;
+                    border-radius: 0 4px 4px 0;
+                }
+            }
+        }
+
+        svg {
             margin-right: 0.5em;
         }
     }

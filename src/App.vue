@@ -1,11 +1,11 @@
 <template>
-    <div class="app">
+    <div class="app" :class="{ 'app--small-navigation': smallNavigation }">
         <app-header></app-header>
         <app-navigation></app-navigation>
 
         <section class="content">
             <router-view></router-view>
-            <app-footer></app-footer>
+            <app-footer @click="smallNavigation = !smallNavigation"></app-footer>
         </section>
     </div>
 </template>
@@ -15,9 +15,14 @@
   import AppNavigation from './components/AppNavigation.vue';
   import AppFooter from './components/AppFooter.vue';
 
+  import { mapGetters } from 'vuex';
+
   export default {
     name: 'App',
-    components: { AppHeader, AppNavigation, AppFooter }
+    components: { AppHeader, AppNavigation, AppFooter },
+    computed: {
+      ...mapGetters({ smallNavigation: 'layout/smallNavigation' })
+    }
   };
 </script>
 
@@ -38,6 +43,8 @@
         --color-background: #ecf0f5;
         --color-background-light: #fff;
         --color-navigation: #222d32;
+        --color-navigation-dark: #{darken(#222d32, 3)};
+        --color-navigation-darker: #{darken(#222d32, 10)};
     }
 
     html {
@@ -67,9 +74,14 @@
         background: var(--color-background);
     }
 
+    .app--small-navigation {
+        --navigation-width: 3em;
+    }
+
     .content {
         padding-top: var(--navigation-height);
         padding-left: var(--navigation-width);
+        transition: ease-in-out padding .3s;
 
         > main {
             min-height: calc(100vh - 2 * var(--navigation-height));
