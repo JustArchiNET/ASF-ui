@@ -31,7 +31,12 @@
 
 <style lang="scss">
     .side-navigation {
-        grid-area: side-navigation;
         background: var(--color-navigation);
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: var(--navigation-width);
+        z-index: 1002;
     }
 </style>

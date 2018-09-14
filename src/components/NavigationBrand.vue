@@ -14,7 +14,7 @@
 <style lang="scss">
     .brand {
         padding: 0 1em;
-        background: var(--color-darker);
+        background: var(--color-main-dark);
         width: var(--navigation-width);
         color: var(--color-text);
         box-sizing: border-box;
@@ -22,7 +22,7 @@
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        height: 3em;
+        height: var(--navigation-height);
 
         .logo {
             font-size: 1.25em;

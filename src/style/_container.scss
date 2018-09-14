@@ -9,8 +9,8 @@
 }
 
 .container {
-  border-top: 3px solid #c7c7c7;
-  background: #fff;
+  border-top: 3px solid var(--color-border);
+  background: var(--color-background-light);
   max-width: 100%;
   padding: 1em 1.5em;
   border-radius: 3px;

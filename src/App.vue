@@ -3,9 +3,10 @@
         <app-header></app-header>
         <app-navigation></app-navigation>
 
-        <router-view></router-view>
-
-        <app-footer></app-footer>
+        <section class="content">
+            <router-view></router-view>
+            <app-footer></app-footer>
+        </section>
     </div>
 </template>
 
@@ -26,12 +27,16 @@
 
     :root {
         --navigation-width: 15em;
+        --navigation-height: 3em;
         --color-main: #{$color-theme-blue};
-        --color-darker: #{darken($color-theme-blue, 2)};
-        --color-text: #fff;
-        --color-text-secondary: #{darken(#fff, 10)};
-        --color-text-disabled: #{darken(#fff, 25)};
+        --color-main-dark: #{darken($color-theme-blue, 2)};
+        --color-text: #{$color-text};
+        --color-text-dark: #{$color-text-dark};
+        --color-text-secondary: #{darken($color-text, 10)};
+        --color-text-disabled: #{darken($color-text, 25)};
+        --color-border: #{darken($color-text, 25)};
         --color-background: #ecf0f5;
+        --color-background-light: #fff;
         --color-navigation: #222d32;
     }
 
@@ -45,14 +50,30 @@
         margin: 0;
     }
 
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+        background-color: #333;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        -webkit-border-radius: 2px;
+        border-radius: 2px;
+        background: rgb(167, 167, 167);
+    }
+
     .app {
         width: 100%;
-        min-height: 100%;
         background: var(--color-background);
+    }
 
-        display: grid;
-        grid-template-columns: var(--navigation-width) auto;
-        grid-template-rows: auto 1fr auto;
-        grid-template-areas: 'side-navigation upper-navigation' 'side-navigation content' 'side-navigation footer';
+    .content {
+        padding-top: var(--navigation-height);
+        padding-left: var(--navigation-width);
+
+        > main {
+            min-height: calc(100vh - 2 * var(--navigation-height));
+            box-sizing: border-box;
+        }
     }
 </style>
