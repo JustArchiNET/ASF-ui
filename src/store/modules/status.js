@@ -59,7 +59,7 @@ export const mutations = {
 
 export const actions = {
   init: async ({ dispatch, commit }) => {
-    setInterval(() => commit('calculateUptime'), 1000);
+    setInterval(() => commit('calculateUptime'), 60000);
     setInterval(() => dispatch('update'), 60000);
   },
   onAuth: async ({ dispatch }) => {
