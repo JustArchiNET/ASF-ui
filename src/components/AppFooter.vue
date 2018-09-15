@@ -3,7 +3,7 @@
         <div class="footer__links">
             <a class="footer__link" target="_blank" href="https://github.com/JustArchi/ArchiSteamFarm">GitHub</a>
             <a class="footer__link" target="_blank" href="https://github.com/JustArchi/ArchiSteamFarm/wiki">Wiki</a>
-            <a class="footer__link" target="_blank" :href="`https://github.com/JustArchi/ArchiSteamFarm/releases/tag/${version}`">Changelog</a>
+            <a class="footer__link" v-if="validPassword" target="_blank" :href="`https://github.com/JustArchi/ArchiSteamFarm/releases/tag/${version}`">Changelog</a>
         </div>
 
         <div class="footer__statistics" v-if="validPassword">
