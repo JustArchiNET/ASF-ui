@@ -1,11 +1,13 @@
 import axios from 'axios';
 
-const baseURL = localStorage.getItem('ipc-base-url');
-const password = localStorage.getItem('ipc-password');
-
-export default axios.create({
-  baseURL: baseURL ? `${baseURL}/Api` : '/Api',
-  headers: {
-    Authentication: password
-  }
+const http = axios.create({
+  baseURL: '/Api'
 });
+
+export function authenticate(password) {
+  http.defaults.headers.common.Authentication = password;
+}
+
+export function get(endpoint) {
+  return http.get(endpoint).then(response => response.data.Result);
+}

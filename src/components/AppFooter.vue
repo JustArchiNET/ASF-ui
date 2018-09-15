@@ -1,12 +1,25 @@
 <template>
     <footer class="footer">
         <a class="footer__link" target="_blank" href="https://github.com/JustArchi/ArchiSteamFarm">GitHub</a>
+
+        <div class="footer__statistics" v-if="validPassword">
+            <span class="footer__statistic"><b>Version</b> {{ version }} - {{ buildVariant }}</span>
+        </div>
     </footer>
 </template>
 
 <script>
+  import { mapGetters } from 'vuex';
+
   export default {
-    name: 'app-footer'
+    name: 'app-footer',
+    computed: mapGetters({
+      validPassword: 'auth/validPassword',
+      memory: 'status/memory',
+      uptime: 'status/uptime',
+      version: 'status/version',
+      buildVariant: 'status/buildVariant'
+    })
   };
 </script>
 
@@ -19,6 +32,7 @@
         box-sizing: border-box;
         display: flex;
         align-items: center;
+        font-size: 0.9em;
     }
 
     .footer__link {
@@ -30,5 +44,10 @@
         margin: 0 1em;
         display: flex;
         align-items: center;
+    }
+
+    .footer__statistics {
+        padding: 0 1.5em;
+        margin-left: auto;
     }
 </style>

@@ -1,15 +1,22 @@
 <template>
     <nav class="side-navigation">
-        <navigation-category name="Home"></navigation-category>
-        <navigation-link name="Statistics" icon="tachometer-alt" :to="{ name: 'statistics' }"></navigation-link>
+        <template v-if="validPassword">
+            <navigation-category name="Home"></navigation-category>
+            <navigation-link name="Statistics" icon="tachometer-alt" :to="{ name: 'statistics' }"></navigation-link>
 
-        <navigation-category name="Control"></navigation-category>
-        <navigation-link name="Commands" icon="laptop" :to="{ name: 'commands' }"></navigation-link>
-        <navigation-link name="Bots" icon="users" :to="{ name: 'bots' }"></navigation-link>
-        <navigation-link name="Log" icon="file-alt" :to="{ name: 'log' }"></navigation-link>
+            <navigation-category name="Control"></navigation-category>
+            <navigation-link name="Commands" icon="laptop" :to="{ name: 'commands' }"></navigation-link>
+            <navigation-link name="Bots" icon="users" :to="{ name: 'bots' }"></navigation-link>
+            <navigation-link name="Log" icon="file-alt" :to="{ name: 'log' }"></navigation-link>
 
-        <navigation-category name="Configuration"></navigation-category>
-        <navigation-link name="Setup" icon="wrench" :to="{ name: 'setup' }"></navigation-link>
+            <navigation-category name="Configuration"></navigation-category>
+            <navigation-link name="IPC" icon="wrench" :to="{ name: 'ipc-configuration' }"></navigation-link>
+        </template>
+
+        <template v-else>
+            <navigation-category name="Configuration"></navigation-category>
+            <navigation-link name="Setup" icon="wrench" :to="{ name: 'setup' }"></navigation-link>
+        </template>
     </nav>
 </template>
 
@@ -17,9 +24,12 @@
   import NavigationLink from './NavigationLink.vue';
   import NavigationCategory from './NavigationCategory.vue';
 
+  import { mapGetters } from 'vuex';
+
   export default {
     name: 'app-navigation',
-    components: { NavigationLink, NavigationCategory }
+    components: { NavigationLink, NavigationCategory },
+    computed: mapGetters({ validPassword: 'auth/validPassword' })
   };
 </script>
 

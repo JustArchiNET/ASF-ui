@@ -61,7 +61,7 @@ module.exports = {
     contentBase: './dist',
     historyApiFallback: true,
     proxy: {
-      '/Api': 'http://localhost:1242/Api'
+      '/Api': 'http://localhost:1242'
     }
   },
   plugins: [

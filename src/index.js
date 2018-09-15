@@ -4,8 +4,6 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 
-import http from './utils/http';
-
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faWrench, faBars, faLaptop, faUsers, faFileAlt, faTachometerAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -20,5 +18,3 @@ const app = new Vue({
   router,
   store
 });
-
-window.http = http;

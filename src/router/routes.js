@@ -7,7 +7,13 @@ export default [
   {
     path: '/setup',
     name: 'setup',
-    component: () => import('../views/Setup.vue')
+    component: () => import('../views/Setup.vue'),
+    meta: { noPasswordRequired: true }
+  },
+  {
+    path: '/ipc-configuration',
+    name: 'ipc-configuration',
+    component: () => import('../views/IPCConfiguration.vue')
   },
   {
     path: '/bots',

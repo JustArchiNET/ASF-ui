@@ -1,8 +1,7 @@
 <template>
     <main class="main-container main-container--center">
         <div class="container container--small">
-            <h2 class="title">Setup</h2>
-            <h4 class="subtitle">Before continuing, you need to configure IPC access</h4>
+            <h2 class="title">IPC Configuration</h2>
 
             <div class="form-item">
                 <label for="password" class="label">Password</label>
@@ -10,7 +9,7 @@
             </div>
 
             <div class="form-item">
-                <button class="button button--confirm" @click="updatePassword">Continue</button>
+                <button class="button button--confirm" @click="updatePassword">Save</button>
             </div>
         </div>
     </main>
@@ -18,7 +17,7 @@
 
 <script>
   export default {
-    name: 'setup',
+    name: 'ipc-configuration',
     components: {},
     data() {
       return {
@@ -29,7 +28,7 @@
       async updatePassword() {
         this.$store.commit('auth/setPassword', this.password);
         const validPassword = await this.$store.dispatch('auth/validate');
-        if (validPassword) this.$router.replace('/')
+        if (!validPassword) await this.$router.replace({ name: 'setup' });
       }
     }
   };
