@@ -6,9 +6,9 @@ import store from './store';
 
 import http from './utils/http';
 
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faWrench, faBars, faLaptop, faUsers, faFileAlt, faTachometerAlt } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faWrench, faBars, faLaptop, faUsers, faFileAlt, faTachometerAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 library.add(faWrench, faBars, faLaptop, faUsers, faFileAlt, faTachometerAlt);
 

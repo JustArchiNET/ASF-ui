@@ -23,11 +23,13 @@
     data() {
       return {
         theme: 'red'
-      }
+      };
     },
     computed: {
       ...mapGetters({ smallNavigation: 'layout/smallNavigation' }),
-      themeClass() { return `theme-${this.theme}` }
+      themeClass() {
+        return `theme-${this.theme}`;
+      }
     }
   };
 </script>

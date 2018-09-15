@@ -11,6 +11,6 @@
 <script>
   export default {
     name: 'statistics',
-    components: { }
+    components: {}
   };
 </script>

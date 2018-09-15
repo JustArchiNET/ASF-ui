@@ -11,6 +11,6 @@
 <script>
   export default {
     name: 'bots',
-    components: { }
+    components: {}
   };
 </script>

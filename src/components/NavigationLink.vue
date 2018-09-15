@@ -6,22 +6,22 @@
 </template>
 
 <script>
-    export default {
-      props: {
-        name: {
-          type: String,
-          required: true
-        },
-        to: {
-          required: true
-        },
-        icon: {
-          type: String,
-          required: true
-        }
+  export default {
+    props: {
+      name: {
+        type: String,
+        required: true
       },
-      name: 'navigation-link'
-    }
+      to: {
+        required: true
+      },
+      icon: {
+        type: String,
+        required: true
+      }
+    },
+    name: 'navigation-link'
+  };
 </script>
 
 <style lang="scss">

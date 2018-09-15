@@ -11,6 +11,6 @@
 <script>
   export default {
     name: 'log',
-    components: { }
+    components: {}
   };
 </script>

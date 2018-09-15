@@ -13,7 +13,7 @@
       }
     },
     name: 'navigation-category'
-  }
+  };
 </script>
 
 <style lang="scss">

@@ -6,9 +6,9 @@
 </template>
 
 <script>
-    export default {
-      name: 'navigation-brand'
-    }
+  export default {
+    name: 'navigation-brand'
+  };
 </script>
 
 <style lang="scss">

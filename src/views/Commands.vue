@@ -11,6 +11,6 @@
 <script>
   export default {
     name: 'commands',
-    components: { }
+    components: {}
   };
 </script>
