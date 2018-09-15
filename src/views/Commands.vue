@@ -103,7 +103,15 @@
 
         switch (this.currentParameter) {
           case 'bot':
-            return this.$store.getters['status/bots'].map(bot => bot.name).find(name => name.startsWith(this.currentParameterValue));
+            const suggestedBot = this.$store.getters['status/bots']
+              .map(bot => bot.name)
+              .find(name => name.startsWith(this.currentParameterValue));
+
+            if (suggestedBot) return suggestedBot;
+
+            return this.$store.getters['status/bots']
+              .map(bot => bot.name)
+              .find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
         }
       },
       selectedCommand() {
@@ -144,7 +152,7 @@
       },
       autocomplete() {
         if (!this.selectedCommand) this.command = this.suggestedCommand;
-        if (this.selectedCommand && this.suggestedParameterValue) this.command += this.suggestedParameterValue.slice(this.currentParameterValue.length);
+        if (this.selectedCommand && this.suggestedParameterValue) this.command = this.command.split(' ').slice(0, -1).join(' ') + ' ' + this.suggestedParameterValue;
       },
       historyPrevious() {
         if (this.commandHistoryIndex + 1 < this.commandHistory.length) {
