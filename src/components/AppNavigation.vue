@@ -3,7 +3,7 @@
         <template v-if="validPassword">
             <div class="navigation-category">
                 <navigation-category-title name="Control"></navigation-category-title>
-                <navigation-link name="Home" icon="tachometer-alt" :to="{ name: 'home' }"></navigation-link>
+                <navigation-link name="Home" icon="home" :to="{ name: 'home' }"></navigation-link>
                 <navigation-link name="Commands" icon="laptop" :to="{ name: 'commands' }"></navigation-link>
                 <navigation-link name="Bots" icon="users" :to="{ name: 'bots' }"></navigation-link>
                 <navigation-link name="Log" icon="file-alt" :to="{ name: 'log' }"></navigation-link>
