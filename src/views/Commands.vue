@@ -11,7 +11,7 @@
                 <div class="terminal__input">
                     <span class="terminal__sign">></span>
                     <input type="text" spellcheck="false" v-model="command" ref="terminal-input"
-                           @keydown.enter="sendCommand" @keydown.tab.prevent="autocomplete">
+                           @keydown.enter="sendCommand" @keydown.tab.prevent="autocomplete" @keydown.up="historyPrevious" @keydown.down="historyNext">
                     <span class="terminal__autocomplete"><span>{{ command }}</span>{{ autocompleteSuggestion }}</span>
                 </div>
             </div>
@@ -57,7 +57,9 @@
     data() {
       return {
         command: '',
-        log: []
+        log: [],
+        commandHistory: [],
+        commandHistoryIndex: -1
       };
     },
     computed: {
@@ -115,9 +117,12 @@
 
         if (!commandToSend) return;
 
+        this.commandHistoryIndex = -1;
+        this.commandHistory.unshift(commandToSend);
+        this.commandHistory.slice(0, 20);
+
         this.log.push({ type: 'out', message: commandToSend });
         const result = await command(commandToSend);
-
         this.log.push({ type: 'in', message: result });
       },
       focusInput() {
@@ -126,7 +131,31 @@
       autocomplete() {
         if (!this.selectedCommand) this.command = this.suggestedCommand;
         if (this.selectedCommand && this.suggestedParameterValue) this.command += this.suggestedParameterValue.slice(this.currentParameterValue.length);
+      },
+      historyPrevious() {
+        if (this.commandHistoryIndex + 1 < this.commandHistory.length) {
+          this.commandHistoryIndex++;
+          this.command = this.commandHistory[this.commandHistoryIndex];
+        }
+      },
+      historyNext() {
+        if (this.commandHistoryIndex > 0) {
+          this.commandHistoryIndex--;
+          this.command = this.commandHistory[this.commandHistoryIndex];
+        } else if (this.commandHistoryIndex === 0) {
+          this.commandHistoryIndex = -1;
+          this.command = '';
+        }
       }
+    },
+    watch: {
+      commandHistory(value) {
+        localStorage.setItem('command-history', JSON.stringify(value));
+      }
+    },
+    created() {
+      const commandHistory = localStorage.getItem('command-history');
+      if (commandHistory) this.commandHistory = JSON.parse(commandHistory);
     }
   };
 </script>
