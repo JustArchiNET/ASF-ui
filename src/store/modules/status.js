@@ -4,7 +4,7 @@ class Bot {
   constructor(data) {
     this.name = data.BotName;
     this.steamid = data.s_SteamID;
-    this.avatarHash = data.AvatarHash;
+    this.avatarHash = data.AvatarHash || '0b46945851b3d26da93a6ddba3ac961206cc191d';
 
     this.flags = data.AccountFlags;
     this.isPlayingPossible = data.IsPlayingPossible;
@@ -22,6 +22,10 @@ class Bot {
     if (this.steamid === '0') return 'offline';
     if (this.timeRemaining === '00:00:00') return 'idling';
     return 'farming';
+  }
+
+  get avatarURL() {
+    return `https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/${this.avatarHash.substr(0, 2)}/${this.avatarHash}_full.jpg`
   }
 }
 
@@ -85,6 +89,7 @@ export const getters = {
   uptime: state => state.uptime,
   version: state => `${state.version.Major}.${state.version.Minor}.${state.version.Build}.${state.version.Revision}`,
   buildVariant: state => state.buildVariant,
-  bots: state => status => state.bots.filter(bot => bot.status === status),
-  botsCount: (state, getters) => status => getters.bots(status).length
+  bots: state => state.bots,
+  botsStatus: state => status => state.bots.filter(bot => bot.status === status),
+  botsCount: (state, getters) => status => getters.botsStatus(status).length
 };

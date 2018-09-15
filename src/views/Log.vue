@@ -1,5 +1,7 @@
 <template>
-    <main class="main-container main-container--fullheight">
+    <main class="main-container main-container--fullheight log">
+        <h2 class="title">Log</h2>
+
         <div class="container container--fullheight">
             <div class="terminal">
                 <p v-for="message in messages">{{ message }}</p>
@@ -48,6 +50,11 @@
 </script>
 
 <style lang="scss">
+    .log {
+        display: grid;
+        grid-template-rows: auto 1fr;
+    }
+
     .terminal {
         width: 100%;
         background: black;

@@ -1,0 +1,15 @@
+.status--offline {
+  --color-status: #{$color-status-offline};
+}
+
+.status--disabled {
+  --color-status: #{$color-status-disabled};
+}
+
+.status--idling {
+  --color-status: #{$color-status-idling};
+}
+
+.status--farming {
+  --color-status: #{$color-status-farming};
+}

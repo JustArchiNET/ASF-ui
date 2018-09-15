@@ -1,18 +1,18 @@
 <template>
     <div class="bot-cards">
-        <div class="bot-card bot-card--farming">
+        <div class="bot-card status--farming">
             <span class="bot-card__value">{{ botsCount('farming') }}</span>
             <span class="bot-card__name">Farming</span>
         </div>
-        <div class="bot-card bot-card--idling">
+        <div class="bot-card status--idling">
             <span class="bot-card__value">{{ botsCount('idling') }}</span>
             <span class="bot-card__name">Idling</span>
         </div>
-        <div class="bot-card bot-card--disabled">
+        <div class="bot-card status--disabled">
             <span class="bot-card__value">{{ botsCount('disabled') }}</span>
             <span class="bot-card__name">Disabled</span>
         </div>
-        <div class="bot-card bot-card--offline">
+        <div class="bot-card status--offline">
             <span class="bot-card__value">{{ botsCount('offline') }}</span>
             <span class="bot-card__name">Offline</span>
         </div>
@@ -54,6 +54,7 @@
         border-radius: 2px;
         color: var(--color-text);
         text-shadow: 0 0 1px var(--color-text-dark);
+        background: var(--color-status);
     }
 
     .bot-card__value {
@@ -63,21 +64,5 @@
 
     .bot-card__name {
         font-size: 0.9em;
-    }
-
-    .bot-card--offline {
-        background: #dd4b39;
-    }
-
-    .bot-card--disabled {
-        background: #bfc3cb;
-    }
-
-    .bot-card--idling {
-        background: #f39c12;
-    }
-
-    .bot-card--farming {
-        background: #3d9970;
     }
 </style>
