@@ -126,12 +126,18 @@
         this.log.push({ type: 'in', message: result });
       },
       async executeCommand(commandToExecute) {
-        switch(commandToExecute) {
+        switch(commandToExecute.split(' ')[0]) {
           case 'commands':
             return `Available command: ${commands.join(', ')}`;
+          case 'help':
+            if (commandToExecute.split(' ')[1]) return this.commandHelp(commandToExecute.split(' ')[1]);
+            return 'Usage: help <command>, available commands: commands';
         }
 
         return command(commandToExecute)
+      },
+      commandHelp(command) {
+        return `There's no help text for ${command} yet!`;
       },
       focusInput() {
         this.$refs['terminal-input'].focus();
