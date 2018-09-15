@@ -3,7 +3,7 @@
         <navigation-brand></navigation-brand>
 
         <div class="navigation-button" @click="toggleNavigation">
-            <font-awesome-icon icon="bars"></font-awesome-icon>
+            <font-awesome-icon icon="bars" />
         </div>
     </header>
 </template>
