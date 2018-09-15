@@ -61,18 +61,21 @@ export const mutations = {
 export const actions = {
   init: async ({ dispatch, commit }) => {
     setInterval(() => commit('calculateUptime'), 1000);
-    setInterval(() => dispatch('update'), 60000);
+    setInterval(() => dispatch('updateASF'), 60000);
+    setInterval(() => dispatch('updateBots'), 2000);
   },
   onAuth: async ({ dispatch }) => {
     await dispatch('update');
   },
   update: async ({ dispatch, rootGetters  }) => {
-    if (!rootGetters ['auth/validPassword']) return;
+    if (!rootGetters['auth/validPassword']) return;
 
     dispatch('updateASF');
     dispatch('updateBots');
   },
-  updateASF: async ({ commit }) => {
+  updateASF: async ({ commit, rootGetters }) => {
+    if (!rootGetters['auth/validPassword']) return;
+
     const response = await get('ASF');
     commit('updateMemoryUsage', response.MemoryUsage);
     commit('updateStartTime', new Date(response.ProcessStartTime));
@@ -80,7 +83,9 @@ export const actions = {
     commit('updateBuildVariant', response.BuildVariant);
     commit('calculateUptime');
   },
-  updateBots: async ({ commit }) => {
+  updateBots: async ({ commit, rootGetters }) => {
+    if (!rootGetters['auth/validPassword']) return;
+
     const response = await get('Bot/ASF');
     commit('updateBots', response.map(data => new Bot(data)));
   }
