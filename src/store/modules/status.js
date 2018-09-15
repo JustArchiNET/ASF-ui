@@ -29,11 +29,15 @@ export const mutations = {
 
 export const actions = {
   init: async ({ dispatch, commit }) => {
-    await dispatch('update');
     setInterval(() => commit('calculateUptime'), 1000);
     setInterval(() => dispatch('update'), 60000);
   },
-  update: async ({ commit }) => {
+  onAuth: async ({ dispatch }) => {
+    await dispatch('update');
+  },
+  update: async ({ commit, rootGetters  }) => {
+    if (!rootGetters ['auth/validPassword']) return;
+
     const response = await get('ASF');
     commit('updateMemoryUsage', response.MemoryUsage);
     commit('updateStartTime', new Date(response.ProcessStartTime));
