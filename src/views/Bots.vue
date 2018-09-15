@@ -9,9 +9,8 @@
 
                 <div class="bot-actions">
                     <span class="bot-action"><font-awesome-icon icon="wrench"></font-awesome-icon></span>
-                    <span class="bot-action" v-if="bot.paused" @click="pause(bot)"><font-awesome-icon icon="play"></font-awesome-icon></span>
-                    <span class="bot-action" v-if="!bot.paused" @click="resume(bot)"><font-awesome-icon icon="pause"></font-awesome-icon></span>
-                    <span class="bot-action"><font-awesome-icon icon="power-off"></font-awesome-icon></span>
+                    <span class="bot-action" v-if="bot.paused && bot.active" @click="resume(bot)"><font-awesome-icon icon="play"></font-awesome-icon></span>
+                    <span class="bot-action" v-if="!bot.paused && bot.active" @click="pause(bot)"><font-awesome-icon icon="pause"></font-awesome-icon></span>
                 </div>
             </div>
         </div>
@@ -51,7 +50,7 @@
 
     .bot {
         display: flex;
-        width: 350px;
+        width: 220px;
         flex-grow: 1;
         border-top: 3px solid var(--color-status);
         padding: 0.5em;
