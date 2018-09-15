@@ -22,7 +22,7 @@
   }
 }
 
-.terminal__input {
+.terminal__input-wrapper {
   width: 100%;
   display: grid;
   grid-template-columns: auto 1fr;
@@ -33,9 +33,9 @@
     color: var(--color-text);
   }
 
-  input {
+  .terminal__input {
     width: 100%;
-    border: 0 solid transparent;
+    border: none;
     box-sizing: border-box;
     background: transparent;
     color: var(--color-text);
@@ -48,17 +48,17 @@
 }
 
 .terminal__autocomplete {
+  padding-left: 1em;
+  box-sizing: border-box;
+  width: 100%;
   position: absolute;
-  grid-area: text;
   pointer-events: none;
+  font-family: monospace;
+  background: transparent;
+  border: none;
   color: var(--color-text-disabled);
-  line-height: 1.45;
-
-  > span {
-    color: transparent;
-  }
 }
 
 .terminal__sign {
-  margin-right: 0.5em;
+  width: 1em;
 }

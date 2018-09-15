@@ -8,11 +8,11 @@
                     <span class="terminal__sign">{{ type === 'out' ? '>' : '<' }}</span>
                     <span class="terminal__text">{{ message }}</span>
                 </div>
-                <div class="terminal__input">
+                <div class="terminal__input-wrapper">
                     <span class="terminal__sign">></span>
-                    <input type="text" spellcheck="false" v-model="command" ref="terminal-input"
+                    <input type="text" spellcheck="false" v-model="command" ref="terminal-input" class="terminal__input"
                            @keydown.enter="sendCommand" @keydown.tab.prevent="autocomplete" @keydown.up="historyPrevious" @keydown.down="historyNext">
-                    <span class="terminal__autocomplete"><span>{{ command }}</span>{{ autocompleteSuggestion }}</span>
+                    <input type="text" spellcheck="false" v-model="autocompleteSuggestion" class="terminal__autocomplete">
                 </div>
             </div>
         </div>
@@ -64,19 +64,19 @@
     },
     computed: {
       autocompleteSuggestion() {
-        if (this.suggestedCommand) return this.suggestedCommand.substr(this.command.length);
+        if (this.suggestedCommand) return this.command.replace(/./g, ' ') + this.suggestedCommand.substr(this.command.length);
 
         if (this.selectedCommand) {
           if (!this.suggestedParameters || !this.suggestedParameters.length) return;
 
           if (this.suggestedParameterValue) {
             return [
-              this.suggestedParameterValue.slice(this.currentParameterValue.length),
+              this.command.replace(/./g, ' ') + this.suggestedParameterValue.slice(this.currentParameterValue.length),
               ...this.suggestedParameters.slice(this.currentParameterIndex)
             ].join(' ');
           }
 
-          return ' ' + this.suggestedParameters.slice(this.currentParameterValue.length ? this.currentParameterIndex : this.currentParameterIndex - 1).join(' ');
+          return this.command.replace(/./g, ' ') + this.suggestedParameters.slice(this.currentParameterValue.length ? this.currentParameterIndex : this.currentParameterIndex - 1).join(' ');
         }
       },
       suggestedCommand() {
