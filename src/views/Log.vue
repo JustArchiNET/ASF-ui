@@ -2,7 +2,7 @@
     <main class="main-container main-container--fullheight log">
         <h2 class="title">Log</h2>
 
-        <div class="container container--fullheight">
+        <div class="container">
             <div class="terminal" ref="terminal">
                 <div class="terminal__message" v-for="{ type, message } in log">
                     <span class="terminal__sign">{{ type === 'out' ? '>' : '<' }}</span>
@@ -65,5 +65,9 @@
     .log {
         display: grid;
         grid-template-rows: auto 1fr;
+
+        > div {
+            min-height: 0;
+        }
     }
 </style>
