@@ -34,7 +34,7 @@ export const state = {
   startTime: null,
   buildVariant: null,
   version: { Major: 0, Minor: 0, Build: 0, Revision: 0 },
-  uptime: '0m',
+  uptime: '00m 00s',
   bots: []
 };
 
@@ -49,17 +49,18 @@ export const mutations = {
 
     const difference = (Date.now() - state.startTime.getTime()) / 1000;
 
+    const seconds = Math.floor(difference % 60);
     const minutes = Math.floor(difference / 60 % 60);
     const hours = Math.floor(difference / (60 * 60) % 24);
     const days = Math.floor(difference / (24 * 60 * 60));
 
-    state.uptime = `${days > 0 ? days + 'd ' : ''}${hours > 0 ? hours + 'h ' : ''}${(minutes + 'm ').padStart(4, '0')}`;
+    state.uptime = `${days > 0 ? days + 'd ' : ''}${hours > 0 ? hours + 'h ' : ''}${(minutes + 'm ').padStart(4, '0')}${(seconds + 's').padStart(3, '0')}`;
   }
 };
 
 export const actions = {
   init: async ({ dispatch, commit }) => {
-    setInterval(() => commit('calculateUptime'), 60000);
+    setInterval(() => commit('calculateUptime'), 1000);
     setInterval(() => dispatch('update'), 60000);
   },
   onAuth: async ({ dispatch }) => {
@@ -77,6 +78,7 @@ export const actions = {
     commit('updateStartTime', new Date(response.ProcessStartTime));
     commit('updateVersion', response.Version);
     commit('updateBuildVariant', response.BuildVariant);
+    commit('calculateUptime');
   },
   updateBots: async ({ commit }) => {
     const response = await get('Bot/ASF');
