@@ -39,7 +39,8 @@
         --color-text-dark: #{$color-text-dark};
         --color-text-secondary: #{darken($color-text, 10)};
         --color-text-disabled: #{darken($color-text, 25)};
-        --color-border: #{$color-theme-blue};
+        --color-box-border: #{$color-theme-blue};
+        --color-border: #{darken($color-text, 25)};
         --color-background: #ecf0f5;
         --color-background-light: #fff;
         --color-navigation: #222d32;
