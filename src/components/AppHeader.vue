@@ -11,13 +11,13 @@
 <script>
   import NavigationBrand from './NavigationBrand.vue';
 
-  import { mapMutations } from 'vuex';
+  import { mapActions } from 'vuex';
 
   export default {
     components: { NavigationBrand },
     name: 'app-header',
     methods: {
-      ...mapMutations({ toggleNavigation: 'layout/toggleNavigation' })
+      ...mapActions({ toggleNavigation: 'layout/toggleNavigation' })
     }
   };
 </script>
