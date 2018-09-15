@@ -1,6 +1,6 @@
 <template>
     <router-link tag="div" :to="to" class="navigation-link" active-class="navigation-link--active" :exact="true">
-        <span class="navigation-link__icon" v-if="icon"><font-awesome-icon :icon="icon"></font-awesome-icon></span>
+        <span class="navigation-link__icon" v-if="icon"><font-awesome-icon :icon="icon" fixed-width></font-awesome-icon></span>
         <span class="navigation-link__name">{{ name }}</span>
     </router-link>
 </template>

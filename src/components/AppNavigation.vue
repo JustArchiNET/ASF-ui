@@ -1,8 +1,7 @@
 <template>
     <nav class="side-navigation">
         <navigation-category name="Home"></navigation-category>
-        <navigation-link name="Statistics" :to="{ name: 'home' }"></navigation-link>
-        <navigation-link name="Usage" :to="{ name: 'home' }"></navigation-link>
+        <navigation-link name="Statistics" :to="{ name: 'statistics' }"></navigation-link>
 
         <navigation-category name="Control"></navigation-category>
         <navigation-link name="Commands" icon="laptop" :to="{ name: 'commands' }"></navigation-link>
@@ -11,7 +10,6 @@
 
         <navigation-category name="Configuration"></navigation-category>
         <navigation-link name="Setup" :to="{ name: 'setup' }"></navigation-link>
-        <navigation-link name="ASF" :to="{ name: 'home' }"></navigation-link>
     </nav>
 </template>
 
