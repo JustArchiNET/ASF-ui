@@ -16,6 +16,10 @@
   display: grid;
   grid-template-columns: auto 1fr;
   margin: 0 0 0.1em;
+
+  .terminal__sign {
+    color: var(--color-text-disabled);
+  }
 }
 
 .terminal__input {
@@ -24,6 +28,10 @@
   grid-template-columns: auto 1fr;
   position: relative;
   grid-template-areas: 'sign text';
+
+  .terminal__sign {
+    color: var(--color-text);
+  }
 
   input {
     width: 100%;
