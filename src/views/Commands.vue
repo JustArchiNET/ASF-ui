@@ -76,7 +76,9 @@
             ].join(' ');
           }
 
-          return this.command.replace(/./g, ' ') + this.suggestedParameters.slice(this.currentParameterValue.length ? this.currentParameterIndex : this.currentParameterIndex - 1).join(' ');
+          return this.command.replace(/./g, ' ') +
+            (this.currentParameterValue.length ? ' ' : '') +
+            this.suggestedParameters.slice(this.currentParameterValue.length ? this.currentParameterIndex : this.currentParameterIndex - 1).join(' ');
         }
       },
       suggestedCommand() {
