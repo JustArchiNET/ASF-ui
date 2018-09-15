@@ -11,6 +11,7 @@
                     <span class="bot-action"><font-awesome-icon icon="wrench"></font-awesome-icon></span>
                     <span class="bot-action" v-if="bot.paused && bot.active" @click="resume(bot)"><font-awesome-icon icon="play"></font-awesome-icon></span>
                     <span class="bot-action" v-if="!bot.paused && bot.active" @click="pause(bot)"><font-awesome-icon icon="pause"></font-awesome-icon></span>
+                    <span class="bot-action" @click="start(bot)"><font-awesome-icon icon="power-off"></font-awesome-icon></span>
                 </div>
             </div>
         </div>
@@ -35,6 +36,10 @@
       },
       async resume(bot) {
         const response = await command('resume', bot.name);
+        console.log(response);
+      },
+      async start(bot) {
+        const response = await command('start', bot.name);
         console.log(response);
       }
     }
