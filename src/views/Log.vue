@@ -3,7 +3,7 @@
         <h2 class="title">Log</h2>
 
         <div class="container container--fullheight">
-            <div class="terminal">
+            <div class="terminal" ref="terminal">
                 <div class="terminal__message" v-for="{ type, message } in log">
                     <span class="terminal__sign">{{ type === 'out' ? '>' : '<' }}</span>
                     <span class="terminal__text">{{ message }}</span>
@@ -44,6 +44,15 @@
       },
       onClose(event) {
 
+      }
+    },
+    watch: {
+      log() {
+        if (this.$refs.terminal.scrollTop < this.$refs.terminal.scrollHeight - this.$refs.terminal.clientHeight - 20) return;
+
+        this.$nextTick(() => {
+          this.$refs.terminal.scrollTop = Math.max(0, this.$refs.terminal.scrollHeight - this.$refs.terminal.clientHeight);
+        });
       }
     },
     beforeDestroy() {

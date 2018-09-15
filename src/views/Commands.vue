@@ -2,8 +2,8 @@
     <main class="main-container main-container--fullheight commands">
         <h2 class="title">Commands</h2>
 
-        <div class="container container--fullheight">
-            <div class="terminal" @click="focusInput">
+        <div class="container">
+            <div class="terminal" @click="focusInput" ref="terminal">
                 <div class="terminal__message" v-for="{ type, message } in log">
                     <span class="terminal__sign">{{ type === 'out' ? '>' : '<' }}</span>
                     <span class="terminal__text">{{ message }}</span>
@@ -151,6 +151,11 @@
     watch: {
       commandHistory(value) {
         localStorage.setItem('command-history', JSON.stringify(value));
+      },
+      log() {
+        this.$nextTick(() => {
+          this.$refs.terminal.scrollTop = Math.max(0, this.$refs.terminal.scrollHeight - this.$refs.terminal.clientHeight);
+        });
       }
     },
     created() {
@@ -164,5 +169,9 @@
     .commands {
         display: grid;
         grid-template-rows: auto 1fr;
+
+        > div {
+            min-height: 0;
+        }
     }
 </style>
