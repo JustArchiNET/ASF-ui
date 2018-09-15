@@ -175,6 +175,9 @@
     created() {
       const commandHistory = localStorage.getItem('command-history');
       if (commandHistory) this.commandHistory = JSON.parse(commandHistory);
+    },
+    mounted() {
+      this.$refs['terminal-input'].focus();
     }
   };
 </script>
