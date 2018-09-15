@@ -105,14 +105,12 @@
 
         switch (this.currentParameter) {
           case 'bot':
-            const suggestedBot = this.$store.getters['status/bots']
-              .map(bot => bot.name)
+            const suggestedBot = [...this.$store.getters['status/bots'].map(bot => bot.name), 'ASF']
               .find(name => name.startsWith(this.currentParameterValue));
 
             if (suggestedBot) return suggestedBot;
 
-            return this.$store.getters['status/bots']
-              .map(bot => bot.name)
+            return [...this.$store.getters['status/bots'].map(bot => bot.name), 'ASF']
               .find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
         }
       },
