@@ -1,6 +1,10 @@
 <template>
     <footer class="footer">
-        <a class="footer__link" target="_blank" href="https://github.com/JustArchi/ArchiSteamFarm">GitHub</a>
+        <div class="footer__links">
+            <a class="footer__link" target="_blank" href="https://github.com/JustArchi/ArchiSteamFarm">GitHub</a>
+            <a class="footer__link" target="_blank" href="https://github.com/JustArchi/ArchiSteamFarm/wiki">Wiki</a>
+            <a class="footer__link" target="_blank" :href="`https://github.com/JustArchi/ArchiSteamFarm/releases/tag/${version}`">Changelog</a>
+        </div>
 
         <div class="footer__statistics" v-if="validPassword">
             <span class="footer__statistic"><b>Version</b> {{ version }} - {{ buildVariant }}</span>
@@ -31,6 +35,12 @@
         display: flex;
         align-items: center;
         font-size: 0.9em;
+        padding: 0 0.5em;
+    }
+
+    .footer__links {
+        display: flex;
+        height: 100%;
     }
 
     .footer__link {
@@ -39,13 +49,13 @@
         text-decoration: none;
         height: 100%;
         padding: 0 0.5em;
-        margin: 0 1em;
+        margin: 0 0.5em;
         display: flex;
         align-items: center;
     }
 
     .footer__statistics {
-        padding: 0 1.5em;
+        padding: 0 1em;
         margin-left: auto;
     }
 </style>

@@ -24,8 +24,10 @@
         </template>
 
         <template v-else>
-            <navigation-category name="Configuration"></navigation-category>
-            <navigation-link name="Setup" icon="wrench" :to="{ name: 'setup' }"></navigation-link>
+            <div class="navigation-category">
+                <navigation-category-title name="Configuration"></navigation-category-title>
+                <navigation-link name="Setup" icon="wrench" :to="{ name: 'setup' }"></navigation-link>
+            </div>
         </template>
     </nav>
 </template>
