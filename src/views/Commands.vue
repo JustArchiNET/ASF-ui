@@ -1,6 +1,6 @@
 <template>
     <main class="main-container">
-        <h2 class="title">Home</h2>
+        <h2 class="title">Commands</h2>
 
         <div class="container">
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deleniti dignissimos, ex hic laboriosam quibusdam reiciendis repellendus temporibus! Eius ipsam, repellat! Autem distinctio dolore doloribus eum facere fugit quo tempora!</p>
@@ -10,7 +10,7 @@
 
 <script>
   export default {
-    name: 'Home',
+    name: 'commands',
     components: {}
   };
 </script>

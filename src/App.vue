@@ -1,5 +1,5 @@
 <template>
-    <div class="app" :class="{ 'app--small-navigation': smallNavigation }">
+    <div class="app" :class="[{ 'app--small-navigation': smallNavigation }, themeClass]">
         <app-header></app-header>
         <app-navigation></app-navigation>
 
@@ -20,8 +20,16 @@
   export default {
     name: 'App',
     components: { AppHeader, AppNavigation, AppFooter },
+    data() {
+      return {
+        theme: 'red'
+      };
+    },
     computed: {
-      ...mapGetters({ smallNavigation: 'layout/smallNavigation' })
+      ...mapGetters({ smallNavigation: 'layout/smallNavigation' }),
+      themeClass() {
+        return `theme-${this.theme}`;
+      }
     }
   };
 </script>
@@ -33,8 +41,8 @@
     :root {
         --navigation-width: 15em;
         --navigation-height: 3em;
-        --color-main: #{$color-theme-blue};
-        --color-main-dark: #{darken($color-theme-blue, 2)};
+        --color-theme: #{$color-theme-blue};
+        --color-theme-dark: #{darken($color-theme-blue, 2)};
         --color-text: #{$color-text};
         --color-text-dark: #{$color-text-dark};
         --color-text-secondary: #{darken($color-text, 10)};
@@ -78,14 +86,28 @@
         --navigation-width: 3em;
     }
 
+    .theme-blue {
+        --color-theme: #{$color-theme-blue};
+        --color-theme-dark: #{darken($color-theme-blue, 2)};
+    }
+
+    .theme-red {
+        --color-theme: #{$color-theme-red};
+        --color-theme-dark: #{darken($color-theme-red, 2)};
+    }
+
     .content {
         padding-top: var(--navigation-height);
         padding-left: var(--navigation-width);
         transition: ease-in-out padding .3s;
 
         > main {
-            min-height: calc(100vh - 2 * var(--navigation-height));
+            min-height: calc(100vh - 2 * var(--navigation-height) + 3px);
             box-sizing: border-box;
+
+            &.main-container--fullheight {
+                height: calc(100vh - 2 * var(--navigation-height) + 3px);
+            }
         }
     }
 </style>

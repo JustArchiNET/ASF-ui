@@ -1,27 +1,27 @@
 <template>
     <router-link tag="div" :to="to" class="navigation-link" active-class="navigation-link--active" :exact="true">
-        <span class="navigation-link__icon" v-if="icon"><font-awesome-icon :icon="icon"></font-awesome-icon></span>
+        <span class="navigation-link__icon" v-if="icon"><font-awesome-icon :icon="icon" fixed-width></font-awesome-icon></span>
         <span class="navigation-link__name">{{ name }}</span>
     </router-link>
 </template>
 
 <script>
-    export default {
-      props: {
-        name: {
-          type: String,
-          required: true
-        },
-        to: {
-          required: true
-        },
-        icon: {
-          type: String,
-          default: 'wrench'
-        }
+  export default {
+    props: {
+      name: {
+        type: String,
+        required: true
       },
-      name: 'navigation-link'
-    }
+      to: {
+        required: true
+      },
+      icon: {
+        type: String,
+        required: true
+      }
+    },
+    name: 'navigation-link'
+  };
 </script>
 
 <style lang="scss">
@@ -42,7 +42,7 @@
         }
 
         &.navigation-link--active {
-            border-color: var(--color-main);
+            border-color: var(--color-theme);
         }
 
         .app--small-navigation & {
@@ -68,7 +68,7 @@
                     background: var(--color-navigation-dark);
                     position: absolute;
                     left: calc(var(--navigation-width) - 3px);
-                    width: 12em;
+                    width: auto;
                     height: 100%;
                     display: flex;
                     align-items: center;

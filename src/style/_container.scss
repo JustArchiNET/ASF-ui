@@ -9,7 +9,7 @@
 }
 
 .container {
-  border-top: 3px solid var(--color-border);
+  border-top: 3px solid var(--color-theme);
   background: var(--color-background-light);
   max-width: 100%;
   padding: 1em 1.5em;
@@ -19,4 +19,9 @@
 
 .container--small {
   width: 600px;
+}
+
+.container--fullheight {
+  height: 100%;
+  box-sizing: border-box;
 }

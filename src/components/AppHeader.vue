@@ -24,7 +24,7 @@
 
 <style lang="scss">
     .upper-navigation {
-        background: var(--color-main);
+        background: var(--color-theme);
         display: flex;
         height: var(--navigation-height);
         position: fixed;
@@ -42,7 +42,7 @@
         color: var(--color-text);
 
         &.navigation-button--active, &:hover {
-            background: var(--color-main-dark);
+            background: var(--color-theme-dark);
         }
     }
 </style>

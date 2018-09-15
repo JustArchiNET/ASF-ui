@@ -6,15 +6,15 @@
 </template>
 
 <script>
-    export default {
-      name: 'navigation-brand'
-    }
+  export default {
+    name: 'navigation-brand'
+  };
 </script>
 
 <style lang="scss">
     .brand {
         padding: 0 1em;
-        background: var(--color-main-dark);
+        background: var(--color-theme-dark);
         width: var(--navigation-width);
         color: var(--color-text);
         box-sizing: border-box;
