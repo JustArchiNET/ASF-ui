@@ -17,7 +17,7 @@
         },
         icon: {
           type: String,
-          default: 'wrench'
+          required: true
         }
       },
       name: 'navigation-link'

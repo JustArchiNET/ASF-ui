@@ -1,7 +1,7 @@
 <template>
     <nav class="side-navigation">
         <navigation-category name="Home"></navigation-category>
-        <navigation-link name="Statistics" :to="{ name: 'statistics' }"></navigation-link>
+        <navigation-link name="Statistics" icon="tachometer-alt" :to="{ name: 'statistics' }"></navigation-link>
 
         <navigation-category name="Control"></navigation-category>
         <navigation-link name="Commands" icon="laptop" :to="{ name: 'commands' }"></navigation-link>
@@ -9,7 +9,7 @@
         <navigation-link name="Log" icon="file-alt" :to="{ name: 'log' }"></navigation-link>
 
         <navigation-category name="Configuration"></navigation-category>
-        <navigation-link name="Setup" :to="{ name: 'setup' }"></navigation-link>
+        <navigation-link name="Setup" icon="wrench" :to="{ name: 'setup' }"></navigation-link>
     </nav>
 </template>
 
