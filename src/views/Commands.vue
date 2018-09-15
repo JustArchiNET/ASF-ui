@@ -128,7 +128,7 @@
       async executeCommand(commandToExecute) {
         switch(commandToExecute.split(' ')[0]) {
           case 'commands':
-            return `Available command: ${commands.join(', ')}`;
+            return `Available commands: ${commands.join(', ')}`;
           case 'help':
             if (commandToExecute.split(' ')[1]) return this.commandHelp(commandToExecute.split(' ')[1]);
             return 'Usage: help <command>, available commands: commands';
