@@ -22,7 +22,7 @@
     }
 
     .footer__link {
-        color: var(--color-main);
+        color: var(--color-theme);
         font-weight: 700;
         text-decoration: none;
         height: 100%;

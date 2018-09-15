@@ -42,7 +42,7 @@
         }
 
         &.navigation-link--active {
-            border-color: var(--color-main);
+            border-color: var(--color-theme);
         }
 
         .app--small-navigation & {

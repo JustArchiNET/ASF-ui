@@ -1,5 +1,5 @@
 <template>
-    <div class="app" :class="{ 'app--small-navigation': smallNavigation }">
+    <div class="app" :class="[{ 'app--small-navigation': smallNavigation }, themeClass]">
         <app-header></app-header>
         <app-navigation></app-navigation>
 
@@ -20,8 +20,14 @@
   export default {
     name: 'App',
     components: { AppHeader, AppNavigation, AppFooter },
+    data() {
+      return {
+        theme: 'red'
+      }
+    },
     computed: {
-      ...mapGetters({ smallNavigation: 'layout/smallNavigation' })
+      ...mapGetters({ smallNavigation: 'layout/smallNavigation' }),
+      themeClass() { return `theme-${this.theme}` }
     }
   };
 </script>
@@ -33,13 +39,12 @@
     :root {
         --navigation-width: 15em;
         --navigation-height: 3em;
-        --color-main: #{$color-theme-blue};
-        --color-main-dark: #{darken($color-theme-blue, 2)};
+        --color-theme: #{$color-theme-blue};
+        --color-theme-dark: #{darken($color-theme-blue, 2)};
         --color-text: #{$color-text};
         --color-text-dark: #{$color-text-dark};
         --color-text-secondary: #{darken($color-text, 10)};
         --color-text-disabled: #{darken($color-text, 25)};
-        --color-box-border: #{$color-theme-blue};
         --color-border: #{darken($color-text, 25)};
         --color-background: #ecf0f5;
         --color-background-light: #fff;
@@ -77,6 +82,16 @@
 
     .app--small-navigation {
         --navigation-width: 3em;
+    }
+
+    .theme-blue {
+        --color-theme: #{$color-theme-blue};
+        --color-theme-dark: #{darken($color-theme-blue, 2)};
+    }
+
+    .theme-red {
+        --color-theme: #{$color-theme-red};
+        --color-theme-dark: #{darken($color-theme-red, 2)};
     }
 
     .content {
