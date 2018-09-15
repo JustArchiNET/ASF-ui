@@ -1,0 +1,56 @@
+.terminal {
+  width: 100%;
+  background: black;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  padding: 1em;
+  color: var(--color-text);
+  font-family: monospace;
+  box-sizing: border-box;
+  height: 100%;
+  overflow-y: auto;
+  cursor: text;
+}
+
+.terminal__message {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  margin: 0 0 0.1em;
+}
+
+.terminal__input {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  position: relative;
+  grid-template-areas: 'sign text';
+
+  input {
+    width: 100%;
+    border: 0 solid transparent;
+    box-sizing: border-box;
+    background: transparent;
+    color: var(--color-text);
+    font-family: monospace;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.terminal__autocomplete {
+  position: absolute;
+  grid-area: text;
+  pointer-events: none;
+  color: var(--color-text-disabled);
+  line-height: 1.45;
+
+  > span {
+    color: transparent;
+  }
+}
+
+.terminal__sign {
+  margin-right: 0.5em;
+}

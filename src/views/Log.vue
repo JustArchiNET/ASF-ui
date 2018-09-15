@@ -4,7 +4,10 @@
 
         <div class="container container--fullheight">
             <div class="terminal">
-                <p v-for="message in messages">{{ message }}</p>
+                <div class="terminal__message" v-for="{ type, message } in log">
+                    <span class="terminal__sign">{{ type === 'out' ? '>' : '<' }}</span>
+                    <span class="terminal__text">{{ message }}</span>
+                </div>
             </div>
         </div>
     </main>
@@ -17,7 +20,7 @@
     name: 'log',
     data() {
       return {
-        messages: []
+        log: []
       };
     },
     computed: mapGetters({
@@ -37,7 +40,7 @@
 
       },
       onMessage(event) {
-        this.messages.push(JSON.parse(event.data).Result);
+        this.log.push({ type: 'in', message: JSON.parse(event.data).Result });
       },
       onClose(event) {
 
@@ -53,21 +56,5 @@
     .log {
         display: grid;
         grid-template-rows: auto 1fr;
-    }
-
-    .terminal {
-        width: 100%;
-        background: black;
-        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-        padding: 1em;
-        color: var(--color-text);
-        font-family: monospace;
-        box-sizing: border-box;
-        height: 100%;
-        overflow-y: auto;
-
-        > p {
-            margin: 0 0 0.1em;
-        }
     }
 </style>
