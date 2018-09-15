@@ -22,7 +22,7 @@
     components: { AppHeader, AppNavigation, AppFooter },
     data() {
       return {
-        theme: 'red'
+        theme: 'teal'
       };
     },
     computed: {
@@ -94,6 +94,21 @@
     .theme-red {
         --color-theme: #{$color-theme-red};
         --color-theme-dark: #{darken($color-theme-red, 2)};
+    }
+
+    .theme-teal {
+        --color-theme: #{$color-theme-teal};
+        --color-theme-dark: #{darken($color-theme-teal, 2)};
+    }
+
+    .theme-purple {
+        --color-theme: #{$color-theme-purple};
+        --color-theme-dark: #{darken($color-theme-purple, 2)};
+    }
+
+    .theme-green {
+        --color-theme: #{$color-theme-green};
+        --color-theme-dark: #{darken($color-theme-green, 2)};
     }
 
     .content {
