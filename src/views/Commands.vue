@@ -23,7 +23,7 @@
   import { command } from '../utils/http';
 
   const commands = [
-    '2fa', '2fano', '2faok', 'addlicense', 'bl', 'bladd', 'blrm', 'exit', 'farm', 'help', 'input', 'ib', 'ibadd',
+    '2fa', '2fano', '2faok', 'addlicense', 'bl', 'bladd', 'blrm', 'commands', 'exit', 'farm', 'help', 'input', 'ib', 'ibadd',
     'ibrm', 'iq', 'iqadd', 'iqrm', 'loot', 'loot@', 'loot^', 'loot&', 'nickname', 'owns', 'password', 'pause', 'pause~',
     'pause&', 'play', 'privacy', 'redeem', 'redeem^', 'rejoinchat', 'restart', 'resume', 'start', 'stats', 'status',
     'stop', 'transfer', 'unpack', 'update', 'version'
