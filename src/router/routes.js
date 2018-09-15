@@ -1,8 +1,8 @@
 export default [
   {
     path: '/',
-    name: 'statistics',
-    component: () => import('../views/Statistics.vue')
+    name: 'home',
+    component: () => import('../views/Home.vue')
   },
   {
     path: '/setup',

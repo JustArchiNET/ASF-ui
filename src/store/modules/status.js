@@ -1,11 +1,37 @@
 import { get } from '../../utils/http';
 
+class Bot {
+  constructor(data) {
+    this.name = data.BotName;
+    this.steamid = data.s_SteamID;
+    this.avatarHash = data.AvatarHash;
+
+    this.flags = data.AccountFlags;
+    this.isPlayingPossible = data.IsPlayingPossible;
+    this.active = data.KeepRunning;
+    this.config = data.BotConfig;
+
+    this.paused = data.CardsFarmer.Paused;
+    this.gamesToFarm = data.CardsFarmer.GamesToFarm;
+    this.timeRemaining = data.CardsFarmer.TimeRemaining;
+    this.currentGamesFarming = data.CardsFarmer.CurrentGamesFarming;
+  }
+
+  get status() {
+    if (!this.active) return 'disabled';
+    if (this.steamid === '0') return 'offline';
+    if (this.timeRemaining === '00:00:00') return 'idling';
+    return 'farming';
+  }
+}
+
 export const state = {
   memoryUsage: 0,
   startTime: null,
   buildVariant: null,
   version: { Major: 0, Minor: 0, Build: 0, Revision: 0 },
-  uptime: '0s'
+  uptime: '0s',
+  bots: []
 };
 
 export const mutations = {
@@ -13,6 +39,7 @@ export const mutations = {
   updateStartTime: (state, startTime) => state.startTime = startTime,
   updateVersion: (state, version) => state.version = version,
   updateBuildVariant: (state, buildVariant) => state.buildVariant = buildVariant,
+  updateBots: (state, bots) => state.bots = bots,
   calculateUptime: (state) => {
     if (!state.startTime) return;
 
@@ -23,7 +50,7 @@ export const mutations = {
     const hours = Math.floor(difference / (60 * 60) % 24);
     const days = Math.floor(difference / (24 * 60 * 60));
 
-    state.uptime = `${days > 0 ? days + 'd ' : ''}${hours > 0 ? hours + 'h ' : ''}${minutes + 'm '}${seconds + 's'}`;
+    state.uptime = `${days > 0 ? days + 'd ' : ''}${hours > 0 ? hours + 'h ' : ''}${(minutes + 'm ').padStart(4, '0')}${(seconds + 's').padStart(3, '0')}`;
   }
 };
 
@@ -35,14 +62,22 @@ export const actions = {
   onAuth: async ({ dispatch }) => {
     await dispatch('update');
   },
-  update: async ({ commit, rootGetters  }) => {
+  update: async ({ dispatch, rootGetters  }) => {
     if (!rootGetters ['auth/validPassword']) return;
 
+    dispatch('updateASF');
+    dispatch('updateBots');
+  },
+  updateASF: async ({ commit }) => {
     const response = await get('ASF');
     commit('updateMemoryUsage', response.MemoryUsage);
     commit('updateStartTime', new Date(response.ProcessStartTime));
     commit('updateVersion', response.Version);
     commit('updateBuildVariant', response.BuildVariant);
+  },
+  updateBots: async ({ commit }) => {
+    const response = await get('Bot/ASF');
+    commit('updateBots', response.map(data => new Bot(data)));
   }
 };
 
@@ -50,5 +85,7 @@ export const getters = {
   memory: state => `${(state.memoryUsage / 1024).toFixed(2)}MB`,
   uptime: state => state.uptime,
   version: state => `${state.version.Major}.${state.version.Minor}.${state.version.Build}.${state.version.Revision}`,
-  buildVariant: state => state.buildVariant
+  buildVariant: state => state.buildVariant,
+  bots: state => status => state.bots.filter(bot => bot.status === status),
+  botsCount: (state, getters) => status => getters.bots(status).length
 };

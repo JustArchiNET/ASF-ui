@@ -1,31 +1,35 @@
 <template>
-    <div class="navigation-category">
-        <span>{{ name }}</span>
+    <div class="navigation-statistic">
+        <span class="navigation-statistic__name">{{ name }}</span>
+        <span class="navigation-statistic__value">{{ value }}</span>
     </div>
 </template>
 
 <script>
   export default {
+    name: 'navigation-statistic',
     props: {
       name: {
         type: String,
         required: true
+      },
+      value: {
+        required: true
       }
-    },
-    name: 'navigation-category'
+    }
   };
 </script>
 
 <style lang="scss">
-    .navigation-category {
+    .navigation-statistic {
         padding: .75em 1em;
-        width: var(--navigation-width);
-        background: rgba(black, 0.4);
         text-transform: uppercase;
         font-size: 0.9em;
         color: var(--color-text-disabled);
         display: flex;
         align-items: center;
+        justify-content: space-between;
+        width: var(--navigation-width);
 
         .app--small-navigation & {
             display: none;
