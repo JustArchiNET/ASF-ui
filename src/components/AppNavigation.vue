@@ -11,6 +11,8 @@
 
             <navigation-category name="Configuration"></navigation-category>
             <navigation-link name="IPC" icon="wrench" :to="{ name: 'ipc-configuration' }"></navigation-link>
+
+            <navigation-footer></navigation-footer>
         </template>
 
         <template v-else>
@@ -23,12 +25,13 @@
 <script>
   import NavigationLink from './NavigationLink.vue';
   import NavigationCategory from './NavigationCategory.vue';
+  import NavigationFooter from './NavigationFooter.vue';
 
   import { mapGetters } from 'vuex';
 
   export default {
     name: 'app-navigation',
-    components: { NavigationLink, NavigationCategory },
+    components: { NavigationLink, NavigationCategory, NavigationFooter },
     computed: mapGetters({ validPassword: 'auth/validPassword' })
   };
 </script>
@@ -45,6 +48,8 @@
         z-index: 1001;
         transition: ease-in-out width .3s;
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
 
         .app--small-navigation & {
             overflow: initial;

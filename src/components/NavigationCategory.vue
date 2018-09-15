@@ -19,8 +19,7 @@
 <style lang="scss">
     .navigation-category {
         padding: .75em 1em;
-        width: 100%;
-        box-sizing: border-box;
+        width: var(--navigation-width);
         background: rgba(black, 0.4);
         text-transform: uppercase;
         font-size: 0.9em;

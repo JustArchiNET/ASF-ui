@@ -15,8 +15,6 @@
     name: 'app-footer',
     computed: mapGetters({
       validPassword: 'auth/validPassword',
-      memory: 'status/memory',
-      uptime: 'status/uptime',
       version: 'status/version',
       buildVariant: 'status/buildVariant'
     })
