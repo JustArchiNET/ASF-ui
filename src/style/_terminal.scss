@@ -16,6 +16,7 @@
   display: grid;
   grid-template-columns: auto 1fr;
   margin: 0 0 0.1em;
+  font-size: 14px;
 
   .terminal__sign {
     color: var(--color-text-disabled);
@@ -40,6 +41,7 @@
     background: transparent;
     color: var(--color-text);
     font-family: monospace;
+    font-size: 14px;
 
     &:focus {
       outline: none;
@@ -57,6 +59,7 @@
   background: transparent;
   border: none;
   color: var(--color-text-disabled);
+  font-size: 14px;
 }
 
 .terminal__sign {
