@@ -112,18 +112,26 @@
     },
     methods: {
       async sendCommand() {
-        const commandToSend = this.command.trim();
+        const commandToExecute = this.command.trim();
         this.command = '';
 
-        if (!commandToSend) return;
+        if (!commandToExecute) return;
 
         this.commandHistoryIndex = -1;
-        this.commandHistory.unshift(commandToSend);
+        this.commandHistory.unshift(commandToExecute);
         this.commandHistory.slice(0, 20);
 
-        this.log.push({ type: 'out', message: commandToSend });
-        const result = await command(commandToSend);
+        this.log.push({ type: 'out', message: commandToExecute });
+        const result = await this.executeCommand(commandToExecute);
         this.log.push({ type: 'in', message: result });
+      },
+      async executeCommand(commandToExecute) {
+        switch(commandToExecute) {
+          case 'commands':
+            return `Available command: ${commands.join(', ')}`;
+        }
+
+        return command(commandToExecute)
       },
       focusInput() {
         this.$refs['terminal-input'].focus();
