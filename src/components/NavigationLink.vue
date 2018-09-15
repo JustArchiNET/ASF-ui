@@ -68,7 +68,7 @@
                     background: var(--color-navigation-dark);
                     position: absolute;
                     left: calc(var(--navigation-width) - 3px);
-                    width: 12em;
+                    width: auto;
                     height: 100%;
                     display: flex;
                     align-items: center;
