@@ -104,6 +104,10 @@
         > main {
             min-height: calc(100vh - 2 * var(--navigation-height) + 3px);
             box-sizing: border-box;
+
+            &.main-container--fullheight {
+                height: calc(100vh - 2 * var(--navigation-height) + 3px);
+            }
         }
     }
 </style>

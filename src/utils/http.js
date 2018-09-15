@@ -12,6 +12,10 @@ export function authenticate(password) {
   http.defaults.headers.common.Authentication = password;
 }
 
+export function updateBaseURL(baseURL) {
+  http.defaults.baseURL = baseURL + '/Api';
+}
+
 export function get(endpoint) {
   return http.get(endpoint).then(extractResult);
 }

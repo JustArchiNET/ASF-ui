@@ -20,3 +20,8 @@
 .container--small {
   width: 600px;
 }
+
+.container--fullheight {
+  height: 100%;
+  box-sizing: border-box;
+}
