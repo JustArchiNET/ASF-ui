@@ -143,7 +143,7 @@
         return command(commandToExecute)
       },
       commandHelp(command) {
-        const asfCommand = this.asfCommands.find(asfCommand => asfCommand.command.split(' ')[0] === command);
+        const asfCommand = this.commands.find(asfCommand => asfCommand.command.split(' ')[0] === command);
         if (asfCommand) return asfCommand.description;
         return `There's no help text for ${command} yet!`;
       },
