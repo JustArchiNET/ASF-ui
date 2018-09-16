@@ -79,15 +79,13 @@
                 }
             }
         }
+
+        svg {
+            margin-right: 0.5em;
+        }
     }
 
     .left-side {
         justify-content: space-between;
-    }
-
-    .navigation-statistic__icon {
-        > svg {
-            margin-right: 0.5em;
-        }
     }
 </style>
