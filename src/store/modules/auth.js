@@ -31,9 +31,7 @@ export const actions = {
     if (baseURL) commit('setBaseURL', baseURL);
 
     const password = localStorage.getItem('ipc-password');
-    if (!password) return commit('invalidate');
-
-    commit('setPassword', password);
+    if (password) commit('setPassword', password);
     await dispatch('validate');
   },
   validate: async ({ commit }) => {
