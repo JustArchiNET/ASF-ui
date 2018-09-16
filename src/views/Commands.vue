@@ -110,6 +110,19 @@
               .find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
           case '<command>':
             return this.commandsNames.find(name => name.startsWith(this.currentParameterValue));
+          case '<modes>':
+            if (this.selectedCommand === 'transfer') return ['All', 'Background', 'Booster', 'Card', 'Emoticon', 'Foil', 'Gems', 'Unknown']
+              .find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
+
+            if (this.selectedCommand === 'redeem^') return ['FD', 'FF', 'FKMD', 'SD', 'SF', 'SI', 'SKMG', 'V']
+              .find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
+
+            return;
+          case '<type>':
+            if (this.selectedCommand !== 'input') return;
+
+            return ['DeviceID', 'Login', 'Password', 'SteamGuard', 'SteamParentalPIN', 'TwoFactorAuthentication']
+              .find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
         }
       },
       selectedCommand() {
