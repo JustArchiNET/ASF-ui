@@ -40,7 +40,7 @@
         white-space: nowrap;
 
         .app--small-navigation & {
-            padding: .95em 0;
+            padding: .75em 0;
 
             .navigation-statistic__icon {
                 display: inline-flex;
