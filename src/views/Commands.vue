@@ -22,34 +22,20 @@
 <script>
   import { command } from '../utils/http';
 
-  const commands = [
-    '2fa', '2fano', '2faok', 'addlicense', 'bl', 'bladd', 'blrm', 'commands', 'exit', 'farm', 'help', 'input', 'ib', 'ibadd',
-    'ibrm', 'iq', 'iqadd', 'iqrm', 'loot', 'loot@', 'loot^', 'loot&', 'nickname', 'owns', 'password', 'pause', 'pause~',
-    'pause&', 'play', 'privacy', 'redeem', 'redeem^', 'rejoinchat', 'restart', 'resume', 'start', 'stats', 'status',
-    'stop', 'transfer', 'unpack', 'update', 'version'
-  ];
+  const asfCommands = ASF_COMMANDS;
 
-  const commandParameters = {
-    '2fa': ['bot'],
-    '2fano': ['bot'],
-    '2faok': ['bot'],
-    addlicense: ['id'],
-    bladd: ['appid'],
-    blrm: ['appid'],
-    farm: ['appid'],
-    loot: ['bot'],
-    nickname: ['bot', 'name'],
-    password: ['bot'],
-    pause: ['bot'],
-    play: ['appid'],
-    redeem: ['key'],
-    resume: ['bot'],
-    start: ['bot'],
-    status: ['bot'],
-    stop: ['bot'],
-    transfer: ['bot', 'type', 'bot'],
-    unpack: ['bot']
-  };
+  asfCommands.push({
+    command: 'commands',
+    description: 'Prints available commands'
+  });
+
+  const helpCommand = asfCommands.find(({ command }) => command === 'help');
+  helpCommand.command = 'help <Command>';
+
+  const commands = asfCommands.map(({ command }) => command.split(' ')[0]);
+  const commandParameters = asfCommands.map(({ command }) => command.split(' '))
+    .map(([command, ...params]) => ({ command, params }))
+    .reduce((commandParameters, { command, params }) => (commandParameters[command] = params, commandParameters), {});
 
   export default {
     name: 'commands',
@@ -105,7 +91,8 @@
         if (!this.currentParameterValue || !this.currentParameterValue.length) return;
 
         switch (this.currentParameter) {
-          case 'bot':
+          case '<Bot>':
+          case '<Bots>':
             const suggestedBot = [...this.$store.getters['status/bots'].map(bot => bot.name), 'ASF']
               .find(name => name.startsWith(this.currentParameterValue));
 
@@ -113,6 +100,8 @@
 
             return [...this.$store.getters['status/bots'].map(bot => bot.name), 'ASF']
               .find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
+          case '<Command>':
+            return commands.find(name => name.startsWith(this.currentParameterValue));
         }
       },
       selectedCommand() {
@@ -140,12 +129,14 @@
             return `Available commands: ${commands.join(', ')}`;
           case 'help':
             if (commandToExecute.split(' ')[1]) return this.commandHelp(commandToExecute.split(' ')[1]);
-            return 'Usage: help <command>, available commands: commands';
+            return 'Usage: help <Command>, available commands: commands';
         }
 
         return command(commandToExecute)
       },
       commandHelp(command) {
+        const asfCommand = asfCommands.find(asfCommand => asfCommand.command.split(' ')[0] === command);
+        if (asfCommand) return asfCommand.description;
         return `There's no help text for ${command} yet!`;
       },
       focusInput() {

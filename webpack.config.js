@@ -3,12 +3,16 @@ const path = require('path');
 const { VueLoaderPlugin } = require('vue-loader');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { DefinePlugin } = require('webpack');
+
+const fetchCommands = require('./scripts/fetchCommands');
 
 module.exports = async (env, argv) => {
   const isProd = env === 'production';
 
   return {
     mode: isProd ? 'production' : 'development',
+    devtool: isProd ? 'source-maps' : 'inline-source-map',
     entry: './src/index.js',
     output: {
       filename: 'main.js',
@@ -72,6 +76,10 @@ module.exports = async (env, argv) => {
     },
     plugins: [
       new CleanWebpackPlugin(['dist']),
+      new DefinePlugin({
+        'ASF_COMMANDS': JSON.stringify(await fetchCommands()),
+        'TEST': '"test"'
+      }),
       new VueLoaderPlugin(),
       new HtmlWebpackPlugin({
         template: 'src/index.html',
