@@ -24,13 +24,11 @@
       titleTemplate: 'ASF | %s'
     },
     components: { AppHeader, AppNavigation, AppFooter },
-    data() {
-      return {
-        theme: 'teal'
-      };
-    },
     computed: {
-      ...mapGetters({ smallNavigation: 'layout/smallNavigation' }),
+      ...mapGetters({
+        smallNavigation: 'layout/smallNavigation',
+        theme: 'layout/theme'
+      }),
       themeClass() {
         return `theme-${this.theme}`;
       }
