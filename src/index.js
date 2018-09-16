@@ -6,7 +6,7 @@ import store from './store';
 
 import './utils/fontAwesome';
 
-const app = new Vue({
+new Vue({
   el: '#app',
   render: h => h(App),
   router,
