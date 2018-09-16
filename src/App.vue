@@ -54,8 +54,8 @@
     @import './style/components';
 
     :root {
-        --navigation-width: 15em;
-        --navigation-height: 3em;
+        --navigation-width: 15rem;
+        --navigation-height: 3rem;
         --color-theme: #{$color-theme-blue};
         --color-theme-dark: #{darken($color-theme-blue, 2)};
         --color-text: #{$color-text};
@@ -151,11 +151,11 @@
         position: relative;
 
         > main {
-            min-height: calc(100vh - 2 * var(--navigation-height) + 3px);
+            min-height: calc(100vh - 2 * var(--navigation-height));
             box-sizing: border-box;
 
             &.main-container--fullheight {
-                height: calc(100vh - 2 * var(--navigation-height) + 3px);
+                height: calc(100vh - 2 * var(--navigation-height));
             }
         }
     }
