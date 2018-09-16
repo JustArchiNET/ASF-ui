@@ -68,12 +68,12 @@
                     background: var(--color-navigation-dark);
                     position: absolute;
                     left: calc(var(--navigation-width) - 3px);
-                    width: auto;
                     height: 100%;
                     display: flex;
                     align-items: center;
                     padding: 0 1.25em;
                     border-radius: 0 4px 4px 0;
+                    white-space: nowrap;
                 }
             }
         }
