@@ -42,7 +42,7 @@
       darkMode: {
         immediate: true,
         handler: value => {
-          document.documentElement.style.setProperty('--color-background-dark', value ? '#000' : '#a7a7a7')
+          document.documentElement.style.setProperty('--color-background-dark', value ? '#0c0c0c' : '#a7a7a7')
         }
       }
     }
@@ -91,7 +91,7 @@
     ::-webkit-scrollbar-thumb {
         -webkit-border-radius: 2px;
         border-radius: 2px;
-        background: rgb(167, 167, 167);
+        background: var(--color-background-dark);
     }
 
     .app {
