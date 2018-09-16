@@ -105,10 +105,10 @@
 
     .bot-stopped {
         color: red;
-    }
 
-    .bot-stopped:hover {
-        color: green;
+        &:hover {
+            color: green;
+        }
     }
 
     .bot-started:hover {
