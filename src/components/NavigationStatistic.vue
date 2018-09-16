@@ -47,7 +47,9 @@
         justify-content: space-between;
     }
 
-    svg {
-        margin-right: 0.5em;
+    .navigation-statistic__icon {
+        > svg {
+            margin-right: 0.5em;
+        }
     }
 </style>
