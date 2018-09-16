@@ -18,6 +18,7 @@
 
   export default {
     name: 'log',
+    metaInfo: { title: 'Log' },
     data() {
       return {
         log: []

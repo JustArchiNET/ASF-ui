@@ -53,6 +53,7 @@
 
   export default {
     name: 'commands',
+    metaInfo: { title: 'Commands' },
     components: {},
     data() {
       return {

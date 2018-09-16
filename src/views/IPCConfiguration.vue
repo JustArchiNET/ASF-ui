@@ -23,6 +23,7 @@
 <script>
   export default {
     name: 'ipc-configuration',
+    metaInfo: { title: 'IPC Configuration' },
     components: {},
     data() {
       return {

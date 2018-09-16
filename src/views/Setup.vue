@@ -19,6 +19,7 @@
 <script>
   export default {
     name: 'setup',
+    metaInfo: { title: 'Setup' },
     components: {},
     data() {
       return {

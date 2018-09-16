@@ -28,6 +28,7 @@
 
   export default {
     name: 'bots',
+    metaInfo: { title: 'Bots' },
     components: {},
     computed: mapGetters({
       bots: 'status/bots'
