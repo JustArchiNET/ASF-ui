@@ -4,7 +4,9 @@
 
         <div class="bots">
             <div class="bot" v-for="bot in bots" :class="[`status--${bot.status}`]">
-                <img class="bot__avatar" :src="bot.avatarURL">
+                <a target="_blank" :href="`https://steamcommunity.com/profiles/${bot.steamid}`">
+                    <img class="bot__avatar" :src="bot.avatarURL">
+                </a>
                 <span class="bot__name">{{ bot.name }}</span>
 
                 <div class="bot-actions">
