@@ -89,7 +89,11 @@
         return this.command.split(' ').length - 1;
       },
       currentParameter() {
-        return this.suggestedParameters[this.currentParameterIndex - 1];
+        const currentParameter = this.suggestedParameters[this.currentParameterIndex - 1];
+        if (currentParameter) return currentParameter;
+
+        const lastParameter = this.suggestedParameters[this.suggestedParameters.length - 1];
+        if (lastParameter.substr(-2, 1) === 's') return lastParameter;
       },
       currentParameterValue() {
         if (this.currentParameter.substr(-2, 1) === 's') {
