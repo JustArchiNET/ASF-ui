@@ -39,7 +39,45 @@
         width: var(--navigation-width);
 
         .app--small-navigation & {
-            display: none;
+            padding: .95em 0;
+
+            &:hover {
+                background: var(--color-navigation-dark);
+                color: var(--color-text);
+            }
+
+            .navigation-statistic__name {
+                display: none;
+            }
+
+            .navigation-statistic__value {
+                display: none;
+            }
+
+            .navigation-statistic__icon {
+                display: inline-flex;
+                width: var(--navigation-width);
+
+                > svg {
+                    margin: 0 auto;
+                }
+            }
+
+            &:hover {
+                position: relative;
+                
+                > .navigation-statistic__value {
+                    background: var(--color-navigation-dark);
+                    position: absolute;
+                    left: calc(var(--navigation-width) - 3px);
+                    width: 7em;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    padding: 0 1.25em;
+                    border-radius: 0 4px 4px 0;
+                }
+            }
         }
     }
 
