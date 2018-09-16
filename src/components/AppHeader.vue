@@ -5,6 +5,10 @@
         <div class="navigation-button" @click="toggleNavigation">
             <font-awesome-icon icon="bars"></font-awesome-icon>
         </div>
+
+        <div class="sidebar-button" @click="">
+            <font-awesome-icon icon="cogs"></font-awesome-icon>
+        </div>
     </header>
 </template>
 
@@ -42,6 +46,21 @@
         color: var(--color-text);
 
         &.navigation-button--active, &:hover {
+            background: var(--color-theme-dark);
+        }
+    }
+
+    .sidebar-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 1em;
+        cursor: pointer;
+        color: var(--color-text);
+        margin-left: auto;
+        margin-right: 0;
+
+        &.sidebar-button--active, &:hover {
             background: var(--color-theme-dark);
         }
     }
