@@ -135,6 +135,12 @@
 
             return ['DeviceID', 'Login', 'Password', 'SteamGuard', 'SteamParentalPIN', 'TwoFactorAuthentication']
               .find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
+          case '<settings>':
+            if (this.selectedCommand !== 'privacy') return;
+
+            return ['Private', 'FriendsOnly', 'Public']
+              .find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
+
         }
       },
       selectedCommand() {
