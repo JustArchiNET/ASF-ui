@@ -9,10 +9,10 @@
 
                 <div class="bot-actions">
                     <span class="bot-action"><font-awesome-icon icon="wrench"></font-awesome-icon></span>
-                    <span class="bot-action" v-if="bot.paused && bot.active" @click="resume(bot)"><font-awesome-icon icon="play"></font-awesome-icon></span>
-                    <span class="bot-action" v-if="!bot.paused && bot.active" @click="pause(bot)"><font-awesome-icon icon="pause"></font-awesome-icon></span>
-                    <span class="bot-action" v-if="!bot.active" @click="start(bot)"><font-awesome-icon icon="power-off"></font-awesome-icon></span>
-                    <span class="bot-action" v-if="bot.active" @click="stop(bot)"><font-awesome-icon icon="power-off"></font-awesome-icon></span>
+                    <span class="bot-action bot-paused" v-if="bot.paused && bot.active" @click="resume(bot)"><font-awesome-icon icon="pause"></font-awesome-icon></span>
+                    <span class="bot-action bot-resumed" v-if="!bot.paused && bot.active" @click="pause(bot)"><font-awesome-icon icon="pause"></font-awesome-icon></span>
+                    <span class="bot-action bot-stopped" v-if="!bot.active" @click="start(bot)"><font-awesome-icon icon="power-off"></font-awesome-icon></span>
+                    <span class="bot-action bot-started" v-if="bot.active" @click="stop(bot)"><font-awesome-icon icon="power-off"></font-awesome-icon></span>
                 </div>
             </div>
         </div>
@@ -89,5 +89,29 @@
         &:hover {
             color: var(--color-text-dark);
         }
+    }
+
+    .bot-paused {
+        color: orange;
+
+        &:hover {
+            color: green;
+        }
+    }
+
+    .bot-resumed:hover {
+        color: orange;
+    }
+
+    .bot-stopped {
+        color: red;
+    }
+
+    .bot-stopped:hover {
+        color: green;
+    }
+
+    .bot-started:hover {
+        color: red;
     }
 </style>
