@@ -20,6 +20,10 @@ export function get(endpoint) {
   return http.get(endpoint).then(extractResult);
 }
 
+export function post(endpoint, data) {
+  return http.post(endpoint, data).then(extractResult);
+}
+
 export function command(...args) {
   return http.post(`Command/${args.join(' ')}`).then(extractResult);
 }

@@ -21,21 +21,9 @@
 
 <script>
   import { command } from '../utils/http';
+  import fetchCommands from '../utils/fetchCommands';
 
-  const asfCommands = ASF_COMMANDS;
-
-  asfCommands.push({
-    command: 'commands',
-    description: 'Prints available commands'
-  });
-
-  const helpCommand = asfCommands.find(({ command }) => command === 'help');
-  helpCommand.command = 'help <Command>';
-
-  const commands = asfCommands.map(({ command }) => command.split(' ')[0]);
-  const commandParameters = asfCommands.map(({ command }) => command.split(' '))
-    .map(([command, ...params]) => ({ command, params }))
-    .reduce((commandParameters, { command, params }) => (commandParameters[command] = params, commandParameters), {});
+  import { mapGetters } from 'vuex';
 
   export default {
     name: 'commands',
@@ -46,10 +34,29 @@
         command: '',
         log: [],
         commandHistory: [],
-        commandHistoryIndex: -1
+        commandHistoryIndex: -1,
+        asfCommands: []
       };
     },
     computed: {
+      ...mapGetters({
+        version: 'status/version'
+      }),
+      commands() {
+        return [
+          ...this.asfCommands.filter(({ command }) => command !== 'help'),
+          { command: 'commands', description: 'Prints available commands' },
+          { command: 'help <Command>', description: 'Prints help' }
+        ]
+      },
+      commandsNames() {
+        return this.commands.map(command => command.command.split(' ')[0]);
+      },
+      commandsParameters() {
+        return this.commands.map(({ command }) => command.split(' '))
+          .map(([command, ...params]) => ({ command, params }))
+          .reduce((commandParameters, { command, params }) => (commandParameters[command] = params, commandParameters), {});
+      },
       autocompleteSuggestion() {
         if (this.suggestedCommand) return this.command.replace(/./g, ' ') + this.suggestedCommand.substr(this.command.length);
 
@@ -70,11 +77,11 @@
       },
       suggestedCommand() {
         if (!this.command.length) return;
-        return commands.find(command => command.startsWith(this.command));
+        return this.commandsNames.find(command => command.startsWith(this.command));
       },
       suggestedParameters() {
-        if (this.selectedCommand && commandParameters[this.selectedCommand])
-          return commandParameters[this.selectedCommand];
+        if (this.selectedCommand && this.commandsParameters[this.selectedCommand])
+          return this.commandsParameters[this.selectedCommand];
 
         return [];
       },
@@ -89,10 +96,11 @@
       },
       suggestedParameterValue() {
         if (!this.currentParameterValue || !this.currentParameterValue.length) return;
+        if (!this.currentParameter) return;
 
-        switch (this.currentParameter) {
-          case '<Bot>':
-          case '<Bots>':
+        switch (this.currentParameter.toLowerCase()) {
+          case '<bot>':
+          case '<bots>':
             const suggestedBot = [...this.$store.getters['status/bots'].map(bot => bot.name), 'ASF']
               .find(name => name.startsWith(this.currentParameterValue));
 
@@ -100,12 +108,12 @@
 
             return [...this.$store.getters['status/bots'].map(bot => bot.name), 'ASF']
               .find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
-          case '<Command>':
-            return commands.find(name => name.startsWith(this.currentParameterValue));
+          case '<command>':
+            return this.commandsNames.find(name => name.startsWith(this.currentParameterValue));
         }
       },
       selectedCommand() {
-        return commands.find(command => command === this.command.split(' ')[0]);
+        return this.commandsNames.find(command => command === this.command.split(' ')[0]);
       }
     },
     methods: {
@@ -126,7 +134,7 @@
       async executeCommand(commandToExecute) {
         switch(commandToExecute.split(' ')[0]) {
           case 'commands':
-            return `Available commands: ${commands.join(', ')}`;
+            return `Available commands: ${this.commandsNames.join(', ')}`;
           case 'help':
             if (commandToExecute.split(' ')[1]) return this.commandHelp(commandToExecute.split(' ')[1]);
             return 'Usage: help <Command>, available commands: commands';
@@ -135,7 +143,7 @@
         return command(commandToExecute)
       },
       commandHelp(command) {
-        const asfCommand = asfCommands.find(asfCommand => asfCommand.command.split(' ')[0] === command);
+        const asfCommand = this.asfCommands.find(asfCommand => asfCommand.command.split(' ')[0] === command);
         if (asfCommand) return asfCommand.description;
         return `There's no help text for ${command} yet!`;
       },
@@ -160,6 +168,23 @@
           this.commandHistoryIndex = -1;
           this.command = '';
         }
+      },
+      async fetchCommands() {
+        this.asfCommands = await fetchCommands(this.version);
+        localStorage.setItem('asf-commands', JSON.stringify({ timestamp: Date.now(), commands: this.asfCommands }));
+      },
+      async loadCommands() {
+        const cachedCommandsRaw = localStorage.getItem('asf-commands');
+        if (!cachedCommandsRaw) return setTimeout(() => this.fetchCommands(), 100);
+
+        const cachedCommands = JSON.parse(cachedCommandsRaw);
+
+        if (cachedCommands.timestamp < Date.now() - 24 * 60 * 60 * 1000) return setTimeout(() => this.fetchCommands(), 100);
+        this.asfCommands = cachedCommands.commands;
+      },
+      loadCommandHistory() {
+        const commandHistory = localStorage.getItem('command-history');
+        if (commandHistory) this.commandHistory = JSON.parse(commandHistory);
       }
     },
     watch: {
@@ -173,8 +198,8 @@
       }
     },
     created() {
-      const commandHistory = localStorage.getItem('command-history');
-      if (commandHistory) this.commandHistory = JSON.parse(commandHistory);
+      this.loadCommandHistory();
+      this.loadCommands();
     },
     mounted() {
       this.$refs['terminal-input'].focus();
