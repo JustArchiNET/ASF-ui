@@ -92,6 +92,11 @@
         return this.suggestedParameters[this.currentParameterIndex - 1];
       },
       currentParameterValue() {
+        if (this.currentParameter.substr(-2, 1) === 's') {
+          const currentParameterValue = this.command.split(' ')[this.currentParameterIndex].split(',');
+          return currentParameterValue[currentParameterValue.length - 1];
+        }
+
         return this.command.split(' ')[this.currentParameterIndex];
       },
       suggestedParameterValue() {
@@ -165,7 +170,13 @@
       },
       autocomplete() {
         if (!this.selectedCommand) this.command = this.suggestedCommand;
-        if (this.selectedCommand && this.suggestedParameterValue) this.command = this.command.split(' ').slice(0, -1).join(' ') + ' ' + this.suggestedParameterValue;
+
+        if (this.selectedCommand && this.suggestedParameterValue) {
+          const splitCommand = this.command.split(' ');
+          const splitCurrentParameter = splitCommand[splitCommand.length - 1].split(',');
+
+          this.command = [...splitCommand.slice(0, -1), [ ...splitCurrentParameter.slice(0, -1), this.suggestedParameterValue].join(',')].join(' ');
+        }
       },
       historyPrevious() {
         if (this.commandHistoryIndex + 1 < this.commandHistory.length) {
