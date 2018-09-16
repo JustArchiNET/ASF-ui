@@ -6,7 +6,7 @@
             <font-awesome-icon icon="bars"></font-awesome-icon>
         </div>
 
-        <div class="sidebar-button" @click="">
+        <div class="navigation-button navigation-button--pull-right" @click="toggleSideMenu">
             <font-awesome-icon icon="cogs"></font-awesome-icon>
         </div>
     </header>
@@ -21,7 +21,10 @@
     components: { NavigationBrand },
     name: 'app-header',
     methods: {
-      ...mapActions({ toggleNavigation: 'layout/toggleNavigation' })
+      ...mapActions({
+        toggleNavigation: 'layout/toggleNavigation',
+        toggleSideMenu: 'layout/toggleSideMenu'
+      })
     }
   };
 </script>
@@ -50,18 +53,7 @@
         }
     }
 
-    .sidebar-button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0 1em;
-        cursor: pointer;
-        color: var(--color-text);
+    .navigation-button--pull-right {
         margin-left: auto;
-        margin-right: 0;
-
-        &.sidebar-button--active, &:hover {
-            background: var(--color-theme-dark);
-        }
     }
 </style>

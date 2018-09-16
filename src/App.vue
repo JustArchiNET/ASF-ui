@@ -2,6 +2,7 @@
     <div class="app" :class="[{ 'app--small-navigation': smallNavigation }, themeClass]">
         <app-header></app-header>
         <app-navigation></app-navigation>
+        <app-side-menu></app-side-menu>
 
         <section class="content">
             <router-view></router-view>
@@ -14,6 +15,7 @@
   import AppHeader from './components/AppHeader.vue';
   import AppNavigation from './components/AppNavigation.vue';
   import AppFooter from './components/AppFooter.vue';
+  import AppSideMenu from './components/AppSideMenu.vue';
 
   import { mapGetters } from 'vuex';
 
@@ -23,10 +25,11 @@
       title: 'ASF',
       titleTemplate: 'ASF | %s'
     },
-    components: { AppHeader, AppNavigation, AppFooter },
+    components: { AppHeader, AppNavigation, AppFooter, AppSideMenu },
     computed: {
       ...mapGetters({
         smallNavigation: 'layout/smallNavigation',
+        sideMenu: 'layout/sideMenu',
         theme: 'layout/theme'
       }),
       themeClass() {
@@ -117,6 +120,7 @@
         padding-top: var(--navigation-height);
         padding-left: var(--navigation-width);
         transition: ease-in-out padding .3s;
+        position: relative;
 
         > main {
             min-height: calc(100vh - 2 * var(--navigation-height) + 3px);
