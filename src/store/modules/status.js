@@ -92,7 +92,7 @@ export const actions = {
 };
 
 export const getters = {
-  memory: state => `${(state.memoryUsage / 1024).toFixed(2)}MB`,
+  memory: state => `${(state.memoryUsage / 1024).toFixed(2)} MB`,
   uptime: state => state.uptime,
   version: state => `${state.version.Major}.${state.version.Minor}.${state.version.Build}.${state.version.Revision}`,
   buildVariant: state => state.buildVariant,
