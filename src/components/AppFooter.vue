@@ -28,7 +28,7 @@
 <style lang="scss">
     .footer {
         width: 100%;
-        height: var(--navigation-height);
+        height: calc(var(--navigation-height) + 2px);
         background: var(--color-background-light);
         border-top: 1px solid var(--color-border);
         box-sizing: border-box;
