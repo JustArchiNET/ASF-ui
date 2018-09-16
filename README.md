@@ -7,4 +7,4 @@ npm i
 npm start
 ```
 
-Local instance of ASF ICP required
+Local instance of ASF IPC required
