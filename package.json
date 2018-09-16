@@ -4,8 +4,8 @@
   "description": "Friendly web interface consuming ASF's IPC interface",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config webpack.config.js",
-    "start": "webpack-dev-server --open"
+    "build": "webpack --config webpack.config.js --env production",
+    "start": "webpack-dev-server --open --env development"
   },
   "author": "Reimu",
   "private": true,
