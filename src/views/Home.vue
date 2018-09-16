@@ -3,15 +3,24 @@
         <h2 class="title">Home</h2>
 
         <div class="container">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deleniti dignissimos, ex hic laboriosam quibusdam reiciendis repellendus temporibus! Eius ipsam, repellat! Autem distinctio dolore doloribus eum facere fugit quo tempora!</p>
+            <button class="button" @click.prevent="executeASFAction('Exit')">Exit</button>
+            <button class="button" @click.prevent="executeASFAction('Restart')">Restart</button>
+            <button class="button" @click.prevent="executeASFAction('Update')">Update</button>
         </div>
     </main>
 </template>
 
 <script>
+  import { post } from '../utils/http';
+
   export default {
     name: 'Home',
     metaInfo: { title: 'Home' },
-    components: {}
+    components: {},
+    methods: {
+      async executeASFAction(action) {
+        await post(`ASF/Action/${action}`);
+      }
+    }
   };
 </script>
