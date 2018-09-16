@@ -18,8 +18,8 @@
             <div class="navigation-category navigation-category--pull-bottom">
                 <navigation-category-title name="Statistics"></navigation-category-title>
                 <navigation-bots></navigation-bots>
-                <navigation-statistic name="Memory usage" :value="memory"></navigation-statistic>
-                <navigation-statistic name="Uptime" :value="uptime"></navigation-statistic>
+                <navigation-statistic name="Memory usage" icon="tachometer-alt" :value="memory"></navigation-statistic>
+                <navigation-statistic name="Uptime" icon="clock" :value="uptime"></navigation-statistic>
             </div>
         </template>
 

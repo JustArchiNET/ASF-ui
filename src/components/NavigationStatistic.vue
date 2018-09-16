@@ -1,6 +1,9 @@
 <template>
     <div class="navigation-statistic">
-        <span class="navigation-statistic__name">{{ name }}</span>
+        <div class="left-side">
+            <span class="navigation-statistic__icon" v-if="icon"><font-awesome-icon :icon="icon" fixed-width></font-awesome-icon></span>
+            <span class="navigation-statistic__name">{{ name }}</span>
+        </div>
         <span class="navigation-statistic__value">{{ value }}</span>
     </div>
 </template>
@@ -14,6 +17,10 @@
         required: true
       },
       value: {
+        required: true
+      },
+      icon: {
+        type: String,
         required: true
       }
     }
@@ -34,5 +41,13 @@
         .app--small-navigation & {
             display: none;
         }
+    }
+
+    .left-side {
+        justify-content: space-between;
+    }
+
+    svg {
+        margin-right: 0.5em;
     }
 </style>
