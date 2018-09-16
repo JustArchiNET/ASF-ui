@@ -4,6 +4,7 @@
 
         <div class="bots">
             <div class="bot" v-for="bot in bots" :class="[`status--${bot.status}`]">
+                <a href=""
                 <img class="bot__avatar" :src="bot.avatarURL">
                 <span class="bot__name">{{ bot.name }}</span>
 
@@ -105,10 +106,10 @@
 
     .bot-stopped {
         color: red;
-    }
 
-    .bot-stopped:hover {
-        color: green;
+        &:hover {
+            color: green;
+        }
     }
 
     .bot-started:hover {
