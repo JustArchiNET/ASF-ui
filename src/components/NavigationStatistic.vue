@@ -1,6 +1,6 @@
 <template>
     <div class="navigation-statistic">
-        <div class="left-side">
+        <div class="navigation-statistic__left-side">
             <span class="navigation-statistic__icon" v-if="icon"><font-awesome-icon :icon="icon" fixed-width></font-awesome-icon></span>
             <span class="navigation-statistic__name">{{ name }}</span>
         </div>
@@ -85,7 +85,7 @@
         }
     }
 
-    .left-side {
+    .navigation-statistic__left-side {
         justify-content: space-between;
     }
 </style>
