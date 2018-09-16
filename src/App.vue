@@ -1,5 +1,5 @@
 <template>
-    <div class="app" :class="[{ 'app--small-navigation': smallNavigation, 'app--boxed-layout': boxedLayout }, themeClass]">
+    <div class="app" :class="[{ 'app--small-navigation': smallNavigation, 'app--boxed-layout': boxedLayout, 'app--dark-mode': darkMode }, themeClass]">
         <app-header></app-header>
         <app-navigation></app-navigation>
         <app-side-menu></app-side-menu>
@@ -31,10 +31,19 @@
         smallNavigation: 'layout/smallNavigation',
         sideMenu: 'layout/sideMenu',
         boxedLayout: 'layout/boxed',
-        theme: 'layout/theme'
+        theme: 'layout/theme',
+        darkMode: 'layout/darkMode'
       }),
       themeClass() {
         return `theme-${this.theme}`;
+      }
+    },
+    watch: {
+      darkMode: {
+        immediate: true,
+        handler: value => {
+          document.documentElement.style.setProperty('--color-background-dark', value ? '#000' : '#a7a7a7')
+        }
       }
     }
   };
@@ -88,6 +97,7 @@
     .app {
         width: 100%;
         background: var(--color-background);
+        color: var(--color-text-dark);
     }
 
     .app--small-navigation {
@@ -100,6 +110,13 @@
         max-width: 1250px;
         margin: 0 auto;
         box-shadow: 0 0 25px 0 var(--color-navigation-dark);
+    }
+
+    .app--dark-mode {
+        --color-background: #111;
+        --color-background-light: #222;
+        --color-text-dark: #94999b;
+        --color-border: rgba(0,0,0,.5);
     }
 
     .theme-blue {

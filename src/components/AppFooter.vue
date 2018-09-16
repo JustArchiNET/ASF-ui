@@ -29,7 +29,7 @@
     .footer {
         width: 100%;
         height: var(--navigation-height);
-        background: white;
+        background: var(--color-background-light);
         border-top: 1px solid var(--color-border);
         box-sizing: border-box;
         display: flex;
