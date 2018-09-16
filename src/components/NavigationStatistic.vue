@@ -1,9 +1,9 @@
 <template>
     <div class="navigation-statistic">
-        <div class="navigation-statistic__left-side">
+        <span class="navigation-statistic__left-side">
             <span class="navigation-statistic__icon" v-if="icon"><font-awesome-icon :icon="icon" fixed-width></font-awesome-icon></span>
             <span class="navigation-statistic__name">{{ name }}</span>
-        </div>
+        </span>
         <span class="navigation-statistic__value">{{ value }}</span>
     </div>
 </template>
@@ -31,28 +31,16 @@
     .navigation-statistic {
         padding: .75em 1em;
         text-transform: uppercase;
-        font-size: 0.9em;
         color: var(--color-text-disabled);
         display: flex;
         align-items: center;
         justify-content: space-between;
-        width: var(--navigation-width);
+        width: 100%;
+        box-sizing: border-box;
+        white-space: nowrap;
 
         .app--small-navigation & {
             padding: .95em 0;
-
-            &:hover {
-                background: var(--color-navigation-dark);
-                color: var(--color-text);
-            }
-
-            .navigation-statistic__name {
-                display: none;
-            }
-
-            .navigation-statistic__value {
-                display: none;
-            }
 
             .navigation-statistic__icon {
                 display: inline-flex;
@@ -63,13 +51,23 @@
                 }
             }
 
+            .navigation-statistic__name {
+                display: none;
+            }
+
+            .navigation-statistic__value {
+                display: none;
+            }
+
             &:hover {
                 position: relative;
+                background: var(--color-navigation-dark);
+                color: var(--color-text);
                 
                 > .navigation-statistic__value {
                     background: var(--color-navigation-dark);
                     position: absolute;
-                    left: calc(var(--navigation-width) - 3px);
+                    left: var(--navigation-width);
                     height: 100%;
                     display: flex;
                     align-items: center;
@@ -87,5 +85,10 @@
 
     .navigation-statistic__left-side {
         justify-content: space-between;
+        margin-right: 0.5em;
+    }
+
+    .navigation-statistic__name {
+        font-size: 0.9em;
     }
 </style>
