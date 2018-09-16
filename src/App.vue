@@ -1,5 +1,5 @@
 <template>
-    <div class="app" :class="[{ 'app--small-navigation': smallNavigation }, themeClass]">
+    <div class="app" :class="[{ 'app--small-navigation': smallNavigation, 'app--boxed-layout': boxedLayout }, themeClass]">
         <app-header></app-header>
         <app-navigation></app-navigation>
         <app-side-menu></app-side-menu>
@@ -30,6 +30,7 @@
       ...mapGetters({
         smallNavigation: 'layout/smallNavigation',
         sideMenu: 'layout/sideMenu',
+        boxedLayout: 'layout/boxed',
         theme: 'layout/theme'
       }),
       themeClass() {
@@ -55,6 +56,7 @@
         --color-border: #{darken($color-text, 25)};
         --color-background: #ecf0f5;
         --color-background-light: #fff;
+        --color-background-dark: #a7a7a7;
         --color-navigation: #222d32;
         --color-navigation-dark: #{darken(#222d32, 3)};
         --color-navigation-darker: #{darken(#222d32, 10)};
@@ -68,6 +70,7 @@
     body {
         height: 100%;
         margin: 0;
+        background: var(--color-background-dark);
     }
 
     ::-webkit-scrollbar {
@@ -91,29 +94,37 @@
         --navigation-width: 3em;
     }
 
+    .app--boxed-layout {
+        position: relative;
+        overflow-x: hidden;
+        max-width: 1250px;
+        margin: 0 auto;
+        box-shadow: 0 0 25px 0 var(--color-navigation-dark);
+    }
+
     .theme-blue {
         --color-theme: #{$color-theme-blue};
-        --color-theme-dark: #{darken($color-theme-blue, 2)};
+        --color-theme-dark: #{darken($color-theme-blue, 5)};
     }
 
     .theme-red {
         --color-theme: #{$color-theme-red};
-        --color-theme-dark: #{darken($color-theme-red, 2)};
+        --color-theme-dark: #{darken($color-theme-red, 5)};
     }
 
     .theme-teal {
         --color-theme: #{$color-theme-teal};
-        --color-theme-dark: #{darken($color-theme-teal, 2)};
+        --color-theme-dark: #{darken($color-theme-teal, 5)};
     }
 
     .theme-purple {
         --color-theme: #{$color-theme-purple};
-        --color-theme-dark: #{darken($color-theme-purple, 2)};
+        --color-theme-dark: #{darken($color-theme-purple, 5)};
     }
 
     .theme-green {
         --color-theme: #{$color-theme-green};
-        --color-theme-dark: #{darken($color-theme-green, 2)};
+        --color-theme-dark: #{darken($color-theme-green, 5)};
     }
 
     .content {

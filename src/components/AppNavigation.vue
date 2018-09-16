@@ -69,6 +69,10 @@
         .app--small-navigation & {
             overflow: initial;
         }
+
+        .app--boxed-layout & {
+            position: absolute;
+        }
     }
 
     .navigation-category--pull-bottom {
