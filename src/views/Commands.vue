@@ -70,9 +70,12 @@
             ].join(' ');
           }
 
+          const remainingParameters = this.suggestedParameters.slice(this.currentParameterValue.length ? this.currentParameterIndex : this.currentParameterIndex - 1);
+          if (!remainingParameters.length && this.currentParameter) remainingParameters.push(this.currentParameter);
+
           return this.command.replace(/./g, ' ') +
             (this.currentParameterValue.length ? ' ' : '') +
-            this.suggestedParameters.slice(this.currentParameterValue.length ? this.currentParameterIndex : this.currentParameterIndex - 1).join(' ');
+            remainingParameters.join(' ');
         }
       },
       suggestedCommand() {
@@ -96,7 +99,7 @@
         if (lastParameter.substr(-2, 1) === 's') return lastParameter;
       },
       currentParameterValue() {
-        if (this.currentParameter.substr(-2, 1) === 's') {
+        if (this.currentParameter && this.currentParameter.substr(-2, 1) === 's') {
           const currentParameterValue = this.command.split(' ')[this.currentParameterIndex].split(',');
           return currentParameterValue[currentParameterValue.length - 1];
         }
