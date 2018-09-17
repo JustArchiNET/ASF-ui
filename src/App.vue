@@ -149,10 +149,15 @@
         padding-left: var(--navigation-width);
         transition: ease-in-out padding .3s;
         position: relative;
+        display: grid;
+        grid-template-rows: 1fr auto;
+        grid-template-areas: 'main' 'footer';
+        min-height: 100vh;
+        box-sizing: border-box;
 
         > main {
-            min-height: calc(100vh - 2 * var(--navigation-height));
             box-sizing: border-box;
+            grid-area: main;
 
             &.main-container--fullheight {
                 height: calc(100vh - 2 * var(--navigation-height));

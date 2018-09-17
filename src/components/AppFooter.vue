@@ -27,6 +27,7 @@
 
 <style lang="scss">
     .footer {
+        grid-area: footer;
         width: 100%;
         height: var(--navigation-height);
         background: var(--color-background-light);
