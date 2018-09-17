@@ -4,13 +4,13 @@
             <h2 class="title">IPC Configuration</h2>
 
             <div class="form-item">
-                <label for="baseURL" class="label">Base URL</label>
-                <input id="baseURL" class="input" type="text" v-model="baseURL" @keydown.enter="update">
+                <label for="baseURL" class="form-item__label">Base URL</label>
+                <input id="baseURL" class="form-item__input" type="text" v-model="baseURL" @keydown.enter="update">
             </div>
 
             <div class="form-item">
-                <label for="password" class="label">Password</label>
-                <input id="password" class="input" type="password" v-model="password" @keydown.enter="update">
+                <label for="password" class="form-item__label">Password</label>
+                <input id="password" class="form-item__input" type="password" v-model="password" @keydown.enter="update">
             </div>
 
             <div class="form-item">

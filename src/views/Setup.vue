@@ -5,8 +5,8 @@
             <h4 class="subtitle">Before continuing, you need to configure IPC access</h4>
 
             <div class="form-item">
-                <label for="password" class="label">Password</label>
-                <input id="password" class="input" type="password" v-model="password" @keydown.enter="updatePassword">
+                <label for="password" class="form-item__label">Password</label>
+                <input id="password" class="form-item__input" type="password" v-model="password" @keydown.enter="updatePassword">
             </div>
 
             <div class="form-item">

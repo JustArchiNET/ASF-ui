@@ -29,5 +29,10 @@ export default [
     path: '/log',
     name: 'log',
     component: () => import('../views/Log.vue')
+  },
+  {
+    path: '/config',
+    name: 'config',
+    component: () => import('../views/Config.vue')
   }
 ];

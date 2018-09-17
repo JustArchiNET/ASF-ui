@@ -13,6 +13,7 @@
             <div class="navigation-category">
                 <navigation-category-title name="Configuration"></navigation-category-title>
                 <navigation-link name="IPC" icon="wrench" :to="{ name: 'ipc-configuration' }"></navigation-link>
+                <navigation-link name="Config" icon="wrench" :to="{ name: 'config' }"></navigation-link>
             </div>
 
             <div class="navigation-category navigation-category--pull-bottom">
