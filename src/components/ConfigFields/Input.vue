@@ -13,8 +13,10 @@
       }
     },
     data() {
+      const initialValue = typeof this.currentValue !== 'undefined' ? this.currentValue : this.schema.defaultValue;
+
       return {
-        value: typeof this.currentValue !== 'undefined' ? this.currentValue : this.schema.defaultValue
+        value: typeof initialValue === 'object' ? JSON.parse(JSON.stringify(initialValue)) : initialValue
       };
     },
     computed: {
@@ -34,7 +36,7 @@
         return this.schema.paramName;
       },
       placeholder() {
-        return;
+
       }
     },
     methods: {

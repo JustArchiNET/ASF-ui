@@ -3,7 +3,7 @@ import { get } from './http';
 const cachedTypeDefinitions = new Map();
 const cachedStructureDefinitions = new Map();
 
-const subtypeRegex = /\[[^\]]+\]/g;
+const subtypeRegex = /\[[^\]]+]/g;
 
 function resolveSubtypes(type) {
   return type.match(subtypeRegex).map(subtype => subtype.slice(1, subtype.length - 1));
@@ -76,6 +76,16 @@ async function unwindObject(type, typeDefinition) {
   return resolvedStructure;
 }
 
+function parseEnumValues(rawValues) {
+  const enumValues = {};
+
+  for (const key of Object.keys(rawValues)) {
+    enumValues[key] = parseInt(rawValues[key], 10);
+  }
+
+  return enumValues;
+}
+
 async function unwindType(type) {
   if (type === 'ArchiSteamFarm.BotConfig') getStructureDefinition(type); // Dirty trick, but 30% is 30%
   const typeDefinition = await getTypeDefinition(type);
@@ -84,7 +94,10 @@ async function unwindType(type) {
     case 'System.Object':
       return unwindObject(type, typeDefinition);
     case 'System.Enum':
-      return { type: (typeDefinition.Properties.CustomAttributes || []).includes('System.FlagsAttribute') ? 'flag' : 'enum', values: typeDefinition.Body };
+      return {
+        type: (typeDefinition.Properties.CustomAttributes || []).includes('System.FlagsAttribute') ? 'flag' : 'enum',
+        values: parseEnumValues(typeDefinition.Body)
+      };
     default:
       const structureDefinition = await getStructureDefinition(type);
       return { type: 'unknown', typeDefinition, structureDefinition };

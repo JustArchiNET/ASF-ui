@@ -36,21 +36,14 @@
     },
     computed: {
       flags() {
-        const flags = {};
-
-        for (const name in this.schema.values) {
-          if (!Object.prototype.hasOwnProperty.call(this.schema.values, name)) continue;
-          flags[name] = parseInt(this.schema.values[name])
-        }
-
-        return flags;
+        return this.schema.values;
       }
     },
     methods: {
-      addFlag(flag = this.flagValue) {
+      addFlag() {
         if (!this.flagValue && this.flagValue !== 0) return;
 
-        if (this.flagValue === 0 || this.flagValue === '0') this.value = 0;
+        if (this.flagValue === 0) this.value = 0;
         this.value |= this.flagValue;
         this.flagValue = this.schema.defaultValue;
       },

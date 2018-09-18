@@ -19,14 +19,7 @@
     name: 'InputEnum',
     computed: {
       values() {
-        const values = {};
-
-        for (const name in this.schema.values) {
-          if (!Object.prototype.hasOwnProperty.call(this.schema.values, name)) continue;
-          values[name] = parseInt(this.schema.values[name])
-        }
-
-        return values;
+        return this.schema.values;
       }
     }
   };

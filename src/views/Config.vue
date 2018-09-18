@@ -27,28 +27,28 @@
             paramName: 'BotBehaviour',
             type: 'flag',
             values: {
-              None: '0',
-              RejectInvalidFriendInvites: '1',
-              RejectInvalidTrades: '2',
-              RejectInvalidGroupInvites: '4',
-              DismissInventoryNotifications: '8',
-              MarkReceivedMessagesAsRead: '16',
-              All: '31'
+              None: 0,
+              RejectInvalidFriendInvites: 1,
+              RejectInvalidTrades: 2,
+              RejectInvalidGroupInvites: 4,
+              DismissInventoryNotifications: 8,
+              MarkReceivedMessagesAsRead: 16,
+              All: 31
             }
           },
           {
             defaultValue: 0,
             paramName: 'PasswordFormat',
             type: 'enum',
-            values: { PlainText: '0', AES: '1', ProtectedDataForCurrentUser: '2' }
+            values: { PlainText: 0, AES: 1, ProtectedDataForCurrentUser: 2 }
           },
           {
-            defaultValue: [],
+            defaultValue: [0, 1],
             paramName: 'FarmingOrders',
             type: 'hashSet',
             values: {
               type: 'enum',
-              values: { Unordered: '0', AppIDsAscending: '1', AppIDsDescending: '2' }
+              values: { Unordered: 0, AppIDsAscending: 1, AppIDsDescending: 2 }
             }
           },
           {
@@ -59,8 +59,7 @@
           }
         ],
         model: {}
-      }
-        ;
+      };
     }
   };
 </script>

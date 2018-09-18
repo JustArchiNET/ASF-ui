@@ -44,7 +44,33 @@
           }
         },
         updateModel(value, field) {
-          this.model[field] = value;
+          const fieldSchema = this.fields.find(fieldSchema => fieldSchema.paramName === field);
+          console.log(field, fieldSchema, value);
+
+          if (fieldSchema && typeof fieldSchema.defaultValue !== 'undefined' && this.isEqual(value, fieldSchema.defaultValue)) {
+            delete this.model[field];
+          } else {
+            this.model[field] = value;
+          }
+        },
+        isEqual(a, b) {
+          console.log(a, typeof a, b, typeof b);
+
+          if (typeof a !== typeof b) return false;
+
+          switch (typeof a) {
+            case 'number':
+            case 'string':
+              return a === b;
+            case 'object':
+              if (a instanceof Array && b instanceof Array) {
+                return a.length === b.length && a.every((item, index) => item === b[index]);
+              }
+
+              return a === b;
+          }
+
+          return false;
         }
       }
     }

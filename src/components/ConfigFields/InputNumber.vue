@@ -6,7 +6,7 @@
             <span v-if="description" class="form-item__description">{{ description }}</span>
         </label>
         <input class="form-item__input" type="number" :name="field" :id="field" :placeholder="placeholder" :required="required" :class="{ error: invalid }"
-               v-model.number="value">
+               v-model.number="value" @blur="onBlur">
         <span v-if="invalid" class="form-item__error">{{ errors.join(' ') }}</span>
     </div>
 </template>
@@ -26,6 +26,11 @@
       },
       invalid() {
         return this.errors.length !== 0;
+      }
+    },
+    methods: {
+      onBlur() {
+        if (this.value === '') this.value = this.defaultValue;
       }
     }
   };
