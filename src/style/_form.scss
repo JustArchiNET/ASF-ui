@@ -27,11 +27,66 @@
   padding: 0 8px;
   color: inherit;
   box-sizing: border-box;
+
+  &:focus, &.form-item__input--focus {
+    outline: var(--color-theme) auto 5px;
+  }
 }
 
 .form-item__input--small {
   width: 50%;
   min-width: 50%;
+}
+
+.form-item__input--tag-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.5em 0 0 0.5em;
+  min-height: 2.66667em;
+  height: auto;
+}
+
+.form-item__input--tag {
+  display: inline-block;
+  min-width: 5em;
+  width: auto;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0 0.5em 0.5em 0;
+  height: auto;
+  flex-grow: 1;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.form-item__tag {
+  margin: 0 0.5em 0.5em 0;
+  flex-shrink: 0;
+  padding: 0.25em 0.5em;
+  min-height: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: .1875em;
+  background: var(--color-navigation);
+  line-height: 1.2;
+  border: 0 solid transparent;
+  font-size: .9375em;
+  color: var(--color-text);
+  transition: background .5s;
+}
+
+.form-item__tag-remove {
+  margin-left: 0.5em;
+  cursor: pointer;
+  transition: color .5s;
+
+  &:hover {
+    color: var(--color-theme);
+  }
 }
 
 .button {

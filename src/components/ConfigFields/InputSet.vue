@@ -6,25 +6,31 @@
             <span v-if="description" class="form-item__description">{{ description }}</span>
         </label>
 
-        <div class="input-option__items">
-            <button v-for="(item, index) in value" class="button input-option__item" @click.prevent="removeElement(index)">{{ resolveOption(item) }}</button>
-        </div>
+        <template v-if="isEnum">
+            <div class="input-option__items">
+                <button v-for="(item, index) in value" class="button input-option__item" @click.prevent="removeElement(index)">{{ resolveOption(item) }}</button>
+            </div>
 
-        <div class="input-option__field">
-            <select class="form-item__input" v-model="element" :id="field" v-if="isEnum" :disabled="!availableEnumValues.length">
-                <option v-for="(enumValue, name) in enumValues" :value="enumValue" v-show="!value.includes(enumValue)">
-                    {{ name }}
-                </option>
-                <option v-if="!availableEnumValues.length" :value="undefined" disabled>All values selected</option>
-            </select>
+            <div class="input-option__field">
+                <select class="form-item__input" v-model="element" :id="field" :disabled="!availableEnumValues.length">
+                    <option v-for="(enumValue, name) in enumValues" :value="enumValue" v-show="!value.includes(enumValue)">
+                        {{ name }}
+                    </option>
+                    <option v-if="!availableEnumValues.length" :value="undefined" disabled>All values selected</option>
+                </select>
 
-            <input class="form-item__input" type="text" :id="field" :name="field" :placeholder="placeholder"
-                   v-model="element" @keydown.enter="addElement" v-else-if="isString">
+                <button class="button" @click.prevent="addElement">Add</button>
+            </div>
+        </template>
 
-            <input class="form-item__input" type="number" :id="field" :name="field" :placeholder="placeholder"
-                   v-model.number="element" @keydown.enter="addElement" v-else-if="isNumber">
-            <button class="button" @click.prevent="addElement">Add</button>
-        </div>
+        <template v-if="isString || isNumber">
+            <div class="form-item__input form-item__input--tag-wrapper" :class="{ 'form-item__input--focus': focus }">
+                <button v-for="(item, index) in value" class="form-item__tag" @click.prevent="removeElement(index)">
+                    {{ resolveOption(item) }} <font-awesome-icon class="form-item__tag-remove" icon="times"></font-awesome-icon>
+                </button>
+                <input class="form-item__input form-item__input--tag" type="text" @keydown="onKeyDown" @focus="onFocus" @blur="onBlur" v-model="element">
+            </div>
+        </template>
     </div>
 </template>
 
@@ -63,7 +69,8 @@
     },
     data() {
       return {
-        element: null
+        focus: false,
+        element: ''
       };
     },
     created() {
@@ -76,11 +83,9 @@
       },
       addElement() {
         if (!this.element && this.element !== 0) return;
+        if (this.value.includes(this.element)) return;
 
-        if (!this.value.includes(this.element)) {
-          this.value.push(this.element);
-        }
-
+        this.value.push(this.element);
         this.element = this.getDefaultElement();
       },
       removeElement(index) {
@@ -90,6 +95,30 @@
       resolveOption(value) {
         if (!this.isEnum) return value;
         return Object.keys(this.enumValues).find(key => this.enumValues[key] === value);
+      },
+      onKeyDown($event) {
+        const charCode = ($event.which) ? $event.which : $event.keyCode;
+
+        if (charCode === 13 || charCode === 9) {
+          this.addElement();
+          return $event.preventDefault();
+        }
+
+        if (charCode === 8 && (!this.element || !this.element.length)) {
+          this.value.splice(-1);
+          return $event.preventDefault();
+        }
+
+        if (this.isNumber) {
+          if (charCode > 31 && (charCode < 48 || charCode > 57)) return $event.preventDefault();
+          return true;
+        }
+      },
+      onFocus() {
+        this.focus = true;
+      },
+      onBlur() {
+        this.focus = false;
       }
     }
   };

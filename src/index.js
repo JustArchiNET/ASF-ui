@@ -12,6 +12,3 @@ new Vue({
   router,
   store
 });
-
-import fetchConfigSchema from './utils/fetchConfigSchema';
-window.fetchConfigSchema = fetchConfigSchema;
