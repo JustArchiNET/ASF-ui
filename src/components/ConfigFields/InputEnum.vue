@@ -16,7 +16,7 @@
 
   export default {
     mixins: [Input],
-    name: 'InputEnum',
+    name: 'input-enum',
     computed: {
       values() {
         return this.schema.values;

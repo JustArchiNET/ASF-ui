@@ -34,7 +34,7 @@
 
   export default {
     mixins: [Input],
-    name: 'InputSet',
+    name: 'input-set',
     computed: {
       isEnum() {
         return this.schema.values.type === 'enum';

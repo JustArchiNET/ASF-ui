@@ -36,6 +36,7 @@ async function resolveType(type) {
     case 'System.Byte':
       return { type: 'smallNumber' };
     case 'System.UInt32':
+    case 'System.UInt16':
       return { type: 'number' };
     case 'System.Collections.Generic.HashSet':
     case 'System.Collections.Immutable.ImmutableHashSet':

@@ -14,6 +14,6 @@
 
   export default {
     mixins: [Input],
-    name: 'InputBoolean'
+    name: 'input-boolean'
   };
 </script>

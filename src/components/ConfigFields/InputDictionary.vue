@@ -32,7 +32,7 @@
 
   export default {
     mixins: [Input],
-    name: 'InputDictionary',
+    name: 'input-dictionary',
     computed: {
       keyIsString() {
         return ['string', 'bigNumber'].includes(this.schema.key.type);

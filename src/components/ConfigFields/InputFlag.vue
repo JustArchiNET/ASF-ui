@@ -28,7 +28,7 @@
 
   export default {
     mixins: [Input],
-    name: 'InputFlag',
+    name: 'input-flag',
     data() {
       return {
         flagValue: this.schema.defaultValue

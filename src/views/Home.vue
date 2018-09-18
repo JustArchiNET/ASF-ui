@@ -14,7 +14,7 @@
   import { post } from '../utils/http';
 
   export default {
-    name: 'Home',
+    name: 'home',
     metaInfo: { title: 'Home' },
     components: {},
     methods: {

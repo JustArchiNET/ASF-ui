@@ -1,6 +1,6 @@
 <template>
     <main class="main-container">
-        <h2 class="title">Config Editor</h2>
+        <h2 class="title">Global Config</h2>
 
         <div class="container">
             <config-editor :fields="fields" :model="model"></config-editor>
@@ -14,8 +14,8 @@
   import fetchConfigSchema from '../utils/fetchConfigSchema';
 
   export default {
-    name: 'Config',
-    metaInfo: { title: 'Config' },
+    name: 'global-config',
+    metaInfo: { title: 'Global Config' },
     components: { ConfigEditor },
     data() {
       return {
@@ -24,7 +24,7 @@
       };
     },
     async created() {
-      const schema = await fetchConfigSchema('ArchiSteamFarm.BotConfig');
+      const schema = await fetchConfigSchema('ArchiSteamFarm.GlobalConfig');
       this.fields = Object.keys(schema.body).map(key => schema.body[key]);
     }
   };

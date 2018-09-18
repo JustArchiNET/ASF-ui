@@ -16,7 +16,7 @@
 
   export default {
     mixins: [Input],
-    name: 'InputNumber',
+    name: 'input-number',
     computed: {
       errors() {
         return this.validate(this.value);
