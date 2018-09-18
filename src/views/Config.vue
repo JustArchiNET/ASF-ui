@@ -11,65 +11,21 @@
 <script>
   import ConfigEditor from '../components/ConfigEditor.vue';
 
+  import fetchConfigSchema from '../utils/fetchConfigSchema';
+
   export default {
     name: 'Config',
     metaInfo: { title: 'Config' },
     components: { ConfigEditor },
     data() {
       return {
-        fields: [
-          { defaultValue: null, paramName: 'SteamLogin', type: 'string' },
-          { defaultValue: false, paramName: 'AcceptGifts', type: 'boolean' },
-          { defaultValue: 3, paramName: 'HoursUntilCardDrops', type: 'smallNumber' },
-          { defaultValue: 0, paramName: 's_SteamMasterClanID', type: 'bigNumber' },
-          {
-            defaultValue: 0,
-            paramName: 'BotBehaviour',
-            type: 'flag',
-            values: {
-              None: 0,
-              RejectInvalidFriendInvites: 1,
-              RejectInvalidTrades: 2,
-              RejectInvalidGroupInvites: 4,
-              DismissInventoryNotifications: 8,
-              MarkReceivedMessagesAsRead: 16,
-              All: 31
-            }
-          },
-          {
-            defaultValue: 0,
-            paramName: 'PasswordFormat',
-            type: 'enum',
-            values: { PlainText: 0, AES: 1, ProtectedDataForCurrentUser: 2 }
-          },
-          {
-            defaultValue: [0, 1],
-            paramName: 'FarmingOrders',
-            type: 'hashSet',
-            values: {
-              type: 'enum',
-              values: { Unordered: 0, AppIDsAscending: 1, AppIDsDescending: 2 }
-            }
-          },
-          {
-            defaultValue: [],
-            paramName: 'GamesPlayedWhileIdle',
-            type: 'hashSet',
-            values: { type: 'number' }
-          },
-          {
-            defaultValue: {},
-            paramName: 'SteamUserPermissions',
-            type: 'dictionary',
-            key: { type: 'bigNumber' },
-            value: {
-              type: 'enum',
-              values: { None: 0, FamilySharing: 1, Operator: 2, Master: 3 }
-            }
-          }
-        ],
+        fields: [],
         model: {}
       };
+    },
+    async created() {
+      const schema = await fetchConfigSchema('ArchiSteamFarm.BotConfig');
+      this.fields = Object.keys(schema.body).map(key => schema.body[key]);
     }
   };
 </script>
