@@ -34,10 +34,11 @@ async function resolveType(type) {
     case 'System.String':
       return { type: 'string' };
     case 'System.Byte':
-      return { type: 'smallNumber' };
+      return { type: 'tinyNumber' };
     case 'System.UInt32':
-    case 'System.UInt16':
       return { type: 'number' };
+    case 'System.UInt16':
+      return { type: 'smallNumber' };
     case 'System.Collections.Generic.HashSet':
     case 'System.Collections.Immutable.ImmutableHashSet':
       const [subtype] = resolveSubtypes(type);

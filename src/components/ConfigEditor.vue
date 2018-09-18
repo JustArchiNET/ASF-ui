@@ -35,6 +35,7 @@
               return InputBoolean;
             case 'number':
             case 'smallNumber':
+            case 'tinyNumber':
               return InputNumber;
             case 'flag':
               return InputFlag;
