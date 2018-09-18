@@ -1,6 +1,6 @@
 <template>
     <div class="config-editor">
-        <component v-for="field in fields" :key="field.paramName" :is="componentFromType(field.type)" :schema="field" @update="updateModel"></component>
+        <component v-for="field in fields" :key="field.paramName" :is="componentFromField(field)" :schema="field" @update="updateModel"></component>
     </div>
 </template>
 
@@ -10,8 +10,10 @@
     import InputNumber from './ConfigFields/InputNumber.vue';
     import InputFlag from './ConfigFields/InputFlag.vue';
     import InputSet from './ConfigFields/InputSet.vue';
+    import InputTag from './ConfigFields/InputTag.vue';
     import InputEnum from './ConfigFields/InputEnum.vue';
     import InputDictionary from './ConfigFields/InputDictionary.vue';
+    import InputUnknown from './ConfigFields/InputUnknown.vue';
 
     export default {
       name: 'config-editor',
@@ -26,8 +28,8 @@
         }
       },
       methods: {
-        componentFromType(type) {
-          switch(type) {
+        componentFromField(field) {
+          switch(field.type) {
             case 'string':
             case 'bigNumber':
               return InputString;
@@ -42,9 +44,13 @@
             case 'enum':
               return InputEnum;
             case 'hashSet':
-              return InputSet;
+              if (['enum'].includes(field.values.type)) return InputSet;
+              if (['tinyNumber', 'smallNumber', 'number', 'bigNumber', 'string'].includes(field.values.type)) return InputTag;
+              return InputUnknown;
             case 'dictionary':
               return InputDictionary;
+            default:
+              return InputUnknown;
           }
         },
         updateModel(value, field) {
