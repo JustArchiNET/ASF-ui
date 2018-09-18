@@ -1,7 +1,7 @@
 export const state = {
   smallNavigation: false,
   sideMenu: false,
-  theme: 'red',
+  theme: 'blue',
   availableThemes: ['blue', 'red', 'teal', 'purple', 'green', 'orange'],
   boxed: false,
   darkMode: false
