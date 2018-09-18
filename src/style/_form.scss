@@ -54,6 +54,29 @@
   }
 }
 
+.input-option__field {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-column-gap: 1em;
+}
+
+.input-option__field--three {
+  grid-template-columns: 1fr 1fr auto;
+}
+
+.input-option__items {
+  margin-left: -0.5em;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.input-option__item {
+  margin: 0.5em 0 0 0.5em;
+  flex-shrink: 0;
+  padding: 0.25em 0.5em;
+  min-height: 0;
+}
+
 .button--confirm {
   background: $color-theme-blue;
 

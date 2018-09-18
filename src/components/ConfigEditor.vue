@@ -11,6 +11,7 @@
     import InputFlag from './ConfigFields/InputFlag.vue';
     import InputSet from './ConfigFields/InputSet.vue';
     import InputEnum from './ConfigFields/InputEnum.vue';
+    import InputDictionary from './ConfigFields/InputDictionary.vue';
 
     export default {
       name: 'config-editor',
@@ -41,11 +42,12 @@
               return InputEnum;
             case 'hashSet':
               return InputSet;
+            case 'dictionary':
+              return InputDictionary;
           }
         },
         updateModel(value, field) {
           const fieldSchema = this.fields.find(fieldSchema => fieldSchema.paramName === field);
-          console.log(field, fieldSchema, value);
 
           if (fieldSchema && typeof fieldSchema.defaultValue !== 'undefined' && this.isEqual(value, fieldSchema.defaultValue)) {
             delete this.model[field];
@@ -54,8 +56,6 @@
           }
         },
         isEqual(a, b) {
-          console.log(a, typeof a, b, typeof b);
-
           if (typeof a !== typeof b) return false;
 
           switch (typeof a) {
@@ -63,8 +63,12 @@
             case 'string':
               return a === b;
             case 'object':
-              if (a instanceof Array && b instanceof Array) {
+              if (Array.isArray(a) && Array.isArray(b)) {
                 return a.length === b.length && a.every((item, index) => item === b[index]);
+              }
+
+              if ('' + a === '[object Object]' && '' + b === '[object Object]') {
+                return Object.keys(a).length === Object.keys(b).length && Object.keys(a).every(key => a[key] === b[key]);
               }
 
               return a === b;

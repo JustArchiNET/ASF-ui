@@ -53,9 +53,19 @@
           },
           {
             defaultValue: [],
-            paramName: "GamesPlayedWhileIdle",
-            type: "hashSet",
+            paramName: 'GamesPlayedWhileIdle',
+            type: 'hashSet',
             values: { type: 'number' }
+          },
+          {
+            defaultValue: {},
+            paramName: 'SteamUserPermissions',
+            type: 'dictionary',
+            key: { type: 'bigNumber' },
+            value: {
+              type: 'enum',
+              values: { None: 0, FamilySharing: 1, Operator: 2, Master: 3 }
+            }
           }
         ],
         model: {}

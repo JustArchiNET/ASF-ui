@@ -1,130 +1,83 @@
 <template>
     <div class="form-item">
-        <label :for="schema.field">
-            {{ schema.label }}
-            <span v-if="schema.required" class="req">*</span>
-            <span v-if="schema.description" class="desc">{{ $t(schema.description) }}</span>
+        <label class="form-item__label" :for="field">
+            {{ label }}
+            <span v-if="required" class="form-item__required">*</span>
+            <span v-if="description" class="form-item__description">{{ description }}</span>
         </label>
 
-        <div class="row gutters">
-            <div class="col col-5">
-                <div class="form-item">
-                    <input v-if="!schema.keys" type="text" :placeholder="schema.keyPlaceholder" class="map-key" :class="{ error: keyInvalid }" v-model="mapKey">
-                    <span v-if="!schema.keys && keyInvalid" class="error">{{ keyErrors.join(' ') }}</span>
-                    <select v-if="schema.keys" v-model="mapKey">
-                        <option v-for="key in schema.keys" :value="key.value">{{ $t(key.name) }}</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col col-5">
-                <div class="form-item">
-                    <input v-if="!schema.values" type="text" :placeholder="schema.valuePlaceholder" class="map-value" :class="{ error: valueInvalid }" v-model="mapValue">
-                    <span v-if="!schema.values && valueInvalid" class="error">{{ valueErrors.join(' ') }}</span>
-                    <select v-if="schema.values" v-model="mapValue">
-                        <option v-for="val in schema.values" :value="val.value">{{ $t(val.name) }}</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col col-2">
-                <div class="form-input">
-                    <button class="button outline w100" @click.prevent="addElement">{{ $t('static.add') }}</button>
-                </div>
-            </div>
+        <div class="input-option__field input-option__field--three">
+            <input class="form-item__input" type="text" :id="`${field}-key`"
+                   v-model="elementKey" @keydown.enter="addElement" v-if="keyIsString">
+
+            <select class="form-item__input" v-model="elementValue" :id="`${field}-value`" v-if="valueIsEnum">
+                <option v-for="(enumValue, name) in schema.value.values" :value="enumValue">
+                    {{ name }}
+                </option>
+            </select>
+
+            <button class="button" @click.prevent="addElement">Add</button>
         </div>
 
-        <p class="label-list">
-            <span v-for="(value, key) in items" class="form-item__label outline" @click.prevent="removeElement(key)">{{ resolveOption(key, schema.keys)
-                }} => {{ resolveOption(value, schema.values) }}</span>
-        </p>
+        <div class="input-option__items">
+            <button v-for="(keyValue, key) in value" class="button input-option__item" @click.prevent="removeElement(key)">
+                {{ key }} => {{ resolveValue(keyValue) }}
+            </button>
+        </div>
     </div>
 </template>
 
 <script>
-  import { each } from 'lodash';
   import Input from './Input.vue';
 
   export default {
     mixins: [Input],
     name: 'InputDictionary',
     computed: {
-      keyErrors() {
-        if (!this.schema.keyValidator) return [];
-        return this.validate(this.mapKey, this.schema.keyValidator);
+      keyIsString() {
+        return ['string', 'bigNumber'].includes(this.schema.key.type);
       },
-      keyInvalid() {
-        return this.keyErrors.length !== 0;
+      valueIsEnum() {
+        return this.schema.value.type === 'enum';
       },
-      valueErrors() {
-        if (!this.schema.valueValidator) return [];
-        return this.validate(this.mapValue, this.schema.valueValidator);
+      valueAvailableEnumValues() {
+        const availableEnumValues = [];
+
+        for (const key of Object.keys(this.schema.value.values)) {
+          availableEnumValues.push(this.schema.value.values[key]);
+        }
+
+        return availableEnumValues;
       },
-      valueInvalid() {
-        return this.valueErrors.length !== 0;
-      }
     },
     data() {
       return {
-        items: {}, // Vue doesn't work well with Maps...
-        mapKey: this.schema.defaultKey,
-        mapValue: this.schema.defaultValue
+        elementKey: this.getDefaultKey(),
+        elementValue: this.getDefaultValue()
       };
     },
     methods: {
+      getDefaultKey() {
+        return null;
+      },
+      getDefaultValue() {
+        if (this.valueIsEnum) return this.valueAvailableEnumValues[0];
+        return null;
+      },
+      resolveValue(value) {
+        if (!this.valueIsEnum) return value;
+        return Object.keys(this.schema.value.values).find(key => this.schema.value.values[key] === value);
+      },
       addElement() {
-        if (!this.mapValue && this.mapValue !== 0 || !this.mapKey && this.mapKey !== 0) return;
+        if (!this.elementValue && this.elementValue !== 0 || !this.elementKey && this.elementKey !== 0) return;
 
-        if (this.hasErrors()) return;
-
-        this.items[this.mapKey] = this.mapValue;
-        this.mapValue = this.schema.defaultValue;
-        this.mapKey = this.schema.defaultKey;
-        this.$emit('update', this.items, this.schema.field);
+        this.$set(this.value, this.elementKey, this.elementValue);
+        this.elementValue = this.getDefaultValue();
+        this.elementKey = this.getDefaultKey();
       },
       removeElement(key) {
-        this.$delete(this.items, key);
-        this.$emit('update', this.items, this.schema.field);
-      },
-      resolveOption(toResolve, options) {
-        if (!options) return toResolve;
-
-        options.forEach(({ value, name }) => {
-          if (toResolve === value) toResolve = name;
-        });
-
-        return toResolve;
-      },
-      hasErrors() {
-        const invalid = this.keyInvalid || this.valueInvalid;
-        if (!invalid) return false;
-
-        const fields = [];
-        if (this.keyInvalid) each(this.$el.getElementsByClassName('map-key'), field => fields.push(field));
-        if (this.valueInvalid) each(this.$el.getElementsByClassName('map-value'), field => fields.push(field));
-
-        clearTimeout(this.shakeTimeout);
-        each(fields, field => { field.classList.add('shake'); });
-        this.shakeTimeout = setTimeout(() => { each(fields, field => { field.classList.remove('shake'); }); }, 500);
-
-        return true;
+        this.$delete(this.value, key);
       }
     }
   };
 </script>
-
-<style lang="scss">
-    .label-list {
-        margin-top: 5px;
-        margin-bottom: 0;
-
-        .form-item__label {
-            margin: 0 5px;
-            cursor: pointer;
-            transition: all 0.1s;
-
-            &:hover {
-                background: black;
-                color: white;
-            }
-        }
-    }
-</style>

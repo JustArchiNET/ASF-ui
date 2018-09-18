@@ -6,20 +6,24 @@
             <span v-if="description" class="form-item__description">{{ description }}</span>
         </label>
 
-        <div class="input-select__field">
+        <div class="input-option__field">
             <select class="form-item__input" v-model="element" :id="field" v-if="isEnum" :disabled="!availableEnumValues.length">
                 <option v-for="(enumValue, name) in enumValues" :value="enumValue" v-show="!value.includes(enumValue)">
                     {{ name }}
                 </option>
                 <option v-if="!availableEnumValues.length" :value="undefined" disabled>All values selected</option>
             </select>
-            <input class="form-item__input" type="text" :id="field" :name="field" :placeholder="placeholder" v-model="element" v-else-if="isString">
-            <input class="form-item__input" type="number" :id="field" :name="field" :placeholder="placeholder" v-model="element" v-else-if="isNumber">
+
+            <input class="form-item__input" type="text" :id="field" :name="field" :placeholder="placeholder"
+                   v-model="element" @keydown.enter="addElement" v-else-if="isString">
+
+            <input class="form-item__input" type="number" :id="field" :name="field" :placeholder="placeholder"
+                   v-model.number="element" @keydown.enter="addElement" v-else-if="isNumber">
             <button class="button" @click.prevent="addElement">Add</button>
         </div>
 
-        <div class="input-select__items">
-            <button v-for="(item, index) in value" class="button input-select__item" @click.prevent="removeElement(index)">{{ resolveOption(item) }}</button>
+        <div class="input-option__items">
+            <button v-for="(item, index) in value" class="button input-option__item" @click.prevent="removeElement(index)">{{ resolveOption(item) }}</button>
         </div>
     </div>
 </template>

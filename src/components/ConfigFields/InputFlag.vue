@@ -1,12 +1,12 @@
 <template>
-    <div class="form-item input-select">
+    <div class="form-item input-option">
         <label class="form-item__label" :for="field">
             {{ label }}
             <span v-if="required" class="form-item__required">*</span>
             <span v-if="description" class="form-item__description">{{ description }}</span>
         </label>
 
-        <div class="input-select__field">
+        <div class="input-option__field">
             <select class="form-item__input" v-model="flagValue" :id="field">
                 <option v-for="(flagValue, name) in flags" :value="flagValue" v-show="flagValue === 0 || !((value & flagValue) === flagValue)">
                     {{ name }}
@@ -15,8 +15,8 @@
             <button class="button" @click.prevent="addFlag">Add</button>
         </div>
 
-        <div class="input-select__items">
-            <button v-for="i in 32" v-if="value & (1 << i)" class="button input-select__item" @click.prevent="removeFlag(1 << i)">
+        <div class="input-option__items">
+            <button v-for="i in 32" v-if="value & (1 << i)" class="button input-option__item" @click.prevent="removeFlag(1 << i)">
                 {{ resolveFlagName(1 << i) }}
             </button>
         </div>
@@ -56,24 +56,3 @@
     }
   };
 </script>
-
-<style lang="scss">
-    .input-select__field {
-        display: grid;
-        grid-template-columns: 4fr 1fr;
-        grid-column-gap: 1em;
-    }
-
-    .input-select__items {
-        margin-left: -0.5em;
-        display: flex;
-        flex-flow: row wrap;
-    }
-
-    .input-select__item {
-        margin: 0.5em 0 0 0.5em;
-        flex-shrink: 0;
-        padding: 0.25em 0.5em;
-        min-height: 0;
-    }
-</style>
