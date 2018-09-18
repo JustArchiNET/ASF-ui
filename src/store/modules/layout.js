@@ -2,7 +2,7 @@ export const state = {
   smallNavigation: false,
   sideMenu: false,
   theme: 'red',
-  availableThemes: ['blue', 'red', 'teal', 'purple', 'green'],
+  availableThemes: ['blue', 'red', 'teal', 'purple', 'green', 'orange'],
   boxed: false,
   darkMode: false
 };

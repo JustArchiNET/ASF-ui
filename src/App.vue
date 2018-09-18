@@ -144,6 +144,11 @@
         --color-theme-dark: #{darken($color-theme-green, 5)};
     }
 
+    .theme-orange {
+        --color-theme: #{$color-theme-orange};
+        --color-theme-dark: #{darken($color-theme-orange, 5)};
+    }
+
     .content {
         padding-top: var(--navigation-height);
         padding-left: var(--navigation-width);
