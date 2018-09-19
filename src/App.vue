@@ -74,6 +74,7 @@
     html {
         height: 100%;
         font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 16px;
     }
 
     body {
