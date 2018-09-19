@@ -1,6 +1,6 @@
 <template>
     <div class="config-editor">
-        <component v-for="field in fields" :key="field.paramName" :is="componentFromField(field)" :schema="field" @update="updateModel"></component>
+        <component v-for="field in fields" :key="field.paramName" :is="componentFromField(field)" :schema="field" :current-value="model[field.paramName]" @update="updateModel"></component>
     </div>
 </template>
 
@@ -25,6 +25,11 @@
         model: {
           type: Object,
           required: true
+        }
+      },
+      data() {
+        return {
+          changed: false
         }
       },
       methods: {
@@ -61,6 +66,12 @@
           } else {
             this.model[field] = value;
           }
+
+          this.changed = true;
+        },
+        update() {
+          this.$emit('update', this.model);
+          this.changed = false;
         },
         isEqual(a, b) {
           if (typeof a !== typeof b) return false;
@@ -68,6 +79,7 @@
           switch (typeof a) {
             case 'number':
             case 'string':
+            case 'boolean':
               return a === b;
             case 'object':
               if (Array.isArray(a) && Array.isArray(b)) {
@@ -83,6 +95,9 @@
 
           return false;
         }
+      },
+      beforeDestroy() {
+        if (this.changed) this.update();
       }
     }
 </script>

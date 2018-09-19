@@ -8,9 +8,7 @@
       currentValue: true
     },
     watch: {
-      value() {
-        this.$emit('update', this.value, this.field);
-      }
+      value: 'update'
     },
     data() {
       const initialValue = typeof this.currentValue !== 'undefined' ? this.currentValue : this.schema.defaultValue;
@@ -43,6 +41,9 @@
       validate(value, validator) {
         if (!validator) return [];
         return validator(value, this.schema);
+      },
+      update() {
+        this.$emit('update', this.value, this.field);
       }
     }
   };

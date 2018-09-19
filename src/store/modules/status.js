@@ -62,7 +62,7 @@ export const actions = {
   init: async ({ dispatch, commit }) => {
     setInterval(() => commit('calculateUptime'), 1000);
     setInterval(() => dispatch('updateASF'), 60000);
-    setInterval(() => dispatch('updateBots'), 2000);
+    setInterval(() => dispatch('updateBots'), 5000);
   },
   onAuth: async ({ dispatch }) => {
     await dispatch('update');
@@ -76,18 +76,23 @@ export const actions = {
   updateASF: async ({ commit, rootGetters }) => {
     if (!rootGetters['auth/validPassword']) return;
 
-    const response = await get('ASF');
-    commit('updateMemoryUsage', response.MemoryUsage);
-    commit('updateStartTime', new Date(response.ProcessStartTime));
-    commit('updateVersion', response.Version);
-    commit('updateBuildVariant', response.BuildVariant);
-    commit('calculateUptime');
+    try {
+      const response = await get('ASF');
+      commit('updateMemoryUsage', response.MemoryUsage);
+      commit('updateStartTime', new Date(response.ProcessStartTime));
+      commit('updateVersion', response.Version);
+      commit('updateBuildVariant', response.BuildVariant);
+      commit('calculateUptime');
+    } catch (err) {}
+
   },
   updateBots: async ({ commit, rootGetters }) => {
     if (!rootGetters['auth/validPassword']) return;
 
-    const response = await get('Bot/ASF');
-    commit('updateBots', response.map(data => new Bot(data)));
+    try {
+      const response = await get('Bot/ASF');
+      commit('updateBots', response.map(data => new Bot(data)));
+    } catch (err) {}
   }
 };
 
