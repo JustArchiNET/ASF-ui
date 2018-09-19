@@ -16,7 +16,6 @@
   display: grid;
   grid-template-columns: auto 1fr;
   margin: 0 0 0.1em;
-  font-size: 14px;
 
   .terminal__sign {
     color: var(--color-text-disabled);
@@ -33,35 +32,33 @@
   .terminal__sign {
     color: var(--color-text);
   }
+}
 
-  .terminal__input {
-    width: 100%;
-    border: none;
-    box-sizing: border-box;
-    background: transparent;
-    color: var(--color-text);
-    font-family: monospace;
-    font-size: 14px;
+.terminal__input {
+  width: 100%;
+  border: none;
+  box-sizing: border-box;
+  background: transparent;
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.1;
+  margin: 0;
+  padding: 0;
 
-    &:focus {
-      outline: none;
-    }
+  &:focus {
+    outline: none;
   }
 }
 
-.terminal__autocomplete {
-  padding-left: 1em;
-  box-sizing: border-box;
-  width: 100%;
+.terminal__input--autocomplete {
+  padding-left: 1.2em;
   position: absolute;
   pointer-events: none;
-  font-family: monospace;
-  background: transparent;
-  border: none;
   color: var(--color-text-disabled);
-  font-size: 14px;
+  height: 100%;
 }
 
 .terminal__sign {
-  width: 1em;
+  width: 1.2em;
 }
