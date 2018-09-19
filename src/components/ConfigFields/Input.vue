@@ -22,7 +22,7 @@
         return this.schema.defaultValue;
       },
       label() {
-        return this.schema.label || this.schema.paramName;
+        return this.schema.label || this.schema.param || this.schema.paramName;
       },
       description() {
         return this.schema.description;

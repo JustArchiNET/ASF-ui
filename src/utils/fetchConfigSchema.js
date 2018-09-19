@@ -71,6 +71,7 @@ async function unwindObject(type, typeDefinition) {
     resolvedStructure.body[param] = {
       defaultValue: structureDefinition[param],
       paramName,
+      param,
       ...type
     };
   }
