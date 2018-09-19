@@ -1,20 +1,8 @@
 <template>
     <div class="bot-cards">
-        <div class="bot-card status--farming">
-            <span class="bot-card__value">{{ botsCount('farming') }}</span>
-            <span class="bot-card__name">Farming</span>
-        </div>
-        <div class="bot-card status--idling">
-            <span class="bot-card__value">{{ botsCount('idling') }}</span>
-            <span class="bot-card__name">Idling</span>
-        </div>
-        <div class="bot-card status--disabled">
-            <span class="bot-card__value">{{ botsCount('disabled') }}</span>
-            <span class="bot-card__name">Disabled</span>
-        </div>
-        <div class="bot-card status--offline">
-            <span class="bot-card__value">{{ botsCount('offline') }}</span>
-            <span class="bot-card__name">Offline</span>
+        <div class="bot-card" :class="[`status--${type}`]" v-for="type in botTypes">
+            <span class="bot-card__value">{{ count(type) }}</span>
+            <span class="bot-card__name">{{ type }}</span>
         </div>
     </div>
 </template>
@@ -24,9 +12,19 @@
 
   export default {
     name: 'navigation-bots',
-    computed: mapGetters({
-      botsCount: 'status/botsCount'
-    })
+    computed: {
+      ...mapGetters({
+        botsCount: 'status/botsCount'
+      }),
+      count() {
+        return type => Math.min(99, this.botsCount(type))
+      }
+    },
+    data() {
+      return {
+        botTypes: ['farming', 'idling', 'disabled', 'offline']
+      }
+    }
   };
 </script>
 
@@ -47,7 +45,7 @@
     }
 
     .bot-card {
-        padding: 0.5em;
+        padding: 0.25em 0.1em;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -64,5 +62,6 @@
 
     .bot-card__name {
         font-size: 0.9em;
+        text-transform: capitalize;
     }
 </style>
