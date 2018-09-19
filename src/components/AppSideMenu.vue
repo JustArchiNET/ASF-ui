@@ -4,6 +4,7 @@
         <side-menu-switch name="Dark mode" icon="moon" :checked="darkMode" @click="toggleDarkMode"></side-menu-switch>
 
         <div class="side-menu__category">
+            <font-awesome-icon icon="palette" fixed-width></font-awesome-icon>
             <span>Theme</span>
         </div>
 
