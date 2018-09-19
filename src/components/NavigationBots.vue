@@ -35,7 +35,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-gap: 0.5em;
-        padding: 0.5em;
+        padding: 5px;
 
         .app--small-navigation & {
             grid-template-columns: 1fr;
