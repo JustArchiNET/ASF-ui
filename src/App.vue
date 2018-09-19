@@ -116,8 +116,11 @@
     .app--dark-mode {
         --color-background: #111;
         --color-background-light: #222;
+        --color-text: #bfbfbf;
         --color-text-dark: #94999b;
         --color-border: rgba(0,0,0,.5);
+        --color-text-secondary: #{darken(#bfbfbf, 10)};
+        --color-text-disabled: #{darken(#bfbfbf, 15)};
     }
 
     .theme-blue {

@@ -27,10 +27,10 @@ export const actions = {
     if (theme) commit('changeTheme', theme);
 
     const boxed = localStorage.getItem('boxed-layout');
-    if (theme) commit('setBoxed', JSON.parse(boxed));
+    if (boxed) commit('setBoxed', JSON.parse(boxed));
 
     const darkMode = localStorage.getItem('dark-mode');
-    if (theme) commit('setDarkMode', JSON.parse(darkMode));
+    if (darkMode) commit('setDarkMode', JSON.parse(darkMode));
   },
   toggleNavigation: ({ commit, getters }) => {
     commit('toggleNavigation');
