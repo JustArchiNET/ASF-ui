@@ -34,7 +34,7 @@
         return this.schema.paramName;
       },
       placeholder() {
-
+        return this.schema.defaultValue;
       }
     },
     methods: {
