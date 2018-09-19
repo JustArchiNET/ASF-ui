@@ -35,6 +35,7 @@
         display: flex;
         align-items: center;
         border-left: 3px solid transparent;
+        white-space: nowrap;
 
         &.navigation-link--active, &:hover {
             background: var(--color-navigation-dark);
@@ -73,7 +74,6 @@
                     align-items: center;
                     padding: 0 1.25em;
                     border-radius: 0 4px 4px 0;
-                    white-space: nowrap;
                 }
             }
         }
