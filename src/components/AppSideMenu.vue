@@ -1,7 +1,7 @@
 <template>
     <aside class="side-menu" :class="{ 'side-menu--hidden': !sideMenu }">
-        <side-menu-switch name="Boxed layout" :checked="boxedLayout" @click="toggleBoxed"></side-menu-switch>
-        <side-menu-switch name="Dark mode" :checked="darkMode" @click="toggleDarkMode"></side-menu-switch>
+        <side-menu-switch name="Boxed layout" icon="square" :checked="boxedLayout" @click="toggleBoxed"></side-menu-switch>
+        <side-menu-switch name="Dark mode" icon="moon" :checked="darkMode" @click="toggleDarkMode"></side-menu-switch>
 
         <div class="side-menu__category">
             <span>Theme</span>

@@ -1,5 +1,6 @@
 <template>
     <div class="side-menu__switch" @click="$emit('click')">
+        <font-awesome-icon :icon="icon" fixed-width></font-awesome-icon>
         <span>{{ name }}</span>
         <font-awesome-icon v-if="checked" icon="check-circle"></font-awesome-icon>
         <font-awesome-icon v-else icon="times-circle"></font-awesome-icon>
@@ -11,6 +12,10 @@
     name: 'side-menu-switch',
     props: {
       name: {
+        type: String,
+        required: true
+      },
+      icon: {
         type: String,
         required: true
       },
