@@ -28,7 +28,7 @@
                     {{change}}
                 </li>
             </ul>
-            <a :href="release.URL" class="changelog-link" target="_blank">full Changelog for this version</a>
+            <a :href="release.URL" class="changelog-link" target="_blank">Full Changelog for this version</a>
         </div>
     </div>
 </template>
