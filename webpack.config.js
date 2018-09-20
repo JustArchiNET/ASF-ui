@@ -9,7 +9,7 @@ module.exports = async (env, argv) => {
 
   return {
     mode: isProd ? 'production' : 'development',
-    devtool: isProd ? 'source-maps' : 'inline-source-map',
+    devtool: isProd ? '(none)' : 'inline-source-map',
     entry: './src/index.js',
     output: {
       filename: 'main.js',
