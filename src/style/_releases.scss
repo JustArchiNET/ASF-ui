@@ -1,0 +1,38 @@
+.badge {
+    background-color: $color-text;
+
+    border-radius: .25rem;
+    border-width: 1px;
+    border-style: solid;
+
+    padding: .25em .4em;
+    margin-left: .5em;
+    font-size: 75%;
+    display: inline-block;
+    line-height: 1;
+    text-align: center;
+    vertical-align: baseline;
+}
+
+.badge {
+    &.prerelease {
+        color: $color-status-offline;
+    }
+
+    &.stable {
+        color: $color-status-farming;
+    }
+}
+
+.changelog-link {
+    color: var(--color-theme);
+    font-weight: bold;
+
+    &:hover {
+        text-decoration: none;
+    }
+
+    &:visited {
+
+    }
+}

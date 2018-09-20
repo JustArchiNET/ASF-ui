@@ -7,16 +7,20 @@
 			<button class="button" @click.prevent="executeASFAction('Restart')">Restart</button>
 			<button class="button" @click.prevent="executeASFAction('Update')">Update</button>
 		</div>
+		
+		<changelog/>
 	</main>
 </template>
 
 <script>
+	import Changelog from '../components/Changelog.vue';
+
 	import { post } from '../utils/http';
 
 	export default {
 		name: 'home',
 		metaInfo: { title: 'Home' },
-		components: {},
+		components: { Changelog },
 		methods: {
 			async executeASFAction(action) {
 				await post(`ASF/Action/${action}`);
