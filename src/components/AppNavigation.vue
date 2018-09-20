@@ -9,7 +9,6 @@
                 <navigation-link name="Log" icon="file-alt" :to="{ name: 'log' }"></navigation-link>
             </div>
 
-
             <div class="navigation-category">
                 <navigation-category-title name="Configuration"></navigation-category-title>
                 <navigation-link name="IPC" icon="wrench" :to="{ name: 'ipc-configuration' }"></navigation-link>
