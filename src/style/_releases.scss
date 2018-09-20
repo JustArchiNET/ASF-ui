@@ -27,9 +27,9 @@
 .changelog-link {
     color: var(--color-theme);
     font-weight: bold;
+    text-decoration: none;
 
     &:hover {
-        text-decoration: none;
     }
 
     &:visited {
