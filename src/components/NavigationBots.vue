@@ -22,7 +22,7 @@
     },
     data() {
       return {
-        botTypes: ['farming', 'idle', 'disabled', 'offline']
+        botTypes: ['farming', 'online', 'disabled', 'offline']
       }
     }
   };

@@ -14,11 +14,11 @@
   }
 }
 
-.status--idle {
-  --color-status: #{$color-status-idle};
+.status--online {
+  --color-status: #{$color-status-online};
 
   .app--dark-mode & {
-    --color-status: #{darken($color-status-idle, 20)};
+    --color-status: #{darken($color-status-online, 20)};
   }
 }
 
