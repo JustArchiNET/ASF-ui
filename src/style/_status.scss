@@ -1,16 +1,16 @@
-.status--offline {
-  --color-status: #{$color-status-offline};
-
-  .app--dark-mode & {
-    --color-status: #{darken($color-status-offline, 20)};
-  }
-}
-
 .status--disabled {
   --color-status: #{$color-status-disabled};
 
   .app--dark-mode & {
     --color-status: #{darken($color-status-disabled, 20)};
+  }
+}
+
+.status--offline {
+  --color-status: #{$color-status-offline};
+
+  .app--dark-mode & {
+    --color-status: #{darken($color-status-offline, 20)};
   }
 }
 
