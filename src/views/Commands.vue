@@ -1,256 +1,256 @@
 <template>
-    <main class="main-container main-container--fullheight commands">
-        <h2 class="title">Commands</h2>
+	<main class="main-container main-container--fullheight commands">
+		<h2 class="title">Commands</h2>
 
-        <div class="container">
-            <div class="terminal" @click="focusInput" ref="terminal">
-                <div class="terminal__message" v-for="{ type, message } in log">
-                    <span class="terminal__sign">{{ type === 'out' ? '>' : '<' }}</span>
-                    <span class="terminal__text">{{ message }}</span>
-                </div>
-                <div class="terminal__input-wrapper">
-                    <span class="terminal__sign">></span>
-                    <input type="text" spellcheck="false" v-model="command" ref="terminal-input" class="terminal__input"
-                           @keydown.enter="sendCommand" @keydown.tab.prevent="autocomplete" @keydown.up="historyPrevious" @keydown.down="historyNext">
-                    <input type="text" spellcheck="false" v-model="autocompleteSuggestion" class="terminal__input terminal__input--autocomplete">
-                </div>
-            </div>
-        </div>
-    </main>
+		<div class="container">
+			<div class="terminal" @click="focusInput" ref="terminal">
+				<div class="terminal__message" v-for="{ type, message } in log">
+					<span class="terminal__sign">{{ type === 'out' ? '>' : '<' }}</span>
+					<span class="terminal__text">{{ message }}</span>
+				</div>
+				<div class="terminal__input-wrapper">
+					<span class="terminal__sign">></span>
+					<input type="text" spellcheck="false" v-model="command" ref="terminal-input" class="terminal__input"
+								 @keydown.enter="sendCommand" @keydown.tab.prevent="autocomplete" @keydown.up="historyPrevious" @keydown.down="historyNext">
+					<input type="text" spellcheck="false" v-model="autocompleteSuggestion" class="terminal__input terminal__input--autocomplete">
+				</div>
+			</div>
+		</div>
+	</main>
 </template>
 
 <script>
-  import { command } from '../utils/http';
-  import fetchCommands from '../utils/fetchCommands';
+	import { command } from '../utils/http';
+	import fetchCommands from '../utils/fetchCommands';
 
-  import { mapGetters } from 'vuex';
+	import { mapGetters } from 'vuex';
 
-  export default {
-    name: 'commands',
-    metaInfo: { title: 'Commands' },
-    components: {},
-    data() {
-      return {
-        command: '',
-        log: [],
-        commandHistory: [],
-        commandHistoryIndex: -1,
-        asfCommands: []
-      };
-    },
-    computed: {
-      ...mapGetters({
-        version: 'status/version'
-      }),
-      commands() {
-        return [
-          ...this.asfCommands.filter(({ command }) => command !== 'help'),
-          { command: 'commands', description: 'Prints available commands' },
-          { command: 'help <Command>', description: 'Prints help' }
-        ]
-      },
-      commandsNames() {
-        return this.commands.map(command => command.command.split(' ')[0]);
-      },
-      commandsParameters() {
-        return this.commands.map(({ command }) => command.split(' '))
-          .map(([command, ...params]) => ({ command, params }))
-          .reduce((commandParameters, { command, params }) => (commandParameters[command] = params, commandParameters), {});
-      },
-      autocompleteSuggestion() {
-        if (this.suggestedCommand) return this.command.replace(/./g, ' ') + this.suggestedCommand.substr(this.command.length);
+	export default {
+		name: 'commands',
+		metaInfo: { title: 'Commands' },
+		components: {},
+		data() {
+			return {
+				command: '',
+				log: [],
+				commandHistory: [],
+				commandHistoryIndex: -1,
+				asfCommands: []
+			};
+		},
+		computed: {
+			...mapGetters({
+				version: 'status/version'
+			}),
+			commands() {
+				return [
+					...this.asfCommands.filter(({ command }) => command !== 'help'),
+					{ command: 'commands', description: 'Prints available commands' },
+					{ command: 'help <Command>', description: 'Prints help' }
+				];
+			},
+			commandsNames() {
+				return this.commands.map(command => command.command.split(' ')[0]);
+			},
+			commandsParameters() {
+				return this.commands.map(({ command }) => command.split(' '))
+						.map(([command, ...params]) => ({ command, params }))
+						.reduce((commandParameters, { command, params }) => (commandParameters[command] = params, commandParameters), {});
+			},
+			autocompleteSuggestion() {
+				if (this.suggestedCommand) return this.command.replace(/./g, ' ') + this.suggestedCommand.substr(this.command.length);
 
-        if (this.selectedCommand) {
-          if (!this.suggestedParameters || !this.suggestedParameters.length) return;
+				if (this.selectedCommand) {
+					if (!this.suggestedParameters || !this.suggestedParameters.length) return;
 
-          if (this.suggestedParameterValue) {
-            return [
-              this.command.replace(/./g, ' ') + this.suggestedParameterValue.slice(this.currentParameterValue.length),
-              ...this.suggestedParameters.slice(this.currentParameterIndex)
-            ].join(' ');
-          }
+					if (this.suggestedParameterValue) {
+						return [
+							this.command.replace(/./g, ' ') + this.suggestedParameterValue.slice(this.currentParameterValue.length),
+							...this.suggestedParameters.slice(this.currentParameterIndex)
+						].join(' ');
+					}
 
-          const remainingParameters = this.suggestedParameters.slice(this.currentParameterValue.length ? this.currentParameterIndex : this.currentParameterIndex - 1);
-          if (!remainingParameters.length && this.currentParameter) remainingParameters.push(this.currentParameter);
+					const remainingParameters = this.suggestedParameters.slice(this.currentParameterValue.length ? this.currentParameterIndex : this.currentParameterIndex - 1);
+					if (!remainingParameters.length && this.currentParameter) remainingParameters.push(this.currentParameter);
 
-          return this.command.replace(/./g, ' ') +
-            (this.currentParameterValue.length ? ' ' : '') +
-            remainingParameters.join(' ');
-        }
-      },
-      suggestedCommand() {
-        if (!this.command.length) return;
-        return this.commandsNames.find(command => command.startsWith(this.command));
-      },
-      suggestedParameters() {
-        if (this.selectedCommand && this.commandsParameters[this.selectedCommand])
-          return this.commandsParameters[this.selectedCommand];
+					return this.command.replace(/./g, ' ') +
+							(this.currentParameterValue.length ? ' ' : '') +
+							remainingParameters.join(' ');
+				}
+			},
+			suggestedCommand() {
+				if (!this.command.length) return;
+				return this.commandsNames.find(command => command.startsWith(this.command));
+			},
+			suggestedParameters() {
+				if (this.selectedCommand && this.commandsParameters[this.selectedCommand])
+					return this.commandsParameters[this.selectedCommand];
 
-        return [];
-      },
-      currentParameterIndex() {
-        return this.command.split(' ').length - 1;
-      },
-      currentParameter() {
-        const currentParameter = this.suggestedParameters[this.currentParameterIndex - 1];
-        if (currentParameter) return currentParameter;
+				return [];
+			},
+			currentParameterIndex() {
+				return this.command.split(' ').length - 1;
+			},
+			currentParameter() {
+				const currentParameter = this.suggestedParameters[this.currentParameterIndex - 1];
+				if (currentParameter) return currentParameter;
 
-        const lastParameter = this.suggestedParameters[this.suggestedParameters.length - 1];
-        if (lastParameter.substr(-2, 1) === 's') return lastParameter;
-      },
-      currentParameterValue() {
-        if (this.currentParameter && this.currentParameter.substr(-2, 1) === 's') {
-          const currentParameterValue = this.command.split(' ')[this.currentParameterIndex].split(',');
-          return currentParameterValue[currentParameterValue.length - 1];
-        }
+				const lastParameter = this.suggestedParameters[this.suggestedParameters.length - 1];
+				if (lastParameter.substr(-2, 1) === 's') return lastParameter;
+			},
+			currentParameterValue() {
+				if (this.currentParameter && this.currentParameter.substr(-2, 1) === 's') {
+					const currentParameterValue = this.command.split(' ')[this.currentParameterIndex].split(',');
+					return currentParameterValue[currentParameterValue.length - 1];
+				}
 
-        return this.command.split(' ')[this.currentParameterIndex];
-      },
-      suggestedParameterValue() {
-        if (!this.currentParameterValue || !this.currentParameterValue.length) return;
-        if (!this.currentParameter) return;
+				return this.command.split(' ')[this.currentParameterIndex];
+			},
+			suggestedParameterValue() {
+				if (!this.currentParameterValue || !this.currentParameterValue.length) return;
+				if (!this.currentParameter) return;
 
-        switch (this.currentParameter.toLowerCase()) {
-          case '<bot>':
-          case '<bots>':
-            const suggestedBot = [...this.$store.getters['status/bots'].map(bot => bot.name), 'ASF']
-              .find(name => name.startsWith(this.currentParameterValue));
+				switch (this.currentParameter.toLowerCase()) {
+					case '<bot>':
+					case '<bots>':
+						const suggestedBot = [...this.$store.getters['status/bots'].map(bot => bot.name), 'ASF']
+								.find(name => name.startsWith(this.currentParameterValue));
 
-            if (suggestedBot) return suggestedBot;
+						if (suggestedBot) return suggestedBot;
 
-            return [...this.$store.getters['status/bots'].map(bot => bot.name), 'ASF']
-              .find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
-          case '<command>':
-            return this.commandsNames.find(name => name.startsWith(this.currentParameterValue));
-          case '<modes>':
-            if (this.selectedCommand === 'transfer') return ['All', 'Background', 'Booster', 'Card', 'Emoticon', 'Foil', 'Gems', 'Unknown']
-              .find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
+						return [...this.$store.getters['status/bots'].map(bot => bot.name), 'ASF']
+								.find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
+					case '<command>':
+						return this.commandsNames.find(name => name.startsWith(this.currentParameterValue));
+					case '<modes>':
+						if (this.selectedCommand === 'transfer') return ['All', 'Background', 'Booster', 'Card', 'Emoticon', 'Foil', 'Gems', 'Unknown']
+								.find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
 
-            if (this.selectedCommand === 'redeem^') return ['FD', 'FF', 'FKMD', 'SD', 'SF', 'SI', 'SKMG', 'V']
-              .find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
+						if (this.selectedCommand === 'redeem^') return ['FD', 'FF', 'FKMD', 'SD', 'SF', 'SI', 'SKMG', 'V']
+								.find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
 
-            return;
-          case '<type>':
-            if (this.selectedCommand !== 'input') return;
+						return;
+					case '<type>':
+						if (this.selectedCommand !== 'input') return;
 
-            return ['DeviceID', 'Login', 'Password', 'SteamGuard', 'SteamParentalPIN', 'TwoFactorAuthentication']
-              .find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
-          case '<settings>':
-            if (this.selectedCommand !== 'privacy') return;
+						return ['DeviceID', 'Login', 'Password', 'SteamGuard', 'SteamParentalPIN', 'TwoFactorAuthentication']
+								.find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
+					case '<settings>':
+						if (this.selectedCommand !== 'privacy') return;
 
-            return ['Private', 'FriendsOnly', 'Public']
-              .find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
+						return ['Private', 'FriendsOnly', 'Public']
+								.find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
 
-        }
-      },
-      selectedCommand() {
-        return this.commandsNames.find(command => command === this.command.split(' ')[0]);
-      }
-    },
-    methods: {
-      async sendCommand() {
-        const commandToExecute = this.command.trim();
-        this.command = '';
+				}
+			},
+			selectedCommand() {
+				return this.commandsNames.find(command => command === this.command.split(' ')[0]);
+			}
+		},
+		methods: {
+			async sendCommand() {
+				const commandToExecute = this.command.trim();
+				this.command = '';
 
-        if (!commandToExecute) return;
+				if (!commandToExecute) return;
 
-        this.commandHistoryIndex = -1;
-        this.commandHistory.unshift(commandToExecute);
-        this.commandHistory.slice(0, 20);
+				this.commandHistoryIndex = -1;
+				this.commandHistory.unshift(commandToExecute);
+				this.commandHistory.slice(0, 20);
 
-        this.log.push({ type: 'out', message: commandToExecute });
-        const result = await this.executeCommand(commandToExecute);
-        this.log.push({ type: 'in', message: result });
-      },
-      async executeCommand(commandToExecute) {
-        switch(commandToExecute.split(' ')[0]) {
-          case 'commands':
-            return `Available commands: ${this.commandsNames.join(', ')}`;
-          case 'help':
-            if (commandToExecute.split(' ')[1]) return this.commandHelp(commandToExecute.split(' ')[1]);
-            return 'Usage: help <Command>, available commands: commands';
-        }
+				this.log.push({ type: 'out', message: commandToExecute });
+				const result = await this.executeCommand(commandToExecute);
+				this.log.push({ type: 'in', message: result });
+			},
+			async executeCommand(commandToExecute) {
+				switch (commandToExecute.split(' ')[0]) {
+					case 'commands':
+						return `Available commands: ${this.commandsNames.join(', ')}`;
+					case 'help':
+						if (commandToExecute.split(' ')[1]) return this.commandHelp(commandToExecute.split(' ')[1]);
+						return 'Usage: help <Command>, available commands: commands';
+				}
 
-        return command(commandToExecute)
-      },
-      commandHelp(command) {
-        const asfCommand = this.commands.find(asfCommand => asfCommand.command.split(' ')[0] === command);
-        if (asfCommand) return asfCommand.description;
-        return `There's no help text for ${command} yet!`;
-      },
-      focusInput() {
-        this.$refs['terminal-input'].focus();
-      },
-      autocomplete() {
-        if (!this.selectedCommand) this.command = this.suggestedCommand;
+				return command(commandToExecute);
+			},
+			commandHelp(command) {
+				const asfCommand = this.commands.find(asfCommand => asfCommand.command.split(' ')[0] === command);
+				if (asfCommand) return asfCommand.description;
+				return `There's no help text for ${command} yet!`;
+			},
+			focusInput() {
+				this.$refs['terminal-input'].focus();
+			},
+			autocomplete() {
+				if (!this.selectedCommand) this.command = this.suggestedCommand;
 
-        if (this.selectedCommand && this.suggestedParameterValue) {
-          const splitCommand = this.command.split(' ');
-          const splitCurrentParameter = splitCommand[splitCommand.length - 1].split(',');
+				if (this.selectedCommand && this.suggestedParameterValue) {
+					const splitCommand = this.command.split(' ');
+					const splitCurrentParameter = splitCommand[splitCommand.length - 1].split(',');
 
-          this.command = [...splitCommand.slice(0, -1), [ ...splitCurrentParameter.slice(0, -1), this.suggestedParameterValue].join(',')].join(' ');
-        }
-      },
-      historyPrevious() {
-        if (this.commandHistoryIndex + 1 < this.commandHistory.length) {
-          this.commandHistoryIndex++;
-          this.command = this.commandHistory[this.commandHistoryIndex];
-        }
-      },
-      historyNext() {
-        if (this.commandHistoryIndex > 0) {
-          this.commandHistoryIndex--;
-          this.command = this.commandHistory[this.commandHistoryIndex];
-        } else if (this.commandHistoryIndex === 0) {
-          this.commandHistoryIndex = -1;
-          this.command = '';
-        }
-      },
-      async fetchCommands() {
-        this.asfCommands = await fetchCommands(this.version);
-        localStorage.setItem('asf-commands', JSON.stringify({ timestamp: Date.now(), commands: this.asfCommands }));
-      },
-      async loadCommands() {
-        const cachedCommandsRaw = localStorage.getItem('asf-commands');
-        if (!cachedCommandsRaw) return setTimeout(() => this.fetchCommands(), 100);
+					this.command = [...splitCommand.slice(0, -1), [...splitCurrentParameter.slice(0, -1), this.suggestedParameterValue].join(',')].join(' ');
+				}
+			},
+			historyPrevious() {
+				if (this.commandHistoryIndex + 1 < this.commandHistory.length) {
+					this.commandHistoryIndex++;
+					this.command = this.commandHistory[this.commandHistoryIndex];
+				}
+			},
+			historyNext() {
+				if (this.commandHistoryIndex > 0) {
+					this.commandHistoryIndex--;
+					this.command = this.commandHistory[this.commandHistoryIndex];
+				} else if (this.commandHistoryIndex === 0) {
+					this.commandHistoryIndex = -1;
+					this.command = '';
+				}
+			},
+			async fetchCommands() {
+				this.asfCommands = await fetchCommands(this.version);
+				localStorage.setItem('asf-commands', JSON.stringify({ timestamp: Date.now(), commands: this.asfCommands }));
+			},
+			async loadCommands() {
+				const cachedCommandsRaw = localStorage.getItem('asf-commands');
+				if (!cachedCommandsRaw) return setTimeout(() => this.fetchCommands(), 100);
 
-        const cachedCommands = JSON.parse(cachedCommandsRaw);
+				const cachedCommands = JSON.parse(cachedCommandsRaw);
 
-        if (cachedCommands.timestamp < Date.now() - 24 * 60 * 60 * 1000) return setTimeout(() => this.fetchCommands(), 100);
-        this.asfCommands = cachedCommands.commands;
-      },
-      loadCommandHistory() {
-        const commandHistory = localStorage.getItem('command-history');
-        if (commandHistory) this.commandHistory = JSON.parse(commandHistory);
-      }
-    },
-    watch: {
-      commandHistory(value) {
-        localStorage.setItem('command-history', JSON.stringify(value));
-      },
-      log() {
-        this.$nextTick(() => {
-          this.$refs.terminal.scrollTop = Math.max(0, this.$refs.terminal.scrollHeight - this.$refs.terminal.clientHeight);
-        });
-      }
-    },
-    created() {
-      this.loadCommandHistory();
-      this.loadCommands();
-    },
-    mounted() {
-      this.$refs['terminal-input'].focus();
-    }
-  };
+				if (cachedCommands.timestamp < Date.now() - 24 * 60 * 60 * 1000) return setTimeout(() => this.fetchCommands(), 100);
+				this.asfCommands = cachedCommands.commands;
+			},
+			loadCommandHistory() {
+				const commandHistory = localStorage.getItem('command-history');
+				if (commandHistory) this.commandHistory = JSON.parse(commandHistory);
+			}
+		},
+		watch: {
+			commandHistory(value) {
+				localStorage.setItem('command-history', JSON.stringify(value));
+			},
+			log() {
+				this.$nextTick(() => {
+					this.$refs.terminal.scrollTop = Math.max(0, this.$refs.terminal.scrollHeight - this.$refs.terminal.clientHeight);
+				});
+			}
+		},
+		created() {
+			this.loadCommandHistory();
+			this.loadCommands();
+		},
+		mounted() {
+			this.$refs['terminal-input'].focus();
+		}
+	};
 </script>
 
 <style lang="scss">
-    .commands {
-        display: grid;
-        grid-template-rows: auto 1fr;
+	.commands {
+		display: grid;
+		grid-template-rows: auto 1fr;
 
-        > div {
-            min-height: 0;
-        }
-    }
+		> div {
+			min-height: 0;
+		}
+	}
 </style>

@@ -7,8 +7,8 @@ import store from './store';
 import './utils/fontAwesome';
 
 new Vue({
-  el: '#app',
-  render: h => h(App),
-  router,
-  store
+	el: '#app',
+	render: h => h(App),
+	router,
+	store
 });

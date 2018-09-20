@@ -1,64 +1,64 @@
 .terminal {
-  width: 100%;
-  background: black;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-  padding: 1em;
-  color: var(--color-text);
-  font-family: monospace, monospace;
-  box-sizing: border-box;
-  height: 100%;
-  overflow-y: auto;
-  cursor: text;
+	width: 100%;
+	background: black;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+	padding: 1em;
+	color: var(--color-text);
+	font-family: monospace, monospace;
+	box-sizing: border-box;
+	height: 100%;
+	overflow-y: auto;
+	cursor: text;
 }
 
 .terminal__message {
-  width: 100%;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  margin: 0 0 0.1em;
+	width: 100%;
+	display: grid;
+	grid-template-columns: auto 1fr;
+	margin: 0 0 0.1em;
 
-  .terminal__sign {
-    color: var(--color-text-disabled);
-  }
+	.terminal__sign {
+		color: var(--color-text-disabled);
+	}
 }
 
 .terminal__input-wrapper {
-  width: 100%;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  position: relative;
-  grid-template-areas: 'sign text';
+	width: 100%;
+	display: grid;
+	grid-template-columns: auto 1fr;
+	position: relative;
+	grid-template-areas: 'sign text';
 
-  .terminal__sign {
-    color: var(--color-text);
-  }
+	.terminal__sign {
+		color: var(--color-text);
+	}
 }
 
 .terminal__input {
-  width: 100%;
-  border: none;
-  box-sizing: border-box;
-  background: transparent;
-  color: var(--color-text);
-  font-family: inherit;
-  font-size: 100%;
-  line-height: 1.1;
-  margin: 0;
-  padding: 0;
+	width: 100%;
+	border: none;
+	box-sizing: border-box;
+	background: transparent;
+	color: var(--color-text);
+	font-family: inherit;
+	font-size: 100%;
+	line-height: 1.1;
+	margin: 0;
+	padding: 0;
 
-  &:focus {
-    outline: none;
-  }
+	&:focus {
+		outline: none;
+	}
 }
 
 .terminal__input--autocomplete {
-  padding-left: 1.2em;
-  position: absolute;
-  pointer-events: none;
-  color: var(--color-text-disabled);
-  height: 100%;
+	padding-left: 1.2em;
+	position: absolute;
+	pointer-events: none;
+	color: var(--color-text-disabled);
+	height: 100%;
 }
 
 .terminal__sign {
-  width: 1.2em;
+	width: 1.2em;
 }

@@ -1,75 +1,75 @@
 <template>
-    <div class="form-item">
-        <label class="form-item__label" :for="field">
-            {{ label }}
-            <span v-if="required" class="form-item__required">*</span>
-            <span v-if="description" class="form-item__description">{{ description }}</span>
-        </label>
+	<div class="form-item">
+		<label class="form-item__label" :for="field">
+			{{ label }}
+			<span v-if="required" class="form-item__required">*</span>
+			<span v-if="description" class="form-item__description">{{ description }}</span>
+		</label>
 
-        <div class="input-option__items">
-            <button v-for="(item, index) in value" class="button input-option__item" @click.prevent="removeElement(index)">{{ resolveOption(item) }}</button>
-        </div>
+		<div class="input-option__items">
+			<button v-for="(item, index) in value" class="button input-option__item" @click.prevent="removeElement(index)">{{ resolveOption(item) }}</button>
+		</div>
 
-        <div class="input-option__field">
-            <select class="form-item__input" v-model="element" :id="field" :disabled="!availableEnumValues.length">
-                <option v-for="(enumValue, name) in enumValues" :value="enumValue" v-show="!value.includes(enumValue)">
-                    {{ name }}
-                </option>
-                <option v-if="!availableEnumValues.length" :value="undefined" disabled>All values selected</option>
-            </select>
+		<div class="input-option__field">
+			<select class="form-item__input" v-model="element" :id="field" :disabled="!availableEnumValues.length">
+				<option v-for="(enumValue, name) in enumValues" :value="enumValue" v-show="!value.includes(enumValue)">
+					{{ name }}
+				</option>
+				<option v-if="!availableEnumValues.length" :value="undefined" disabled>All values selected</option>
+			</select>
 
-            <button class="button" @click.prevent="addElement">Add</button>
-        </div>
-    </div>
+			<button class="button" @click.prevent="addElement">Add</button>
+		</div>
+	</div>
 </template>
 
 <script>
-  import Input from './Input.vue';
+	import Input from './Input.vue';
 
-  export default {
-    mixins: [Input],
-    name: 'input-set',
-    computed: {
-      availableEnumValues() {
-        const availableEnumValues = [];
+	export default {
+		mixins: [Input],
+		name: 'input-set',
+		computed: {
+			availableEnumValues() {
+				const availableEnumValues = [];
 
-        for (const key of Object.keys(this.enumValues)) {
-          if (this.value.includes(this.enumValues[key])) continue;
-          availableEnumValues.push(this.enumValues[key]);
-        }
+				for (const key of Object.keys(this.enumValues)) {
+					if (this.value.includes(this.enumValues[key])) continue;
+					availableEnumValues.push(this.enumValues[key]);
+				}
 
-        return availableEnumValues;
-      },
-      enumValues() {
-        return this.schema.values.values;
-      }
-    },
-    data() {
-      return {
-        element: null
-      };
-    },
-    created() {
-      this.element = this.getDefaultElement();
-    },
-    methods: {
-      getDefaultElement() {
-        return this.availableEnumValues[0];
-      },
-      addElement() {
-        if (!this.element && this.element !== 0) return;
-        if (this.value.includes(this.element)) return;
+				return availableEnumValues;
+			},
+			enumValues() {
+				return this.schema.values.values;
+			}
+		},
+		data() {
+			return {
+				element: null
+			};
+		},
+		created() {
+			this.element = this.getDefaultElement();
+		},
+		methods: {
+			getDefaultElement() {
+				return this.availableEnumValues[0];
+			},
+			addElement() {
+				if (!this.element && this.element !== 0) return;
+				if (this.value.includes(this.element)) return;
 
-        this.value.push(this.element);
-        this.element = this.getDefaultElement();
-      },
-      removeElement(index) {
-        this.value.splice(index, 1);
-        this.element = this.getDefaultElement();
-      },
-      resolveOption(value) {
-        return Object.keys(this.enumValues).find(key => this.enumValues[key] === value);
-      }
-    }
-  };
+				this.value.push(this.element);
+				this.element = this.getDefaultElement();
+			},
+			removeElement(index) {
+				this.value.splice(index, 1);
+				this.element = this.getDefaultElement();
+			},
+			resolveOption(value) {
+				return Object.keys(this.enumValues).find(key => this.enumValues[key] === value);
+			}
+		}
+	};
 </script>
