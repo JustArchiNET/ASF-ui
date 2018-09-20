@@ -20,7 +20,7 @@ class Bot {
   get status() {
     if (!this.active) return 'disabled';
     if (this.steamid === '0') return 'offline';
-    if (this.timeRemaining === '00:00:00') return 'idling';
+    if (this.timeRemaining === '00:00:00') return 'idle';
     return 'farming';
   }
 

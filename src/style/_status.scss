@@ -14,11 +14,11 @@
   }
 }
 
-.status--idling {
-  --color-status: #{$color-status-idling};
+.status--idle {
+  --color-status: #{$color-status-idle};
 
   .app--dark-mode & {
-    --color-status: #{darken($color-status-idling, 20)};
+    --color-status: #{darken($color-status-idle, 20)};
   }
 }
 
