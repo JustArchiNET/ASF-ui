@@ -1,45 +1,32 @@
 <template>
     <div class="container">
-        <div v-if="releases['message']">
+        <div v-if="rateLimited">
             <h3>We have encountered an Error while fetching the latest releases from GitHub</h3>
         </div>
-        <div v-for="(release, i) in releases" v-if="!releases['message'] && releases.length > 0 && i < releaseCount">
-            <h3>v{{release.Version}} 
-                <span class="badge stable" v-if="release.Stable">Stable</span>
-                <span class="badge prerelease" v-else>Pre-Release</span>            
+        <div v-for="release in releases" v-else>
+            <h3>v{{release.version}} 
+                <span class="badge" v-bind:class="{ 'stable': release.isStable, 'prerelease': !release.isStable }">{{release.isStable ? "Stable": "Pre-Release"}}</span>
             </h3>
-            <span v-if="release.ReleasedFor.Days < 1">
-                Released {{release.ReleasedFor.Hours}} hours ago
-            </span>
-            <span v-else-if="release.ReleasedFor.Hours < 1">
-                Released {{release.ReleasedFor.Minutes}} minutes ago
-            </span>
-            <span v-else-if="release.ReleasedFor.Minutes < 1">
-                Released just now
-            </span>
-            <span v-else-if="release.ReleasedFor.Days < 30">
-                Released {{release.ReleasedFor.Days}} days ago
-            </span>
-            <span v-else>
-                Released on {{release.Date.toLocaleString("en-GB", { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute:'2-digit', timeZoneName: 'short', timeZone: 'UTC'})}}
-            </span>
+            <span>{{getTimeText(release)}}</span>
             <ul>
-                <li v-for="change in release.Changes">
+                <li v-for="change in release.changes">
                     {{change}}
                 </li>
             </ul>
-            <a :href="release.URL" class="changelog-link" target="_blank">Full Changelog for this version</a>
+            <a :href="release.url" class="changelog-link" target="_blank">Full Changelog for this version</a>
         </div>
     </div>
 </template>
 
 <script>
     import { get, post } from '../utils/http';
+    import { timeDifference } from '../utils/time';
 
     export default {
         name: 'changelog',
         data() {
             return {
+                rateLimited: false,
                 releases: [],
                 releaseCount: 5
             };
@@ -51,7 +38,7 @@
                 });
             },
             async removeMarkdownAndRefs(text) {
-                return (await get("WWW/MarkdownToText?text=" + encodeURIComponent(text))).replace(/ \(ref: #\d+\)/,"");
+                return await get("WWW/MarkdownToText", { "text":  text.replace(/ \(ref: #\d+\)/,"") });
             },
             async parseReleases(response){
                 let releases = [];
@@ -69,38 +56,52 @@
             async parseRelease(release){
                 let result = {};
 
-                result.Version = release["tag_name"];
-                result.Stable = !release["prerelease"];
-                result.URL = release["html_url"];
-                result.Date = new Date(release["published_at"]);
+                result.version = release.tag_name;
+                result.isStable = !release.prerelease;
+                result.url = release.html_url;
+                result.date = new Date(release.published_at);
+                result.releasedFor = timeDifference(result.date, new Date());
 
-                result.ReleasedFor = {};
-                let timeDiff = new Date() - result.Date;
-                let days = result.ReleasedFor.Days = Math.floor(timeDiff / (1000 * 60 * 60 * 24)); timeDiff -= days * (1000 * 60 * 60 * 24);
-                let hours = result.ReleasedFor.Hours = Math.floor(timeDiff / (1000 * 60 * 60)); timeDiff -= hours * (1000 * 60 * 60);
-                let minutes = result.ReleasedFor.Minutes = Math.floor(timeDiff / (1000 * 60));
-
-                result.Changes = [];
-                let changes = release["body"];
+                result.changes = [];
+                let changes = release.body;
                 const regex = /\n- .*\r/g;
                 let match;
                 do {
                     match = regex.exec(changes);
                     if(match){
-                        result.Changes.push(await this.removeMarkdownAndRefs(match[0]));
+                        result.changes.push(await this.removeMarkdownAndRefs(match[0]));
                     }
                 } while (match);
 
                 return result;
+            },
+            getTimeText(release){
+                if(release.releasedFor.days < 1){
+                    return `Released ${release.releasedFor.hours} hours ago`;
+                }
+
+                if(release.releasedFor.hours < 1){
+                    return `Released ${release.releasedFor.minutes} minutes ago`;
+                }
+
+                if(release.releasedFor.minutes < 1){
+                    return "Released just now";
+                }
+
+                if(release.releasedFor.days < 30){
+                    return `Released ${release.releasedFor.days} days ago`;
+                }
+
+                return `Released on ${ release.date.toLocaleString("en-GB", { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute:'2-digit', timeZoneName: 'short', timeZone: 'UTC'}) }`;
             }
         },
         async created() {
             let response = JSON.parse(await this.getReleases());
             if(response.message !== undefined){
-                this.releases = response;
+                this.rateLimited = true;
                 return;
             }
-
+            
             this.releases = await this.parseReleases(response);
         }
     };

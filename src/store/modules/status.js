@@ -1,4 +1,5 @@
 import { get } from '../../utils/http';
+import { timeDifference } from '../../utils/time';
 
 class Bot {
 	constructor(data) {
@@ -47,14 +48,9 @@ export const mutations = {
 	calculateUptime: (state) => {
 		if (!state.startTime) return;
 
-		const difference = (Date.now() - state.startTime.getTime()) / 1000;
+		const uptime = timeDifference(state.startTime.getTime(), Date.now());
 
-		const seconds = Math.floor(difference % 60);
-		const minutes = Math.floor(difference / 60 % 60);
-		const hours = Math.floor(difference / (60 * 60) % 24);
-		const days = Math.floor(difference / (24 * 60 * 60));
-
-		state.uptime = `${days > 0 ? days + 'd ' : ''}${hours > 0 ? hours + 'h ' : ''}${(minutes + 'm ').padStart(4, '0')}${(seconds + 's').padStart(3, '0')}`;
+		state.uptime = `${uptime.days > 0 ? uptime.days + 'd ' : ''}${uptime.hours > 0 ? uptime.hours + 'h ' : ''}${(uptime.minutes + 'm ').padStart(4, '0')}${(uptime.seconds + 's').padStart(3, '0')}`;
 	}
 };
 
