@@ -1,5 +1,5 @@
 .badge {
-    background-color: $color-text;
+    background-color: var(--color-background-light);
 
     border-radius: .25rem;
     border-width: 1px;
@@ -16,11 +16,11 @@
 
 .badge {
     &.prerelease {
-        color: $color-status-offline;
+        color: #a92616;
     }
 
     &.stable {
-        color: $color-status-farming;
+        color: #00a65a;
     }
 }
 
