@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.js --env production",
-    "deploy": "webpack --config webpack.config.js --env production",
+    "deploy": "webpack --config webpack.config.js --env production --deploy",
     "start": "webpack-dev-server --open --env development"
   },
   "author": "Reimu",

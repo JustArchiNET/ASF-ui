@@ -6,15 +6,17 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = async (env, argv) => {
   const isProd = env === 'production';
+  const isDeploy = !!argv.deploy;
 
   return {
     mode: isProd ? 'production' : 'development',
-    devtool: isProd ? '(none)' : 'inline-source-map',
+    devtool: !isProd ? 'inline-source-map' : isDeploy ? '(none)' : 'source-map',
     entry: './src/index.js',
     output: {
       filename: 'main.js',
       path: path.resolve(__dirname, 'dist')
     },
+    stats: !isProd ? 'verbose' : isDeploy ? 'minimal' : 'normal',
     module: {
       rules: [
         {
