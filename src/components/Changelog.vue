@@ -3,7 +3,7 @@
         <div v-if="rateLimited">
             <h3>We have encountered an Error while fetching the latest releases from GitHub</h3>
         </div>
-        <div v-for="release in releases" v-else>
+        <div v-else v-for="release in releases">
             <h3>v{{release.version}} 
                 <span class="badge" v-bind:class="{ 'stable': release.isStable, 'prerelease': !release.isStable }">{{release.isStable ? "Stable": "Pre-Release"}}</span>
             </h3>
