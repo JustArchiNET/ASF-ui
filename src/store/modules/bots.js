@@ -35,7 +35,8 @@ export const state = {
 
 export const mutations = {
 	setBots: (state, bots) => state.bots = bots,
-	update: (state, { name, ...changes }) => {
+	setBot: (state, bot) => state.bots[bot.name] = bot,
+	updateBot: (state, { name, ...changes }) => {
 		for (const key of Object.keys(changes)) {
 			state.bots[name][key] = changes[key];
 		}
@@ -55,6 +56,14 @@ export const actions = {
 		try {
 			const response = await get('bot/ASF');
 			commit('setBots', response.map(data => new Bot(data)).reduce((bots, bot) => (bots[bot.name] = bot, bots), {}));
+		} catch (err) {}
+	},
+	async updateBot({ commit }, bot) {
+		commit('updateBot', bot);
+
+		try {
+			const [response] = await get(`bot/${bot.name}`);
+			commit('setBot', response);
 		} catch (err) {}
 	}
 };

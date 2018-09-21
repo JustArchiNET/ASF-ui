@@ -36,19 +36,19 @@
 		methods: {
 			async pause(bot) {
 				const message = await botAction(bot.name, 'pause', { permanent: true, resumeInSeconds: 0 });
-				await this.$store.commit('bots/update', { name: bot.name, paused: true });
+				await this.$store.dispatch('bots/updateBot', { name: bot.name, paused: true });
 			},
 			async resume(bot) {
 				const message = await botAction(bot.name, 'resume');
-				await this.$store.commit('bots/update', { name: bot.name, paused: false });
+				await this.$store.dispatch('bots/updateBot', { name: bot.name, paused: false });
 			},
 			async start(bot) {
 				const message = await botAction(bot.name, 'start');
-				await this.$store.commit('bots/update', { name: bot.name, active: true });
+				await this.$store.dispatch('bots/updateBot', { name: bot.name, active: true });
 			},
 			async stop(bot) {
 				const message = await botAction(bot.name, 'stop');
-				await this.$store.commit('bots/update', { name: bot.name, active: false, steamid: '0' });
+				await this.$store.dispatch('bots/updateBot', { name: bot.name, active: false, steamid: '0' });
 			}
 		}
 	};
