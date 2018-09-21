@@ -1,12 +1,6 @@
 <template>
-	<div class="container">
-		<div v-if="loading">
-			<h3>Loading changelog..</h3>
-		</div>
-
-		<div v-else-if="error">
-			<h3>{{ error }}</h3>
-		</div>
+	<div class="changelog">
+		<h3 class="subtitle" v-if="statusText">{{ statusText }}</h3>
 
 		<div class="release" v-for="release in releases" v-else>
 			<div class="release__title">
@@ -35,11 +29,18 @@
 		name: 'changelog',
 		data() {
 			return {
-				loading: false,
+				loading: true,
 				error: null,
 				releases: [],
 				releaseCount: 5
 			};
+		},
+		computed: {
+			statusText() {
+				if (this.error) return this.error;
+				if (this.loading) return 'Loading';
+				if (!this.releases.length) return 'No releases found!';
+			}
 		},
 		methods: {
 			async getReleases() {
@@ -86,18 +87,30 @@
 				if (releasedFor.hours > 1) return `Released ${releasedFor.hours} hours ago`;
 				if (releasedFor.minutes > 1) return `Released ${releasedFor.minutes} minutes ago`;
 				return 'Released just now';
+			},
+			async fetchReleases() {
+				const response = JSON.parse(await this.getReleases());
+
+				if (response.message) {
+					this.error = 'We have encountered an error while fetching the latest releases from GitHub';
+					return;
+				}
+
+				this.releases = await this.parseReleases(response);
+				this.loading = false;
+
+				localStorage.setItem('releases', JSON.stringify({ date: Date.now(), releases: this.releases }));
 			}
 		},
 		async created() {
-			const response = JSON.parse(await this.getReleases());
+			const releasesRaw = localStorage.getItem('releases');
+			if (!releasesRaw) return this.fetchReleases();
+
+			const { date, releases } = JSON.parse(releasesRaw);
+			if (date < Date.now() - 24 * 60 * 60 * 1000) return this.fetchReleases();
+
+			this.releases = releases;
 			this.loading = false;
-
-			if (response.message) {
-				this.error = 'We have encountered an error while fetching the latest releases from GitHub';
-				return;
-			}
-
-			this.releases = await this.parseReleases(response);
 		}
 	};
 </script>

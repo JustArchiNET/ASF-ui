@@ -8,7 +8,10 @@
 			<button class="button" @click.prevent="executeASFAction('Update')">Update</button>
 		</div>
 
-		<changelog></changelog>
+		<h2 class="title">Changelog</h2>
+		<div class="container">
+			<changelog></changelog>
+		</div>
 	</main>
 </template>
 
