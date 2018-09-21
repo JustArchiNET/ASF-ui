@@ -147,6 +147,8 @@
 <style lang="scss">
 	.config-editor {
 		margin-bottom: 1em;
+		display: flex;
+		flex-flow: row wrap;
 
 		&:last-child {
 			margin-bottom: 0;

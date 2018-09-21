@@ -13,3 +13,9 @@
 		}
 	};
 </script>
+
+<style lang="scss">
+	.config-category {
+		flex-grow: 1;
+	}
+</style>
