@@ -3,13 +3,18 @@
 		<h2 class="title">Global Config</h2>
 
 		<div class="container">
-			<config-editor :fields="fields" :model="model" :categories="categories" @update="onUpdate"></config-editor>
+			<template v-if="loading">
+				<h3 class="subtitle">Loading</h3>
+			</template>
+			<template v-else>
+				<config-editor :fields="fields" :model="model" :categories="categories" @update="onUpdate"></config-editor>
 
-			<div class="form-item">
-				<div class="form-item__buttons">
-					<button class="button button--confirm">Save</button>
+				<div class="form-item">
+					<div class="form-item__buttons">
+						<button class="button button--confirm">Save</button>
+					</div>
 				</div>
-			</div>
+			</template>
 		</div>
 	</main>
 </template>
@@ -37,6 +42,7 @@
 		components: { ConfigEditor },
 		data() {
 			return {
+				loading: true,
 				fields: [],
 				model: {},
 				categories
@@ -47,6 +53,7 @@
 			const schema = await fetchConfigSchema('ArchiSteamFarm.GlobalConfig');
 			this.model = model;
 			this.fields = Object.keys(schema.body).map(key => schema.body[key]);
+			this.loading = false;
 		},
 		methods: {
 			async onUpdate(model) {
