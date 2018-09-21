@@ -7,7 +7,7 @@
 			<button class="button" @click.prevent="executeASFAction('Restart')">Restart</button>
 			<button class="button" @click.prevent="executeASFAction('Update')">Update</button>
 		</div>
-		
+
 		<changelog></changelog>
 	</main>
 </template>

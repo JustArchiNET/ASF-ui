@@ -1,139 +1,156 @@
 <template>
-    <div class="container">
-        <div v-if="rateLimited">
-            <h3>We have encountered an error while fetching the latest releases from GitHub</h3>
-        </div>
-        <div v-else v-for="release in releases">
-            <h3>v{{release.version}} 
-                <span class="badge" :class="[release.isStable ? 'stable' : 'prerelease']">{{release.isStable ? "Stable": "Pre-Release"}}</span>
-            </h3>
-            <span>{{getTimeText(release)}}</span>
-            <ul>
-                <li v-for="change in release.changes">
-                    {{change}}
-                </li>
-            </ul>
-            <a :href="release.url" class="changelog-link" target="_blank">Full Changelog</a>
-        </div>
-    </div>
+	<div class="container">
+		<div v-if="loading">
+			<h3>Loading changelog..</h3>
+		</div>
+
+		<div v-else-if="error">
+			<h3>{{ error }}</h3>
+		</div>
+
+		<div class="release" v-for="release in releases" v-else>
+			<div class="release__title">
+				<span class="release__version">v{{ release.version }}</span>
+				<span class="release__badge" :class="[release.isStable ? 'release__badge--stable' : 'release__badge--prerelease']">{{ release.isStable ? 'Stable': 'Pre-Release' }}</span>
+				<span class="release__time">{{ getTimeText(release) }}</span>
+			</div>
+
+
+			<ul class="release__changes">
+				<li class="release__change" v-for="change in release.changes">{{ change }}</li>
+			</ul>
+
+			<a class="release__changelog-link" :href="release.changelogURL" target="_blank">Full Changelog</a>
+		</div>
+	</div>
 </template>
 
 <script>
-    import { get, post } from '../utils/http';
-    import { timeDifference } from '../utils/time';
+	import { get, post } from '../utils/http';
+	import { timeDifference } from '../utils/time';
 
-    export default {
-        name: 'changelog',
-        data() {
-            return {
-                rateLimited: false,
-                releases: [],
-                releaseCount: 5
-            };
-        },
-        methods: {
-            async getReleases() {
-                return await post("WWW/Send", {
-                URL: "https://api.github.com/repos/JustArchi/ArchiSteamFarm/releases"
-                });
-            },
-            async removeMarkdownAndRefs(text) {
-                return await get("WWW/MarkdownToText", { text:  text.replace(/ \(ref: #\d+\)/,"") });
-            },
-            async parseReleases(response){
-                let releases = [];
-                let i = 0;
+	const changelogRegex = /\n- .*\r/g;
 
-                for(const release of response){
-                    if(++i >= this.releaseCount){
-                        break;
-                    }
-                    releases.push(await this.parseRelease(release));
-                }
+	export default {
+		name: 'changelog',
+		data() {
+			return {
+				loading: false,
+				error: null,
+				releases: [],
+				releaseCount: 5
+			};
+		},
+		methods: {
+			async getReleases() {
+				return await post('WWW/Send', {
+					URL: 'https://api.github.com/repos/JustArchi/ArchiSteamFarm/releases'
+				});
+			},
+			async removeMarkdown(text) {
+				return await get('WWW/MarkdownToText', { text });
+			},
+			async parseReleases(releases) {
+				console.time('parse-releases');
+				const result = [];
 
-                return releases;
-            },
-            async parseRelease(release){
-                let result = {
-                    version: release.tag_name,
-                    isStable: !release.prerelease,
-                    date: new Date(release.published_at),
-                    changes: []
-                };
-                result.releasedFor = timeDifference(result.date, new Date());
+				const releasesToShow = releases.slice(0, this.releaseCount);
+				for (const release of releasesToShow) {
+					result.push(await this.parseRelease(release));
+				}
 
-                const changelogString = release.body;
-                const regex = /\n- .*\r/g;
-                let match;
-                do {
-                    match = regex.exec(changelogString);
-                    if(match){
-                        result.changes.push(await this.removeMarkdownAndRefs(match[0]));
-                    }
-                } while (match);
+				console.timeEnd('parse-releases');
+				return result;
+			},
+			async parseRelease(release) {
+				const rawChanges = [];
 
-                return result;
-            },
-            getTimeText(release){
-                if(release.releasedFor.minutes < 1){
-                    return "Released just now";
-                }
+				let match;
+				while (match = changelogRegex.exec(release.body)) {
+					rawChanges.push(match[0].replace(/ \(ref: #\d+\)/, ''));
+				}
 
-                if(release.releasedFor.hours < 1){
-                    return `Released ${release.releasedFor.minutes} minutes ago`;
-                }
+				const changes = (await this.removeMarkdown(rawChanges.join('||'))).split('||').map(change => change.trim()); // TODO: Find a better solution
+				const publishDate = new Date(release.published_at);
 
-                if(release.releasedFor.days < 1){
-                    return `Released ${release.releasedFor.hours} hours ago`;
-                }
+				return {
+					version: release.tag_name,
+					isStable: !release.prerelease,
+					releasedFor: timeDifference(publishDate),
+					changelogURL: release.html_url,
+					publishDate,
+					changes
+				};
+			},
+			getTimeText({ releasedFor, publishDate }) {
+				if (releasedFor.days > 30) return `Released on ${ publishDate.toLocaleString('en-GB', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZoneName: 'short', timeZone: 'UTC' }) }`;
+				if (releasedFor.days > 1) return `Released ${releasedFor.days} days ago`;
+				if (releasedFor.hours > 1) return `Released ${releasedFor.hours} hours ago`;
+				if (releasedFor.minutes > 1) return `Released ${releasedFor.minutes} minutes ago`;
+				return 'Released just now';
+			}
+		},
+		async created() {
+			const response = JSON.parse(await this.getReleases());
+			this.loading = false;
 
-                if(release.releasedFor.days < 30){
-                    return `Released ${release.releasedFor.days} days ago`;
-                }
+			if (response.message) {
+				this.error = 'We have encountered an error while fetching the latest releases from GitHub';
+				return;
+			}
 
-                return `Released on ${ release.date.toLocaleString("en-GB", { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute:'2-digit', timeZoneName: 'short', timeZone: 'UTC'}) }`;
-            }
-        },
-        async created() {
-            let response = JSON.parse(await this.getReleases());
-            if(response.message !== undefined){
-                this.rateLimited = true;
-                return;
-            }
-            
-            this.releases = await this.parseReleases(response);
-        }
-    };
+			this.releases = await this.parseReleases(response);
+		}
+	};
 </script>
 
 <style lang="scss">
-    .badge {
-        background-color: var(--color-background-light);
+	.release {
+		margin-bottom: 1em;
 
-        border-radius: .25rem;
-        border-width: 1px;
-        border-style: solid;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
 
-        padding: .25em .4em;
-        margin-left: .5em;
-        font-size: 75%;
-        display: inline-block;
-        line-height: 1;
-        text-align: center;
-        vertical-align: baseline;
-        
-        &.prerelease {
-            color: #a92616;
-        }
+	.release__title {
+		display: flex;
+		align-items: center;
+		margin-top: 0;
+	}
 
-        &.stable {
-            color: #00a65a;
-        }
-    }
+	.release__version {
+		font-weight: bold;
+		font-size: 1.3em;
+	}
 
-    .changelog-link {
-        color: var(--color-theme);
-        font-weight: bold;
-        text-decoration: none;
-    }
+	.release__time {
+		margin-left: auto;
+	}
+
+	.release__badge {
+		background-color: var(--color-background-light);
+		border-radius: 4px;
+		border: 2px solid currentColor;
+		padding: .25em .5em;
+		margin-left: .5em;
+		display: inline-block;
+		line-height: 1;
+		text-align: center;
+		vertical-align: baseline;
+	}
+
+	.release__badge--prerelease {
+		color: #a92616;
+	}
+
+	.release__badge--stable {
+		color: #00a65a;
+	}
+
+	.release__changelog-link {
+		color: var(--color-theme);
+		font-weight: 600;
+		text-decoration: none;
+	}
 </style>
