@@ -16,8 +16,8 @@ export function updateBaseURL(baseURL) {
 	http.defaults.baseURL = baseURL + '/Api';
 }
 
-export function get(endpoint) {
-	return http.get(endpoint).then(extractResult);
+export function get(endpoint, params = {}) {
+	return http.get(endpoint, { params }).then(extractResult);
 }
 
 export function post(endpoint, data) {
