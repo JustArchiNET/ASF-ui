@@ -9,12 +9,12 @@
 				</a>
 				<span class="bot__name">{{ bot.name }}</span>
 
-				<div class="bot-actions">
-					<span class="bot-action"><font-awesome-icon icon="wrench"></font-awesome-icon></span>
-					<span class="bot-action bot-paused" v-if="bot.paused && bot.active" @click="resume(bot)"><font-awesome-icon icon="pause"></font-awesome-icon></span>
-					<span class="bot-action bot-resumed" v-if="!bot.paused && bot.active" @click="pause(bot)"><font-awesome-icon icon="pause"></font-awesome-icon></span>
-					<span class="bot-action bot-stopped" v-if="!bot.active" @click="start(bot)"><font-awesome-icon icon="power-off"></font-awesome-icon></span>
-					<span class="bot-action bot-started" v-if="bot.active" @click="stop(bot)"><font-awesome-icon icon="power-off"></font-awesome-icon></span>
+				<div class="bot__actions">
+					<span class="bot__action bot__action--config"><font-awesome-icon icon="wrench"></font-awesome-icon></span>
+					<span class="bot__action bot__action--resume" v-if="bot.paused && bot.active" @click="resume(bot)"><font-awesome-icon icon="play"></font-awesome-icon></span>
+					<span class="bot__action bot__action--pause" v-if="!bot.paused && bot.active" @click="pause(bot)"><font-awesome-icon icon="pause"></font-awesome-icon></span>
+					<span class="bot__action bot__action--start" v-if="!bot.active" @click="start(bot)"><font-awesome-icon icon="power-off"></font-awesome-icon></span>
+					<span class="bot__action bot__action--stop" v-if="bot.active" @click="stop(bot)"><font-awesome-icon icon="power-off"></font-awesome-icon></span>
 				</div>
 			</div>
 		</div>
@@ -48,7 +48,7 @@
 			},
 			async stop(bot) {
 				const message = await botAction(bot.name, 'stop');
-				await this.$store.commit('bots/update', { name: bot.name, active: false });
+				await this.$store.commit('bots/update', { name: bot.name, active: false, steamid: '0' });
 			}
 		}
 	};
@@ -62,12 +62,14 @@
 	}
 
 	.bot {
-		display: flex;
+		display: grid;
+		grid-template-columns: auto 1fr auto;
 		border-top: 3px solid var(--color-status);
 		padding: 0.5em;
 		background: var(--color-background-light);
 		border-radius: 0 0 4px 4px;
 		align-items: center;
+		transition: border .3s;
 	}
 
 	.bot__avatar {
@@ -76,14 +78,16 @@
 		margin-right: 0.5em;
 	}
 
-	.bot-actions {
-		margin-left: auto;
+	.bot__name {
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
 	}
 
-	.bot-action {
+	.bot__action {
 		padding: 0.5em;
 		cursor: pointer;
-		transition: color .5s;
+		transition: color .3s;
 		color: var(--color-text-disabled);
 
 		&:hover {
@@ -91,27 +95,19 @@
 		}
 	}
 
-	.bot-paused {
-		color: orange;
-
-		&:hover {
-			color: green;
-		}
+	.bot__action--resume:hover {
+		color: green;
 	}
 
-	.bot-resumed:hover {
+	.bot__action--pause:hover {
 		color: orange;
 	}
 
-	.bot-stopped {
+	.bot__action--stop:hover {
 		color: red;
-
-		&:hover {
-			color: green;
-		}
 	}
 
-	.bot-started:hover {
-		color: red;
+	.bot__action--start:hover {
+		color: green;
 	}
 </style>

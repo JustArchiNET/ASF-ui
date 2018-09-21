@@ -20,7 +20,7 @@ class Bot {
 	get status() {
 		if (!this.active) return 'disabled';
 		if (this.steamid === '0') return 'offline';
-		if (this.timeRemaining === '00:00:00') return 'online';
+		if (this.paused || this.timeRemaining === '00:00:00') return 'online';
 		return 'farming';
 	}
 
@@ -44,7 +44,7 @@ export const mutations = {
 
 export const actions = {
 	init: async ({ dispatch }) => {
-		setInterval(() => dispatch('updateBots'), 5000);
+		setInterval(() => dispatch('updateBots'), 2500);
 	},
 	onAuth: async ({ dispatch }) => {
 		dispatch('updateBots');

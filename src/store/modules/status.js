@@ -43,7 +43,6 @@ export const actions = {
 			commit('updateBuildVariant', response.BuildVariant);
 			commit('calculateUptime');
 		} catch (err) {}
-
 	}
 };
 
@@ -51,5 +50,5 @@ export const getters = {
 	memory: state => `${(state.memoryUsage / 1024).toFixed(2)} MB`,
 	uptime: state => state.uptime,
 	version: state => `${state.version.Major}.${state.version.Minor}.${state.version.Build}.${state.version.Revision}`,
-	buildVariant: state => state.buildVarian
+	buildVariant: state => state.buildVariant
 };
