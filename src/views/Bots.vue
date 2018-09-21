@@ -56,18 +56,15 @@
 
 <style lang="scss">
 	.bots {
-		display: flex;
-		flex-flow: row wrap;
-		margin: -0.5em;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		grid-gap: 1em;
+		display: grid;
 	}
 
 	.bot {
 		display: flex;
-		width: 220px;
-		flex-grow: 1;
 		border-top: 3px solid var(--color-status);
 		padding: 0.5em;
-		margin: 0.5em;
 		background: var(--color-background-light);
 		border-radius: 0 0 4px 4px;
 		align-items: center;
