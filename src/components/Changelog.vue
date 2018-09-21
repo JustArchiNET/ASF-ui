@@ -5,7 +5,7 @@
         </div>
         <div v-else v-for="release in releases">
             <h3>v{{release.version}} 
-                <span class="badge" v-bind:class="{ 'stable': release.isStable, 'prerelease': !release.isStable }">{{release.isStable ? "Stable": "Pre-Release"}}</span>
+                <span class="badge" :class="[release.isStable ? 'stable' : 'prerelease']">{{release.isStable ? "Stable": "Pre-Release"}}</span>
             </h3>
             <span>{{getTimeText(release)}}</span>
             <ul>
@@ -13,7 +13,7 @@
                     {{change}}
                 </li>
             </ul>
-            <a :href="release.url" class="changelog-link" target="_blank">Full Changelog for this version</a>
+            <a :href="release.url" class="changelog-link" target="_blank">Full Changelog</a>
         </div>
     </div>
 </template>
@@ -38,7 +38,7 @@
                 });
             },
             async removeMarkdownAndRefs(text) {
-                return await get("WWW/MarkdownToText", { "text":  text.replace(/ \(ref: #\d+\)/,"") });
+                return await get("WWW/MarkdownToText", { text:  text.replace(/ \(ref: #\d+\)/,"") });
             },
             async parseReleases(response){
                 let releases = [];
@@ -54,20 +54,19 @@
                 return releases;
             },
             async parseRelease(release){
-                let result = {};
-
-                result.version = release.tag_name;
-                result.isStable = !release.prerelease;
-                result.url = release.html_url;
-                result.date = new Date(release.published_at);
+                let result = {
+                    version: release.tag_name,
+                    isStable: !release.prerelease,
+                    date: new Date(release.published_at),
+                    changes: []
+                };
                 result.releasedFor = timeDifference(result.date, new Date());
 
-                result.changes = [];
-                let changes = release.body;
+                const changelogString = release.body;
                 const regex = /\n- .*\r/g;
                 let match;
                 do {
-                    match = regex.exec(changes);
+                    match = regex.exec(changelogString);
                     if(match){
                         result.changes.push(await this.removeMarkdownAndRefs(match[0]));
                     }
@@ -76,16 +75,16 @@
                 return result;
             },
             getTimeText(release){
-                if(release.releasedFor.days < 1){
-                    return `Released ${release.releasedFor.hours} hours ago`;
+                if(release.releasedFor.minutes < 1){
+                    return "Released just now";
                 }
 
                 if(release.releasedFor.hours < 1){
                     return `Released ${release.releasedFor.minutes} minutes ago`;
                 }
 
-                if(release.releasedFor.minutes < 1){
-                    return "Released just now";
+                if(release.releasedFor.days < 1){
+                    return `Released ${release.releasedFor.hours} hours ago`;
                 }
 
                 if(release.releasedFor.days < 30){
@@ -122,9 +121,7 @@
         line-height: 1;
         text-align: center;
         vertical-align: baseline;
-    }
-
-    .badge {
+        
         &.prerelease {
             color: #a92616;
         }
