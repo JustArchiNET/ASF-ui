@@ -1,42 +1,12 @@
 import { get } from '../../utils/http';
 import { timeDifference } from '../../utils/time';
 
-class Bot {
-	constructor(data) {
-		this.name = data.BotName;
-		this.steamid = data.s_SteamID;
-		this.avatarHash = data.AvatarHash || '0b46945851b3d26da93a6ddba3ac961206cc191d';
-
-		this.flags = data.AccountFlags;
-		this.isPlayingPossible = data.IsPlayingPossible;
-		this.active = data.KeepRunning;
-		this.config = data.BotConfig;
-
-		this.paused = data.CardsFarmer.Paused;
-		this.gamesToFarm = data.CardsFarmer.GamesToFarm;
-		this.timeRemaining = data.CardsFarmer.TimeRemaining;
-		this.currentGamesFarming = data.CardsFarmer.CurrentGamesFarming;
-	}
-
-	get status() {
-		if (!this.active) return 'disabled';
-		if (this.steamid === '0') return 'offline';
-		if (this.timeRemaining === '00:00:00') return 'online';
-		return 'farming';
-	}
-
-	get avatarURL() {
-		return `https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/${this.avatarHash.substr(0, 2)}/${this.avatarHash}_full.jpg`;
-	}
-}
-
 export const state = {
 	memoryUsage: 0,
 	startTime: null,
 	buildVariant: null,
 	version: { Major: 0, Minor: 0, Build: 0, Revision: 0 },
-	uptime: '00m 00s',
-	bots: []
+	uptime: '00m 00s'
 };
 
 export const mutations = {
@@ -58,16 +28,9 @@ export const actions = {
 	init: async ({ dispatch, commit }) => {
 		setInterval(() => commit('calculateUptime'), 1000);
 		setInterval(() => dispatch('updateASF'), 60000);
-		setInterval(() => dispatch('updateBots'), 5000);
 	},
 	onAuth: async ({ dispatch }) => {
-		await dispatch('update');
-	},
-	update: async ({ dispatch, rootGetters }) => {
-		if (!rootGetters['auth/validPassword']) return;
-
-		dispatch('updateASF');
-		dispatch('updateBots');
+		await dispatch('updateASF');
 	},
 	updateASF: async ({ commit, rootGetters }) => {
 		if (!rootGetters['auth/validPassword']) return;
@@ -81,14 +44,6 @@ export const actions = {
 			commit('calculateUptime');
 		} catch (err) {}
 
-	},
-	updateBots: async ({ commit, rootGetters }) => {
-		if (!rootGetters['auth/validPassword']) return;
-
-		try {
-			const response = await get('Bot/ASF');
-			commit('updateBots', response.map(data => new Bot(data)));
-		} catch (err) {}
 	}
 };
 
@@ -96,8 +51,5 @@ export const getters = {
 	memory: state => `${(state.memoryUsage / 1024).toFixed(2)} MB`,
 	uptime: state => state.uptime,
 	version: state => `${state.version.Major}.${state.version.Minor}.${state.version.Build}.${state.version.Revision}`,
-	buildVariant: state => state.buildVariant,
-	bots: state => state.bots,
-	botsStatus: state => status => state.bots.filter(bot => bot.status === status),
-	botsCount: (state, getters) => status => getters.botsStatus(status).length
+	buildVariant: state => state.buildVarian
 };

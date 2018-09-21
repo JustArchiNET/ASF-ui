@@ -67,7 +67,7 @@ module.exports = async (env, argv) => {
       contentBase: './dist',
       historyApiFallback: true,
       proxy: {
-        '/Api': {
+        '/api': {
           target: 'http://localhost:1242',
           ws: true
         }

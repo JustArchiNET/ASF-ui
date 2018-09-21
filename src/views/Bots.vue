@@ -22,7 +22,7 @@
 </template>
 
 <script>
-	import { command } from '../utils/http';
+	import { botAction } from '../utils/http';
 
 	import { mapGetters } from 'vuex';
 
@@ -31,24 +31,24 @@
 		metaInfo: { title: 'Bots' },
 		components: {},
 		computed: mapGetters({
-			bots: 'status/bots'
+			bots: 'bots/bots'
 		}),
 		methods: {
 			async pause(bot) {
-				const response = await command('pause', bot.name);
-				console.log(response);
+				const message = await botAction(bot.name, 'pause', { permanent: true, resumeInSeconds: 0 });
+				await this.$store.commit('bots/update', { name: bot.name, paused: true });
 			},
 			async resume(bot) {
-				const response = await command('resume', bot.name);
-				console.log(response);
+				const message = await botAction(bot.name, 'resume');
+				await this.$store.commit('bots/update', { name: bot.name, paused: false });
 			},
 			async start(bot) {
-				const response = await command('start', bot.name);
-				console.log(response);
+				const message = await botAction(bot.name, 'start');
+				await this.$store.commit('bots/update', { name: bot.name, active: true });
 			},
 			async stop(bot) {
-				const response = await command('stop', bot.name);
-				console.log(response);
+				const message = await botAction(bot.name, 'stop');
+				await this.$store.commit('bots/update', { name: bot.name, active: false });
 			}
 		}
 	};

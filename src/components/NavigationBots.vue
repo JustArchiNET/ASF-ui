@@ -14,7 +14,7 @@
 		name: 'navigation-bots',
 		computed: {
 			...mapGetters({
-				botsCount: 'status/botsCount'
+				botsCount: 'bots/count'
 			}),
 			count() {
 				return type => Math.min(99, this.botsCount(type));
