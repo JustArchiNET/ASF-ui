@@ -15,6 +15,11 @@
 	padding: 1em;
 	border-radius: 3px;
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+	margin-bottom: 1em;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
 }
 
 .container--small {
