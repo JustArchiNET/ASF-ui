@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div v-if="rateLimited">
-            <h3>We have encountered an Error while fetching the latest releases from GitHub</h3>
+            <h3>We have encountered an error while fetching the latest releases from GitHub</h3>
         </div>
         <div v-else v-for="release in releases">
             <h3>v{{release.version}} 
