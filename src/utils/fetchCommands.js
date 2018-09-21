@@ -30,7 +30,7 @@ async function getCommandsURL(version) {
 	const currentReleaseIndex = releases.findIndex(release => release.tag_name === version);
 
 	if (currentReleaseIndex === -1) {
-		const latestTag = releases[0].tag_name.split('.');
+		const latestTag = releases[0].tag_name;
 		if (compareVersion(version, latestTag) === 1) return defaultCommandsURL;
 		throw new Error(`Version ${version} is too old, command list unavailable`);
 	}
