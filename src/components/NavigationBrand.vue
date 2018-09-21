@@ -1,7 +1,7 @@
 <template>
 	<div class="brand">
-		<span class="logo logo--small"><b>A</b>SF</span>
-		<span class="logo logo--big"><b>Archi</b>SteamFarm</span>
+		<span class="brand__name brand__name--small"><b>A</b>SF</span>
+		<span class="brand__name brand__name--big"><b>Archi</b>SteamFarm</span>
 	</div>
 </template>
 
@@ -25,22 +25,22 @@
 		height: var(--navigation-height);
 		transition: ease-in-out width .3s;
 
-		.logo {
-			font-size: 1.25em;
-		}
-
-		.logo--small {
-			display: none;
-		}
-
 		.app--small-navigation & {
-			.logo--big {
+			.brand__name--big {
 				display: none;
 			}
 
-			.logo--small {
+			.brand__name--small {
 				display: block;
 			}
 		}
+	}
+
+	.brand__name {
+		font-size: 1.25em;
+	}
+
+	.brand__name--small {
+		display: none;
 	}
 </style>
