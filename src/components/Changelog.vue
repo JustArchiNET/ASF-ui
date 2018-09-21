@@ -51,7 +51,6 @@
 				return await get('WWW/MarkdownToText', { text });
 			},
 			async parseReleases(releases) {
-				console.time('parse-releases');
 				const result = [];
 
 				const releasesToShow = releases.slice(0, this.releaseCount);
@@ -59,7 +58,6 @@
 					result.push(await this.parseRelease(release));
 				}
 
-				console.timeEnd('parse-releases');
 				return result;
 			},
 			async parseRelease(release) {
