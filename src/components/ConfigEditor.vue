@@ -88,6 +88,7 @@
 					case 'enum':
 						return InputEnum;
 					case 'hashSet':
+					case 'list': // TODO: Implement list field
 						if (['enum'].includes(field.values.type)) return InputSet;
 						if (['tinyNumber', 'smallNumber', 'number', 'bigNumber', 'string'].includes(field.values.type)) return InputTag;
 						return InputUnknown;

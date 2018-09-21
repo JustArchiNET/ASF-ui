@@ -6,7 +6,9 @@ const cachedStructureDefinitions = new Map();
 const subtypeRegex = /\[[^\]]+]/g;
 
 function resolveSubtypes(type) {
-	return type.match(subtypeRegex).map(subtype => subtype.slice(1, subtype.length - 1));
+	const subtypes = type.match(subtypeRegex);
+	if (!subtypes) return [];
+	return subtypes.map(subtype => subtype.slice(1, subtype.length - 1));
 }
 
 async function getStructureDefinition(type) {
@@ -28,6 +30,8 @@ async function getTypeDefinition(type) {
 }
 
 async function resolveType(type) {
+	const subtypes = resolveSubtypes(type);
+
 	switch (type.split('`')[0]) {
 		case 'System.Boolean':
 			return { type: 'boolean' };
@@ -41,13 +45,13 @@ async function resolveType(type) {
 			return { type: 'smallNumber' };
 		case 'System.Collections.Generic.HashSet':
 		case 'System.Collections.Immutable.ImmutableHashSet':
-			const [subtype] = resolveSubtypes(type);
-			return { type: 'hashSet', values: await resolveType(subtype) };
+			return { type: 'hashSet', values: await resolveType(subtypes[0]) };
+		case 'System.Collections.Immutable.ImmutableList':
+			return { type: 'list', values: await resolveType(subtypes[0]) };
 		case 'System.UInt64':
 			return { type: 'bigNumber' };
 		case 'System.Collections.Generic.Dictionary':
 		case 'System.Collections.Immutable.ImmutableDictionary':
-			const subtypes = resolveSubtypes(type);
 			return { type: 'dictionary', key: await resolveType(subtypes[0]), value: await resolveType(subtypes[1]) };
 		default: // Complex type
 			return unwindType(type);
