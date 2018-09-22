@@ -54,8 +54,8 @@
 	@import './style/components';
 
 	:root {
-		--navigation-width: 15rem;
-		--navigation-height: 3rem;
+		--navigation-width: #{$size-navigation};
+		--navigation-height: #{$size-navigation-small};
 		--color-theme: #{$color-theme-blue};
 		--color-theme-dark: #{darken($color-theme-blue, 2)};
 		--color-text: #{$color-text};
@@ -102,7 +102,7 @@
 	}
 
 	.app--small-navigation {
-		--navigation-width: 3em;
+		--navigation-width: #{$size-navigation-small};
 	}
 
 	.app--boxed-layout {
@@ -171,6 +171,10 @@
 			&.main-container--fullheight {
 				height: calc(100vh - 2 * var(--navigation-height));
 			}
+		}
+
+		@media screen and (max-width: 700px) {
+			padding-left: $size-navigation-small;
 		}
 	}
 </style>
