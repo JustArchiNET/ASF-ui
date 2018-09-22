@@ -1,10 +1,10 @@
 <template>
   <div class="bot" :class="[`status--${bot.status}`]">
-    <a target="_blank" :href="bot.profileURL" v-if="bot.steamid">
+    <a v-if="bot.steamid" target="_blank" :href="bot.profileURL">
       <img class="bot__avatar" :src="bot.avatarURL">
     </a>
-
-		<img class="bot__avatar" :src="bot.avatarURL" v-else>
+    
+    <img v-else class="bot__avatar" :src="bot.avatarURL">
 
     <div class="bot__status">
       <router-link tag="span" :to="{ name: 'bot', params: { bot: bot.name } }" class="bot__status-property bot__status-property--name">{{ bot.name }}</router-link>
