@@ -24,6 +24,19 @@ class Bot {
 		return 'farming';
 	}
 
+	get statusText() {
+		switch (this.status) {
+			case 'disabled':
+				return 'Disabled';
+			case 'offline':
+				return 'Offline';
+			case 'online':
+				return this.timeRemaining === '00:00:00' ? 'Online' : 'Paused';
+			case 'farming':
+				return `Farming - ${this.currentGamesFarming[0].GameName}`;
+		}
+	}
+
 	get avatarURL() {
 		return `https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/${this.avatarHash.substr(0, 2)}/${this.avatarHash}_full.jpg`;
 	}

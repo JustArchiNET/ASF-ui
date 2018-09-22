@@ -4,10 +4,12 @@
 
 		<div class="bots">
 			<div class="bot" v-for="bot in bots" :class="[`status--${bot.status}`]">
-				<a target="_blank" :href="`https://steamcommunity.com/profiles/${bot.steamid}`">
-					<img class="bot__avatar" :src="bot.avatarURL">
-				</a>
-				<span class="bot__name">{{ bot.name }}</span>
+				<img class="bot__avatar" :src="bot.avatarURL">
+
+				<div class="bot__status">
+					<span class="bot__status-property bot__status-property--name">{{ bot.name }}</span>
+					<span class="bot__status-property bot__status-property--text">{{ bot.statusText }}</span>
+				</div>
 
 				<div class="bot__actions">
 					<span class="bot__action bot__action--config"><font-awesome-icon icon="wrench"></font-awesome-icon></span>
@@ -68,20 +70,39 @@
 		padding: 0.5em;
 		background: var(--color-background-light);
 		border-radius: 0 0 4px 4px;
-		align-items: center;
 		transition: border .3s;
 	}
 
 	.bot__avatar {
-		width: 30px;
-		height: 30px;
 		margin-right: 0.5em;
+		max-height: 100%;
 	}
 
-	.bot__name {
+	.bot__status {
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
+	}
+
+	.bot__status-property {
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		overflow: hidden;
+		display: inline-block;
+	}
+
+	.bot__status-property--name {
+		font-weight: 600;
+	}
+
+	.bot__status-property--text {
+		font-size: 0.8em;
+		font-style: italic;
+	}
+
+	.bot__actions {
+		display: flex;
+		align-items: center;
 	}
 
 	.bot__action {
