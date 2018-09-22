@@ -33,7 +33,7 @@ class Bot {
 			case 'online':
 				return this.timeRemaining === '00:00:00' ? 'Online' : 'Paused';
 			case 'farming':
-				return `Farming - ${this.currentGamesFarming[0].GameName}`;
+				return `Farming${this.currentGamesFarming.length ? ' - ' + this.currentGamesFarming[0].GameName : ''}`;
 		}
 	}
 
