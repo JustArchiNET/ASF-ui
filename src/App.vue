@@ -22,7 +22,7 @@
 	export default {
 		name: 'App',
 		metaInfo: {
-			titale: 'ArchiSteamFarm',
+			title: 'ArchiSteamFarm',
 			titleTemplate: 'ASF | %s'
 		},
 		components: { AppHeader, AppNavigation, AppFooter, AppSideMenu },
