@@ -22,7 +22,6 @@
 	export default {
 		name: 'App',
 		metaInfo: {
-			title: 'ASF',
 			titleTemplate: 'ASF | %s'
 		},
 		components: { AppHeader, AppNavigation, AppFooter, AppSideMenu },
