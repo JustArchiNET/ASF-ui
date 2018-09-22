@@ -176,10 +176,10 @@
 }
 
 .button--confirm {
-	background: $color-theme-blue;
+	background: var(--color-theme-dark);
 
 	&:hover, &.button--active {
-		background: lighten($color-theme-blue, 5);
+		background: var(--color-theme);
 	}
 }
 
