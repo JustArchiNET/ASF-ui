@@ -10,7 +10,7 @@
 			<h3 class="subtitle" v-if="loading">Loading</h3>
 
 			<template v-else>
-				<config-editor :fields="fields" :model="model" :categories="categories" @update="onUpdate"></config-editor>
+				<config-editor :fields="fields" :model="model" :categories="categories" :descriptions="descriptions" :extendedFields="extendedFields" @update="onUpdate"></config-editor>
 
 				<div class="form-item">
 					<div class="form-item__buttons">
@@ -27,6 +27,9 @@
 
 	import { get, post } from '../utils/http';
 	import fetchConfigSchema from '../utils/fetchConfigSchema';
+	import loadParameterDescriptions from '../utils/loadParameterDescriptions';
+
+	import { mapGetters } from 'vuex';
 
 	const categories = [
 		{ name: 'Basic', fields: ['Name', 'SteamLogin', 'SteamPassword', 'Enabled', 'IsBotAccount', 'Paused'] },
@@ -58,10 +61,13 @@
 				loading: true,
 				fields: [],
 				model: {},
-				categories
+				descriptions: {},
+				categories,
+				extendedFields
 			}
 		},
 		computed: {
+			...mapGetters({ version: 'status/version' }),
 			bot() {
 				return this.$store.getters['bots/bot'](this.$route.params.bot);
 			}
@@ -72,16 +78,15 @@
 				handler: 'loadConfig'
 			}
 		},
+		async created() {
+			this.descriptions = await loadParameterDescriptions(this.version);
+		},
 		methods: {
 			async loadConfig() {
 				if (!this.bot) return;
 
 				const { body: fields } = await fetchConfigSchema('ArchiSteamFarm.BotConfig');
 				const [{ BotConfig: model }] = await get(`bot/${this.bot.name}`);
-
-				for (const key of Object.keys(extendedFields)) {
-					if (fields[key]) fields[key] = { ...extendedFields[key], ...fields[key] };
-				}
 
 				this.model = model;
 				this.fields = Object.keys(fields).map(key => fields[key]);

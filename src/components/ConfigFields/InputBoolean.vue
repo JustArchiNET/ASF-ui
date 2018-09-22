@@ -1,6 +1,6 @@
 <template>
 	<div class="form-item">
-		<label class="form-item__label" :for="field" @click="value = !value">
+		<label class="form-item__label" :for="field">
 			{{ label }}
 			<span v-if="required" class="form-item__required">*</span>
 			<span v-if="description" class="form-item__description">{{ description }}</span>

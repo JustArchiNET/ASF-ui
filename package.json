@@ -37,6 +37,7 @@
     "axios": "^0.18.0",
     "lodash": "^4.17.11",
     "remove-markdown": "^0.3.0",
+    "v-tooltip": "^2.0.0-rc.33",
     "vue": "^2.5.17",
     "vue-meta": "^1.5.3",
     "vue-router": "^3.0.1",

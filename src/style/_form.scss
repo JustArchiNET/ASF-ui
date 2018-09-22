@@ -101,6 +101,12 @@
 	}
 }
 
+.form-item__description {
+	font-size: 0.75em;
+	margin-right: 0.1em;
+	color: var(--color-text-disabled);
+}
+
 .form-group {
 	font-family: inherit;
 	border: 1px solid var(--color-border);

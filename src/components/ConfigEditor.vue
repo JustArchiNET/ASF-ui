@@ -40,18 +40,27 @@
 				type: Object,
 				required: true
 			},
-			categories: Array
+			categories: Array,
+			descriptions: Object,
+			extendedFields: Object
 		},
 		components: { ConfigCategory },
 		computed: {
+			formFields() {
+				return this.fields.map(field => {
+					if (this.descriptions && this.descriptions[field.param]) field.description = this. descriptions[field.param];
+					if (this.extendedFields && this.extendedFields[field.param]) return { ...this.extendedFields[field.param], ...field };
+					return field;
+				})
+			},
 			uncategorizedFields() {
-				if (!this.categories) return this.fields;
+				if (!this.categories) return this.formFields;
 
 				const categorizedFields = this.categories.map(category => category.fields).reduce((categorizedFields, categoryFields) => {
 					return [...categorizedFields, ...categoryFields];
 				}, []);
 
-				return this.fields.filter(field => !categorizedFields.includes(field.param));
+				return this.formFields.filter(field => !categorizedFields.includes(field.param));
 			},
 			categoryFields() {
 				return categoryName => {
@@ -90,7 +99,7 @@
 				}
 			},
 			updateModel(value, field) {
-				const fieldSchema = this.fields.find(fieldSchema => fieldSchema.paramName === field);
+				const fieldSchema = this.formFields.find(fieldSchema => fieldSchema.paramName === field);
 
 				if (fieldSchema && typeof fieldSchema.defaultValue !== 'undefined' && this.isEqual(value, fieldSchema.defaultValue)) {
 					delete this.model[field];
@@ -124,7 +133,7 @@
 				return false;
 			},
 			getFields(names) {
-				return this.fields.filter(field => names.includes(field.param));
+				return this.formFields.filter(field => names.includes(field.param));
 			}
 		}
 	};

@@ -20,7 +20,7 @@
 
 <script>
 	import { command } from '../utils/http';
-	import fetchCommands from '../utils/fetchCommands';
+	import fetchWiki from '../utils/fetchWiki';
 
 	import { mapGetters } from 'vuex';
 
@@ -205,8 +205,19 @@
 					this.command = '';
 				}
 			},
+			parseCommandsHTML(commandsWikiRaw) {
+				const commandsWikiHTML = document.createElement('html');
+				commandsWikiHTML.innerHTML = commandsWikiRaw;
+
+				const commandsTableHTML = commandsWikiHTML.querySelector('#user-content-commands-1').parentElement.nextElementSibling;
+
+				return Array.from(commandsTableHTML.querySelectorAll('tbody tr'))
+						.map(tableRow => tableRow.textContent.trim().split('\n'))
+						.map(([command, access, description]) => ({ command, access, description }));
+			},
 			async fetchCommands() {
-				this.asfCommands = await fetchCommands(this.version);
+				const wiki = await fetchWiki('Commands', this.version);
+				this.commands = this.parseCommandsHTML(wiki);
 				localStorage.setItem('asf-commands', JSON.stringify({ timestamp: Date.now(), commands: this.asfCommands }));
 			},
 			async loadCommands() {
