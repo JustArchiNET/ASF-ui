@@ -11,7 +11,7 @@
 
 				<div class="form-item">
 					<div class="form-item__buttons">
-						<button class="button button--confirm">Save</button>
+						<button class="button button--confirm" @click="onUpdate">Save</button>
 					</div>
 				</div>
 			</template>
@@ -36,6 +36,10 @@
 		{ name: 'Advanced', fields: ['Debug'] }
 	];
 
+	const extendedFields = {
+
+	};
+
 	export default {
 		name: 'global-config',
 		metaInfo: { title: 'Global Config' },
@@ -50,15 +54,19 @@
 		},
 		async created() {
 			const { GlobalConfig: model } = await get('ASF');
-			const schema = await fetchConfigSchema('ArchiSteamFarm.GlobalConfig');
+			const { body: fields } = await fetchConfigSchema('ArchiSteamFarm.GlobalConfig');
+
+			for (const key of Object.keys(extendedFields)) {
+				if (fields[key]) fields[key] = { ...extendedFields[key], ...fields[key] };
+			}
+
 			this.model = model;
-			this.fields = Object.keys(schema.body).map(key => schema.body[key]);
+			this.fields = Object.keys(fields).map(key => fields[key]);
 			this.loading = false;
 		},
 		methods: {
-			async onUpdate(model) {
-				return;
-				// await post('ASF', { GlobalConfig: model });
+			async onUpdate() {
+
 			}
 		}
 	};

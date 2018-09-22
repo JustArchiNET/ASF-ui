@@ -14,7 +14,7 @@ function resolveSubtypes(type) {
 async function getStructureDefinition(type) {
 	if (cachedStructureDefinitions.has(type)) return cachedStructureDefinitions.get(type);
 
-	const structureDefinition = get(`Structure/${encodeURIComponent(type)}`);
+	const structureDefinition = get(`structure/${encodeURIComponent(type)}`);
 	cachedStructureDefinitions.set(type, structureDefinition);
 
 	return structureDefinition;
@@ -23,7 +23,7 @@ async function getStructureDefinition(type) {
 async function getTypeDefinition(type) {
 	if (cachedTypeDefinitions.has(type)) return cachedTypeDefinitions.get(type);
 
-	const typeDefinition = get(`Type/${encodeURIComponent(type)}`);
+	const typeDefinition = get(`type/${encodeURIComponent(type)}`);
 	cachedTypeDefinitions.set(type, typeDefinition);
 
 	return typeDefinition;

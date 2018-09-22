@@ -4,15 +4,17 @@
 
 		<div class="bots">
 			<div class="bot" v-for="bot in bots" :class="[`status--${bot.status}`]">
-				<img class="bot__avatar" :src="bot.avatarURL">
+				<a target="_blank" :href="bot.profileURL">
+					<img class="bot__avatar" :src="bot.avatarURL">
+				</a>
 
 				<div class="bot__status">
-					<span class="bot__status-property bot__status-property--name">{{ bot.name }}</span>
+					<router-link tag="span" :to="{ name: 'bot', params: { bot: bot.name } }" class="bot__status-property bot__status-property--name">{{ bot.name }}</router-link>
 					<span class="bot__status-property bot__status-property--text">{{ bot.statusText }}</span>
 				</div>
 
 				<div class="bot__actions">
-					<span class="bot__action bot__action--config"><font-awesome-icon icon="wrench"></font-awesome-icon></span>
+					<router-link tag="span" :to="{ name: 'bot', params: { bot: bot.name } }" class="bot__action bot__action--config"><font-awesome-icon icon="wrench"></font-awesome-icon></router-link>
 					<span class="bot__action bot__action--resume" v-if="bot.paused && bot.active" @click="resume(bot)"><font-awesome-icon icon="play"></font-awesome-icon></span>
 					<span class="bot__action bot__action--pause" v-if="!bot.paused && bot.active" @click="pause(bot)"><font-awesome-icon icon="pause"></font-awesome-icon></span>
 					<span class="bot__action bot__action--start" v-if="!bot.active" @click="start(bot)"><font-awesome-icon icon="power-off"></font-awesome-icon></span>
@@ -74,6 +76,7 @@
 	}
 
 	.bot__avatar {
+		min-width: 2.25em;
 		margin-right: 0.5em;
 		max-height: 100%;
 	}
@@ -93,6 +96,7 @@
 
 	.bot__status-property--name {
 		font-weight: 600;
+		cursor: pointer;
 	}
 
 	.bot__status-property--text {

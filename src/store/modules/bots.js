@@ -40,6 +40,10 @@ class Bot {
 	get avatarURL() {
 		return `https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/${this.avatarHash.substr(0, 2)}/${this.avatarHash}_full.jpg`;
 	}
+
+	get profileURL() {
+		return `https://steamcommunity.com/profiles/${this.steamid}`;
+	}
 }
 
 export const state = {

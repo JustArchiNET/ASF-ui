@@ -31,13 +31,13 @@ export default [
 		component: () => import('../views/Log.vue')
 	},
 	{
-		path: '/bot-config',
-		name: 'bot-config',
-		component: () => import('../views/BotConfig.vue')
-	},
-	{
 		path: '/config',
 		name: 'global-config',
 		component: () => import('../views/GlobalConfig.vue')
+	},
+	{
+		path: '/bot/:bot',
+		name: 'bot',
+		component: () => import('../views/Bot.vue')
 	}
 ];

@@ -13,8 +13,7 @@
 		</div>
 
 		<div class="input-option__field input-option__field--three">
-			<input class="form-item__input" type="text" :id="`${field}-key`"
-						 v-model="elementKey" @keydown.enter="addElement" v-if="keyIsString">
+			<input class="form-item__input" type="text" :id="`${field}-key`" v-model="elementKey" @keydown.enter="addElement" v-if="keyIsString">
 
 			<select class="form-item__input" v-model="elementValue" :id="`${field}-value`" v-if="valueIsEnum">
 				<option v-for="(enumValue, name) in schema.value.values" :value="enumValue">

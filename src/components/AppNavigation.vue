@@ -12,7 +12,6 @@
 			<div class="navigation-category">
 				<navigation-category-title name="Configuration"></navigation-category-title>
 				<navigation-link name="IPC" icon="wrench" :to="{ name: 'ipc-configuration' }"></navigation-link>
-				<navigation-link name="Bot Config" icon="edit" :to="{ name: 'bot-config' }"></navigation-link>
 				<navigation-link name="Global Config" icon="edit" :to="{ name: 'global-config' }"></navigation-link>
 			</div>
 
