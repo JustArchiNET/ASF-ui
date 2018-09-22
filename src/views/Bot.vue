@@ -7,17 +7,19 @@
 		<template v-else>
 			<h2 class="title">{{ bot.name }}</h2>
 
-			<h3 class="subtitle" v-if="loading">Loading</h3>
+			<div class="container">
+				<h3 class="subtitle" v-if="loading">Loading</h3>
 
-			<template v-else>
-				<config-editor :fields="fields" :model="model" :categories="categories" :descriptions="descriptions" :extendedFields="extendedFields" @update="onUpdate"></config-editor>
+				<template v-else>
+					<config-editor :fields="fields" :model="model" :categories="categories" :descriptions="descriptions" :extendedFields="extendedFields" @update="onUpdate"></config-editor>
 
-				<div class="form-item">
-					<div class="form-item__buttons">
-						<button class="button button--confirm" @click="onUpdate">Save</button>
+					<div class="form-item">
+						<div class="form-item__buttons">
+							<button class="button button--confirm" @click="onUpdate">Save</button>
+						</div>
 					</div>
-				</div>
-			</template>
+				</template>
+			</div>
 		</template>
 	</main>
 </template>

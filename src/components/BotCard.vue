@@ -25,11 +25,11 @@
 <script>
 	import { botAction } from '../utils/http';
 
-  export default {
-    name: 'bot-card',
-    props: {
-    	bot: Object
-    },
+	export default {
+		name: 'bot-card',
+		props: {
+			bot: Object
+		},
 		methods: {
 			async pause() {
 				const message = await botAction(this.bot.name, 'pause', { permanent: true, resumeInSeconds: 0 });
@@ -48,7 +48,7 @@
 				await this.$store.dispatch('bots/updateBot', { name: this.bot.name, active: false, steamid: '0' });
 			}
 		}
-  };
+	};
 </script>
 <style lang="scss">
   .bot {
