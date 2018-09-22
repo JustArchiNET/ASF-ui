@@ -4,7 +4,9 @@
 
 		<div class="container">
 			<template v-if="loading">
-				<h3 class="subtitle">Loading</h3>
+				<h3 class="subtitle">
+					<font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
+				</h3>
 			</template>
 			<template v-else>
 				<config-editor :fields="fields" :model="model" :categories="categories" @update="onUpdate"></config-editor>

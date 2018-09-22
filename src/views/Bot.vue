@@ -8,7 +8,9 @@
 			<h2 class="title">{{ bot.name }}</h2>
 
 			<div class="container">
-				<h3 class="subtitle" v-if="loading">Loading</h3>
+				<h3 class="subtitle" v-if="loading">
+					<font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
+				</h3>
 
 				<template v-else>
 					<config-editor :fields="fields" :model="model" :categories="categories" :descriptions="descriptions" :extendedFields="extendedFields" @update="onUpdate"></config-editor>
