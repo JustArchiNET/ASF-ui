@@ -87,5 +87,4 @@
 		box-sizing: border-box;
 		color: var(--color-text-secondary);
 	}
-
 </style>
