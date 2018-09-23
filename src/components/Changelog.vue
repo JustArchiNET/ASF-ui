@@ -1,5 +1,9 @@
 <template>
 	<div class="changelog">
+		<h3 class="subtitle" v-if="loading">
+			<font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
+		</h3>
+
 		<h3 class="subtitle" v-if="statusText">{{ statusText }}</h3>
 
 		<div class="release" v-for="release in releases" v-else>
@@ -38,8 +42,7 @@
 		computed: {
 			statusText() {
 				if (this.error) return this.error;
-				if (this.loading) return 'Loading';
-				if (!this.releases.length) return 'No releases found!';
+				if (!this.loading && !this.releases.length) return 'No releases found!';
 			}
 		},
 		methods: {
@@ -99,15 +102,15 @@
 				this.releases = await this.parseReleases(response);
 				this.loading = false;
 
-				localStorage.setItem('releases', JSON.stringify({ date: Date.now(), releases: this.releases }));
+				localStorage.setItem('releases', JSON.stringify({ timestamp: Date.now(), releases: this.releases }));
 			}
 		},
 		async created() {
 			const releasesRaw = localStorage.getItem('releases');
 			if (!releasesRaw) return this.fetchReleases();
 
-			const { date, releases } = JSON.parse(releasesRaw);
-			if (date < Date.now() - 24 * 60 * 60 * 1000) return this.fetchReleases();
+			const { timestamp, releases } = JSON.parse(releasesRaw);
+			if (timestamp < Date.now() - 24 * 60 * 60 * 1000) return this.fetchReleases();
 
 			this.releases = releases;
 			this.loading = false;
