@@ -217,21 +217,23 @@
 			},
 			async fetchCommands() {
 				const wiki = await fetchWiki('Commands', this.version);
-				this.commands = this.parseCommandsHTML(wiki);
-				localStorage.setItem('asf-commands', JSON.stringify({ timestamp: Date.now(), commands: this.asfCommands }));
+				const commands = this.parseCommandsHTML(wiki);
+				localStorage.setItem('cache:asf-commands', JSON.stringify({ timestamp: Date.now(), commands }));
+				return commands;
 			},
 			async loadCommands() {
-				const cachedCommandsRaw = localStorage.getItem('asf-commands');
-				if (!cachedCommandsRaw) return setTimeout(() => this.fetchCommands(), 100);
+				const cachedCommandsRaw = localStorage.getItem('cache:asf-commands');
+				if (cachedCommandsRaw) {
+					const { timestamp, commands } = JSON.parse(cachedCommandsRaw);
+					if (timestamp > Date.now() - 24 * 60 * 60 * 1000) return commands;
+				}
 
-				const cachedCommands = JSON.parse(cachedCommandsRaw);
-
-				if (cachedCommands.timestamp < Date.now() - 24 * 60 * 60 * 1000) return setTimeout(() => this.fetchCommands(), 100);
-				this.asfCommands = cachedCommands.commands;
+				return this.fetchCommands();
 			},
 			loadCommandHistory() {
 				const commandHistory = localStorage.getItem('command-history');
-				if (commandHistory) this.commandHistory = JSON.parse(commandHistory);
+				if (commandHistory) return JSON.parse(commandHistory);
+				return [];
 			}
 		},
 		watch: {
@@ -244,9 +246,9 @@
 				});
 			}
 		},
-		created() {
-			this.loadCommandHistory();
-			this.loadCommands();
+		async created() {
+			this.commandHistory = this.loadCommandHistory();
+			this.asfCommands = await this.loadCommands();
 		},
 		mounted() {
 			this.$refs['terminal-input'].focus();

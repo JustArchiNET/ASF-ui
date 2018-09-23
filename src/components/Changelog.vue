@@ -1,6 +1,6 @@
 <template>
 	<div class="changelog">
-		<h3 class="subtitle" v-if="loading">
+		<h3 class="subtitle" v-if="loading && !statusText">
 			<font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
 		</h3>
 
@@ -91,29 +91,29 @@
 				if (releasedFor.minutes > 1) return `Released ${releasedFor.minutes} minutes ago`;
 				return 'Released just now';
 			},
-			async fetchReleases() {
-				const response = JSON.parse(await this.getReleases());
-
-				if (response.message) {
-					this.error = 'We have encountered an error while fetching the latest releases from GitHub';
-					return;
+			async loadReleases() {
+				const releasesRaw = localStorage.getItem('cache:releases');
+				if (releasesRaw) {
+					const { timestamp, releases } = JSON.parse(releasesRaw);
+					if (timestamp > Date.now() - 24 * 60 * 60 * 1000) return releases;
 				}
 
-				this.releases = await this.parseReleases(response);
-				this.loading = false;
+				const response = JSON.parse(await this.getReleases());
 
-				localStorage.setItem('releases', JSON.stringify({ timestamp: Date.now(), releases: this.releases }));
+				if (response.message) throw new Error('We have encountered an error while fetching the latest releases from GitHub');
+
+				const releases = await this.parseReleases(response);
+				localStorage.setItem('cache:releases', JSON.stringify({ timestamp: Date.now(), releases }));
+				return releases;
 			}
 		},
 		async created() {
-			const releasesRaw = localStorage.getItem('releases');
-			if (!releasesRaw) return this.fetchReleases();
-
-			const { timestamp, releases } = JSON.parse(releasesRaw);
-			if (timestamp < Date.now() - 24 * 60 * 60 * 1000) return this.fetchReleases();
-
-			this.releases = releases;
-			this.loading = false;
+			try {
+				this.releases = await this.loadReleases();
+				this.loading = false;
+			} catch (err) {
+				this.error = err.message;
+			}
 		}
 	};
 </script>
