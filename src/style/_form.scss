@@ -176,10 +176,10 @@
 }
 
 .button--confirm {
-	background: var(--color-theme-dark);
+	background: var(--color-theme);
 
 	&:hover, &.button--active {
-		background: var(--color-theme);
+		background: var(--color-theme-light);
 	}
 }
 

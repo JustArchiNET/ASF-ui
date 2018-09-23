@@ -57,7 +57,8 @@
 		--navigation-width: #{$size-navigation};
 		--navigation-height: #{$size-navigation-small};
 		--color-theme: #{$color-theme-blue};
-		--color-theme-dark: #{darken($color-theme-blue, 2)};
+		--color-theme-dark: #{darken($color-theme-blue, 5)};
+		--color-theme-light: #{lighten($color-theme-blue, 5)};
 		--color-text: #{$color-text};
 		--color-text-dark: #{$color-text-dark};
 		--color-text-secondary: #{darken($color-text, 10)};
@@ -126,31 +127,37 @@
 	.theme-blue {
 		--color-theme: #{$color-theme-blue};
 		--color-theme-dark: #{darken($color-theme-blue, 5)};
+		--color-theme-light: #{lighten($color-theme-blue, 5)};
 	}
 
 	.theme-red {
 		--color-theme: #{$color-theme-red};
 		--color-theme-dark: #{darken($color-theme-red, 5)};
+		--color-theme-light: #{lighten($color-theme-red, 5)};
 	}
 
 	.theme-teal {
 		--color-theme: #{$color-theme-teal};
 		--color-theme-dark: #{darken($color-theme-teal, 5)};
+		--color-theme-light: #{lighten($color-theme-teal, 5)};
 	}
 
 	.theme-purple {
 		--color-theme: #{$color-theme-purple};
 		--color-theme-dark: #{darken($color-theme-purple, 5)};
+		--color-theme-light: #{lighten($color-theme-purple, 5)};
 	}
 
 	.theme-green {
 		--color-theme: #{$color-theme-green};
 		--color-theme-dark: #{darken($color-theme-green, 5)};
+		--color-theme-light: #{lighten($color-theme-green, 5)};
 	}
 
 	.theme-orange {
 		--color-theme: #{$color-theme-orange};
 		--color-theme-dark: #{darken($color-theme-orange, 5)};
+		--color-theme-light: #{lighten($color-theme-orange, 5)};
 	}
 
 	.content {
