@@ -47,7 +47,7 @@
 		methods: {
 			async getReleases() {
 				return await post('WWW/Send', {
-					URL: 'https://api.github.com/repos/JustArchi/ArchiSteamFarm/releases'
+					URL: 'https://api.github.com/repos/JustArchiNET/ArchiSteamFarm/releases'
 				});
 			},
 			async removeMarkdown(text) {
