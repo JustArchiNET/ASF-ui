@@ -13,7 +13,6 @@
 				<span class="release__time">{{ getTimeText(release) }}</span>
 			</div>
 
-
 			<ul class="release__changes">
 				<li class="release__change" v-for="change in release.changes">{{ change }}</li>
 			</ul>
