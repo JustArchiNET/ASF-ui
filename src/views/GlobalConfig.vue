@@ -38,9 +38,7 @@
 		{ name: 'Advanced', fields: ['Debug'] }
 	];
 
-	const extendedFields = {
-
-	};
+	const extendedFields = {};
 
 	export default {
 		name: 'global-config',

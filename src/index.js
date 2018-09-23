@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import VTooltip from 'v-tooltip'
+import VTooltip from 'v-tooltip';
 
 import App from './App.vue';
 import router from './router';
@@ -17,4 +17,5 @@ new Vue({
 });
 
 import fetchWiki from './utils/fetchWiki';
+
 window.fetchWiki = fetchWiki;

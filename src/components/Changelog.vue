@@ -85,7 +85,17 @@
 				};
 			},
 			getTimeText({ releasedFor, publishDate }) {
-				if (releasedFor.days > 30) return `Released on ${ publishDate.toLocaleString('en-GB', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZoneName: 'short', timeZone: 'UTC' }) }`;
+				if (releasedFor.days > 30) return `Released on ${ publishDate.toLocaleString('en-GB', {
+					weekday: 'short',
+					year: 'numeric',
+					month: 'short',
+					day: 'numeric',
+					hour: '2-digit',
+					minute: '2-digit',
+					timeZoneName: 'short',
+					timeZone: 'UTC'
+				}) }`;
+
 				if (releasedFor.days > 1) return `Released ${releasedFor.days} days ago`;
 				if (releasedFor.hours > 1) return `Released ${releasedFor.hours} hours ago`;
 				if (releasedFor.minutes > 1) return `Released ${releasedFor.minutes} minutes ago`;

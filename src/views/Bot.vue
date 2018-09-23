@@ -49,7 +49,7 @@
 	const extendedFields = {
 		SteamLogin: { placeholder: '<keep unchanged>' },
 		SteamPassword: { placeholder: '<keep unchanged>' },
-		SteamParentalPIN: { placeholder: '<keep unchanged>' },
+		SteamParentalPIN: { placeholder: '<keep unchanged>' }
 	};
 
 	export default {
@@ -58,7 +58,7 @@
 		metaInfo() {
 			return {
 				title: `Bot - ${this.$route.params.bot}`
-			}
+			};
 		},
 		data() {
 			return {
@@ -68,7 +68,7 @@
 				descriptions: {},
 				categories,
 				extendedFields
-			}
+			};
 		},
 		computed: {
 			...mapGetters({ version: 'status/version' }),
@@ -100,5 +100,5 @@
 				await post(`bot/${this.bot.name}`, { BotConfig: this.model });
 			}
 		}
-	}
+	};
 </script>

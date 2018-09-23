@@ -24,5 +24,5 @@ export default async function loadParameterDescriptions(version) {
 
 	localStorage.setItem('cache:parameter-descriptions', JSON.stringify({ timestamp: Date.now(), descriptions }));
 
-	return descriptions
+	return descriptions;
 }
