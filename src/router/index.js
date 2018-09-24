@@ -8,11 +8,9 @@ Vue.use(VueMeta);
 
 import routes from './routes';
 
-const url = new URL(store.getters['auth/baseURL']);
-
 const router = new VueRouter({
 	routes,
-	base: url.pathname,
+	base: window.__BASE_PATH__ ? window.__BASE_PATH__ : '/',
 	mode: 'history',
 	scrollBehavior(to, from, savedPosition) {
 		return savedPosition || { x: 0, y: 0 };

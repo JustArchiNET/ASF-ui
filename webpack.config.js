@@ -3,6 +3,7 @@ const path = require('path');
 const { VueLoaderPlugin } = require('vue-loader');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = async (env, argv) => {
   const isProd = env === 'production';
@@ -11,9 +12,12 @@ module.exports = async (env, argv) => {
   return {
     mode: isProd ? 'production' : 'development',
     devtool: !isProd ? 'inline-source-map' : isDeploy ? '(none)' : 'source-map',
-    entry: './src/index.js',
+    entry: {
+    	main: './src/index.js'
+		},
     output: {
-      filename: 'main.js',
+      filename: 'scripts/[name].bundle.js',
+			chunkFilename: 'scripts/[id].chunk.js',
       path: path.resolve(__dirname, 'dist'),
 			publicPath: '/'
     },
@@ -84,10 +88,9 @@ module.exports = async (env, argv) => {
     plugins: [
       new CleanWebpackPlugin(['dist']),
       new VueLoaderPlugin(),
-      new HtmlWebpackPlugin({
-        template: 'src/index.html',
-        favicon: 'src/images/logo.png'
-      })
+			new CopyWebpackPlugin([
+				'src/include'
+			])
     ]
   };
 };

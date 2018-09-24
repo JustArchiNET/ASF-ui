@@ -1,8 +1,7 @@
-import { get, authenticate, updateBaseURL } from '../../utils/http';
+import { get, authenticate } from '../../utils/http';
 
 export const state = {
 	password: null,
-	baseURL: `${window.location.protocol}//${window.location.host}`,
 	validPassword: false
 };
 
@@ -12,11 +11,6 @@ export const mutations = {
 		authenticate(password);
 		if (password) localStorage.setItem('ipc-password', password);
 		else localStorage.removeItem('ipc-password');
-	},
-	setBaseURL: (state, baseURL) => {
-		state.baseURL = baseURL;
-		updateBaseURL(baseURL);
-		localStorage.setItem('ipc-base-url', baseURL);
 	},
 	updateHost: (state, { host, basePath }) => {
 		state.host = host;
@@ -28,9 +22,6 @@ export const mutations = {
 
 export const actions = {
 	init: async ({ commit, dispatch }) => {
-		const baseURL = localStorage.getItem('ipc-base-url');
-		if (baseURL) commit('setBaseURL', baseURL);
-
 		const password = localStorage.getItem('ipc-password');
 		if (password) commit('setPassword', password);
 		await dispatch('validate');
@@ -43,7 +34,6 @@ export const actions = {
 };
 
 export const getters = {
-	baseURL: state => state.baseURL,
 	password: state => state.password,
 	validPassword: state => state.validPassword
 };

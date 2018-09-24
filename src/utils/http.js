@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const http = axios.create({
-	baseURL: '/api'
+	baseURL: window.__BASE_PATH__ ? window.__BASE_PATH__ + 'api' : '/api'
 });
 
 function extractResult(response) {
@@ -10,10 +10,6 @@ function extractResult(response) {
 
 export function authenticate(password) {
 	http.defaults.headers.common.Authentication = password;
-}
-
-export function updateBaseURL(baseURL) {
-	http.defaults.baseURL = baseURL + 'api';
 }
 
 export function get(endpoint, params = {}) {
