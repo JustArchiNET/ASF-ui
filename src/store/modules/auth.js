@@ -10,7 +10,8 @@ export const mutations = {
 	setPassword: (state, password) => {
 		state.password = password;
 		authenticate(password);
-		localStorage.setItem('ipc-password', password);
+		if (password) localStorage.setItem('ipc-password', password);
+		else localStorage.removeItem('ipc-password');
 	},
 	setBaseURL: (state, baseURL) => {
 		state.baseURL = baseURL;

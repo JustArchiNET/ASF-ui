@@ -29,7 +29,7 @@
 			password: 'auth/password'
 		}),
 		created() {
-			const websocketURL = `${this.baseURL.replace(/^http/, 'ws')}/api/nlog?password=${encodeURIComponent(this.password)}`;
+			const websocketURL = `${this.baseURL.replace(/^http/, 'ws')}/api/nlog${this.password ? `?password=${encodeURIComponent(this.password)}` : ''}`;
 
 			this.ws = new WebSocket(websocketURL);
 			this.ws.onopen = this.onOpen.bind(this);
