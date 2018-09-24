@@ -6,11 +6,11 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = async (env, argv) => {
-  const isProd = env === 'production';
-  const isDeploy = !!argv.deploy;
-  const analyze = !!argv.analyze;
+	const isProd = env === 'production';
+	const isDeploy = !!argv.deploy;
+	const analyze = !!argv.analyze;
 
-  const config = {
+	const config = {
 		mode: isProd ? 'production' : 'development',
 		devtool: !isProd ? 'inline-source-map' : isDeploy ? '(none)' : 'source-map',
 		entry: {
@@ -86,7 +86,7 @@ module.exports = async (env, argv) => {
 				target: 'http://localhost:1242',
 				ws: true,
 				pathRewrite: {
-					'^/ASF/api' : '/api'
+					'^/ASF/api': '/api'
 				}
 			},
 			'/api': {
@@ -96,7 +96,7 @@ module.exports = async (env, argv) => {
 		}
 	};
 
-  if (analyze) config.plugins.push(new BundleAnalyzerPlugin());
+	if (analyze) config.plugins.push(new BundleAnalyzerPlugin());
 
-  return config;
+	return config;
 };
