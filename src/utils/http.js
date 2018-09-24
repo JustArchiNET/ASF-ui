@@ -4,6 +4,8 @@ const http = axios.create({
 	baseURL: '/api'
 });
 
+window.http = http;
+
 function extractResult(response) {
 	return response.data.Result;
 }

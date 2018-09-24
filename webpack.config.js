@@ -68,6 +68,13 @@ module.exports = async (env, argv) => {
       contentBase: './dist',
       historyApiFallback: true,
       proxy: {
+      	'/ASF/api': {
+					target: 'http://localhost:1242',
+					ws: true,
+					pathRewrite: {
+						'^/ASF/api' : '/api'
+					}
+				},
         '/api': {
           target: 'http://localhost:1242',
           ws: true
