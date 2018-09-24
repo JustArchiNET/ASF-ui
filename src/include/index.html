@@ -13,7 +13,13 @@
 <div id="app"></div>
 
 <script>
-	window.__BASE_URL__ = window.location.href.slice(0, window.location.href.lastIndexOf('/page/')) + '/';
+	function normalizeUrl(url) {
+		return url.endsWith('/') ? url : url + '/';
+	}
+
+	const lastPageIndex = window.location.href.lastIndexOf('/page/');
+
+	window.__BASE_URL__ = normalizeUrl(lastPageIndex >= 0 ? window.location.href.slice(0, lastPageIndex) : window.location.href);
 	window.__BASE_PATH__ = new URL(window.__BASE_URL__).pathname;
 
 	const mainScript = document.createElement('script');
