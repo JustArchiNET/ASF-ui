@@ -7,13 +7,16 @@
 		<img class="bot__avatar" :src="bot.avatarURL" v-else>
 
 		<div class="bot__status">
-			<router-link tag="span" :to="{ name: 'bot', params: { bot: bot.name } }" class="bot__status-property bot__status-property--name">{{ bot.name }}</router-link>
+			<router-link tag="span" :to="{ name: 'bot-config', params: { bot: bot.name } }" class="bot__status-property bot__status-property--name">{{ bot.name }}</router-link>
 			<span class="bot__status-property bot__status-property--text">{{ bot.statusText }}</span>
 		</div>
 
 		<div class="bot__actions">
-			<router-link tag="span" :to="{ name: 'bot', params: { bot: bot.name } }" class="bot__action bot__action--config">
+			<router-link tag="span" :to="{ name: 'bot-config', params: { bot: bot.name } }" class="bot__action bot__action--config">
 				<font-awesome-icon icon="wrench"></font-awesome-icon>
+			</router-link>
+			<router-link tag="span" :to="{ name: 'bot-bgr', params: { bot: bot.name } }" class="bot__action bot__action--gbr">
+				<font-awesome-icon icon="key"></font-awesome-icon>
 			</router-link>
 			<span class="bot__action bot__action--resume" v-if="bot.paused && bot.active" @click="resume"><font-awesome-icon icon="play"></font-awesome-icon></span>
 			<span class="bot__action bot__action--pause" v-if="!bot.paused && bot.active" @click="pause"><font-awesome-icon icon="pause"></font-awesome-icon></span>

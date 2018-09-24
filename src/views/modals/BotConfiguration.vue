@@ -1,5 +1,5 @@
 <template>
-	<main class="main-container">
+	<main class="main-container main-container--modal">
 		<template v-if="!bot">
 			<h2 class="title" v-if="!bot">Not found!</h2>
 		</template>
@@ -7,31 +7,26 @@
 		<template v-else>
 			<h2 class="title">{{ bot.name }}</h2>
 
-			<div class="container">
-				<h3 class="subtitle" v-if="loading">
-					<font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
-				</h3>
+			<h3 class="subtitle" v-if="loading"><font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon></h3>
+			<div class="container" v-else>
+				<config-editor :fields="fields" :model="model" :categories="categories" :descriptions="descriptions" :extendedFields="extendedFields" @update="onUpdate"></config-editor>
 
-				<template v-else>
-					<config-editor :fields="fields" :model="model" :categories="categories" :descriptions="descriptions" :extendedFields="extendedFields" @update="onUpdate"></config-editor>
-
-					<div class="form-item">
-						<div class="form-item__buttons">
-							<button class="button button--confirm" @click="onUpdate">Save</button>
-						</div>
+				<div class="form-item">
+					<div class="form-item__buttons">
+						<button class="button button--confirm" @click="onUpdate">Save</button>
 					</div>
-				</template>
+				</div>
 			</div>
 		</template>
 	</main>
 </template>
 
 <script>
-	import ConfigEditor from '../components/ConfigEditor.vue';
+	import ConfigEditor from '../../components/ConfigEditor.vue';
 
-	import { get, post } from '../utils/http';
-	import fetchConfigSchema from '../utils/fetchConfigSchema';
-	import loadParameterDescriptions from '../utils/loadParameterDescriptions';
+	import { get, post } from '../../utils/http';
+	import fetchConfigSchema from '../../utils/fetchConfigSchema';
+	import loadParameterDescriptions from '../../utils/loadParameterDescriptions';
 
 	import { mapGetters } from 'vuex';
 

@@ -8,6 +8,8 @@
 			<router-view></router-view>
 			<app-footer @click="smallNavigation = !smallNavigation"></app-footer>
 		</section>
+
+		<app-modal></app-modal>
 	</div>
 </template>
 
@@ -16,6 +18,7 @@
 	import AppNavigation from './components/AppNavigation.vue';
 	import AppFooter from './components/AppFooter.vue';
 	import AppSideMenu from './components/AppSideMenu.vue';
+	import AppModal from './components/AppModal.vue';
 
 	import { mapGetters } from 'vuex';
 
@@ -25,7 +28,7 @@
 			title: 'ArchiSteamFarm',
 			titleTemplate: 'ASF | %s'
 		},
-		components: { AppHeader, AppNavigation, AppFooter, AppSideMenu },
+		components: { AppHeader, AppNavigation, AppFooter, AppSideMenu, AppModal },
 		computed: {
 			...mapGetters({
 				smallNavigation: 'layout/smallNavigation',
@@ -43,6 +46,12 @@
 				immediate: true,
 				handler: value => {
 					document.documentElement.style.setProperty('--color-background-dark', value ? '#0c0c0c' : '#a7a7a7');
+				}
+			},
+			'$route': {
+				immediate: true,
+				handler: value => {
+					document.body.style.overflowY = value.meta.modal ? 'hidden' : 'auto';
 				}
 			}
 		}

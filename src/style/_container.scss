@@ -8,6 +8,12 @@
 	justify-content: center;
 }
 
+.main-container--modal {
+	max-width: 80vw;
+	max-height: 80vh;
+	overflow-y: auto;
+}
+
 .container {
 	border-top: 3px solid var(--color-theme);
 	background: var(--color-background-light);

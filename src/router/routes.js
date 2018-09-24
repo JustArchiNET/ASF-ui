@@ -25,6 +25,24 @@ export default [
 		component: () => import('../views/Bots.vue')
 	},
 	{
+		path: '/page/bot/:bot/config',
+		name: 'bot-config',
+		components: {
+			default: () => import('../views/Bots.vue'),
+			modal: () => import('../views/modals/BotConfiguration.vue')
+		},
+		meta: { modal: true }
+	},
+	{
+		path: '/page/bot/:bot/bgr',
+		name: 'bot-bgr',
+		components: {
+			default: () => import('../views/Bots.vue'),
+			modal: () => import('../views/modals/BotBGR.vue')
+		},
+		meta: { modal: true }
+	},
+	{
 		path: '/page/commands',
 		name: 'commands',
 		component: () => import('../views/Commands.vue')
@@ -38,10 +56,5 @@ export default [
 		path: '/page/config',
 		name: 'global-config',
 		component: () => import('../views/GlobalConfig.vue')
-	},
-	{
-		path: '/page/bot/:bot',
-		name: 'bot',
-		component: () => import('../views/Bot.vue')
 	}
 ];
