@@ -9,24 +9,21 @@
 		<div class="release" v-for="release in releases" v-else>
 			<div class="release__title">
 				<span class="release__version">v{{ release.version }}</span>
-				<span class="release__badge" :class="[release.isStable ? 'release__badge--stable' : 'release__badge--prerelease']">{{ release.isStable ? 'Stable': 'Pre-Release' }}</span>
+				<span class="release__badge" :class="[release.stable ? 'release__badge--stable' : 'release__badge--prerelease']">{{ release.stable ? 'Stable' : 'Pre-Release' }}</span>
 				<span class="release__time">{{ getTimeText(release) }}</span>
 			</div>
 
-			<ul class="release__changes">
-				<li class="release__change" v-for="change in release.changes">{{ change }}</li>
-			</ul>
+			<div class="release__changes" v-html="release.changelog"></div>
 
-			<a class="release__changelog-link" :href="release.changelogURL" target="_blank">Full Changelog</a>
+			<a class="release__changelog-link" :href="`https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${release.version}`" target="_blank">Full Changelog</a>
 		</div>
 	</div>
 </template>
 
 <script>
-	import { get, post } from '../utils/http';
+	import { get } from '../utils/http';
 	import { timeDifference } from '../utils/time';
-
-	const changelogRegex = /\n- .*\r/g;
+	import { mapGetters } from 'vuex';
 
 	export default {
 		name: 'changelog',
@@ -39,6 +36,7 @@
 			};
 		},
 		computed: {
+			...mapGetters({ version: 'status/version' }),
 			statusText() {
 				if (this.error) return this.error;
 				if (!this.loading && !this.releases.length) return 'No releases found!';
@@ -46,45 +44,10 @@
 		},
 		methods: {
 			async getReleases() {
-				return await post('WWW/Send', {
-					URL: 'https://api.github.com/repos/JustArchiNET/ArchiSteamFarm/releases'
-				});
-			},
-			async removeMarkdown(text) {
-				return await get('WWW/MarkdownToText', { text });
-			},
-			async parseReleases(releases) {
-				const result = [];
-
-				const releasesToShow = releases.slice(0, this.releaseCount);
-				for (const release of releasesToShow) {
-					result.push(await this.parseRelease(release));
-				}
-
-				return result;
-			},
-			async parseRelease(release) {
-				const rawChanges = [];
-
-				let match;
-				while (match = changelogRegex.exec(release.body)) {
-					rawChanges.push(match[0].replace(/ \(ref: #\d+\)/, ''));
-				}
-
-				const changes = (await this.removeMarkdown(rawChanges.join('||'))).split('||').map(change => change.trim()); // TODO: Find a better solution
-				const publishDate = new Date(release.published_at);
-
-				return {
-					version: release.tag_name,
-					isStable: !release.prerelease,
-					releasedFor: timeDifference(publishDate),
-					changelogURL: release.html_url,
-					publishDate,
-					changes
-				};
+				return await get('WWW/GitHub/Releases');
 			},
 			getTimeText({ releasedFor, publishDate }) {
-				if (releasedFor.days > 30) return `Released on ${ publishDate.toLocaleString('en-GB', {
+				if (releasedFor.days > 30) return `Released ${ publishDate.toLocaleString('en-GB', {
 					weekday: 'short',
 					year: 'numeric',
 					month: 'short',
@@ -107,11 +70,20 @@
 					if (timestamp > Date.now() - 24 * 60 * 60 * 1000) return releases;
 				}
 
-				const response = JSON.parse(await this.getReleases());
+				const [latestRelease, ...olderReleases] = await this.getReleases();
+				const releases = [latestRelease, ...olderReleases.filter(release => release.Stable || release.Version === this.version)]
+						.map(release => {
+							const publishDate = new Date(release.ReleasedAt);
 
-				if (response.message) throw new Error('We have encountered an error while fetching the latest releases from GitHub');
+							return {
+								changelog: release.ChangelogHTML,
+								releasedFor: timeDifference(publishDate),
+								stable: release.Stable,
+								version: release.Version,
+								publishDate
+							};
+						});
 
-				const releases = await this.parseReleases(response);
 				localStorage.setItem('cache:releases', JSON.stringify({ timestamp: Date.now(), releases }));
 				return releases;
 			}
@@ -175,5 +147,14 @@
 		color: var(--color-theme);
 		font-weight: 600;
 		text-decoration: none;
+	}
+
+	.release__changes {
+		font-family: monospace, monospace;
+
+		a {
+			color: var(--color-theme);
+			text-decoration: none;
+		}
 	}
 </style>
