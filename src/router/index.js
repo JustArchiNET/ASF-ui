@@ -10,8 +10,6 @@ Vue.use(VueMeta);
 
 import routes from './routes';
 
-console.log(parse(store.getters['auth/baseURL']).path);
-
 const router = new VueRouter({
 	routes,
 	base: parse(store.getters['auth/baseURL']).path,
