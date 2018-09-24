@@ -31,14 +31,19 @@
 				baseURL: this.$store.getters['auth/baseURL']
 			};
 		},
+		computed: {
+			normalizedBaseURL() {
+				return this.baseURL.endsWith('/') ? this.baseURL : this.baseURL + '/';
+			}
+		},
 		methods: {
 			async update() {
-				const baseURLChanged = this.baseURL !== this.$store.getters['auth/baseURL'];
+				const baseURLChanged = this.normalizedBaseURL !== this.$store.getters['auth/baseURL'];
 
-				this.$store.commit('auth/setBaseURL', this.baseURL);
+				this.$store.commit('auth/setBaseURL', this.normalizedBaseURL);
 				this.$store.commit('auth/setPassword', this.password);
 
-				if (baseURLChanged) window.location.href = `${this.baseURL}/ipc-configuration`;
+				if (baseURLChanged) window.location.href = `${this.normalizedBaseURL}ipc-configuration`;
 
 				const validPassword = await this.$store.dispatch('auth/validate');
 				if (!validPassword) await this.$router.replace({ name: 'setup' });

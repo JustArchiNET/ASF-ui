@@ -4,8 +4,6 @@ const http = axios.create({
 	baseURL: '/api'
 });
 
-window.http = http;
-
 function extractResult(response) {
 	return response.data.Result;
 }
@@ -15,7 +13,7 @@ export function authenticate(password) {
 }
 
 export function updateBaseURL(baseURL) {
-	http.defaults.baseURL = baseURL + '/api';
+	http.defaults.baseURL = baseURL + 'api';
 }
 
 export function get(endpoint, params = {}) {

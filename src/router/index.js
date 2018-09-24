@@ -3,16 +3,16 @@ import VueRouter from 'vue-router';
 import store from '../store';
 import VueMeta from 'vue-meta';
 
-import { parse } from 'url';
-
 Vue.use(VueRouter);
 Vue.use(VueMeta);
 
 import routes from './routes';
 
+const url = new URL(store.getters['auth/baseURL']);
+
 const router = new VueRouter({
 	routes,
-	base: parse(store.getters['auth/baseURL']).path,
+	base: url.pathname,
 	mode: 'history',
 	scrollBehavior(to, from, savedPosition) {
 		return savedPosition || { x: 0, y: 0 };
