@@ -6,6 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.js --env production",
     "deploy": "webpack --config webpack.config.js --env production --deploy",
+		"analyze": "webpack --config webpack.config.js --env production --analyze",
     "start": "webpack-dev-server --open --env development"
   },
   "author": "Reimu",
@@ -27,6 +28,7 @@
     "vue-loader": "^15.4.2",
     "vue-template-compiler": "^2.5.17",
     "webpack": "^4.18.1",
+    "webpack-bundle-analyzer": "^3.0.2",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.8"
   },
