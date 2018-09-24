@@ -15,7 +15,3 @@ new Vue({
 	router,
 	store
 });
-
-import fetchWiki from './utils/fetchWiki';
-
-window.fetchWiki = fetchWiki;
