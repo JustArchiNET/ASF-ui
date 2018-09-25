@@ -20,6 +20,10 @@
 	.terminal__sign {
 		color: var(--color-text-disabled);
 	}
+
+	.terminal__text {
+		white-space: pre-line;
+	}
 }
 
 .terminal__input-wrapper {
