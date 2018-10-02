@@ -19,6 +19,10 @@
 	}
 }
 
+.form-item__buttons--center {
+	justify-content: center;
+}
+
 .form-item__label {
 	display: block;
 	font-size: .9375em;
@@ -130,26 +134,6 @@
 	line-height: 0;
 }
 
-.button {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	padding: 0.5em 1.5em;
-	border-radius: .1875em;
-	background: var(--color-navigation);
-	line-height: 1.2;
-	cursor: pointer;
-	border: 0 solid transparent;
-	font-size: .9375em;
-	color: var(--color-text);
-	transition: background .5s;
-	min-height: 2.66667em;
-
-	&:hover, &.button--active {
-		background: var(--color-theme);
-	}
-}
-
 .input-option__field {
 	display: grid;
 	grid-template-columns: 1fr auto;
@@ -175,11 +159,41 @@
 	min-height: 0;
 }
 
+.button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.5em 1.5em;
+	border-radius: .1875em;
+	background: var(--color-navigation);
+	line-height: 1.2;
+	cursor: pointer;
+	border: 0 solid transparent;
+	font-size: .9375em;
+	color: var(--color-text);
+	transition: background .3s;
+	min-height: 2.66667em;
+	outline: none;
+
+	&:hover, &.button--active {
+		background: var(--color-theme);
+	}
+}
+
 .button--confirm {
 	background: var(--color-theme);
 
 	&:hover, &.button--active {
 		background: var(--color-theme-light);
+	}
+}
+
+.button--cancel {
+	background: var(--color-text-disabled);
+
+	&:hover, &.button--active {
+		background: var(--color-text-disabled);
+		color: var(--color-text-secondary);
 	}
 }
 

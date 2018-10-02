@@ -8,8 +8,34 @@
 			<h2 class="title">{{ bot.name }}</h2>
 
 			<h3 class="subtitle" v-if="loading"><font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon></h3>
-			<template v-else>
-				<h3 class="subtitle">Doesn't work, yet</h3>
+
+			<template v-else-if="state === 'input'">
+				<div class="form-item">
+					<textarea cols="70" rows="15" title="BGR keys" placeholder="Insert your keys here" v-model="userInput"></textarea>
+				</div>
+
+				<div class="form-item">
+					<div class="form-item__buttons form-item__buttons--center" v-if="state === 'input'">
+						<button class="button button--confirm" @click="onCheck">Check</button>
+					</div>
+				</div>
+			</template>
+
+			<template v-else-if="state === 'check'">
+				<div class="form-item">
+					<div class="keys">
+						<span class="key" v-if="noKeys"><strong>No key pairs detected</strong></span>
+						<span v-for="(name, key) in keys" class="key">{{ key }} - {{ name }}</span>
+					</div>
+				</div>
+
+				<div class="form-item">
+					<div class="form-item__buttons form-item__buttons--center">
+						<button class="button button--confirm" @click="onConfirm" v-if="!noKeys">Confirm</button>
+						<button class="button button--cancel" @click="onCancel">Cancel</button>
+					</div>
+				</div>
+
 			</template>
 		</template>
 	</main>
@@ -17,7 +43,9 @@
 
 <script>
 	import { get, post } from '../../utils/http';
-	import { mapGetters } from 'vuex';
+
+	const keyRegex = /[0-9A-Z]{4,7}-[0-9A-Z]{4,7}-[0-9A-Z]{4,7}(?:(?:-[0-9A-Z]{4,7})?(?:-[0-9A-Z]{4,7}))?/;
+	const commonDelimiters = [':', ';', '|', '-'];
 
 	export default {
 		name: 'bot-bgr',
@@ -30,33 +58,86 @@
 		data() {
 			return {
 				loading: true,
+				state: 'input',
 				unusedKeys: {},
-				usedKeys: {}
+				usedKeys: {},
+				userInput: '',
+				userDelimiter: ''
 			};
 		},
 		computed: {
-			...mapGetters({ version: 'status/version' }),
 			bot() {
 				return this.$store.getters['bots/bot'](this.$route.params.bot);
+			},
+			keys() {
+				return this.userInput
+						.trim()
+						.split(/\r?\n/)
+						.map(line => line.trim())
+						.filter(line => !!line)
+						.map(this.detectKeyNamePair)
+						.filter(keyName => !!keyName)
+						.reduce((keys, keyName) => (keys[keyName.key] = keyName.name, keys), {});
+			},
+			noKeys() {
+				return Object.keys(this.keys).length === 0;
 			}
 		},
 		watch: {
-
-		},
-		async created() {
-			const { UnusedKeys, UsedKeys } = await this.loadBGR();
-			this.unusedKeys = UnusedKeys;
-			this.usedKeys = UsedKeys;
-			this.loading = false;
+			'$route': {
+				immediate: true,
+				handler: async function() {
+					this.loading = true;
+					const { UnusedKeys, UsedKeys } = await this.loadBGR();
+					this.unusedKeys = UnusedKeys;
+					this.usedKeys = UsedKeys;
+					this.loading = false;
+				}
+			}
 		},
 		methods: {
 			async loadBGR() {
+				if (!this.bot) return { UnusedKeys: {}, UsedKeys: {} };
 				return (await get(`bot/${this.bot.name}/GamesToRedeemInBackground`))[this.bot.name];
+			},
+			onCheck() {
+				this.state = 'check';
+			},
+			async onConfirm() {
+				await post(`bot/${this.bot.name}/GamesToRedeemInBackground`, { GamesToRedeemInBackground: this.keys });
+				this.$parent.close();
+			},
+			onCancel() {
+				this.state = 'input';
+			},
+			detectKeyNamePair(line) {
+				if (!keyRegex.test(line)) return;
+				const key = keyRegex.exec(line)[0];
+				const keyIndex = line.indexOf(key);
+				const name = line.replace(key, '').trim();
+
+				if (this.userDelimiter ) {
+					const delimiterIndex = keyIndex === 0 ? name.indexOf(this.userDelimiter) : name.lastIndexOf(this.userDelimiter);
+					return { key, name: name.slice(delimiterIndex, this.userDelimiter.length).trim() };
+				}
+
+				const possibleDelimiter = name.charAt(keyIndex === 0 ? 0 : name.length - 1);
+				if (commonDelimiters.includes(possibleDelimiter)) return { key, name: name.slice(keyIndex === 0 ? 1 : 0, name.length - (keyIndex === 0 ? 0 : 1)).trim() }; // Covers both ':<name>' and ': <name>' (':\t\t\s\s\t\t<name>' too)
+
+				return { key, name };
 			}
 		}
 	};
 </script>
 
 <style lang="scss">
+	.keys {
+		display: flex;
+		flex-direction: column;
+		text-align: center;
+	}
 
+	.key {
+		display: inline-block;
+	}
 </style>
