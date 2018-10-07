@@ -85,7 +85,7 @@
 				if (!this.bot) return;
 
 				const { body: fields } = await fetchConfigSchema('ArchiSteamFarm.BotConfig');
-				const [{ BotConfig: model }] = await get(`bot/${this.bot.name}`);
+				const { [this.bot.name]: { BotConfig: model } } = await get(`bot/${this.bot.name}`);
 
 				this.model = model;
 				this.fields = Object.keys(fields).map(key => fields[key]);

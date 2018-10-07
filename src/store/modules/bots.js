@@ -72,7 +72,7 @@ export const actions = {
 
 		try {
 			const response = await get('bot/ASF');
-			commit('setBots', response.map(data => new Bot(data)).reduce((bots, bot) => (bots[bot.name] = bot, bots), {}));
+			commit('setBots', Object.values(response).map(data => new Bot(data)).reduce((bots, bot) => (bots[bot.name] = bot, bots), {}));
 		} catch (err) {}
 	},
 	async updateBot({ commit }, bot) {
@@ -80,7 +80,7 @@ export const actions = {
 
 		try {
 			const [response] = await get(`bot/${bot.name}`);
-			commit('setBot', response);
+			commit('setBot', new Bot(response[bot.name]));
 		} catch (err) {}
 	}
 };
