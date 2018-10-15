@@ -51,9 +51,13 @@
 		},
 		data() {
 			return {
-				elementKey: this.getDefaultKey(),
-				elementValue: this.getDefaultValue()
+				elementKey: null,
+				elementValue: null
 			};
+		},
+		created() {
+			this.elementKey = this.getDefaultKey();
+			this.elementValue = this.getDefaultValue();
 		},
 		methods: {
 			getDefaultKey() {
