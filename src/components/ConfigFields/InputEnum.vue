@@ -1,13 +1,14 @@
 <template>
 	<div class="form-item">
-		<label class="form-item__label" :for="field">
-			{{ label }}
-			<span v-if="required" class="form-item__required">*</span>
-			<span v-if="description" class="form-item__description">{{ description }}</span>
-		</label>
-		<select class="form-item__input" :name="field" :id="field" :required="required" v-model="value">
-			<option v-for="(enumValue, name) in values" :value="enumValue">{{ name }}</option>
-		</select>
+		<input-label :label="label" :field="field" :has-description="hasDescription"></input-label>
+
+		<div class="form-item__value">
+			<select class="form-item__input" :name="field" :id="field" v-model="value">
+				<option v-for="(enumValue, name) in values" :value="enumValue">{{ name }}</option>
+			</select>
+		</div>
+
+		<input-description :description="description" v-if="hasDescription" v-show="showDescription"></input-description>
 	</div>
 </template>
 

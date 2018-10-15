@@ -41,12 +41,14 @@
 				required: true
 			},
 			categories: Array,
+			descriptions: Object,
 			extendedFields: Object
 		},
 		components: { ConfigCategory },
 		computed: {
 			formFields() {
 				return this.fields.map(field => {
+					if (this.descriptions && this.descriptions[field.param]) field.description = this.descriptions[field.param];
 					if (this.extendedFields && this.extendedFields[field.param]) return { ...this.extendedFields[field.param], ...field };
 					return field;
 				});

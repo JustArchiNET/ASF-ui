@@ -1,25 +1,25 @@
 <template>
 	<div class="form-item">
-		<label class="form-item__label" :for="field">
-			{{ label }}
-			<span v-if="required" class="form-item__required">*</span>
-			<span v-if="description" class="form-item__description">{{ description }}</span>
-		</label>
+		<input-label :label="label" :field="field" :has-description="hasDescription"></input-label>
 
-		<div class="input-option__items">
-			<button v-for="(item, index) in value" class="button input-option__item" @click.prevent="removeElement(index)">{{ resolveOption(item) }}</button>
+		<div class="form-item__value">
+			<div class="input-option__items">
+				<button v-for="(item, index) in value" class="button input-option__item" @click.prevent="removeElement(index)">{{ resolveOption(item) }}</button>
+			</div>
+
+			<div class="input-option__field">
+				<select class="form-item__input" v-model="element" :id="field" :disabled="!availableEnumValues.length">
+					<option v-for="(enumValue, name) in enumValues" :value="enumValue" v-show="!value.includes(enumValue)">
+						{{ name }}
+					</option>
+					<option v-if="!availableEnumValues.length" :value="undefined" disabled>All values selected</option>
+				</select>
+
+				<button class="button" @click.prevent="addElement">Add</button>
+			</div>
 		</div>
 
-		<div class="input-option__field">
-			<select class="form-item__input" v-model="element" :id="field" :disabled="!availableEnumValues.length">
-				<option v-for="(enumValue, name) in enumValues" :value="enumValue" v-show="!value.includes(enumValue)">
-					{{ name }}
-				</option>
-				<option v-if="!availableEnumValues.length" :value="undefined" disabled>All values selected</option>
-			</select>
-
-			<button class="button" @click.prevent="addElement">Add</button>
-		</div>
+		<input-description :description="description" v-if="hasDescription" v-show="showDescription"></input-description>
 	</div>
 </template>
 

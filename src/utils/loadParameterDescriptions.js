@@ -18,8 +18,8 @@ export default async function loadParameterDescriptions(version) {
 		.filter(parameter => parameter.nextSibling && parameter.nextSibling.textContent && parameter.nextSibling.textContent.trim().startsWith('-'));
 
 	for (const parameterHTML of parametersHTML) {
-		const [parameterName, parameterDescription] = parameterHTML.parentElement.innerText.split('-', 2).map(part => part.trim());
-		descriptions[parameterName] = parameterDescription;
+		const [parameterName, ...parameterDescription] = parameterHTML.parentElement.innerHTML.split('-');
+		descriptions[parameterName.replace(/<\/?code>/g, '').trim()] = parameterDescription.join('-').trim();
 	}
 
 	localStorage.setItem('cache:parameter-descriptions', JSON.stringify({ timestamp: Date.now(), descriptions }));

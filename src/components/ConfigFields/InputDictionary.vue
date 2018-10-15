@@ -1,28 +1,28 @@
 <template>
 	<div class="form-item">
-		<label class="form-item__label" :for="field">
-			{{ label }}
-			<span v-if="required" class="form-item__required">*</span>
-			<span v-if="description" class="form-item__description">{{ description }}</span>
-		</label>
+		<input-label :label="label" :field="field" :has-description="hasDescription"></input-label>
 
-		<div class="input-option__items">
-			<button v-for="(keyValue, key) in value" class="button input-option__item" @click.prevent="removeElement(key)">
-				{{ key }} => {{ resolveValue(keyValue) }}
-			</button>
+		<div class="form-item__value">
+			<div class="input-option__items">
+				<button v-for="(keyValue, key) in value" class="button input-option__item" @click.prevent="removeElement(key)">
+					{{ key }} => {{ resolveValue(keyValue) }}
+				</button>
+			</div>
+
+			<div class="input-option__field input-option__field--three">
+				<input class="form-item__input" type="text" :id="`${field}-key`" v-model="elementKey" @keydown.enter="addElement" v-if="keyIsString">
+
+				<select class="form-item__input" v-model="elementValue" :id="`${field}-value`" v-if="valueIsEnum">
+					<option v-for="(enumValue, name) in schema.value.values" :value="enumValue">
+						{{ name }}
+					</option>
+				</select>
+
+				<button class="button" @click.prevent="addElement">Add</button>
+			</div>
 		</div>
 
-		<div class="input-option__field input-option__field--three">
-			<input class="form-item__input" type="text" :id="`${field}-key`" v-model="elementKey" @keydown.enter="addElement" v-if="keyIsString">
-
-			<select class="form-item__input" v-model="elementValue" :id="`${field}-value`" v-if="valueIsEnum">
-				<option v-for="(enumValue, name) in schema.value.values" :value="enumValue">
-					{{ name }}
-				</option>
-			</select>
-
-			<button class="button" @click.prevent="addElement">Add</button>
-		</div>
+		<input-description :description="description" v-if="hasDescription" v-show="showDescription"></input-description>
 	</div>
 </template>
 

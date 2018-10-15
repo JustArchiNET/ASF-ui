@@ -1,12 +1,12 @@
 <template>
 	<div class="form-item">
-		<label class="form-item__label" :for="field">
-			{{ label }}
-			<span v-if="required" class="form-item__required">*</span>
-			<span v-if="description" class="form-item__description">{{ description }}</span>
-		</label>
+		<input-label :label="label" :field="field" :has-description="hasDescription"></input-label>
 
-		<span class="input-unknown">Unknown field type</span>
+		<div class="form-item__value">
+			<span class="input-unknown">Unknown field type</span>
+		</div>
+
+		<input-description :description="description" v-if="hasDescription" v-show="showDescription"></input-description>
 	</div>
 </template>
 

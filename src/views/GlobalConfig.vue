@@ -9,7 +9,7 @@
 				</h3>
 			</template>
 			<template v-else>
-				<config-editor :fields="fields" :model="model" :categories="categories" @update="onUpdate"></config-editor>
+				<config-editor :fields="fields" :model="model" :categories="categories" :descriptions="descriptions" @update="onUpdate"></config-editor>
 
 				<div class="form-item">
 					<div class="form-item__buttons">
@@ -23,9 +23,12 @@
 
 <script>
 	import ConfigEditor from '../components/ConfigEditor.vue';
+	import loadParameterDescriptions from '../utils/loadParameterDescriptions';
 
 	import { get, post } from '../utils/http';
 	import fetchConfigSchema from '../utils/fetchConfigSchema';
+
+	import { mapGetters } from 'vuex';
 
 	const categories = [
 		{ name: 'Basic', fields: ['SteamOwnerID'] },
@@ -49,8 +52,12 @@
 				loading: true,
 				fields: [],
 				model: {},
+				descriptions: {},
 				categories
 			};
+		},
+		computed: {
+				...mapGetters({ version: 'status/version' })
 		},
 		async created() {
 			const { GlobalConfig: model } = await get('ASF');
@@ -59,6 +66,8 @@
 			for (const key of Object.keys(extendedFields)) {
 				if (fields[key]) fields[key] = { ...extendedFields[key], ...fields[key] };
 			}
+
+			this.descriptions = await loadParameterDescriptions(this.version);
 
 			this.model = model;
 			this.fields = Object.keys(fields).map(key => fields[key]);

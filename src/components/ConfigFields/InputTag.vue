@@ -1,18 +1,18 @@
 <template>
 	<div class="form-item">
-		<label class="form-item__label" :for="field">
-			{{ label }}
-			<span v-if="required" class="form-item__required">*</span>
-			<span v-if="description" class="form-item__description">{{ description }}</span>
-		</label>
+		<input-label :label="label" :field="field" :has-description="hasDescription"></input-label>
 
-		<div class="form-item__input form-item__input--tag-wrapper" :class="{ 'form-item__input--focus': focus }">
-			<button v-for="(item, index) in value" class="form-item__tag" @click.prevent="removeElement(index)">
-				{{ item }}
-				<font-awesome-icon class="form-item__tag-remove" icon="times"></font-awesome-icon>
-			</button>
-			<input class="form-item__input form-item__input--tag" type="text" @keydown="onKeyDown" @focus="onFocus" @blur="onBlur" v-model="element">
+		<div class="form-item__value">
+			<div class="form-item__input form-item__input--tag-wrapper" :class="{ 'form-item__input--focus': focus }">
+				<button v-for="(item, index) in value" class="form-item__tag" @click.prevent="removeElement(index)">
+					{{ item }}
+					<font-awesome-icon class="form-item__tag-remove" icon="times"></font-awesome-icon>
+				</button>
+				<input class="form-item__input form-item__input--tag" type="text" @keydown="onKeyDown" @focus="onFocus" @blur="onBlur" v-model="element">
+			</div>
 		</div>
+
+		<input-description :description="description" v-if="hasDescription" v-show="showDescription"></input-description>
 	</div>
 </template>
 
