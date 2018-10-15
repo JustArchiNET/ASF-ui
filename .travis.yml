@@ -15,15 +15,7 @@ script:
   - |
     set -eu
 
-#    if [ "$TRAVIS_OS_NAME" = "osx" ]; then
-#        set +eu # This is needed to run below npm command on OSX
-#    fi
-
     npm run-script build --no-progress
-
-#    if [ "$TRAVIS_OS_NAME" = "osx" ]; then
-#        set -eu # We no longer need +eu on OSX
-#    fi
 
     set +u # This is needed to continue Travis build
 matrix:
