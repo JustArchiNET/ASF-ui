@@ -1,6 +1,6 @@
 <template>
 	<div class="form-item">
-		<input-label :label="label" :field="field" :has-description="hasDescription"></input-label>
+		<input-label :label="label" :has-description="hasDescription"></input-label>
 
 		<div class="form-item__value">
 			<div class="form-item__input form-item__input--tag-wrapper" :class="{ 'form-item__input--focus': focus }">
