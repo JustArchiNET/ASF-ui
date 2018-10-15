@@ -11,28 +11,19 @@ group: travis_latest
 # We target latest stable version of node.js
 node_js: node
 
-before_script:
-  - |
-    set -eu
-
-    echo "Node.js: $(node --version)"
-    echo "npm: $(npm --version)"
-
-    set +u # This is needed to continue Travis build
 script:
   - |
     set -eu
 
-    if [ "$TRAVIS_OS_NAME" = "osx" ]; then
-        set +eu # This is needed to run below npm commands on OSX
-    fi
+#    if [ "$TRAVIS_OS_NAME" = "osx" ]; then
+#        set +eu # This is needed to run below npm command on OSX
+#    fi
 
-    npm ci --no-progress
     npm run-script build --no-progress
 
-    if [ "$TRAVIS_OS_NAME" = "osx" ]; then
-        set -eu # We no longer need +eu on OSX
-    fi
+#    if [ "$TRAVIS_OS_NAME" = "osx" ]; then
+#        set -eu # We no longer need +eu on OSX
+#    fi
 
     set +u # This is needed to continue Travis build
 matrix:
