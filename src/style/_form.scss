@@ -13,7 +13,7 @@
 
 	@media screen and (min-width: 1200px) {
 		display: grid;
-		grid-template-columns: 12em 1fr;
+		grid-template-columns: minmax(min-content, var(--label-width, 12em)) 1fr;
 		grid-template-rows: auto auto;
 		grid-column-gap: 1em;
 		grid-template-areas: 'label value' 'description description';

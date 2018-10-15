@@ -1,5 +1,5 @@
 <template>
-	<main class="main-container main-container--modal">
+	<main class="main-container main-container--modal main-container--bot-configuration">
 		<template v-if="!bot">
 			<h2 class="title" v-if="!bot">Not found!</h2>
 		</template>
@@ -9,7 +9,7 @@
 
 			<h3 class="subtitle" v-if="loading"><font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon></h3>
 			<div class="container" v-else>
-				<config-editor :fields="fields" :model="model" :categories="categories" :extendedFields="extendedFields" @update="onUpdate"></config-editor>
+				<config-editor :fields="fields" :model="model" :categories="categories" :descriptions="descriptions" :extendedFields="extendedFields" @update="onUpdate"></config-editor>
 
 				<div class="form-item">
 					<div class="form-item__buttons">
@@ -28,6 +28,7 @@
 	import fetchConfigSchema from '../../utils/fetchConfigSchema';
 
 	import { mapGetters } from 'vuex';
+	import loadParameterDescriptions from '../../utils/loadParameterDescriptions';
 
 	const categories = [
 		{ name: 'Basic', fields: ['Name', 'SteamLogin', 'SteamPassword', 'Enabled', 'IsBotAccount', 'Paused'] },
@@ -59,6 +60,7 @@
 				loading: true,
 				fields: [],
 				model: {},
+				descriptions: {},
 				categories,
 				extendedFields
 			};
@@ -74,6 +76,9 @@
 				immediate: true,
 				handler: 'loadConfig'
 			}
+		},
+		async created() {
+			this.descriptions = await loadParameterDescriptions();
 		},
 		methods: {
 			async loadConfig() {
@@ -92,3 +97,9 @@
 		}
 	};
 </script>
+
+<style lang="scss">
+	.main-container--bot-configuration {
+		width: 1000px;
+	}
+</style>
