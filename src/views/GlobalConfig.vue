@@ -25,7 +25,7 @@
 	import ConfigEditor from '../components/ConfigEditor.vue';
 	import loadParameterDescriptions from '../utils/loadParameterDescriptions';
 
-	import { get } from '../utils/http';
+	import { get, post } from '../utils/http';
 	import fetchConfigSchema from '../utils/fetchConfigSchema';
 
 	import { mapGetters } from 'vuex';
@@ -62,7 +62,7 @@
 				{ GlobalConfig: model },
 				{ body: fields },
 				descriptions
-			] = Promise.all([
+			] = await Promise.all([
 				get('ASF'),
 				fetchConfigSchema('ArchiSteamFarm.GlobalConfig'),
 				loadParameterDescriptions(this.version)
@@ -72,11 +72,15 @@
 
 			this.fields = Object.keys(fields).map(key => ({
 				description: descriptions[key],
-				...fields[key],
-				...(extendedFields[key] || [])
+				...fields[key]
 			}));
 
 			this.loading = false;
+		},
+		methods: {
+			async onUpdate() {
+				await post('ASF', { GlobalConfig: this.model });
+			}
 		}
 	};
 </script>
