@@ -43,6 +43,11 @@ export default [
 		meta: { modal: true }
 	},
 	{
+		path: '/page/bot/:bot',
+		name: 'bot',
+		redirect: { name: 'bots' }
+	},
+	{
 		path: '/page/commands',
 		name: 'commands',
 		component: () => import('../views/Commands.vue')

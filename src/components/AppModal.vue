@@ -5,7 +5,7 @@
 			<div class="modal__body">
 				<font-awesome-icon icon="times" class="modal__close" @click="close"></font-awesome-icon>
 				<div class="modal__main">
-					<router-view name="modal"></router-view>
+					<router-view name="modal" ref="modal"></router-view>
 				</div>
 			</div>
 		</div>
@@ -22,7 +22,7 @@
 		},
 		methods: {
 			close() {
-				this.$router.go(-1);
+				this.$router.push(this.$route.path.slice(0, this.$route.path.lastIndexOf('/')));
 			},
 			onBackgroundClick() {
 				this.close();
