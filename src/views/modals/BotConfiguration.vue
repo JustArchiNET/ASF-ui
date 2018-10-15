@@ -9,7 +9,7 @@
 
 			<h3 class="subtitle" v-if="loading"><font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon></h3>
 			<div class="container" v-else>
-				<config-editor :fields="fields" :model="model" :categories="categories" :descriptions="descriptions" :extendedFields="extendedFields" @update="onUpdate"></config-editor>
+				<config-editor :fields="fields" :model="model" :categories="categories" :extendedFields="extendedFields" @update="onUpdate"></config-editor>
 
 				<div class="form-item">
 					<div class="form-item__buttons">
@@ -26,7 +26,6 @@
 
 	import { get, post } from '../../utils/http';
 	import fetchConfigSchema from '../../utils/fetchConfigSchema';
-	import loadParameterDescriptions from '../../utils/loadParameterDescriptions';
 
 	import { mapGetters } from 'vuex';
 
@@ -60,7 +59,6 @@
 				loading: true,
 				fields: [],
 				model: {},
-				descriptions: {},
 				categories,
 				extendedFields
 			};
@@ -76,9 +74,6 @@
 				immediate: true,
 				handler: 'loadConfig'
 			}
-		},
-		async created() {
-			this.descriptions = await loadParameterDescriptions(this.version);
 		},
 		methods: {
 			async loadConfig() {
