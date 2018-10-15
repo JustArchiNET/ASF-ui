@@ -12,12 +12,12 @@ export function authenticate(password) {
 	http.defaults.headers.common.Authentication = password;
 }
 
-export function get(endpoint, params = {}) {
-	return http.get(endpoint, { params }).then(extractResult);
+export function get(endpoint, params = {}, options = {}) {
+	return http.get(endpoint, { ...options, params }).then(extractResult);
 }
 
-export function post(endpoint, data) {
-	return http.post(endpoint, data).then(extractResult);
+export function post(endpoint, data, options = {}) {
+	return http.post(endpoint, data, options).then(extractResult);
 }
 
 export function command(...args) {
