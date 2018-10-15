@@ -12,10 +12,6 @@ export const mutations = {
 		if (password) localStorage.setItem('ipc-password', password);
 		else localStorage.removeItem('ipc-password');
 	},
-	updateHost: (state, { host, basePath }) => {
-		state.host = host;
-		state.basePath = basePath;
-	},
 	validate: state => state.validPassword = true,
 	invalidate: state => state.validPassword = false
 };
