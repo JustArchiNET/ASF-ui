@@ -43,7 +43,16 @@ export default [
 		meta: { modal: true }
 	},
 	{
-		path: '/page/bot/:bot',
+		path: '/page/bot/new',
+		name: 'bot-create',
+		components: {
+			default: () => import('../views/Bots.vue'),
+			modal: () => import('../views/modals/BotCreate.vue')
+		},
+		meta: { modal: true }
+	},
+	{
+		path: '/page/bot/:bot?',
 		name: 'bot',
 		redirect: { name: 'bots' }
 	},

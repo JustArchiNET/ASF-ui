@@ -1,11 +1,6 @@
 <template>
-	<main class="main-container main-container--modal main-container--bot-configuration">
-		<template v-if="!bot">
-			<h2 class="title" v-if="!bot">Not found!</h2>
-		</template>
-
-		<template v-else>
-			<h2 class="title">{{ bot.name }}</h2>
+	<main class="main-container main-container--modal main-container--bot-create">
+			<h2 class="title">Create new bot</h2>
 
 			<h3 class="subtitle" v-if="loading"><font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon></h3>
 			<div class="container" v-else>
@@ -17,14 +12,13 @@
 					</div>
 				</div>
 			</div>
-		</template>
 	</main>
 </template>
 
 <script>
 	import ConfigEditor from '../../components/ConfigEditor.vue';
 
-	import { get, post } from '../../utils/http';
+	import { post } from '../../utils/http';
 	import fetchConfigSchema from '../../utils/fetchConfigSchema';
 
 	import { mapGetters } from 'vuex';
@@ -41,18 +35,12 @@
 		{ name: 'Performance', fields: ['HoursUntilCardDrops'] }
 	];
 
-	const extendedFields = {
-		SteamLogin: { placeholder: '<keep unchanged>' },
-		SteamPassword: { placeholder: '<keep unchanged>' },
-		SteamParentalPIN: { placeholder: '<keep unchanged>' }
-	};
-
 	export default {
-		name: 'bot-config',
+		name: 'bot-create',
 		components: { ConfigEditor },
 		metaInfo() {
 			return {
-				title: `Bot - ${this.$route.params.bot}`
+				title: `Create new bot`
 			};
 		},
 		data() {
@@ -64,43 +52,34 @@
 			};
 		},
 		computed: {
-			...mapGetters({ version: 'status/version' }),
-			bot() {
-				return this.$store.getters['bots/bot'](this.$route.params.bot);
-			}
+			...mapGetters({ version: 'status/version' })
 		},
-		watch: {
-			'$route': {
-				immediate: true,
-				handler: 'loadConfig'
-			}
+		async created() {
+			await this.loadConfig();
 		},
 		methods: {
 			async loadConfig() {
-				if (!this.bot) return;
-
-				const [
-					{ body: fields },
-					{ [this.bot.name]: { BotConfig: model } },
-					descriptions
-				] = await Promise.all([
+				const [{ body: fields }, descriptions] = await Promise.all([
 					fetchConfigSchema('ArchiSteamFarm.BotConfig'),
-					get(`bot/${this.bot.name}`),
 					loadParameterDescriptions(this.version)
 				]);
 
-				this.model = model;
+				this.model = {};
 
-				this.fields = Object.keys(fields).map(key => ({
-					description: descriptions[key],
-					...fields[key],
-					...(extendedFields[key] || [])
-				}));
+				this.fields = [
+					{ defaultValue: '', param: 'Name', paramName: 'Name', type: 'string' },
+					...Object.keys(fields).map(key => ({
+						description: descriptions[key],
+						...fields[key]
+					}))
+				];
 
 				this.loading = false;
 			},
 			async onUpdate() {
-				await post(`bot/${this.bot.name}`, { BotConfig: this.model });
+				if (!this.model.Name) return;
+				await post(`bot/${this.model.Name}`, { BotConfig: this.model });
+				await this.$store.dispatch('bots/updateBots');
 				this.$parent.close();
 			}
 		}
@@ -108,7 +87,7 @@
 </script>
 
 <style lang="scss">
-	.main-container--bot-configuration {
+	.main-container--bot-create {
 		width: 1000px;
 	}
 </style>

@@ -5,12 +5,12 @@
 		<div class="bots">
 			<bot-card v-for="bot in bots" :bot="bot" :key="bot.name"></bot-card>
 
-			<div class="bot-placeholder status--disabled">
+			<router-link tag="div" :to="{ name: 'bot-create' }" class="bot-placeholder status--disabled">
 				<div class="bot-placeholder__button bot-placeholder__button--add">
 					<font-awesome-icon icon="plus" class="bot-placeholder__icon"></font-awesome-icon>
 					<span class="bot-placeholder__name">New bot</span>
 				</div>
-			</div>
+			</router-link>
 		</div>
 	</main>
 </template>

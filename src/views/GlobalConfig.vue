@@ -25,7 +25,7 @@
 	import ConfigEditor from '../components/ConfigEditor.vue';
 	import loadParameterDescriptions from '../utils/loadParameterDescriptions';
 
-	import { get, post } from '../utils/http';
+	import { get } from '../utils/http';
 	import fetchConfigSchema from '../utils/fetchConfigSchema';
 
 	import { mapGetters } from 'vuex';
@@ -40,8 +40,6 @@
 		{ name: 'Updates', fields: ['UpdateChannel', 'UpdatePeriod'] },
 		{ name: 'Advanced', fields: ['Debug'] }
 	];
-
-	const extendedFields = {};
 
 	export default {
 		name: 'global-config',
@@ -60,23 +58,25 @@
 				...mapGetters({ version: 'status/version' })
 		},
 		async created() {
-			const { GlobalConfig: model } = await get('ASF');
-			const { body: fields } = await fetchConfigSchema('ArchiSteamFarm.GlobalConfig');
-
-			for (const key of Object.keys(extendedFields)) {
-				if (fields[key]) fields[key] = { ...extendedFields[key], ...fields[key] };
-			}
-
-			this.descriptions = await loadParameterDescriptions(this.version);
+			const [
+				{ GlobalConfig: model },
+				{ body: fields },
+				descriptions
+			] = Promise.all([
+				get('ASF'),
+				fetchConfigSchema('ArchiSteamFarm.GlobalConfig'),
+				loadParameterDescriptions(this.version)
+			]);
 
 			this.model = model;
-			this.fields = Object.keys(fields).map(key => fields[key]);
-			this.loading = false;
-		},
-		methods: {
-			async onUpdate() {
 
-			}
+			this.fields = Object.keys(fields).map(key => ({
+				description: descriptions[key],
+				...fields[key],
+				...(extendedFields[key] || [])
+			}));
+
+			this.loading = false;
 		}
 	};
 </script>
