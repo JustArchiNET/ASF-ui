@@ -91,6 +91,8 @@
 				return this.command.split(' ').length - 1;
 			},
 			currentParameter() {
+				if (!this.suggestedParameters.length) return;
+
 				const currentParameter = this.suggestedParameters[this.currentParameterIndex - 1];
 				if (currentParameter) return currentParameter;
 
@@ -112,6 +114,7 @@
 				switch (this.currentParameter.toLowerCase()) {
 					case '<bot>':
 					case '<bots>':
+					case '<targetbot>':
 						const suggestedBot = [...this.$store.getters['bots/bots'].map(bot => bot.name), 'ASF']
 								.find(name => name.startsWith(this.currentParameterValue));
 
