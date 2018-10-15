@@ -1,5 +1,12 @@
 .form-item {
 	margin-bottom: 1em;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.form-item--config {
 	display: grid;
 	grid-template-rows: auto auto auto;
 	grid-template-areas: 'label' 'value' 'description';
@@ -10,10 +17,6 @@
 		grid-template-rows: auto auto;
 		grid-column-gap: 1em;
 		grid-template-areas: 'label value' 'description description';
-	}
-
-	&:last-child {
-		margin-bottom: 0;
 	}
 }
 
