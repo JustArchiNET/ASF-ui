@@ -14,12 +14,20 @@ export default async function loadParameterDescriptions(version) {
 	wikiHTML.innerHTML = configWiki;
 	window.wiki = wikiHTML;
 
-	const parametersHTML = Array.from(wiki.querySelectorAll('p > code'))
-		.filter(parameter => parameter.nextSibling && parameter.nextSibling.textContent && parameter.nextSibling.textContent.trim().startsWith('-'));
+	const parametersHTML = Array.from(wiki.querySelectorAll('h3 > code'));
 
 	for (const parameterHTML of parametersHTML) {
-		const [parameterName, ...parameterDescription] = parameterHTML.parentElement.innerHTML.split('-');
-		descriptions[parameterName.replace(/<\/?code>/g, '').trim()] = parameterDescription.join('-').trim();
+		const parameterName = parameterHTML.innerText;
+
+		const parameterDescription = [];
+		let description = parameterHTML.parentElement.nextElementSibling;
+
+		while (description && description.tagName.toLowerCase() !== 'hr') {
+			parameterDescription.push(description.outerHTML);
+			description = description.nextElementSibling;
+		}
+
+		descriptions[parameterName] = parameterDescription.join(' ');
 	}
 
 	localStorage.setItem('cache:parameter-descriptions', JSON.stringify({ timestamp: Date.now(), descriptions }));
