@@ -41,7 +41,7 @@
 
 				try {
 					await del(`bot/${this.bot.name}`);
-					await delay(500);
+					await delay(1000);
 					await this.$store.dispatch('bots/updateBot', { name: this.bot.name });
 					this.$router.push({ name: 'bots' });
 				} finally {

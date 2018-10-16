@@ -55,6 +55,7 @@ export const mutations = {
 	setBots: (state, bots) => state.bots = bots,
 	setBot: (state, bot) => state.bots[bot.name] = bot,
 	updateBot: (state, { name, ...changes }) => {
+		if (!state.bots[name]) return;
 		for (const key of Object.keys(changes)) {
 			state.bots[name][key] = changes[key];
 		}
@@ -63,7 +64,7 @@ export const mutations = {
 
 export const actions = {
 	init: async ({ dispatch }) => {
-		setInterval(() => dispatch('updateBots'), 2500);
+		setInterval(() => dispatch('updateBots'), 5000);
 	},
 	onAuth: async ({ dispatch }) => {
 		dispatch('updateBots');

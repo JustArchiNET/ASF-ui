@@ -29,6 +29,7 @@
 	import { mapGetters } from 'vuex';
 	import loadParameterDescriptions from '../../utils/loadParameterDescriptions';
 	import prepareModelToDownload from '../../utils/prepareModelToDownload';
+	import delay from '../../utils/delay';
 
 	const categories = [
 		{ name: 'Basic', fields: ['Name', 'SteamLogin', 'SteamPassword', 'Enabled', 'IsBotAccount', 'Paused'] },
@@ -90,7 +91,8 @@
 
 				try {
 					await post(`bot/${this.model.Name}`, { BotConfig: this.model });
-					await this.$store.dispatch('bots/updateBots');
+					await delay(1000);
+					await this.$store.dispatch('bots/updateBot', { name: this.model.Name });
 					this.$parent.close();
 				} finally {
 					this.creating = false;
