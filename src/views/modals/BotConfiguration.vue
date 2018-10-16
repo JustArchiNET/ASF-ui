@@ -30,6 +30,7 @@
 
 	import { mapGetters } from 'vuex';
 	import loadParameterDescriptions from '../../utils/loadParameterDescriptions';
+	import prepareModelToDownload from '../../utils/prepareModelToDownload';
 
 	const categories = [
 		{ name: 'Basic', fields: ['Name', 'SteamLogin', 'SteamPassword', 'Enabled', 'IsBotAccount', 'Paused'] },
@@ -110,7 +111,7 @@
 			},
 			async onDownload() {
 				const element = document.createElement('a');
-				element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(JSON.stringify(this.model)));
+				element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(prepareModelToDownload(this.model)));
 				element.setAttribute('download', `${this.bot.name}.json`);
 				element.style.display = 'none';
 				document.body.appendChild(element);

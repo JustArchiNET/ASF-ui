@@ -30,6 +30,7 @@
 	import fetchConfigSchema from '../utils/fetchConfigSchema';
 
 	import { mapGetters } from 'vuex';
+	import prepareModelToDownload from '../utils/prepareModelToDownload';
 
 	const categories = [
 		{ name: 'Basic', fields: ['SteamOwnerID'] },
@@ -88,7 +89,7 @@
 			},
 			async onDownload() {
 				const element = document.createElement('a');
-				element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(JSON.stringify(this.model)));
+				element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(prepareModelToDownload(this.model)));
 				element.setAttribute('download', 'ASF.json');
 				element.style.display = 'none';
 				document.body.appendChild(element);
