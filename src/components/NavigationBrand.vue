@@ -1,13 +1,77 @@
 <template>
-	<div class="brand">
+	<div class="brand" @click="toggleBrandMenu">
 		<span class="brand__name brand__name--small"><b>A</b>SF</span>
 		<span class="brand__name brand__name--big"><b>Archi</b>SteamFarm</span>
+
+		<div class="brand__menu" v-if="brandMenu">
+			<div class="brand__menu-item" @click.stop="update">
+				<font-awesome-icon class="brand__menu-icon" icon="cloud-download-alt" fixed-width></font-awesome-icon>
+				<span>Update</span>
+			</div>
+
+			<div class="brand__menu-item" @click.stop="restart">
+				<font-awesome-icon class="brand__menu-icon" icon="power-off" fixed-width></font-awesome-icon>
+				<span v-if="!restarting">Restart</span>
+				<span v-else>Restarting...</span>
+			</div>
+
+			<div class="brand__menu-item" @click.stop="exit">
+				<font-awesome-icon class="brand__menu-icon" icon="sign-out-alt" fixed-width></font-awesome-icon>
+				<span>Exit</span>
+			</div>
+		</div>
 	</div>
 </template>
 
 <script>
+	import { post } from '../utils/http';
+	import waitForRestart from '../utils/waitForRestart';
+
 	export default {
-		name: 'navigation-brand'
+		name: 'navigation-brand',
+		data() {
+			return {
+				brandMenu: false,
+				restarting: false
+			};
+		},
+		methods: {
+			toggleBrandMenu() {
+				this.brandMenu = !this.brandMenu;
+			},
+			async update() {
+				try {
+					await post('asf/update');
+					this.brandMenu = false;
+				} catch (err) {
+					this.$error(err.message);
+				}
+			},
+			async restart() {
+				this.restarting = true;
+
+				try {
+					await post('asf/restart');
+					this.$info('Restarting...');
+					await waitForRestart();
+					this.$success('Restarted!');
+					this.brandMenu = false;
+				} catch (err) {
+					this.$error(err.message);
+				} finally {
+					this.restarting = false;
+				}
+			},
+			async exit() {
+				try {
+					await post('asf/exit');
+					this.$info('Exiting, good bye!');
+					this.brandMenu = false;
+				} catch (err) {
+					this.$error(err.message);
+				}
+			}
+		}
 	};
 </script>
 
@@ -24,6 +88,7 @@
 		cursor: pointer;
 		height: var(--navigation-height);
 		transition: ease-in-out width .3s;
+		position: relative;
 
 		.app--small-navigation & {
 			.brand__name--big {
@@ -42,5 +107,42 @@
 
 	.brand__name--small {
 		display: none;
+	}
+
+	.brand__menu {
+		position: absolute;
+		top: var(--navigation-height);
+		width: 100%;
+	}
+
+	.brand__menu-item {
+		height: var(--navigation-height);
+		background: var(--color-theme);
+		color: var(--color-text);
+		display: flex;
+		align-items: center;
+		cursor: pointer;
+		padding: 0 1.5em;
+
+		.app--small-navigation & {
+			padding: 0;
+			justify-content: center;
+		}
+
+		&:hover {
+			background: var(--color-theme-dark);
+		}
+	}
+
+	.brand__menu-icon {
+		margin-right: 0.5em;
+
+		.app--small-navigation & {
+			margin-right: 0;
+
+			+ span {
+				display: none;
+			}
+		}
 	}
 </style>

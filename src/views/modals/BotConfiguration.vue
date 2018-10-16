@@ -118,6 +118,8 @@
 				try {
 					await post(`bot/${this.bot.name}`, { BotConfig: this.model });
 					this.$parent.close();
+				} catch (err) {
+					this.$error(err.message);
 				} finally {
 					this.saving = false;
 				}

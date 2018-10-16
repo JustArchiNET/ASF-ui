@@ -35,7 +35,7 @@
 
 	import { mapGetters } from 'vuex';
 	import prepareModelToDownload from '../utils/prepareModelToDownload';
-	import delay from '../utils/delay';
+	import waitForRestart from '../utils/waitForRestart';
 
 	const categories = [
 		{ name: 'Basic', fields: ['SteamOwnerID'] },
@@ -97,21 +97,14 @@
 
 				try {
 					await post('ASF', { GlobalConfig: this.model });
-					await this.waitForRestart();
+					this.$info('Restarting...');
+					await waitForRestart();
+					this.$success('Restarted!');
+				} catch (err) {
+					this.$error(err.message);
 				} finally {
 					this.saving = false;
 				}
-			},
-			async waitForRestart(timeout = 120000) {
-				const timeStarted = Date.now();
-
-				while (timeStarted > Date.now() - timeout) {
-					await this.$store.dispatch('status/updateASF');
-					if (Date.now() - this.$store.getters['status/startTime'].getTime() < 10000) return;
-					await delay(1000);
-				}
-
-				throw new Error('Restart not detected within timeout')
 			},
 			async onDownload() {
 				const element = document.createElement('a');

@@ -8,24 +8,29 @@ function extractResult(response) {
 	return response.data.Result;
 }
 
+function checkForError(response) {
+	if (!response.data.Success) throw new Error(response.data.Message);
+	return response;
+}
+
 export function authenticate(password) {
 	http.defaults.headers.common.Authentication = password;
 }
 
 export function get(endpoint, params = {}, options = {}) {
-	return http.get(endpoint, { ...options, params }).then(extractResult);
+	return http.get(endpoint, { ...options, params }).then(checkForError).then(extractResult);
 }
 
 export function post(endpoint, data, options = {}) {
-	return http.post(endpoint, data, options).then(extractResult);
+	return http.post(endpoint, data, options).then(checkForError).then(extractResult);
 }
 
 export function del(endpoint, options = {}) {
-	return http.delete(endpoint, options);
+	return http.delete(endpoint, options).then(checkForError).then(extractResult);
 }
 
 export function command(...args) {
-	return http.post(`command/${args.join(' ')}`).then(extractResult);
+	return http.post(`command/${args.join(' ')}`).then(checkForError).then(extractResult);
 }
 
 export function botAction(bots, action, params) {

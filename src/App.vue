@@ -10,6 +10,7 @@
 		</section>
 
 		<app-modal></app-modal>
+		<vue-snotify></vue-snotify>
 	</div>
 </template>
 
@@ -135,7 +136,7 @@
 		--color-text-dark: #94999b;
 		--color-border: rgba(0, 0, 0, .5);
 		--color-text-secondary: #{darken(#bfbfbf, 10)};
-		--color-text-disabled: #{darken(#bfbfbf, 15)};
+		--color-text-disabled: #{darken(#bfbfbf, 20)};
 	}
 
 	.theme-blue {

@@ -28,8 +28,12 @@
 		methods: {
 			async update() {
 				this.$store.commit('auth/setPassword', this.password);
-				const validPassword = await this.$store.dispatch('auth/validate');
-				if (!validPassword) await this.$router.replace({ name: 'setup' });
+				try {
+					const validPassword = await this.$store.dispatch('auth/validate');
+					if (!validPassword) await this.$router.replace({ name: 'setup' });
+				} catch (err) {
+					this.$error(err.message);
+				}
 			}
 		}
 	};

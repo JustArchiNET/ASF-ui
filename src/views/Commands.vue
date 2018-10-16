@@ -161,8 +161,12 @@
 				this.commandHistory.slice(0, 20);
 
 				this.log.push({ type: 'out', message: commandToExecute });
-				const result = await this.executeCommand(commandToExecute);
-				this.log.push({ type: 'in', message: result });
+				try {
+					const result = await this.executeCommand(commandToExecute);
+					this.log.push({ type: 'in', message: result });
+				} catch (err) {
+					this.$error(err.message);
+				}
 			},
 			async executeCommand(commandToExecute) {
 				switch (commandToExecute.split(' ')[0]) {

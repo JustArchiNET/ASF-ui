@@ -29,8 +29,14 @@
 		methods: {
 			async updatePassword() {
 				this.$store.commit('auth/setPassword', this.password);
-				const validPassword = await this.$store.dispatch('auth/validate');
-				if (validPassword) this.$router.replace('/');
+
+				try {
+					const validPassword = await this.$store.dispatch('auth/validate');
+					if (validPassword) this.$router.replace('/');
+					else this.$error('Invalid password!');
+				} catch (err) {
+					this.$error(err.message);
+				}
 			}
 		}
 	};

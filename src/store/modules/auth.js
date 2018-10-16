@@ -23,7 +23,13 @@ export const actions = {
 		await dispatch('validate');
 	},
 	validate: async ({ commit }) => {
-		const validPassword = await get('ASF').then(response => true).catch(err => false);
+		const validPassword = await get('ASF')
+			.then(response => true)
+			.catch(err => {
+				if (err.response.status === 401) return false;
+				if (err.response.status === 403) throw new Error('Rate limited!');
+				throw err;
+			});
 		commit(validPassword ? 'validate' : 'invalidate');
 		return validPassword;
 	}
