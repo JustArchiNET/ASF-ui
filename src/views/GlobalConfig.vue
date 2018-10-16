@@ -68,6 +68,10 @@
 				loadParameterDescriptions(this.version)
 			]);
 
+			Object.keys(model).forEach(key => {
+				if (key.startsWith('s_')) delete model[key.substr(2)];
+			});
+
 			this.model = model;
 
 			this.fields = Object.keys(fields).map(key => ({
