@@ -248,11 +248,11 @@
 
 .button--link {
 	background: transparent;
-	color: var(--color-theme-dark);
+	color: var(--color-theme);
 
 	&:hover, &.button--active {
 		background: transparent;
-		color: var(--color-theme);
+		color: var(--color-theme-light);
 	}
 }
 
