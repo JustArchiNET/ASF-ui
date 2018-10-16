@@ -10,6 +10,8 @@
 			<h3 class="subtitle" v-if="loading"><font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon></h3>
 
 			<template v-else-if="state === 'input'">
+				<h3 class="subtitle" v-if="usedKeysCount || unusedKeysCount">{{ usedKeysCount }} used, {{ unusedKeysCount }} unused - <span class="bgr__reset" @click="onReset">reset</span></h3>
+
 				<div class="form-item">
 					<textarea class="form-item__textarea" cols="70" rows="15" title="BGR keys" placeholder="Insert your keys here" v-model="userInput"></textarea>
 				</div>
@@ -23,15 +25,19 @@
 
 			<template v-else-if="state === 'check'">
 				<div class="form-item">
-					<div class="keys">
-						<span class="key" v-if="noKeys"><strong>No key pairs detected</strong></span>
+					<div class="bgr__keys">
+						<span class="bgr__key" v-if="noKeys"><strong>No key pairs detected</strong></span>
 						<span v-for="(name, key) in keys" class="key">{{ key }} - {{ name }}</span>
 					</div>
 				</div>
 
 				<div class="form-item">
 					<div class="form-item__buttons form-item__buttons--center">
-						<button class="button button--confirm" @click="onConfirm" v-if="!noKeys">Confirm</button>
+						<button class="button button--confirm" @click="onConfirm" v-if="!noKeys">
+							<font-awesome-icon icon="spinner" v-if="confirming" spin></font-awesome-icon>
+							<span v-else>Confirm</span>
+						</button>
+
 						<button class="button button--cancel" @click="onCancel" :key="'cancel'">Cancel</button>
 					</div>
 				</div>
@@ -42,7 +48,7 @@
 </template>
 
 <script>
-	import { get, post } from '../../utils/http';
+	import { get, post, del } from '../../utils/http';
 
 	const keyRegex = /[0-9A-Z]{4,7}-[0-9A-Z]{4,7}-[0-9A-Z]{4,7}(?:(?:-[0-9A-Z]{4,7})?(?:-[0-9A-Z]{4,7}))?/;
 	const commonDelimiters = [':', ';', '|', '-'];
@@ -58,6 +64,7 @@
 		data() {
 			return {
 				loading: true,
+				confirming: false,
 				state: 'input',
 				unusedKeys: {},
 				usedKeys: {},
@@ -66,6 +73,12 @@
 			};
 		},
 		computed: {
+			unusedKeysCount() {
+				return Object.keys(this.unusedKeys).length;
+			},
+			usedKeysCount() {
+				return Object.keys(this.usedKeys).length;
+			},
 			bot() {
 				return this.$store.getters['bots/bot'](this.$route.params.bot);
 			},
@@ -104,11 +117,22 @@
 				this.state = 'check';
 			},
 			async onConfirm() {
-				await post(`bot/${this.bot.name}/GamesToRedeemInBackground`, { GamesToRedeemInBackground: this.keys });
-				this.$parent.close();
+				this.confirming = true;
+
+				try {
+					await post(`bot/${this.bot.name}/GamesToRedeemInBackground`, { GamesToRedeemInBackground: this.keys });
+					this.$parent.close();
+				} finally {
+					this.confirming = false;
+				}
 			},
 			onCancel() {
 				this.state = 'input';
+			},
+			async onReset() {
+				await del(`bot/${this.bot.name}/GamesToRedeemInBackground`);
+				this.unusedKeys = {};
+				this.usedKeys = {};
 			},
 			detectKeyNamePair(line) {
 				if (!keyRegex.test(line)) return;
@@ -131,13 +155,17 @@
 </script>
 
 <style lang="scss">
-	.keys {
+	.bgr__keys {
 		display: flex;
 		flex-direction: column;
 		text-align: center;
 	}
 
-	.key {
+	.bgr__key {
 		display: inline-block;
+	}
+
+	.bgr__reset {
+		cursor: pointer;
 	}
 </style>

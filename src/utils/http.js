@@ -20,6 +20,10 @@ export function post(endpoint, data, options = {}) {
 	return http.post(endpoint, data, options).then(extractResult);
 }
 
+export function del(endpoint, options = {}) {
+	return http.delete(endpoint, options);
+}
+
 export function command(...args) {
 	return http.post(`command/${args.join(' ')}`).then(extractResult);
 }
