@@ -28,6 +28,7 @@ export const actions = {
 
 		const boxed = localStorage.getItem('boxed-layout');
 		if (boxed) commit('setBoxed', JSON.parse(boxed));
+		else if (window.innerWidth >= 2560) commit('setBoxed', true);
 
 		const darkMode = localStorage.getItem('dark-mode');
 		if (darkMode) commit('setDarkMode', JSON.parse(darkMode));
