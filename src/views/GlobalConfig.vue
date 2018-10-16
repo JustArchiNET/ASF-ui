@@ -34,7 +34,7 @@
 
 	import { mapGetters } from 'vuex';
 	import prepareModelToDownload from '../utils/prepareModelToDownload';
-	import sleep from '../utils/sleep';
+	import delay from '../utils/delay';
 
 	const categories = [
 		{ name: 'Basic', fields: ['SteamOwnerID'] },
@@ -107,7 +107,7 @@
 				while (timeStarted > Date.now() - timeout) {
 					await this.$store.dispatch('status/updateASF');
 					if (Date.now() - this.$store.getters['status/startTime'].getTime() < 10000) return;
-					await sleep(1000);
+					await delay(1000);
 				}
 
 				throw new Error('Restart not detected within timeout')
