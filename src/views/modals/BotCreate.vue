@@ -8,7 +8,11 @@
 
 				<div class="form-item">
 					<div class="form-item__buttons">
-						<button class="button button--confirm" @click="onCreate">Create</button>
+						<button class="button button--confirm" @click="onCreate">
+							<font-awesome-icon icon="spinner" v-if="creating" spin></font-awesome-icon>
+							<span v-else>Create</span>
+						</button>
+
 						<button class="button button--confirm" @click="onDownload">Download configuration file</button>
 					</div>
 				</div>
@@ -48,6 +52,7 @@
 		data() {
 			return {
 				loading: true,
+				creating: false,
 				fields: [],
 				model: {},
 				categories
@@ -79,10 +84,17 @@
 				this.loading = false;
 			},
 			async onCreate() {
-				if (!this.model.Name) return;
-				await post(`bot/${this.model.Name}`, { BotConfig: this.model });
-				await this.$store.dispatch('bots/updateBots');
-				this.$parent.close();
+				if (!this.model.Name || this.creating) return;
+
+				this.creating = true;
+
+				try {
+					await post(`bot/${this.model.Name}`, { BotConfig: this.model });
+					await this.$store.dispatch('bots/updateBots');
+					this.$parent.close();
+				} finally {
+					this.creating = false;
+				}
 			},
 			async onDownload() {
 				const element = document.createElement('a');

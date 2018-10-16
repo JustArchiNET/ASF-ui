@@ -13,7 +13,11 @@
 
 				<div class="form-item">
 					<div class="form-item__buttons">
-						<button class="button button--confirm" @click="onSave">Save</button>
+						<button class="button button--confirm" @click="onSave">
+							<font-awesome-icon icon="spinner" v-if="saving" spin></font-awesome-icon>
+							<span v-else>Save</span>
+						</button>
+
 						<button class="button button--confirm" @click="onDownload">Download configuration file</button>
 					</div>
 				</div>
@@ -60,6 +64,7 @@
 		data() {
 			return {
 				loading: true,
+				saving: false,
 				fields: [],
 				model: {},
 				categories
@@ -106,8 +111,16 @@
 				this.loading = false;
 			},
 			async onSave() {
-				await post(`bot/${this.bot.name}`, { BotConfig: this.model });
-				this.$parent.close();
+				if (this.saving) return;
+
+				this.saving = true;
+
+				try {
+					await post(`bot/${this.bot.name}`, { BotConfig: this.model });
+					this.$parent.close();
+				} finally {
+					this.saving = false;
+				}
 			},
 			async onDownload() {
 				const element = document.createElement('a');

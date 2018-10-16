@@ -13,7 +13,10 @@
 
 				<div class="form-item">
 					<div class="form-item__buttons">
-						<button class="button button--confirm" @click="onSave">Save</button>
+						<button class="button button--confirm" @click="onSave">
+							<font-awesome-icon icon="spinner" v-if="saving" spin></font-awesome-icon>
+							<span v-else>Save</span>
+						</button>
 						<button class="button button--confirm" @click="onDownload">Download configuration file</button>
 					</div>
 				</div>
@@ -31,6 +34,7 @@
 
 	import { mapGetters } from 'vuex';
 	import prepareModelToDownload from '../utils/prepareModelToDownload';
+	import sleep from '../utils/sleep';
 
 	const categories = [
 		{ name: 'Basic', fields: ['SteamOwnerID'] },
@@ -50,6 +54,7 @@
 		data() {
 			return {
 				loading: true,
+				saving: false,
 				fields: [],
 				model: {},
 				descriptions: {},
@@ -85,7 +90,27 @@
 		},
 		methods: {
 			async onSave() {
-				await post('ASF', { GlobalConfig: this.model });
+				if (this.saving) return;
+
+				this.saving = true;
+
+				try {
+					await post('ASF', { GlobalConfig: this.model });
+					await this.waitForRestart();
+				} finally {
+					this.saving = false;
+				}
+			},
+			async waitForRestart(timeout = 120000) {
+				const timeStarted = Date.now();
+
+				while (timeStarted > Date.now() - timeout) {
+					await this.$store.dispatch('status/updateASF');
+					if (Date.now() - this.$store.getters['status/startTime'].getTime() < 10000) return;
+					await sleep(1000);
+				}
+
+				throw new Error('Restart not detected within timeout')
 			},
 			async onDownload() {
 				const element = document.createElement('a');
