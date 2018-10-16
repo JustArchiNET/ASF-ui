@@ -246,6 +246,16 @@
 	}
 }
 
+.button--link {
+	background: transparent;
+	color: var(--color-theme-dark);
+
+	&:hover, &.button--active {
+		background: transparent;
+		color: var(--color-theme);
+	}
+}
+
 .button--cancel {
 	background: var(--color-button-cancel);
 

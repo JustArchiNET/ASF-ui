@@ -18,7 +18,7 @@
 							<span v-else>Save</span>
 						</button>
 
-						<button class="button button--confirm" @click="onDownload">Download configuration file</button>
+						<button class="button button--link pull-right" @click="onDownload">Download raw configuration file</button>
 					</div>
 				</div>
 			</div>
