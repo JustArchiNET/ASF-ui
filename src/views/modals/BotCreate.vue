@@ -75,7 +75,13 @@
 				this.model = {};
 
 				this.fields = [
-					{ defaultValue: '', param: 'Name', paramName: 'Name', type: 'string' },
+					{
+						defaultValue: '',
+						param: 'Name',
+						paramName: 'Name',
+						type: 'string',
+						description: '<code>string</code> type with no default value. This property is required and defines bot name - it is used for identification purpose inside ASF only. Must be unique for each bot.'
+					},
 					...Object.keys(fields).map(key => ({
 						description: descriptions[key],
 						...fields[key]
