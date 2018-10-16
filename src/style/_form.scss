@@ -99,6 +99,16 @@
 	}
 }
 
+.form-item__textarea {
+	padding: 0.5em;
+	border-color: var(--color-border);
+
+	.app--dark-mode & {
+		background: var(--color-background-dark);
+		color: var(--color-text);
+	}
+}
+
 .form-item__tag {
 	margin: 0 0.5em 0.5em 0;
 	flex-shrink: 0;
@@ -237,11 +247,10 @@
 }
 
 .button--cancel {
-	background: var(--color-text-disabled);
+	background: var(--color-button-cancel);
 
 	&:hover, &.button--active {
-		background: var(--color-text-disabled);
-		color: var(--color-text-secondary);
+		background: var(--color-button-cancel-active);
 	}
 }
 

@@ -79,6 +79,9 @@
 		--color-navigation: #222d32;
 		--color-navigation-dark: #{darken(#222d32, 3)};
 		--color-navigation-darker: #{darken(#222d32, 10)};
+
+		--color-button-cancel: #{$color-theme-red};
+		--color-button-cancel-active: #{lighten($color-theme-red, 5)};
 	}
 
 	html {
@@ -128,7 +131,7 @@
 	.app--dark-mode {
 		--color-background: #111;
 		--color-background-light: #222;
-		--color-text: #bfbfbf;
+		--color-text: #d1cccc;
 		--color-text-dark: #94999b;
 		--color-border: rgba(0, 0, 0, .5);
 		--color-text-secondary: #{darken(#bfbfbf, 10)};
@@ -145,6 +148,8 @@
 		--color-theme: #{$color-theme-red};
 		--color-theme-dark: #{darken($color-theme-red, 5)};
 		--color-theme-light: #{lighten($color-theme-red, 5)};
+		--color-button-cancel: #{darken($color-theme-orange, 5)};
+		--color-button-cancel-active: #{$color-theme-orange};
 	}
 
 	.theme-teal {

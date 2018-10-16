@@ -11,7 +11,7 @@
 
 			<template v-else-if="state === 'input'">
 				<div class="form-item">
-					<textarea cols="70" rows="15" title="BGR keys" placeholder="Insert your keys here" v-model="userInput"></textarea>
+					<textarea class="form-item__textarea" cols="70" rows="15" title="BGR keys" placeholder="Insert your keys here" v-model="userInput"></textarea>
 				</div>
 
 				<div class="form-item">
@@ -32,7 +32,7 @@
 				<div class="form-item">
 					<div class="form-item__buttons form-item__buttons--center">
 						<button class="button button--confirm" @click="onConfirm" v-if="!noKeys">Confirm</button>
-						<button class="button button--cancel" @click="onCancel">Cancel</button>
+						<button class="button button--cancel" @click="onCancel" :key="'cancel'">Cancel</button>
 					</div>
 				</div>
 
