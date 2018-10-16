@@ -10,6 +10,7 @@ class Bot {
 		this.isPlayingPossible = data.IsPlayingPossible;
 		this.active = data.KeepRunning;
 		this.config = data.BotConfig;
+		this.isConnected = data.IsConnectedAndLoggedOn;
 
 		this.paused = data.CardsFarmer.Paused;
 		this.gamesToFarm = data.CardsFarmer.GamesToFarm;
@@ -19,7 +20,7 @@ class Bot {
 
 	get status() {
 		if (!this.active) return 'disabled';
-		if (this.steamid === '0') return 'offline';
+		if (!this.isConnected) return 'offline';
 		if (this.paused || this.timeRemaining === '00:00:00') return 'online';
 		return 'farming';
 	}
@@ -33,7 +34,7 @@ class Bot {
 			case 'online':
 				return this.timeRemaining === '00:00:00' ? 'Online' : 'Paused';
 			case 'farming':
-				return `Farming${this.currentGamesFarming.length ? ' - ' + this.currentGamesFarming[0].GameName : ''}`;
+				return `Farming${this.currentGamesFarming.length ? ' - ' + this.currentGamesFarming.map(game => game.GameName).join() : ''}`;
 		}
 	}
 

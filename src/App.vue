@@ -131,7 +131,7 @@
 	.app--dark-mode {
 		--color-background: #111;
 		--color-background-light: #222;
-		--color-text: #d1cccc;
+		--color-text: #e0e0e0;
 		--color-text-dark: #94999b;
 		--color-border: rgba(0, 0, 0, .5);
 		--color-text-secondary: #{darken(#bfbfbf, 10)};

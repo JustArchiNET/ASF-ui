@@ -238,6 +238,11 @@
 	}
 }
 
+.button--small {
+	min-height: 1.2em;
+	padding: 0.25em 0.5em;
+}
+
 .button--confirm {
 	background: var(--color-theme);
 

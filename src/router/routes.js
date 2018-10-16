@@ -25,6 +25,24 @@ export default [
 		component: () => import('../views/Bots.vue')
 	},
 	{
+		path: '/page/bot/new',
+		name: 'bot-create',
+		components: {
+			default: () => import('../views/Bots.vue'),
+			modal: () => import('../views/modals/BotCreate.vue')
+		},
+		meta: { modal: true }
+	},
+	{
+		path: '/page/bot/:bot',
+		name: 'bot',
+		components: {
+			default: () => import('../views/Bots.vue'),
+			modal: () => import('../views/modals/Bot.vue')
+		},
+		meta: { modal: true }
+	},
+	{
 		path: '/page/bot/:bot/config',
 		name: 'bot-config',
 		components: {
@@ -43,16 +61,16 @@ export default [
 		meta: { modal: true }
 	},
 	{
-		path: '/page/bot/new',
-		name: 'bot-create',
+		path: '/page/bot/:bot/delete',
+		name: 'bot-delete',
 		components: {
 			default: () => import('../views/Bots.vue'),
-			modal: () => import('../views/modals/BotCreate.vue')
+			modal: () => import('../views/modals/BotDelete.vue')
 		},
 		meta: { modal: true }
 	},
 	{
-		path: '/page/bot/:bot?',
+		path: '/page/bot',
 		name: 'bot',
 		redirect: { name: 'bots' }
 	},
@@ -70,5 +88,10 @@ export default [
 		path: '/page/config',
 		name: 'global-config',
 		component: () => import('../views/GlobalConfig.vue')
+	},
+	{
+		path: '*',
+		name: '404',
+		redirect: { name: 'home' }
 	}
 ];

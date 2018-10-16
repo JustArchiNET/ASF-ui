@@ -1,23 +1,13 @@
 <template>
 	<div class="bot" :class="[`status--${bot.status}`]">
-		<a target="_blank" :href="bot.profileURL" v-if="bot.steamid !== '0'">
-			<img class="bot__avatar" :src="bot.avatarURL">
-		</a>
-
-		<img class="bot__avatar" :src="bot.avatarURL" v-else>
+		<router-link :to="{ name: 'bot', params: { bot: bot.name } }" tag="img" class="bot__avatar" :src="bot.avatarURL"></router-link>
 
 		<div class="bot__status">
-			<router-link tag="span" :to="{ name: 'bot-config', params: { bot: bot.name } }" class="bot__status-property bot__status-property--name">{{ bot.name }}</router-link>
+			<router-link tag="span" :to="{ name: 'bot', params: { bot: bot.name } }" class="bot__status-property bot__status-property--name">{{ bot.name }}</router-link>
 			<span class="bot__status-property bot__status-property--text">{{ bot.statusText }}</span>
 		</div>
 
 		<div class="bot__actions">
-			<router-link tag="span" :to="{ name: 'bot-config', params: { bot: bot.name } }" class="bot__action bot__action--config">
-				<font-awesome-icon icon="wrench"></font-awesome-icon>
-			</router-link>
-			<router-link tag="span" :to="{ name: 'bot-bgr', params: { bot: bot.name } }" class="bot__action bot__action--gbr">
-				<font-awesome-icon icon="key"></font-awesome-icon>
-			</router-link>
 			<span class="bot__action bot__action--resume" v-if="bot.paused && bot.active" @click="resume"><font-awesome-icon icon="play"></font-awesome-icon></span>
 			<span class="bot__action bot__action--pause" v-if="!bot.paused && bot.active" @click="pause"><font-awesome-icon icon="pause"></font-awesome-icon></span>
 			<span class="bot__action bot__action--start" v-if="!bot.active" @click="start"><font-awesome-icon icon="power-off"></font-awesome-icon></span>
@@ -48,7 +38,7 @@
 			},
 			async stop() {
 				const message = await botAction(this.bot.name, 'stop');
-				await this.$store.dispatch('bots/updateBot', { name: this.bot.name, active: false, steamid: '0' });
+				await this.$store.dispatch('bots/updateBot', { name: this.bot.name, active: false });
 			}
 		}
 	};
@@ -106,9 +96,14 @@
 
 		&:hover {
 			color: var(--color-text-dark);
+
+			.app--dark-mode & {
+				color: var(--color-text);
+			}
 		}
 	}
 
+	.bot__action--start:hover,
 	.bot__action--resume:hover {
 		color: green;
 	}
@@ -117,11 +112,8 @@
 		color: orange;
 	}
 
-	.bot__action--stop:hover {
+	.bot__action--stop:hover,
+	.bot__action--delete:hover {
 		color: red;
-	}
-
-	.bot__action--start:hover {
-		color: green;
 	}
 </style>

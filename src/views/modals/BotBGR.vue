@@ -41,7 +41,6 @@
 						<button class="button button--cancel" @click="onCancel" :key="'cancel'">Cancel</button>
 					</div>
 				</div>
-
 			</template>
 		</template>
 	</main>

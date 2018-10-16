@@ -4,8 +4,8 @@
 
 		<div class="form-item__value">
 			<div class="form-item__buttons">
-				<button class="button button--small" :class="{ 'button--active': value }" @click.prevent="value = true">✔</button>
-				<button class="button button--small" :class="{ 'button--active': !value }" @click.prevent="value = false">✖</button>
+				<button class="button" :class="{ 'button--active': value }" @click.prevent="value = true">✔</button>
+				<button class="button" :class="{ 'button--active': !value }" @click.prevent="value = false">✖</button>
 			</div>
 		</div>
 

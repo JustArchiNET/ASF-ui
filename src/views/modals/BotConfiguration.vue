@@ -58,7 +58,7 @@
 		components: { ConfigEditor },
 		metaInfo() {
 			return {
-				title: `Bot - ${this.$route.params.bot}`
+				title: `Bot configuration - ${this.$route.params.bot}`
 			};
 		},
 		data() {
