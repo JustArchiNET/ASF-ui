@@ -30,8 +30,6 @@
 
 	import ConfigCategory from './ConfigCategory.vue';
 
-	import { debounce } from 'lodash';
-
 	export default {
 		name: 'config-editor',
 		props: {

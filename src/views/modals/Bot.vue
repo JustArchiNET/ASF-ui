@@ -38,7 +38,9 @@
 </template>
 
 <script>
-  export default {
+  import { botAction } from '../../utils/http';
+
+	export default {
     name: 'bot',
 		computed: {
 			bot() {
@@ -47,23 +49,37 @@
 		},
 		methods: {
 			async pause() {
-				const message = await botAction(this.bot.name, 'pause', { permanent: true, resumeInSeconds: 0 });
-				await this.$store.dispatch('bots/updateBot', { name: this.bot.name, paused: true });
+				try {
+					const message = await botAction(this.bot.name, 'pause', { permanent: true, resumeInSeconds: 0 });
+					await this.$store.dispatch('bots/updateBot', { name: this.bot.name, paused: true });
+				} catch (err) {
+					this.$error(err.message);
+				}
+
 			},
 			async resume() {
-				const message = await botAction(this.bot.name, 'resume');
-				await this.$store.dispatch('bots/updateBot', { name: this.bot.name, paused: false });
+				try {
+					const message = await botAction(this.bot.name, 'resume');
+					await this.$store.dispatch('bots/updateBot', { name: this.bot.name, paused: false });
+				} catch (err) {
+					this.$error(err.message);
+				}
 			},
 			async start() {
-				const message = await botAction(this.bot.name, 'start');
-				await this.$store.dispatch('bots/updateBot', { name: this.bot.name, active: true });
+				try {
+					const message = await botAction(this.bot.name, 'start');
+					await this.$store.dispatch('bots/updateBot', { name: this.bot.name, active: true });
+				} catch (err) {
+					this.$error(err.message);
+				}
 			},
 			async stop() {
-				const message = await botAction(this.bot.name, 'stop');
-				await this.$store.dispatch('bots/updateBot', { name: this.bot.name, active: false, steamid: '0' });
-			},
-			async deleteBot() {
-
+				try {
+					const message = await botAction(this.bot.name, 'stop');
+					await this.$store.dispatch('bots/updateBot', { name: this.bot.name, active: false, steamid: '0' });
+				} catch (err) {
+					this.$error(err.message);
+				}
 			}
 		}
   };
