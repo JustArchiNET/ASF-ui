@@ -50,7 +50,9 @@
 		transition: transform ease-in-out .3s;
 
 		.app--boxed-layout & {
-			position: absolute;
+			@media screen and (min-width: 1250px) {
+				position: absolute;
+			}
 		}
 	}
 

@@ -48,6 +48,11 @@
 			extendedFields: Object
 		},
 		components: { ConfigCategory },
+		data() {
+			return {
+				windowWidth: 0
+			};
+		},
 		computed: {
 			uncategorizedFields() {
 				if (!this.categories) return this.fields;
@@ -133,15 +138,22 @@
 			getFields(names) {
 				return this.fields.filter(field => names.includes(field.param));
 			},
-			computeLabelWidth: debounce(function computeLabelWidth() {
-				const labelWidth = Math.max(...Array.from(this.$el.querySelectorAll('.form-item__label')).map(el => parseInt(getComputedStyle(el).width, 10)));
-				this.$el.style.setProperty('--label-width', labelWidth + 'px');
-			}, 250)
+			computeLabelWidth() {
+				if (window.innerWidth >= 1200 && this.windowWidth < 1200) {
+					this.$el.style.setProperty('--label-width', 'auto');
+
+					this.$nextTick(() => {
+						const labelWidth = Math.max(...Array.from(this.$el.querySelectorAll('.form-item__label')).map(el => parseInt(getComputedStyle(el).width, 10)));
+						this.$el.style.setProperty('--label-width', labelWidth + 'px');
+					});
+				}
+
+				this.windowWidth = window.innerWidth;
+			}
 		},
 		mounted() {
 			window.addEventListener('resize', this.computeLabelWidth);
-			const labelWidth = Math.max(...Array.from(this.$el.querySelectorAll('.form-item__label')).map(el => parseInt(getComputedStyle(el).width, 10)));
-			this.$el.style.setProperty('--label-width', labelWidth + 'px');
+			this.computeLabelWidth();
 		},
 		beforeDestroy() {
 			window.removeEventListener('resize', this.computeLabelWidth);

@@ -116,11 +116,13 @@
 	}
 
 	.app--boxed-layout {
-		position: relative;
-		overflow-x: hidden;
-		max-width: 1250px;
-		margin: 0 auto;
-		box-shadow: 0 0 25px 0 var(--color-navigation-dark);
+		@media screen and (min-width: 1250px) {
+			position: relative;
+			overflow-x: hidden;
+			max-width: 1250px;
+			margin: 0 auto;
+			box-shadow: 0 0 25px 0 var(--color-navigation-dark);
+		}
 	}
 
 	.app--dark-mode {
