@@ -14,6 +14,7 @@
 				<div class="form-item">
 					<div class="form-item__buttons">
 						<button class="button button--confirm" @click="onSave">Save</button>
+						<button class="button button--confirm" @click="onDownload">Download configuration file</button>
 					</div>
 				</div>
 			</template>
@@ -84,6 +85,15 @@
 		methods: {
 			async onSave() {
 				await post('ASF', { GlobalConfig: this.model });
+			},
+			async onDownload() {
+				const element = document.createElement('a');
+				element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(JSON.stringify(this.model)));
+				element.setAttribute('download', 'ASF.json');
+				element.style.display = 'none';
+				document.body.appendChild(element);
+				element.click();
+				document.body.removeChild(element);
 			}
 		}
 	};
