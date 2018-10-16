@@ -108,9 +108,6 @@
 					this.model[field] = value;
 				}
 			},
-			update() {
-				this.$emit('update', this.model);
-			},
 			isDefault(value, fieldSchema) {
 				return this.isEqual(value, fieldSchema.defaultValue, fieldSchema.type);
 			},

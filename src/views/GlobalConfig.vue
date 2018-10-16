@@ -9,11 +9,11 @@
 				</h3>
 			</template>
 			<template v-else>
-				<config-editor :fields="fields" :model="model" :categories="categories" :descriptions="descriptions" @update="onUpdate"></config-editor>
+				<config-editor :fields="fields" :model="model" :categories="categories" :descriptions="descriptions"></config-editor>
 
 				<div class="form-item">
 					<div class="form-item__buttons">
-						<button class="button button--confirm" @click="onUpdate">Save</button>
+						<button class="button button--confirm" @click="onSave">Save</button>
 					</div>
 				</div>
 			</template>
@@ -82,7 +82,7 @@
 			this.loading = false;
 		},
 		methods: {
-			async onUpdate() {
+			async onSave() {
 				await post('ASF', { GlobalConfig: this.model });
 			}
 		}

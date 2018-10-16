@@ -9,11 +9,11 @@
 
 			<h3 class="subtitle" v-if="loading"><font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon></h3>
 			<div class="container" v-else>
-				<config-editor :fields="fields" :model="model" :categories="categories" @update="onUpdate"></config-editor>
+				<config-editor :fields="fields" :model="model" :categories="categories"></config-editor>
 
 				<div class="form-item">
 					<div class="form-item__buttons">
-						<button class="button button--confirm" @click="onUpdate">Save</button>
+						<button class="button button--confirm" @click="onSave">Save</button>
 					</div>
 				</div>
 			</div>
@@ -103,7 +103,7 @@
 
 				this.loading = false;
 			},
-			async onUpdate() {
+			async onSave() {
 				await post(`bot/${this.bot.name}`, { BotConfig: this.model });
 				this.$parent.close();
 			}

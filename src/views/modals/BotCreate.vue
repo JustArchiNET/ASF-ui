@@ -4,11 +4,12 @@
 
 			<h3 class="subtitle" v-if="loading"><font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon></h3>
 			<div class="container" v-else>
-				<config-editor :fields="fields" :model="model" :categories="categories" @update="onUpdate"></config-editor>
+				<config-editor :fields="fields" :model="model" :categories="categories"></config-editor>
 
 				<div class="form-item">
 					<div class="form-item__buttons">
-						<button class="button button--confirm" @click="onUpdate">Save</button>
+						<button class="button button--confirm" @click="onCreate">Create</button>
+						<button class="button button--confirm" @click="onDownload">Download configuration file</button>
 					</div>
 				</div>
 			</div>
@@ -76,11 +77,20 @@
 
 				this.loading = false;
 			},
-			async onUpdate() {
+			async onCreate() {
 				if (!this.model.Name) return;
 				await post(`bot/${this.model.Name}`, { BotConfig: this.model });
 				await this.$store.dispatch('bots/updateBots');
 				this.$parent.close();
+			},
+			async onDownload() {
+				const element = document.createElement('a');
+				element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(JSON.stringify(this.model)));
+				element.setAttribute('download', this.model.Name);
+				element.style.display = 'none';
+				document.body.appendChild(element);
+				element.click();
+				document.body.removeChild(element);
 			}
 		}
 	};
