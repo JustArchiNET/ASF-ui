@@ -1,6 +1,6 @@
 <template>
 	<aside class="side-menu" :class="{ 'side-menu--hidden': !sideMenu }">
-		<side-menu-switch name="Boxed layout" icon="square" :checked="boxedLayout" @click="toggleBoxed"></side-menu-switch>
+		<side-menu-switch class="side-menu__switch--boxed" name="Boxed layout" icon="square" :checked="boxedLayout" @click="toggleBoxed"></side-menu-switch>
 		<side-menu-switch name="Dark mode" icon="moon" :checked="darkMode" @click="toggleDarkMode"></side-menu-switch>
 
 		<div class="side-menu__category">
@@ -88,5 +88,11 @@
 		margin: 1em 0 0.5em;
 		box-sizing: border-box;
 		color: var(--color-text-secondary);
+	}
+
+	.side-menu__switch--boxed {
+		@media screen and (max-width: 1249px) {
+			display: none;
+		}
 	}
 </style>
