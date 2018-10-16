@@ -12,7 +12,10 @@
 		},
 		components: { InputLabel, InputDescription },
 		watch: {
-			value: 'update'
+			value: {
+				handler: 'update',
+				deep: true
+			}
 		},
 		data() {
 			const initialValue = typeof this.currentValue !== 'undefined' ? this.currentValue : this.schema.defaultValue;
@@ -48,7 +51,8 @@
 				return validator(value, this.schema);
 			},
 			update() {
-				this.$emit('update', this.value, this.field);
+				const value = typeof this.value === 'object' ? JSON.parse(JSON.stringify(this.value)) : this.value;
+				this.$emit('update', value, this.field);
 			},
 			toggleDescription() {
 				this.showDescription = !this.showDescription;

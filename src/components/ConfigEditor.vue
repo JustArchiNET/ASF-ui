@@ -22,6 +22,7 @@
 	import InputNumber from './ConfigFields/InputNumber.vue';
 	import InputFlag from './ConfigFields/InputFlag.vue';
 	import InputSet from './ConfigFields/InputSet.vue';
+	import InputList from './ConfigFields/InputList.vue';
 	import InputTag from './ConfigFields/InputTag.vue';
 	import InputEnum from './ConfigFields/InputEnum.vue';
 	import InputDictionary from './ConfigFields/InputDictionary.vue';
@@ -83,8 +84,8 @@
 					case 'enum':
 						return InputEnum;
 					case 'hashSet':
-					case 'list': // TODO: Implement list field
-						if (['enum'].includes(field.values.type)) return InputSet;
+					case 'list':
+						if (['enum'].includes(field.values.type)) return field.type === 'list' ? InputList : InputSet;
 						if (['tinyNumber', 'smallNumber', 'number', 'bigNumber', 'string'].includes(field.values.type)) return InputTag;
 						return InputUnknown;
 					case 'dictionary':
@@ -96,7 +97,7 @@
 			updateModel(value, field) {
 				const fieldSchema = this.fields.find(fieldSchema => fieldSchema.paramName === field);
 
-				if (fieldSchema && typeof fieldSchema.defaultValue !== 'undefined' && this.isEqual(value, fieldSchema.defaultValue)) {
+				if (fieldSchema && typeof fieldSchema.defaultValue !== 'undefined' && this.isDefault(value, fieldSchema)) {
 					delete this.model[field];
 				} else {
 					this.model[field] = value;
@@ -105,24 +106,26 @@
 			update() {
 				this.$emit('update', this.model);
 			},
-			isEqual(a, b) {
+			isDefault(value, fieldSchema) {
+				return this.isEqual(value, fieldSchema.defaultValue, fieldSchema.type);
+			},
+			isEqual(a, b, type) {
 				if (typeof a !== typeof b) return false;
 
-				switch (typeof a) {
+				switch (type) {
 					case 'number':
+					case 'tinyNumber':
+					case 'smallNumber':
+					case 'bigNumber':
 					case 'string':
 					case 'boolean':
 						return a === b;
-					case 'object':
-						if (Array.isArray(a) && Array.isArray(b)) {
-							return a.length === b.length && a.every((item, index) => item === b[index]);
-						}
-
-						if ('' + a === '[object Object]' && '' + b === '[object Object]') {
-							return Object.keys(a).length === Object.keys(b).length && Object.keys(a).every(key => a[key] === b[key]);
-						}
-
-						return a === b;
+					case 'hashSet':
+						return a.length === b.length && a.every(item => b.includes(item));
+					case 'list':
+						return a.length === b.length && a.every((item, index) => item === b[index]);
+					case 'dictionary':
+						return Object.keys(a).length === Object.keys(b).length && Object.keys(a).every(key => a[key] === b[key]);
 				}
 
 				return false;

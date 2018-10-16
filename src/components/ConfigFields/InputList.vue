@@ -28,7 +28,7 @@
 
 	export default {
 		mixins: [Input],
-		name: 'input-set',
+		name: 'input-list',
 		computed: {
 			availableEnumValues() {
 				const availableEnumValues = [];
@@ -50,7 +50,6 @@
 			};
 		},
 		created() {
-			this.value.sort();
 			this.element = this.getDefaultElement();
 		},
 		methods: {
@@ -62,7 +61,6 @@
 				if (this.value.includes(this.element)) return;
 
 				this.value.push(this.element);
-				this.value.sort();
 				this.element = this.getDefaultElement();
 			},
 			removeElement(index) {
