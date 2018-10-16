@@ -64,7 +64,7 @@ export const mutations = {
 
 export const actions = {
 	init: async ({ dispatch }) => {
-		setInterval(() => dispatch('updateBots'), 5000);
+		setInterval(() => dispatch('updateBots'), 2500);
 	},
 	onAuth: async ({ dispatch }) => {
 		dispatch('updateBots');
