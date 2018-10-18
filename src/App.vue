@@ -97,6 +97,18 @@
 		background: var(--color-background-dark);
 	}
 
+	@media screen and (max-height: 680px), screen and (max-width: 1366px) {
+		html {
+			font-size: 14px;
+		}
+	}
+
+	@media screen and (max-height: 600px) {
+		html {
+			font-size: 12px;
+		}
+	}
+
 	::-webkit-scrollbar {
 		width: 10px;
 		height: 10px;
