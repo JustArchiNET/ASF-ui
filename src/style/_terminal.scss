@@ -41,6 +41,7 @@
 .terminal__input {
 	width: 100%;
 	border: none;
+  	height: 16px;
 	box-sizing: border-box;
 	background: transparent;
 	color: var(--color-text);
@@ -60,7 +61,7 @@
 	position: absolute;
 	pointer-events: none;
 	color: var(--color-text-disabled);
-	height: 100%;
+	height: 16px;
 }
 
 .terminal__sign {
