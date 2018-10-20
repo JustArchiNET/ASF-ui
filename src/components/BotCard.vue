@@ -72,7 +72,7 @@
 
 	.bot__avatar {
 		min-width: 2.25em;
-		margin-right: 0.5em;
+		padding-right: 0.5em;
 		max-height: 100%;
 		cursor: pointer;
 	}
