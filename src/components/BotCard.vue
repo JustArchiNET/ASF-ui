@@ -2,10 +2,10 @@
 	<div class="bot" :class="[`status--${bot.status}`]">
 		<router-link :to="{ name: 'bot', params: { bot: bot.name } }" tag="img" class="bot__avatar" :src="bot.avatarURL"></router-link>
 
-		<div class="bot__status">
-			<router-link tag="span" :to="{ name: 'bot', params: { bot: bot.name } }" class="bot__status-property bot__status-property--name">{{ bot.name }}</router-link>
-			<router-link tag="span" :to="{ name: 'bot', params: { bot: bot.name } }" class="bot__status-property bot__status-property--text">{{ bot.statusText }}</router-link>
-		</div>
+		<router-link tag="div" :to="{ name: 'bot', params: { bot: bot.name } }" class="bot__status">
+			<span class="bot__status-property bot__status-property--name">{{ bot.name }}</span>
+			<span class="bot__status-property bot__status-property--text">{{ bot.statusText }}</span>
+		</router-link>
 
 		<div class="bot__actions">
 			<span class="bot__action bot__action--resume" v-if="bot.paused && bot.active" @click="resume"><font-awesome-icon icon="play"></font-awesome-icon></span>
@@ -68,19 +68,20 @@
 		background: var(--color-background-light);
 		border-radius: 0 0 4px 4px;
 		transition: border .3s;
-		cursor: pointer;
 	}
 
 	.bot__avatar {
 		min-width: 2.25em;
 		margin-right: 0.5em;
 		max-height: 100%;
+		cursor: pointer;
 	}
 
 	.bot__status {
 		display: flex;
 		flex-direction: column;
 		overflow: hidden;
+		cursor: pointer;
 	}
 
 	.bot__status-property {
