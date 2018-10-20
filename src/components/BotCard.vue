@@ -4,7 +4,7 @@
 
 		<div class="bot__status">
 			<router-link tag="span" :to="{ name: 'bot', params: { bot: bot.name } }" class="bot__status-property bot__status-property--name">{{ bot.name }}</router-link>
-			<span class="bot__status-property bot__status-property--text">{{ bot.statusText }}</span>
+			<router-link tag="span" :to="{ name: 'bot', params: { bot: bot.name } }" class="bot__status-property bot__status-property--text">{{ bot.statusText }}</router-link>
 		</div>
 
 		<div class="bot__actions">
@@ -68,6 +68,7 @@
 		background: var(--color-background-light);
 		border-radius: 0 0 4px 4px;
 		transition: border .3s;
+		cursor: pointer;
 	}
 
 	.bot__avatar {
@@ -91,7 +92,6 @@
 
 	.bot__status-property--name {
 		font-weight: 600;
-		cursor: pointer;
 	}
 
 	.bot__status-property--text {
@@ -106,7 +106,6 @@
 
 	.bot__action {
 		padding: 0.5em;
-		cursor: pointer;
 		transition: color .3s;
 		color: var(--color-text-disabled);
 
