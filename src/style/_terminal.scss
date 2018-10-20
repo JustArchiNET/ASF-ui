@@ -9,7 +9,7 @@
 	height: 100%;
 	overflow-y: auto;
 	cursor: text;
-  	line-height: 1;
+	line-height: 1;
 }
 
 .terminal__message {
@@ -42,7 +42,7 @@
 .terminal__input {
 	width: 100%;
 	border: none;
-  	height: 1em;
+	height: 1em;
 	box-sizing: border-box;
 	background: transparent;
 	color: var(--color-text);
