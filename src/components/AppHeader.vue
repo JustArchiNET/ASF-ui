@@ -6,9 +6,16 @@
 			<font-awesome-icon icon="bars"></font-awesome-icon>
 		</div>
 
-		<div class="navigation-button navigation-button--pull-right" @click="toggleSideMenu">
-			<font-awesome-icon icon="cogs"></font-awesome-icon>
+		<div class="navigation-menu">
+			<div class="navigation-button" @click="startTour">
+				<font-awesome-icon icon="info-circle"></font-awesome-icon>
+			</div>
+			<div class="navigation-button" @click="toggleSideMenu">
+				<font-awesome-icon icon="cogs"></font-awesome-icon>
+			</div>
 		</div>
+
+		<v-tour name="guideTour" :steps="steps"></v-tour>
 	</header>
 </template>
 
@@ -20,11 +27,28 @@
 	export default {
 		components: { NavigationBrand },
 		name: 'app-header',
+		data () {
+			return {
+				steps: [
+					{
+						target: '.brand',
+						content: 'You can click here to access some hidden buttons.'
+					},
+					{
+						target: '.navigation-button',
+						content: 'Click here to open or close the side navigation.'
+					}
+				]
+			}
+		},
 		methods: {
 			...mapActions({
 				toggleNavigation: 'layout/toggleNavigation',
 				toggleSideMenu: 'layout/toggleSideMenu'
-			})
+			}),
+			startTour() {
+				this.$tours['guideTour'].start()
+			}
 		}
 	};
 </script>
@@ -59,7 +83,9 @@
 		}
 	}
 
-	.navigation-button--pull-right {
+	.navigation-menu {
 		margin-left: auto;
+		display: flex;
+		justify-content: space-between;
 	}
 </style>

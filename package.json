@@ -44,6 +44,7 @@
 		"vue-meta": "^1.5.3",
 		"vue-router": "^3.0.1",
 		"vue-snotify": "^3.2.1",
+		"vue-tour": "^1.1.0",
 		"vuex": "^3.0.1"
 	}
 }
