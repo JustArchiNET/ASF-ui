@@ -107,6 +107,7 @@
 
 	.bot__action {
 		padding: 0.5em;
+		cursor: pointer;
 		transition: color .3s;
 		color: var(--color-text-disabled);
 
