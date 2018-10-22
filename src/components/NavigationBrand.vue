@@ -105,11 +105,14 @@
 			}
 
 			.brand__icon {
-				display: none;
+				position: absolute;
+				bottom: 0.1em;
 			}
 
 			.brand__name--small {
 				display: block;
+				position: absolute;
+				top: 0.1em;
 			}
 		}
 	}
