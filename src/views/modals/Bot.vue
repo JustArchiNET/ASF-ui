@@ -1,6 +1,6 @@
 <template>
 	<main class="main-container main-container--modal main-container--bot-profile">
-		<h2 class="title" v-if="!bot">Not found!</h2>
+		<h2 class="title" v-if="!bot">{{ $t('not-found') }}</h2>
 
 		<div class="bot-profile" :class="[`status--${bot.status}`]" v-else>
 			<div class="bot-profile__avatar-wrapper">

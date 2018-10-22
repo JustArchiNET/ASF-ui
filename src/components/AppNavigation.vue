@@ -2,31 +2,31 @@
 	<nav class="side-navigation">
 		<template v-if="validPassword">
 			<div class="navigation-category">
-				<navigation-category-title name="Control"></navigation-category-title>
-				<navigation-link name="Home" icon="home" :to="{ name: 'home' }"></navigation-link>
-				<navigation-link name="Commands" icon="laptop" :to="{ name: 'commands' }"></navigation-link>
-				<navigation-link name="Bots" icon="users" :to="{ name: 'bots' }"></navigation-link>
-				<navigation-link name="Log" icon="file-alt" :to="{ name: 'log' }"></navigation-link>
+				<navigation-category-title :name="$t('control')"></navigation-category-title>
+				<navigation-link :name="$t('home')" icon="home" :to="{ name: 'home' }"></navigation-link>
+				<navigation-link :name="$t('commands')" icon="laptop" :to="{ name: 'commands' }"></navigation-link>
+				<navigation-link :name="$t('bots')" icon="users" :to="{ name: 'bots' }"></navigation-link>
+				<navigation-link :name="$t('log')" icon="file-alt" :to="{ name: 'log' }"></navigation-link>
 			</div>
 
 			<div class="navigation-category">
-				<navigation-category-title name="Configuration"></navigation-category-title>
+				<navigation-category-title :name="$t('configuration')"></navigation-category-title>
 				<navigation-link name="IPC" icon="wrench" :to="{ name: 'ipc-configuration' }"></navigation-link>
-				<navigation-link name="Global Config" icon="edit" :to="{ name: 'global-config' }"></navigation-link>
+				<navigation-link :name="$t('global-config')" icon="edit" :to="{ name: 'global-config' }"></navigation-link>
 			</div>
 
 			<div class="navigation-category navigation-category--pull-bottom">
-				<navigation-category-title name="Statistics"></navigation-category-title>
+				<navigation-category-title :name="$t('statistics')"></navigation-category-title>
 				<navigation-bots></navigation-bots>
-				<navigation-statistic name="Memory usage" icon="tachometer-alt" :value="memory"></navigation-statistic>
-				<navigation-statistic name="Uptime" icon="clock" :value="uptime"></navigation-statistic>
+				<navigation-statistic :name="$t('statistics-memory-usage')" icon="tachometer-alt" :value="memory"></navigation-statistic>
+				<navigation-statistic :name="$t('statistics-uptime')" icon="clock" :value="uptime"></navigation-statistic>
 			</div>
 		</template>
 
 		<template v-else>
 			<div class="navigation-category">
-				<navigation-category-title name="Configuration"></navigation-category-title>
-				<navigation-link name="Setup" icon="wrench" :to="{ name: 'setup' }"></navigation-link>
+				<navigation-category-title :name="$t('configuration')"></navigation-category-title>
+				<navigation-link :name="$t('setup')" icon="wrench" :to="{ name: 'setup' }"></navigation-link>
 			</div>
 		</template>
 	</nav>

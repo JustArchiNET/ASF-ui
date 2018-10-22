@@ -2,7 +2,7 @@
 	<div class="bot-cards">
 		<div class="bot-card" :class="[`status--${type}`]" v-for="type in botTypes">
 			<span class="bot-card__value">{{ count(type) }}</span>
-			<span class="bot-card__name">{{ type }}</span>
+			<span class="bot-card__name">{{ $t(`bot-status-${type}`) }}</span>
 		</div>
 	</div>
 </template>

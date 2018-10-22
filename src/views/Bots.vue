@@ -1,6 +1,6 @@
 <template>
 	<main class="main-container">
-		<h2 class="title">Bots</h2>
+		<h2 class="title">{{ $t('bots') }}</h2>
 
 		<div class="bots">
 			<bot-card v-for="bot in bots" :bot="bot" :key="bot.name"></bot-card>
@@ -8,7 +8,7 @@
 			<router-link tag="div" :to="{ name: 'bot-create' }" class="bot-placeholder status--disabled">
 				<div class="bot-placeholder__button bot-placeholder__button--add">
 					<font-awesome-icon icon="plus" class="bot-placeholder__icon"></font-awesome-icon>
-					<span class="bot-placeholder__name">New bot</span>
+					<span class="bot-placeholder__name">{{ $t('bot-new') }}</span>
 				</div>
 			</router-link>
 		</div>

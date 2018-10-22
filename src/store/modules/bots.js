@@ -1,4 +1,5 @@
 import { get } from '../../utils/http';
+import i18n from '../../i18n';
 
 class Bot {
 	constructor(data) {
@@ -26,16 +27,8 @@ class Bot {
 	}
 
 	get statusText() {
-		switch (this.status) {
-			case 'disabled':
-				return 'Disabled';
-			case 'offline':
-				return 'Offline';
-			case 'online':
-				return this.timeRemaining === '00:00:00' ? 'Online' : 'Paused';
-			case 'farming':
-				return `Farming${this.currentGamesFarming.length ? ' - ' + this.currentGamesFarming.map(game => game.GameName).join() : ''}`;
-		}
+		let statusText = i18n.t(`bot-status-${this.status}`);
+		return this.status === 'farming' && this.currentGamesFarming.length ? `${statusText} - ${this.currentGamesFarming[0].GameName}` : statusText;
 	}
 
 	get avatarURL() {

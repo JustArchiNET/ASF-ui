@@ -1,14 +1,16 @@
 <template>
-	<h4 class="subtitle bgr__status" v-if="usedKeysCount || unusedKeysCount"><span class="bgr__status-link" @click="$emit('show-used')">{{ usedKeysCount }} used</span>, <span class="bgr__status-link" @click="$emit('show-unused')">{{ unusedKeysCount }} unused</span> - <span class="bgr__status-link" @click="$emit('reset')">reset</span></h4>
+	<h4 class="subtitle bgr__status" v-if="usedKeysCount || unusedKeysCount"><span class="bgr__status-link" @click="$emit('show-used')">{{ $t('bgr-used-keys-count', { count: usedKeysCount }) }}</span>, <span class="bgr__status-link"
+																																																																																																							@click="$emit('show-unused')">{{ $t('bgr-unused-keys-count', { count: unusedKeysCount }) }}</span>
+		- <span class="bgr__status-link" @click="$emit('reset')">{{ $t('reset') }}</span></h4>
 </template>
 
 <script>
-  export default {
+	export default {
 		props: {
 			usedKeys: Object,
 			unusedKeys: Object
 		},
-    name: 'bgr-status',
+		name: 'bgr-status',
 		computed: {
 			unusedKeysCount() {
 				return Object.keys(this.unusedKeys).length;
@@ -17,7 +19,7 @@
 				return Object.keys(this.usedKeys).length;
 			}
 		}
-  };
+	};
 </script>
 
 <style lang="scss">
@@ -28,5 +30,6 @@
 
 	.bgr__status-link {
 		cursor: pointer;
+		text-transform: lowercase;
 	}
 </style>

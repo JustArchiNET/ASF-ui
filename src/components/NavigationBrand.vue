@@ -11,18 +11,17 @@
 			<div class="brand__menu" v-if="brandMenu">
 				<div class="brand__menu-item" @click.stop="update">
 					<font-awesome-icon class="brand__menu-icon" icon="cloud-download-alt" fixed-width></font-awesome-icon>
-					<span>Update</span>
+					<span>{{ $t('update') }}</span>
 				</div>
 
 				<div class="brand__menu-item" @click.stop="restart">
 					<font-awesome-icon class="brand__menu-icon" icon="power-off" fixed-width></font-awesome-icon>
-					<span v-if="!restarting">Restart</span>
-					<span v-else>Restarting...</span>
+					<span>{{ $t('restart') }}</span>
 				</div>
 
 				<div class="brand__menu-item" @click.stop="exit">
 					<font-awesome-icon class="brand__menu-icon" icon="sign-out-alt" fixed-width></font-awesome-icon>
-					<span>Exit</span>
+					<span>{{ $t('exit') }}</span>
 				</div>
 			</div>
 		</transition>
@@ -54,13 +53,14 @@
 				}
 			},
 			async restart() {
+				if (this.restarting) return;
 				this.restarting = true;
 
 				try {
 					await post('asf/restart');
-					this.$info('Restarting...');
+					this.$info(this.$t('restart-initiated'));
 					await waitForRestart();
-					this.$success('Restarted!');
+					this.$success(this.$t('restart-complete'));
 					this.brandMenu = false;
 				} catch (err) {
 					this.$error(err.message);
@@ -71,7 +71,7 @@
 			async exit() {
 				try {
 					await post('asf/exit');
-					this.$info('Exiting, good bye!');
+					this.$info(this.$t('exit-message'));
 					this.brandMenu = false;
 				} catch (err) {
 					this.$error(err.message);

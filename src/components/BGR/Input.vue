@@ -1,12 +1,12 @@
 <template>
 	<div class="bgr__input">
 		<div class="form-item">
-			<textarea class="form-item__textarea" cols="70" rows="15" title="BGR keys" placeholder="Insert your keys here" v-model="userInput" spellcheck="false"></textarea>
+			<textarea class="form-item__textarea" cols="70" rows="15" :title="$t('bgr-keys')" :placeholder="$t('bgr-keys-insert')" v-model="userInput" spellcheck="false"></textarea>
 		</div>
 
 		<div class="form-item">
 			<div class="form-item__buttons form-item__buttons--center">
-				<button class="button button--confirm" @click="$emit('check', keys, userInput)">Check</button>
+				<button class="button button--confirm" @click="$emit('check', keys, userInput)">{{ $t('check') }}</button>
 			</div>
 		</div>
 	</div>

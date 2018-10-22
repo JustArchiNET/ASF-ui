@@ -1,6 +1,6 @@
 <template>
 	<main class="main-container main-container--modal main-container--bot-create">
-			<h2 class="title">Create new bot</h2>
+			<h2 class="title">{{ $t('bot-new') }}</h2>
 
 			<h3 class="subtitle" v-if="loading"><font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon></h3>
 			<div class="container" v-else>
@@ -10,10 +10,10 @@
 					<div class="form-item__buttons">
 						<button class="button button--confirm" @click="onCreate">
 							<font-awesome-icon icon="spinner" v-if="creating" spin></font-awesome-icon>
-							<span v-else>Create</span>
+							<span v-else>{{ $t('create') }}</span>
 						</button>
 
-						<button class="button button--link pull-right" @click="onDownload">Download raw configuration file</button>
+						<button class="button button--link pull-right" @click="onDownload">{{ $t('download-raw-config') }}</button>
 					</div>
 				</div>
 			</div>

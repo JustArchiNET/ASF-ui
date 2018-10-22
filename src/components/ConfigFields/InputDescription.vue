@@ -37,7 +37,7 @@
 				setTimeout(() => element.style.height = 0, 0);
 			}
 		}
-	}
+	};
 </script>
 
 <style lang="scss">

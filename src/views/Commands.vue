@@ -1,6 +1,6 @@
 <template>
 	<main class="main-container main-container--fullheight commands">
-		<h2 class="title">Commands</h2>
+		<h2 class="title">{{ $t('commands') }}</h2>
 
 		<div class="container">
 			<div class="terminal" @click="focusInput" ref="terminal">

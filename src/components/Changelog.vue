@@ -9,13 +9,13 @@
 		<div class="release" v-for="release in releases" v-else>
 			<div class="release__title">
 				<span class="release__version">v{{ release.version }}</span>
-				<span class="release__badge" :class="[release.stable ? 'release__badge--stable' : 'release__badge--prerelease']">{{ release.stable ? 'Stable' : 'Pre-Release' }}</span>
+				<span class="release__badge" :class="[release.stable ? 'release__badge--stable' : 'release__badge--prerelease']">{{ release.stable ? $t('stable') : $t('pre-release') }}</span>
 				<span class="release__time">{{ getTimeText(release) }}</span>
 			</div>
 
 			<div class="release__changes" v-html="release.changelog"></div>
 
-			<a class="release__changelog-link" :href="`https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${release.version}`" target="_blank">Full Changelog</a>
+			<a class="release__changelog-link" :href="`https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${release.version}`" target="_blank">{{ $t('changelog-full') }}</a>
 		</div>
 	</div>
 </template>
@@ -47,21 +47,22 @@
 				return await get('WWW/GitHub/Releases');
 			},
 			getTimeText({ releasedFor, publishDate }) {
-				if (releasedFor.days > 30) return `Released ${ publishDate.toLocaleString('en-GB', {
-					weekday: 'short',
-					year: 'numeric',
-					month: 'short',
-					day: 'numeric',
-					hour: '2-digit',
-					minute: '2-digit',
-					timeZoneName: 'short',
-					timeZone: 'UTC'
-				}) }`;
+				if (releasedFor.days > 30) return this.$t('released-on', {
+					date: (new Date(publishDate)).toLocaleString({
+						weekday: 'short',
+						year: 'numeric',
+						month: 'short',
+						day: 'numeric',
+						hour: '2-digit',
+						minute: '2-digit',
+						timeZoneName: 'short'
+					})
+				});
 
-				if (releasedFor.days > 1) return `Released ${releasedFor.days} days ago`;
-				if (releasedFor.hours > 1) return `Released ${releasedFor.hours} hours ago`;
-				if (releasedFor.minutes > 1) return `Released ${releasedFor.minutes} minutes ago`;
-				return 'Released just now';
+				if (releasedFor.days > 1) return this.$t('released-ago-days', { days: releasedFor.days });
+				if (releasedFor.hours > 1) return this.$t('released-ago-hours', { hours: releasedFor.hours });
+				if (releasedFor.minutes > 1) return this.$t('released-ago-minutes', { minutes: releasedFor.minutes });
+				return this.$t('released-now');
 			},
 			async loadReleases() {
 				const releasesRaw = localStorage.getItem('cache:releases');

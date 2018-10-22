@@ -1,16 +1,16 @@
 <template>
 	<main class="main-container main-container--center">
 		<div class="container container--small">
-			<h2 class="title">Setup</h2>
-			<h4 class="subtitle">Before continuing, you need to configure IPC access</h4>
+			<h2 class="title">{{ $t('setup') }}</h2>
+			<h4 class="subtitle">{{ $t('setup-description') }}</h4>
 
 			<div class="form-item">
-				<label for="password" class="form-item__label">Password</label>
+				<label for="password" class="form-item__label">{{ $t('password') }}</label>
 				<input id="password" class="form-item__input" type="password" v-model="password" @keydown.enter="updatePassword">
 			</div>
 
 			<div class="form-item">
-				<button class="button button--confirm" @click="updatePassword">Continue</button>
+				<button class="button button--confirm" @click="updatePassword">{{ $t('continue') }}</button>
 			</div>
 		</div>
 	</main>
@@ -33,7 +33,7 @@
 				try {
 					const validPassword = await this.$store.dispatch('auth/validate');
 					if (validPassword) this.$router.replace('/');
-					else this.$error('Invalid password!');
+					else this.$error(this.$t('password-invalid'));
 				} catch (err) {
 					this.$error(err.message);
 				}

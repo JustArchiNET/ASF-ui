@@ -3,7 +3,7 @@
 		<input-label :label="label" :has-description="hasDescription"></input-label>
 
 		<div class="form-item__value">
-			<span class="input-unknown">Unknown field type</span>
+			<span class="input-unknown">{{ $t('input-unknown-type') }}</span>
 		</div>
 
 		<input-description :description="description" v-if="hasDescription" v-show="showDescription"></input-description>

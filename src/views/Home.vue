@@ -1,6 +1,6 @@
 <template>
 	<main class="main-container">
-		<h2 class="title">Changelog</h2>
+		<h2 class="title">{{ $t('changelog') }}</h2>
 		<div class="container">
 			<changelog></changelog>
 		</div>

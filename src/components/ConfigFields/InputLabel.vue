@@ -1,5 +1,7 @@
 <template>
-	<label class="form-item__label">{{ label }}<font-awesome-icon class="form-item__description-icon" icon="question" v-if="hasDescription" @click="$parent.toggleDescription"></font-awesome-icon></label>
+	<label class="form-item__label">{{ label }}
+		<font-awesome-icon class="form-item__description-icon" icon="question" v-if="hasDescription" @click="$parent.toggleDescription"></font-awesome-icon>
+	</label>
 </template>
 
 <script>

@@ -1,4 +1,5 @@
 import { get, authenticate } from '../../utils/http';
+import i18n from '../../i18n';
 
 export const state = {
 	password: null,
@@ -27,7 +28,7 @@ export const actions = {
 			.then(response => true)
 			.catch(err => {
 				if (err.response.status === 401) return false;
-				if (err.response.status === 403) throw new Error('Rate limited!');
+				if (err.response.status === 403) throw new Error(i18n.t('rate-limited'));
 				throw err;
 			});
 		commit(validPassword ? 'validate' : 'invalidate');

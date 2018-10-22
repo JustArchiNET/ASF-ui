@@ -2,12 +2,12 @@
 	<footer class="footer">
 		<div class="footer__links">
 			<a class="footer__link" target="_blank" href="https://github.com/JustArchiNET/ArchiSteamFarm">GitHub</a>
-			<a class="footer__link" target="_blank" href="https://github.com/JustArchiNET/ArchiSteamFarm/wiki">Wiki</a>
-			<a class="footer__link" v-if="validPassword" target="_blank" :href="`https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${version}`">Changelog</a>
+			<a class="footer__link" target="_blank" href="https://github.com/JustArchiNET/ArchiSteamFarm/wiki">{{ $t('wiki') }}</a>
+			<a class="footer__link" v-if="validPassword" target="_blank" :href="`https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${version}`">{{ $t('changelog') }}</a>
 		</div>
 
 		<div class="footer__statistics" v-if="validPassword">
-			<span class="footer__statistic"><b>Version</b> {{ version }} - {{ buildVariant }}</span>
+			<span class="footer__statistic"><b>{{ $t('version') }}</b> {{ version }} - {{ buildVariant }}</span>
 		</div>
 	</footer>
 </template>

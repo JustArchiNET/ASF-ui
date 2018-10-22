@@ -1,6 +1,6 @@
 <template>
 	<main class="main-container">
-		<h2 class="title">Global Config</h2>
+		<h2 class="title">{{ $t('global-config') }}</h2>
 
 		<div class="container">
 			<template v-if="loading">
@@ -15,10 +15,10 @@
 					<div class="form-item__buttons">
 						<button class="button button--confirm" @click="onSave">
 							<font-awesome-icon icon="spinner" v-if="saving" spin></font-awesome-icon>
-							<span v-else>Save</span>
+							<span v-else>{{ $t('save') }}</span>
 						</button>
 
-						<button class="button button--link pull-right" @click="onDownload">Download raw configuration file</button>
+						<button class="button button--link pull-right" @click="onDownload">{{ $t('download-raw-config') }}</button>
 					</div>
 				</div>
 			</template>
@@ -97,9 +97,9 @@
 
 				try {
 					await post('ASF', { GlobalConfig: this.model });
-					this.$info('Restarting...');
+					this.$info(this.$t('restart-initiated'));
 					await waitForRestart();
-					this.$success('Restarted!');
+					this.$success(this.$t('restart-complete'));
 				} catch (err) {
 					this.$error(err.message);
 				} finally {

@@ -1,7 +1,7 @@
 <template>
 	<main class="main-container main-container--modal main-container--bot-configuration">
 		<template v-if="!bot">
-			<h2 class="title" v-if="!bot">Not found!</h2>
+			<h2 class="title" v-if="!bot">{{ $t('not-found') }}</h2>
 		</template>
 
 		<template v-else>
@@ -15,10 +15,10 @@
 					<div class="form-item__buttons">
 						<button class="button button--confirm" @click="onSave">
 							<font-awesome-icon icon="spinner" v-if="saving" spin></font-awesome-icon>
-							<span v-else>Save</span>
+							<span v-else>{{ $t('save') }}</span>
 						</button>
 
-						<button class="button button--link pull-right" @click="onDownload">Download raw configuration file</button>
+						<button class="button button--link pull-right" @click="onDownload">{{ $t('download-raw-config') }}</button>
 					</div>
 				</div>
 			</div>

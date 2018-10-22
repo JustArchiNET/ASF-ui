@@ -1,15 +1,15 @@
 <template>
 	<main class="main-container main-container--center">
 		<div class="container container--small">
-			<h2 class="title">IPC Configuration</h2>
+			<h2 class="title">{{ $t('ipc-configuration') }}</h2>
 
 			<div class="form-item">
-				<label for="password" class="form-item__label">Password</label>
+				<label for="password" class="form-item__label">{{ $t('password') }}</label>
 				<input id="password" class="form-item__input" type="password" v-model="password" @keydown.enter="update">
 			</div>
 
 			<div class="form-item">
-				<button class="button button--confirm" @click="update">Save</button>
+				<button class="button button--confirm" @click="update">{{ $t('Save') }}</button>
 			</div>
 		</div>
 	</main>

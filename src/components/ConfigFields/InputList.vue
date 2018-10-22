@@ -12,7 +12,7 @@
 					<option v-for="(enumValue, name) in enumValues" :value="enumValue" v-show="!value.includes(enumValue)">
 						{{ name }}
 					</option>
-					<option v-if="!availableEnumValues.length" :value="undefined" disabled>All values selected</option>
+					<option v-if="!availableEnumValues.length" :value="undefined" disabled>{{ $t('input-all-selected') }}</option>
 				</select>
 
 				<button class="button" @click.prevent="addElement">Add</button>

@@ -1,6 +1,6 @@
 <template>
 	<main class="main-container main-container--fullheight log">
-		<h2 class="title">Log</h2>
+		<h2 class="title">{{ $t('log') }}</h2>
 
 		<div class="container">
 			<div class="terminal" ref="terminal">
