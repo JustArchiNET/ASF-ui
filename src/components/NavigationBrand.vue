@@ -106,13 +106,13 @@
 
 			.brand__icon {
 				position: absolute;
-				bottom: 0.1em;
+				bottom: 0.05em;
 			}
 
 			.brand__name--small {
 				display: block;
 				position: absolute;
-				top: 0.1em;
+				top: 0.2em;
 			}
 		}
 	}
