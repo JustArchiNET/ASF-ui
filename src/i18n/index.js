@@ -1,11 +1,10 @@
 import Vue from 'vue';
-import VueI18n from 'vue-i18n';
+import VuexI18n from 'vuex-i18n';
+import store from '../store';
 
-import en from './locale/en.json';
+import enUS from './locale/default.json';
 
-Vue.use(VueI18n);
-
-export default new VueI18n({
-	locale: 'en',
-	messages: { en }
-});
+Vue.use(VuexI18n.plugin, store);
+Vue.i18n.add('en-US', enUS);
+Vue.i18n.set('en-US');
+Vue.i18n.fallback('en-US');

@@ -1,5 +1,5 @@
 import { get } from '../../utils/http';
-import i18n from '../../i18n';
+import Vue from 'vue';
 
 class Bot {
 	constructor(data) {
@@ -27,7 +27,7 @@ class Bot {
 	}
 
 	get statusText() {
-		let statusText = i18n.t(`bot-status-${this.status}`);
+		let statusText = Vue.i18n.t(`bot-status-${this.status}`);
 		return this.status === 'farming' && this.currentGamesFarming.length ? `${statusText} - ${this.currentGamesFarming[0].GameName}` : statusText;
 	}
 

@@ -59,9 +59,9 @@
 					})
 				});
 
-				if (releasedFor.days > 1) return this.$t('released-ago-days', { days: releasedFor.days });
-				if (releasedFor.hours > 1) return this.$t('released-ago-hours', { hours: releasedFor.hours });
-				if (releasedFor.minutes > 1) return this.$t('released-ago-minutes', { minutes: releasedFor.minutes });
+				if (releasedFor.days > 1) return this.$t('released-ago-days', { n: releasedFor.days }, releasedFor.days);
+				if (releasedFor.hours > 1) return this.$t('released-ago-hours', { n: releasedFor.hours }, releasedFor.hours);
+				if (releasedFor.minutes > 1) return this.$t('released-ago-minutes', { n: releasedFor.minutes }, releasedFor.minutes);
 				return this.$t('released-now');
 			},
 			async loadReleases() {
