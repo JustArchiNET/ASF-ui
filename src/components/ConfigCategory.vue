@@ -10,6 +10,11 @@
 		name: 'config-category',
 		props: {
 			name: String
+		},
+		computed: {
+			isValid() {
+				return this.$children.every(child => child.isValid);
+			}
 		}
 	};
 </script>

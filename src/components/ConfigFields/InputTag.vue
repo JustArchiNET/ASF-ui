@@ -24,10 +24,10 @@
 		name: 'input-tag',
 		computed: {
 			isString() {
-				return ['string', 'bigNumber'].includes(this.schema.values.type);
+				return ['string', 'uint64'].includes(this.schema.values.type);
 			},
 			isNumber() {
-				return ['number', 'smallNumber'].includes(this.schema.values.type);
+				return ['uint32', 'uint16'].includes(this.schema.values.type);
 			}
 		},
 		data() {

@@ -2,6 +2,8 @@
 	import InputDescription from './InputDescription.vue';
 	import InputLabel from './InputLabel.vue';
 
+	import validator from '../../utils/validator';
+
 	export default {
 		props: {
 			schema: {
@@ -43,13 +45,19 @@
 			},
 			hasDescription() {
 				return !!this.description;
+			},
+			isValid() {
+				return !this.errors.length;
+			},
+			errors() {
+				if (validator.hasOwnProperty(this.schema.type)) return validator[this.schema.type](this.value);
+				return [];
+			},
+			errorText() {
+				return this.errors.map(error => `Value is ${error}!`).join(' ');
 			}
 		},
 		methods: {
-			validate(value, validator) {
-				if (!validator) return [];
-				return validator(value, this.schema);
-			},
 			update() {
 				const value = typeof this.value === 'object' ? JSON.parse(JSON.stringify(this.value)) : this.value;
 				this.$emit('update', value, this.field);

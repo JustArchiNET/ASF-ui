@@ -68,19 +68,22 @@
 					if (!category) return [];
 					return this.getFields(category.fields).sort((a, b) => category.fields.indexOf(a.paramName) - category.fields.indexOf(b.paramName));
 				};
+			},
+			isValid() {
+				return this.$children.every(child => child.isValid);
 			}
 		},
 		methods: {
 			componentFromField(field) {
 				switch (field.type) {
 					case 'string':
-					case 'bigNumber':
+					case 'uint64':
 						return InputString;
 					case 'boolean':
 						return InputBoolean;
-					case 'number':
-					case 'smallNumber':
-					case 'tinyNumber':
+					case 'uint32':
+					case 'uint16':
+					case 'byte':
 						return InputNumber;
 					case 'flag':
 						return InputFlag;
@@ -89,7 +92,7 @@
 					case 'hashSet':
 					case 'list':
 						if (['enum'].includes(field.values.type)) return field.type === 'list' ? InputList : InputSet;
-						if (['tinyNumber', 'smallNumber', 'number', 'bigNumber', 'string'].includes(field.values.type)) return InputTag;
+						if (['byte', 'uint16', 'uint32', 'uint64', 'string'].includes(field.values.type)) return InputTag;
 						return InputUnknown;
 					case 'dictionary':
 						return InputDictionary;
@@ -113,10 +116,10 @@
 				if (typeof a !== typeof b) return false;
 
 				switch (type) {
-					case 'number':
-					case 'tinyNumber':
-					case 'smallNumber':
-					case 'bigNumber':
+					case 'uint32':
+					case 'byte':
+					case 'uint16':
+					case 'uint64':
 					case 'string':
 					case 'boolean':
 						return a === b;

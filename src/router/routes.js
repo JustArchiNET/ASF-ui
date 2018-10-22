@@ -71,7 +71,6 @@ export default [
 	},
 	{
 		path: '/page/bot',
-		name: 'bot',
 		redirect: { name: 'bots' }
 	},
 	{

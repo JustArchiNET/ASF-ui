@@ -165,6 +165,10 @@
 	cursor: pointer;
 }
 
+.form-item__error {
+	color: var(--color-button-cancel);
+}
+
 .form-group {
 	font-family: inherit;
 	margin-bottom: 1em;

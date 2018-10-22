@@ -3,8 +3,8 @@
 		<input-label :label="label" :has-description="hasDescription"></input-label>
 
 		<div class="form-item__value">
-			<input class="form-item__input" type="text" :name="field" :id="field" :placeholder="placeholder" :class="{ error: invalid }" v-model="value" @blur="onBlur">
-			<span v-if="invalid" class="form-item__error">{{ errors.join(' ') }}</span>
+			<input class="form-item__input" type="text" :name="field" :id="field" :placeholder="placeholder" v-model="value" @blur="onBlur" @keypress="onKeyPress">
+			<span v-if="!isValid" class="form-item__error">{{ errorText }}</span>
 		</div>
 
 		<input-description :description="description" v-if="hasDescription" v-show="showDescription"></input-description>
@@ -17,20 +17,16 @@
 	export default {
 		mixins: [Input],
 		name: 'input-string',
-		computed: {
-			errors() {
-				return this.validate(this.value);
-			},
-			valid() {
-				return this.errors.length === 0;
-			},
-			invalid() {
-				return this.errors.length !== 0;
-			}
-		},
 		methods: {
 			onBlur() {
 				if (this.value === '') this.value = this.defaultValue;
+			},
+			onKeyPress($event) {
+				if (this.schema.type !== 'uint64') return true;
+
+				const charCode = $event.which ? $event.which : $event.keyCode;
+				if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) $event.preventDefault();
+				else return true;
 			}
 		}
 	};

@@ -34,7 +34,7 @@
 		name: 'input-dictionary',
 		computed: {
 			keyIsString() {
-				return ['string', 'bigNumber'].includes(this.schema.key.type);
+				return ['string', 'uint64'].includes(this.schema.key.type);
 			},
 			valueIsEnum() {
 				return this.schema.value.type === 'enum';
