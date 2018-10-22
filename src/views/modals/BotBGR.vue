@@ -13,7 +13,7 @@
 				<h3 class="subtitle" v-if="usedKeysCount || unusedKeysCount">{{ usedKeysCount }} used, {{ unusedKeysCount }} unused - <span class="bgr__reset" @click="onReset">reset</span></h3>
 
 				<div class="form-item">
-					<textarea class="form-item__textarea" cols="70" rows="15" title="BGR keys" placeholder="Insert your keys here" v-model="userInput"></textarea>
+					<textarea class="form-item__textarea" cols="70" rows="15" title="BGR keys" placeholder="Insert your keys here" v-model="userInput" spellcheck="false"></textarea>
 				</div>
 
 				<div class="form-item">
