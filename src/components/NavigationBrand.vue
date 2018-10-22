@@ -97,6 +97,9 @@
 		position: relative;
 
 		.app--small-navigation & {
+			padding: 0;
+			justify-content: center;
+
 			.brand__name--big {
 				display: none;
 			}
@@ -107,13 +110,13 @@
 
 			.brand__name--small {
 				display: block;
-				margin-left: -0.3em;
 			}
 		}
 	}
 
 	.brand__name {
 		font-size: 1.25em;
+		overflow: hidden;
 	}
 
 	.brand__name--small {
