@@ -35,6 +35,11 @@
 		grid-template-columns: repeat(auto-fill, minmax(315px, 1fr));
 		grid-gap: 1em;
 		display: grid;
+
+
+		@media screen and (max-width: 400px) {
+			grid-template-columns: 1fr;
+		}
 	}
 
 	.bot-placeholder {

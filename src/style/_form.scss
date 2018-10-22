@@ -102,6 +102,9 @@
 .form-item__textarea {
 	padding: 0.5em;
 	border-color: var(--color-border);
+	width: 35em;
+	box-sizing: border-box;
+	max-width: 100%;
 
 	.app--dark-mode & {
 		background: var(--color-background-dark);

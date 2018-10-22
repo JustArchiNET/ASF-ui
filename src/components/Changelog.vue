@@ -100,6 +100,10 @@
 </script>
 
 <style lang="scss">
+	.changelog {
+		word-break: break-word;
+	}
+
 	.release {
 		margin-bottom: 1em;
 
@@ -112,6 +116,11 @@
 		display: flex;
 		align-items: center;
 		margin-top: 0;
+
+		@media screen and (max-width: 600px) {
+			flex-direction: column;
+			align-items: flex-start;
+		}
 	}
 
 	.release__version {
@@ -121,6 +130,10 @@
 
 	.release__time {
 		margin-left: auto;
+
+		@media screen and (max-width: 600px) {
+			margin-left: 0;
+		}
 	}
 
 	.release__badge {
@@ -133,6 +146,10 @@
 		line-height: 1;
 		text-align: center;
 		vertical-align: baseline;
+
+		@media screen and (max-width: 600px) {
+			margin-left: 0;
+		}
 	}
 
 	.release__badge--prerelease {

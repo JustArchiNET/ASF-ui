@@ -10,6 +10,11 @@
 	overflow-y: auto;
 	cursor: text;
 	line-height: 1;
+
+	@media screen and (max-width: 600px) {
+		font-size: 10px;
+		word-break: break-word;
+	}
 }
 
 .terminal__message {

@@ -58,5 +58,10 @@
 	.footer__statistics {
 		padding: 0 1em;
 		margin-left: auto;
+		text-align: center;
+
+		@media screen and (max-width: 600px) {
+			padding: 0 0.25em;
+		}
 	}
 </style>

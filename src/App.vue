@@ -103,7 +103,7 @@
 		}
 	}
 
-	@media screen and (max-height: 600px) {
+	@media screen and (max-height: 600px), screen and (max-width: 1000px) {
 		html {
 			font-size: 12px;
 		}
@@ -203,6 +203,7 @@
 		> main {
 			box-sizing: border-box;
 			grid-area: main;
+			min-width: 0;
 
 			&.main-container--fullheight {
 				height: calc(100vh - 2 * var(--navigation-height));
