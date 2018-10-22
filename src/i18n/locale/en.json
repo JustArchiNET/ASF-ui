@@ -23,7 +23,6 @@
 	"bgr-used-keys-count": "{count} used",
 	"bgr-unused-keys-count": "{count} unused",
 	"reset": "Reset",
-	"bgr-keys": "BGR keys",
 	"check": "Check",
 	"bgr-keys-insert": "Insert your keys here",
 	"bgr-no-pairs-detected": "No key pairs detected",
