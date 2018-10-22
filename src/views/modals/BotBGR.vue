@@ -13,7 +13,7 @@
 				<h3 class="subtitle" v-if="usedKeysCount || unusedKeysCount">{{ usedKeysCount }} used, {{ unusedKeysCount }} unused - <span class="bgr__reset" @click="onReset">reset</span></h3>
 
 				<div class="form-item">
-					<textarea class="form-item__textarea" cols="70" rows="15" title="BGR keys" placeholder="Insert your keys here" v-model="userInput"></textarea>
+					<textarea class="form-item__textarea" cols="70" rows="15" title="BGR keys" placeholder="Insert your keys here" v-model="userInput" spellcheck="false"></textarea>
 				</div>
 
 				<div class="form-item">
@@ -50,7 +50,7 @@
 	import { get, post, del } from '../../utils/http';
 
 	const keyRegex = /[0-9A-Z]{4,7}-[0-9A-Z]{4,7}-[0-9A-Z]{4,7}(?:(?:-[0-9A-Z]{4,7})?(?:-[0-9A-Z]{4,7}))?/;
-	const commonDelimiters = [':', ';', '|', '-'];
+	const commonDelimiters = [':', ';', '|', '-', ','];
 
 	export default {
 		name: 'bot-bgr',
@@ -82,14 +82,13 @@
 				return this.$store.getters['bots/bot'](this.$route.params.bot);
 			},
 			keys() {
-				return this.userInput
+				const lines = this.userInput
 						.trim()
 						.split(/\r?\n/)
 						.map(line => line.trim())
-						.filter(line => !!line)
-						.map(this.detectKeyNamePair)
-						.filter(keyName => !!keyName)
-						.reduce((keys, keyName) => (keys[keyName.key] = keyName.name, keys), {});
+						.filter(line => !!line);
+
+				return this.parseKeys(lines);
 			},
 			noKeys() {
 				return Object.keys(this.keys).length === 0;
@@ -134,7 +133,8 @@
 				this.usedKeys = {};
 			},
 			detectKeyNamePair(line) {
-				if (!keyRegex.test(line)) return;
+				if (!keyRegex.test(line)) return { key: null, name: line };
+
 				const key = keyRegex.exec(line)[0];
 				const keyIndex = line.indexOf(key);
 				const name = line.replace(key, '').trim();
@@ -148,6 +148,33 @@
 				if (commonDelimiters.includes(possibleDelimiter)) return { key, name: name.slice(keyIndex === 0 ? 1 : 0, name.length - (keyIndex === 0 ? 0 : 1)).trim() }; // Covers both ':<name>' and ': <name>' (':\t\t\s\s\t\t<name>' too)
 
 				return { key, name };
+			},
+			parseKeys(lines) {
+				const keys = {};
+
+				// Don't blame me for standard for just yet...
+				for (let i = 0; i < lines.length; ++i) {
+					const line = lines[i];
+
+					const keyNamePair = this.detectKeyNamePair(line);
+
+					if (keyNamePair.key && keyNamePair.name) {
+						keys[keyNamePair.key] = keyNamePair.name;
+						continue;
+					}
+
+					// See?
+					const nextLine = lines[i + 1];
+					const nextKeyNamePair = this.detectKeyNamePair(nextLine);
+
+					if (nextKeyNamePair.name && !nextKeyNamePair.key && !keyNamePair.name) {
+						keys[keyNamePair.key] = nextKeyNamePair.name;
+					} else if (!nextKeyNamePair.name && nextKeyNamePair.key && !keyNamePair.key) {
+						keys[nextKeyNamePair.key] = keyNamePair.name;
+					}
+				}
+
+				return keys;
 			}
 		}
 	};
