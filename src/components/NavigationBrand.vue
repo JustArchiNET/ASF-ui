@@ -3,23 +3,25 @@
 		<span class="brand__name brand__name--small"><b>A</b>SF</span>
 		<span class="brand__name brand__name--big"><b>Archi</b>SteamFarm</span>
 
-		<div class="brand__menu" v-if="brandMenu">
-			<div class="brand__menu-item" @click.stop="update">
-				<font-awesome-icon class="brand__menu-icon" icon="cloud-download-alt" fixed-width></font-awesome-icon>
-				<span>Update</span>
-			</div>
+		<transition name="brand__menu">
+			<div class="brand__menu" v-if="brandMenu">
+				<div class="brand__menu-item" @click.stop="update">
+					<font-awesome-icon class="brand__menu-icon" icon="cloud-download-alt" fixed-width></font-awesome-icon>
+					<span>Update</span>
+				</div>
 
-			<div class="brand__menu-item" @click.stop="restart">
-				<font-awesome-icon class="brand__menu-icon" icon="power-off" fixed-width></font-awesome-icon>
-				<span v-if="!restarting">Restart</span>
-				<span v-else>Restarting...</span>
-			</div>
+				<div class="brand__menu-item" @click.stop="restart">
+					<font-awesome-icon class="brand__menu-icon" icon="power-off" fixed-width></font-awesome-icon>
+					<span v-if="!restarting">Restart</span>
+					<span v-else>Restarting...</span>
+				</div>
 
-			<div class="brand__menu-item" @click.stop="exit">
-				<font-awesome-icon class="brand__menu-icon" icon="sign-out-alt" fixed-width></font-awesome-icon>
-				<span>Exit</span>
+				<div class="brand__menu-item" @click.stop="exit">
+					<font-awesome-icon class="brand__menu-icon" icon="sign-out-alt" fixed-width></font-awesome-icon>
+					<span>Exit</span>
+				</div>
 			</div>
-		</div>
+		</transition>
 	</div>
 </template>
 
@@ -113,6 +115,8 @@
 		position: absolute;
 		top: var(--navigation-height);
 		width: 100%;
+		transition: transform .3s;
+		transform-origin: top;
 	}
 
 	.brand__menu-item {
@@ -144,5 +148,9 @@
 				display: none;
 			}
 		}
+	}
+
+	.brand__menu-enter, .brand__menu-leave-to {
+		transform: scaleY(0);
 	}
 </style>
