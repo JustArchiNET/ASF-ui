@@ -127,7 +127,7 @@
 		position: absolute;
 		top: var(--navigation-height);
 		width: 100%;
-		margin-left: -1em;
+		left: 0;
 		transition: transform .3s;
 		transform-origin: top;
 	}
