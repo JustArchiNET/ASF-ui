@@ -148,6 +148,33 @@
 				if (commonDelimiters.includes(possibleDelimiter)) return { key, name: name.slice(keyIndex === 0 ? 1 : 0, name.length - (keyIndex === 0 ? 0 : 1)).trim() }; // Covers both ':<name>' and ': <name>' (':\t\t\s\s\t\t<name>' too)
 
 				return { key, name };
+			},
+			parseKeys(lines) {
+				const keys = {};
+
+				// Don't blame me for standard for just yet...
+				for (let i = 0; i < lines.length; ++i) {
+					const line = lines[i];
+
+					const keyNamePair = this.detectKeyNamePair(line);
+
+					if (keyNamePair.key && keyNamePair.name) {
+						keys[keyNamePair.key] = keyNamePair.name;
+						continue;
+					}
+
+					// See?
+					const nextLine = lines[i + 1];
+					const nextKeyNamePair = this.detectKeyNamePair(nextLine);
+
+					if (nextKeyNamePair.name && !nextKeyNamePair.key && !keyNamePair.name) {
+						keys[keyNamePair.key] = nextKeyNamePair.name;
+					} else if (!nextKeyNamePair.name && nextKeyNamePair.key && !keyNamePair.key) {
+						keys[nextKeyNamePair.key] = keyNamePair.name;
+					}
+				}
+
+				return keys;
 			}
 		}
 	};
