@@ -2,6 +2,10 @@
 	<div class="brand" @click="toggleBrandMenu">
 		<span class="brand__name brand__name--small"><b>A</b>SF</span>
 		<span class="brand__name brand__name--big"><b>Archi</b>SteamFarm</span>
+		<div class="brand__icon">
+			<font-awesome-icon v-if="brandMenu" icon="times"></font-awesome-icon>
+			<font-awesome-icon v-else icon="angle-down"></font-awesome-icon>
+		</div>
 
 		<transition name="brand__menu">
 			<div class="brand__menu" v-if="brandMenu">
@@ -86,14 +90,21 @@
 		box-sizing: border-box;
 		display: flex;
 		align-items: center;
-		justify-content: center;
+		justify-content: space-between;
 		cursor: pointer;
 		height: var(--navigation-height);
 		transition: ease-in-out width .3s;
 		position: relative;
 
 		.app--small-navigation & {
+			padding: 0;
+			justify-content: center;
+
 			.brand__name--big {
+				display: none;
+			}
+
+			.brand__icon {
 				display: none;
 			}
 
@@ -105,6 +116,7 @@
 
 	.brand__name {
 		font-size: 1.25em;
+		overflow: hidden;
 	}
 
 	.brand__name--small {
@@ -115,6 +127,7 @@
 		position: absolute;
 		top: var(--navigation-height);
 		width: 100%;
+		left: 0;
 		transition: transform .3s;
 		transform-origin: top;
 	}
