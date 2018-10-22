@@ -47,10 +47,13 @@
 				return !!this.description;
 			},
 			isValid() {
-				return !this.errors.length;
+				return !this.hasErrors;
+			},
+			hasErrors() {
+				return this.errors.length;
 			},
 			errors() {
-				if (validator.hasOwnProperty(this.schema.type)) return validator[this.schema.type](this.value);
+				if (validator.hasOwnProperty(this.schema.type)) return validator[this.schema.type](this.value, this.schema);
 				return [];
 			},
 			errorText() {

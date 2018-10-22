@@ -5,11 +5,12 @@
 		<div class="form-item__value">
 			<div class="form-item__input form-item__input--tag-wrapper" :class="{ 'form-item__input--focus': focus }">
 				<button v-for="(item, index) in value" class="form-item__tag" @click.prevent="removeElement(index)">
-					{{ item }}
+					<span class="form-item__tag-value">{{ item }}</span>
 					<font-awesome-icon class="form-item__tag-remove" icon="times"></font-awesome-icon>
 				</button>
 				<input class="form-item__input form-item__input--tag" type="text" @keydown="onKeyDown" @focus="onFocus" @blur="onBlur" v-model="element">
 			</div>
+			<span v-if="hasErrors" class="form-item__error">{{ errorText }}</span>
 		</div>
 
 		<input-description :description="description" v-if="hasDescription" v-show="showDescription"></input-description>
@@ -18,6 +19,7 @@
 
 <script>
 	import Input from './Input.vue';
+	import validator from '../../utils/validator';
 
 	export default {
 		mixins: [Input],
@@ -28,6 +30,13 @@
 			},
 			isNumber() {
 				return ['uint32', 'uint16'].includes(this.schema.values.type);
+			},
+			errors() {
+				if (validator.hasOwnProperty(this.schema.values.type)) return validator[this.schema.values.type](this.element);
+				return [];
+			},
+			isValid() {
+				return true;
 			}
 		},
 		data() {
@@ -38,6 +47,8 @@
 		},
 		methods: {
 			addElement() {
+				if (this.hasErrors) return;
+
 				const element = this.isNumber ? parseInt(this.element, 10) : this.element;
 
 				if (!element && element !== 0) return;
@@ -64,7 +75,7 @@
 				}
 
 				if (this.isNumber) {
-					if (charCode > 31 && (charCode < 48 || charCode > 57)) return $event.preventDefault();
+					if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) return $event.preventDefault();
 					return true;
 				}
 			},

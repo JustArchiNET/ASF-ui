@@ -4,7 +4,7 @@
 
 		<div class="form-item__value">
 			<input class="form-item__input" type="text" :name="field" :id="field" :placeholder="placeholder" v-model="value" @blur="onBlur" @keypress="onKeyPress">
-			<span v-if="!isValid" class="form-item__error">{{ errorText }}</span>
+			<span v-if="hasErrors" class="form-item__error">{{ errorText }}</span>
 		</div>
 
 		<input-description :description="description" v-if="hasDescription" v-show="showDescription"></input-description>
@@ -25,8 +25,8 @@
 				if (this.schema.type !== 'uint64') return true;
 
 				const charCode = $event.which ? $event.which : $event.keyCode;
-				if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) $event.preventDefault();
-				else return true;
+				if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) return $event.preventDefault();
+				return true;
 			}
 		}
 	};
