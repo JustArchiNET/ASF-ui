@@ -8,7 +8,7 @@
 			usedKeys: Object,
 			unusedKeys: Object
 		},
-    name: 'bgr-status',
+    	name: 'bgr-status',
 		computed: {
 			unusedKeysCount() {
 				return Object.keys(this.unusedKeys).length;

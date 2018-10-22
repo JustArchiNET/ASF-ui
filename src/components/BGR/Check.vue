@@ -21,17 +21,17 @@
 </template>
 
 <script>
-  export default {
-  	props: {
-  		bot: Object,
+	export default {
+		props: {
+			bot: Object,
 			keys: Object,
 			confirming: Boolean
 		},
-    name: 'bgr-check',
+		name: 'bgr-check',
 		computed: {
-  		noKeys() {
-  			return !Object.keys(this.keys).length;
+			noKeys() {
+				return !Object.keys(this.keys).length;
 			}
 		}
-  };
+	};
 </script>

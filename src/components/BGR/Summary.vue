@@ -18,18 +18,18 @@
 </template>
 
 <script>
-  export default {
-  	props: {
-  		keys: Object,
+	export default {
+		props: {
+			keys: Object,
 			title:  String,
 		},
-    name: 'bgr-summary',
+		name: 'bgr-summary',
 		computed: {
-  		noKeys() {
-  			return Object.keys(this.keys).length === 0;
+			noKeys() {
+				return Object.keys(this.keys).length === 0;
 			}
 		}
-  };
+	};
 </script>
 
 <style lang="scss">
