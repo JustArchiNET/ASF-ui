@@ -50,7 +50,7 @@
 	import { get, post, del } from '../../utils/http';
 
 	const keyRegex = /[0-9A-Z]{4,7}-[0-9A-Z]{4,7}-[0-9A-Z]{4,7}(?:(?:-[0-9A-Z]{4,7})?(?:-[0-9A-Z]{4,7}))?/;
-	const commonDelimiters = [':', ';', '|', '-'];
+	const commonDelimiters = [':', ';', '|', '-', ','];
 
 	export default {
 		name: 'bot-bgr',
@@ -82,14 +82,13 @@
 				return this.$store.getters['bots/bot'](this.$route.params.bot);
 			},
 			keys() {
-				return this.userInput
+				const lines = this.userInput
 						.trim()
 						.split(/\r?\n/)
 						.map(line => line.trim())
-						.filter(line => !!line)
-						.map(this.detectKeyNamePair)
-						.filter(keyName => !!keyName)
-						.reduce((keys, keyName) => (keys[keyName.key] = keyName.name, keys), {});
+						.filter(line => !!line);
+
+				return this.parseKeys(lines);
 			},
 			noKeys() {
 				return Object.keys(this.keys).length === 0;
@@ -134,7 +133,8 @@
 				this.usedKeys = {};
 			},
 			detectKeyNamePair(line) {
-				if (!keyRegex.test(line)) return;
+				if (!keyRegex.test(line)) return { key: null, name: line };
+
 				const key = keyRegex.exec(line)[0];
 				const keyIndex = line.indexOf(key);
 				const name = line.replace(key, '').trim();
