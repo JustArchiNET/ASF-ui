@@ -53,6 +53,11 @@
 		margin: 0 0.5em;
 		display: flex;
 		align-items: center;
+
+		@media screen and (max-width: 350px) {
+			padding: 0 0.2em;
+			margin: 0 0.2em;
+		}
 	}
 
 	.footer__statistics {
