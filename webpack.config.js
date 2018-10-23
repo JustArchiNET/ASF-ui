@@ -4,6 +4,7 @@ const { VueLoaderPlugin } = require('vue-loader');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const TerserWebpackPlugin = require('terser-webpack-plugin');
 
 module.exports = async (env, argv) => {
 	const isProd = env === 'production';
@@ -73,7 +74,16 @@ module.exports = async (env, argv) => {
 			new CleanWebpackPlugin(['dist']),
 			new VueLoaderPlugin(),
 			new CopyWebpackPlugin(['src/include'])
-		]
+		],
+		optimization: {
+			minimize: true,
+			minimizer: [
+				new TerserWebpackPlugin({
+					cache: false,
+					parallel: true
+				})
+			]
+		}
 	};
 
 	if (!isProd) config.devServer = {

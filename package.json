@@ -4,6 +4,7 @@
 	"description": "Friendly web interface consuming ASF's IPC interface",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "webpack --config webpack.config.js --env development",
 		"build": "webpack --config webpack.config.js --env production",
 		"deploy": "webpack --config webpack.config.js --env production --deploy",
 		"build:analyze": "webpack --config webpack.config.js --env production --analyze",
@@ -25,6 +26,7 @@
 		"got": "^9.2.1",
 		"node-sass": "^4.9.3",
 		"sass-loader": "^7.1.0",
+		"terser-webpack-plugin": "^1.1.0",
 		"url-loader": "^1.1.1",
 		"vue": "^2.5.17",
 		"vue-loader": "^15.4.2",
