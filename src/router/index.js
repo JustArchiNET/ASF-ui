@@ -21,8 +21,10 @@ router.beforeEach(async (routeTo, routeFrom, next) => {
 	const noPasswordRequired = routeTo.matched.every(route => route.meta.noPasswordRequired);
 	if (noPasswordRequired) return next();
 
-	const validPassword = store.getters['auth/validPassword'] || await store.dispatch('auth/validate');
-	if (validPassword) return next();
+	try {
+		const validPassword = store.getters['auth/validPassword'] || await store.dispatch('auth/validate');
+		if (validPassword) return next();
+	} catch (err) {}
 
 	return next({ name: 'setup' });
 });
