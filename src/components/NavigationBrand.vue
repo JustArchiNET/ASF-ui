@@ -99,13 +99,14 @@
 		.app--small-navigation & {
 			padding: 0;
 			justify-content: center;
+			flex-direction: column;
 
 			.brand__name--big {
 				display: none;
 			}
 
 			.brand__icon {
-				display: none;
+				line-height: 0.5;
 			}
 
 			.brand__name--small {
