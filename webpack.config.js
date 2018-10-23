@@ -79,7 +79,7 @@ module.exports = async (env, argv) => {
 			minimize: true,
 			minimizer: [
 				new TerserWebpackPlugin({
-					cache: false,
+					cache: true,
 					parallel: true
 				})
 			]
