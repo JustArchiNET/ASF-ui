@@ -76,7 +76,7 @@ module.exports = async (env, argv) => {
 			new CopyWebpackPlugin(['src/include'])
 		],
 		optimization: {
-			minimize: true,
+			minimize: isProd,
 			minimizer: [
 				new TerserWebpackPlugin({
 					cache: true,
