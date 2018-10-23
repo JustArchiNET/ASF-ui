@@ -9,7 +9,7 @@ git:
 group: travis_latest
 
 # We target latest stable version of node.js
-node_js: node
+node_js: lts/*
 
 script:
   - |
