@@ -8,6 +8,7 @@
 		"deploy": "webpack --config webpack.config.js --env production --deploy",
 		"build:analyze": "webpack --config webpack.config.js --env production --analyze",
 		"build:measure": "webpack --config webpack.config.js --env production --measure",
+		"build:stats": "webpack --config webpack.config.js --env production --progress",
 		"start": "webpack-dev-server --open --env development"
 	},
 	"author": "Reimu",
