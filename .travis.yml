@@ -8,7 +8,7 @@ git:
 # Use latest images for building: https://blog.travis-ci.com/2017-12-01-new-update-schedule-for-linux-build-images
 group: travis_latest
 
-# We target latest stable version of node.js
+# We target latest lts version of node.js
 node_js: lts/*
 
 script:
