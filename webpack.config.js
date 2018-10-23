@@ -4,15 +4,11 @@ const { VueLoaderPlugin } = require('vue-loader');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
-
-
 
 module.exports = async (env, argv) => {
 	const isProd = env === 'production';
 	const isDeploy = !!argv.deploy;
 	const analyze = !!argv.analyze;
-	const measure = !!argv.measure;
 
 	const config = {
 		mode: isProd ? 'production' : 'development',
@@ -76,9 +72,7 @@ module.exports = async (env, argv) => {
 		plugins: [
 			new CleanWebpackPlugin(['dist']),
 			new VueLoaderPlugin(),
-			new CopyWebpackPlugin([
-				'src/include'
-			])
+			new CopyWebpackPlugin(['src/include'])
 		]
 	};
 
@@ -102,8 +96,5 @@ module.exports = async (env, argv) => {
 
 	if (analyze) config.plugins.push(new BundleAnalyzerPlugin());
 
-	if (!measure) return config;
-
-	const smp = new SpeedMeasurePlugin();
-	return smp.wrap(config);
+	return config;
 };
