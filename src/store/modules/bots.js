@@ -27,7 +27,7 @@ class Bot {
 	}
 
 	get statusText() {
-		let statusText = Vue.i18n.t(`bot-status-${this.status}`);
+		let statusText = Vue.i18n.translate(`bot-status-${this.status}`);
 		return this.status === 'farming' && this.currentGamesFarming.length ? `${statusText} - ${this.currentGamesFarming[0].GameName}` : statusText;
 	}
 
