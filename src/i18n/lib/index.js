@@ -48,6 +48,7 @@ export default {
 			get locales() { return store.getters['i18n/locales']; },
 			get locale() { return store.getters['i18n/locale']; },
 			get fallbackLocale() { return store.getters['i18n/fallbackLocale']; },
+			get availableLocales() { return availableLocale.map(locale => locale.name); },
 			has,
 			set,
 			translate
