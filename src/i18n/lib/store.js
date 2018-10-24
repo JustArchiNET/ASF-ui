@@ -47,11 +47,6 @@ export default {
 			if (getters.hasTranslation(state.locale, key)) return state.locale;
 			if (getters.hasTranslation(getters.noRegionalLocale, key)) return getters.noRegionalLocale;
 			if (getters.hasTranslation(state.fallbackLocale, key)) return state.fallbackLocale;
-		},
-		translationString: (state, getters) => key => {
-			const translationLocale = getters.translationLocale(key);
-			if (translationLocale) return state.translations[translationLocale][key];
-			return key;
 		}
 	}
 }
