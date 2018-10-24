@@ -18,7 +18,6 @@ export default {
 		const formatter = new Formatter();
 
 		const translate = function $t(key, values) {
-			console.log(`Translating ${key}...`);
 			const translationLocale = store.getters['i18n/translationLocale'](key);
 			const translationString = translationLocale ? store.getters['i18n/translation'](translationLocale, key) : key;
 			return formatter.interpolate(translationString, values, translationLocale);
