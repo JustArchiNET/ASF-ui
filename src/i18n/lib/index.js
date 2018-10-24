@@ -1,15 +1,8 @@
 import storeModule from './store';
 import Formatter from './formatter';
 
-const requireLocale = require.context('../locale', false, /.json$/, 'lazy');
-
-const availableLocale = requireLocale.keys().map(fileName => {
-	if (fileName === './default.json') return { name: 'en-US', fileName };
-	return { name: fileName.replace('./', '').replace('.json', ''), fileName };
-}).filter(Boolean);
-
 export default {
-	install(Vue, store, config) {
+	install(Vue, store, config = {}) {
 		if (this.installed) return;
 		this.installed = true;
 
@@ -17,48 +10,65 @@ export default {
 
 		const formatter = new Formatter();
 
-		const translate = function $t(key, values) {
-			const translationLocale = store.getters['i18n/translationLocale'](key);
-			const translationString = translationLocale ? store.getters['i18n/translation'](translationLocale, key) : key;
-			return formatter.interpolate(translationString, values, translationLocale);
-		};
-
-		const has = name => store.getters['i18n/locales'].includes(name);
-
-		const load = async function loadLocale(name) {
-			if (has(name)) return;
-
-			const locale = availableLocale.find(locale => locale.name === name);
-			if (!locale) throw new Error(`[i18n] Locale ${name} not available!`);
-
-			store.dispatch('i18n/addLocale', { locale: name, translation: await requireLocale(locale.fileName) });
-		};
-
-		const set = async function setLocale(name) {
-			const oldLocale = store.getters['i18n/locale'];
-			store.dispatch('i18n/setLocale', { locale: name });
-
-			await load(name).catch(err => {
-				console.warn(err.message);
-				store.dispatch('i18n/setLocale', { locale: oldLocale })
-			});
-		};
-
 		const i18n = {
+			_availableLocales: [],
+			_requireLocale() {},
 			get locales() { return store.getters['i18n/locales']; },
 			get locale() { return store.getters['i18n/locale']; },
 			get fallbackLocale() { return store.getters['i18n/fallbackLocale']; },
-			get availableLocales() { return availableLocale.map(locale => locale.name); },
-			has,
-			set,
-			translate
+			get availableLocales() { return this._availableLocales.map(locale => locale.name); },
+			setAvailableLocales(availableLocales, requireLocale) {
+				this._availableLocales = availableLocales;
+				this._requireLocale = requireLocale;
+			},
+			has(name) {
+				return store.getters['i18n/locales'].includes(name);
+			},
+			async set(name) {
+				const oldLocale = this.locale;
+				store.dispatch('i18n/setLocale', { locale: name });
+
+				await this.load(name).catch(err => {
+					console.warn(err.message);
+					store.dispatch('i18n/setLocale', { locale: oldLocale })
+				});
+			},
+			async load(name) {
+				if (this.has(name)) return;
+
+				const locale = this._availableLocales.find(locale => locale.name === name);
+				if (!locale) throw new Error(`[i18n] Locale ${name} not available!`);
+
+				store.dispatch('i18n/addLocale', { locale: name, translation: await this._requireLocale(locale.fileName) });
+			},
+			translate(key, values) {
+				const translationLocale = store.getters['i18n/translationLocale'](key);
+				const translationString = translationLocale ? store.getters['i18n/translation'](translationLocale, key) : key;
+				return formatter.interpolate(translationString, values, translationLocale);
+			}
 		};
 
+		const finalConfig = {
+			locale: 'en-US',
+			fallbackLocale: 'en-US',
+			translations: {},
+			availableLocales: [],
+			requireLocale() { },
+			...config
+		};
+
+		i18n._availableLocales = finalConfig.availableLocales;
+		i18n._requireLocale = finalConfig.requireLocale;
+
+		Object.keys(finalConfig.translations).forEach(locale => store.dispatch('i18n/addLocale', { locale, translation: finalConfig.translations[locale] }));
+
+		i18n.set(finalConfig.locale);
+		store.dispatch('i18n/setFallbackLocale', { locale: finalConfig.fallbackLocale });
+
 		Vue.prototype.$i18n = i18n;
-		Vue.prototype.$t = translate;
+		Vue.prototype.$t = i18n.translate;
 		Vue.i18n = i18n;
 
-		if (config.locale) set(config.locale);
-		if (config.fallbackLocale) store.dispatch('i18n/setFallbackLocale', { locale: config.fallbackLocale });
+		console.log(i18n.locale);
 	}
 }
