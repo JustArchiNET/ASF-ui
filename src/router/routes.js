@@ -6,30 +6,30 @@ export default [
 	{
 		path: '/page/home',
 		name: 'home',
-		component: () => import('../views/Home.vue')
+		component: () => import(/* webpackChunkName: 'home' */ '../views/Home.vue')
 	},
 	{
 		path: '/page/setup',
 		name: 'setup',
-		component: () => import('../views/Setup.vue'),
+		component: () => import(/* webpackChunkName: 'setup' */ '../views/Setup.vue'),
 		meta: { noPasswordRequired: true }
 	},
 	{
 		path: '/page/ipc-configuration',
 		name: 'ipc-configuration',
-		component: () => import('../views/IPCConfiguration.vue')
+		component: () => import(/* webpackChunkName: 'ipc-configuration' */ '../views/IPCConfiguration.vue')
 	},
 	{
 		path: '/page/bots',
 		name: 'bots',
-		component: () => import('../views/Bots.vue')
+		component: () => import(/* webpackChunkName: 'bots' */ '../views/Bots.vue')
 	},
 	{
 		path: '/page/bot/new',
 		name: 'bot-create',
 		components: {
-			default: () => import('../views/Bots.vue'),
-			modal: () => import('../views/modals/BotCreate.vue')
+			default: () => import(/* webpackChunkName: 'bots' */ '../views/Bots.vue'),
+			modal: () => import(/* webpackChunkName: 'bot-create' */ '../views/modals/BotCreate.vue')
 		},
 		meta: { modal: true }
 	},
@@ -37,8 +37,8 @@ export default [
 		path: '/page/bot/:bot',
 		name: 'bot',
 		components: {
-			default: () => import('../views/Bots.vue'),
-			modal: () => import('../views/modals/Bot.vue')
+			default: () => import(/* webpackChunkName: 'bots' */ '../views/Bots.vue'),
+			modal: () => import(/* webpackChunkName: 'bot' */ '../views/modals/Bot.vue')
 		},
 		meta: { modal: true }
 	},
@@ -46,8 +46,8 @@ export default [
 		path: '/page/bot/:bot/config',
 		name: 'bot-config',
 		components: {
-			default: () => import('../views/Bots.vue'),
-			modal: () => import('../views/modals/BotConfiguration.vue')
+			default: () => import(/* webpackChunkName: 'bots' */ '../views/Bots.vue'),
+			modal: () => import(/* webpackChunkName: 'bot-configuration' */ '../views/modals/BotConfiguration.vue')
 		},
 		meta: { modal: true }
 	},
@@ -55,8 +55,8 @@ export default [
 		path: '/page/bot/:bot/bgr',
 		name: 'bot-bgr',
 		components: {
-			default: () => import('../views/Bots.vue'),
-			modal: () => import('../views/modals/BotBGR.vue')
+			default: () => import(/* webpackChunkName: 'bots' */ '../views/Bots.vue'),
+			modal: () => import(/* webpackChunkName: 'bot-bgr' */ '../views/modals/BotBGR.vue')
 		},
 		meta: { modal: true }
 	},
@@ -64,8 +64,8 @@ export default [
 		path: '/page/bot/:bot/delete',
 		name: 'bot-delete',
 		components: {
-			default: () => import('../views/Bots.vue'),
-			modal: () => import('../views/modals/BotDelete.vue')
+			default: () => import(/* webpackChunkName: 'bots' */ '../views/Bots.vue'),
+			modal: () => import(/* webpackChunkName: 'bot-delete' */ '../views/modals/BotDelete.vue')
 		},
 		meta: { modal: true }
 	},
@@ -76,17 +76,17 @@ export default [
 	{
 		path: '/page/commands',
 		name: 'commands',
-		component: () => import('../views/Commands.vue')
+		component: () => import(/* webpackChunkName: 'commands' */ '../views/Commands.vue')
 	},
 	{
 		path: '/page/log',
 		name: 'log',
-		component: () => import('../views/Log.vue')
+		component: () => import(/* webpackChunkName: 'log' */ '../views/Log.vue')
 	},
 	{
 		path: '/page/config',
 		name: 'global-config',
-		component: () => import('../views/GlobalConfig.vue')
+		component: () => import(/* webpackChunkName: 'global-config' */ '../views/GlobalConfig.vue')
 	},
 	{
 		path: '*',
