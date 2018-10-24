@@ -6,8 +6,10 @@
 			<font-awesome-icon icon="bars"></font-awesome-icon>
 		</div>
 
-		<div class="navigation-button navigation-button--pull-right" @click="toggleSideMenu">
-			<font-awesome-icon icon="cogs"></font-awesome-icon>
+		<div class="navigation-menu">
+			<div class="navigation-button" @click="toggleSideMenu">
+				<font-awesome-icon icon="cogs"></font-awesome-icon>
+			</div>
 		</div>
 	</header>
 </template>
@@ -59,7 +61,9 @@
 		}
 	}
 
-	.navigation-button--pull-right {
+	.navigation-menu {
 		margin-left: auto;
+		display: flex;
+		justify-content: space-between;
 	}
 </style>

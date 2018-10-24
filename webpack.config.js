@@ -76,7 +76,13 @@ module.exports = async (env, argv) => {
 			new CopyWebpackPlugin(['src/include'])
 		],
 		optimization: {
-			minimize: isProd,
+
+		}
+	};
+
+	if (isProd) {
+		config.optimization = {
+			minimize: true,
 			minimizer: [
 				new TerserWebpackPlugin({
 					cache: true,
@@ -84,7 +90,7 @@ module.exports = async (env, argv) => {
 				})
 			]
 		}
-	};
+	}
 
 	if (!isProd) config.devServer = {
 		contentBase: './dist',
