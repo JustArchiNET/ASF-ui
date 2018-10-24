@@ -41,16 +41,17 @@ export default {
 
 				store.dispatch('i18n/addLocale', { locale: name, translation: await this._requireLocale(locale.fileName) });
 			},
-			translate(key, values) {
+			translate(key, fallbackString, values) {
+				if (typeof fallbackString !== 'string') values = fallbackString;
+
 				const translationLocale = store.getters['i18n/translationLocale'](key);
-				const translationString = translationLocale ? store.getters['i18n/translation'](translationLocale, key) : key;
+				const translationString = translationLocale ? store.getters['i18n/translation'](translationLocale, key) : (fallbackString || key);
 				return formatter.interpolate(translationString, values, translationLocale);
 			}
 		};
 
 		const finalConfig = {
 			locale: 'en-US',
-			fallbackLocale: 'en-US',
 			translations: {},
 			availableLocales: [],
 			requireLocale() { },
@@ -63,12 +64,12 @@ export default {
 		Object.keys(finalConfig.translations).forEach(locale => store.dispatch('i18n/addLocale', { locale, translation: finalConfig.translations[locale] }));
 
 		i18n.set(finalConfig.locale);
-		store.dispatch('i18n/setFallbackLocale', { locale: finalConfig.fallbackLocale });
+
+		if (finalConfig.fallbackLocale) i18n.load(finalConfig.fallbackLocale);
+		store.dispatch('i18n/setFallbackLocale', { locale: finalConfig.fallbackLocale || finalConfig.locale });
 
 		Vue.prototype.$i18n = i18n;
 		Vue.prototype.$t = i18n.translate;
 		Vue.i18n = i18n;
-
-		console.log(i18n.locale);
 	}
 }
