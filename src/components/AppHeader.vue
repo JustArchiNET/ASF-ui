@@ -7,6 +7,10 @@
 		</div>
 
 		<div class="navigation-menu">
+			<div class="navigation-button">
+				<flag country="pl"></flag>
+			</div>
+
 			<div class="navigation-button" @click="toggleSideMenu">
 				<font-awesome-icon icon="cogs"></font-awesome-icon>
 			</div>
@@ -16,11 +20,12 @@
 
 <script>
 	import NavigationBrand from './NavigationBrand.vue';
+	import Flag from './Flag.vue';
 
 	import { mapActions } from 'vuex';
 
 	export default {
-		components: { NavigationBrand },
+		components: { NavigationBrand, Flag },
 		name: 'app-header',
 		methods: {
 			...mapActions({
