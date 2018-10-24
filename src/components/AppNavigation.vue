@@ -18,8 +18,7 @@
 			<div class="navigation-category navigation-category--pull-bottom">
 				<navigation-category-title :name="$t('statistics')"></navigation-category-title>
 				<navigation-bots></navigation-bots>
-				<navigation-statistic :name="$t('statistics-memory-usage')" icon="tachometer-alt" :value="memory"></navigation-statistic>
-				<navigation-statistic :name="$t('statistics-uptime')" icon="clock" :value="uptime"></navigation-statistic>
+				<navigation-statistics></navigation-statistics>
 			</div>
 		</template>
 
@@ -36,17 +35,15 @@
 	import NavigationLink from './NavigationLink.vue';
 	import NavigationCategoryTitle from './NavigationCategoryTitle.vue';
 	import NavigationBots from './NavigationBots.vue';
-	import NavigationStatistic from './NavigationStatistic.vue';
+	import NavigationStatistics from './NavigationStatistics.vue';
 
 	import { mapGetters } from 'vuex';
 
 	export default {
 		name: 'app-navigation',
-		components: { NavigationLink, NavigationCategoryTitle, NavigationStatistic, NavigationBots },
+		components: { NavigationLink, NavigationCategoryTitle, NavigationStatistics, NavigationBots },
 		computed: mapGetters({
-			validPassword: 'auth/validPassword',
-			memory: 'status/memory',
-			uptime: 'status/uptime'
+			validPassword: 'auth/validPassword'
 		})
 	};
 </script>
