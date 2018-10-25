@@ -2,12 +2,12 @@
 	<div class="brand" @click="toggleBrandMenu">
 		<span class="brand__name brand__name--small"><b>A</b>SF</span>
 		<span class="brand__name brand__name--big"><b>Archi</b>SteamFarm</span>
-		<div class="brand__icon">
+		<div v-if="validPassword" class="brand__icon">
 			<font-awesome-icon v-if="brandMenu" icon="times"></font-awesome-icon>
 			<font-awesome-icon v-else icon="angle-down"></font-awesome-icon>
 		</div>
 
-		<transition name="brand__menu">
+		<transition v-if="validPassword" name="brand__menu">
 			<div class="brand__menu" v-if="brandMenu">
 				<div class="brand__menu-item" @click.stop="update">
 					<font-awesome-icon class="brand__menu-icon" icon="cloud-download-alt" fixed-width></font-awesome-icon>
@@ -32,6 +32,8 @@
 	import { post } from '../utils/http';
 	import waitForRestart from '../utils/waitForRestart';
 
+	import { mapGetters } from 'vuex';
+
 	export default {
 		name: 'navigation-brand',
 		data() {
@@ -40,6 +42,9 @@
 				restarting: false
 			};
 		},
+		computed: mapGetters({
+			validPassword: 'auth/validPassword'
+		}),
 		methods: {
 			toggleBrandMenu() {
 				this.brandMenu = !this.brandMenu;
