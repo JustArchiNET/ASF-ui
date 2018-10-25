@@ -33,6 +33,7 @@
 			async changeLocale(locale) {
 				await this.$i18n.load(locale);
 				await this.$i18n.set(locale);
+				localStorage.setItem('language', locale);
 				this.open = false;
 			}
 		}
