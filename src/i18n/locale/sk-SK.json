@@ -52,6 +52,7 @@
 	"restart": "",
 	"restart-initiated": "Reštartovanie...",
 	"restart-complete": "",
+	"restart-failure": "",
 	"exit": "",
 	"exit-message": "",
 	"password-invalid": "",
@@ -59,5 +60,8 @@
 	"bot-status-online": "",
 	"bot-status-offline": "",
 	"bot-status-disabled": "",
-	"rate-limited": ""
+	"rate-limited": "",
+	"language-translation-good": "",
+	"language-translation-medium": "",
+	"language-translation-bad": ""
 }
