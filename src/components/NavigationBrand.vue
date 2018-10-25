@@ -1,5 +1,5 @@
 <template>
-	<div class="brand" :class="{ 'app--not-authorized': !validPassword }" @click="toggleBrandMenu">
+	<div class="brand" @click="toggleBrandMenu">
 		<span class="brand__name brand__name--small"><b>A</b>SF</span>
 		<span class="brand__name brand__name--big"><b>Archi</b>SteamFarm</span>
 		<div v-if="validPassword" class="brand__icon">
