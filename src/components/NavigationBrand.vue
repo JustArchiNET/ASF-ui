@@ -1,5 +1,5 @@
 <template>
-	<div class="brand" @click="toggleBrandMenu">
+	<div class="brand" :class="{ 'app--not-authorized': !validPassword }" @click="toggleBrandMenu">
 		<span class="brand__name brand__name--small"><b>A</b>SF</span>
 		<span class="brand__name brand__name--big"><b>Archi</b>SteamFarm</span>
 		<div v-if="validPassword" class="brand__icon">
@@ -100,6 +100,11 @@
 		height: var(--navigation-height);
 		transition: ease-in-out width .3s;
 		position: relative;
+
+		.app--not-authorized & {
+			cursor: initial;
+			justify-content: center;
+		}
 
 		.app--small-navigation & {
 			padding: 0;
