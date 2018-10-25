@@ -7,7 +7,7 @@
 		<transition name="navigation__language-picker">
 			<div class="navigation__language-picker" v-if="open">
 				<div class="navigation__language" :class="{ 'navigation__language--active': $i18n.locale === locale }" v-for="locale in $i18n.availableLocales" :key="locale" @click.prevent="changeLocale(locale)">
-					<flag :country="getFlagCountry(locale)"></flag>
+					<flag :country="getFlagCountry(locale)" :title="locale"></flag>
 				</div>
 			</div>
 		</transition>
@@ -73,6 +73,10 @@
 		grid-gap: 0.25em;
 		transition: transform .3s;
 		transform-origin: top;
+
+		@media screen and (max-width: 600px) {
+			grid-template-columns: repeat(5, auto);
+		}
 	}
 
 	.navigation__language {
