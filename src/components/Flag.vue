@@ -17,3 +17,9 @@
 		}
 	};
 </script>
+
+<style lang="scss">
+	.flag-icon {
+		width: 20px;
+	}
+</style>

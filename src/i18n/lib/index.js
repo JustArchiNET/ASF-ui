@@ -28,7 +28,7 @@ export default {
 				const oldLocale = this.locale;
 				store.dispatch('i18n/setLocale', { locale: name });
 
-				await this.load(name).catch(err => {
+				this.load(name).catch(err => {
 					console.warn(err.message);
 					store.dispatch('i18n/setLocale', { locale: oldLocale })
 				});
