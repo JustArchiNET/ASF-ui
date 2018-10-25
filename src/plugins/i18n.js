@@ -8,12 +8,39 @@ const availableLocales = requireLocale.keys().map(fileName => {
 	return { name: fileName.replace('./', '').replace('.json', ''), fileName };
 }).filter(Boolean);
 
+function getUserLocale(availableLocales, fallbackLocale) {
+	const selectedLocale = localStorage.getItem('language');
+	if (selectedLocale) return selectedLocale;
+
+	let locale = navigator.language;
+	if (!locale) return fallbackLocale;
+
+	if (availableLocales.includes(locale)) return locale;
+
+	// Remove regional code, if present
+	if (locale.includes('-')) {
+		locale = locale.split('-')[0];
+		if (availableLocales.includes(locale)) return locale;
+	}
+
+	// Try default regional code
+	if (availableLocales.includes(`${locale}-${locale.toUpperCase()}`)) return `${locale}-${locale.toUpperCase()}`;
+
+	// Find locale with any regional code
+	const localeRegex = new RegExp(`${locale}\-\\\S\\\S`);
+	const matchedLocale = availableLocales.find(locale => localeRegex.test(locale));
+	if (matchedLocale) return matchedLocale;
+
+	return fallbackLocale;
+}
+
 export default {
-	install(Vue, store, options) {
+	install(Vue, store) {
 		Vue.use(i18n, store, {
+			locale: getUserLocale(availableLocales.map(locale => locale.name), 'en-US'),
+			fallbackLocale: 'en-US',
 			availableLocales,
-			requireLocale,
-			...options
+			requireLocale
 		});
 	}
 }
