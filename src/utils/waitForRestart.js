@@ -1,5 +1,5 @@
+import Vue from 'vue';
 import delay from './delay';
-
 import store from '../store';
 
 export default async function waitForRestart(timeout = 120000) {
@@ -11,5 +11,5 @@ export default async function waitForRestart(timeout = 120000) {
 		await delay(1000);
 	}
 
-	throw new Error('Restart not detected within timeout');
+	throw new Error(Vue.i18n.translate('restart-failure'));
 }

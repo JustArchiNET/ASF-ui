@@ -17,6 +17,7 @@ export default {
 			get locale() { return store.getters['i18n/locale']; },
 			get fallbackLocale() { return store.getters['i18n/fallbackLocale']; },
 			get availableLocales() { return this._availableLocales.map(locale => locale.name); },
+			get translationPercent() { return store.getters['i18n/translationPercent']; },
 			setAvailableLocales(availableLocales, requireLocale) {
 				this._availableLocales = availableLocales;
 				this._requireLocale = requireLocale;

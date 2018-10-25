@@ -52,6 +52,7 @@
 	"restart": "Restart",
 	"restart-initiated": "Restarting...",
 	"restart-complete": "Restarted!",
+	"restart-failure": "Restart not detected within timeout",
 	"exit": "Exit",
 	"exit-message": "Exiting, good bye!",
 	"password-invalid": "Invalid password!",
@@ -59,5 +60,8 @@
 	"bot-status-online": "Online",
 	"bot-status-offline": "Offline",
 	"bot-status-disabled": "Disabled",
-	"rate-limited": "Rate limited!"
+	"rate-limited": "Rate limited!",
+	"language-translation-good": "Selected locale, {locale}, is almost fully translated at {percent}%!",
+	"language-translation-medium": "{percent}% of selected language is translated!",
+	"language-translation-bad": "Only {percent}% of selected language is translated!"
 }

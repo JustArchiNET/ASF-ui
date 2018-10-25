@@ -30,10 +30,21 @@
 				if (locale === 'sr-CS') return 'rs';
 				return locale.split('-')[1].toLowerCase();
 			},
+			displayTranslationStatus() {
+				const translationPercent = this.$i18n.translationPercent;
+
+				if (translationPercent === 100) return; // Nothing to do here
+				if (translationPercent > 80) return this.$info(this.$t('language-translation-good', { percent: translationPercent.toFixed(2), locale: this.$i18n.locale }));
+				if (translationPercent > 40) return this.$info(this.$t('language-translation-medium', { percent: translationPercent.toFixed(2), locale: this.$i18n.locale }));
+				return this.$info(this.$t('language-translation-bad', { percent: translationPercent.toFixed(2), locale: this.$i18n.locale }));
+			},
 			async changeLocale(locale) {
 				await this.$i18n.load(locale);
 				await this.$i18n.set(locale);
 				localStorage.setItem('language', locale);
+
+				this.displayTranslationStatus();
+
 				this.open = false;
 			}
 		}

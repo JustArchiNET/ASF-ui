@@ -18,6 +18,14 @@ $snotify-async-border-color: $snotify-info-border-color !default;
 $snotify-confirm-border-color: #009688 !default;
 $snotify-prompt-border-color: $snotify-confirm-border-color !default;
 
+.snotify {
+	@media screen and (max-width: 600px) {
+		width: auto;
+		right: 10px;
+		left: 10px;
+	}
+}
+
 .snotifyToast {
 	display: block;
 	cursor: pointer;

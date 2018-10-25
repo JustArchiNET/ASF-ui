@@ -47,6 +47,11 @@ export default {
 			if (getters.hasTranslation(state.locale, key)) return state.locale;
 			if (getters.hasTranslation(getters.noRegionalLocale, key)) return getters.noRegionalLocale;
 			if (getters.hasTranslation(state.fallbackLocale, key)) return state.fallbackLocale;
+		},
+		translationPercent: (state, getters) => {
+			if (!state.locale) return 0;
+			const availableStrings = Object.keys(state.translations[state.fallbackLocale]);
+			return (availableStrings.filter(key => getters.hasTranslation(state.locale, key)).length / availableStrings.length) * 100;
 		}
 	}
 }

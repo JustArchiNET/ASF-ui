@@ -1,7 +1,7 @@
 import { indexOf as pluralIndexOf } from 'plurals-cldr';
 
 const RE_TOKEN_LIST_VALUE = /^(\d)+/;
-const RE_TOKEN_PLURAL_VALUE = /^PLURAL:+/;
+const RE_TOKEN_PLURAL_VALUE = /^PLURAL:/;
 
 function getTokenType(value) {
 	if (RE_TOKEN_LIST_VALUE.test(value)) return 'list';
