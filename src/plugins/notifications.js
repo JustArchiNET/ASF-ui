@@ -5,7 +5,11 @@ export default {
 		if (this.installed) return;
 		this.installed = true;
 
-		Vue.use(Snotify);
+		Vue.use(Snotify, {
+			toast: {
+				timeout: 3500
+			}
+		});
 
 		Vue.prototype.$error = function notifyError(message) {
 			Vue.prototype.$snotify.error(message, 'Error');
