@@ -1,5 +1,5 @@
 <template>
-	<div class="app" :class="[{ 'app--small-navigation': smallNavigation, 'app--boxed-layout': boxedLayout, 'app--dark-mode': darkMode }, themeClass]">
+	<div class="app" :class="[{ 'app--not-authorized': !validPassword, 'app--small-navigation': smallNavigation, 'app--boxed-layout': boxedLayout, 'app--dark-mode': darkMode }, themeClass]">
 		<app-header></app-header>
 		<app-navigation></app-navigation>
 		<app-side-menu></app-side-menu>
@@ -32,6 +32,7 @@
 		components: { AppHeader, AppNavigation, AppFooter, AppSideMenu, AppModal },
 		computed: {
 			...mapGetters({
+				validPassword: 'auth/validPassword',
 				smallNavigation: 'layout/smallNavigation',
 				sideMenu: 'layout/sideMenu',
 				boxedLayout: 'layout/boxed',
