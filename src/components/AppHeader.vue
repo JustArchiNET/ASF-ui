@@ -2,13 +2,15 @@
 	<header class="upper-navigation">
 		<navigation-brand></navigation-brand>
 
-		<div class="navigation-button" @click="toggleNavigation">
-			<font-awesome-icon icon="bars"></font-awesome-icon>
+		<div class="navigation__button" @click="toggleNavigation">
+			<font-awesome-icon icon="bars" fixed-width></font-awesome-icon>
 		</div>
 
-		<div class="navigation-menu">
-			<div class="navigation-button" @click="toggleSideMenu">
-				<font-awesome-icon icon="cogs"></font-awesome-icon>
+		<div class="navigation__menu">
+			<navigation-language-switch></navigation-language-switch>
+
+			<div class="navigation__button" @click="toggleSideMenu">
+				<font-awesome-icon icon="cogs" fixed-width></font-awesome-icon>
 			</div>
 		</div>
 	</header>
@@ -16,11 +18,12 @@
 
 <script>
 	import NavigationBrand from './NavigationBrand.vue';
+	import NavigationLanguageSwitch from './NavigationLanguageSwitch.vue';
 
 	import { mapActions } from 'vuex';
 
 	export default {
-		components: { NavigationBrand },
+		components: { NavigationBrand, NavigationLanguageSwitch },
 		name: 'app-header',
 		methods: {
 			...mapActions({
@@ -48,7 +51,7 @@
 		}
 	}
 
-	.navigation-button {
+	.navigation__button {
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -56,12 +59,12 @@
 		cursor: pointer;
 		color: var(--color-text);
 
-		&.navigation-button--active, &:hover {
+		&.navigation__button--active, &:hover {
 			background: var(--color-theme-dark);
 		}
 	}
 
-	.navigation-menu {
+	.navigation__menu {
 		margin-left: auto;
 		display: flex;
 		justify-content: space-between;
