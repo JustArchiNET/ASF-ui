@@ -36,7 +36,6 @@
 		grid-gap: 1em;
 		display: grid;
 
-
 		@media screen and (max-width: 400px) {
 			grid-template-columns: 1fr;
 		}
