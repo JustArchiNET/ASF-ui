@@ -52,7 +52,7 @@
 	"restart": "Reiniciar",
 	"restart-initiated": "Reiniciando...",
 	"restart-complete": "Reiniciado!",
-	"restart-failure": "",
+	"restart-failure": "Reinício não detectado dentro do tempo limite",
 	"exit": "Sair",
 	"exit-message": "Saindo, tchau!",
 	"password-invalid": "Senha inválida!",
@@ -61,7 +61,7 @@
 	"bot-status-offline": "Offline",
 	"bot-status-disabled": "Desabilitado",
 	"rate-limited": "Limite de tentativas!",
-	"language-translation-good": "",
-	"language-translation-medium": "",
-	"language-translation-bad": ""
+	"language-translation-good": "Idioma selecionado, {locale}, o idioma está {percent}% traduzido!",
+	"language-translation-medium": "{percent}% do idioma selecionado está traduzido!",
+	"language-translation-bad": "Apenas {percent}% do idioma selecionado está traduzido!"
 }
