@@ -1,5 +1,9 @@
 <template>
 	<main class="main-container">
+		<h2 class="title">{{ $t('farming-info') }}</h2>
+
+		<bot-farming-info></bot-farming-info>
+
 		<h2 class="title">{{ $t('bots') }}</h2>
 
 		<div class="bots">
@@ -16,6 +20,7 @@
 </template>
 
 <script>
+	import BotFarmingInfo from "../components/BotFarmingInfo.vue";
 	import BotCard from '../components/BotCard.vue';
 
 	import { mapGetters } from 'vuex';
@@ -23,7 +28,7 @@
 	export default {
 		name: 'bots',
 		metaInfo: { title: 'Bots' },
-		components: { BotCard },
+		components: {BotFarmingInfo, BotCard },
 		computed: mapGetters({
 			bots: 'bots/bots'
 		})
