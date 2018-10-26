@@ -1,11 +1,8 @@
 <template>
 	<main class="main-container">
-		<h2 class="title">{{ $t('farming-info') }}</h2>
-
 		<bot-farming-info></bot-farming-info>
 
 		<h2 class="title">{{ $t('bots') }}</h2>
-
 		<div class="bots">
 			<bot-card v-for="bot in bots" :bot="bot" :key="bot.name"></bot-card>
 
