@@ -44,10 +44,7 @@
 
 	.farming__info-card {
 		background: var(--color-background-light);
-		display: grid;
-		grid-template-columns: auto 1fr auto;
-		margin-bottom: 15px;
-		width: 100%;
+		display: flex;
 	}
 
 	.farming__info-card--icon {
