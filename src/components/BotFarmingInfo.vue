@@ -48,11 +48,12 @@
 	}
 
 	.farming__info-card--icon {
-		height: 64px;
-		width: 64px;
-		line-height: 64px;
+		height: 4rem;
+		width: 4rem;
 		font-size: 2.1em;
-		text-align: center;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		background: var(--color-theme);
 		color: var(--color-text);
 	}
