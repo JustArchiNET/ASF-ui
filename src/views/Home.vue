@@ -16,6 +16,6 @@
 	export default {
 		name: 'home',
 		metaInfo: { title: 'Home' },
-		components: {BotFarmingInfo, Changelog }
+		components: { BotFarmingInfo, Changelog }
 	};
 </script>

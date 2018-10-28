@@ -25,7 +25,7 @@
 	export default {
 		name: 'bots',
 		metaInfo: { title: 'Bots' },
-		components: {BotFarmingInfo, BotCard },
+		components: { BotFarmingInfo, BotCard },
 		computed: mapGetters({
 			bots: 'bots/bots'
 		})
