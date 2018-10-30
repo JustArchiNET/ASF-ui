@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import * as Sentry from '@sentry/browser';
 
 import App from './App.vue';
 import router from './router';
@@ -17,4 +18,13 @@ new Vue({
 	render: h => h(App),
 	router,
 	store
+});
+
+Sentry.init({
+	dsn: 'https://e93b07e78df747708403e423ebc5e97e@sentry.io/1312571',
+	integrations: [new Sentry.Integrations.Vue({ Vue })]
+});
+
+Sentry.configureScope(scope => {
+	scope.setTag('commit', COMMITHASH);
 });
