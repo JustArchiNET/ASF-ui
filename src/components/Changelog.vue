@@ -67,8 +67,8 @@
 			async loadReleases() {
 				const releasesRaw = localStorage.getItem('cache:releases');
 				if (releasesRaw) {
-					const { timestamp, releases } = JSON.parse(releasesRaw);
-					if (timestamp > Date.now() - 24 * 60 * 60 * 1000) return releases;
+					const { timestamp, releases, version } = JSON.parse(releasesRaw);
+					if (version === this.version && timestamp > Date.now() - 24 * 60 * 60 * 1000) return releases;
 				}
 
 				const [latestRelease, ...olderReleases] = await this.getReleases();
@@ -85,7 +85,7 @@
 							};
 						});
 
-				localStorage.setItem('cache:releases', JSON.stringify({ timestamp: Date.now(), releases }));
+				localStorage.setItem('cache:releases', JSON.stringify({ timestamp: Date.now(), releases, version: this.version }));
 				return releases;
 			}
 		},
