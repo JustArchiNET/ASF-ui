@@ -44,3 +44,8 @@ export default {
 		});
 	}
 }
+
+export {
+	availableLocales,
+	requireLocale
+};

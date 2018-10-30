@@ -1,19 +1,23 @@
 <template>
-  <span class="flag-icon" :class="flagCountryClass"></span>
+	<img class="flag-icon" :src="flagImage">
 </template>
 
 <script>
-	import 'flag-icon-css/sass/flag-icon.scss';
+	const defaultImage = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAADCAYAAABbNsX4AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAYSURBVBhXY6yvr//PgAaYoDQKwCLIwAAAlooCgtdBJB0AAAAASUVORK5CYII=';
 
 	export default {
 		name: 'Flag',
 		props: {
 			country: String
 		},
-		computed: {
-			flagCountryClass() {
-				return `flag-icon-${this.country}`;
+		data() {
+			return {
+				flagImage: defaultImage
 			}
+		},
+		async created() {
+			const flags = await import('../utils/flags');
+			this.flagImage = flags[this.country];
 		}
 	};
 </script>
