@@ -38,7 +38,7 @@ export default {
 				if (this.has(name)) return;
 
 				const locale = this._availableLocales.find(locale => locale.name === name);
-				if (!locale) throw new Error(`[i18n] Locale ${name} not available!`);
+				if (!locale) throw new Error(`[i18n] Locale "${name}" not available!`);
 
 				store.dispatch('i18n/addLocale', { locale: name, translation: await this._requireLocale(locale.fileName) });
 			},
