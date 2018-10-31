@@ -41,7 +41,7 @@
 			async changeLocale(locale) {
 				await this.$i18n.load(locale);
 				await this.$i18n.set(locale);
-				localStorage.setItem('language', locale);
+				localStorage.setItem('locale', locale);
 
 				this.displayTranslationStatus();
 
