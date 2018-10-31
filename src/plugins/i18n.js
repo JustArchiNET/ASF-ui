@@ -11,7 +11,7 @@ const availableLocales = requireLocale.keys().map(fileName => {
 
 function getUserLocale(availableLocales, fallbackLocale) {
 	const selectedLocale = storage.get('locale');
-	if (selectedLocale) return selectedLocale || fallbackLocale;
+	if (selectedLocale && availableLocales.includes(selectedLocale)) return selectedLocale;
 
 	let locale = navigator.language;
 	if (!locale) return fallbackLocale;
