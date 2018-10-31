@@ -1,7 +1,9 @@
 <template>
-	<h4 class="subtitle bgr__status" v-if="usedKeysCount || unusedKeysCount"><span class="bgr__status-link" @click="$emit('show-used')">{{ $t('bgr-used-keys-count', { count: usedKeysCount }) }}</span>, <span class="bgr__status-link"
-																																																																																																							@click="$emit('show-unused')">{{ $t('bgr-unused-keys-count', { count: unusedKeysCount }) }}</span>
-		- <span class="bgr__status-link" @click="$emit('reset')">{{ $t('reset') }}</span></h4>
+	<h4 class="subtitle bgr__status" v-if="usedKeysCount || unusedKeysCount">
+		<button class="button" @click="$emit('show-used')">{{ $t('bgr-used-keys-count', { count: usedKeysCount }) }}</button>
+		<button class="button" @click="$emit('show-unused')">{{ $t('bgr-unused-keys-count', { count: unusedKeysCount }) }}</button>
+		<button class="button" @click="$emit('reset')">{{ $t('reset') }}</button>
+	</h4>
 </template>
 
 <script>
@@ -26,10 +28,5 @@
 	.bgr__status {
 		margin: 0.5em 0 1em;
 		color: var(--color-text-disabled);
-	}
-
-	.bgr__status-link {
-		cursor: pointer;
-		text-transform: lowercase;
 	}
 </style>
