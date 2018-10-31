@@ -1,7 +1,8 @@
 import fetchWiki from './fetchWiki';
+import * as storage from './storage';
 
 export default async function loadParameterDescriptions(version) {
-	const descriptionsCacheRaw = localStorage.getItem('cache:parameter-descriptions');
+	const descriptionsCacheRaw = storage.get('cache:parameter-descriptions');
 	if (descriptionsCacheRaw) {
 		const { timestamp, descriptions } = JSON.parse(descriptionsCacheRaw);
 		if (timestamp > Date.now() - 24 * 60 * 60 * 1000) return descriptions;
@@ -30,7 +31,7 @@ export default async function loadParameterDescriptions(version) {
 		descriptions[parameterName] = parameterDescription.join(' ');
 	}
 
-	localStorage.setItem('cache:parameter-descriptions', JSON.stringify({ timestamp: Date.now(), descriptions }));
+	storage.set('cache:parameter-descriptions', JSON.stringify({ timestamp: Date.now(), descriptions }));
 
 	return descriptions;
 }

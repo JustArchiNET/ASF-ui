@@ -1,3 +1,4 @@
+import * as storage from '../utils/storage';
 import i18n from '../i18n/lib';
 
 // https://webpack.js.org/guides/dependency-management/#require-context
@@ -9,7 +10,7 @@ const availableLocales = requireLocale.keys().map(fileName => {
 }).filter(Boolean);
 
 function getUserLocale(availableLocales, fallbackLocale) {
-	const selectedLocale = localStorage.getItem('locale');
+	const selectedLocale = storage.get('locale');
 	if (selectedLocale) return selectedLocale || fallbackLocale;
 
 	let locale = navigator.language;

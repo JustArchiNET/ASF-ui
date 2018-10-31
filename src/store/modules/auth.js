@@ -1,4 +1,5 @@
 import { get, authenticate } from '../../utils/http';
+import * as storage from '../../utils/storage';
 import Vue from 'vue';
 
 export const state = {
@@ -10,8 +11,8 @@ export const mutations = {
 	setPassword: (state, password) => {
 		state.password = password;
 		authenticate(password);
-		if (password) localStorage.setItem('ipc-password', password);
-		else localStorage.removeItem('ipc-password');
+		if (password) storage.set('ipc-password', password);
+		else storage.remove('ipc-password');
 	},
 	validate: state => state.validPassword = true,
 	invalidate: state => state.validPassword = false
@@ -19,7 +20,7 @@ export const mutations = {
 
 export const actions = {
 	init: async ({ commit, dispatch }) => {
-		const password = localStorage.getItem('ipc-password');
+		const password = storage.get('ipc-password');
 		if (password) commit('setPassword', password);
 		await dispatch('validate');
 	},

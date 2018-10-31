@@ -20,6 +20,7 @@
 
 <script>
 	import { command } from '../utils/http';
+	import * as storage from '../utils/storage';
 	import fetchWiki from '../utils/fetchWiki';
 
 	import { mapGetters } from 'vuex';
@@ -225,11 +226,11 @@
 			async fetchCommands() {
 				const wiki = await fetchWiki('Commands', this.version);
 				const commands = this.parseCommandsHTML(wiki);
-				localStorage.setItem('cache:asf-commands', JSON.stringify({ timestamp: Date.now(), commands }));
+				storage.set('cache:asf-commands', JSON.stringify({ timestamp: Date.now(), commands }));
 				return commands;
 			},
 			async loadCommands() {
-				const cachedCommandsRaw = localStorage.getItem('cache:asf-commands');
+				const cachedCommandsRaw = storage.get('cache:asf-commands');
 				if (cachedCommandsRaw) {
 					const { timestamp, commands } = JSON.parse(cachedCommandsRaw);
 					if (timestamp > Date.now() - 24 * 60 * 60 * 1000) return commands;
@@ -238,14 +239,14 @@
 				return this.fetchCommands();
 			},
 			loadCommandHistory() {
-				const commandHistory = localStorage.getItem('command-history');
+				const commandHistory = storage.get('command-history');
 				if (commandHistory) return JSON.parse(commandHistory);
 				return [];
 			}
 		},
 		watch: {
 			commandHistory(value) {
-				localStorage.setItem('command-history', JSON.stringify(value));
+				storage.set('command-history', JSON.stringify(value));
 			},
 			log() {
 				this.$nextTick(() => {

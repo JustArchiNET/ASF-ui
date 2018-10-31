@@ -23,6 +23,7 @@
 <script>
 	import { get } from '../utils/http';
 	import { timeDifference } from '../utils/time';
+	import * as storage from '../utils/storage';
 	import { mapGetters } from 'vuex';
 
 	export default {
@@ -65,7 +66,7 @@
 				return this.$t('released-now');
 			},
 			async loadReleases() {
-				const releasesRaw = localStorage.getItem('cache:releases');
+				const releasesRaw = storage.get('cache:releases');
 				if (releasesRaw) {
 					const { timestamp, releases, version } = JSON.parse(releasesRaw);
 					if (version === this.version && timestamp > Date.now() - 24 * 60 * 60 * 1000) return releases;
@@ -85,7 +86,7 @@
 							};
 						});
 
-				localStorage.setItem('cache:releases', JSON.stringify({ timestamp: Date.now(), releases, version: this.version }));
+				storage.set('cache:releases', JSON.stringify({ timestamp: Date.now(), releases, version: this.version }));
 				return releases;
 			}
 		},

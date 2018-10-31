@@ -15,6 +15,7 @@
 </template>
 
 <script>
+	import * as storage from '../utils/storage';
 	import Flag from './Flag.vue';
 
 	export default {
@@ -41,7 +42,7 @@
 			async changeLocale(locale) {
 				await this.$i18n.load(locale);
 				await this.$i18n.set(locale);
-				localStorage.setItem('locale', locale);
+				storage.set('locale', locale);
 
 				this.displayTranslationStatus();
 
