@@ -32,7 +32,7 @@
 
 <style lang="scss">
 	.bots {
-		grid-template-columns: repeat(auto-fill, minmax(315px, 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 		grid-gap: 1em;
 		display: grid;
 
