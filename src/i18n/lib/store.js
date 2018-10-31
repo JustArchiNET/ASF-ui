@@ -42,11 +42,11 @@ export default {
 		locales: state => Object.keys(state.translations),
 		translation: state => (locale, key) => state.translations[locale][key],
 		hasTranslation: state => (locale, key) => !!locale && !!state.translations[locale] && !!state.translations[locale][key],
-		noRegionalLocale: state => state.locale.split('-')[0],
+		noRegionalLocale: state => state.locale ? state.locale.split('-')[0] : state.locale,
 		translationLocale: (state, getters) => key => {
-			if (getters.hasTranslation(state.locale, key)) return state.locale;
-			if (getters.hasTranslation(getters.noRegionalLocale, key)) return getters.noRegionalLocale;
-			if (getters.hasTranslation(state.fallbackLocale, key)) return state.fallbackLocale;
+			if (state.locale && getters.hasTranslation(state.locale, key)) return state.locale;
+			if (getters.noRegionalLocale && getters.hasTranslation(getters.noRegionalLocale, key)) return getters.noRegionalLocale;
+			if (state.fallbackLocale && getters.hasTranslation(state.fallbackLocale, key)) return state.fallbackLocale;
 		},
 		translationPercent: (state, getters) => {
 			if (!state.locale || !state.fallbackLocale) return 0;
