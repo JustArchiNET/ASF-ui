@@ -24,6 +24,7 @@ export const actions = {
 	init: ({ commit }) => {
 		const smallNavigation = storage.get('small-navigation');
 		if (smallNavigation) commit('setSmallNavigation', JSON.parse(smallNavigation));
+		if (window.innerWidth < 700) commit('toggleNavigation');
 
 		const theme = storage.get('theme');
 		if (theme) commit('changeTheme', theme);
