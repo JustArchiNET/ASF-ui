@@ -2,6 +2,7 @@
 	"changelog": "Changelog",
 	"global-config": "Global Config",
 	"save": "Save",
+	"confirm": "Confirm",
 	"continue": "Continue",
 	"download-raw-config": "Download raw configuration file",
 	"ipc-configuration": "IPC Configuration",
