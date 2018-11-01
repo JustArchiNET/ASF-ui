@@ -17,7 +17,7 @@
 				botsCount: 'bots/count'
 			}),
 			count() {
-				return type => Math.min(99, this.botsCount(type));
+				return type => Math.min(999, this.botsCount(type));
 			}
 		},
 		data() {
