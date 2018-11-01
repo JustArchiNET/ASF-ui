@@ -2,6 +2,7 @@
 	"changelog": "Ændringslog",
 	"global-config": "",
 	"save": "Gem",
+	"confirm": "",
 	"continue": "Fortsæt",
 	"download-raw-config": "",
 	"ipc-configuration": "",

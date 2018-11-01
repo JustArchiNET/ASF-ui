@@ -2,6 +2,7 @@
 	"changelog": "Jurnalul modificărilor",
 	"global-config": "",
 	"save": "Salvează",
+	"confirm": "",
 	"continue": "",
 	"download-raw-config": "",
 	"ipc-configuration": "",

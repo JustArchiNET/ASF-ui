@@ -2,6 +2,7 @@
 	"changelog": "Päivityshistoria",
 	"global-config": "",
 	"save": "Tallenna",
+	"confirm": "",
 	"continue": "",
 	"download-raw-config": "",
 	"ipc-configuration": "",

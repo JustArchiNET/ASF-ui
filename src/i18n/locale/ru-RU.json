@@ -2,6 +2,7 @@
 	"changelog": "История изменений",
 	"global-config": "Глобальная конфигурация",
 	"save": "Сохранить",
+	"confirm": "",
 	"continue": "Продолжить",
 	"download-raw-config": "Скачать конфигурационный файл",
 	"ipc-configuration": "Настройка IPC",

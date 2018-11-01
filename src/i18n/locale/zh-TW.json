@@ -2,6 +2,7 @@
 	"changelog": "更新紀錄",
 	"global-config": "全域設定",
 	"save": "儲存",
+	"confirm": "",
 	"continue": "繼續",
 	"download-raw-config": "下載原始設定檔",
 	"ipc-configuration": "IPC 設定",

@@ -2,6 +2,7 @@
 	"changelog": "Değişim günlüğü",
 	"global-config": "Genel Yapılandırma",
 	"save": "Kaydet",
+	"confirm": "",
 	"continue": "Devam",
 	"download-raw-config": "Ham yapılandırma dosyasını indir",
 	"ipc-configuration": "IPC Yapılandırması",

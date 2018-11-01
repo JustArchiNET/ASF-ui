@@ -2,6 +2,7 @@
 	"changelog": "Списък на промените",
 	"global-config": "",
 	"save": "Запази",
+	"confirm": "",
 	"continue": "",
 	"download-raw-config": "",
 	"ipc-configuration": "",

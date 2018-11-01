@@ -2,6 +2,7 @@
 	"changelog": "Registro delle modifiche",
 	"global-config": "",
 	"save": "Salva",
+	"confirm": "",
 	"continue": "Continua",
 	"download-raw-config": "",
 	"ipc-configuration": "",

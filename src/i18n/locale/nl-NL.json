@@ -2,6 +2,7 @@
 	"changelog": "Versiegeschiedenis",
 	"global-config": "Globale configuratie",
 	"save": "Opslaan",
+	"confirm": "",
 	"continue": "Volgende",
 	"download-raw-config": "Download het onbewerkte configuratiebestand",
 	"ipc-configuration": "IPC-Configuratie",

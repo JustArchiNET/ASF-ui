@@ -2,6 +2,7 @@
 	"changelog": "Ändringslogg",
 	"global-config": "",
 	"save": "Spara",
+	"confirm": "",
 	"continue": "",
 	"download-raw-config": "",
 	"ipc-configuration": "",

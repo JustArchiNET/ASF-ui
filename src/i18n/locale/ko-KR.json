@@ -2,6 +2,7 @@
 	"changelog": "변경사항",
 	"global-config": "",
 	"save": "저장",
+	"confirm": "",
 	"continue": "",
 	"download-raw-config": "",
 	"ipc-configuration": "",
