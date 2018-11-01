@@ -38,6 +38,18 @@ class Bot {
 	get profileURL() {
 		return `https://steamcommunity.com/profiles/${this.steamid}`;
 	}
+
+	get cardsRemaining() {
+		return this.gamesToFarm.reduce((cardsRemaining, game) => cardsRemaining + game.CardsRemaining, 0);
+	}
+
+	get timeRemainingSeconds() {
+		return this.timeRemaining
+			.split(':')
+			.reverse()
+			.map((value, index) => value * 60 ** index)
+			.reduce((sum, value) => sum + value, 0);
+	}
 }
 
 export const state = {
@@ -84,5 +96,8 @@ export const getters = {
 	bots: state => Object.values(state.bots),
 	bot: state => name => state.bots[name],
 	status: (state, getters) => status => getters.bots.filter(bot => bot.status === status),
-	count: (state, getters) => status => getters.status(status).length
+	count: (state, getters) => status => getters.status(status).length,
+	gamesRemaining: (state, getters) => getters.bots.reduce((gamesRemaining, bot) => gamesRemaining + bot.gamesToFarm, 0),
+	timeRemaining: (state, getters) => Math.max(...getters.bots.map(bot => bot.timeRemainingSeconds)),
+	cardsRemaining: (state, getters) => getters.bots.reduce((cardsRemaining, bot) => cardsRemaining + bot.cardsRemaining, 0)
 };

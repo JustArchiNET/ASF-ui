@@ -7,7 +7,7 @@
 				<div class="info-card__icon"><font-awesome-icon icon="gamepad"></font-awesome-icon></div>
 				<div class="info-card__body">
 					<p class="info-card__title">{{ $t('farming-info-games') }}</p>
-					<p class="info-card__value">PLACEHOLDER</p>
+					<p class="info-card__value">{{ gamesRemaining }}</p>
 				</div>
 			</div>
 
@@ -15,14 +15,14 @@
 				<div class="info-card__icon"><font-awesome-icon icon="clock"></font-awesome-icon></div>
 				<div class="info-card__body">
 					<p class="info-card__title">{{ $t('farming-info-time') }}</p>
-					<p class="info-card__value">PLACEHOLDER</p>
+					<p class="info-card__value">{{ timeRemaining }}</p>
 				</div>
 			</div>
 			<div class="info-card">
 				<div class="info-card__icon"><font-awesome-icon icon="clone"></font-awesome-icon></div>
 				<div class="info-card__body">
 					<p class="info-card__title">{{ $t('farming-info-cards') }}</p>
-					<p class="info-card__value">PLACEHOLDER</p>
+					<p class="info-card__value">{{ cardsRemaining }}</p>
 				</div>
 			</div>
 		</div>
@@ -30,8 +30,21 @@
 </template>
 
 <script>
+	import { mapGetters } from 'vuex';
+	import humanizeDuration from 'humanize-duration';
+
 	export default {
-		name: 'bot-farming-info'
+		name: 'bot-farming-info',
+		computed: {
+			...mapGetters({
+				gamesRemaining: 'bots/gamesRemaining',
+				timeRemaining: 'bots/timeRemaining',
+				cardsRemaining: 'bots/cardsRemaining'
+			}),
+			timeRemaining() {
+				return humanizeDuration(this.$store.getters['bots/timeRemaining'], { language: this.$i18n.noRegionalLocale })
+			}
+		}
 	};
 </script>
 
