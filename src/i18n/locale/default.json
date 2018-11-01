@@ -68,5 +68,10 @@
 	"farming-info": "Farming Info",
 	"farming-info-games": "games remaining",
 	"farming-info-time": "time remaining",
-	"farming-info-cards": "cards remaining"
+	"farming-info-cards": "cards remaining",
+	"terminal-commands": "Prints available commands",
+	"terminal-help": "Prints help",
+	"terminal-available-commands": "Available commands: {commands}",
+	"terminal-no-help": "There's no help text for {command} yet!",
+	"terminal-help-text": "Usage: help <Command>, available commands: commands"
 }
