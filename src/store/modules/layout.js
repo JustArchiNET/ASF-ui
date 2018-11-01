@@ -23,8 +23,7 @@ export const mutations = {
 export const actions = {
 	init: ({ commit }) => {
 		const smallNavigation = storage.get('small-navigation');
-		if (smallNavigation) commit('setSmallNavigation', JSON.parse(smallNavigation));
-		if (window.innerWidth < 700) commit('toggleNavigation');
+		if (smallNavigation) commit('setSmallNavigation', window.innerWidth < 700 ? true : JSON.parse(smallNavigation));
 
 		const theme = storage.get('theme');
 		if (theme) commit('changeTheme', theme);
