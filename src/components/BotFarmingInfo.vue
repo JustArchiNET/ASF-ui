@@ -42,7 +42,7 @@
 				cardsRemaining: 'bots/cardsRemaining'
 			}),
 			timeRemaining() {
-				return humanizeDuration(this.$store.getters['bots/timeRemaining'], { language: this.$i18n.noRegionalLocale })
+				return humanizeDuration(this.$store.getters['bots/timeRemaining'] * 1000, { language: this.$i18n.noRegionalLocale })
 			}
 		}
 	};
@@ -94,5 +94,8 @@
 		font-weight: 600;
 		font-size: 1.2em;
 		margin: 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
 </style>
