@@ -29,6 +29,7 @@
 		}
 	};
 </script>
+
 <style lang="scss">
 	.side-menu__switch {
 		padding: 1em 1em 0.5em;

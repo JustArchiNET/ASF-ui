@@ -15,6 +15,7 @@
 		</div>
 	</div>
 </template>
+
 <script>
 	import { botAction } from '../utils/http';
 
@@ -59,6 +60,7 @@
 		}
 	};
 </script>
+
 <style lang="scss">
 	.bot {
 		display: grid;
