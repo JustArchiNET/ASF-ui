@@ -1,27 +1,28 @@
 <template>
-	<div>
+	<div class="farming-info">
 		<h2 class="title">{{ $t('farming-info') }}</h2>
 
-		<div class="farming__info">
-			<div class="farming__card">
-				<div class="farming__card-icon"><font-awesome-icon icon="gamepad"></font-awesome-icon></div>
-				<div class="farming__card-content">
-					<div class="farming__card-content--name">{{ $t('farming-info-games') }}</div>
-					<div class="farming__card-content--text">PLACEHOLDER</div>
+		<div class="info-cards">
+			<div class="info-card">
+				<div class="info-card__icon"><font-awesome-icon icon="gamepad"></font-awesome-icon></div>
+				<div class="info-card__body">
+					<div class="info-card__title">{{ $t('farming-info-games') }}</div>
+					<div class="info-card__value">PLACEHOLDER</div>
 				</div>
 			</div>
-			<div class="farming__card">
-				<div class="farming__card-icon"><font-awesome-icon icon="clock"></font-awesome-icon></div>
-				<div class="farming__card-content">
-					<div class="farming__card-content--name">{{ $t('farming-info-time') }}</div>
-					<div class="farming__card-content--text">PLACEHOLDER</div>
+
+			<div class="info-card">
+				<div class="info-card__icon"><font-awesome-icon icon="clock"></font-awesome-icon></div>
+				<div class="info-card__body">
+					<div class="info-card__title">{{ $t('farming-info-time') }}</div>
+					<div class="info-card__value">PLACEHOLDER</div>
 				</div>
 			</div>
-			<div class="farming__card">
-				<div class="farming__card-icon"><font-awesome-icon icon="clone"></font-awesome-icon></div>
-				<div class="farming__card-content">
-					<div class="farming__card-content--name">{{ $t('farming-info-cards') }}</div>
-					<div class="farming__card-content--text">PLACEHOLDER</div>
+			<div class="info-card">
+				<div class="info-card__icon"><font-awesome-icon icon="clone"></font-awesome-icon></div>
+				<div class="info-card__body">
+					<div class="info-card__title">{{ $t('farming-info-cards') }}</div>
+					<div class="info-card__value">PLACEHOLDER</div>
 				</div>
 			</div>
 		</div>
@@ -35,19 +36,19 @@
 </script>
 
 <style lang="scss">
-	.farming__info {
+	.info-cards {
 		display: grid;
 		grid-gap: 1em;
 		grid-template-columns: 1fr 1fr 1fr;
 		justify-content: space-between;
 	}
 
-	.farming__card {
+	.info-card {
 		background: var(--color-background-light);
 		display: flex;
 	}
 
-	.farming__card-icon {
+	.info-card__icon {
 		height: 4rem;
 		width: 4rem;
 		font-size: 2.1em;
@@ -58,19 +59,19 @@
 		color: var(--color-text);
 	}
 
-	.farming__card-content {
+	.info-card__body {
 		display: flex;
 		flex-direction: column;
 		overflow: hidden;
 		padding: 5px 10px;
 	}
 
-	.farming__card-content--name {
+	.info-card__title {
 		text-transform: uppercase;
 		font-size: 0.9em;
 	}
 
-	.farming__card-content--text {
+	.info-card__value {
 		font-weight: 600;
 		font-size: 1.2em;
 		padding-top: 10px;
