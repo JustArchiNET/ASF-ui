@@ -1,6 +1,11 @@
 <template>
 	<div class="bot" :class="[`status--${bot.status}`]">
-		<router-link :to="{ name: 'bot', params: { bot: bot.name } }" tag="img" class="bot__avatar" :src="bot.avatarURL"></router-link>
+		<a :href="bot.profileURL" target="_blank" class="bot__profile--link">
+		    <img class="bot__avatar" :src="bot.avatarURL" />
+		    <div class="bot__profile--button">
+		        <font-awesome-icon icon="external-link-alt"></font-awesome-icon>
+            </div>
+		</a>
 
 		<router-link tag="div" :to="{ name: 'bot', params: { bot: bot.name } }" class="bot__status">
 			<span class="bot__status-property bot__status-property--name">{{ bot.name }}</span>
@@ -72,11 +77,32 @@
 		transition: border .3s;
 	}
 
+	.bot__profile--link {
+	    display: inline-block;
+		margin-right: 0.5em;
+		position: relative;
+	}
+
+	.bot__profile--button   {
+	    position: absolute;
+	    display: none;
+	    width: 100%;
+	    height: 100%;
+	    background: var(--color-theme-dark);
+	    content: " ";
+	    color: #fff;
+	    top: 0;
+	    text-align: center;
+	    line-height: 2em;
+	}
+
+	.bot__profile--link:hover .bot__profile--button {
+	    display: block;
+	}
+
 	.bot__avatar {
-		min-width: 2.25em;
-		padding-right: 0.5em;
+	    min-width: 2.5em;
 		max-height: 100%;
-		cursor: pointer;
 	}
 
 	.bot__status {
