@@ -1,5 +1,5 @@
 <template>
-	<div class="farming-info">
+	<div v-if="gamesRemaining < 0" class="farming-info">
 		<h2 class="title">{{ $t('farming-info') }}</h2>
 
 		<div class="info-cards">
