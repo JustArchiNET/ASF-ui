@@ -1,6 +1,9 @@
 <template>
 	<div class="bot" :class="[`status--${bot.status}`]">
-		<router-link :to="{ name: 'bot', params: { bot: bot.name } }" tag="img" class="bot__avatar" :src="bot.avatarURL"></router-link>
+		<a target="_blank" :href="bot.profileURL" v-if="bot.steamid !== '0'">
+			<img class="bot__avatar" :src="bot.avatarURL">
+		</a>
+		<router-link :to="{ name: 'bot', params: { bot: bot.name } }" tag="img" class="bot__avatar" :src="bot.avatarURL" v-else></router-link>
 
 		<router-link tag="div" :to="{ name: 'bot', params: { bot: bot.name } }" class="bot__status">
 			<span class="bot__status-property bot__status-property--name">{{ bot.name }}</span>
