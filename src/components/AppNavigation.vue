@@ -18,6 +18,7 @@
 			<div class="navigation-category navigation-category--pull-bottom">
 				<navigation-category-title :name="$t('statistics')"></navigation-category-title>
 				<navigation-bots></navigation-bots>
+				<navigation-farming-info></navigation-farming-info>
 				<navigation-statistics></navigation-statistics>
 			</div>
 		</template>
@@ -36,12 +37,13 @@
 	import NavigationCategoryTitle from './NavigationCategoryTitle.vue';
 	import NavigationBots from './NavigationBots.vue';
 	import NavigationStatistics from './NavigationStatistics.vue';
+	import NavigationFarmingInfo from './NavigationFarmingInfo.vue';
 
 	import { mapGetters } from 'vuex';
 
 	export default {
 		name: 'app-navigation',
-		components: { NavigationLink, NavigationCategoryTitle, NavigationStatistics, NavigationBots },
+		components: { NavigationLink, NavigationCategoryTitle, NavigationStatistics, NavigationBots, NavigationFarmingInfo },
 		computed: mapGetters({
 			validPassword: 'auth/validPassword'
 		})
