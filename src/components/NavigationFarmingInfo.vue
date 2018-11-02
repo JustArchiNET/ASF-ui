@@ -1,5 +1,5 @@
 <template>
-	<div v-if="cardsRemaining < 0" class="statistic-farming">
+	<div v-if="cardsRemaining != 0" class="statistic-farming">
 		<div class="farming-card">
 			<span class="farming-card__value">{{ cardsRemaining }}</span>
 			<span class="farming-card__name">{{ $t(`farming-info-cards`) }}</span>
