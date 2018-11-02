@@ -45,8 +45,8 @@
 			commands() {
 				return [
 					...this.asfCommands.filter(({ command }) => command !== 'help'),
-					{ command: 'commands', description: 'Prints available commands' },
-					{ command: 'help <Command>', description: 'Prints help' }
+					{ command: 'commands', description: this.$t('terminal-commands') },
+					{ command: 'help <Command>', description: this.$t('terminal-help') }
 				];
 			},
 			commandsNames() {
@@ -172,10 +172,10 @@
 			async executeCommand(commandToExecute) {
 				switch (commandToExecute.split(' ')[0]) {
 					case 'commands':
-						return `Available commands: ${this.commandsNames.join(', ')}`;
+						return this.$t('terminal-available-commands', { commands: this.commandsNames.join(', ')});
 					case 'help':
 						if (commandToExecute.split(' ')[1]) return this.commandHelp(commandToExecute.split(' ')[1]);
-						return 'Usage: help <Command>, available commands: commands';
+						return this.$t('terminal-help-text');
 				}
 
 				return command(commandToExecute);
@@ -183,7 +183,7 @@
 			commandHelp(command) {
 				const asfCommand = this.commands.find(asfCommand => asfCommand.command.split(' ')[0] === command);
 				if (asfCommand) return asfCommand.description;
-				return `There's no help text for ${command} yet!`;
+				return this.$t('terminal-no-help', { command: command});
 			},
 			focusInput() {
 				this.$refs['terminal-input'].focus();
