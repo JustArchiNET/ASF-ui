@@ -64,5 +64,14 @@
 	"rate-limited": "Oran sınırlandı!",
 	"language-translation-good": "Seçili yerel {locale}, neredeyse %{percent} oranla tamamen tercüme edilmiş!",
 	"language-translation-medium": "Seçili dilin %{percent} kısmı tercüme edilmiş!",
-	"language-translation-bad": "Seçili dilin sadece %{percent} kısmı tercüme edilmiş!"
+	"language-translation-bad": "Seçili dilin sadece %{percent} kısmı tercüme edilmiş!",
+	"farming-info": "",
+	"farming-info-games": "",
+	"farming-info-time": "",
+	"farming-info-cards": "",
+	"terminal-commands": "",
+	"terminal-help": "",
+	"terminal-available-commands": "",
+	"terminal-no-help": "",
+	"terminal-help-text": ""
 }

@@ -2,7 +2,7 @@
 	"changelog": "История изменений",
 	"global-config": "Глобальная конфигурация",
 	"save": "Сохранить",
-	"confirm": "",
+	"confirm": "Подтвердить",
 	"continue": "Продолжить",
 	"download-raw-config": "Скачать конфигурационный файл",
 	"ipc-configuration": "Настройка IPC",
@@ -64,5 +64,14 @@
 	"rate-limited": "Ограничение частоты запросов!",
 	"language-translation-good": "Выбранный язык, {locale}, почти полностью переведен на {percent}%!",
 	"language-translation-medium": "{percent}% переведено на выбранный язык!",
-	"language-translation-bad": "Только {percent}% переведено на выбранный язык!"
+	"language-translation-bad": "Только {percent}% переведено на выбранный язык!",
+	"farming-info": "Информация о фарме",
+	"farming-info-games": "игр осталось",
+	"farming-info-time": "времени осталось",
+	"farming-info-cards": "карт осталось",
+	"terminal-commands": "Выводит доступные команды",
+	"terminal-help": "Выводит справку",
+	"terminal-available-commands": "Доступные команды: {commands}",
+	"terminal-no-help": "Справка для команды {command} пока отсутствует!",
+	"terminal-help-text": "Использование: help <Command>, доступные команды: commands"
 }

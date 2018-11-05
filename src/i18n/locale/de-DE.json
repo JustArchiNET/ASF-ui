@@ -2,9 +2,9 @@
 	"changelog": "Änderungsprotokoll",
 	"global-config": "Globale Konfiguration",
 	"save": "Speichern",
-	"confirm": "",
+	"confirm": "Bestätigen",
 	"continue": "Fortsetzen",
-	"download-raw-config": "Raw-Konfigurationsdatei herunterladen",
+	"download-raw-config": "Unbearbeitete Konfigurationsdatei herunterladen",
 	"ipc-configuration": "IPC-Konfiguration",
 	"password": "Passwort",
 	"log": "Protokoll",
@@ -64,5 +64,14 @@
 	"rate-limited": "Anfragelimit überschritten!",
 	"language-translation-good": "Ausgewählte Sprachumgebung, {locale}, ist mit {percent}% fast vollständig übersetzt!",
 	"language-translation-medium": "{percent}% der ausgewählten Sprache ist übersetzt!",
-	"language-translation-bad": "Nur {percent}% der ausgewählten Sprache ist übersetzt!"
+	"language-translation-bad": "Nur {percent}% der ausgewählten Sprache ist übersetzt!",
+	"farming-info": "Sammel Info",
+	"farming-info-games": "verbleibende Spiele",
+	"farming-info-time": "verbleibende Zeit",
+	"farming-info-cards": "verbleibende Karten",
+	"terminal-commands": "Gibt alle verfügbaren Befehle an",
+	"terminal-help": "Gibt die Hilfe aus",
+	"terminal-available-commands": "Verfügbare Befehle: {commands}",
+	"terminal-no-help": "Es gibt noch keinen Hilfetext für {command}!",
+	"terminal-help-text": "Verwendung: help <Befehl>, verfügbare Befehle: commands"
 }

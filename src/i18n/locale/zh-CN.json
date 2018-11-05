@@ -64,5 +64,14 @@
 	"rate-limited": "",
 	"language-translation-good": "",
 	"language-translation-medium": "",
-	"language-translation-bad": ""
+	"language-translation-bad": "",
+	"farming-info": "",
+	"farming-info-games": "",
+	"farming-info-time": "",
+	"farming-info-cards": "",
+	"terminal-commands": "",
+	"terminal-help": "",
+	"terminal-available-commands": "",
+	"terminal-no-help": "",
+	"terminal-help-text": ""
 }

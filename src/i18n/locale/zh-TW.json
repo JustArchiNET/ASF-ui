@@ -64,5 +64,14 @@
 	"rate-limited": "速率已限制！",
 	"language-translation-good": "所選地區-{locale} 已翻譯 {percent}%，快要完成了！",
 	"language-translation-medium": "所選語言已完成 {percent}% 的翻譯！",
-	"language-translation-bad": "所選語言只有完成 {percent}% 的翻譯！"
+	"language-translation-bad": "所選語言只有完成 {percent}% 的翻譯！",
+	"farming-info": "",
+	"farming-info-games": "",
+	"farming-info-time": "",
+	"farming-info-cards": "",
+	"terminal-commands": "",
+	"terminal-help": "",
+	"terminal-available-commands": "",
+	"terminal-no-help": "",
+	"terminal-help-text": ""
 }
