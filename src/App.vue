@@ -98,13 +98,13 @@
 		background: var(--color-background-dark);
 	}
 
-	@media screen and (max-height: 680px), screen and (max-width: 1366px) {
+	@media screen and (max-height: 725px), screen and (max-width: 1366px) {
 		html {
 			font-size: 14px;
 		}
 	}
 
-	@media screen and (max-height: 600px), screen and (max-width: 1000px) {
+	@media screen and (max-height: 640px), screen and (max-width: 1000px) {
 		html {
 			font-size: 12px;
 		}
