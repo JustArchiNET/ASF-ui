@@ -11,10 +11,7 @@ import routes from './routes';
 const router = new VueRouter({
 	routes,
 	base: window.__BASE_PATH__ ? window.__BASE_PATH__ : '/',
-	mode: 'history',
-	scrollBehavior(to, from, savedPosition) {
-		return savedPosition || { x: 0, y: 0 };
-	}
+	mode: 'history'
 });
 
 router.beforeEach(async (routeTo, routeFrom, next) => {
