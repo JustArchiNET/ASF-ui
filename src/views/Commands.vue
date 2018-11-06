@@ -25,6 +25,41 @@
 
 	import { mapGetters } from 'vuex';
 
+	class CommandsCache {
+		constructor(maxLength) {
+			this._cache = [];
+			this._maxLength = maxLength;
+		}
+
+		get length() {
+			return this._cache.length;
+		}
+
+		get(index) {
+			return this._cache[index];
+		}
+
+		add(el) {
+			if (this.get(0) === el) return;
+			this._cache.unshift(el);
+			this.save();
+		}
+
+		trim() {
+			while (this.length > this._maxLength) this._cache.pop();
+		}
+
+		save() {
+			storage.set('command-history', JSON.stringify(this._cache));
+		}
+
+		load() {
+			const commandHistory = storage.get('command-history');
+			if (commandHistory) this._cache = JSON.parse(commandHistory);
+			this.trim();
+		}
+	}
+
 	export default {
 		name: 'commands',
 		metaInfo: { title: 'Commands' },
@@ -33,7 +68,7 @@
 			return {
 				command: '',
 				log: [],
-				commandHistory: [],
+				commandHistory: new CommandsCache(20),
 				commandHistoryIndex: -1,
 				asfCommands: []
 			};
@@ -158,8 +193,7 @@
 				if (!commandToExecute) return;
 
 				this.commandHistoryIndex = -1;
-				this.commandHistory.unshift(commandToExecute);
-				this.commandHistory.slice(0, 20);
+				this.commandHistory.add(commandToExecute);
 
 				this.log.push({ type: 'out', message: commandToExecute });
 				try {
@@ -201,13 +235,13 @@
 			historyPrevious() {
 				if (this.commandHistoryIndex + 1 < this.commandHistory.length) {
 					this.commandHistoryIndex++;
-					this.command = this.commandHistory[this.commandHistoryIndex];
+					this.command = this.commandHistory.get(this.commandHistoryIndex);
 				}
 			},
 			historyNext() {
 				if (this.commandHistoryIndex > 0) {
 					this.commandHistoryIndex--;
-					this.command = this.commandHistory[this.commandHistoryIndex];
+					this.command = this.commandHistory.get(this.commandHistoryIndex);
 				} else if (this.commandHistoryIndex === 0) {
 					this.commandHistoryIndex = -1;
 					this.command = '';
@@ -237,17 +271,9 @@
 				}
 
 				return this.fetchCommands();
-			},
-			loadCommandHistory() {
-				const commandHistory = storage.get('command-history');
-				if (commandHistory) return JSON.parse(commandHistory);
-				return [];
 			}
 		},
 		watch: {
-			commandHistory(value) {
-				storage.set('command-history', JSON.stringify(value));
-			},
 			log() {
 				this.$nextTick(() => {
 					this.$refs.terminal.scrollTop = Math.max(0, this.$refs.terminal.scrollHeight - this.$refs.terminal.clientHeight);
@@ -255,7 +281,7 @@
 			}
 		},
 		async created() {
-			this.commandHistory = this.loadCommandHistory();
+			this.commandHistory.load();
 			this.asfCommands = await this.loadCommands();
 		},
 		mounted() {
