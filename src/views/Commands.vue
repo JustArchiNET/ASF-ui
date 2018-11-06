@@ -23,6 +23,7 @@
 	import fetchWiki from '../utils/fetchWiki';
 
 	import { mapGetters } from 'vuex';
+	import { getSelectedText } from '../utils/getSelectedText';
 
 	class CommandsCache {
 		constructor(maxLength) {
@@ -219,6 +220,8 @@
 				return this.$t('terminal-no-help', { command: command});
 			},
 			focusInput() {
+				const selectedText = getSelectedText();
+				if (selectedText) return;
 				this.$refs['terminal-input'].focus();
 			},
 			autocomplete() {
