@@ -50,6 +50,15 @@ class Bot {
 			.map((value, index) => value * 60 ** index)
 			.reduce((sum, value) => sum + value, 0);
 	}
+
+	get games() {
+		const currentlyFarming = this.currentGamesFarming.map(game => game.AppID);
+
+		return this.gamesToFarm.map(game => ({
+			...game,
+			farming: currentlyFarming.includes(game.AppID)
+		})).sort((lhs, rhs) => rhs.farming - lhs.farming);
+	}
 }
 
 export const state = {
