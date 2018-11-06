@@ -10,7 +10,7 @@
 				</div>
 				<div class="terminal__input-wrapper">
 					<span class="terminal__sign">></span>
-					<input type="text" spellcheck="false" v-model="command" ref="terminal-input" class="terminal__input" @keydown.enter="sendCommand" @keydown.tab.prevent="autocomplete" @keydown.up="historyPrevious" @keydown.down="historyNext">
+					<input type="text" spellcheck="false" v-model="command" :disabled="awaitingResponse" ref="terminal-input" class="terminal__input" @keydown.enter="sendCommand" @keydown.tab.prevent="autocomplete" @keydown.up="historyPrevious" @keydown.down="historyNext">
 					<input type="text" spellcheck="false" v-model="autocompleteSuggestion" class="terminal__input terminal__input--autocomplete">
 				</div>
 			</div>
@@ -70,7 +70,8 @@
 				log: [],
 				commandHistory: new CommandsCache(20),
 				commandHistoryIndex: -1,
-				asfCommands: []
+				asfCommands: [],
+				awaitingResponse: false
 			};
 		},
 		computed: {
@@ -197,10 +198,15 @@
 
 				this.log.push({ type: 'out', message: commandToExecute });
 				try {
+					this.awaitingResponse = true;
 					const result = await this.executeCommand(commandToExecute);
 					this.log.push({ type: 'in', message: result });
 				} catch (err) {
+					this.log.push({ type: 'in', message: err.message });
 					this.$error(err.message);
+				} finally {
+					this.awaitingResponse = false;
+					this.$nextTick(this.focusInput);
 				}
 			},
 			async executeCommand(commandToExecute) {
