@@ -23,7 +23,6 @@
 <script>
 	import ConfigEditor from '../../components/ConfigEditor.vue';
 
-	import { post } from '../../utils/http';
 	import fetchConfigSchema from '../../utils/fetchConfigSchema';
 
 	import { mapGetters } from 'vuex';
@@ -96,7 +95,7 @@
 				this.creating = true;
 
 				try {
-					await post(`bot/${this.model.Name}`, { BotConfig: this.model });
+					await this.$http.post(`bot/${this.model.Name}`, { BotConfig: this.model });
 					await delay(1000);
 					await this.$store.dispatch('bots/updateBot', { name: this.model.Name });
 					this.$parent.close();

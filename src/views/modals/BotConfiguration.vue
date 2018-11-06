@@ -29,7 +29,6 @@
 <script>
 	import ConfigEditor from '../../components/ConfigEditor.vue';
 
-	import { get, post } from '../../utils/http';
 	import fetchConfigSchema from '../../utils/fetchConfigSchema';
 
 	import { mapGetters } from 'vuex';
@@ -92,7 +91,7 @@
 					descriptions
 				] = await Promise.all([
 					fetchConfigSchema('ArchiSteamFarm.BotConfig'),
-					get(`bot/${this.bot.name}`),
+					this.$http.get(`bot/${this.bot.name}`),
 					loadParameterDescriptions(this.version)
 				]);
 
@@ -116,7 +115,7 @@
 				this.saving = true;
 
 				try {
-					await post(`bot/${this.bot.name}`, { BotConfig: this.model });
+					await this.$http.post(`bot/${this.bot.name}`, { BotConfig: this.model });
 					this.$parent.close();
 				} catch (err) {
 					this.$error(err.message);

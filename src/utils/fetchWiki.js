@@ -1,4 +1,4 @@
-import { post } from './http';
+import { post } from '../plugins/http';
 
 function compareVersion(a, b) {
 	let result = 0;

@@ -20,7 +20,6 @@
 </template>
 
 <script>
-	import { del } from '../../utils/http';
 	import delay from '../../utils/delay';
 
 	export default {
@@ -40,7 +39,7 @@
 				this.deleting = true;
 
 				try {
-					await del(`bot/${this.bot.name}`);
+					await this.$http.del(`bot/${this.bot.name}`);
 					await delay(1000);
 					await this.$store.dispatch('bots/updateBot', { name: this.bot.name });
 					this.$router.push({ name: 'bots' });

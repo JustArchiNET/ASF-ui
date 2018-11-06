@@ -38,8 +38,6 @@
 </template>
 
 <script>
-  import { botAction } from '../../utils/http';
-
 	export default {
     name: 'bot',
 		computed: {
@@ -50,7 +48,7 @@
 		methods: {
 			async pause() {
 				try {
-					const message = await botAction(this.bot.name, 'pause', { permanent: true, resumeInSeconds: 0 });
+					const message = await this.$http.botAction(this.bot.name, 'pause', { permanent: true, resumeInSeconds: 0 });
 					await this.$store.dispatch('bots/updateBot', { name: this.bot.name, paused: true });
 				} catch (err) {
 					this.$error(err.message);
@@ -59,7 +57,7 @@
 			},
 			async resume() {
 				try {
-					const message = await botAction(this.bot.name, 'resume');
+					const message = await this.$http.botAction(this.bot.name, 'resume');
 					await this.$store.dispatch('bots/updateBot', { name: this.bot.name, paused: false });
 				} catch (err) {
 					this.$error(err.message);
@@ -67,7 +65,7 @@
 			},
 			async start() {
 				try {
-					const message = await botAction(this.bot.name, 'start');
+					const message = await this.$http.botAction(this.bot.name, 'start');
 					await this.$store.dispatch('bots/updateBot', { name: this.bot.name, active: true });
 				} catch (err) {
 					this.$error(err.message);
@@ -75,7 +73,7 @@
 			},
 			async stop() {
 				try {
-					const message = await botAction(this.bot.name, 'stop');
+					const message = await this.$http.botAction(this.bot.name, 'stop');
 					await this.$store.dispatch('bots/updateBot', { name: this.bot.name, active: false, steamid: '0' });
 				} catch (err) {
 					this.$error(err.message);

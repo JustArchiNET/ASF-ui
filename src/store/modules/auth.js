@@ -1,10 +1,25 @@
-import { get, authenticate } from '../../utils/http';
+import { authenticate } from '../../plugins/http';
 import * as storage from '../../utils/storage';
-import Vue from 'vue';
+import { STATUS, getStatus } from '../../utils/getStatus';
+
+function createDefer() {
+	const defer = {};
+
+	defer.promise = new Promise((resolve, reject) => {
+		defer.resolve = resolve;
+		defer.reject = reject;
+	});
+
+	return defer;
+}
+
+const initializer = createDefer();
 
 export const state = {
 	password: null,
-	validPassword: false
+	validPassword: false,
+	status: STATUS.NOT_CONNECTED,
+	initialized: initializer.promise
 };
 
 export const mutations = {
@@ -14,30 +29,32 @@ export const mutations = {
 		if (password) storage.set('ipc-password', password);
 		else storage.remove('ipc-password');
 	},
-	validate: state => state.validPassword = true,
-	invalidate: state => state.validPassword = false
+	setStatus: (state, status) => state.status = status
 };
 
 export const actions = {
-	init: async ({ commit, dispatch }) => {
+	async init({ commit, dispatch }) {
 		const password = storage.get('ipc-password');
 		if (password) commit('setPassword', password);
-		await dispatch('validate');
+		await dispatch('updateStatus');
+		initializer.resolve()
 	},
-	validate: async ({ commit }) => {
-		const validPassword = await get('ASF')
-			.then(response => true)
-			.catch(err => {
-				if (err.response.status === 401) return false;
-				if (err.response.status === 403) throw new Error(Vue.i18n.translate('rate-limited'));
-				throw err;
-			});
-		commit(validPassword ? 'validate' : 'invalidate');
-		return validPassword;
+	async setPassword({ commit, dispatch }, password) {
+		commit('setPassword', password);
+		await dispatch('updateStatus');
+	},
+	async validate({ state, getters }) {
+		await state.initialized;
+		return getters.status === STATUS.AUTHENTICATED;
+	},
+	async updateStatus({ commit }) {
+		const status = await getStatus();
+		commit('setStatus', status);
 	}
 };
 
 export const getters = {
 	password: state => state.password,
-	validPassword: state => state.validPassword
+	validPassword: state => state.status === STATUS.AUTHENTICATED,
+	status: state => state.status
 };

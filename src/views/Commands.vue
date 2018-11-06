@@ -19,7 +19,6 @@
 </template>
 
 <script>
-	import { command } from '../utils/http';
 	import * as storage from '../utils/storage';
 	import fetchWiki from '../utils/fetchWiki';
 
@@ -212,7 +211,7 @@
 						return this.$t('terminal-help-text');
 				}
 
-				return command(commandToExecute);
+				return this.$http.command(commandToExecute);
 			},
 			commandHelp(command) {
 				const asfCommand = this.commands.find(asfCommand => asfCommand.command.split(' ')[0] === command);

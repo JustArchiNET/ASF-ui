@@ -29,7 +29,6 @@
 </template>
 
 <script>
-	import { post } from '../utils/http';
 	import waitForRestart from '../utils/waitForRestart';
 
 	import { mapGetters } from 'vuex';
@@ -51,7 +50,7 @@
 			},
 			async update() {
 				try {
-					await post('asf/update');
+					await this.$http.post('asf/update');
 					this.brandMenu = false;
 				} catch (err) {
 					this.$error(err.message);
@@ -62,7 +61,7 @@
 				this.restarting = true;
 
 				try {
-					await post('asf/restart');
+					await this.$http.post('asf/restart');
 					this.$info(this.$t('restart-initiated'));
 					await waitForRestart();
 					this.$success(this.$t('restart-complete'));
@@ -75,7 +74,7 @@
 			},
 			async exit() {
 				try {
-					await post('asf/exit');
+					await this.$http.post('asf/exit');
 					this.$info(this.$t('exit-message'));
 					this.brandMenu = false;
 				} catch (err) {

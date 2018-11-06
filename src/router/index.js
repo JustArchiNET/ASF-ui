@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import store from '../store';
+import { get } from '../utils/storage';
 import VueMeta from 'vue-meta';
 
 Vue.use(VueRouter);
@@ -15,13 +16,10 @@ const router = new VueRouter({
 });
 
 router.beforeEach(async (routeTo, routeFrom, next) => {
-	const noPasswordRequired = routeTo.matched.every(route => route.meta.noPasswordRequired);
-	if (noPasswordRequired) return next();
+	if (!get('welcome') && routeTo.name !== 'welcome') return next({ name: 'welcome' });
 
-	try {
-		const validPassword = store.getters['auth/validPassword'] || await store.dispatch('auth/validate');
-		if (validPassword) return next();
-	} catch (err) {}
+	const noPasswordRequired = routeTo.matched.every(route => route.meta.noPasswordRequired);
+	if (noPasswordRequired || await store.dispatch('auth/validate')) return next();
 
 	return next({ name: 'setup' });
 });

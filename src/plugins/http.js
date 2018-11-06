@@ -40,3 +40,16 @@ export function botAction(bots, action, params) {
 		return response.data.Message;
 	});
 }
+
+export default {
+	install(Vue) {
+		Vue.prototype.$http = {
+			authenticate,
+			get,
+			post,
+			del,
+			command,
+			botAction
+		};
+	}
+}

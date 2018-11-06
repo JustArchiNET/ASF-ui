@@ -22,8 +22,6 @@
 </template>
 
 <script>
-	import { get, post, del } from '../../utils/http';
-
 	import BgrCheck from '../../components/BGR/Check.vue';
 	import BgrInput from '../../components/BGR/Input.vue';
 	import BgrStatus from '../../components/BGR/Status.vue';
@@ -68,7 +66,7 @@
 		methods: {
 			async loadBGR() {
 				if (!this.bot) return { UnusedKeys: {}, UsedKeys: {} };
-				return (await get(`bot/${this.bot.name}/GamesToRedeemInBackground`))[this.bot.name];
+				return (await this.$http.get(`bot/${this.bot.name}/GamesToRedeemInBackground`))[this.bot.name];
 			},
 			onCheck(keys) {
 				this.keys = keys;
@@ -78,7 +76,7 @@
 				this.confirming = true;
 
 				try {
-					const activatedKeys = await post(`bot/${this.bot.name}/GamesToRedeemInBackground`, { GamesToRedeemInBackground: this.keys });
+					const activatedKeys = await this.$http.post(`bot/${this.bot.name}/GamesToRedeemInBackground`, { GamesToRedeemInBackground: this.keys });
 					this.state = 'summary';
 					this.summaryKeys = activatedKeys;
 				} finally {
@@ -89,7 +87,7 @@
 				this.state = 'input';
 			},
 			async onReset() {
-				await del(`bot/${this.bot.name}/GamesToRedeemInBackground`);
+				await this.$http.del(`bot/${this.bot.name}/GamesToRedeemInBackground`);
 				this.unusedKeys = {};
 				this.usedKeys = {};
 			}

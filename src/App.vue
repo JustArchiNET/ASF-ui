@@ -122,6 +122,10 @@
 		background: var(--color-background-dark);
 	}
 
+	a {
+		text-decoration: none;
+	}
+
 	.app {
 		width: 100%;
 		background: var(--color-background);

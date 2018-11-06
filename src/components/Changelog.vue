@@ -21,8 +21,7 @@
 </template>
 
 <script>
-	import { get } from '../utils/http';
-	import { timeDifference } from '../utils/time';
+	import { timeDifference } from '../utils/timeDifference';
 	import * as storage from '../utils/storage';
 	import { mapGetters } from 'vuex';
 
@@ -45,7 +44,7 @@
 		},
 		methods: {
 			async getReleases() {
-				return await get('WWW/GitHub/Releases');
+				return await this.$http.get('WWW/GitHub/Releases');
 			},
 			getTimeText({ releasedFor, publishDate }) {
 				if (releasedFor.days > 30) return this.$t('released-on', {

@@ -1,4 +1,4 @@
-import { get } from './http';
+import { get } from '../plugins/http';
 
 const cachedTypeDefinitions = new Map();
 const cachedStructureDefinitions = new Map();

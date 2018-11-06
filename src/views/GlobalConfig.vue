@@ -30,7 +30,6 @@
 	import ConfigEditor from '../components/ConfigEditor.vue';
 	import loadParameterDescriptions from '../utils/loadParameterDescriptions';
 
-	import { get, post } from '../utils/http';
 	import fetchConfigSchema from '../utils/fetchConfigSchema';
 
 	import { mapGetters } from 'vuex';
@@ -71,7 +70,7 @@
 				{ body: fields },
 				descriptions
 			] = await Promise.all([
-				get('ASF'),
+				this.$http.get('ASF'),
 				fetchConfigSchema('ArchiSteamFarm.GlobalConfig'),
 				loadParameterDescriptions(this.version)
 			]);
@@ -96,7 +95,7 @@
 				this.saving = true;
 
 				try {
-					await post('ASF', { GlobalConfig: this.model });
+					await this.$http.post('ASF', { GlobalConfig: this.model });
 					this.$info(this.$t('restart-initiated'));
 					await waitForRestart();
 					this.$success(this.$t('restart-complete'));

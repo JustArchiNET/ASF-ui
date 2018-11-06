@@ -15,9 +15,10 @@ export default [
 		meta: { noPasswordRequired: true }
 	},
 	{
-		path: '/page/ipc-configuration',
-		name: 'ipc-configuration',
-		component: () => import('../views/IPCConfiguration.vue')
+		path: '/page/welcome',
+		name: 'welcome',
+		component: () => import('../views/Welcome.vue'),
+		meta: { noPasswordRequired: true }
 	},
 	{
 		path: '/page/bots',

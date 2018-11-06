@@ -1,5 +1,5 @@
-import { get } from '../../utils/http';
-import { timeDifference } from '../../utils/time';
+import { get } from '../../plugins/http';
+import { timeDifference } from '../../utils/timeDifference';
 
 export const state = {
 	memoryUsage: 0,

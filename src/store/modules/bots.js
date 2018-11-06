@@ -1,4 +1,4 @@
-import { get } from '../../utils/http';
+import { get } from '../../plugins/http';
 import Vue from 'vue';
 
 class Bot {

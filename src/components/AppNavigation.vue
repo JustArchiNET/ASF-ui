@@ -11,7 +11,7 @@
 
 			<div class="navigation-category">
 				<navigation-category-title :name="$t('configuration')"></navigation-category-title>
-				<navigation-link name="IPC" icon="wrench" :to="{ name: 'ipc-configuration' }"></navigation-link>
+				<navigation-link :name="$t('setup')" icon="wrench" :to="{ name: 'setup' }"></navigation-link>
 				<navigation-link :name="$t('global-config')" icon="edit" :to="{ name: 'global-config' }"></navigation-link>
 			</div>
 
