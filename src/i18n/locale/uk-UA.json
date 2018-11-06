@@ -65,13 +65,13 @@
 	"language-translation-good": "Переклад на обрану мова, {locale}, майже закінчений на {percent}%!",
 	"language-translation-medium": "На обрану мову перекладено {percent}%!",
 	"language-translation-bad": "На обрану мову перекладено лише {percent}%!",
-	"farming-info": "",
-	"farming-info-games": "",
-	"farming-info-time": "",
-	"farming-info-cards": "",
-	"terminal-commands": "",
-	"terminal-help": "",
-	"terminal-available-commands": "",
-	"terminal-no-help": "",
-	"terminal-help-text": ""
+	"farming-info": "Інформація стосовно фарму",
+	"farming-info-games": "ігор залишилося",
+	"farming-info-time": "часу залишилося",
+	"farming-info-cards": "карток залишилося",
+	"terminal-commands": "Виводить доступні команди",
+	"terminal-help": "Виводить довідку",
+	"terminal-available-commands": "Доступні команди: {commands}",
+	"terminal-no-help": "Поки що немає довідки про команду {command}!",
+	"terminal-help-text": "Використання: help <Команда>, доступні команди: commands"
 }

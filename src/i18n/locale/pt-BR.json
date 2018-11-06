@@ -65,13 +65,13 @@
 	"language-translation-good": "Idioma selecionado: {locale}. O idioma está {percent}% traduzido!",
 	"language-translation-medium": "{percent}% do idioma selecionado está traduzido!",
 	"language-translation-bad": "Apenas {percent}% do idioma selecionado está traduzido!",
-	"farming-info": "",
-	"farming-info-games": "",
-	"farming-info-time": "",
-	"farming-info-cards": "",
-	"terminal-commands": "",
-	"terminal-help": "",
-	"terminal-available-commands": "",
-	"terminal-no-help": "",
-	"terminal-help-text": ""
+	"farming-info": "Informações de coleta",
+	"farming-info-games": "jogos restantes",
+	"farming-info-time": "tempo restante",
+	"farming-info-cards": "cartas restantes",
+	"terminal-commands": "Mostra os comandos disponíveis",
+	"terminal-help": "Mostra a ajuda",
+	"terminal-available-commands": "Comandos disponíveis: {commands}",
+	"terminal-no-help": "Ainda não há texto de ajuda para {command}!",
+	"terminal-help-text": "Uso: help <Command>, comandos disponíveis: commands"
 }
