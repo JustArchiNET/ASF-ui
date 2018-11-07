@@ -78,7 +78,7 @@
 				try {
 					const activatedKeys = await this.$http.post(`bot/${this.bot.name}/GamesToRedeemInBackground`, { GamesToRedeemInBackground: this.keys });
 					this.state = 'summary';
-					this.summaryKeys = activatedKeys;
+					this.summaryKeys = activatedKeys[this.bot.name];
 				} finally {
 					this.confirming = false;
 				}
