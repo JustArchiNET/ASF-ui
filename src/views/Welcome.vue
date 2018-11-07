@@ -14,17 +14,17 @@
 </template>
 
 <script>
-  import { set } from '../utils/storage';
+	import { set } from '../utils/storage';
 
 	export default {
-    name: 'welcome',
+    	name: 'welcome',
 		metaInfo() {
 			return {
 				title: this.$t('welcome')
 			};
 		},
 		created() {
-    	set('welcome', true);
+    		set('welcome', true);
 		}
-  };
+	};
 </script>
