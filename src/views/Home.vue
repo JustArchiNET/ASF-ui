@@ -15,7 +15,11 @@
 
 	export default {
 		name: 'home',
-		metaInfo: { title: 'Home' },
+		metaInfo() {
+			return {
+				title: this.$t('home')
+			};
+		},
 		components: { BotFarmingInfo, Changelog }
 	};
 </script>

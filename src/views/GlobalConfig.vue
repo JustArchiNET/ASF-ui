@@ -49,7 +49,11 @@
 
 	export default {
 		name: 'global-config',
-		metaInfo: { title: 'Global Config' },
+		metaInfo() {
+			return {
+				title: this.$t('global-config')
+			};
+		},
 		components: { ConfigEditor },
 		data() {
 			return {

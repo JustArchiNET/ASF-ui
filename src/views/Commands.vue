@@ -62,7 +62,11 @@
 
 	export default {
 		name: 'commands',
-		metaInfo: { title: 'Commands' },
+		metaInfo() {
+			return {
+				title: this.$t('commands')
+			};
+		},
 		components: {},
 		data() {
 			return {
