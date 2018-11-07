@@ -18,6 +18,11 @@
 
 	export default {
     name: 'welcome',
+		metaInfo() {
+			return {
+				title: this.$t('welcome')
+			};
+		},
 		created() {
     	set('welcome', true);
 		}

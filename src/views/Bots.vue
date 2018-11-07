@@ -24,7 +24,11 @@
 
 	export default {
 		name: 'bots',
-		metaInfo: { title: 'Bots' },
+		metaInfo() {
+			return {
+				title: this.$t('bots')
+			};
+		},
 		components: { BotFarmingInfo, BotCard },
 		computed: mapGetters({
 			bots: 'bots/bots'

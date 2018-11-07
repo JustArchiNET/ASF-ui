@@ -18,7 +18,11 @@
 
 	export default {
 		name: 'log',
-		metaInfo: { title: 'Log' },
+		metaInfo() {
+			return {
+				title: this.$t('log')
+			};
+		},
 		data() {
 			return {
 				log: []

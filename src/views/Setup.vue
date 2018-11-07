@@ -30,7 +30,11 @@
 
 	export default {
 		name: 'setup',
-		metaInfo: { title: 'Setup' },
+		metaInfo() {
+			return {
+				title: this.$t('setup')
+			};
+		},
 		components: {},
 		data() {
 			return {
