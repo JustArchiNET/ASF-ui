@@ -17,13 +17,9 @@
   import { set } from '../utils/storage';
 
 	export default {
-    name: 'Welcome',
+    name: 'welcome',
 		created() {
     	set('welcome', true);
 		}
   };
 </script>
-
-<style lang="scss">
-
-</style>
