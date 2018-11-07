@@ -17,6 +17,14 @@
 		return url.endsWith('/') ? url : url + '/';
 	}
 
+	function onError() {
+		if (!window.location.pathname.includes('/page')) window.location.pathname = `/page${window.location.pathname}`;
+
+		const p = document.createElement('p');
+		p.innerText = '404 - Not Found';
+		document.body.appendChild(p);
+	}
+
 	const lastPageIndex = window.location.href.lastIndexOf('/page/');
 
 	window.__BASE_URL__ = normalizeUrl(lastPageIndex >= 0 ? window.location.href.slice(0, lastPageIndex) : window.location.href);
@@ -24,6 +32,7 @@
 
 	const mainScript = document.createElement('script');
 	mainScript.setAttribute('src', `${__BASE_PATH__}scripts/main.bundle.js`);
+	mainScript.onerror = onError;
 	document.body.appendChild(mainScript);
 
 	document.querySelector('link[rel="shortcut icon"]').setAttribute('href', `${__BASE_PATH__}logo.png`);
