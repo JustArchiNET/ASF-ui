@@ -3,12 +3,6 @@
 		<input-label :label="label" :has-description="hasDescription"></input-label>
 
 		<div class="form-item__value">
-			<div class="input-option__items">
-				<button v-for="(keyValue, key) in value" class="button input-option__item" @click.prevent="removeElement(key)">
-					{{ key }} => {{ resolveValue(keyValue) }}
-				</button>
-			</div>
-
 			<div class="input-option__field input-option__field--three">
 				<input class="form-item__input" type="text" :id="`${field}-key`" v-model="elementKey" @keydown.enter="addElement" v-if="keyIsString">
 
@@ -19,6 +13,12 @@
 				</select>
 
 				<button class="button" @click.prevent="addElement">Add</button>
+			</div>
+
+			<div class="input-option__items">
+				<button v-for="(keyValue, key) in value" class="button input-option__item" @click.prevent="removeElement(key)">
+					{{ key }} => {{ resolveValue(keyValue) }}
+				</button>
 			</div>
 		</div>
 

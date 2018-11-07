@@ -3,12 +3,6 @@
 		<input-label :label="label" :has-description="hasDescription"></input-label>
 
 		<div class="form-item__value">
-			<div class="input-option__items">
-				<button v-for="i in 32" v-if="value & (1 << i)" class="button input-option__item" @click.prevent="removeFlag(1 << i)">
-					{{ resolveFlagName(1 << i) }}
-				</button>
-			</div>
-
 			<div class="input-option__field">
 				<select class="form-item__input" v-model="flagValue" :id="field">
 					<option v-for="(flagValue, name) in flags" :value="flagValue" v-show="flagValue === 0 || !((value & flagValue) === flagValue)">
@@ -16,6 +10,12 @@
 					</option>
 				</select>
 				<button class="button" @click.prevent="addFlag">Add</button>
+			</div>
+
+			<div class="input-option__items">
+				<button v-for="i in 32" v-if="value & (1 << i)" class="button input-option__item" @click.prevent="removeFlag(1 << i)">
+					{{ resolveFlagName(1 << i) }}
+				</button>
 			</div>
 		</div>
 

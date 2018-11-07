@@ -3,10 +3,6 @@
 		<input-label :label="label" :has-description="hasDescription"></input-label>
 
 		<div class="form-item__value">
-			<div class="input-option__items">
-				<button v-for="(item, index) in value" class="button input-option__item" @click.prevent="removeElement(index)">{{ resolveOption(item) }}</button>
-			</div>
-
 			<div class="input-option__field">
 				<select class="form-item__input" v-model="element" :id="field" :disabled="!availableEnumValues.length">
 					<option v-for="(enumValue, name) in enumValues" :value="enumValue" v-show="!value.includes(enumValue)">
@@ -16,6 +12,10 @@
 				</select>
 
 				<button class="button" @click.prevent="addElement">Add</button>
+			</div>
+
+			<div class="input-option__items">
+				<button v-for="(item, index) in value" class="button input-option__item" @click.prevent="removeElement(index)">{{ resolveOption(item) }}</button>
 			</div>
 		</div>
 
