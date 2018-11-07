@@ -73,5 +73,7 @@
 	"terminal-help": "Prints help",
 	"terminal-available-commands": "Available commands: {commands}",
 	"terminal-no-help": "There's no help text for {command} yet!",
-	"terminal-help-text": "Usage: help <Command>, available commands: commands"
+	"terminal-help-text": "Usage: help <Command>, available commands: commands",
+	"welcome": "Welcome",
+	"welcome-message": "Welcome to ASF-ui, standalone interface for ASF."
 }
