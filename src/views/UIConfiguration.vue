@@ -56,7 +56,7 @@
 		methods: {
 			save() {
 				if (this.defaultView) storage.set('settings:default-view', this.defaultView);
-				this.$success('Settings saved!');
+				this.$success(this.$t('settings-saved'));
 			}
 		}
 	};
