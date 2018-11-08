@@ -56,6 +56,7 @@
 		methods: {
 			save() {
 				if (this.defaultView) set('settings:default-view', this.defaultView);
+				this.$success('Settings saved!');
 			}
 		}
 	};
