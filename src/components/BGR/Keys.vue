@@ -12,9 +12,7 @@
 
 <script>
 	export default {
-		props: {
-			keys: Object
-		},
+		props: { keys: Object },
 		name: 'bgr-keys',
 		computed: {
 			noKeys() {
