@@ -15,6 +15,11 @@ export default [
 		meta: { noPasswordRequired: true }
 	},
 	{
+		path: '/page/ui-configuration',
+		name: 'ui-configuration',
+		component: () => import('../views/UIConfiguration.vue')
+	},
+	{
 		path: '/page/welcome',
 		name: 'welcome',
 		component: () => import('../views/Welcome.vue'),
