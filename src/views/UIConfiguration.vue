@@ -3,20 +3,7 @@
 		<div class="container container--small">
 			<h2 class="title">{{ $t('ui-configuration') }}</h2>
 
-			<config-category name="General">
-				<input-select :current-value="defaultView" @update="updateSettings" :schema="{
-					label: 'Default page',
-					defaultValue: 'home',
-					paramName: 'defaultView',
-					values: {
-						[$t('home')]: 'home',
-						[$t('commands')]: 'commands',
-						[$t('bots')]: 'bots',
-						[$t('log')]: 'log',
-						[$t('last-visited-page')]: '_last-visited-page'
-					}
-				}"></input-select>
-			</config-category>
+			<config-editor :fields="fields" :categories="categories" :model="model"></config-editor>
 
 			<div class="form-item">
 				<button class="button button--confirm" @click="save">{{ $t('save') }}</button>
@@ -26,9 +13,8 @@
 </template>
 
 <script>
-	import InputSelect from '../components/ConfigFields/InputEnum.vue';
-	import ConfigCategory from '../components/ConfigCategory.vue';
 	import { get, set } from '../utils/storage';
+	import ConfigEditor from '../components/ConfigEditor.vue';
 
 	export default {
 		name: 'ui-configuration',
@@ -37,16 +23,37 @@
 				title: this.$t('ui-configuration')
 			};
 		},
-		components: { InputSelect, ConfigCategory },
+		components: { ConfigEditor },
 		data() {
+			const categories = [
+				{ name: 'General', fields: ['Default page'] }
+			];
+
+			const fields = [
+				{
+					param: 'Default page',
+					paramName: 'defaultView',
+					type: 'enum',
+					defaultValue: 'home',
+					values: {
+						[this.$t('home')]: 'home',
+						[this.$t('commands')]: 'commands',
+						[this.$t('bots')]: 'bots',
+						[this.$t('log')]: 'log',
+						[this.$t('last-visited-page')]: '_last-visited-page'
+					}
+				}
+			];
+
 			return {
-				defaultView: get('settings:default-view')
+				fields,
+				categories,
+				model: {
+					defaultView: get('settings:default-view')
+				}
 			}
 		},
 		methods: {
-			updateSettings(value, field) {
-				this[field] = value;
-			},
 			save() {
 				if (this.defaultView) set('settings:default-view', this.defaultView);
 			}
