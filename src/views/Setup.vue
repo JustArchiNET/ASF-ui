@@ -3,9 +3,10 @@
 		<div class="container container--small">
 			<h2 class="title">{{ $t('setup') }}</h2>
 
-			<p class="status-text status-text--error" v-if="status === 'NOT_CONNECTED'">Unable to connect to ASF IPC server. Make sure ASF is running!</p>
-			<p class="status-text status-text--error" v-if="status === 'RATE_LIMITED'">Seems like you are rate limited, restart ASF or try again in a while!</p>
-			<p class="status-text" v-if="status === 'AUTHENTICATED'">Everything configured</p>
+			<p class="status-text status-text--error" v-if="status === 'NOT_CONNECTED'">{{ $t('setup-not-connected') }}</p>
+			<p class="status-text status-text--error" v-if="status === 'RATE_LIMITED'">{{ $t('setup-rate-limited') }}</p>
+			<p class="status-text" v-if="status === 'AUTHENTICATED'">{{ $t('setup-authenticated') }}</p>
+			<p class="status-text" v-if="status === 'UNAUTHORIZED'">{{ $t('setup-description') }}</p>
 
 			<div class="form-item" v-if="status === 'UNAUTHORIZED'">
 				<label for="password" class="form-item__label">{{ $t('password') }}</label>

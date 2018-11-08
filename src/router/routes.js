@@ -1,3 +1,4 @@
+import store from '../store';
 import { get } from '../utils/storage';
 
 let defaultView = get('settings:default-view', 'home');
@@ -17,7 +18,12 @@ export default [
 		path: '/page/setup',
 		name: 'setup',
 		component: () => import('../views/Setup.vue'),
-		meta: { noPasswordRequired: true }
+		meta: { noPasswordRequired: true },
+		async beforeEnter(to, from, next) {
+			const validated = await store.dispatch('auth/validate');
+			if (validated) return next({ name: 'home' });
+			return next();
+		}
 	},
 	{
 		path: '/page/ui-configuration',
