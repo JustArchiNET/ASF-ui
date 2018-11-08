@@ -18,8 +18,8 @@ for (const moduleName of Object.keys(modules)) {
 	}
 }
 
-store.watch((state, getters) => getters['auth/validPassword'], validPassword => {
-	if (validPassword) {
+store.watch((state, getters) => getters['auth/authenticated'], authenticated => {
+	if (authenticated) {
 		for (const moduleName of Object.keys(modules)) {
 			if (modules[moduleName].actions && modules[moduleName].actions.onAuth) {
 				store.dispatch(`${moduleName}/onAuth`);

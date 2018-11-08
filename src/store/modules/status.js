@@ -33,7 +33,7 @@ export const actions = {
 		await dispatch('updateASF');
 	},
 	updateASF: async ({ commit, rootGetters }) => {
-		if (!rootGetters['auth/validPassword']) return;
+		if (!rootGetters['auth/authenticated']) return;
 
 		try {
 			const response = await get('ASF');

@@ -84,7 +84,7 @@ export const actions = {
 		dispatch('updateBots');
 	},
 	updateBots: async ({ commit, rootGetters }) => {
-		if (!rootGetters['auth/validPassword']) return;
+		if (!rootGetters['auth/authenticated']) return;
 
 		try {
 			const response = await get('bot/ASF');

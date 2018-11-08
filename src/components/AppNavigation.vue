@@ -1,6 +1,6 @@
 <template>
 	<nav class="side-navigation">
-		<template v-if="validPassword">
+		<template v-if="authenticated">
 			<div class="navigation-category">
 				<navigation-category-title :name="$t('control')"></navigation-category-title>
 				<navigation-link :name="$t('home')" icon="home" :to="{ name: 'home' }"></navigation-link>
@@ -43,7 +43,7 @@
 		name: 'app-navigation',
 		components: { NavigationLink, NavigationCategoryTitle, NavigationStatistics, NavigationBots },
 		computed: mapGetters({
-			validPassword: 'auth/validPassword'
+			authenticated: 'auth/authenticated'
 		})
 	};
 </script>
