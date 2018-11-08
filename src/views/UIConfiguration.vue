@@ -11,7 +11,8 @@
 					values: {
 						[$t('home')]: 'home',
 						[$t('bots')]: 'bots',
-						[$t('commands')]: 'commands'
+						[$t('commands')]: 'commands',
+						[$t('log')]: 'log'
 					}
 				}"></input-select>
 			</config-category>
