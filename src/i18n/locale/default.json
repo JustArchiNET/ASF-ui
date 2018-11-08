@@ -80,4 +80,7 @@
 	"setup-not-connected": "Unable to connect to ASF IPC server. Make sure ASF is running!",
 	"setup-rate-limited": "Seems like you are rate limited, restart ASF or try again in a while!",
 	"last-visited-page": "Last visited page"
+	"success": "Success",
+	"error": "Error",
+	"info": "Info"
 }
