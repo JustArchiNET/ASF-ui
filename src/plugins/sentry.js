@@ -20,8 +20,8 @@ export default {
 			$sentry.reporting = true;
 			set('sentry:reporting', true);
 
+			// Report stored events
 			if ($sentry.storedEvents.length && $sentry.Sentry) {
-				console.log('Reporting events');
 				// Hacky hacky, but works, check code https://github.com/getsentry/sentry-javascript, don't count on docs :)
 				$sentry.storedEvents.forEach(event => $sentry.Sentry.getCurrentHub().getClient().getBackend().sendEvent(event));
 				$sentry.storedEvents.splice(0, $sentry.storedEvents.length);
