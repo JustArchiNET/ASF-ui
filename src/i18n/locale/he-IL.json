@@ -73,5 +73,7 @@
 	"terminal-help": "",
 	"terminal-available-commands": "",
 	"terminal-no-help": "",
-	"terminal-help-text": ""
+	"terminal-help-text": "",
+	"welcome": "",
+	"welcome-message": ""
 }
