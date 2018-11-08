@@ -3,10 +3,10 @@
 		<div class="footer__links">
 			<a class="footer__link" target="_blank" href="https://github.com/JustArchiNET/ArchiSteamFarm">GitHub</a>
 			<a class="footer__link" target="_blank" href="https://github.com/JustArchiNET/ArchiSteamFarm/wiki">{{ $t('wiki') }}</a>
-			<a class="footer__link" v-if="validPassword" target="_blank" :href="`https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${version}`">{{ $t('changelog') }}</a>
+			<a class="footer__link" v-if="authenticated" target="_blank" :href="`https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${version}`">{{ $t('changelog') }}</a>
 		</div>
 
-		<div class="footer__statistics" v-if="validPassword">
+		<div class="footer__statistics" v-if="authenticated">
 			<span class="footer__statistic"><b>{{ $t('version') }}</b> {{ version }} - {{ buildVariant }}</span>
 		</div>
 	</footer>
@@ -18,7 +18,7 @@
 	export default {
 		name: 'app-footer',
 		computed: mapGetters({
-			validPassword: 'auth/validPassword',
+			authenticated: 'auth/authenticated',
 			version: 'status/version',
 			buildVariant: 'status/buildVariant'
 		})

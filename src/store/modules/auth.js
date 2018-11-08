@@ -55,6 +55,6 @@ export const actions = {
 
 export const getters = {
 	password: state => state.password,
-	validPassword: state => state.status === STATUS.AUTHENTICATED,
+	authenticated: state => state.status === STATUS.AUTHENTICATED,
 	status: state => state.status
 };

@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import store from '../store';
-import { get } from '../utils/storage';
+import { get, set } from '../utils/storage';
 import VueMeta from 'vue-meta';
 
 Vue.use(VueRouter);
@@ -22,6 +22,10 @@ router.beforeEach(async (routeTo, routeFrom, next) => {
 	if (noPasswordRequired || await store.dispatch('auth/validate')) return next();
 
 	return next({ name: 'setup' });
+});
+
+router.afterEach((to, from) => {
+	set('last-visited-page', to.name);
 });
 
 export default router;

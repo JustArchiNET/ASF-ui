@@ -73,5 +73,7 @@
 	"terminal-help": "Выводит справку",
 	"terminal-available-commands": "Доступные команды: {commands}",
 	"terminal-no-help": "Справка для команды {command} пока отсутствует!",
-	"terminal-help-text": "Использование: help <Command>, доступные команды: commands"
+	"terminal-help-text": "Использование: help <Command>, доступные команды: commands",
+	"welcome": "Добро пожаловать",
+	"welcome-message": "Добро пожаловать в ASF-ui, автономный интерфейс для ASF."
 }
