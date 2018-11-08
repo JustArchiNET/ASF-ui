@@ -1,7 +1,11 @@
+import { get } from '../utils/storage';
+
+const defaultView = get('settings:default-view', 'home');
+
 export default [
 	{
 		path: '/',
-		redirect: { name: 'home' }
+		redirect: { name: defaultView }
 	},
 	{
 		path: '/page/home',
