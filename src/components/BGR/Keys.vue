@@ -24,13 +24,13 @@
 
 <style lang="scss">
 	.key {
-		background-color: #fff;
+		background-color: var(--color-background);
 	}
 	.key:nth-child(2n) {
-		background-color: #f6f8fa;
+		background-color:  var(--color-background-light);
 	}
 	.key__content {
-		border: 0.1em solid #dfe2e5;
+		border: 0.1em solid var(--color-background-light);
 		padding: 0.5em 1em;
 	}
 	.pull-left {
