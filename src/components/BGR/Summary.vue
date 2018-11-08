@@ -3,10 +3,7 @@
 		<h3 class="subtitle bgr__summary-title">{{ title }}</h3>
 
 		<div class="form-item">
-			<div class="bgr__keys">
-				<span class="bgr__key" v-if="noKeys"><strong>{{ $t('bgr-no-pairs-detected') }}</strong></span>
-				<span v-for="(name, key) in keys" class="key">{{ key }} - {{ name }}</span>
-			</div>
+			<bgr-keys :keys="keys"></bgr-keys>
 		</div>
 
 		<div class="form-item">
@@ -18,7 +15,10 @@
 </template>
 
 <script>
+	import BgrKeys from "./Keys.vue";
+
 	export default {
+		components: { BgrKeys },
 		props: {
 			keys: Object,
 			title: String
