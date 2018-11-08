@@ -24,7 +24,7 @@
 			};
 		},
 		created() {
-    		set('welcome', true);
+			set('welcome', true);
 		}
 	};
 </script>
