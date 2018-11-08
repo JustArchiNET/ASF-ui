@@ -26,7 +26,8 @@
 		components: { ConfigEditor },
 		data() {
 			const categories = [
-				{ name: 'General', fields: ['Default page'] }
+				{ name: 'General', fields: ['Default page'] },
+				{ name: 'Debug', fields: ['Logging', 'Reporting'] }
 			];
 
 			const fields = [
@@ -42,6 +43,18 @@
 						[this.$t('log')]: 'log',
 						[this.$t('last-visited-page')]: '_last-visited-page'
 					}
+				},
+				{
+					param: 'Logging',
+					paramName: 'sentryInstalled',
+					type: 'boolean',
+					defaultValue: true
+				},
+				{
+					param: 'Reporting',
+					paramName: 'sentryReporting',
+					type: 'boolean',
+					defaultValue: true
 				}
 			];
 
@@ -49,13 +62,17 @@
 				fields,
 				categories,
 				model: {
-					defaultView: get('settings:default-view')
+					defaultView: get('settings:default-view'),
+					sentryInstalled: !!this.$sentry.client,
+					sentryReporting: this.$sentry.reporting
 				}
 			}
 		},
 		methods: {
 			save() {
 				if (this.defaultView) set('settings:default-view', this.defaultView);
+				this.sentryInstalled ? this.$sentry.install() : this.$sentry.destroy();
+				this.sentryReporting ? this.$sentry.enableReporting() : this.$sentry.disableReporting();
 			}
 		}
 	};
