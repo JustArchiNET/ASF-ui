@@ -199,10 +199,14 @@
 				this.commandHistoryIndex = -1;
 				this.commandHistory.add(commandToExecute);
 
+				const response = { type: 'in', message: '...' };
+
 				this.log.push({ type: 'out', message: commandToExecute });
+				this.log.push(response);
+
 				try {
 					const result = await this.executeCommand(commandToExecute);
-					this.log.push({ type: 'in', message: result });
+					response.message = result.trim();
 				} catch (err) {
 					this.$error(err.message);
 				}
