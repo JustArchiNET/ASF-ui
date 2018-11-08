@@ -1,6 +1,7 @@
 import { get } from '../utils/storage';
 
-const defaultView = get('settings:default-view', 'home');
+let defaultView = get('settings:default-view', 'home');
+if (defaultView === '_last-visited-page') defaultView = get('last-visited-page', 'home');
 
 export default [
 	{

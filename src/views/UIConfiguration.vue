@@ -12,7 +12,8 @@
 						[$t('home')]: 'home',
 						[$t('bots')]: 'bots',
 						[$t('commands')]: 'commands',
-						[$t('log')]: 'log'
+						[$t('log')]: 'log',
+						[$t('last-visited-page')]: '_last-visited-page'
 					}
 				}"></input-select>
 			</config-category>
