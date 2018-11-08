@@ -46,11 +46,6 @@
 			extendedFields: Object
 		},
 		components: { ConfigCategory },
-		data() {
-			return {
-				windowWidth: 0
-			};
-		},
 		computed: {
 			uncategorizedFields() {
 				if (!this.categories) return this.fields;
@@ -137,16 +132,12 @@
 				return this.fields.filter(field => names.includes(field.param));
 			},
 			computeLabelWidth() {
-				if (Math.abs(window.innerWidth - this.windowWidth) > 10) {
-					this.$el.style.setProperty('--label-width', 'auto');
+				this.$el.style.setProperty('--label-width', 'auto');
 
-					this.$nextTick(() => {
-						const labelWidth = Math.max(...Array.from(this.$el.querySelectorAll('.form-item__label')).map(el => parseInt(getComputedStyle(el).width, 10))) + 10;
-						this.$el.style.setProperty('--label-width', labelWidth + 'px');
-					});
-				}
-
-				this.windowWidth = window.innerWidth;
+				this.$nextTick(() => {
+					const labelWidth = Math.max(...Array.from(this.$el.querySelectorAll('.form-item__label')).map(el => Math.ceil(parseFloat(getComputedStyle(el).width))));
+					this.$el.style.setProperty('--label-width', labelWidth + 'px');
+				});
 			}
 		},
 		mounted() {
