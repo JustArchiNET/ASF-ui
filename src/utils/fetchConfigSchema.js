@@ -1,4 +1,4 @@
-import { get } from '../plugins/http';
+import * as http from '../plugins/http';
 
 const cachedTypeDefinitions = new Map();
 const cachedStructureDefinitions = new Map();
@@ -14,7 +14,7 @@ function resolveSubtypes(type) {
 async function getStructureDefinition(type) {
 	if (cachedStructureDefinitions.has(type)) return cachedStructureDefinitions.get(type);
 
-	const structureDefinition = get(`structure/${encodeURIComponent(type)}`);
+	const structureDefinition = http.get(`structure/${encodeURIComponent(type)}`);
 	cachedStructureDefinitions.set(type, structureDefinition);
 
 	return structureDefinition;
@@ -23,7 +23,7 @@ async function getStructureDefinition(type) {
 async function getTypeDefinition(type) {
 	if (cachedTypeDefinitions.has(type)) return cachedTypeDefinitions.get(type);
 
-	const typeDefinition = get(`type/${encodeURIComponent(type)}`);
+	const typeDefinition = http.get(`type/${encodeURIComponent(type)}`);
 	cachedTypeDefinitions.set(type, typeDefinition);
 
 	return typeDefinition;
