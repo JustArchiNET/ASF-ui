@@ -1,7 +1,12 @@
+import { get } from '../utils/storage';
+
+let defaultView = get('settings:default-view', 'home');
+if (defaultView === '_last-visited-page') defaultView = get('last-visited-page', 'home');
+
 export default [
 	{
 		path: '/',
-		redirect: { name: 'home' }
+		redirect: { name: defaultView }
 	},
 	{
 		path: '/page/home',
@@ -13,6 +18,11 @@ export default [
 		name: 'setup',
 		component: () => import('../views/Setup.vue'),
 		meta: { noPasswordRequired: true }
+	},
+	{
+		path: '/page/ui-configuration',
+		name: 'ui-configuration',
+		component: () => import('../views/UIConfiguration.vue')
 	},
 	{
 		path: '/page/welcome',

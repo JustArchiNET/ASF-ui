@@ -5,7 +5,7 @@
 	"confirm": "Confirm",
 	"continue": "Continue",
 	"download-raw-config": "Download raw configuration file",
-	"ipc-configuration": "IPC Configuration",
+	"ui-configuration": "UI Configuration",
 	"password": "Password",
 	"log": "Log",
 	"setup": "Setup",
@@ -75,5 +75,6 @@
 	"terminal-no-help": "There's no help text for {command} yet!",
 	"terminal-help-text": "Usage: help <Command>, available commands: commands",
 	"welcome": "Welcome",
-	"welcome-message": "Welcome to ASF-ui, standalone interface for ASF."
+	"welcome-message": "Welcome to ASF-ui, standalone interface for ASF.",
+	"last-visited-page": "Last visited page"
 }
