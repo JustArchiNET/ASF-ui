@@ -1,8 +1,8 @@
 import store from '../store';
-import { get } from '../utils/storage';
+import * as storage from '../utils/storage';
 
-let defaultView = get('settings:default-view', 'home');
-if (defaultView === '_last-visited-page') defaultView = get('last-visited-page', 'home');
+let defaultView = storage.get('settings:default-view', 'home');
+if (defaultView === '_last-visited-page') defaultView = storage.get('last-visited-page', 'home');
 
 export default [
 	{

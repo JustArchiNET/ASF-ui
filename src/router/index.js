@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import store from '../store';
-import { get, set } from '../utils/storage';
+import * as storage from '../utils/storage';
 import VueMeta from 'vue-meta';
 
 Vue.use(VueRouter);
@@ -16,7 +16,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach(async (routeTo, routeFrom, next) => {
-	if (!get('welcome') && routeTo.name !== 'welcome') return next({ name: 'welcome' });
+	if (!storage.get('welcome') && routeTo.name !== 'welcome') return next({ name: 'welcome' });
 
 	const noPasswordRequired = routeTo.matched.every(route => route.meta.noPasswordRequired);
 	if (noPasswordRequired || await store.dispatch('auth/validate')) return next();
@@ -25,7 +25,7 @@ router.beforeEach(async (routeTo, routeFrom, next) => {
 });
 
 router.afterEach((to, from) => {
-	set('last-visited-page', to.name);
+	storage.set('last-visited-page', to.name);
 });
 
 export default router;

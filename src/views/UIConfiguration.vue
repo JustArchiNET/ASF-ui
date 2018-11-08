@@ -13,7 +13,7 @@
 </template>
 
 <script>
-	import { get, set } from '../utils/storage';
+	import * as storage from '../utils/storage';
 	import ConfigEditor from '../components/ConfigEditor.vue';
 
 	export default {
@@ -49,13 +49,13 @@
 				fields,
 				categories,
 				model: {
-					defaultView: get('settings:default-view')
+					defaultView: storage.get('settings:default-view')
 				}
 			}
 		},
 		methods: {
 			save() {
-				if (this.defaultView) set('settings:default-view', this.defaultView);
+				if (this.defaultView) storage.set('settings:default-view', this.defaultView);
 				this.$success('Settings saved!');
 			}
 		}
