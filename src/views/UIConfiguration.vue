@@ -10,8 +10,8 @@
 					paramName: 'defaultView',
 					values: {
 						[$t('home')]: 'home',
-						[$t('bots')]: 'bots',
 						[$t('commands')]: 'commands',
+						[$t('bots')]: 'bots',
 						[$t('log')]: 'log',
 						[$t('last-visited-page')]: '_last-visited-page'
 					}
@@ -19,7 +19,7 @@
 			</config-category>
 
 			<div class="form-item">
-				<button class="button button--confirm" @click="save">{{ $t('Save') }}</button>
+				<button class="button button--confirm" @click="save">{{ $t('save') }}</button>
 			</div>
 		</div>
 	</main>
