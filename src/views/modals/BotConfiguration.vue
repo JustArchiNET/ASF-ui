@@ -35,17 +35,6 @@
 	import loadParameterDescriptions from '../../utils/loadParameterDescriptions';
 	import prepareModelToDownload from '../../utils/prepareModelToDownload';
 
-	const categories = [
-		{ name: 'Basic', fields: ['Name', 'SteamLogin', 'SteamPassword', 'Enabled', 'IsBotAccount', 'Paused'] },
-		{ name: 'Security', fields: ['PasswordFormat', 'UseLoginKeys'] },
-		{ name: 'Access', fields: ['SteamUserPermissions', 'SteamParentalPIN'] },
-		{ name: 'Community', fields: ['HandleOfflineMessages'] },
-		{ name: 'Trade', fields: ['SteamTradeToken', 'TradingPreferences', 'LootableTypes', 'MatchableTypes', 'AcceptGifts', 'DismissInventoryNotifications'] },
-		{ name: 'Farming', fields: ['FarmingOrders', 'SendTradePeriod', 'AutoSteamSaleEvent', 'IdlePriorityQueueOnly', 'IdleRefundableGames', 'FarmOffline', 'SendOnFarmingFinished', 'ShutdownOnFarmingFinished'] },
-		{ name: 'Customization', fields: ['SteamMasterClanID', 'GamesPlayedWhileIdle', 'CustomGamePlayedWhileFarming', 'CustomGamePlayedWhileIdle'] },
-		{ name: 'Performance', fields: ['HoursUntilCardDrops'] }
-	];
-
 	const extendedFields = {
 		SteamLogin: { placeholder: '<keep unchanged>' },
 		SteamPassword: { placeholder: '<keep unchanged>' },
@@ -61,6 +50,17 @@
 			};
 		},
 		data() {
+			const categories = [
+				{ name: this.$t('basic'), fields: ['Name', 'SteamLogin', 'SteamPassword', 'Enabled', 'IsBotAccount', 'Paused'] },
+				{ name: this.$t('security'), fields: ['PasswordFormat', 'UseLoginKeys'] },
+				{ name: this.$t('access'), fields: ['SteamUserPermissions', 'SteamParentalPIN'] },
+				{ name: this.$t('community'), fields: ['HandleOfflineMessages'] },
+				{ name: this.$t('trade'), fields: ['SteamTradeToken', 'TradingPreferences', 'LootableTypes', 'MatchableTypes', 'AcceptGifts', 'DismissInventoryNotifications'] },
+				{ name: this.$t('farming'), fields: ['FarmingOrders', 'SendTradePeriod', 'AutoSteamSaleEvent', 'IdlePriorityQueueOnly', 'IdleRefundableGames', 'FarmOffline', 'SendOnFarmingFinished', 'ShutdownOnFarmingFinished'] },
+				{ name: this.$t('customization'), fields: ['SteamMasterClanID', 'GamesPlayedWhileIdle', 'CustomGamePlayedWhileFarming', 'CustomGamePlayedWhileIdle'] },
+				{ name: this.$t('performance'), fields: ['HoursUntilCardDrops'] }
+			];
+
 			return {
 				loading: true,
 				saving: false,
