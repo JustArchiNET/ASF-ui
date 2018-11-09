@@ -30,11 +30,6 @@
 	export default {
 		name: 'bot-bgr',
 		components: { BgrStatus, BgrInput, BgrCheck, BgrSummary },
-		metaInfo() {
-			return {
-				title: `BGR - ${this.$route.params.bot}`
-			};
-		},
 		data() {
 			return {
 				loading: true,
