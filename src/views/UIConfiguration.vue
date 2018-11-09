@@ -35,7 +35,7 @@
 		data() {
 			const categories = [
 				{ name: this.$t('general'), fields: [this.$t('default-page')] },
-        { name: this.$t('commands'), fields: [this.$t('timestamps')] },
+        		{ name: this.$t('commands'), fields: [this.$t('timestamps')] },
 				{ name: this.$t('debug'), fields: [this.$t('logging'), this.$t('reporting')] }
 			];
 
@@ -58,7 +58,8 @@
 					paramName: 'timestamps',
 					type: 'boolean',
 					description: this.$t('timestamps-description')
-         },
+				},
+				{
 					param: this.$t('logging'),
 					paramName: 'sentryInstalled',
 					type: 'boolean',
@@ -77,7 +78,7 @@
 				categories,
 				model: {
 					defaultView: storage.get('settings:default-view'),
-          timestamps: storage.get('settings:timestamps'),
+          			timestamps: storage.get('settings:timestamps'),
 					sentryInstalled: this.$sentry.installed,
 					sentryReporting: this.$sentry.reporting
 				},
