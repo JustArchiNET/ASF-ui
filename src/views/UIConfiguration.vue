@@ -76,7 +76,7 @@
 				fields,
 				categories,
 				model: {
-					defaultView: get('settings:default-view'),
+					defaultView: storage.get('settings:default-view'),
           timestamps: storage.get('settings:timestamps'),
 					sentryInstalled: this.$sentry.installed,
 					sentryReporting: this.$sentry.reporting
