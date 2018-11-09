@@ -44,11 +44,6 @@
 	export default {
 		name: 'bot-config',
 		components: { ConfigEditor },
-		metaInfo() {
-			return {
-				title: `Bot configuration - ${this.$route.params.bot}`
-			};
-		},
 		data() {
 			const categories = [
 				{ name: this.$t('basic'), fields: ['Name', 'SteamLogin', 'SteamPassword', 'Enabled', 'IsBotAccount', 'Paused'] },

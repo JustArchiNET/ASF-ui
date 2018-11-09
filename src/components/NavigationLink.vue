@@ -7,6 +7,7 @@
 
 <script>
 	export default {
+		name: 'navigation-link',
 		props: {
 			name: {
 				type: String,
@@ -19,8 +20,7 @@
 				type: String,
 				required: true
 			}
-		},
-		name: 'navigation-link'
+		}
 	};
 </script>
 

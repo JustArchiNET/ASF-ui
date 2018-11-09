@@ -33,11 +33,6 @@
 	export default {
 		name: 'bot-create',
 		components: { ConfigEditor },
-		metaInfo() {
-			return {
-				title: `Create new bot`
-			};
-		},
 		data() {
 			const categories = [
 				{ name: this.$t('basic'), fields: ['Name', 'SteamLogin', 'SteamPassword', 'Enabled', 'IsBotAccount', 'Paused'] },
