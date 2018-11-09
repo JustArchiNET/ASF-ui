@@ -55,7 +55,7 @@
 				},
 				{
 					param: this.$t('timestamps'),
-					paramName: 'timestamps',
+					paramName: 'showTimestamps',
 					type: 'boolean',
 					description: this.$t('timestamps-description')
 				},
@@ -78,7 +78,7 @@
 				categories,
 				model: {
 					defaultView: storage.get('settings:default-view'),
-          			timestamps: storage.get('settings:timestamps'),
+          			showTimestamps: storage.get('settings:timestamps'),
 					sentryInstalled: this.$sentry.installed,
 					sentryReporting: this.$sentry.reporting
 				},
@@ -96,7 +96,7 @@
 				if (model.defaultView) storage.set('settings:default-view', model.defaultView);
 				model.sentryInstalled ? this.$sentry.install() : this.$sentry.destroy();
 				model.sentryReporting ? this.$sentry.enableReporting() : this.$sentry.disableReporting();
-				storage.set('settings:timestamps', model.timestamps);
+				storage.set('settings:timestamps', model.showTimestamps);
 				this.$success(this.$t('settings-saved'));
 			},
 			copyStoredEvents() {

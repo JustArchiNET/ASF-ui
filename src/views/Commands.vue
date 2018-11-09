@@ -4,9 +4,9 @@
 
 		<div class="container">
 			<div class="terminal" @click="focusInput" ref="terminal">
-				<div class="terminal__message" v-for="{ type, message } in log">
+				<div class="terminal__message" v-for="{ type, timestamp, message } in log">
 					<span class="terminal__sign">{{ type === 'out' ? '>' : '<' }}</span>
-					<span class="terminal__text">{{ message }}</span>
+					<span class="terminal__text"> {{ timestamp }} {{ message }}</span>
 				</div>
 				<div class="terminal__input-wrapper">
 					<span class="terminal__sign">></span>
@@ -73,7 +73,9 @@
 				log: [],
 				commandHistory: new CommandsCache(20),
 				commandHistoryIndex: -1,
-				asfCommands: []
+				asfCommands: [],
+				timestamp: '',
+				showTimestamps: storage.get('settings:timestamps')
 			};
 		},
 		computed: {
@@ -198,9 +200,11 @@
 				this.commandHistoryIndex = -1;
 				this.commandHistory.add(commandToExecute);
 
-				const response = { type: 'in', message: '...' };
+				if (this.showTimestamps) this.timestamp = this.getTimestamp();
 
-				this.log.push({ type: 'out', message: commandToExecute });
+				const response = { type: 'in', timestamp: this.timestamp, message: '...' };
+
+				this.log.push({ type: 'out', timestamp: this.timestamp, message: commandToExecute });
 				this.log.push(response);
 
 				try {
@@ -280,6 +284,13 @@
 				}
 
 				return this.fetchCommands();
+			},
+			getTimestamp() {
+				let date = new Date();
+				let dt = ('0' + date.getHours()).slice(-2) + ':'
+						+ ('0' + date.getMinutes()).slice(-2) + ':'
+						+ ('0' + date.getSeconds()).slice(-2);
+				return '[' + dt + ']';
 			}
 		},
 		watch: {
