@@ -83,7 +83,7 @@
 	"settings-saved": "Settings saved!",
 	"general": "General",
 	"basic": "Basic",
-	"trade": "trade",
+	"trade": "Trade",
 	"customization": "Customization",
 	"remote-access": "Remote Access",
 	"connection": "Connection",
@@ -99,5 +99,12 @@
 	"default-page": "Default page",
 	"success": "Success",
 	"error": "Error",
-	"info": "Info"
+	"info": "Info",
+	"logging": "Logging",
+	"debug": "Debug",
+	"reporting": "Reporting",
+	"logging-description": "Install sentry plugin to prepare error logs.",
+	"reporting-description": "Automatically upload error reports. Logging needs to be enabled.",
+	"copy-log": "Copy log to clipboard",
+	"no-events": "No events logged"
 }
