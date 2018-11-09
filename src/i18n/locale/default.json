@@ -81,6 +81,8 @@
 	"setup-rate-limited": "Seems like you are rate limited, restart ASF or try again in a while!",
 	"last-visited-page": "Last visited page",
 	"settings-saved": "Settings saved!",
+	"general": "General",
+	"default-page": "Default page",
 	"success": "Success",
 	"error": "Error",
 	"info": "Info"

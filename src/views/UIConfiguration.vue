@@ -26,12 +26,12 @@
 		components: { ConfigEditor },
 		data() {
 			const categories = [
-				{ name: 'General', fields: ['Default page'] }
+				{ name: this.$t('general'), fields: [this.$t('default-page')] }
 			];
 
 			const fields = [
 				{
-					param: 'Default page',
+					param: this.$t('default-page'),
 					paramName: 'defaultView',
 					type: 'enum',
 					defaultValue: 'home',
@@ -55,7 +55,8 @@
 		},
 		methods: {
 			save() {
-				if (this.defaultView) storage.set('settings:default-view', this.defaultView);
+				const model = this.model;
+				if (model.defaultView) storage.set('settings:default-view', model.defaultView);
 				this.$success(this.$t('settings-saved'));
 			}
 		}
