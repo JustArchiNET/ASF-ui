@@ -70,7 +70,7 @@
 				fields,
 				categories,
 				model: {
-					defaultView: get('settings:default-view'),
+					defaultView: storage.get('settings:default-view'),
 					sentryInstalled: this.$sentry.installed,
 					sentryReporting: this.$sentry.reporting
 				},
@@ -85,7 +85,7 @@
 		methods: {
 			save() {
 				const model = this.model;
-				if (model.defaultView) set('settings:default-view', model.defaultView);
+				if (model.defaultView) storage.set('settings:default-view', model.defaultView);
 				model.sentryInstalled ? this.$sentry.install() : this.$sentry.destroy();
 				model.sentryReporting ? this.$sentry.enableReporting() : this.$sentry.disableReporting();
 				this.$success('Settings saved!');
