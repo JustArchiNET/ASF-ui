@@ -108,5 +108,6 @@
 	"logging-description": "Install sentry plugin to prepare error logs.",
 	"reporting-description": "Automatically upload error reports. Logging needs to be enabled.",
 	"copy-log": "Copy log to clipboard",
+	"log-copied": "Copied log to clipboard!",
 	"no-events": "No events logged"
 }
