@@ -40,7 +40,7 @@
 
 			const fields = [
 				{
-					param: 'Default page',
+					param: this.$t('default-page'),
 					paramName: 'defaultView',
 					type: 'enum',
 					defaultValue: 'home',
