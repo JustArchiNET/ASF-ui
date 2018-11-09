@@ -55,7 +55,7 @@
 
 		load() {
 			const commandHistory = storage.get('command-history');
-			if (commandHistory) this._cache = JSON.parse(commandHistory);
+			if (commandHistory) this._cache = commandHistory;
 			this.trim();
 		}
 	}
@@ -67,7 +67,6 @@
 				title: this.$t('commands')
 			};
 		},
-		components: {},
 		data() {
 			return {
 				command: '',
@@ -274,9 +273,9 @@
 				return commands;
 			},
 			async loadCommands() {
-				const cachedCommandsRaw = storage.get('cache:asf-commands');
-				if (cachedCommandsRaw) {
-					const { timestamp, commands } = JSON.parse(cachedCommandsRaw);
+				const commandsCache = storage.get('cache:asf-commands');
+				if (commandsCache) {
+					const { timestamp, commands } = commandsCache;
 					if (timestamp > Date.now() - 24 * 60 * 60 * 1000) return commands;
 				}
 

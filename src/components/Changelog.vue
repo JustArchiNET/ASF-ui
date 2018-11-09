@@ -65,9 +65,9 @@
 				return this.$t('released-now');
 			},
 			async loadReleases() {
-				const releasesRaw = storage.get('cache:releases');
-				if (releasesRaw) {
-					const { timestamp, releases, version } = JSON.parse(releasesRaw);
+				const releasesCache = storage.get('cache:releases');
+				if (releasesCache) {
+					const { timestamp, releases, version } = releasesCache;
 					if (version === this.version && timestamp > Date.now() - 24 * 60 * 60 * 1000) return releases;
 				}
 

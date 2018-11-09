@@ -20,7 +20,7 @@
 </template>
 
 <script>
-	import { get, set } from '../utils/storage';
+	import * as storage from '../utils/storage';
 	import ConfigEditor from '../components/ConfigEditor.vue';
 	import * as copy from 'copy-to-clipboard';
 
