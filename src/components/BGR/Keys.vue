@@ -32,6 +32,7 @@
 	.key__content {
 		border: 0.1em solid var(--color-background-light);
 		padding: 0.5em 1em;
+		font-weight: normal;
 	}
 	.pull-left {
 		text-align: left;
