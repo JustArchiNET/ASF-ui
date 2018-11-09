@@ -20,7 +20,7 @@ export const mutations = {
 
 		const timeDiff = Date.now() - state.startTime.getTime();
 		if (timeDiff < 0) {
-			state.uptime = this.$t('error');
+			state.uptime = 'Error';
 			return;
 		}
 
