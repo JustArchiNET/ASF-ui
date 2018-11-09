@@ -1,7 +1,13 @@
+import store from '../store';
+import * as storage from '../utils/storage';
+
+let defaultView = storage.get('settings:default-view', 'home');
+if (defaultView === '_last-visited-page') defaultView = storage.get('last-visited-page', 'home');
+
 export default [
 	{
 		path: '/',
-		redirect: { name: 'home' }
+		redirect: { name: defaultView }
 	},
 	{
 		path: '/page/home',
@@ -12,7 +18,17 @@ export default [
 		path: '/page/setup',
 		name: 'setup',
 		component: () => import('../views/Setup.vue'),
-		meta: { noPasswordRequired: true }
+		meta: { noPasswordRequired: true },
+		async beforeEnter(to, from, next) {
+			const validated = await store.dispatch('auth/validate');
+			if (validated) return next({ name: 'home' });
+			return next();
+		}
+	},
+	{
+		path: '/page/ui-configuration',
+		name: 'ui-configuration',
+		component: () => import('../views/UIConfiguration.vue')
 	},
 	{
 		path: '/page/welcome',

@@ -22,37 +22,37 @@ export const mutations = {
 
 export const actions = {
 	init: ({ commit }) => {
-		const smallNavigation = storage.get('small-navigation');
-		if (smallNavigation) commit('setSmallNavigation', JSON.parse(smallNavigation));
+		const smallNavigation = storage.get('layout:small-navigation');
+		if (typeof smallNavigation === 'boolean') commit('setSmallNavigation', smallNavigation);
 		else if (window.innerWidth < 700) commit('setSmallNavigation', true);
 
-		const theme = storage.get('theme');
+		const theme = storage.get('layout:theme');
 		if (theme) commit('changeTheme', theme);
 
-		const boxed = storage.get('boxed-layout');
-		if (boxed) commit('setBoxed', JSON.parse(boxed));
+		const boxed = storage.get('layout:boxed-layout');
+		if (typeof boxed === 'boolean') commit('setBoxed', boxed);
 
-		const darkMode = storage.get('dark-mode');
-		if (darkMode) commit('setDarkMode', JSON.parse(darkMode));
+		const darkMode = storage.get('layout:dark-mode');
+		if (typeof darkMode === 'boolean') commit('setDarkMode', darkMode);
 	},
 	toggleNavigation: ({ commit, getters }) => {
 		commit('toggleNavigation');
-		storage.set('small-navigation', JSON.parse(getters.smallNavigation));
+		storage.set('layout:small-navigation', JSON.parse(getters.smallNavigation));
 	},
 	toggleSideMenu: ({ commit }) => {
 		commit('toggleSideMenu');
 	},
 	changeTheme: ({ commit }, theme) => {
 		commit('changeTheme', theme);
-		storage.set('theme', theme);
+		storage.set('layout:theme', theme);
 	},
 	toggleBoxed: ({ commit, getters }) => {
 		commit('toggleBoxed');
-		storage.set('boxed-layout', JSON.parse(getters.boxed));
+		storage.set('layout:boxed-layout', JSON.parse(getters.boxed));
 	},
 	toggleDarkMode: ({ commit, getters }) => {
 		commit('toggleDarkMode');
-		storage.set('dark-mode', JSON.parse(getters.darkMode));
+		storage.set('layout:dark-mode', JSON.parse(getters.darkMode));
 	}
 };
 

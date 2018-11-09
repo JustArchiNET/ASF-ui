@@ -2,9 +2,9 @@ import fetchWiki from './fetchWiki';
 import * as storage from './storage';
 
 export default async function loadParameterDescriptions(version) {
-	const descriptionsCacheRaw = storage.get('cache:parameter-descriptions');
-	if (descriptionsCacheRaw) {
-		const { timestamp, descriptions } = JSON.parse(descriptionsCacheRaw);
+	const descriptionsCache = storage.get('cache:parameter-descriptions');
+	if (descriptionsCache) {
+		const { timestamp, descriptions } = descriptionsCache;
 		if (timestamp > Date.now() - 24 * 60 * 60 * 1000) return descriptions;
 	}
 

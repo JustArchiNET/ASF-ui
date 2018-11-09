@@ -5,7 +5,7 @@
 	"confirm": "Confirm",
 	"continue": "Continue",
 	"download-raw-config": "Download raw configuration file",
-	"ipc-configuration": "IPC Configuration",
+	"ui-configuration": "UI Configuration",
 	"password": "Password",
 	"log": "Log",
 	"setup": "Setup",
@@ -77,5 +77,13 @@
 	"welcome": "Welcome",
 	"welcome-message": "Welcome to ASF-ui, standalone interface for ASF.",
 	"copy-keys": "Copy keys to clipboard",
-	"keys-copied": "Copied keys to clipboard!"
+	"keys-copied": "Copied keys to clipboard!",
+	"setup-authenticated": "Everything configured",
+	"setup-not-connected": "Unable to connect to ASF IPC server. Make sure ASF is running!",
+	"setup-rate-limited": "Seems like you are rate limited, restart ASF or try again in a while!",
+	"last-visited-page": "Last visited page",
+	"settings-saved": "Settings saved!",
+	"success": "Success",
+	"error": "Error",
+	"info": "Info"
 }

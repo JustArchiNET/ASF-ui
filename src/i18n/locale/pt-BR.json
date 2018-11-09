@@ -73,5 +73,7 @@
 	"terminal-help": "Mostra a ajuda",
 	"terminal-available-commands": "Comandos disponíveis: {commands}",
 	"terminal-no-help": "Ainda não há texto de ajuda para {command}!",
-	"terminal-help-text": "Uso: help <Command>, comandos disponíveis: commands"
+	"terminal-help-text": "Uso: help <Command>, comandos disponíveis: commands",
+	"welcome": "",
+	"welcome-message": ""
 }

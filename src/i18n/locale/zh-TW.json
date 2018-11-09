@@ -73,5 +73,7 @@
 	"terminal-help": "顯示說明",
 	"terminal-available-commands": "可用的指令：{commands}",
 	"terminal-no-help": "對於 {command} 還沒有説明文本!",
-	"terminal-help-text": "用法: help <Command> ，可用指令: 指令"
+	"terminal-help-text": "用法: help <Command> ，可用指令: 指令",
+	"welcome": "",
+	"welcome-message": ""
 }

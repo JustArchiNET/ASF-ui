@@ -1,4 +1,4 @@
-import { get } from '../plugins/http';
+import * as http from '../plugins/http';
 
 export const STATUS = {
 	NOT_CONNECTED: 'NOT_CONNECTED',
@@ -8,7 +8,7 @@ export const STATUS = {
 };
 
 export async function getStatus() {
-	return get('ASF')
+	return http.get('ASF')
 		.then(response => STATUS.AUTHENTICATED)
 		.catch(err => {
 			if (err.response.status === 401) return STATUS.UNAUTHORIZED;

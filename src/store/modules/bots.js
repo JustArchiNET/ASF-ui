@@ -1,4 +1,4 @@
-import { get } from '../../plugins/http';
+import * as http from '../../plugins/http';
 import Vue from 'vue';
 
 class Bot {
@@ -84,10 +84,10 @@ export const actions = {
 		dispatch('updateBots');
 	},
 	updateBots: async ({ commit, rootGetters }) => {
-		if (!rootGetters['auth/validPassword']) return;
+		if (!rootGetters['auth/authenticated']) return;
 
 		try {
-			const response = await get('bot/ASF');
+			const response = await http.get('bot/ASF');
 			commit('setBots', Object.values(response).map(data => new Bot(data)).reduce((bots, bot) => (bots[bot.name] = bot, bots), {}));
 		} catch (err) {}
 	},
@@ -95,7 +95,7 @@ export const actions = {
 		commit('updateBot', bot);
 
 		try {
-			const [response] = await get(`bot/${bot.name}`);
+			const [response] = await http.get(`bot/${bot.name}`);
 			commit('setBot', new Bot(response[bot.name]));
 		} catch (err) {}
 	}

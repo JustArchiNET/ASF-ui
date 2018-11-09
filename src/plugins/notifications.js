@@ -12,15 +12,15 @@ export default {
 		});
 
 		Vue.prototype.$error = function notifyError(message) {
-			Vue.prototype.$snotify.error(message, 'Error');
+			Vue.prototype.$snotify.error(message, this.$t('error'));
 		};
 
 		Vue.prototype.$success = function notifySuccess(message) {
-			Vue.prototype.$snotify.success(message, 'Success');
+			Vue.prototype.$snotify.success(message, this.$t('success'));
 		};
 
 		Vue.prototype.$info = function notifyInfo(message) {
-			Vue.prototype.$snotify.info(message, 'Info');
+			Vue.prototype.$snotify.info(message, this.$t('info'));
 		};
 	}
 }
