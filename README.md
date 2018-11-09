@@ -1,4 +1,6 @@
-![](https://raw.githubusercontent.com/JustArchiNET/ASF-ui/master/preview.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/JustArchiNET/ASF-ui/master/preview.png">
+</p>
 
 # ASF-ui
 
