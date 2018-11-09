@@ -95,6 +95,7 @@
 	"farming": "Farming",
 	"advanced": "Advanced",
   "name-description": "<code>string</code> type with no default value. This property is required and defines bot name - it is used for identification purpose inside ASF only. Must be unique for each bot.",
+	"add": "Add",
 	"default-page": "Default page",
 	"success": "Success",
 	"error": "Error",
