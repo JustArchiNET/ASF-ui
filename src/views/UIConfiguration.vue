@@ -26,7 +26,8 @@
 		components: { ConfigEditor },
 		data() {
 			const categories = [
-				{ name: 'General', fields: ['Default page'] }
+				{ name: 'General', fields: ['Default page'] },
+				{ name: this.$t('commands'), fields: [this.$t('timestamps')] }
 			];
 
 			const fields = [
@@ -42,6 +43,12 @@
 						[this.$t('log')]: 'log',
 						[this.$t('last-visited-page')]: '_last-visited-page'
 					}
+				},
+				{
+					param: this.$t('timestamps'),
+					paramName: 'timestamps',
+					type: 'boolean',
+					description: this.$t('timestamps-description')
 				}
 			];
 
@@ -49,13 +56,16 @@
 				fields,
 				categories,
 				model: {
-					defaultView: storage.get('settings:default-view')
+					defaultView: storage.get('settings:default-view'),
+					timestamps: storage.get('settings:timestamps')
 				}
 			}
 		},
 		methods: {
 			save() {
-				if (this.defaultView) storage.set('settings:default-view', this.defaultView);
+				const model = this.model;
+				if (model.defaultView) storage.set('settings:default-view', model.defaultView);
+				storage.set('settings:timestamps', model.timestamps);
 				this.$success(this.$t('settings-saved'));
 			}
 		}
