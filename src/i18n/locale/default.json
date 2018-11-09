@@ -76,6 +76,8 @@
 	"terminal-help-text": "Usage: help <Command>, available commands: commands",
 	"welcome": "Welcome",
 	"welcome-message": "Welcome to ASF-ui, standalone interface for ASF.",
+	"copy-keys": "Copy keys to clipboard",
+	"keys-copied": "Copied keys to clipboard!",
 	"setup-authenticated": "Everything configured",
 	"setup-not-connected": "Unable to connect to ASF IPC server. Make sure ASF is running!",
 	"setup-rate-limited": "Seems like you are rate limited, restart ASF or try again in a while!",
