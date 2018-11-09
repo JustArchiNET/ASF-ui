@@ -23,8 +23,8 @@
 	import { mapActions } from 'vuex';
 
 	export default {
-		components: { NavigationBrand, NavigationLanguageSwitch },
 		name: 'app-header',
+		components: { NavigationBrand, NavigationLanguageSwitch },
 		methods: {
 			...mapActions({
 				toggleNavigation: 'layout/toggleNavigation',

@@ -9,7 +9,7 @@
 						{{ name }}
 					</option>
 				</select>
-				<button class="button" @click.prevent="addFlag">Add</button>
+				<button class="button" @click.prevent="addFlag">{{ $t('add') }}</button>
 			</div>
 
 			<div class="input-option__items">

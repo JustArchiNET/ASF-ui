@@ -30,26 +30,21 @@
 	import prepareModelToDownload from '../../utils/prepareModelToDownload';
 	import delay from '../../utils/delay';
 
-	const categories = [
-		{ name: 'Basic', fields: ['Name', 'SteamLogin', 'SteamPassword', 'Enabled', 'IsBotAccount', 'Paused'] },
-		{ name: 'Security', fields: ['PasswordFormat', 'UseLoginKeys'] },
-		{ name: 'Access', fields: ['SteamUserPermissions', 'SteamParentalPIN'] },
-		{ name: 'Community', fields: ['HandleOfflineMessages'] },
-		{ name: 'Trade', fields: ['SteamTradeToken', 'TradingPreferences', 'LootableTypes', 'MatchableTypes', 'AcceptGifts', 'DismissInventoryNotifications'] },
-		{ name: 'Farming', fields: ['FarmingOrders', 'SendTradePeriod', 'AutoSteamSaleEvent', 'IdlePriorityQueueOnly', 'IdleRefundableGames', 'FarmOffline', 'SendOnFarmingFinished', 'ShutdownOnFarmingFinished'] },
-		{ name: 'Customization', fields: ['SteamMasterClanID', 'GamesPlayedWhileIdle', 'CustomGamePlayedWhileFarming', 'CustomGamePlayedWhileIdle'] },
-		{ name: 'Performance', fields: ['HoursUntilCardDrops'] }
-	];
-
 	export default {
 		name: 'bot-create',
 		components: { ConfigEditor },
-		metaInfo() {
-			return {
-				title: `Create new bot`
-			};
-		},
 		data() {
+			const categories = [
+				{ name: this.$t('basic'), fields: ['Name', 'SteamLogin', 'SteamPassword', 'Enabled', 'IsBotAccount', 'Paused'] },
+				{ name: this.$t('security'), fields: ['PasswordFormat', 'UseLoginKeys'] },
+				{ name: this.$t('access'), fields: ['SteamUserPermissions', 'SteamParentalPIN'] },
+				{ name: this.$t('community'), fields: ['HandleOfflineMessages'] },
+				{ name: this.$t('trade'), fields: ['SteamTradeToken', 'TradingPreferences', 'LootableTypes', 'MatchableTypes', 'AcceptGifts', 'DismissInventoryNotifications'] },
+				{ name: this.$t('farming'), fields: ['FarmingOrders', 'SendTradePeriod', 'AutoSteamSaleEvent', 'IdlePriorityQueueOnly', 'IdleRefundableGames', 'FarmOffline', 'SendOnFarmingFinished', 'ShutdownOnFarmingFinished'] },
+				{ name: this.$t('customization'), fields: ['SteamMasterClanID', 'GamesPlayedWhileIdle', 'CustomGamePlayedWhileFarming', 'CustomGamePlayedWhileIdle'] },
+				{ name: this.$t('performance'), fields: ['HoursUntilCardDrops'] }
+			];
+
 			return {
 				loading: true,
 				creating: false,
@@ -79,7 +74,7 @@
 						param: 'Name',
 						paramName: 'Name',
 						type: 'string',
-						description: '<code>string</code> type with no default value. This property is required and defines bot name - it is used for identification purpose inside ASF only. Must be unique for each bot.'
+						description: this.$t('name-description')
 					},
 					...Object.keys(fields).map(key => ({
 						description: descriptions[key],

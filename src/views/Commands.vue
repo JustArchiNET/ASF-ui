@@ -67,7 +67,6 @@
 				title: this.$t('commands')
 			};
 		},
-		components: {},
 		data() {
 			return {
 				command: '',

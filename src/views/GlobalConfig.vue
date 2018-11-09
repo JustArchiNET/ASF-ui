@@ -36,17 +36,6 @@
 	import prepareModelToDownload from '../utils/prepareModelToDownload';
 	import waitForRestart from '../utils/waitForRestart';
 
-	const categories = [
-		{ name: 'Basic', fields: ['SteamOwnerID'] },
-		{ name: 'Trade', fields: ['MaxTradeHoldDuration'] },
-		{ name: 'Customization', fields: ['AutoRestart', 'Blacklist', 'CommandPrefix', 'CurrentCulture', 'Statistics', 'SteamMessagePrefix'] },
-		{ name: 'Remote Access', fields: ['Headless', 'IPC', 'IPCPassword'] },
-		{ name: 'Connection', fields: ['ConnectionTimeout', 'SteamProtocols', 'WebProxy', 'WebProxyPassword', 'WebProxyUsername'] },
-		{ name: 'Performance', fields: ['ConfirmationsLimiterDelay', 'FarmingDelay', 'GiftsLimiterDelay', 'IdleFarmingPeriod', 'InventoryLimiterDelay', 'LoginLimiterDelay', 'MaxFarmingTime', 'OptimizationMode', 'WebLimiterDelay'] },
-		{ name: 'Updates', fields: ['UpdateChannel', 'UpdatePeriod'] },
-		{ name: 'Advanced', fields: ['Debug'] }
-	];
-
 	export default {
 		name: 'global-config',
 		metaInfo() {
@@ -56,6 +45,17 @@
 		},
 		components: { ConfigEditor },
 		data() {
+			const categories = [
+				{ name: this.$t('basic'), fields: ['SteamOwnerID'] },
+				{ name: this.$t('trade'), fields: ['MaxTradeHoldDuration'] },
+				{ name: this.$t('customization'), fields: ['AutoRestart', 'Blacklist', 'CommandPrefix', 'CurrentCulture', 'Statistics', 'SteamMessagePrefix'] },
+				{ name: this.$t('remote-access'), fields: ['Headless', 'IPC', 'IPCPassword'] },
+				{ name: this.$t('connection'), fields: ['ConnectionTimeout', 'SteamProtocols', 'WebProxy', 'WebProxyPassword', 'WebProxyUsername'] },
+				{ name: this.$t('performance'), fields: ['ConfirmationsLimiterDelay', 'FarmingDelay', 'GiftsLimiterDelay', 'IdleFarmingPeriod', 'InventoryLimiterDelay', 'LoginLimiterDelay', 'MaxFarmingTime', 'OptimizationMode', 'WebLimiterDelay'] },
+				{ name: this.$t('updates'), fields: ['UpdateChannel', 'UpdatePeriod'] },
+				{ name: this.$t('advanced'), fields: ['Debug'] }
+			];
+
 			return {
 				loading: true,
 				saving: false,

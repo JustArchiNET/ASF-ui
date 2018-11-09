@@ -12,7 +12,7 @@
 					</option>
 				</select>
 
-				<button class="button" @click.prevent="addElement">Add</button>
+				<button class="button" @click.prevent="addElement">{{ $t('add') }}</button>
 			</div>
 
 			<div class="input-option__items">

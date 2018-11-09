@@ -6,7 +6,14 @@
 			<config-editor :fields="fields" :categories="categories" :model="model"></config-editor>
 
 			<div class="form-item">
-				<button class="button button--confirm" @click="save">{{ $t('save') }}</button>
+				<div class="form-item__buttons">
+					<button class="button button--confirm" @click="save">{{ $t('save') }}</button>
+
+					<template v-if="model.sentryInstalled && !model.sentryReporting || storedEventsCount">
+						<button class="button button--disabled pull-right" v-if="!storedEventsCount">No events logged</button>
+						<button class="button button--confirm pull-right" @click="copyStoredEvents" v-else>Copy log to clipboard</button>
+					</template>
+				</div>
 			</div>
 		</div>
 	</main>
@@ -15,6 +22,7 @@
 <script>
 	import * as storage from '../utils/storage';
 	import ConfigEditor from '../components/ConfigEditor.vue';
+	import * as copy from 'copy-to-clipboard';
 
 	export default {
 		name: 'ui-configuration',
@@ -27,12 +35,13 @@
 		data() {
 			const categories = [
 				{ name: 'General', fields: ['Default page'] },
-				{ name: this.$t('commands'), fields: [this.$t('timestamps')] }
+				{ name: this.$t('commands'), fields: [this.$t('timestamps')] },
+				{ name: 'Debug', fields: ['Logging', 'Reporting'] }
 			];
 
 			const fields = [
 				{
-					param: 'Default page',
+					param: this.$t('default-page'),
 					paramName: 'defaultView',
 					type: 'enum',
 					defaultValue: 'home',
@@ -49,6 +58,17 @@
 					paramName: 'timestamps',
 					type: 'boolean',
 					description: this.$t('timestamps-description')
+         }
+					param: 'Logging',
+					paramName: 'sentryInstalled',
+					type: 'boolean',
+					description: 'Install sentry plugin to prepare error logs.'
+				},
+				{
+					param: 'Reporting',
+					paramName: 'sentryReporting',
+					type: 'boolean',
+					description: 'Automatically upload error reports. Logging needs to be enabled.'
 				}
 			];
 
@@ -56,17 +76,30 @@
 				fields,
 				categories,
 				model: {
-					defaultView: storage.get('settings:default-view'),
-					timestamps: storage.get('settings:timestamps')
-				}
+					defaultView: get('settings:default-view'),
+          timestamps: storage.get('settings:timestamps'),
+					sentryInstalled: this.$sentry.installed,
+					sentryReporting: this.$sentry.reporting
+				},
+				storedEvents: this.$sentry.storedEvents
+			}
+		},
+		computed: {
+			storedEventsCount() {
+				return this.storedEvents.length;
 			}
 		},
 		methods: {
 			save() {
 				const model = this.model;
 				if (model.defaultView) storage.set('settings:default-view', model.defaultView);
+				model.sentryInstalled ? this.$sentry.install() : this.$sentry.destroy();
+				model.sentryReporting ? this.$sentry.enableReporting() : this.$sentry.disableReporting();
 				storage.set('settings:timestamps', model.timestamps);
 				this.$success(this.$t('settings-saved'));
+			},
+			copyStoredEvents() {
+				copy(JSON.stringify(this.storedEvents));
 			}
 		}
 	};
