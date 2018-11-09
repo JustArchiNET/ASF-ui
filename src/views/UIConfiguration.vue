@@ -10,8 +10,8 @@
 					<button class="button button--confirm" @click="save">{{ $t('save') }}</button>
 
 					<template v-if="model.sentryInstalled && !model.sentryReporting || storedEventsCount">
-						<button class="button button--disabled pull-right" v-if="!storedEventsCount">No events logged</button>
-						<button class="button button--confirm pull-right" @click="copyStoredEvents" v-else>Copy log to clipboard</button>
+						<button class="button button--disabled pull-right" v-if="!storedEventsCount">{{ $t('no-events') }}</button>
+						<button class="button button--confirm pull-right" @click="copyStoredEvents" v-else>{{ $t('copy-log') }}</button>
 					</template>
 				</div>
 			</div>
@@ -34,9 +34,9 @@
 		components: { ConfigEditor },
 		data() {
 			const categories = [
-				{ name: 'General', fields: ['Default page'] },
-				{ name: this.$t('commands'), fields: [this.$t('timestamps')] },
-				{ name: 'Debug', fields: ['Logging', 'Reporting'] }
+				{ name: this.$t('general'), fields: [this.$t('default-page')] },
+        { name: this.$t('commands'), fields: [this.$t('timestamps')] },
+				{ name: this.$t('debug'), fields: [this.$t('logging'), this.$t('reporting')] }
 			];
 
 			const fields = [
@@ -58,17 +58,17 @@
 					paramName: 'timestamps',
 					type: 'boolean',
 					description: this.$t('timestamps-description')
-         }
-					param: 'Logging',
+         },
+					param: this.$t('logging'),
 					paramName: 'sentryInstalled',
 					type: 'boolean',
-					description: 'Install sentry plugin to prepare error logs.'
+					description: this.$t('logging-description')
 				},
 				{
-					param: 'Reporting',
+					param: this.$t('reporting'),
 					paramName: 'sentryReporting',
 					type: 'boolean',
-					description: 'Automatically upload error reports. Logging needs to be enabled.'
+					description: this.$t('reporting-description')
 				}
 			];
 

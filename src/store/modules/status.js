@@ -18,9 +18,20 @@ export const mutations = {
 	calculateUptime: (state) => {
 		if (!state.startTime) return;
 
+		const timeDiff = Date.now() - state.startTime.getTime();
+		if (timeDiff < 0) {
+			state.uptime = 'Error';
+			return;
+		}
+
 		const uptime = timeDifference(state.startTime.getTime(), Date.now());
 
-		state.uptime = `${uptime.days > 0 ? uptime.days + 'd ' : ''}${uptime.hours > 0 ? uptime.hours + 'h ' : ''}${(uptime.minutes + 'm ').padStart(4, '0')}${(uptime.seconds + 's').padStart(3, '0')}`;
+		let uptimeString = uptime.days > 0 ? uptime.days + 'd ' : '';
+		uptimeString += uptime.hours > 0 ? uptime.hours + 'h ' : '';
+		uptimeString += (uptime.minutes + 'm ').padStart(4, '0');
+		uptimeString += (uptime.seconds + 's').padStart(3, '0');
+
+		state.uptime = uptimeString;
 	}
 };
 
