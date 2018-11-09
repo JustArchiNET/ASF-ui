@@ -6,13 +6,13 @@
 
 <script>
 	export default {
+		name: 'navigation-category__title',
 		props: {
 			name: {
 				type: String,
 				required: true
 			}
-		},
-		name: 'navigation-category__title'
+		}
 	};
 </script>
 

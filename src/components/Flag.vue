@@ -6,7 +6,7 @@
 	const defaultImage = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAADCAYAAABbNsX4AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAYSURBVBhXY6yvr//PgAaYoDQKwCLIwAAAlooCgtdBJB0AAAAASUVORK5CYII=';
 
 	export default {
-		name: 'Flag',
+		name: 'flag',
 		props: {
 			country: String
 		},

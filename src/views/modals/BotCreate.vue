@@ -44,11 +44,6 @@
 	export default {
 		name: 'bot-create',
 		components: { ConfigEditor },
-		metaInfo() {
-			return {
-				title: `Create new bot`
-			};
-		},
 		data() {
 			return {
 				loading: true,

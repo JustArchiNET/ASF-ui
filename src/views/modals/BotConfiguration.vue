@@ -55,11 +55,6 @@
 	export default {
 		name: 'bot-config',
 		components: { ConfigEditor },
-		metaInfo() {
-			return {
-				title: `Bot configuration - ${this.$route.params.bot}`
-			};
-		},
 		data() {
 			return {
 				loading: true,

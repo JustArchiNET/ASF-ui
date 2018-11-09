@@ -36,7 +36,6 @@
 				title: this.$t('setup')
 			};
 		},
-		components: {},
 		data() {
 			return {
 				password: this.$store.getters['auth/password'],
