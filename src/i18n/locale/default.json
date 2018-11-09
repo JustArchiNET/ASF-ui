@@ -75,5 +75,7 @@
 	"terminal-no-help": "There's no help text for {command} yet!",
 	"terminal-help-text": "Usage: help <Command>, available commands: commands",
 	"welcome": "Welcome",
-	"welcome-message": "Welcome to ASF-ui, standalone interface for ASF."
+	"welcome-message": "Welcome to ASF-ui, standalone interface for ASF.",
+	"copy-keys": "Copy keys to clipboard",
+	"keys-copied": "Copied keys to clipboard!"
 }

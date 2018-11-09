@@ -8,6 +8,7 @@
 
 		<div class="form-item">
 			<div class="form-item__buttons form-item__buttons--center">
+				<button class="button button--confirm" v-if="!noKeys" @click="copyKeys">{{ $t('copy-keys') }}</button>
 				<button class="button button--confirm" @click="$emit('back')" :key="'back'">{{ $t('back') }}</button>
 			</div>
 		</div>
@@ -16,6 +17,7 @@
 
 <script>
 	import BgrKeys from "./Keys.vue";
+	import * as copy from 'copy-to-clipboard';
 
 	export default {
 		components: { BgrKeys },
@@ -27,6 +29,20 @@
 		computed: {
 			noKeys() {
 				return Object.keys(this.keys).length === 0;
+			}
+		},
+		methods: {
+			copyKeys() {
+				let keys = "";
+
+				for (let key in this.keys) {
+					if (this.keys.hasOwnProperty(key)) {
+						keys += this.keys[key] + '\t' + key + '\n'
+					}
+				}
+
+				copy(keys);
+				this.$info(this.$t('keys-copied'));
 			}
 		}
 	};
