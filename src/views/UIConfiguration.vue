@@ -92,6 +92,7 @@
 			},
 			copyStoredEvents() {
 				copy(JSON.stringify(this.storedEvents));
+				this.$info(this.$t('log-copied'));
 			}
 		}
 	};
