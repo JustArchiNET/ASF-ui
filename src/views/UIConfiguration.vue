@@ -35,7 +35,7 @@
 		data() {
 			const categories = [
 				{ name: this.$t('general'), fields: [this.$t('default-page')] },
-        		{ name: this.$t('commands'), fields: [this.$t('timestamps')] },
+				{ name: this.$t('commands'), fields: [this.$t('timestamps')] },
 				{ name: this.$t('debug'), fields: [this.$t('logging'), this.$t('reporting')] }
 			];
 
