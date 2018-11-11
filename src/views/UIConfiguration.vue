@@ -108,7 +108,7 @@
 			save() {
 				const model = this.model;
 				if (model.defaultView) storage.set('settings:default-view', model.defaultView);
-				if (model.hideBots) storage.set('settings:hide-bots', model.hideBots);
+				storage.set('settings:hide-bots', model.hideBots);
 				model.sentryInstalled ? this.$sentry.install(this.$store) : this.$sentry.destroy();
 				model.sentryReporting ? this.$sentry.enableReporting() : this.$sentry.disableReporting();
 				this.$success(this.$t('settings-saved'));
