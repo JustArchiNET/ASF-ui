@@ -86,7 +86,7 @@
 			save() {
 				const model = this.model;
 				if (model.defaultView) storage.set('settings:default-view', model.defaultView);
-				model.sentryInstalled ? this.$sentry.install() : this.$sentry.destroy();
+				model.sentryInstalled ? this.$sentry.install(this.$store) : this.$sentry.destroy();
 				model.sentryReporting ? this.$sentry.enableReporting() : this.$sentry.disableReporting();
 				this.$success(this.$t('settings-saved'));
 			},

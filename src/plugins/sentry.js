@@ -1,5 +1,18 @@
 import { set, get } from '../utils/storage';
 
+function prepareStoreSnapshot(store) {
+	const state = JSON.parse(JSON.stringify(store.state));
+
+	// Private
+	delete state.auth.password;
+
+	// Not needed / empty / JSON incompatible
+	delete state.auth.initialized;
+	delete state.i18n.translations;
+
+	return state;
+}
+
 export default {
 	install(Vue) {
 		if (this.installed) return;
@@ -36,7 +49,7 @@ export default {
 			setImmediate(() => window.location.reload());
 		};
 
-		$sentry.install = async () => {
+		$sentry.install = async store => {
 			if ($sentry.installed) return;
 
 			const Sentry = $sentry.Sentry = await import('@sentry/browser');
@@ -48,7 +61,11 @@ export default {
 				environment: APP_DEBUG ? 'development' : 'production',
 				integrations: [new Sentry.Integrations.Vue({ Vue })],
 				beforeSend: event => {
-					console.log($sentry.reporting, event);
+					if (store) {
+						if (!event.extra) event.extra = {};
+						event.extra.store = prepareStoreSnapshot(store);
+					}
+
 					if ($sentry.reporting) return event;
 					$sentry.storedEvents.push(event);
 					return null;
@@ -71,6 +88,12 @@ export default {
 			$sentry.Sentry.configureScope(scope => {
 				scope.setTag(tag, value);
 			});
+		};
+
+		$sentry.captureSnapshot = (name = 'Snapshot') => {
+			if (!$sentry.installed) return;
+
+			$sentry.Sentry.captureMessage(name);
 		};
 
 		Vue.prototype.$sentry = $sentry;

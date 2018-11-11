@@ -74,7 +74,7 @@
 		},
 		created() {
 			const sentryActive = storage.get('sentry:active');
-			if (sentryActive) this.$sentry.install();
+			if (sentryActive) this.$sentry.install(this.$store);
 		}
 	};
 </script>
