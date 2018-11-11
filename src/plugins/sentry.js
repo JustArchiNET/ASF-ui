@@ -1,4 +1,4 @@
-import { set, get } from '../utils/storage';
+import * as storage from '../utils/storage';
 
 function prepareStoreSnapshot(store) {
 	const state = JSON.parse(JSON.stringify(store.state));
@@ -20,19 +20,19 @@ export default {
 
 		const $sentry = {
 			installed: false,
-			reporting: JSON.parse(get('sentry:reporting', false)),
+			reporting: JSON.parse(storage.get('sentry:reporting', false)),
 			storedEvents: [],
 			tags: [],
 		};
 
 		$sentry.disableReporting = () => {
 			$sentry.reporting = false;
-			set('sentry:reporting', false);
+			storage.set('sentry:reporting', false);
 		};
 
 		$sentry.enableReporting = () => {
 			$sentry.reporting = true;
-			set('sentry:reporting', true);
+			storage.set('sentry:reporting', true);
 
 			// Report stored events
 			if ($sentry.storedEvents.length && $sentry.Sentry) {
@@ -44,7 +44,7 @@ export default {
 
 		$sentry.destroy = () => {
 			if (!$sentry.installed) return;
-			set('sentry:active', false);
+			storage.set('sentry:active', false);
 			// There's no easy, manual way to destroy Sentry client. Reload.
 			setImmediate(() => window.location.reload());
 		};
@@ -77,7 +77,7 @@ export default {
 			});
 
 			$sentry.installed = true;
-			set('sentry:active', true);
+			storage.set('sentry:active', true);
 		};
 
 		$sentry.setTag = (tag, value) => {
