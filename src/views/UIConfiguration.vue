@@ -9,10 +9,14 @@
 				<div class="form-item__buttons">
 					<button class="button button--confirm" @click="save">{{ $t('save') }}</button>
 
-					<template v-if="model.sentryInstalled && !model.sentryReporting || storedEventsCount">
-						<button class="button button--disabled pull-right" v-if="!storedEventsCount">{{ $t('no-events') }}</button>
-						<button class="button button--confirm pull-right" @click="copyStoredEvents" v-else>{{ $t('copy-log') }}</button>
-					</template>
+					<div class="pull-right">
+						<button class="button button--confirm" v-if="model.sentryInstalled" @click="$sentry.captureSnapshot()">Capture snapshot</button>
+
+						<template v-if="model.sentryInstalled && !model.sentryReporting || storedEventsCount">
+							<button class="button button--disabled" v-if="!storedEventsCount">{{ $t('no-events') }}</button>
+							<button class="button button--confirm" @click="copyStoredEvents" v-else>{{ $t('copy-log') }}</button>
+						</template>
+					</div>
 				</div>
 			</div>
 		</div>
