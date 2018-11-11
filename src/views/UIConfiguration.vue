@@ -10,7 +10,7 @@
 					<button class="button button--confirm" @click="save">{{ $t('save') }}</button>
 
 					<div class="pull-right">
-						<button class="button button--confirm" v-if="model.sentryInstalled" @click="$sentry.captureSnapshot()">Capture snapshot</button>
+						<button class="button button--confirm" v-if="model.sentryInstalled" @click="$sentry.captureSnapshot()">{{ $t('capture-snapshot') }}</button>
 
 						<template v-if="model.sentryInstalled && !model.sentryReporting || storedEventsCount">
 							<button class="button button--disabled" v-if="!storedEventsCount">{{ $t('no-events') }}</button>
@@ -54,7 +54,8 @@
 						[this.$t('bots')]: 'bots',
 						[this.$t('log')]: 'log',
 						[this.$t('last-visited-page')]: '_last-visited-page'
-					}
+					},
+					description: this.$t('default-page-description')
 				},
 				{
 					param: this.$t('logging'),
