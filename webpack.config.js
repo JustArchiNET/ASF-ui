@@ -12,7 +12,7 @@ async function getGitCommitHash() {
 	return new Promise((resolve, reject) => {
 		exec('git rev-parse HEAD', (err, out) => {
 			if (err) return reject(err);
-			return out.trim();
+			return resolve(out.trim());
 		});
 	});
 }
