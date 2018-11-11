@@ -18,7 +18,7 @@ async function getGitCommitHash() {
 }
 
 async function getVersion() {
-	return getGitCommitHash().catch(err => 'source');
+	return getGitCommitHash().catch(err => 'no-git');
 }
 
 module.exports = async (env, argv) => {
