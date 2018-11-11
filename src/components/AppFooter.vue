@@ -19,8 +19,8 @@
 		name: 'app-footer',
 		computed: mapGetters({
 			authenticated: 'auth/authenticated',
-			version: 'status/version',
-			buildVariant: 'status/buildVariant'
+			version: 'asf/version',
+			buildVariant: 'asf/buildVariant'
 		})
 	};
 </script>

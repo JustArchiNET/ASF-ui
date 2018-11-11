@@ -14,8 +14,8 @@
 		name: 'navigation-statistics',
 		components: { NavigationStatistic },
 		computed: mapGetters({
-			memory: 'status/memory',
-			uptime: 'status/uptime',
+			memory: 'asf/memory',
+			uptime: 'asf/uptime',
 			cardsRemaining: 'bots/cardsRemaining'
 		})
 	};

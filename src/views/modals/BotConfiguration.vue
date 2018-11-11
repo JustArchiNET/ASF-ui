@@ -49,7 +49,6 @@
 				{ name: this.$t('basic'), fields: ['Name', 'SteamLogin', 'SteamPassword', 'Enabled', 'IsBotAccount', 'Paused'] },
 				{ name: this.$t('security'), fields: ['PasswordFormat', 'UseLoginKeys'] },
 				{ name: this.$t('access'), fields: ['SteamUserPermissions', 'SteamParentalPIN'] },
-				{ name: this.$t('community'), fields: ['HandleOfflineMessages'] },
 				{ name: this.$t('trade'), fields: ['SteamTradeToken', 'TradingPreferences', 'LootableTypes', 'MatchableTypes', 'AcceptGifts', 'DismissInventoryNotifications'] },
 				{ name: this.$t('farming'), fields: ['FarmingOrders', 'SendTradePeriod', 'AutoSteamSaleEvent', 'IdlePriorityQueueOnly', 'IdleRefundableGames', 'FarmOffline', 'SendOnFarmingFinished', 'ShutdownOnFarmingFinished'] },
 				{ name: this.$t('customization'), fields: ['SteamMasterClanID', 'GamesPlayedWhileIdle', 'CustomGamePlayedWhileFarming', 'CustomGamePlayedWhileIdle'] },
@@ -65,7 +64,7 @@
 			};
 		},
 		computed: {
-			...mapGetters({ version: 'status/version' }),
+			...mapGetters({ version: 'asf/version' }),
 			bot() {
 				return this.$store.getters['bots/bot'](this.$route.params.bot);
 			}

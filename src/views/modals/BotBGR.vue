@@ -89,15 +89,3 @@
 		}
 	};
 </script>
-
-<style lang="scss">
-	.bgr__keys {
-		display: flex;
-		flex-direction: column;
-		text-align: center;
-	}
-
-	.bgr__key {
-		display: inline-block;
-	}
-</style>
