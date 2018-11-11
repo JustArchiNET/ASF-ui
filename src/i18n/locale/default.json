@@ -98,6 +98,7 @@
 	"name-description": "<code>string</code> type with no default value. This property is required and defines bot name - it is used for identification purpose inside ASF only. Must be unique for each bot.",
 	"add": "Add",
 	"default-page": "Default page",
+	"default-page-description": "Decide which page you want as your default.",
 	"success": "Success",
 	"error": "Error",
 	"info": "Info",
@@ -108,5 +109,11 @@
 	"reporting-description": "Automatically upload error reports. Logging needs to be enabled.",
 	"copy-log": "Copy log to clipboard",
 	"log-copied": "Copied log to clipboard!",
+	"show-bots": "Show bots",
+	"all": "All",
+	"online": "Online",
+	"offline": "Offline",
+	"disabled": "Disabled",
+	"show-bots-description": "Decide which bots you want to be displayed on bots page.",
 	"no-events": "No events logged"
 }
