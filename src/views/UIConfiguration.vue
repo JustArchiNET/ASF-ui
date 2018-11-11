@@ -35,7 +35,7 @@
 		data() {
 			const categories = [
 				{ name: this.$t('general'), fields: [this.$t('default-page')] },
-				{ name: this.$t('bots'), fields: [this.$t('show-bots')] },
+				{ name: this.$t('bots'), fields: [this.$t('hide-bots')] },
 				{ name: this.$t('debug'), fields: [this.$t('logging'), this.$t('reporting')] }
 			];
 
@@ -55,19 +55,19 @@
 					description: this.$t('default-page-description')
 				},
 				{
-					param: this.$t('show-bots'),
-					paramName: 'showBots',
+					param: this.$t('hide-bots'),
+					paramName: 'hideBots',
 					type: 'flag',
-					defaultValue: 15,
+					defaultValue: 0,
 					values: {
-						[this.$t('all')]: 15,
+						[this.$t('none')]: 0,
 						[this.$t('disabled')]: 1,
 						[this.$t('offline')]: 2,
 						[this.$t('online')]: 4,
 						[this.$t('farming')]: 8
 
 					},
-					description: this.$t('show-bots-description')
+					description: this.$t('hide-bots-description')
 				},
 				{
 					param: this.$t('logging'),
@@ -88,7 +88,7 @@
 				categories,
 				model: {
 					defaultView: storage.get('settings:default-view'),
-					showBots: storage.get('settings:show-bots'),
+					hideBots: storage.get('settings:hide-bots'),
 					sentryInstalled: this.$sentry.installed,
 					sentryReporting: this.$sentry.reporting
 				},
@@ -104,7 +104,7 @@
 			save() {
 				const model = this.model;
 				if (model.defaultView) storage.set('settings:default-view', model.defaultView);
-				if (model.showBots) storage.set('settings:show-bots', model.showBots);
+				if (model.hideBots) storage.set('settings:hide-bots', model.hideBots);
 				model.sentryInstalled ? this.$sentry.install() : this.$sentry.destroy();
 				model.sentryReporting ? this.$sentry.enableReporting() : this.$sentry.disableReporting();
 				this.$success(this.$t('settings-saved'));
