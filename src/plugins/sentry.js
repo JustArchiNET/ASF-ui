@@ -42,7 +42,7 @@ export default {
 
 			Sentry.init({
 				dsn: SENTRY_DSN,
-				release: COMMITHASH,
+				release: APP_VERSION,
 				integrations: [new Sentry.Integrations.Vue({ Vue })],
 				beforeSend: event => {
 					console.log($sentry.reporting, event);

@@ -6,9 +6,20 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const DefinePlugin = require('webpack').DefinePlugin;
-const GitRevisionPlugin = require('git-revision-webpack-plugin');
+const exec = require('child_process').exec;
 
-const gitRevisionPlugin = new GitRevisionPlugin();
+async function getGitCommitHash() {
+	return new Promise((resolve, reject) => {
+		exec('git rev-parse HEAD', (err, out) => {
+			if (err) return reject(err);
+			return resolve(out.trim());
+		});
+	});
+}
+
+async function getVersion() {
+	return getGitCommitHash().catch(err => 'no-git');
+}
 
 module.exports = async (env, argv) => {
 	const isProd = env === 'production';
@@ -79,7 +90,7 @@ module.exports = async (env, argv) => {
 			new VueLoaderPlugin(),
 			new CopyWebpackPlugin(['src/include']),
 			new DefinePlugin({
-				COMMITHASH: JSON.stringify(gitRevisionPlugin.commithash()),
+				APP_VERSION: JSON.stringify(await getVersion()),
 				SENTRY_DSN: JSON.stringify('https://e93b07e78df747708403e423ebc5e97e@sentry.io/1312571')
 			})
 		],
