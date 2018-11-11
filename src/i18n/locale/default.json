@@ -110,5 +110,6 @@
 	"copy-log": "Copy log to clipboard",
 	"log-copied": "Copied log to clipboard!",
 	"no-events": "No events logged",
-	"capture-snapshot": "Capture snapshot"
+	"capture-snapshot": "Capture snapshot",
+	"snapshot-captured": "Captured snapshot!"
 }

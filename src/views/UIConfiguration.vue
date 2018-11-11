@@ -10,7 +10,7 @@
 					<button class="button button--confirm" @click="save">{{ $t('save') }}</button>
 
 					<div class="pull-right">
-						<button class="button button--confirm" v-if="model.sentryInstalled" @click="$sentry.captureSnapshot()">{{ $t('capture-snapshot') }}</button>
+						<button class="button button--confirm" v-if="model.sentryInstalled" @click="captureSnapshot">{{ $t('capture-snapshot') }}</button>
 
 						<template v-if="model.sentryInstalled && !model.sentryReporting || storedEventsCount">
 							<button class="button button--disabled" v-if="!storedEventsCount">{{ $t('no-events') }}</button>
@@ -98,6 +98,10 @@
 			copyStoredEvents() {
 				copy(JSON.stringify(this.storedEvents));
 				this.$info(this.$t('log-copied'));
+			},
+			captureSnapshot() {
+				this.$sentry.captureSnapshot();
+				this.$info(this.$t('snapshot-captured'));
 			}
 		}
 	};
