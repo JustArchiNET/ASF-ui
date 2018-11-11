@@ -39,7 +39,8 @@
 				boxedLayout: 'layout/boxed',
 				theme: 'layout/theme',
 				darkMode: 'layout/darkMode',
-				version: 'asf/version'
+				version: 'asf/version',
+				buildVariant: 'asf/builtVariant'
 			}),
 			themeClass() {
 				return `theme-${this.theme}`;
@@ -62,6 +63,12 @@
 				immediate: true,
 				handler(value) {
 					this.$sentry.setTag('asf.version', value);
+				}
+			},
+			buildVariant: {
+				immediate: true,
+				handler(value) {
+					this.$sentry.setTag('asf.buildVariant', value);
 				}
 			}
 		},
