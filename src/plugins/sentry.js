@@ -8,7 +8,8 @@ export default {
 		const $sentry = {
 			installed: false,
 			reporting: JSON.parse(get('sentry:reporting', false)),
-			storedEvents: []
+			storedEvents: [],
+			tags: [],
 		};
 
 		$sentry.disableReporting = () => {
@@ -43,6 +44,8 @@ export default {
 			Sentry.init({
 				dsn: SENTRY_DSN,
 				release: APP_VERSION,
+				debug: APP_DEBUG,
+				environment: APP_DEBUG ? 'development' : 'production',
 				integrations: [new Sentry.Integrations.Vue({ Vue })],
 				beforeSend: event => {
 					console.log($sentry.reporting, event);
@@ -52,13 +55,24 @@ export default {
 				}
 			});
 
+			Sentry.configureScope(scope => {
+				$sentry.tags.forEach(({ tag, value }) => scope.setTag(tag, value));
+			});
+
 			$sentry.installed = true;
 			set('sentry:active', true);
 		};
 
-		Vue.prototype.$sentry = $sentry;
+		$sentry.setTag = (tag, value) => {
+			$sentry.tags.push({ tag, value }); // Save tags for later
 
-		const active = get('sentry:active');
-		if (active && JSON.parse(active)) $sentry.install();
+			if (!$sentry.installed) return;
+
+			$sentry.Sentry.configureScope(scope => {
+				scope.setTag(tag, value);
+			});
+		};
+
+		Vue.prototype.$sentry = $sentry;
 	}
 }
