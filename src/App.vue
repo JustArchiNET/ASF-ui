@@ -22,6 +22,7 @@
 	import AppModal from './components/AppModal.vue';
 
 	import { mapGetters } from 'vuex';
+	import * as storage from './utils/storage';
 
 	export default {
 		name: 'App',
@@ -37,7 +38,9 @@
 				sideMenu: 'layout/sideMenu',
 				boxedLayout: 'layout/boxed',
 				theme: 'layout/theme',
-				darkMode: 'layout/darkMode'
+				darkMode: 'layout/darkMode',
+				version: 'asf/version',
+				buildVariant: 'asf/buildVariant'
 			}),
 			themeClass() {
 				return `theme-${this.theme}`;
@@ -55,7 +58,23 @@
 				handler: value => {
 					document.body.style.overflowY = value.meta.modal ? 'hidden' : 'auto';
 				}
+			},
+			version: {
+				immediate: true,
+				handler(value) {
+					this.$sentry.setTag('asf.version', value);
+				}
+			},
+			buildVariant: {
+				immediate: true,
+				handler(value) {
+					this.$sentry.setTag('asf.buildVariant', value);
+				}
 			}
+		},
+		created() {
+			const sentryActive = storage.get('sentry:active');
+			if (sentryActive) this.$sentry.install(this.$store);
 		}
 	};
 </script>

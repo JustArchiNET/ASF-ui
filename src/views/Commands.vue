@@ -78,7 +78,7 @@
 		},
 		computed: {
 			...mapGetters({
-				version: 'status/version'
+				version: 'asf/version'
 			}),
 			commands() {
 				return [

@@ -1,12 +1,27 @@
 import * as http from '../../plugins/http';
-import { timeDifference } from '../../utils/timeDifference';
+import * as humanizeDuration from 'humanize-duration';
+
+const humanizer = humanizeDuration.humanizer({
+	language: 'shortEn',
+	units: ['d', 'h', 'm', 's'],
+	round: true,
+	delimiter: ' ',
+	languages: {
+		shortEn: {
+			d: () => 'd',
+			h: () => 'h',
+			m: () => 'm',
+			s: () => 's'
+		}
+	}
+});
 
 export const state = {
 	memoryUsage: 0,
 	startTime: null,
 	buildVariant: null,
 	version: { Major: 0, Minor: 0, Build: 0, Revision: 0 },
-	uptime: '00m 00s'
+	uptime: '0s'
 };
 
 export const mutations = {
@@ -19,31 +34,19 @@ export const mutations = {
 		if (!state.startTime) return;
 
 		const timeDiff = Date.now() - state.startTime.getTime();
-		if (timeDiff < 0) {
-			state.uptime = 'Error';
-			return;
-		}
-
-		const uptime = timeDifference(state.startTime.getTime(), Date.now());
-
-		let uptimeString = uptime.days > 0 ? uptime.days + 'd ' : '';
-		uptimeString += uptime.hours > 0 ? uptime.hours + 'h ' : '';
-		uptimeString += (uptime.minutes + 'm ').padStart(4, '0');
-		uptimeString += (uptime.seconds + 's').padStart(3, '0');
-
-		state.uptime = uptimeString;
+		state.uptime = timeDiff > 0 ? humanizer(timeDiff) : 'Error';
 	}
 };
 
 export const actions = {
 	init: async ({ dispatch, commit }) => {
 		setInterval(() => commit('calculateUptime'), 1000);
-		setInterval(() => dispatch('updateASF'), 60000);
+		setInterval(() => dispatch('update'), 60000);
 	},
 	onAuth: async ({ dispatch }) => {
-		await dispatch('updateASF');
+		await dispatch('update');
 	},
-	updateASF: async ({ commit, rootGetters }) => {
+	update: async ({ commit, rootGetters }) => {
 		if (!rootGetters['auth/authenticated']) return;
 
 		try {

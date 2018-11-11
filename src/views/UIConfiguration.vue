@@ -9,10 +9,14 @@
 				<div class="form-item__buttons">
 					<button class="button button--confirm" @click="save">{{ $t('save') }}</button>
 
-					<template v-if="model.sentryInstalled && !model.sentryReporting || storedEventsCount">
-						<button class="button button--disabled pull-right" v-if="!storedEventsCount">{{ $t('no-events') }}</button>
-						<button class="button button--confirm pull-right" @click="copyStoredEvents" v-else>{{ $t('copy-log') }}</button>
-					</template>
+					<div class="pull-right">
+						<button class="button button--confirm" v-if="model.sentryInstalled" @click="captureSnapshot">{{ $t('capture-snapshot') }}</button>
+
+						<template v-if="model.sentryInstalled && !model.sentryReporting || storedEventsCount">
+							<button class="button button--disabled" v-if="!storedEventsCount">{{ $t('no-events') }}</button>
+							<button class="button button--confirm" @click="copyStoredEvents" v-else>{{ $t('copy-log') }}</button>
+						</template>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -105,13 +109,17 @@
 				const model = this.model;
 				if (model.defaultView) storage.set('settings:default-view', model.defaultView);
 				if (model.hideBots) storage.set('settings:hide-bots', model.hideBots);
-				model.sentryInstalled ? this.$sentry.install() : this.$sentry.destroy();
+				model.sentryInstalled ? this.$sentry.install(this.$store) : this.$sentry.destroy();
 				model.sentryReporting ? this.$sentry.enableReporting() : this.$sentry.disableReporting();
 				this.$success(this.$t('settings-saved'));
 			},
 			copyStoredEvents() {
 				copy(JSON.stringify(this.storedEvents));
 				this.$info(this.$t('log-copied'));
+			},
+			captureSnapshot() {
+				this.$sentry.captureSnapshot();
+				this.$info(this.$t('snapshot-captured'));
 			}
 		}
 	};

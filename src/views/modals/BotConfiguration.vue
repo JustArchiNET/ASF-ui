@@ -64,7 +64,7 @@
 			};
 		},
 		computed: {
-			...mapGetters({ version: 'status/version' }),
+			...mapGetters({ version: 'asf/version' }),
 			bot() {
 				return this.$store.getters['bots/bot'](this.$route.params.bot);
 			}
