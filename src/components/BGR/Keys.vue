@@ -1,10 +1,15 @@
 <template>
 	<div class="bgr__keys">
-		<span class="bgr__key" v-if="noKeys"><strong>{{ $t('bgr-no-pairs-detected') }}</strong></span>
-		<table>
+		<span class="bgr__no-keys" v-if="noKeys">{{ $t('bgr-no-pairs-detected') }}</span>
+
+		<table class="bgr__table" v-else>
+			<tr>
+				<th>Name</th>
+				<th>Key</th>
+			</tr>
 			<tr v-for="(name, key) in keys" class="key">
-				<th class="key__content pull-left">{{ name }}</th>
-				<th class="key__content">{{ key }}</th>
+				<td>{{ name }}</td>
+				<td>{{ key }}</td>
 			</tr>
 		</table>
 	</div>
@@ -23,18 +28,13 @@
 </script>
 
 <style lang="scss">
-	.key {
-		background-color: var(--color-background);
+	.bgr__no-keys {
+		text-align: center;
+		font-weight: bold;
 	}
-	.key:nth-child(2n) {
-		background-color:  var(--color-background-light);
-	}
-	.key__content {
-		border: 0.1em solid var(--color-background-light);
-		padding: 0.5em 1em;
-		font-weight: normal;
-	}
-	.pull-left {
-		text-align: left;
+
+	.bgr__table {
+		min-width: 100%;
+		text-align: center;
 	}
 </style>
