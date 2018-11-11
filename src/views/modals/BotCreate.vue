@@ -53,7 +53,7 @@
 			};
 		},
 		computed: {
-			...mapGetters({ version: 'status/version' })
+			...mapGetters({ version: 'asf/version' })
 		},
 		async created() {
 			await this.loadConfig();

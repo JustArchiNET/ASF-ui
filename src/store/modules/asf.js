@@ -38,12 +38,12 @@ export const mutations = {
 export const actions = {
 	init: async ({ dispatch, commit }) => {
 		setInterval(() => commit('calculateUptime'), 1000);
-		setInterval(() => dispatch('updateASF'), 60000);
+		setInterval(() => dispatch('update'), 60000);
 	},
 	onAuth: async ({ dispatch }) => {
-		await dispatch('updateASF');
+		await dispatch('update');
 	},
-	updateASF: async ({ commit, rootGetters }) => {
+	update: async ({ commit, rootGetters }) => {
 		if (!rootGetters['auth/authenticated']) return;
 
 		try {

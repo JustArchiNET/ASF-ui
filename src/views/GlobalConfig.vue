@@ -66,7 +66,7 @@
 			};
 		},
 		computed: {
-				...mapGetters({ version: 'status/version' })
+				...mapGetters({ version: 'asf/version' })
 		},
 		async created() {
 			const [
