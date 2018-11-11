@@ -40,7 +40,7 @@
 				theme: 'layout/theme',
 				darkMode: 'layout/darkMode',
 				version: 'asf/version',
-				buildVariant: 'asf/builtVariant'
+				buildVariant: 'asf/buildVariant'
 			}),
 			themeClass() {
 				return `theme-${this.theme}`;
