@@ -31,7 +31,7 @@ export default async function loadParameterDescriptions(version) {
 		descriptions[parameterName] = parameterDescription.join(' ');
 	}
 
-	storage.set('cache:parameter-descriptions', JSON.stringify({ timestamp: Date.now(), descriptions }));
+	storage.set('cache:parameter-descriptions', { timestamp: Date.now(), descriptions });
 
 	return descriptions;
 }

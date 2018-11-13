@@ -50,7 +50,7 @@
 		}
 
 		save() {
-			storage.set('command-history', JSON.stringify(this._cache));
+			storage.set('command-history', this._cache);
 		}
 
 		load() {
@@ -269,7 +269,7 @@
 			async fetchCommands() {
 				const wiki = await fetchWiki('Commands', this.version);
 				const commands = this.parseCommandsHTML(wiki);
-				storage.set('cache:asf-commands', JSON.stringify({ timestamp: Date.now(), commands }));
+				storage.set('cache:asf-commands', { timestamp: Date.now(), commands });
 				return commands;
 			},
 			async loadCommands() {

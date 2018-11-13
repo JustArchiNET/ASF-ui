@@ -85,7 +85,7 @@
 							};
 						});
 
-				storage.set('cache:releases', JSON.stringify({ timestamp: Date.now(), releases, version: this.version }));
+				storage.set('cache:releases', { timestamp: Date.now(), releases, version: this.version });
 				return releases;
 			}
 		},

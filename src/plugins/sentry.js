@@ -20,7 +20,7 @@ export default {
 
 		const $sentry = {
 			installed: false,
-			reporting: JSON.parse(storage.get('sentry:reporting', false)),
+			reporting: storage.get('sentry:reporting', false),
 			storedEvents: [],
 			tags: [],
 		};
