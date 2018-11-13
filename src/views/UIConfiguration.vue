@@ -9,14 +9,10 @@
 				<div class="form-item__buttons">
 					<button class="button button--confirm" @click="save">{{ $t('save') }}</button>
 
-					<div class="pull-right">
-						<button class="button button--confirm" v-if="model.sentryInstalled" @click="captureSnapshot">{{ $t('capture-snapshot') }}</button>
-
-						<template v-if="model.sentryInstalled && !model.sentryReporting || storedEventsCount">
-							<button class="button button--disabled" v-if="!storedEventsCount">{{ $t('no-events') }}</button>
-							<button class="button button--confirm" @click="copyStoredEvents" v-else>{{ $t('copy-log') }}</button>
-						</template>
-					</div>
+					<dropdown label="Debug" class="button--confirm pull-right" :disabled="!model.sentryInstalled">
+						<li class="dropdown__item" @click="captureSnapshot">{{ $t('capture-snapshot') }}</li>
+						<li class="dropdown__item" @click="copyStoredEvents">{{ $t('copy-log') }}</li>
+					</dropdown>
 				</div>
 			</div>
 		</div>
@@ -26,6 +22,7 @@
 <script>
 	import * as storage from '../utils/storage';
 	import ConfigEditor from '../components/ConfigEditor.vue';
+	import Dropdown from '../components/utils/Dropdown.vue';
 	import * as copy from 'copy-to-clipboard';
 
 	export default {
@@ -35,7 +32,7 @@
 				title: this.$t('ui-configuration')
 			};
 		},
-		components: { ConfigEditor },
+		components: { ConfigEditor, Dropdown },
 		data() {
 			const categories = [
 				{ name: this.$t('general'), fields: [this.$t('default-page')] },
@@ -93,6 +90,7 @@
 				if (model.defaultView) storage.set('settings:default-view', model.defaultView);
 				model.sentryInstalled ? this.$sentry.install(this.$store) : this.$sentry.destroy();
 				model.sentryReporting ? this.$sentry.enableReporting() : this.$sentry.disableReporting();
+				this.$forceUpdate();
 				this.$success(this.$t('settings-saved'));
 			},
 			copyStoredEvents() {
