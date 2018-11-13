@@ -1,5 +1,5 @@
 <template>
-	<main class="main-container main-container--modal main-container--bot-configuration">
+	<main class="main-container main-container--bot-configuration">
 		<template v-if="!bot">
 			<h2 class="title" v-if="!bot">{{ $t('not-found') }}</h2>
 		</template>

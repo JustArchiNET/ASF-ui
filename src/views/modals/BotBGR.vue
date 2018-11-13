@@ -1,5 +1,5 @@
 <template>
-	<main class="main-container main-container--modal">
+	<main class="main-container">
 		<template v-if="!bot">
 			<h2 class="title" v-if="!bot">Not found!</h2>
 		</template>

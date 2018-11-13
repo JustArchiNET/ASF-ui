@@ -1,5 +1,5 @@
 <template>
-	<main class="main-container main-container--modal main-container--bot-create">
+	<main class="main-container main-container--bot-create">
 		<h2 class="title">{{ $t('bot-new') }}</h2>
 
 		<h3 class="subtitle" v-if="loading">
