@@ -16,7 +16,7 @@
 </template>
 
 <script>
-	import BgrKeys from "./Keys.vue";
+	import BgrKeys from './Keys.vue';
 	import * as copy from 'copy-to-clipboard';
 
 	export default {
@@ -33,11 +33,11 @@
 		},
 		methods: {
 			copyKeys() {
-				let keys = "";
+				let keys = '';
 
 				for (let key in this.keys) {
 					if (this.keys.hasOwnProperty(key)) {
-						keys += this.keys[key] + '\t' + key + '\n'
+						keys += this.keys[key] + '\t' + key + '\n';
 					}
 				}
 

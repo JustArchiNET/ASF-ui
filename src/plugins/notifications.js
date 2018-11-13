@@ -23,4 +23,4 @@ export default {
 			Vue.prototype.$snotify.info(message, this.$t('info'));
 		};
 	}
-}
+};

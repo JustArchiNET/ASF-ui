@@ -77,7 +77,7 @@
 					sentryInstalled: this.$store.getters['settings/sentryInstalled'],
 					sentryReporting: this.$store.getters['settings/sentryReporting']
 				}
-			}
+			};
 		},
 		computed: {
 			...mapGetters({

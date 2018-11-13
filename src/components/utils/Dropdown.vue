@@ -13,26 +13,26 @@
 	export default {
 		name: 'dropdown',
 		props: {
-    		label: String,
+			label: String,
 			disabled: Boolean
 		},
 		data() {
-    		return {
-    			open: false
-			}
+			return {
+				open: false
+			};
 		},
 		watch: {
-    		disabled(value) {
-    			if (value) this.open = false;
+			disabled(value) {
+				if (value) this.open = false;
 			}
 		},
 		methods: {
-    		toggle() {
-    			if (this.disabled) return;
-    			this.open = !this.open;
+			toggle() {
+				if (this.disabled) return;
+				this.open = !this.open;
 			}
 		}
-  	};
+	};
 </script>
 
 <style lang="scss">

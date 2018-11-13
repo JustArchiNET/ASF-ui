@@ -49,7 +49,7 @@
 				this.open = false;
 			}
 		}
-	}
+	};
 </script>
 
 <style lang="scss">

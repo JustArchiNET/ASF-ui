@@ -51,7 +51,7 @@
 
 <script>
 	export default {
-    	name: 'bot',
+		name: 'bot',
 		computed: {
 			bot() {
 				return this.$store.getters['bots/bot'](this.$route.params.bot);

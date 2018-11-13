@@ -35,5 +35,5 @@ export const actions = {
 export const getters = {
 	defaultView: state => state.defaultView,
 	sentryInstalled: state => state.sentryInstalled,
-	sentryReporting: state => state.sentryReporting,
+	sentryReporting: state => state.sentryReporting
 };

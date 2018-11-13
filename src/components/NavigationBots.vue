@@ -21,7 +21,7 @@
 		},
 		computed: {
 			...mapGetters({
-				botsCount: 'bots/count',
+				botsCount: 'bots/count'
 			}),
 			count() {
 				return type => this.botsCount(type);

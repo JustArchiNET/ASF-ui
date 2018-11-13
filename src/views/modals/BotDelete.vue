@@ -27,7 +27,7 @@
 		data() {
 			return {
 				deleting: false
-			}
+			};
 		},
 		computed: {
 			bot() {

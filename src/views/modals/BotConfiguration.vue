@@ -7,7 +7,9 @@
 		<template v-else>
 			<h2 class="title">{{ bot.name }}</h2>
 
-			<h3 class="subtitle" v-if="loading"><font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon></h3>
+			<h3 class="subtitle" v-if="loading">
+				<font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
+			</h3>
 			<div class="container" v-else>
 				<config-editor :fields="fields" :model="model" :categories="categories"></config-editor>
 

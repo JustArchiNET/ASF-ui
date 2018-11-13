@@ -13,7 +13,7 @@
 		data() {
 			return {
 				flagImage: defaultImage
-			}
+			};
 		},
 		async created() {
 			const flags = await import('../../utils/flags');

@@ -22,7 +22,7 @@ export default {
 			installed: false,
 			reporting: storage.get('sentry:reporting', false),
 			storedEvents: [],
-			tags: [],
+			tags: []
 		};
 
 		$sentry.disableReporting = () => {
@@ -98,4 +98,4 @@ export default {
 
 		Vue.prototype.$sentry = $sentry;
 	}
-}
+};

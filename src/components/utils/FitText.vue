@@ -12,25 +12,25 @@
 		props: {
 			targetLineCount: {
 				'default': 1,
-				type: Number,
+				type: Number
 			},
 			unit: {
 				'default': 'em',
-				type: String,
+				type: String
 			},
 			min: {
 				'default': 0.5,
-				type: Number,
+				type: Number
 			},
 			max: {
 				'default': 1,
-				type: Number,
+				type: Number
 			}
 		},
 		data() {
 			return {
-				observer: null,
-			}
+				observer: null
+			};
 		},
 		methods: {
 			calculate() {
@@ -64,9 +64,9 @@
 				);
 			}
 		},
-		beforeDestroy: function() {
+		beforeDestroy() {
 			// Clean up
 			this.observer.disconnect();
 		}
-	}
+	};
 </script>
