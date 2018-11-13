@@ -9,7 +9,7 @@
 				<div class="form-item__buttons">
 					<button class="button button--confirm" @click="save">{{ $t('save') }}</button>
 
-					<dropdown label="Debug" class="button--confirm pull-right" :disabled="!sentryInstalled">
+					<dropdown :label="$t('debug')" class="button--confirm pull-right" :disabled="!sentryInstalled">
 						<li class="dropdown__item" @click="captureSnapshot">{{ $t('capture-snapshot') }}</li>
 						<li class="dropdown__item" @click="copyStoredEvents">{{ $t('copy-log') }}</li>
 					</dropdown>
