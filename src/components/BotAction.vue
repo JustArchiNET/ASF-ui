@@ -45,18 +45,18 @@
 				color: var(--color-text);
 			}
 		}
-	}
 
-	.bot-action--red:hover {
-		color: red;
-	}
+		&.bot-action--red:hover {
+			color: red;
+		}
 
-	.bot-action--orange:hover {
-		color: orange;
-	}
+		&.bot-action--orange:hover {
+			color: orange;
+		}
 
-	.bot-action--green:hover {
-		color: green;
+		&.bot-action--green:hover {
+			color: green;
+		}
 	}
 
 	.bot-action__label {
