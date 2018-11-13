@@ -58,7 +58,7 @@
 				},
 				{
 					param: this.$t('timestamps'),
-					paramName: 'showTimestamps',
+					paramName: 'timestamps',
 					type: 'boolean',
 					description: this.$t('timestamps-description')
 				},
@@ -81,7 +81,7 @@
 				categories,
 				model: {
 					defaultView: this.$store.getters['settings/defaultView'],
-          showTimestamps: this.$store.getters['settings/showTimestamps'],
+					timestamps: this.$store.getters['settings/timestamps'],
 					sentryInstalled: this.$store.getters['settings/sentryInstalled'],
 					sentryReporting: this.$store.getters['settings/sentryReporting']
 				}
@@ -101,7 +101,7 @@
 				else this.$sentry.disableReporting();
 
 				this.$store.dispatch('settings/setDefaultView', this.model.defaultView);
-        this.$store.dispatch('settings/showTimestamps', this.model.showTimestamps);
+				this.$store.dispatch('settings/setTimestamps', this.model.timestamps);
 				this.$store.dispatch('settings/setSentryInstalled', this.model.sentryInstalled);
 				this.$store.dispatch('settings/setSentryReporting', this.model.sentryReporting);
 
