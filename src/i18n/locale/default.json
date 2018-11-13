@@ -26,7 +26,7 @@
 	"reset": "Reset",
 	"check": "Check",
 	"bgr-keys-insert": "Insert your keys here",
-	"bgr-keys-insert-example": "Ex:\nAAAAA-BBBBB-CCCC0\nAAAAA-BBBBB-CCCC1\n\nYou can tag the keys with game names:\nAAAAA-BBBBB-CCCC2\tTurbo Pug\nAAAAA-BBBBB-CCCC3\tBad Rats",
+	"bgr-keys-insert-example": "Example:\nAAAAA-BBBBB-CCCC0\nAAAAA-BBBBB-CCCC1\n\nYou can tag the keys with game names:\nAAAAA-BBBBB-CCCC2\tTurbo Pug\nAAAAA-BBBBB-CCCC3\tBad Rats",
 	"bgr-no-keys-detected": "No game keys detected",
 	"back": "Back",
 	"input-all-selected": "All values selected",
