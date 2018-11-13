@@ -9,7 +9,7 @@
 				<div class="form-item__buttons">
 					<button class="button button--confirm" @click="save">{{ $t('save') }}</button>
 
-					<dropdown label="Debug" class="button--confirm pull-right" :disabled="!model.sentryInstalled">
+					<dropdown label="Debug" class="button--confirm pull-right" :disabled="!sentryInstalled">
 						<li class="dropdown__item" @click="captureSnapshot">{{ $t('capture-snapshot') }}</li>
 						<li class="dropdown__item" @click="copyStoredEvents">{{ $t('copy-log') }}</li>
 					</dropdown>
@@ -20,10 +20,11 @@
 </template>
 
 <script>
-	import * as storage from '../utils/storage';
 	import ConfigEditor from '../components/ConfigEditor.vue';
 	import Dropdown from '../components/utils/Dropdown.vue';
 	import * as copy from 'copy-to-clipboard';
+
+	import { mapGetters } from 'vuex';
 
 	export default {
 		name: 'ui-configuration',
@@ -72,29 +73,33 @@
 				fields,
 				categories,
 				model: {
-					defaultView: storage.get('settings:default-view'),
-					sentryInstalled: this.$sentry.installed,
-					sentryReporting: this.$sentry.reporting
-				},
-				storedEvents: this.$sentry.storedEvents
+					defaultView: this.$store.getters['settings/defaultView'],
+					sentryInstalled: this.$store.getters['settings/sentryInstalled'],
+					sentryReporting: this.$store.getters['settings/sentryReporting']
+				}
 			}
 		},
 		computed: {
-			storedEventsCount() {
-				return this.storedEvents.length;
-			}
+			...mapGetters({
+				sentryInstalled: 'settings/sentryInstalled'
+			})
 		},
 		methods: {
 			save() {
-				const model = this.model;
-				if (model.defaultView) storage.set('settings:default-view', model.defaultView);
-				model.sentryInstalled ? this.$sentry.install(this.$store) : this.$sentry.destroy();
-				model.sentryReporting ? this.$sentry.enableReporting() : this.$sentry.disableReporting();
-				this.$forceUpdate();
+				if (this.model.sentryInstalled) this.$sentry.install(this.$store);
+				else this.$sentry.destroy();
+
+				if (this.model.sentryReporting) this.$sentry.enableReporting();
+				else this.$sentry.disableReporting();
+
+				this.$store.dispatch('settings/setDefaultView', this.model.defaultView);
+				this.$store.dispatch('settings/setSentryInstalled', this.model.sentryInstalled);
+				this.$store.dispatch('settings/setSentryReporting', this.model.sentryReporting);
+
 				this.$success(this.$t('settings-saved'));
 			},
 			copyStoredEvents() {
-				copy(JSON.stringify(this.storedEvents));
+				copy(JSON.stringify(this.$sentry.storedEvents));
 				this.$info(this.$t('log-copied'));
 			},
 			captureSnapshot() {

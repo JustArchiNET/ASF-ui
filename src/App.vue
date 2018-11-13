@@ -73,8 +73,7 @@
 			}
 		},
 		created() {
-			const sentryActive = storage.get('sentry:active');
-			if (sentryActive) this.$sentry.install(this.$store);
+			if (this.$store.getters['settings/sentryInstalled']) this.$sentry.install(this.$store);
 		}
 	};
 </script>
