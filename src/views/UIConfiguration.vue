@@ -9,14 +9,10 @@
 				<div class="form-item__buttons">
 					<button class="button button--confirm" @click="save">{{ $t('save') }}</button>
 
-					<div class="pull-right">
-						<button class="button button--confirm" v-if="model.sentryInstalled" @click="captureSnapshot">{{ $t('capture-snapshot') }}</button>
-
-						<template v-if="model.sentryInstalled && !model.sentryReporting || storedEventsCount">
-							<button class="button button--disabled" v-if="!storedEventsCount">{{ $t('no-events') }}</button>
-							<button class="button button--confirm" @click="copyStoredEvents" v-else>{{ $t('copy-log') }}</button>
-						</template>
-					</div>
+					<dropdown :label="$t('debug')" class="button--confirm pull-right" :disabled="!sentryInstalled">
+						<li class="dropdown__item" @click="captureSnapshot">{{ $t('capture-snapshot') }}</li>
+						<li class="dropdown__item" @click="copyStoredEvents">{{ $t('copy-log') }}</li>
+					</dropdown>
 				</div>
 			</div>
 		</div>
@@ -24,9 +20,11 @@
 </template>
 
 <script>
-	import * as storage from '../utils/storage';
 	import ConfigEditor from '../components/ConfigEditor.vue';
+	import Dropdown from '../components/utils/Dropdown.vue';
 	import * as copy from 'copy-to-clipboard';
+
+	import { mapGetters } from 'vuex';
 
 	export default {
 		name: 'ui-configuration',
@@ -35,7 +33,7 @@
 				title: this.$t('ui-configuration')
 			};
 		},
-		components: { ConfigEditor },
+		components: { ConfigEditor, Dropdown },
 		data() {
 			const categories = [
 				{ name: this.$t('general'), fields: [this.$t('default-page')] },
@@ -82,30 +80,35 @@
 				fields,
 				categories,
 				model: {
-					defaultView: storage.get('settings:default-view'),
-					showTimestamps: storage.get('settings:timestamps'),
-					sentryInstalled: this.$sentry.installed,
-					sentryReporting: this.$sentry.reporting
-				},
-				storedEvents: this.$sentry.storedEvents
-			}
+					defaultView: this.$store.getters['settings/defaultView'],
+          showTimestamps: this.$store.getters['settings/showTimestamps'],
+					sentryInstalled: this.$store.getters['settings/sentryInstalled'],
+					sentryReporting: this.$store.getters['settings/sentryReporting']
+				}
+			};
 		},
 		computed: {
-			storedEventsCount() {
-				return this.storedEvents.length;
-			}
+			...mapGetters({
+				sentryInstalled: 'settings/sentryInstalled'
+			})
 		},
 		methods: {
 			save() {
-				const model = this.model;
-				if (model.defaultView) storage.set('settings:default-view', model.defaultView);
-				model.sentryInstalled ? this.$sentry.install(this.$store) : this.$sentry.destroy();
-				model.sentryReporting ? this.$sentry.enableReporting() : this.$sentry.disableReporting();
-				storage.set('settings:timestamps', model.showTimestamps);
+				if (this.model.sentryInstalled) this.$sentry.install(this.$store);
+				else this.$sentry.destroy();
+
+				if (this.model.sentryReporting) this.$sentry.enableReporting();
+				else this.$sentry.disableReporting();
+
+				this.$store.dispatch('settings/setDefaultView', this.model.defaultView);
+        this.$store.dispatch('settings/showTimestamps', this.model.showTimestamps);
+				this.$store.dispatch('settings/setSentryInstalled', this.model.sentryInstalled);
+				this.$store.dispatch('settings/setSentryReporting', this.model.sentryReporting);
+
 				this.$success(this.$t('settings-saved'));
 			},
 			copyStoredEvents() {
-				copy(JSON.stringify(this.storedEvents));
+				copy(JSON.stringify(this.$sentry.storedEvents));
 				this.$info(this.$t('log-copied'));
 			},
 			captureSnapshot() {

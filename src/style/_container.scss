@@ -1,17 +1,13 @@
 .main-container {
 	padding: 1em;
+	height: 100%;
+	overflow: auto;
 }
 
 .main-container--center {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-}
-
-.main-container--modal {
-	max-width: 80vw;
-	max-height: 80vh;
-	overflow-y: auto;
 }
 
 .container {

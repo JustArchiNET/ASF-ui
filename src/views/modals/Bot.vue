@@ -1,5 +1,5 @@
 <template>
-	<main class="main-container main-container--modal main-container--bot-profile">
+	<main class="main-container main-container--bot-profile">
 		<h2 class="title" v-if="!bot">{{ $t('not-found') }}</h2>
 
 		<template v-else>
@@ -17,21 +17,16 @@
 				</div>
 
 				<div class="bot-profile__actions">
-					<router-link tag="span" :to="{ name: 'bot-config', params: { bot: bot.name } }" class="bot-profile__action bot-profile__action--config">
-						<font-awesome-icon icon="wrench"></font-awesome-icon>
-					</router-link>
-					<router-link tag="span" :to="{ name: 'bot-bgr', params: { bot: bot.name } }" class="bot-profile__action bot-profile__action--gbr">
-						<font-awesome-icon icon="key"></font-awesome-icon>
-					</router-link>
+					<bot-link icon="wrench" :link="{ name: 'bot-config', params: { bot: bot.name } }"></bot-link>
+					<bot-link icon="key" :link="{ name: 'bot-bgr', params: { bot: bot.name } }"></bot-link>
 
-					<span class="bot-profile__action bot-profile__action--resume" v-if="bot.paused && bot.active" @click="resume"><font-awesome-icon icon="play"></font-awesome-icon></span>
-					<span class="bot-profile__action bot-profile__action--pause" v-if="!bot.paused && bot.active" @click="pause"><font-awesome-icon icon="pause"></font-awesome-icon></span>
-					<span class="bot-profile__action bot-profile__action--start" v-if="!bot.active" @click="start"><font-awesome-icon icon="power-off"></font-awesome-icon></span>
-					<span class="bot-profile__action bot-profile__action--stop" v-if="bot.active" @click="stop"><font-awesome-icon icon="power-off"></font-awesome-icon></span>
+					<bot-action icon="play" v-if="bot.paused && bot.active" @click="resume" color="green"></bot-action>
+					<bot-action icon="pause" v-if="!bot.paused && bot.active" @click="pause" color="orange"></bot-action>
 
-					<router-link tag="span" :to="{ name: 'bot-delete', params: { bot: bot.name } }" class="bot-profile__action bot-profile__action--delete pull-right">
-						<font-awesome-icon icon="trash"></font-awesome-icon>
-					</router-link>
+					<bot-action icon="power-off" v-if="!bot.active" @click="start" color="green"></bot-action>
+					<bot-action icon="power-off" v-if="bot.active" @click="stop" color="red"></bot-action>
+
+					<bot-link icon="trash" :link="{ name: 'bot-delete', params: { bot: bot.name } }" class="pull-right" color="red"></bot-link>
 				</div>
 			</div>
 
@@ -50,46 +45,44 @@
 </template>
 
 <script>
+	import BotAction from '../../components/BotAction.vue';
+	import BotLink from '../../components/BotLink.vue';
+	import Dropdown from '../../components/utils/Dropdown.vue';
+
 	export default {
-    	name: 'bot',
+		name: 'bot',
+		components: { BotAction, BotLink, Dropdown },
 		computed: {
 			bot() {
 				return this.$store.getters['bots/bot'](this.$route.params.bot);
 			}
 		},
 		methods: {
-			async pause() {
+			async action(name, params = {}) {
 				try {
-					const message = await this.$http.botAction(this.bot.name, 'pause', { permanent: true, resumeInSeconds: 0 });
-					await this.$store.dispatch('bots/updateBot', { name: this.bot.name, paused: true });
+					return await this.$http.botAction(this.bot.name, name, params);
 				} catch (err) {
 					this.$error(err.message);
 				}
-
+			},
+			async update(params = {}) {
+				return this.$store.dispatch('bots/updateBot', { name: this.bot.name, ...params });
+			},
+			async pause() {
+				await this.action('pause', { permanent: true });
+				await this.update({ paused: true });
 			},
 			async resume() {
-				try {
-					const message = await this.$http.botAction(this.bot.name, 'resume');
-					await this.$store.dispatch('bots/updateBot', { name: this.bot.name, paused: false });
-				} catch (err) {
-					this.$error(err.message);
-				}
+				await this.action('resume');
+				await this.update({ paused: false });
 			},
 			async start() {
-				try {
-					const message = await this.$http.botAction(this.bot.name, 'start');
-					await this.$store.dispatch('bots/updateBot', { name: this.bot.name, active: true });
-				} catch (err) {
-					this.$error(err.message);
-				}
+				await this.action('start');
+				await this.update({ active: true });
 			},
 			async stop() {
-				try {
-					const message = await this.$http.botAction(this.bot.name, 'stop');
-					await this.$store.dispatch('bots/updateBot', { name: this.bot.name, active: false, steamid: '0' });
-				} catch (err) {
-					this.$error(err.message);
-				}
+				await this.action('stop');
+				await this.update({ active: false });
 			}
 		}
 	};
@@ -151,36 +144,6 @@
 		grid-area: actions;
 		display: flex;
 		align-items: center;
-	}
-
-	.bot-profile__action {
-		padding: 0.25em;
-		margin: 0 0.1em;
-		cursor: pointer;
-		transition: color .3s;
-		color: var(--color-text-disabled);
-
-		&:hover {
-			color: var(--color-text-dark);
-
-			.app--dark-mode & {
-				color: var(--color-text);
-			}
-		}
-	}
-
-	.bot-profile__action--start:hover,
-	.bot-profile__action--resume:hover {
-		color: green;
-	}
-
-	.bot-profile__action--pause:hover {
-		color: orange;
-	}
-
-	.bot-profile__action--stop:hover,
-	.bot-profile__action--delete:hover {
-		color: red;
 	}
 
 	.bot-games {

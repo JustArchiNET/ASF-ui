@@ -5,14 +5,14 @@ function isNumber(value) {
 }
 
 export function steamid() {
-	return function (value) {
+	return function(value) {
 		const errors = [];
 
 		if (!isNumber(value)) errors.push('not a number');
 		if (!steamidRegex.test('' + value) && '' + value !== '0') errors.push('not valid steamid');
 
 		return errors;
-	}
+	};
 }
 
 function limitedNumber(min = 0, max) {
@@ -24,7 +24,7 @@ function limitedNumber(min = 0, max) {
 		if (value > max) errors.push(`greater than allowed (${max})`);
 
 		return errors;
-	}
+	};
 }
 
 export default {

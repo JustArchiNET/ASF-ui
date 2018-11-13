@@ -286,6 +286,23 @@
 	}
 }
 
+.button-group {
+	.button {
+		margin-right: 0;
+		border-radius: 0;
+		border-right: 1px solid rgba(0, 0, 0, 0.1);
+
+		&:first-of-type {
+			border-radius: .1875em 0 0 .1875em;
+		}
+
+		&:last-of-type {
+			border-radius: 0 .1875em .1875em 0;
+			border-right: 0;
+		}
+	}
+}
+
 .checkbox {
 	.button {
 		transition: all .3s;
@@ -311,7 +328,7 @@ table {
 		background-color: var(--color-background);
 
 		&:nth-child(2n) {
-			background-color:  var(--color-background-light);
+			background-color: var(--color-background-light);
 		}
 	}
 }

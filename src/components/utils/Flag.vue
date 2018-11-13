@@ -13,10 +13,10 @@
 		data() {
 			return {
 				flagImage: defaultImage
-			}
+			};
 		},
 		async created() {
-			const flags = await import('../utils/flags');
+			const flags = await import('../../utils/flags');
 			this.flagImage = flags[this.country];
 		}
 	};

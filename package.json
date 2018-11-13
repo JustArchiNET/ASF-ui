@@ -21,7 +21,6 @@
 		"copy-webpack-plugin": "^4.5.2",
 		"css-loader": "^1.0.0",
 		"file-loader": "^2.0.0",
-		"git-revision-webpack-plugin": "^3.0.3",
 		"node-sass": "^4.9.3",
 		"sass-loader": "^7.1.0",
 		"terser-webpack-plugin": "^1.1.0",

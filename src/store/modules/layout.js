@@ -37,7 +37,7 @@ export const actions = {
 	},
 	toggleNavigation: ({ commit, getters }) => {
 		commit('toggleNavigation');
-		storage.set('layout:small-navigation', JSON.parse(getters.smallNavigation));
+		storage.set('layout:small-navigation', getters.smallNavigation);
 	},
 	toggleSideMenu: ({ commit }) => {
 		commit('toggleSideMenu');
@@ -48,11 +48,11 @@ export const actions = {
 	},
 	toggleBoxed: ({ commit, getters }) => {
 		commit('toggleBoxed');
-		storage.set('layout:boxed-layout', JSON.parse(getters.boxed));
+		storage.set('layout:boxed-layout', getters.boxed);
 	},
 	toggleDarkMode: ({ commit, getters }) => {
 		commit('toggleDarkMode');
-		storage.set('layout:dark-mode', JSON.parse(getters.darkMode));
+		storage.set('layout:dark-mode', getters.darkMode);
 	}
 };
 

@@ -1,22 +1,24 @@
 <template>
-	<main class="main-container main-container--modal main-container--bot-create">
-			<h2 class="title">{{ $t('bot-new') }}</h2>
+	<main class="main-container main-container--bot-create">
+		<h2 class="title">{{ $t('bot-new') }}</h2>
 
-			<h3 class="subtitle" v-if="loading"><font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon></h3>
-			<div class="container" v-else>
-				<config-editor :fields="fields" :model="model" :categories="categories"></config-editor>
+		<h3 class="subtitle" v-if="loading">
+			<font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
+		</h3>
+		<div class="container" v-else>
+			<config-editor :fields="fields" :model="model" :categories="categories"></config-editor>
 
-				<div class="form-item">
-					<div class="form-item__buttons">
-						<button class="button button--confirm" @click="onCreate">
-							<font-awesome-icon icon="spinner" v-if="creating" spin></font-awesome-icon>
-							<span v-else>{{ $t('create') }}</span>
-						</button>
+			<div class="form-item">
+				<div class="form-item__buttons">
+					<button class="button button--confirm" @click="onCreate">
+						<font-awesome-icon icon="spinner" v-if="creating" spin></font-awesome-icon>
+						<span v-else>{{ $t('create') }}</span>
+					</button>
 
-						<button class="button button--link pull-right" @click="onDownload">{{ $t('download-raw-config') }}</button>
-					</div>
+					<button class="button button--link pull-right" @click="onDownload">{{ $t('download-raw-config') }}</button>
 				</div>
 			</div>
+		</div>
 	</main>
 </template>
 
