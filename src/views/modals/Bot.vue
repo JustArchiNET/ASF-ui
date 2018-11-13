@@ -58,38 +58,31 @@
 			}
 		},
 		methods: {
-			async pause() {
+			async action(name, params = {}) {
 				try {
-					const message = await this.$http.botAction(this.bot.name, 'pause', { permanent: true, resumeInSeconds: 0 });
-					await this.$store.dispatch('bots/updateBot', { name: this.bot.name, paused: true });
+					return await this.$http.botAction(this.bot.name, name, params);
 				} catch (err) {
 					this.$error(err.message);
 				}
-
+			},
+			async update(params = {}) {
+				return this.$store.dispatch('bots/updateBot', { name: this.bot.name, ...params });
+			},
+			async pause() {
+				await this.action('pause', { permanent: true });
+				await this.update({ paused: true });
 			},
 			async resume() {
-				try {
-					const message = await this.$http.botAction(this.bot.name, 'resume');
-					await this.$store.dispatch('bots/updateBot', { name: this.bot.name, paused: false });
-				} catch (err) {
-					this.$error(err.message);
-				}
+				await this.action('resume');
+				await this.update({ paused: false });
 			},
 			async start() {
-				try {
-					const message = await this.$http.botAction(this.bot.name, 'start');
-					await this.$store.dispatch('bots/updateBot', { name: this.bot.name, active: true });
-				} catch (err) {
-					this.$error(err.message);
-				}
+				await this.action('start');
+				await this.update({ active: true });
 			},
 			async stop() {
-				try {
-					const message = await this.$http.botAction(this.bot.name, 'stop');
-					await this.$store.dispatch('bots/updateBot', { name: this.bot.name, active: false, steamid: '0' });
-				} catch (err) {
-					this.$error(err.message);
-				}
+				await this.action('stop');
+				await this.update({ active: false });
 			}
 		}
 	};
