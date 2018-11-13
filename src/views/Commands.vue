@@ -74,13 +74,12 @@
 				commandHistory: new CommandsCache(20),
 				commandHistoryIndex: -1,
 				asfCommands: [],
-				timestamp: '',
-				showTimestamps: storage.get('settings:timestamps')
 			};
 		},
 		computed: {
 			...mapGetters({
-				version: 'asf/version'
+				version: 'asf/version',
+				timestamps: 'settings/timestamps'
 			}),
 			commands() {
 				return [
@@ -194,17 +193,16 @@
 			async sendCommand() {
 				const commandToExecute = this.command.trim();
 				this.command = '';
+				const timestamp = this.timestamps ? this.getTimestamp() : '';
 
 				if (!commandToExecute) return;
 
 				this.commandHistoryIndex = -1;
 				this.commandHistory.add(commandToExecute);
 
-				if (this.showTimestamps) this.timestamp = this.getTimestamp();
+				const response = { type: 'in', timestamp: timestamp, message: '...' };
 
-				const response = { type: 'in', timestamp: this.timestamp, message: '...' };
-
-				this.log.push({ type: 'out', timestamp: this.timestamp, message: commandToExecute });
+				this.log.push({ type: 'out', timestamp: timestamp, message: commandToExecute });
 				this.log.push(response);
 
 				try {
