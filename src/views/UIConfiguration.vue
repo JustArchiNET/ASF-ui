@@ -11,7 +11,8 @@
 
 					<dropdown :label="$t('debug')" class="button--confirm pull-right" :disabled="!sentryInstalled">
 						<li class="dropdown__item" @click="captureSnapshot">{{ $t('capture-snapshot') }}</li>
-						<li class="dropdown__item" @click="copyStoredEvents">{{ $t('copy-log') }}</li>
+						<li class="dropdown__item dropdown__item--disabled" v-if="!storedEventsCount">{{ $t('no-events') }}</li>
+						<li class="dropdown__item" @click="copyStoredEvents" v-else>{{ $t('copy-log') }}</li>
 					</dropdown>
 				</div>
 			</div>
@@ -76,13 +77,17 @@
 					defaultView: this.$store.getters['settings/defaultView'],
 					sentryInstalled: this.$store.getters['settings/sentryInstalled'],
 					sentryReporting: this.$store.getters['settings/sentryReporting']
-				}
+				},
+				storedEvents: this.$sentry.storedEvents
 			};
 		},
 		computed: {
 			...mapGetters({
 				sentryInstalled: 'settings/sentryInstalled'
-			})
+			}),
+			storedEventsCount() {
+				return this.storedEvents.length;
+			}
 		},
 		methods: {
 			save() {
@@ -109,3 +114,15 @@
 		}
 	};
 </script>
+
+<style lang="scss">
+	.dropdown__item--disabled {
+		color: var(--color-text-disabled);
+		background: var(--color-navigation);
+		cursor: not-allowed;
+
+		&:hover {
+			background: var(--color-navigation);
+		}
+	}
+</style>
