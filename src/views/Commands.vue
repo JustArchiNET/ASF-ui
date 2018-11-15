@@ -73,7 +73,7 @@
 				log: [],
 				commandHistory: new CommandsCache(20),
 				commandHistoryIndex: -1,
-				asfCommands: [],
+				asfCommands: []
 			};
 		},
 		computed: {
