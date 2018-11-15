@@ -37,6 +37,7 @@
 		data() {
 			const categories = [
 				{ name: this.$t('general'), fields: [this.$t('default-page')] },
+				{ name: this.$t('bots'), fields: [this.$t('bot-nicknames')] },
 				{ name: this.$t('debug'), fields: [this.$t('logging'), this.$t('reporting')] }
 			];
 
@@ -54,6 +55,12 @@
 						[this.$t('last-visited-page')]: '_last-visited-page'
 					},
 					description: this.$t('default-page-description')
+				},
+				{
+					param: this.$t('bot-nicknames'),
+					paramName: 'nicknames',
+					type: 'boolean',
+					description: this.$t('bot-nicknames-description')
 				},
 				{
 					param: this.$t('logging'),
@@ -74,6 +81,7 @@
 				categories,
 				model: {
 					defaultView: this.$store.getters['settings/defaultView'],
+					nicknames: this.$store.getters['settings/nicknames'],
 					sentryInstalled: this.$store.getters['settings/sentryInstalled'],
 					sentryReporting: this.$store.getters['settings/sentryReporting']
 				}
@@ -93,6 +101,7 @@
 				else this.$sentry.disableReporting();
 
 				this.$store.dispatch('settings/setDefaultView', this.model.defaultView);
+				this.$store.dispatch('settings/setNicknames', this.model.nicknames);
 				this.$store.dispatch('settings/setSentryInstalled', this.model.sentryInstalled);
 				this.$store.dispatch('settings/setSentryReporting', this.model.sentryReporting);
 
