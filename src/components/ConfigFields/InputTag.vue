@@ -64,7 +64,7 @@
 			onKeyDown($event) {
 				const charCode = ($event.which) ? $event.which : $event.keyCode;
 
-				if ([9, 13].includes(charCode)) {
+				if ([9, 13, 188, 32].includes(charCode)) {
 					this.addElement();
 					return $event.preventDefault();
 				}
