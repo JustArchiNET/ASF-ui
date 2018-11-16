@@ -26,7 +26,7 @@
 	"reset": "Reiniciar",
 	"check": "Verificar",
 	"bgr-keys-insert": "Insira aqui as suas keys",
-	"bgr-keys-insert-example": "",
+	"bgr-keys-insert-example": "Exemplo:\nAAAAA-BBBBB-CCCC0\nAAAAA-BBBBB-CCCC1\n\nVocê também pode marcar as keys com o nome dos jogos:\nAAAAA-BBBBB-CCCC2\tTurbo Pug\nAAAAA-BBBBB-CCCC3\tBad Rats",
 	"bgr-no-keys-detected": "Nenhuma key de jogo detectada",
 	"back": "Voltar",
 	"input-all-selected": "Todos os valores selecionados",
