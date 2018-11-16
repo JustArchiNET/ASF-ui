@@ -90,7 +90,7 @@
 				categories,
 				model: {
 					defaultView: this.$store.getters['settings/defaultView'],
-          hideBots: this.$store.getters['settings/hideBots'],
+					hideBots: this.$store.getters['settings/hideBots'],
 					sentryInstalled: this.$store.getters['settings/sentryInstalled'],
 					sentryReporting: this.$store.getters['settings/sentryReporting']
 				}
@@ -110,7 +110,7 @@
 				else this.$sentry.disableReporting();
 
 				this.$store.dispatch('settings/setDefaultView', this.model.defaultView);
-        this.$store.dispatch('settings/setHideBots', this.model.hideBots);
+				this.$store.dispatch('settings/setHideBots', this.model.hideBots);
 				this.$store.dispatch('settings/setSentryInstalled', this.model.sentryInstalled);
 				this.$store.dispatch('settings/setSentryReporting', this.model.sentryReporting);
 
