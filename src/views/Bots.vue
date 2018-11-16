@@ -17,7 +17,7 @@
 </template>
 
 <script>
-	import BotFarmingInfo from "../components/BotFarmingInfo.vue";
+	import BotFarmingInfo from '../components/BotFarmingInfo.vue';
 	import BotCard from '../components/BotCard.vue';
 
 	import { mapGetters } from 'vuex';

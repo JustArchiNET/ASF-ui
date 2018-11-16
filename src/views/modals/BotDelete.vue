@@ -1,5 +1,5 @@
 <template>
-	<main class="main-container main-container--modal main-container--bot-profile">
+	<main class="main-container main-container--bot-profile">
 		<h2 class="title" v-if="!bot">{{ $t('not-found') }}</h2>
 
 		<div class="bot-delete" v-else>
@@ -27,7 +27,7 @@
 		data() {
 			return {
 				deleting: false
-			}
+			};
 		},
 		computed: {
 			bot() {

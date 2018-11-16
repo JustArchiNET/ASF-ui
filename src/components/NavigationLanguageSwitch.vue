@@ -16,7 +16,7 @@
 
 <script>
 	import * as storage from '../utils/storage';
-	import Flag from './Flag.vue';
+	import Flag from './utils/Flag.vue';
 
 	export default {
 		name: 'navigation-language-switch',
@@ -49,7 +49,7 @@
 				this.open = false;
 			}
 		}
-	}
+	};
 </script>
 
 <style lang="scss">

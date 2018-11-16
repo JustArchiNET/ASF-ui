@@ -19,7 +19,7 @@ export default {
 			Vue.set(state.translations, locale, flatten(translation));
 		},
 		removeLocale(state, { locale }) {
-			Vue.delete(state.translations, locale)
+			Vue.delete(state.translations, locale);
 		}
 	},
 	actions: {
@@ -55,4 +55,4 @@ export default {
 			return (availableStrings.filter(key => getters.hasTranslation(state.locale, key)).length / availableStrings.length) * 100;
 		}
 	}
-}
+};

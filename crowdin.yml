@@ -1,0 +1,8 @@
+"preserve_hierarchy": true
+"files": [
+  {
+    "source": "/src/i18n/locale/default.json",
+    "dest": "/ASF-ui/src/i18n/locale/default.json",
+    "translation": "/src/i18n/locale/%locale%.json"
+  }
+]

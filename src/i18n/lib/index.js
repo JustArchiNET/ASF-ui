@@ -32,7 +32,7 @@ export default {
 
 				this.load(name).catch(err => {
 					console.warn(err.message);
-					store.dispatch('i18n/setLocale', { locale: oldLocale })
+					store.dispatch('i18n/setLocale', { locale: oldLocale });
 				});
 			},
 			async load(name) {
@@ -74,4 +74,4 @@ export default {
 		Vue.prototype.$t = i18n.translate;
 		Vue.i18n = i18n;
 	}
-}
+};

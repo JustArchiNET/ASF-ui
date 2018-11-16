@@ -1,7 +1,7 @@
 <template>
 	<div class="bgr__input">
 		<div class="form-item">
-			<textarea class="form-item__textarea" cols="70" rows="15" :placeholder="$t('bgr-keys-insert')" v-model="userInput" spellcheck="false"></textarea>
+			<textarea class="form-item__textarea" cols="70" rows="15" :placeholder="$t('bgr-keys-insert') + '\n\n' + $t('bgr-keys-insert-example')" v-model="userInput" spellcheck="false"></textarea>
 		</div>
 
 		<div class="form-item">
@@ -75,6 +75,8 @@
 						keys[keyNamePair.key] = nextKeyNamePair.name;
 					} else if (!nextKeyNamePair.name && nextKeyNamePair.key && !keyNamePair.key) {
 						keys[nextKeyNamePair.key] = keyNamePair.name;
+					} else if (keyNamePair.key) {
+						keys[keyNamePair.key] = 'Unknown';
 					}
 				}
 

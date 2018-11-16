@@ -52,7 +52,6 @@
 		right: 0;
 		background: rgba(0, 0, 0, 0.8);
 		transition: background .2s linear;
-		box-shadow: inset 0 0 5px var(--color-border);
 	}
 
 	.modal__body {
@@ -64,12 +63,13 @@
 		background: var(--color-background);
 		box-shadow: 0 0 5px 0 var(--color-border);
 		border-radius: 4px;
-		overflow: hidden;
 		z-index: 21;
 		position: relative;
 		box-sizing: border-box;
 		display: flex;
 		flex-direction: column;
+		max-width: 80vw;
+		max-height: 80vh;
 
 		> div {
 			box-sizing: border-box;

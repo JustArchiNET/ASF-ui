@@ -18,7 +18,7 @@
 </template>
 
 <script>
-	import BgrKeys from "./Keys.vue";
+	import BgrKeys from './Keys.vue';
 
 	export default {
 		components: { BgrKeys },

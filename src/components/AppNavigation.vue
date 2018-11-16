@@ -1,5 +1,5 @@
 <template>
-	<nav class="side-navigation">
+	<nav class="side-navigation" @transitionend="onTransitionEnd">
 		<template v-if="authenticated">
 			<div class="navigation-category">
 				<navigation-category-title :name="$t('control')"></navigation-category-title>
@@ -17,7 +17,7 @@
 
 			<div class="navigation-category navigation-category--pull-bottom">
 				<navigation-category-title :name="$t('statistics')"></navigation-category-title>
-				<navigation-bots></navigation-bots>
+				<navigation-bots ref="bots"></navigation-bots>
 				<navigation-statistics></navigation-statistics>
 			</div>
 		</template>
@@ -43,8 +43,24 @@
 		name: 'app-navigation',
 		components: { NavigationLink, NavigationCategoryTitle, NavigationStatistics, NavigationBots },
 		computed: mapGetters({
-			authenticated: 'auth/authenticated'
-		})
+			authenticated: 'auth/authenticated',
+			smallNavigation: 'layout/smallNavigation'
+		}),
+		watch: {
+			smallNavigation: {
+				handler(value) {
+					this.onTransitionStart();
+				}
+			}
+		},
+		methods: {
+			onTransitionStart() {
+				this.$refs.bots.onTransitionStart();
+			},
+			onTransitionEnd() {
+				this.$refs.bots.onTransitionEnd();
+			}
+		}
 	};
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-	<main class="main-container main-container--modal">
+	<main class="main-container">
 		<template v-if="!bot">
 			<h2 class="title" v-if="!bot">Not found!</h2>
 		</template>
@@ -7,7 +7,9 @@
 		<template v-else>
 			<h2 class="title">{{ bot.name }}</h2>
 
-			<h3 class="subtitle" v-if="loading"><font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon></h3>
+			<h3 class="subtitle" v-if="loading">
+				<font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
+			</h3>
 			<bgr-status v-if="!loading && state === 'input'" :used-keys="usedKeys" :unused-keys="unusedKeys" @reset="onReset" @show-unused="state = 'unusedKeys'" @show-used="state = 'usedKeys'"></bgr-status>
 
 			<keep-alive>

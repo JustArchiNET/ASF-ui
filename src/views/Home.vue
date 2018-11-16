@@ -10,7 +10,7 @@
 </template>
 
 <script>
-	import BotFarmingInfo from "../components/BotFarmingInfo.vue";
+	import BotFarmingInfo from '../components/BotFarmingInfo.vue';
 	import Changelog from '../components/Changelog.vue';
 
 	export default {

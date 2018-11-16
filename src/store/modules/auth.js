@@ -37,7 +37,7 @@ export const actions = {
 		const password = storage.get('ipc-password');
 		if (password) commit('setPassword', password);
 		await dispatch('updateStatus');
-		initializer.resolve()
+		initializer.resolve();
 	},
 	async setPassword({ commit, dispatch }, password) {
 		commit('setPassword', password);

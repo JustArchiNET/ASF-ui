@@ -50,7 +50,7 @@
 		}
 
 		save() {
-			storage.set('command-history', JSON.stringify(this._cache));
+			storage.set('command-history', this._cache);
 		}
 
 		load() {
@@ -213,7 +213,7 @@
 			async executeCommand(commandToExecute) {
 				switch (commandToExecute.split(' ')[0]) {
 					case 'commands':
-						return this.$t('terminal-available-commands', { commands: this.commandsNames.join(', ')});
+						return this.$t('terminal-available-commands', { commands: this.commandsNames.join(', ') });
 					case 'help':
 						if (commandToExecute.split(' ')[1]) return this.commandHelp(commandToExecute.split(' ')[1]);
 						return this.$t('terminal-help-text');
@@ -224,7 +224,7 @@
 			commandHelp(command) {
 				const asfCommand = this.commands.find(asfCommand => asfCommand.command.split(' ')[0] === command);
 				if (asfCommand) return asfCommand.description;
-				return this.$t('terminal-no-help', { command: command});
+				return this.$t('terminal-no-help', { command: command });
 			},
 			focusInput() {
 				const selectedText = getSelectedText();
@@ -269,7 +269,7 @@
 			async fetchCommands() {
 				const wiki = await fetchWiki('Commands', this.version);
 				const commands = this.parseCommandsHTML(wiki);
-				storage.set('cache:asf-commands', JSON.stringify({ timestamp: Date.now(), commands }));
+				storage.set('cache:asf-commands', { timestamp: Date.now(), commands });
 				return commands;
 			},
 			async loadCommands() {

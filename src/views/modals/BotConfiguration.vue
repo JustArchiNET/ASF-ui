@@ -1,5 +1,5 @@
 <template>
-	<main class="main-container main-container--modal main-container--bot-configuration">
+	<main class="main-container main-container--bot-configuration">
 		<template v-if="!bot">
 			<h2 class="title" v-if="!bot">{{ $t('not-found') }}</h2>
 		</template>
@@ -7,7 +7,9 @@
 		<template v-else>
 			<h2 class="title">{{ bot.name }}</h2>
 
-			<h3 class="subtitle" v-if="loading"><font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon></h3>
+			<h3 class="subtitle" v-if="loading">
+				<font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
+			</h3>
 			<div class="container" v-else>
 				<config-editor :fields="fields" :model="model" :categories="categories"></config-editor>
 

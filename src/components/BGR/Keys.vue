@@ -1,10 +1,10 @@
 <template>
 	<div class="bgr__keys">
-		<span class="bgr__no-keys" v-if="noKeys">{{ $t('bgr-no-pairs-detected') }}</span>
+		<span class="bgr__no-keys" v-if="noKeys">{{ $t('bgr-no-keys-detected') }}</span>
 
 		<table class="bgr__table" v-else>
 			<tr>
-				<th>Name</th>
+				<th>Game</th>
 				<th>Key</th>
 			</tr>
 			<tr v-for="(name, key) in keys" class="key">
