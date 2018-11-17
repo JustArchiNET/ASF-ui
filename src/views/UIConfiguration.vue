@@ -70,8 +70,8 @@
 
 					},
 					description: this.$t('hide-bots-description')
-        },
-        {
+				},
+				{
 					param: this.$t('bot-nicknames'),
 					paramName: 'nicknames',
 					type: 'boolean',
