@@ -3,12 +3,15 @@
 		<input-label :label="label" :has-description="hasDescription"></input-label>
 
 		<div class="form-item__value">
-			<div class="form-item__input form-item__input--tag-wrapper" :class="{ 'form-item__input--focus': focus }">
-				<button v-for="(item, index) in value" class="form-item__tag" @click.prevent="removeElement(index)">
-					<span class="form-item__tag-value">{{ item }}</span>
-					<font-awesome-icon class="form-item__tag-remove" icon="times"></font-awesome-icon>
-				</button>
-				<input class="form-item__input form-item__input--tag" type="text" @keydown="onKeyDown" @focus="onFocus" @blur="onBlur" v-model="element">
+			<div class="input-option__field">
+				<div class="form-item__input form-item__input--tag-wrapper" :class="{ 'form-item__input--focus': focus }">
+					<button v-for="(item, index) in value" class="form-item__tag" @click.prevent="removeElement(index)">
+						<span class="form-item__tag-value">{{ item }}</span>
+						<font-awesome-icon class="form-item__tag-remove" icon="times"></font-awesome-icon>
+					</button>
+					<input class="form-item__input form-item__input--tag" type="text" @keydown="onKeyDown" @focus="onFocus" @blur="onBlur" v-model="element">
+				</div>
+				<button class="button" @click.prevent="addElement">{{ $t('add') }}</button>
 			</div>
 			<span v-if="hasErrors" class="form-item__error">{{ errorText }}</span>
 		</div>
@@ -64,7 +67,7 @@
 			onKeyDown($event) {
 				const charCode = ($event.which) ? $event.which : $event.keyCode;
 
-				if ([9, 13].includes(charCode)) {
+				if ([9, 13, 188, 32].includes(charCode)) {
 					this.addElement();
 					return $event.preventDefault();
 				}
