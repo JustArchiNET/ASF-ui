@@ -12,7 +12,8 @@
 				</div>
 
 				<div class="bot-profile__meta">
-					<h3 class="bot-profile__name">{{ bot.name }}</h3>
+					<h3 class="bot-profile__name" v-if="bot.nickname && nicknames">{{ bot.nickname }}</h3>
+					<h3 class="bot-profile__name" v-else>{{ bot.name }}</h3>
 					<p class="bot-profile__status">{{ bot.statusText }}</p>
 				</div>
 
@@ -49,10 +50,15 @@
 	import BotLink from '../../components/BotLink.vue';
 	import Dropdown from '../../components/utils/Dropdown.vue';
 
+	import { mapGetters } from 'vuex';
+
 	export default {
 		name: 'bot',
 		components: { BotAction, BotLink, Dropdown },
 		computed: {
+			...mapGetters({
+				nicknames: 'settings/nicknames'
+			}),
 			bot() {
 				return this.$store.getters['bots/bot'](this.$route.params.bot);
 			}

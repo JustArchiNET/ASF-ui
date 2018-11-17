@@ -1,11 +1,12 @@
 <template>
 	<main class="main-container">
 		<template v-if="!bot">
-			<h2 class="title" v-if="!bot">Not found!</h2>
+			<h2 class="title" v-if="!bot">{{ $t('not-found') }}</h2>
 		</template>
 
 		<template v-else>
-			<h2 class="title">{{ bot.name }}</h2>
+			<h2 class="title" v-if="bot.nickname && nicknames">{{ bot.nickname }}</h2>
+			<h2 class="title" v-else>{{ bot.name }}</h2>
 
 			<h3 class="subtitle" v-if="loading">
 				<font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
@@ -29,6 +30,8 @@
 	import BgrStatus from '../../components/BGR/Status.vue';
 	import BgrSummary from '../../components/BGR/Summary.vue';
 
+	import { mapGetters } from 'vuex';
+
 	export default {
 		name: 'bot-bgr',
 		components: { BgrStatus, BgrInput, BgrCheck, BgrSummary },
@@ -44,6 +47,9 @@
 			};
 		},
 		computed: {
+			...mapGetters({
+				nicknames: 'settings/nicknames'
+			}),
 			bot() {
 				return this.$store.getters['bots/bot'](this.$route.params.bot);
 			}

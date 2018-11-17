@@ -5,7 +5,8 @@
 		</template>
 
 		<template v-else>
-			<h2 class="title">{{ bot.name }}</h2>
+			<h2 class="title" v-if="bot.nickname && nicknames">{{ bot.nickname }}</h2>
+			<h2 class="title" v-else>{{ bot.name }}</h2>
 
 			<h3 class="subtitle" v-if="loading">
 				<font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
@@ -66,7 +67,10 @@
 			};
 		},
 		computed: {
-			...mapGetters({ version: 'asf/version' }),
+			...mapGetters({
+				version: 'asf/version',
+				nicknames: 'settings/nicknames'
+			}),
 			bot() {
 				return this.$store.getters['bots/bot'](this.$route.params.bot);
 			}

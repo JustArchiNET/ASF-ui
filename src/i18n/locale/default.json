@@ -112,5 +112,7 @@
 	"log-copied": "Copied log to clipboard!",
 	"no-events": "No events logged",
 	"capture-snapshot": "Capture snapshot",
-	"snapshot-captured": "Snapshot captured!"
+	"snapshot-captured": "Snapshot captured!",
+	"bot-nicknames": "Nicknames",
+	"bot-nicknames-description": "Display steam nicknames (if available) instead of bot names."
 }
