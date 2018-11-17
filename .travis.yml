@@ -15,7 +15,7 @@ script:
   - |
     set -eu
 
-    npm run-script build
+    npm run-script build:ci
 
     set +u # This is needed to continue Travis build
 matrix:
