@@ -31,7 +31,7 @@ export const actions = {
 	setHideBots({ commit }, value) {
 		storage.set('settings:hide-bots', value);
 		commit('setHideBots', value);
-  },
+	},
 	setNicknames({ commit }, value) {
 		storage.set('settings:nicknames', value);
 		commit('setNicknames', value);
