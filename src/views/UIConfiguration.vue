@@ -38,6 +38,7 @@
 			const categories = [
 				{ name: this.$t('general'), fields: [this.$t('default-page')] },
 				{ name: this.$t('commands'), fields: [this.$t('timestamps')] },
+				{ name: this.$t('bots'), fields: [this.$t('bot-nicknames')] },
 				{ name: this.$t('debug'), fields: [this.$t('logging'), this.$t('reporting')] }
 			];
 
@@ -61,6 +62,12 @@
 					paramName: 'timestamps',
 					type: 'boolean',
 					description: this.$t('timestamps-description')
+        },
+				{
+					param: this.$t('bot-nicknames'),
+					paramName: 'nicknames',
+					type: 'boolean',
+					description: this.$t('bot-nicknames-description')
 				},
 				{
 					param: this.$t('logging'),
@@ -82,6 +89,7 @@
 				model: {
 					defaultView: this.$store.getters['settings/defaultView'],
 					timestamps: this.$store.getters['settings/timestamps'],
+					nicknames: this.$store.getters['settings/nicknames'],
 					sentryInstalled: this.$store.getters['settings/sentryInstalled'],
 					sentryReporting: this.$store.getters['settings/sentryReporting']
 				}
@@ -102,6 +110,7 @@
 
 				this.$store.dispatch('settings/setDefaultView', this.model.defaultView);
 				this.$store.dispatch('settings/setTimestamps', this.model.timestamps);
+				this.$store.dispatch('settings/setNicknames', this.model.nicknames);
 				this.$store.dispatch('settings/setSentryInstalled', this.model.sentryInstalled);
 				this.$store.dispatch('settings/setSentryReporting', this.model.sentryReporting);
 

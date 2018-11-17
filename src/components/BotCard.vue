@@ -6,7 +6,8 @@
 		<router-link :to="{ name: 'bot', params: { bot: bot.name } }" tag="img" class="bot__avatar" :src="bot.avatarURL" v-else></router-link>
 
 		<router-link tag="div" :to="{ name: 'bot', params: { bot: bot.name } }" class="bot__status">
-			<span class="bot__status-property bot__status-property--name">{{ bot.name }}</span>
+			<span class="bot__status-property bot__status-property--name" v-if="bot.nickname && nicknames">{{ bot.nickname }}</span>
+			<span class="bot__status-property bot__status-property--name" v-else>{{ bot.name }}</span>
 			<span class="bot__status-property bot__status-property--text">{{ bot.statusText }}</span>
 		</router-link>
 
@@ -20,6 +21,8 @@
 </template>
 
 <script>
+	import { mapGetters } from 'vuex';
+
 	export default {
 		name: 'bot-card',
 		props: {
@@ -58,6 +61,11 @@
 					this.$error(err.message);
 				}
 			}
+		},
+		computed: {
+			...mapGetters({
+				nicknames: 'settings/nicknames'
+			})
 		}
 	};
 </script>
@@ -121,19 +129,21 @@
 				color: var(--color-text);
 			}
 		}
+
+		&.bot__action--start:hover,
+		&.bot__action--resume:hover {
+			color: green;
+		}
+
+		&.bot__action--pause:hover {
+			color: orange;
+		}
+
+		&.bot__action--stop:hover,
+		&.bot__action--delete:hover {
+			color: red;
+		}
 	}
 
-	.bot__action--start:hover,
-	.bot__action--resume:hover {
-		color: green;
-	}
 
-	.bot__action--pause:hover {
-		color: orange;
-	}
-
-	.bot__action--stop:hover,
-	.bot__action--delete:hover {
-		color: red;
-	}
 </style>

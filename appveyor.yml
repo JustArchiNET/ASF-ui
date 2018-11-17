@@ -1,0 +1,82 @@
+version: '{build}-{branch}'
+pull_requests:
+  do_not_increment_build_number: true
+skip_branch_with_pr: true
+image: Visual Studio 2017
+configuration: Release
+clone_depth: 10
+environment:
+  CROWDIN_API_KEY:
+    secure: oGuZaQo2z5/JkEYaKrD9Ing+TgwZ3qQVf+9Jdz73Fephy04z5rWPGCCtkjaMLTcY
+  CROWDIN_PROJECT_IDENTIFIER: archisteamfarm
+install:
+- pwsh: >-
+    Set-StrictMode -Version Latest
+
+    $ErrorActionPreference = 'Stop'
+
+    $ProgressPreference = 'SilentlyContinue'
+
+
+    git submodule update --init --recursive
+
+
+    if ($LastExitCode -ne 0) {
+        throw "Last command failed."
+    }
+build_script:
+- pwsh: >-
+    Set-StrictMode -Version Latest
+
+    $ErrorActionPreference = 'Stop'
+
+    $ProgressPreference = 'SilentlyContinue'
+
+
+    npm ci
+
+
+    if ($LastExitCode -ne 0) {
+        throw "Last command failed."
+    }
+
+
+    npm run-script build:ci
+
+
+    if ($LastExitCode -ne 0) {
+        throw "Last command failed."
+    }
+test_script:
+- pwsh: >-
+    Set-StrictMode -Version Latest
+
+    $ErrorActionPreference = 'Stop'
+
+    $ProgressPreference = 'SilentlyContinue'
+
+
+    if (!($env:APPVEYOR_PULL_REQUEST_NUMBER) -and ($env:APPVEYOR_REPO_BRANCH -eq 'master') -and ($env:APPVEYOR_REPO_TAG -eq 'false') -and (Test-Path 'crowdin.yml' -PathType Leaf) -and (Test-Path 'tools\ArchiCrowdin\crowdin_identity_example.yml' -PathType Leaf) -and (Test-Path 'tools\ArchiCrowdin\archi.ps1' -PathType Leaf)) {
+        (Get-Content 'tools\ArchiCrowdin\crowdin_identity_example.yml').Replace('CROWDIN_API_KEY', "$env:CROWDIN_API_KEY").Replace('CROWDIN_PROJECT_IDENTIFIER', "$env:CROWDIN_PROJECT_IDENTIFIER") | Set-Content 'tools\ArchiCrowdin\crowdin_identity.yml'
+
+        try {
+            & tools\ArchiCrowdin\archi.ps1 -u
+        } finally {
+            Remove-Item 'tools\ArchiCrowdin\crowdin_identity.yml'
+        }
+    }
+deploy: off
+notifications:
+- provider: Webhook
+  url:
+    secure: i/og7KzkpbcWcKoUubrLH+KB6bkfqA55FHUlGxLepLmgZNQeNMiMoAFICOFY795fFrFfUNUKqwk7ApXE6HUyWMoiijLj7G/JBLTPkBiTCu8fZMTMqwQm6FiHB3+/0h0C+ukcrBEqnXYSQUh6znpKqJSTrIfXUQ7ftNuC966kBAw=
+  method: POST
+  body: >-
+    {
+    	"avatar_url": "https://www.appveyor.com/assets/img/appveyor-logo-256.png",
+    	"username": "AppVeyor",
+    	"content": "[{{projectName}}:{{branch}}] {{commitMessage}} by {{commitAuthor}} ({{commitId}}) | **{{status}}** on {{buildUrl}}"
+    }
+  on_build_success: true
+  on_build_failure: true
+  on_build_status_changed: false

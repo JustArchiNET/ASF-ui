@@ -15,7 +15,7 @@ script:
   - |
     set -eu
 
-    npm run-script build --no-progress
+    npm run-script build:ci
 
     set +u # This is needed to continue Travis build
 matrix:
@@ -24,12 +24,12 @@ matrix:
   include:
     # We're building ASF-ui with node.js on latest versions of all available OSes
     # We need to declare latest image ourselves until https://github.com/travis-ci/travis-ci/issues/8922 is dealt with
-    # Ref: https://docs.travis-ci.com/user/reference/trusty
+    # Ref: https://docs.travis-ci.com/user/reference/xenial
     - os: linux
-      dist: trusty
+      dist: xenial
       sudo: false
     # Ref: https://docs.travis-ci.com/user/reference/osx
     - os: osx
-      osx_image: xcode10
+      osx_image: xcode10.1
     # Ref: https://docs.travis-ci.com/user/reference/windows
     - os: windows
