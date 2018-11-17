@@ -4,7 +4,7 @@
 	"description": "Friendly web interface consuming ASF's IPC interface",
 	"scripts": {
 		"dev": "webpack --config webpack.config.js --env development --progress",
-		"build": "webpack --config webpack.config.js --env production --progress",
+		"build": "webpack --config webpack.config.js --env production",
 		"deploy": "webpack --config webpack.config.js --env production --deploy",
 		"build:analyze": "webpack --config webpack.config.js --env production --analyze",
 		"start": "webpack-dev-server --open --env development",
