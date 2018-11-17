@@ -41,7 +41,7 @@ build_script:
     }
 
 
-    npm run-script build
+    npm run-script build:ci
 
 
     if ($LastExitCode -ne 0) {
