@@ -7,6 +7,7 @@
 		"build": "webpack --config webpack.config.js --env production --progress",
 		"deploy": "webpack --config webpack.config.js --env production --deploy",
 		"build:analyze": "webpack --config webpack.config.js --env production --analyze",
+		"build:ci": "webpack --config webpack.config.js --env production",
 		"start": "webpack-dev-server --open --env development",
 		"generate-flags-helper": "node scripts/generate-flags-helper"
 	},
