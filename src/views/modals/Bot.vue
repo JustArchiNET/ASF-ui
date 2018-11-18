@@ -31,7 +31,7 @@
 				</div>
 			</div>
 
-			<div class="bot-games" v-if="bot.games.length">
+			<div class="bot-games" v-if="bot.games.length && botsFarmingCount !== 0">
 				<div class="bot-game" :class="[game.farming ? 'status--farming' : 'status--disabled']" v-for="game in bot.games">
 					<div class="bot-game__info">
 						<span class="bot-game__name">{{ game.GameName }}</span>
@@ -57,7 +57,8 @@
 		components: { BotAction, BotLink, Dropdown },
 		computed: {
 			...mapGetters({
-				nicknames: 'settings/nicknames'
+				nicknames: 'settings/nicknames',
+				botsFarmingCount: 'bots/botsFarmingCount'
 			}),
 			bot() {
 				return this.$store.getters['bots/bot'](this.$route.params.bot);
