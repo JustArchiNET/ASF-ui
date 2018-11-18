@@ -33,12 +33,14 @@
 
 			<div class="bot-games" v-if="bot.games.length && botsFarmingCount !== 0">
 				<div class="bot-game" :class="[game.farming ? 'status--farming' : 'status--disabled']" v-for="game in bot.games">
-					<div class="bot-game__info">
-						<span class="bot-game__name">{{ game.GameName }}</span>
-					</div>
-					<div class="bot-game__background">
-						<img class="bot-game__image" :src="`https://steamcdn-a.akamaihd.net/steam/apps/${game.AppID}/header.jpg`">
-					</div>
+					<a target="_blank" :href="`https://store.steampowered.com/app/${game.AppID}/`">
+						<div class="bot-game__info">
+							<span class="bot-game__name">{{ game.GameName }}</span>
+						</div>
+						<div class="bot-game__background">
+							<img class="bot-game__image" :src="`https://steamcdn-a.akamaihd.net/steam/apps/${game.AppID}/header.jpg`">
+						</div>
+					</a>
 				</div>
 			</div>
 		</template>
