@@ -34,8 +34,12 @@ export class Bot {
 	}
 
 	get statusText() {
-		let statusText = Vue.i18n.translate(`bot-status-${this.status}`);
-		return this.status ===  BotStatus.FARMING && this.currentGamesFarming.length ? `${statusText} - ${this.currentGamesFarming[0].GameName}` : statusText;
+		const statusText = Vue.i18n.translate(`bot-status-${this.status}`);
+
+		if (this.status === 'farming' && this.currentGamesFarming.length === 1) return `${statusText} - ${this.currentGamesFarming[0].GameName}`;
+		if (this.status === 'farming' && this.currentGamesFarming.length > 1) return `${statusText} - ${Vue.i18n.translate('multiple-games')}`;
+
+		return statusText;
 	}
 
 	get avatarURL() {
