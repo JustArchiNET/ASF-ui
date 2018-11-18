@@ -112,9 +112,15 @@
 	"reporting-description": "Automatically upload error reports. Logging needs to be enabled.",
 	"copy-log": "Copy log to clipboard",
 	"log-copied": "Copied log to clipboard!",
-	"no-events": "No events logged",
+	"hidden-bots": "Hide bots",
+	"hidden-bots-description": "Decide which bots you want to hide on bots page.",
+	"none": "None",
+	"online": "Online",
+	"offline": "Offline",
+	"disabled": "Disabled",
 	"capture-snapshot": "Capture snapshot",
 	"snapshot-captured": "Snapshot captured!",
 	"bot-nicknames": "Nicknames",
-	"bot-nicknames-description": "Display steam nicknames (if available) instead of bot names."
+	"bot-nicknames-description": "Display steam nicknames (if available) instead of bot names.",
+	"multiple-games": "Multiple games"
 }

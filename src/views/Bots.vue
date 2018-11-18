@@ -4,7 +4,7 @@
 
 		<h2 class="title">{{ $t('bots') }}</h2>
 		<div class="bots">
-			<bot-card v-for="bot in bots" :bot="bot" :key="bot.name"></bot-card>
+			<bot-card v-for="bot in bots" :bot="bot" :key="bot.name" v-if="bot.isVisible(hiddenBots)"></bot-card>
 
 			<router-link tag="div" :to="{ name: 'bot-create' }" class="bot-placeholder status--disabled">
 				<div class="bot-placeholder__button bot-placeholder__button--add">
@@ -31,7 +31,8 @@
 		},
 		components: { BotFarmingInfo, BotCard },
 		computed: mapGetters({
-			bots: 'bots/bots'
+			bots: 'bots/bots',
+			hiddenBots: 'settings/hiddenBots'
 		})
 	};
 </script>

@@ -62,4 +62,13 @@
 	.dropdown__item-icon {
 		font-size: 0.8em;
 	}
+
+	.dropdown__item--disabled {
+		color: var(--color-text-disabled);
+		cursor: not-allowed;
+
+		&:hover {
+			background: var(--color-navigation);
+		}
+	}
 </style>

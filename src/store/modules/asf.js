@@ -1,5 +1,6 @@
 import * as http from '../../plugins/http';
 import * as humanizeDuration from 'humanize-duration';
+import Vue from "vue";
 
 const humanizer = humanizeDuration.humanizer({
 	language: 'shortEn',
@@ -34,7 +35,7 @@ export const mutations = {
 		if (!state.startTime) return;
 
 		const timeDiff = Date.now() - state.startTime.getTime();
-		state.uptime = timeDiff > 0 ? humanizer(timeDiff) : 'Error';
+		state.uptime = timeDiff > 0 ? humanizer(timeDiff) : Vue.i18n.translate('error');
 	}
 };
 

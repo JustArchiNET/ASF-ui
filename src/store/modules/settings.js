@@ -3,6 +3,7 @@ import * as storage from '../../utils/storage';
 export const state = {
 	defaultView: 'home',
 	timestamps: false,
+	hiddenBots: 0,
 	nicknames: false,
 	sentryInstalled: false,
 	sentryReporting: false
@@ -11,6 +12,7 @@ export const state = {
 export const mutations = {
 	setDefaultView: (state, defaultView) => state.defaultView = defaultView,
 	setTimestamps: (state, timestamps) => state.timestamps = timestamps,
+	setHiddenBots: (state, hiddenBots) => state.hiddenBots = hiddenBots,
 	setNicknames: (state, nicknames) => state.nicknames = nicknames,
 	setSentryInstalled: (state, sentryInstalled) => state.sentryInstalled = sentryInstalled,
 	setSentryReporting: (state, sentryReporting) => state.sentryReporting = sentryReporting
@@ -20,6 +22,7 @@ export const actions = {
 	init({ commit }) {
 		commit('setDefaultView', storage.get('settings:default-view', 'home'));
 		commit('setTimestamps', storage.get('settings:timestamps', false));
+		commit('setHiddenBots', storage.get('settings:hidden-bots', 0));
 		commit('setNicknames', storage.get('settings:nicknames', false));
 		commit('setSentryInstalled', storage.get('settings:sentry-installed', false));
 		commit('setSentryReporting', storage.get('settings:sentry-reporting', false));
@@ -32,6 +35,10 @@ export const actions = {
 		storage.set('settings:timestamps', value);
 		commit('setTimestamps', value);
   },
+	setHiddenBots({ commit }, value) {
+		storage.set('settings:hidden-bots', value);
+		commit('setHiddenBots', value);
+	},
 	setNicknames({ commit }, value) {
 		storage.set('settings:nicknames', value);
 		commit('setNicknames', value);
@@ -49,6 +56,7 @@ export const actions = {
 export const getters = {
 	defaultView: state => state.defaultView,
 	timestamps: state => state.timestamps,
+	hiddenBots: state => state.hiddenBots,
 	nicknames: state => state.nicknames,
 	sentryInstalled: state => state.sentryInstalled,
 	sentryReporting: state => state.sentryReporting
