@@ -11,7 +11,7 @@
 
 					<dropdown :label="$t('debug')" class="button--confirm pull-right" :disabled="!sentryInstalled">
 						<li class="dropdown__item" @click="captureSnapshot">{{ $t('capture-snapshot') }}</li>
-						<li class="dropdown__item" @click="copyStoredEvents">{{ $t('copy-log') }}</li>
+						<li class="dropdown__item" :class="{ 'dropdown__item--disabled': !storedEventsCount }" @click="copyStoredEvents">{{ $t('copy-log') }}</li>
 					</dropdown>
 				</div>
 			</div>
@@ -84,13 +84,17 @@
 					nicknames: this.$store.getters['settings/nicknames'],
 					sentryInstalled: this.$store.getters['settings/sentryInstalled'],
 					sentryReporting: this.$store.getters['settings/sentryReporting']
-				}
+				},
+				storedEvents: this.$sentry.storedEvents
 			};
 		},
 		computed: {
 			...mapGetters({
 				sentryInstalled: 'settings/sentryInstalled'
-			})
+			}),
+			storedEventsCount() {
+				return this.storedEvents.length;
+			}
 		},
 		methods: {
 			save() {
@@ -108,6 +112,7 @@
 				this.$success(this.$t('settings-saved'));
 			},
 			copyStoredEvents() {
+				if (!this.storedEventsCount) return;
 				copy(JSON.stringify(this.$sentry.storedEvents));
 				this.$info(this.$t('log-copied'));
 			},
