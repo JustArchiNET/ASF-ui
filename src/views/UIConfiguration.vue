@@ -103,6 +103,7 @@
 				this.$success(this.$t('settings-saved'));
 			},
 			copyStoredEvents() {
+				if (!this.storedEventsCount) return;
 				copy(JSON.stringify(this.$sentry.storedEvents));
 				this.$info(this.$t('log-copied'));
 			},
