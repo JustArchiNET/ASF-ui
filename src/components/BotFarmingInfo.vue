@@ -1,5 +1,5 @@
 <template>
-	<div v-if="cardsRemaining !== 0" class="farming-info">
+	<div v-if="botsFarmingCount !== 0" class="farming-info">
 		<h2 class="title">{{ $t('farming-info') }}</h2>
 
 		<div class="info-cards">
@@ -45,7 +45,8 @@
 			...mapGetters({
 				gamesRemaining: 'bots/gamesRemaining',
 				timeRemaining: 'bots/timeRemaining',
-				cardsRemaining: 'bots/cardsRemaining'
+				cardsRemaining: 'bots/cardsRemaining',
+				botsFarmingCount: 'bots/botsFarmingCount'
 			}),
 			timeRemaining() {
 				return humanizeDuration(this.$store.getters['bots/timeRemaining'] * 1000, { language: this.$i18n.noRegionalLocale });

@@ -109,5 +109,6 @@ export const getters = {
 	count: (state, getters) => status => getters.status(status).length,
 	gamesRemaining: (state, getters) => getters.bots.reduce((gamesRemaining, bot) => gamesRemaining + bot.gamesToFarm.length, 0),
 	timeRemaining: (state, getters) => Math.max(...getters.bots.map(bot => bot.timeRemainingSeconds)),
-	cardsRemaining: (state, getters) => getters.bots.reduce((cardsRemaining, bot) => cardsRemaining + bot.cardsRemaining, 0)
+	cardsRemaining: (state, getters) => getters.bots.reduce((cardsRemaining, bot) => cardsRemaining + bot.cardsRemaining, 0),
+	botsFarmingCount: (state, getters) => getters.bots.filter(bot => bot.status === 'farming').length
 };
