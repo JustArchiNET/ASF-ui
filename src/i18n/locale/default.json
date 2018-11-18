@@ -119,5 +119,6 @@
 	"capture-snapshot": "Capture snapshot",
 	"snapshot-captured": "Snapshot captured!",
 	"bot-nicknames": "Nicknames",
-	"bot-nicknames-description": "Display steam nicknames (if available) instead of bot names."
+	"bot-nicknames-description": "Display steam nicknames (if available) instead of bot names.",
+	"multiple-games": "Multiple games"
 }
