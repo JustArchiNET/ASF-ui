@@ -1,5 +1,5 @@
 <template>
-	<div class="bot" :class="[`status--${bot.status}`]" v-if="showMe">
+	<div class="bot" :class="[`status--${bot.status}`]">
 		<a target="_blank" :href="bot.profileURL" v-if="bot.steamid !== '0'">
 			<img class="bot__avatar" :src="bot.avatarURL">
 		</a>
@@ -64,28 +64,8 @@
 		},
 		computed: {
 			...mapGetters({
-				nicknames: 'settings/nicknames',
-				hideBots: 'settings/hideBots'
-			}),
-			showMe() {
-				if (this.hideBots === 0) return true;
-				if (this.hideBots === 15) return false;
-				if (this.hideBots === 1 && this.bot.status === 'disabled') return false;
-				if (this.hideBots === 2 && this.bot.status === 'offline') return false;
-				if (this.hideBots === 3 && (this.bot.status === 'disabled' || this.bot.status === 'offline')) return false;
-				if (this.hideBots === 4 && this.bot.status === 'online') return false;
-				if (this.hideBots === 5 && (this.bot.status === 'disabled' || this.bot.status === 'online')) return false;
-				if (this.hideBots === 6 && (this.bot.status === 'offline' || this.bot.status === 'online')) return false;
-				if (this.hideBots === 7 && (this.bot.status === 'disabled' || this.bot.status === 'offline' || this.bot.status === 'online')) return false;
-				if (this.hideBots === 8 && this.bot.status === 'farming') return false;
-				if (this.hideBots === 9 && (this.bot.status === 'disabled' || this.bot.status === 'farming')) return false;
-				if (this.hideBots === 10 && (this.bot.status === 'offline' || this.bot.status === 'farming')) return false;
-				if (this.hideBots === 11 && (this.bot.status === 'disabled' || this.bot.status === 'offline' || this.bot.status === 'farming')) return false;
-				if (this.hideBots === 12 && (this.bot.status === 'online' || this.bot.status === 'farming')) return false;
-				if (this.hideBots === 13 && (this.bot.status === 'disabled' || this.bot.status === 'online' || this.bot.status === 'farming')) return false;
-				if (this.hideBots === 14 && (this.bot.status === 'offline' || this.bot.status === 'online' || this.bot.status === 'farming')) return false;
-				return true;
-			}
+				nicknames: 'settings/nicknames'
+			})
 		}
 	};
 </script>
