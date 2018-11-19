@@ -30,7 +30,7 @@
 	"bgr-no-keys-detected": "未发现游戏序列号",
 	"back": "返回",
 	"input-all-selected": "已选择全部选项",
-	"input-unknown-type": "未知选项类型",
+	"input-unknown-type": "未知字段类型",
 	"wiki": "Wiki",
 	"version": "版本",
 	"home": "首页",
@@ -110,7 +110,15 @@
 	"reporting-description": "自动上传错误报告，需要启用日志。",
 	"copy-log": "复制日志到剪贴板",
 	"log-copied": "已将日志复制到剪贴板！",
-	"no-events": "没有事件记录",
+	"hidden-bots": "隐藏机器人",
+	"hidden-bots-description": "选择您希望在机器人页面隐藏哪些机器人。",
+	"none": "无",
+	"online": "在线",
+	"offline": "离线",
+	"disabled": "已禁用",
 	"capture-snapshot": "截取屏幕",
-	"snapshot-captured": "屏幕已截取！"
+	"snapshot-captured": "屏幕已截取！",
+	"bot-nicknames": "昵称",
+	"bot-nicknames-description": "如果可用，显示机器人的 Steam 昵称而不是机器人名称。",
+	"multiple-games": "多款游戏"
 }

@@ -110,7 +110,15 @@
 	"reporting-description": "",
 	"copy-log": "",
 	"log-copied": "",
-	"no-events": "",
+	"hidden-bots": "Απόκρυψη bot",
+	"hidden-bots-description": "",
+	"none": "",
+	"online": "",
+	"offline": "",
+	"disabled": "",
 	"capture-snapshot": "",
-	"snapshot-captured": ""
+	"snapshot-captured": "",
+	"bot-nicknames": "",
+	"bot-nicknames-description": "",
+	"multiple-games": ""
 }

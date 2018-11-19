@@ -110,7 +110,15 @@
 	"reporting-description": "",
 	"copy-log": "",
 	"log-copied": "",
-	"no-events": "",
+	"hidden-bots": "Botok elrejtése",
+	"hidden-bots-description": "Döntsd el, melyik botokat szeretnéd elrejteni a Botok oldalról.",
+	"none": "Egyik sem",
+	"online": "Online",
+	"offline": "Offline",
+	"disabled": "Kikapcsolva",
 	"capture-snapshot": "",
-	"snapshot-captured": ""
+	"snapshot-captured": "",
+	"bot-nicknames": "",
+	"bot-nicknames-description": "",
+	"multiple-games": "Többféle játék"
 }

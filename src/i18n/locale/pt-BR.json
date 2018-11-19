@@ -110,7 +110,15 @@
 	"reporting-description": "Enviar automaticamente os relatórios de erro. O histórico precisa ser ativado.",
 	"copy-log": "Copiar o registro para a área de transferência",
 	"log-copied": "Registro copiado para a área de transferência!",
-	"no-events": "Não há eventos registrados",
+	"hidden-bots": "Ocultar bots",
+	"hidden-bots-description": "Decida quais bots você deseja ocultar página de bots.",
+	"none": "None",
+	"online": "Disponível",
+	"offline": "Offline",
+	"disabled": "Desabilitado",
 	"capture-snapshot": "Capturar instantâneo",
-	"snapshot-captured": "Instantâneo capturado!"
+	"snapshot-captured": "Instantâneo capturado!",
+	"bot-nicknames": "Apelidos",
+	"bot-nicknames-description": "Mostra o apelido Steam (se disponível) em vez do nome dos bots.",
+	"multiple-games": "Vários jogos"
 }

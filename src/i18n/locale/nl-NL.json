@@ -110,7 +110,15 @@
 	"reporting-description": "Automatisch foutmeldingen uploaden. Loggen moet ingeschakeld zijn.",
 	"copy-log": "Log naar het klembord kopiëren",
 	"log-copied": "Log is naar het klembord gekopieerd!",
-	"no-events": "Geen gebeurtenissen gelogd",
+	"hidden-bots": "Verberg bots",
+	"hidden-bots-description": "",
+	"none": "Geen",
+	"online": "Online",
+	"offline": "Offline",
+	"disabled": "Uitgeschakeld",
 	"capture-snapshot": "Snapshot maken",
-	"snapshot-captured": "Snapshot gemaakt!"
+	"snapshot-captured": "Snapshot gemaakt!",
+	"bot-nicknames": "Bijnamen",
+	"bot-nicknames-description": "Toon de Steam-bijnamen (indien beschikbaar) in plaats van de botnamen.",
+	"multiple-games": ""
 }

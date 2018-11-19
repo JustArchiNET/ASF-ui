@@ -110,7 +110,15 @@
 	"reporting-description": "Automatisches Hochladen von Fehlerberichten. Die Protokollierung muss hierfür aktiviert sein.",
 	"copy-log": "Protokoll in die Zwischenablage kopieren",
 	"log-copied": "Das Protokoll wurde in die Zwischenablage kopiert!",
-	"no-events": "Keine Ereignisse protokolliert",
+	"hidden-bots": "Bots ausblenden",
+	"hidden-bots-description": "Entscheide, welche Bots du auf der Bots-Seite ausblenden möchtest.",
+	"none": "Keine",
+	"online": "Online",
+	"offline": "Offline",
+	"disabled": "Deaktiviert",
 	"capture-snapshot": "Snapshot aufnehmen",
-	"snapshot-captured": "Snapshot aufgenommen!"
+	"snapshot-captured": "Snapshot aufgenommen!",
+	"bot-nicknames": "Namen",
+	"bot-nicknames-description": "Zeige den Steam-Namen (falls verfügbar) anstelle des Bot-Namens an.",
+	"multiple-games": "Mehrere Spiele"
 }

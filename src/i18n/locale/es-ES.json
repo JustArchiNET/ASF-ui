@@ -110,7 +110,15 @@
 	"reporting-description": "",
 	"copy-log": "",
 	"log-copied": "",
-	"no-events": "",
+	"hidden-bots": "Ocultar bots",
+	"hidden-bots-description": "",
+	"none": "",
+	"online": "En linea",
+	"offline": "Desconectado",
+	"disabled": "Deshabilitado",
 	"capture-snapshot": "",
-	"snapshot-captured": ""
+	"snapshot-captured": "",
+	"bot-nicknames": "",
+	"bot-nicknames-description": "",
+	"multiple-games": ""
 }

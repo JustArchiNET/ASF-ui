@@ -110,7 +110,15 @@
 	"reporting-description": "",
 	"copy-log": "",
 	"log-copied": "",
-	"no-events": "",
+	"hidden-bots": "Nascondi bot",
+	"hidden-bots-description": "",
+	"none": "",
+	"online": "Online",
+	"offline": "Offline",
+	"disabled": "Disabilitato",
 	"capture-snapshot": "",
-	"snapshot-captured": ""
+	"snapshot-captured": "",
+	"bot-nicknames": "",
+	"bot-nicknames-description": "",
+	"multiple-games": ""
 }

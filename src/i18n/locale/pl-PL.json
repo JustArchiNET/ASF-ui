@@ -110,7 +110,15 @@
 	"reporting-description": "Zawsze reportuj błędy. Logowanie błędów musi być włączone.",
 	"copy-log": "Skopiuj log do schowka",
 	"log-copied": "",
-	"no-events": "Brak ostatnich wydarzeń",
+	"hidden-bots": "Ukryj boty",
+	"hidden-bots-description": "",
+	"none": "",
+	"online": "Dostępny",
+	"offline": "Nieaktywny",
+	"disabled": "Wyłączono",
 	"capture-snapshot": "",
-	"snapshot-captured": ""
+	"snapshot-captured": "",
+	"bot-nicknames": "",
+	"bot-nicknames-description": "",
+	"multiple-games": ""
 }

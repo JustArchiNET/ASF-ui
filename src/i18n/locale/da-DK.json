@@ -110,7 +110,15 @@
 	"reporting-description": "",
 	"copy-log": "",
 	"log-copied": "",
-	"no-events": "",
+	"hidden-bots": "Skjul bots",
+	"hidden-bots-description": "",
+	"none": "None",
+	"online": "Online",
+	"offline": "Offline",
+	"disabled": "Deaktiveret",
 	"capture-snapshot": "",
-	"snapshot-captured": ""
+	"snapshot-captured": "",
+	"bot-nicknames": "",
+	"bot-nicknames-description": "",
+	"multiple-games": ""
 }
