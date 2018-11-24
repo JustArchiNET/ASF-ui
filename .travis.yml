@@ -27,7 +27,6 @@ matrix:
     # Ref: https://docs.travis-ci.com/user/reference/xenial
     - os: linux
       dist: xenial
-      sudo: false
     # Ref: https://docs.travis-ci.com/user/reference/osx
     - os: osx
       osx_image: xcode10.1
