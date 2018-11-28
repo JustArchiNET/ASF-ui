@@ -111,14 +111,14 @@
 	"copy-log": "Günlüğü panoya kopyala",
 	"log-copied": "Günlük panoya kopyalandı!",
 	"hidden-bots": "Botları gizle",
-	"hidden-bots-description": "",
-	"none": "",
+	"hidden-bots-description": "Botlar sayfasında hangi botların saklanacağını seçin.",
+	"none": "Hiçbiri",
 	"online": "Çevrimiçi",
 	"offline": "Çevrimdışı",
 	"disabled": "Devre dışı",
 	"capture-snapshot": "Anlık görüntü yakala",
 	"snapshot-captured": "Anlık görüntü yakalandı!",
-	"bot-nicknames": "",
-	"bot-nicknames-description": "",
-	"multiple-games": ""
+	"bot-nicknames": "Takma ad",
+	"bot-nicknames-description": "Bot isimleri yerine (mümkünse) Steam isimlerini görüntüle.",
+	"multiple-games": "Birden fazla oyun"
 }

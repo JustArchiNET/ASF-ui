@@ -111,7 +111,7 @@
 	"copy-log": "Log naar het klembord kopiëren",
 	"log-copied": "Log is naar het klembord gekopieerd!",
 	"hidden-bots": "Verberg bots",
-	"hidden-bots-description": "",
+	"hidden-bots-description": "Bepaal welke bots je wilt verbergen op de botspagina.",
 	"none": "Geen",
 	"online": "Online",
 	"offline": "Offline",
@@ -120,5 +120,5 @@
 	"snapshot-captured": "Snapshot gemaakt!",
 	"bot-nicknames": "Bijnamen",
 	"bot-nicknames-description": "Toon de Steam-bijnamen (indien beschikbaar) in plaats van de botnamen.",
-	"multiple-games": ""
+	"multiple-games": "Meerdere spellen"
 }
