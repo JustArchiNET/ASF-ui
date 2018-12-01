@@ -36,7 +36,7 @@
 		}
 
 		get(index) {
-			return this._cache[index];
+			return this._cache[index] || '';
 		}
 
 		add(el) {
