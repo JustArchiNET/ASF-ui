@@ -76,7 +76,7 @@
 					} else if (!nextKeyNamePair.name && nextKeyNamePair.key && !keyNamePair.key) {
 						keys[nextKeyNamePair.key] = keyNamePair.name;
 					} else if (keyNamePair.key) {
-						keys[keyNamePair.key] = 'Unknown';
+						keys[keyNamePair.key] = keyNamePair.key;
 					}
 				}
 
