@@ -55,9 +55,11 @@
 		},
 		methods: {
 			onTransitionStart() {
+				if (!this.$refs.bots) return;
 				this.$refs.bots.onTransitionStart();
 			},
 			onTransitionEnd() {
+				if (!this.$refs.bots) return;
 				this.$refs.bots.onTransitionEnd();
 			}
 		}
