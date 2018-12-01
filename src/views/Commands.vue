@@ -55,7 +55,7 @@
 
 		load() {
 			const commandHistory = storage.get('command-history');
-			if (commandHistory) this._cache = commandHistory;
+			if (commandHistory && Array.isArray(commandHistory)) this._cache = commandHistory;
 			this.trim();
 		}
 	}
