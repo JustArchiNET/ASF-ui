@@ -49,7 +49,7 @@
 				botsFarmingCount: 'bots/botsFarmingCount'
 			}),
 			timeRemaining() {
-				return humanizeDuration(this.$store.getters['bots/timeRemaining'] * 1000, { language: this.$i18n.noRegionalLocale });
+				return humanizeDuration(this.$store.getters['bots/timeRemaining'] * 1000, { language: this.$i18n.noRegionalLocale || 'en' });
 			}
 		}
 	};
