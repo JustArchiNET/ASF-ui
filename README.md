@@ -26,7 +26,7 @@ Local instance of ASF IPC required
 Using a custom build of ASF-ui with ASFs internal http-server is very easy. First you need to clone the repository/your fork of the repository
 
 ```
-git clone ...
+git clone
 npm i
 ```
 
