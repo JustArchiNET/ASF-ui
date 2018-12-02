@@ -23,7 +23,7 @@ Local instance of ASF IPC required
 
 ### Custom builds
 
-Using a custom build of ASF-ui with ASFs internal http-server is very easy. First you need to clone the repository/your fork of the repository
+Using a custom build of ASF-ui with ASFs internal http-server, a downloaded copy of it or your custom web-interface is very easy. First you need to clone the repository/your fork of the repository
 
 ```
 git clone
