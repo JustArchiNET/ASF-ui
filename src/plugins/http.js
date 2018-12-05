@@ -1,5 +1,16 @@
 import axios from 'axios';
 
+export class NotificationError extends Error {
+	constructor(message, result) {
+		super();
+
+		this.message = message;
+		this.result = result;
+
+		Object.setPrototypeOf(this, NotificationError.prototype);
+	}
+}
+
 const http = axios.create({
 	baseURL: window.__BASE_PATH__ ? window.__BASE_PATH__ + 'api' : '/api'
 });
@@ -9,8 +20,20 @@ function extractResult(response) {
 }
 
 function checkForError(response) {
-	if (!response.data.Success) throw new Error(response.data.Message);
+	if (!response.data.Success) throw new NotificationError(response.data.Message, response.data.result);
 	return response;
+}
+
+function processResponse(response) {
+	return Promise.resolve(response)
+		.then(checkForError)
+		.then(extractResult);
+}
+
+function catchError(err) {
+	if (err.response.data) checkForError(err.response);
+	if (err instanceof NotificationError) throw err;
+	throw new NotificationError(err.message);
 }
 
 export function authenticate(password) {
@@ -18,19 +41,19 @@ export function authenticate(password) {
 }
 
 export function get(endpoint, params = {}, options = {}) {
-	return http.get(endpoint, { ...options, params }).then(checkForError).then(extractResult);
+	return http.get(endpoint, { ...options, params }).then(processResponse).catch(catchError);
 }
 
 export function post(endpoint, data, options = {}) {
-	return http.post(endpoint, data, options).then(checkForError).then(extractResult);
+	return http.post(endpoint, data, options).then(processResponse).catch(catchError);
 }
 
 export function del(endpoint, options = {}) {
-	return http.delete(endpoint, options).then(checkForError).then(extractResult);
+	return http.delete(endpoint, options).then(processResponse).catch(catchError);
 }
 
 export function command(...args) {
-	return http.post(`command/${args.join(' ')}`).then(checkForError).then(extractResult);
+	return http.post(`command/${args.join(' ')}`).then(processResponse).catch(catchError);
 }
 
 export function botAction(bots, action, params) {
