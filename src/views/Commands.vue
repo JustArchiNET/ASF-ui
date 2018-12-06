@@ -10,7 +10,7 @@
 				</div>
 				<div class="terminal__input-wrapper">
 					<span class="terminal__sign">></span>
-					<input type="text" spellcheck="false" v-model="command" ref="terminal-input" class="terminal__input" @keydown.enter="sendCommand" @keydown.tab.prevent="autocomplete" @keydown.up="historyPrevious" @keydown.down="historyNext">
+					<input type="text" spellcheck="false" :value="command" @input="command = $event.target.value" ref="terminal-input" class="terminal__input" @keydown.enter="sendCommand" @keydown.tab.prevent="autocomplete" @keydown.up="historyPrevious" @keydown.down="historyNext">
 					<input type="text" spellcheck="false" v-model="autocompleteSuggestion" class="terminal__input terminal__input--autocomplete">
 				</div>
 			</div>
