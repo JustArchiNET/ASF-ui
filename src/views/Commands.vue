@@ -207,7 +207,7 @@
 					const result = await this.executeCommand(commandToExecute);
 					response.message = result.trim();
 				} catch (err) {
-					this.$error(err.message);
+					response.message = `Error: ${err.message}`;
 				}
 			},
 			async executeCommand(commandToExecute) {
