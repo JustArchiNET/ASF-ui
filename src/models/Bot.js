@@ -30,6 +30,7 @@ export class Bot {
 		if (!this.active) return BotStatus.DISABLED;
 		if (!this.isConnected) return BotStatus.OFFLINE;
 		if (this.paused || this.timeRemaining === '00:00:00') return BotStatus.ONLINE;
+		if (!this.currentGamesFarming.length) return BotStatus.ONLINE; // Farming module active, something is preventing the bot from farming though
 		return BotStatus.FARMING;
 	}
 
