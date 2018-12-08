@@ -1,5 +1,7 @@
 import Vue from 'vue';
 
+const timeSpanRegex = /(?:(\d+).)?(\d{2}):(\d{2}):(\d{2})(?:.?(\d{7}))?/;
+
 export const BotStatus = {
 	DISABLED: 'disabled',
 	OFFLINE: 'offline',
@@ -56,11 +58,16 @@ export class Bot {
 	}
 
 	get timeRemainingSeconds() {
-		return this.timeRemaining
-			.split(':')
-			.reverse()
-			.map((value, index) => value * 60 ** index)
-			.reduce((sum, value) => sum + value, 0);
+		const [, days, hours, minutes, seconds] = timeSpanRegex.exec(this.timeRemaining);
+
+		let time = 0;
+
+		if (days) time += parseInt(days, 10) * 24 * 60 * 60;
+		if (hours) time += parseInt(hours, 10) * 60 * 60;
+		if (minutes) time += parseInt(minutes, 10) * 60;
+		if (seconds) time += parseInt(seconds, 10) ;
+
+		return time;
 	}
 
 	get games() {
