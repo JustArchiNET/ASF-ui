@@ -5,7 +5,7 @@
 				<component v-for="field in categoryFields(category.name)" class="form-item--config" :key="field.param" :is="componentFromField(field)" :schema="field" :current-value="model[field.paramName]" @update="updateModel"></component>
 			</config-category>
 
-			<config-category name="Other" v-if="uncategorizedFields.length" key="Other">
+			<config-category :name="$t('other')" v-if="uncategorizedFields.length" key="Other">
 				<component v-for="field in uncategorizedFields" class="form-item--config" :key="field.param" :is="componentFromField(field)" :schema="field" :current-value="model[field.paramName]" @update="updateModel"></component>
 			</config-category>
 		</template>
