@@ -51,7 +51,7 @@
 					case STATUS.UNAUTHORIZED:
 						return this.$t('continue');
 					default:
-						return 'Refresh status';
+						return this.$t('refresh');
 				}
 			}
 		},

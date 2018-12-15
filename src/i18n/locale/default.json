@@ -121,5 +121,6 @@
 	"bot-nicknames": "Nicknames",
 	"bot-nicknames-description": "Display steam nicknames (if available) instead of bot names.",
 	"multiple-games": "Multiple games",
-	"other": "Other"
+	"other": "Other",
+	"refresh": "Refresh status"
 }
