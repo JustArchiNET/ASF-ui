@@ -48,7 +48,7 @@
 		"svg-country-flags": "^1.2.6",
 		"vue": "^2.5.17",
 		"vue-meta": "^1.5.3",
-		"vue-router": "^3.0.1",
+		"vue-router": "^3.0.2",
 		"vue-snotify": "^3.2.1",
 		"vuex": "^3.0.1"
 	}
