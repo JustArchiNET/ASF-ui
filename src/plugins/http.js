@@ -20,7 +20,8 @@ function extractResult(response) {
 }
 
 function checkForError(response) {
-	if (!response.data.Success) throw new NotificationError(response.data.Message, response.data.result);
+	if (response.status !== 200) throw new NotificationError(`HTTP Error ${response.status}`, response.data);
+	if (response.data && !response.data.Success) throw new NotificationError(response.data.Message, response.data.result);
 	return response;
 }
 
@@ -31,7 +32,7 @@ function processResponse(response) {
 }
 
 function catchError(err) {
-	if (err.response.data) checkForError(err.response);
+	if (err.response) checkForError(err.response);
 	if (err instanceof NotificationError) throw err;
 	throw new NotificationError(err.message);
 }
