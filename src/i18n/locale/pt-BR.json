@@ -120,5 +120,7 @@
 	"snapshot-captured": "Instantâneo capturado!",
 	"bot-nicknames": "Apelidos",
 	"bot-nicknames-description": "Mostra o apelido Steam (se disponível) em vez do nome dos bots.",
-	"multiple-games": "Vários jogos"
+	"multiple-games": "Vários jogos",
+	"other": "Outro",
+	"refresh": "Atualizar status"
 }

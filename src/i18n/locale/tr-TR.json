@@ -120,5 +120,7 @@
 	"snapshot-captured": "Anlık görüntü yakalandı!",
 	"bot-nicknames": "Takma ad",
 	"bot-nicknames-description": "Bot isimleri yerine (mümkünse) Steam isimlerini görüntüle.",
-	"multiple-games": "Birden fazla oyun"
+	"multiple-games": "Birden fazla oyun",
+	"other": "Diğer",
+	"refresh": "Durumu yenile"
 }

@@ -120,5 +120,7 @@
 	"snapshot-captured": "Snapshot gemaakt!",
 	"bot-nicknames": "Bijnamen",
 	"bot-nicknames-description": "Toon de Steam-bijnamen (indien beschikbaar) in plaats van de botnamen.",
-	"multiple-games": "Meerdere spellen"
+	"multiple-games": "Meerdere spellen",
+	"other": "Overige",
+	"refresh": "Status vernieuwen"
 }

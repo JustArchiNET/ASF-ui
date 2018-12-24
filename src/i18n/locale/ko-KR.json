@@ -120,5 +120,7 @@
 	"snapshot-captured": "스냅샷이 캡쳐되었습니다.",
 	"bot-nicknames": "별명",
 	"bot-nicknames-description": "가능한 경우 봇 이름 대신 스팀 별명을 표시합니다.",
-	"multiple-games": "여러 게임"
+	"multiple-games": "여러 게임",
+	"other": "기타",
+	"refresh": "상태 새로고침"
 }

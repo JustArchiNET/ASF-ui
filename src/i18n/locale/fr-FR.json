@@ -120,5 +120,7 @@
 	"snapshot-captured": "Snapshot capturée!",
 	"bot-nicknames": "Surnoms",
 	"bot-nicknames-description": "Afficher les surnoms Steam (si disponible) plutôt que les noms des bots.",
-	"multiple-games": "Jeux multiples"
+	"multiple-games": "Jeux multiples",
+	"other": "",
+	"refresh": ""
 }

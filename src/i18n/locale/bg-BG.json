@@ -103,7 +103,7 @@
 	"success": "Успешно",
 	"error": "",
 	"info": "",
-	"logging": "",
+	"logging": "Логване",
 	"logging-description": "",
 	"debug": "",
 	"reporting": "",
@@ -120,5 +120,7 @@
 	"snapshot-captured": "",
 	"bot-nicknames": "",
 	"bot-nicknames-description": "",
-	"multiple-games": ""
+	"multiple-games": "",
+	"other": "",
+	"refresh": ""
 }

@@ -120,5 +120,7 @@
 	"snapshot-captured": "Знімок екрана створено!",
 	"bot-nicknames": "Псевдоніми",
 	"bot-nicknames-description": "Відображати псевдоніми steam (якщо вони є) замість імен ботів.",
-	"multiple-games": "Декілька ігор"
+	"multiple-games": "Декілька ігор",
+	"other": "Інше",
+	"refresh": "Оновити статус"
 }
