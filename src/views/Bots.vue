@@ -1,5 +1,6 @@
 <template>
 	<main class="main-container">
+		<section-title>{{ $t('farming-info') }}</section-title>
 		<bot-farming-info></bot-farming-info>
 
 		<h2 class="title">{{ $t('bots') }}</h2>
@@ -21,6 +22,7 @@
 	import BotCard from '../components/BotCard.vue';
 
 	import { mapGetters } from 'vuex';
+	import SectionTitle from '../components/SectionTitle.vue';
 
 	export default {
 		name: 'bots',
@@ -29,7 +31,7 @@
 				title: this.$t('bots')
 			};
 		},
-		components: { BotFarmingInfo, BotCard },
+		components: { SectionTitle, BotFarmingInfo, BotCard },
 		computed: mapGetters({
 			bots: 'bots/bots',
 			hiddenBots: 'settings/hiddenBots'

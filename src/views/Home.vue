@@ -1,8 +1,9 @@
 <template>
 	<main class="main-container">
+		<section-title>{{ $t('farming-info') }}</section-title>
 		<bot-farming-info></bot-farming-info>
 
-		<h2 class="title">{{ $t('changelog') }}</h2>
+		<section-title>{{ $t('changelog') }}</section-title>
 		<div class="container">
 			<changelog></changelog>
 		</div>
@@ -12,6 +13,7 @@
 <script>
 	import BotFarmingInfo from '../components/BotFarmingInfo.vue';
 	import Changelog from '../components/Changelog.vue';
+	import SectionTitle from '../components/SectionTitle.vue';
 
 	export default {
 		name: 'home',
@@ -20,6 +22,6 @@
 				title: this.$t('home')
 			};
 		},
-		components: { BotFarmingInfo, Changelog }
+		components: { SectionTitle, BotFarmingInfo, Changelog }
 	};
 </script>

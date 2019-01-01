@@ -42,6 +42,11 @@ export default [
 		component: () => import('../views/Bots.vue')
 	},
 	{
+		path: '/page/dashboard',
+		name: 'bots',
+		component: () => import('../views/Dashboard.vue')
+	},
+	{
 		path: '/page/bot/new',
 		name: 'bot-create',
 		components: {
