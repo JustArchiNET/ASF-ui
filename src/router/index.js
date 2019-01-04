@@ -28,4 +28,8 @@ router.afterEach((to, from) => {
 	storage.set('last-visited-page', to.name);
 });
 
+router.onError(err => {
+	if (err.type === 'missing') location.reload(true);
+});
+
 export default router;
