@@ -49,6 +49,8 @@
 				botsFarmingCount: 'bots/botsFarmingCount'
 			}),
 			timeRemaining() {
+				if (this.$store.getters['bots/timeRemaining'] === 0) return 0;
+
 				const language = ['zh-CN', 'zh-TW'].includes(this.$i18n.locale)
 						? this.$i18n.locale.replace('-', '_')
 						: this.$i18n.noRegionalLocale;
