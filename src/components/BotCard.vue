@@ -129,20 +129,6 @@
 				color: var(--color-text);
 			}
 		}
-
-		&.bot__action--start:hover,
-		&.bot__action--resume:hover {
-			color: green;
-		}
-
-		&.bot__action--pause:hover {
-			color: orange;
-		}
-
-		&.bot__action--stop:hover,
-		&.bot__action--delete:hover {
-			color: red;
-		}
 	}
 
 
