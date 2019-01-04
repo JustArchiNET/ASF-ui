@@ -1,3 +1,4 @@
+export { default as az } from 'svg-country-flags/png100px/az.png';
 export { default as bg } from 'svg-country-flags/png100px/bg.png';
 export { default as cz } from 'svg-country-flags/png100px/cz.png';
 export { default as dk } from 'svg-country-flags/png100px/dk.png';

@@ -135,7 +135,6 @@
 	}
 
 	::-webkit-scrollbar-thumb {
-		-webkit-border-radius: 2px;
 		border-radius: 2px;
 		background: var(--color-background-dark);
 	}

@@ -9,7 +9,7 @@
 		"build:analyze": "webpack --config webpack.config.js --env production --analyze",
 		"build:ci": "webpack --config webpack.config.js --env production",
 		"start": "webpack-dev-server --hot --open --env development",
-		"generate-flags-helper": "node scripts/generate-flags-helper"
+		"generate-flags": "node scripts/generate-flags-helper"
 	},
 	"author": "Reimu",
 	"private": true,
