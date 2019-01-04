@@ -1,3 +1,5 @@
+@import './settings';
+
 .terminal {
 	width: 100%;
 	background: black;
@@ -17,20 +19,54 @@
 	}
 }
 
-.terminal__message {
+.terminal-message {
 	width: 100%;
 	display: grid;
 	grid-template-columns: auto 1fr;
 	margin: 0 0 0.1em;
 
-	.terminal__sign {
-		color: var(--color-text-disabled);
-	}
-
-	.terminal__text {
-		white-space: pre-line;
+	&.terminal-message--truncated {
+		&:not(:hover) {
+			.terminal-message__content {
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+			}
+		}
 	}
 }
+
+.terminal-message__sign {
+	color: var(--color-text-disabled);
+	margin-right: 0.1em;
+}
+
+.terminal-message__content {
+	white-space: pre-line;
+}
+
+.terminal-message__time {
+	color: var(--color-text-disabled);
+}
+
+.terminal-message__level {
+	&.terminal-message__level--info {
+		color: $color-level-info;
+	}
+
+	&.terminal-message__level--debug {
+		color: $color-level-debug;
+	}
+
+	&.terminal-message__level--error {
+		color: $color-level-error;
+	}
+
+	&.terminal-message__level--warn {
+		color: $color-level-warning;
+	}
+}
+
 
 .terminal__input-wrapper {
 	width: 100%;

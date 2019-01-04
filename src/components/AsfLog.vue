@@ -1,8 +1,13 @@
 <template>
 	<div class="terminal" ref="terminal">
-		<div class="terminal__message" v-for="{ type, message } in log">
-			<span class="terminal__sign">{{ type === 'out' ? '>' : '<' }}</span>
-			<span class="terminal__text">{{ message }}</span>
+		<div class="terminal-message terminal-message--truncated" v-for="{ type, message } in log">
+			<span class="terminal-message__content">
+				<span class="terminal-message__time">[{{ message.time.toLocaleTimeString() }}]</span>
+				<span class="terminal-message__level" :class="`terminal-message__level--${message.level.toLowerCase()}`">{{ message.level }}</span>
+				<span class="terminal-message__logger">{{ message.logger }}</span>
+				<span>></span>
+				<span class="terminal-message__text">{{ message.text }}</span>
+			</span>
 		</div>
 	</div>
 </template>
@@ -33,7 +38,19 @@
 
 			},
 			onMessage(event) {
-				this.log.push({ type: 'in', message: JSON.parse(event.data).Result });
+				const message = JSON.parse(event.data).Result;
+				this.log.push({ type: 'in', message: this.parseMessage(message) });
+			},
+			parseMessage(message) {
+				const [time, process, level, logger, ...text] = message.split('|');
+
+				return {
+					time: new Date(time),
+					process,
+					level,
+					logger,
+					text: text.join()
+				};
 			},
 			onClose(event) {
 
