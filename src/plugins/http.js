@@ -20,7 +20,11 @@ function extractResult(response) {
 }
 
 function checkForError(response) {
-	if (response.status !== 200) throw new NotificationError(`HTTP Error ${response.status}`, response.data);
+	if (response.status !== 200) {
+		if (response.data && response.data.Message) throw new NotificationError(response.data.Message);
+		throw new NotificationError(`HTTP Error ${response.status}`, response.data);
+	}
+
 	if (response.data && !response.data.Success) throw new NotificationError(response.data.Message, response.data.result);
 	return response;
 }
