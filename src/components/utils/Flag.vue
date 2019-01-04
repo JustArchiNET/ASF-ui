@@ -17,7 +17,7 @@
 		},
 		async created() {
 			// Auto generated pre build
-			const flags = await import('../../../generated/flags');
+			const flags = await import('../../generated/flags');
 			this.flagImage = flags[this.country];
 		}
 	};

@@ -12,5 +12,5 @@ module.exports = function generateFlags() {
 		.map(country => `export { default as ${country} } from 'svg-country-flags/png100px/${country}.png';`)
 		.join('\n');
 
-	fs.writeFileSync('./generated/flags.js', fileContent);
+	fs.writeFileSync('./src/generated/flags.js', fileContent);
 };
