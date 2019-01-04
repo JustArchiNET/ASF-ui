@@ -117,8 +117,7 @@
 				}
 			},
 			suggestedCommand() {
-				if (!this.command.length) return;
-				return this.commandsNames.find(command => command.startsWith(this.command));
+				return this.commandsNames.find(command => command.startsWith(this.command)) || '';
 			},
 			suggestedParameters() {
 				if (this.selectedCommand && this.commandsParameters[this.selectedCommand])
@@ -185,6 +184,7 @@
 				}
 			},
 			selectedCommand() {
+				if (!this.command) return;
 				return this.commandsNames.find(command => command === this.command.split(' ')[0]);
 			}
 		},
