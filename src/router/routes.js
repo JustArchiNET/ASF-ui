@@ -43,7 +43,7 @@ export default [
 	},
 	{
 		path: '/page/dashboard',
-		name: 'bots',
+		name: 'dashboard',
 		component: () => import('../views/Dashboard.vue')
 	},
 	{
