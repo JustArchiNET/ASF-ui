@@ -1,7 +1,5 @@
 <template>
 	<main class="main-container main-container--fullheight commands">
-		<h2 class="title">{{ $t('commands') }}</h2>
-
 		<div class="container">
 			<div class="terminal" @click="focusInput" ref="terminal">
 				<div class="terminal__message" v-for="{ type, message } in log">
@@ -117,7 +115,8 @@
 				}
 			},
 			suggestedCommand() {
-				return this.commandsNames.find(command => command.startsWith(this.command)) || '';
+				if (!this.command) return;
+				return this.commandsNames.find(command => command.startsWith(this.command));
 			},
 			suggestedParameters() {
 				if (this.selectedCommand && this.commandsParameters[this.selectedCommand])
@@ -232,7 +231,7 @@
 				this.$refs['terminal-input'].focus();
 			},
 			autocomplete() {
-				if (!this.selectedCommand) this.command = this.suggestedCommand;
+				if (!this.selectedCommand) this.command = this.suggestedCommand || '';
 
 				if (this.selectedCommand && this.suggestedParameterValue) {
 					const splitCommand = this.command.split(' ');
@@ -302,7 +301,7 @@
 <style lang="scss">
 	.commands {
 		display: grid;
-		grid-template-rows: auto 1fr;
+		grid-template-rows: 1fr;
 
 		> div {
 			min-height: 0;

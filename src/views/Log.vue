@@ -1,9 +1,10 @@
 <template>
 	<main class="main-container main-container--fullheight log">
-		<section-title>{{ $t('log') }}</section-title>
-		<asf-log></asf-log>
+		<div class="container">
+			<asf-log></asf-log>
+		</div>
 	</main>
-</template>
+</template>x
 
 <script>
 	import AsfLog from '../components/AsfLog.vue';
@@ -23,7 +24,7 @@
 <style lang="scss">
 	.log {
 		display: grid;
-		grid-template-rows: auto 1fr;
+		grid-template-rows: 1fr;
 
 		> div {
 			min-height: 0;

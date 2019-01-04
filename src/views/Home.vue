@@ -1,9 +1,7 @@
 <template>
-	<main class="main-container">
-		<section-title>{{ $t('farming-info') }}</section-title>
+	<main class="main-container home">
 		<bot-farming-info></bot-farming-info>
 
-		<section-title>{{ $t('changelog') }}</section-title>
 		<div class="container">
 			<changelog></changelog>
 		</div>
@@ -25,3 +23,11 @@
 		components: { SectionTitle, BotFarmingInfo, Changelog }
 	};
 </script>
+
+<style lang="scss">
+	.home {
+		display: grid;
+		grid-template-rows: auto auto;
+		grid-gap: 1rem;
+	}
+</style>
