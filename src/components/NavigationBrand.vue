@@ -50,8 +50,13 @@
 			},
 			async update() {
 				try {
-					await this.$http.post('asf/update');
+					const response = await this.$http.post('asf/update');
 					this.brandMenu = false;
+
+					if (response.Success) {
+						await waitForRestart();
+						window.location.reload(true);
+					}
 				} catch (err) {
 					this.$error(err.message);
 				}
