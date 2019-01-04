@@ -54,7 +54,8 @@ export function del(endpoint, options = {}) {
 }
 
 export function command(...args) {
-	return http.post(`command/${args.join(' ')}`).then(processResponse).catch(catchError);
+	const command = encodeURIComponent(args.join(' '));
+	return http.post(`command/${command}`).then(processResponse).catch(catchError);
 }
 
 export function botAction(bots, action, params) {
