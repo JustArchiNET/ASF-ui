@@ -3,9 +3,8 @@
 		<template v-if="authenticated">
 			<div class="navigation-category">
 				<navigation-category-title :name="$t('control')"></navigation-category-title>
-				<navigation-link :name="$t('dashboard')" icon="home" :to="{ name: 'dashboard' }"></navigation-link>
-				<navigation-link :name="$t('commands')" icon="laptop" :to="{ name: 'commands' }"></navigation-link>
 				<navigation-link :name="$t('bots')" icon="users" :to="{ name: 'bots' }"></navigation-link>
+				<navigation-link :name="$t('commands')" icon="laptop" :to="{ name: 'commands' }"></navigation-link>
 				<navigation-link :name="$t('log')" icon="file-alt" :to="{ name: 'log' }"></navigation-link>
 				<navigation-link :name="$t('changelog')" icon="calendar-check" :to="{ name: 'changelog' }"></navigation-link>
 			</div>
