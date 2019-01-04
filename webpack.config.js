@@ -7,6 +7,9 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const DefinePlugin = require('webpack').DefinePlugin;
 const exec = require('child_process').exec;
+const WebpackBeforeBuildPlugin = require('before-build-webpack');
+
+const generateFlags = require('./scripts/generateFlags');
 
 async function getGitCommitHash() {
 	return new Promise((resolve, reject) => {
@@ -86,6 +89,10 @@ module.exports = async (env, argv) => {
 			]
 		},
 		plugins: [
+			new WebpackBeforeBuildPlugin((stats, callback) => {
+				generateFlags();
+				callback();
+			}),
 			new CleanWebpackPlugin(['dist']),
 			new VueLoaderPlugin(),
 			new CopyWebpackPlugin(['src/include']),
