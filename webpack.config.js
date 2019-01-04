@@ -119,16 +119,20 @@ module.exports = async (env, argv) => {
 		}
 	}
 
-	if (!isProd) config.devServer = {
-		contentBase: './dist',
-		historyApiFallback: true,
-		proxy: {
-			'/api': {
-				target: 'http://localhost:1242',
-				ws: true
+	if (!isProd) {
+		config.devServer = {
+			watchOptions: {
+				ignored: /generated/
+			},
+			historyApiFallback: true,
+			proxy: {
+				'/api': {
+					target: 'http://localhost:1242',
+					ws: true
+				}
 			}
-		}
-	};
+		};
+	}
 
 	if (analyze) config.plugins.push(new BundleAnalyzerPlugin());
 
