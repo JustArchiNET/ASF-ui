@@ -44,7 +44,7 @@
 		"copy-to-clipboard": "^3.0.8",
 		"flag-icon-css": "^3.2.1",
 		"flat": "^4.1.0",
-		"humanize-duration": "^3.16.0",
+		"humanize-duration": "^3.17.0",
 		"lodash": "^4.17.11",
 		"plurals-cldr": "^1.0.3",
 		"svg-country-flags": "^1.2.6",
