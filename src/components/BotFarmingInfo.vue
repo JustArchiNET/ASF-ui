@@ -16,19 +16,24 @@
 		components: { BotFarmingInfoCard },
 		computed: {
 			...mapGetters({
-				gamesRemaining: 'bots/gamesRemaining',
-				timeRemaining: 'bots/timeRemaining',
-				cardsRemaining: 'bots/cardsRemaining',
 				botsFarmingCount: 'bots/botsFarmingCount'
 			}),
 			timeRemaining() {
-				if (this.$store.getters['bots/timeRemaining'] === 0) return 0;
+				if (this.botsFarmingCount === 0) return '-';
 
 				const language = ['zh-CN', 'zh-TW'].includes(this.$i18n.locale)
 						? this.$i18n.locale.replace('-', '_')
 						: this.$i18n.noRegionalLocale;
 
 				return humanizeDuration(this.$store.getters['bots/timeRemaining'] * 1000, { language });
+			},
+			gamesRemaining() {
+				if (this.botsFarmingCount === 0) return '-';
+				return this.$store.getters['bots/timeRemaining'];
+			},
+			cardsRemaining() {
+				if (this.botsFarmingCount === 0) return '-';
+				return this.$store.getters['bots/cardsRemaining'];
 			}
 		}
 	};
