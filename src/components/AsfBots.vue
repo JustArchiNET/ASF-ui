@@ -1,6 +1,6 @@
 <template>
-  <div class="bots">
-    <bot-card v-for="bot in bots" :bot="bot" :key="bot.name" v-if="bot.isVisible(hiddenBots)"></bot-card>
+	<div class="bots">
+		<bot-card v-for="bot in bots" :bot="bot" :key="bot.name" v-if="bot.isVisible(hiddenBots)"></bot-card>
 
 		<router-link tag="div" :to="{ name: 'bot-create' }" class="bot-placeholder status--disabled">
 			<div class="bot-placeholder__button bot-placeholder__button--add">
@@ -8,32 +8,32 @@
 				<span class="bot-placeholder__name">{{ $t('bot-new') }}</span>
 			</div>
 		</router-link>
-  </div>
+	</div>
 </template>
 <script>
-  import BotCard from './BotCard.vue';
+	import BotCard from './BotCard.vue';
 	import { mapGetters } from 'vuex';
 
-  export default {
-    name: 'asf-bots',
-    components: { BotCard },
+	export default {
+		name: 'asf-bots',
+		components: { BotCard },
 		computed: mapGetters({
 			bots: 'bots/bots',
 			hiddenBots: 'settings/hiddenBots'
 		})
-  };
+	};
 </script>
 <style lang="scss">
-  .bots {
-    min-height: 0;
-    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-    grid-gap: 1em;
-    display: grid;
+	.bots {
+		min-height: 0;
+		grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+		grid-gap: 1em;
+		display: grid;
 
-    @media screen and (max-width: 400px) {
-      grid-template-columns: 1fr;
-    }
-  }
+		@media screen and (max-width: 400px) {
+			grid-template-columns: 1fr;
+		}
+	}
 
 	.bot-placeholder {
 		height: 2.25em;

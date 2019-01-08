@@ -8,7 +8,6 @@
 
 <script>
 	import AsfLog from '../components/AsfLog.vue';
-	import SectionTitle from '../components/SectionTitle.vue';
 
 	export default {
 		name: 'log',
@@ -17,7 +16,7 @@
 				title: this.$t('log')
 			};
 		},
-		components: { AsfLog, SectionTitle }
+		components: { AsfLog }
 	};
 </script>
 

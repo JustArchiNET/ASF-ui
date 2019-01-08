@@ -65,7 +65,7 @@ export class Bot {
 		if (days) time += parseInt(days, 10) * 24 * 60 * 60;
 		if (hours) time += parseInt(hours, 10) * 60 * 60;
 		if (minutes) time += parseInt(minutes, 10) * 60;
-		if (seconds) time += parseInt(seconds, 10) ;
+		if (seconds) time += parseInt(seconds, 10);
 
 		return time;
 	}

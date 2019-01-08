@@ -21,7 +21,7 @@
 				return this.condition();
 			}
 		}
-	}
+	};
 </script>
 
 <style lang="scss">

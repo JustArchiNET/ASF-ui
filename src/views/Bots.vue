@@ -16,8 +16,8 @@
 				title: this.$t('bots')
 			};
 		},
-		components: { AsfBots, BotFarmingInfo },
-	}
+		components: { AsfBots, BotFarmingInfo }
+	};
 </script>
 
 <style lang="scss">

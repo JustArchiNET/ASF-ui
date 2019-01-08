@@ -27,7 +27,7 @@
 				this.$emit('click');
 			}
 		}
-	}
+	};
 </script>
 
 <style lang="scss">

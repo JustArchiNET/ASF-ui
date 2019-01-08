@@ -16,16 +16,16 @@
 </template>
 
 <script>
-  export default {
-    name: 'DropdownItem',
+	export default {
+		name: 'DropdownItem',
 		props: {
-    	item: Object
+			item: Object
 		},
 		computed: {
-    	active() {
-    		if (!this.item.condition) return true;
-    		if (typeof this.item.condition === 'function') return this.item.condition();
-    		return this.item.condition;
+			active() {
+				if (!this.item.condition) return true;
+				if (typeof this.item.condition === 'function') return this.item.condition();
+				return this.item.condition;
 			}
 		},
 		methods: {
@@ -34,7 +34,7 @@
 				this.item.action();
 			}
 		}
-  };
+	};
 </script>
 
 <style lang="scss">

@@ -1,6 +1,6 @@
 import * as http from '../../plugins/http';
 import * as humanizeDuration from 'humanize-duration';
-import Vue from "vue";
+import Vue from 'vue';
 
 const humanizer = humanizeDuration.humanizer({
 	language: 'shortEn',
