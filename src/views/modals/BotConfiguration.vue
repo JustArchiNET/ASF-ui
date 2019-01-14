@@ -138,6 +138,6 @@
 
 <style lang="scss">
 	.main-container--bot-configuration {
-		width: 1000px;
+		max-width: 1000px;
 	}
 </style>
