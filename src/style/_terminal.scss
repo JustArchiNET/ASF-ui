@@ -24,6 +24,7 @@
 	display: grid;
 	grid-template-columns: auto 1fr;
 	margin: 0 0 0.1em;
+	line-height: 1.1;
 
 	&.terminal-message--truncated {
 		&:not(:hover) {
