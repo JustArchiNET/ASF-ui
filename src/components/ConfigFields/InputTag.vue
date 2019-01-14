@@ -48,6 +48,11 @@
 				element: ''
 			};
 		},
+		watch: {
+			element(newValue, oldValue) {
+				if (isNaN(newValue)) this.element = oldValue;
+			}
+		},
 		methods: {
 			addElement() {
 				if (this.hasErrors) return;
@@ -75,11 +80,6 @@
 				if (charCode === 8 && (!this.element || !this.element.length)) {
 					this.value.splice(-1);
 					return $event.preventDefault();
-				}
-
-				if (this.isNumber) {
-					if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) return $event.preventDefault();
-					return true;
 				}
 			},
 			onFocus() {
