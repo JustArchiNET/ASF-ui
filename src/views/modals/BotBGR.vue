@@ -68,7 +68,10 @@
 		},
 		methods: {
 			async loadBGR() {
-				if (!this.bot) return { UnusedKeys: {}, UsedKeys: {} };
+				if (!this.bot) {
+					this.$router.replace({ name: 'bots' });
+					return;
+				}
 				return (await this.$http.get(`bot/${this.bot.name}/GamesToRedeemInBackground`))[this.bot.name];
 			},
 			onCheck(keys) {
