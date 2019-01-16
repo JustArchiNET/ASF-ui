@@ -83,7 +83,10 @@
 		},
 		methods: {
 			async loadConfig() {
-				if (!this.bot) return;
+				if (!this.bot) {
+					this.$router.replace({ name: 'bots' });
+					return;
+				}
 
 				const [
 					{ body: fields },
