@@ -29,7 +29,7 @@
 			},
 			gamesRemaining() {
 				if (this.botsFarmingCount === 0) return '-';
-				return this.$store.getters['bots/timeRemaining'];
+				return this.$store.getters['bots/gamesRemaining'];
 			},
 			cardsRemaining() {
 				if (this.botsFarmingCount === 0) return '-';
