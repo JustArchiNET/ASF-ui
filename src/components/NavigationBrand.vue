@@ -49,12 +49,18 @@
 				this.brandMenu = !this.brandMenu;
 			},
 			async update() {
+				this.$info(this.$t('update-check'));
+
 				try {
+					this.$info(this.$t('update-initiated'));
 					const response = await this.$http.post('asf/update');
 					this.brandMenu = false;
 
 					if (response.Success) {
+						this.$success(this.$t('update-complete'));
+						this.$info(this.$t('restart-initiated'));
 						await waitForRestart();
+						this.$success(this.$t('restart-complete'));
 						window.location.reload(true);
 					}
 				} catch (err) {
