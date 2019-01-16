@@ -1,31 +1,25 @@
 <template>
 	<main class="main-container main-container--bot-configuration">
-		<template v-if="!bot">
-			<h2 class="title" v-if="!bot">{{ $t('not-found') }}</h2>
-		</template>
+		<h2 class="title" v-if="bot.nickname && nicknames">{{ bot.nickname }}</h2>
+		<h2 class="title" v-else>{{ bot.name }}</h2>
 
-		<template v-else>
-			<h2 class="title" v-if="bot.nickname && nicknames">{{ bot.nickname }}</h2>
-			<h2 class="title" v-else>{{ bot.name }}</h2>
+		<h3 class="subtitle" v-if="loading">
+			<font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
+		</h3>
+		<div class="container" v-else>
+			<config-editor :fields="fields" :model="model" :categories="categories"></config-editor>
 
-			<h3 class="subtitle" v-if="loading">
-				<font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
-			</h3>
-			<div class="container" v-else>
-				<config-editor :fields="fields" :model="model" :categories="categories"></config-editor>
+			<div class="form-item">
+				<div class="form-item__buttons">
+					<button class="button button--confirm" @click="onSave">
+						<font-awesome-icon icon="spinner" v-if="saving" spin></font-awesome-icon>
+						<span v-else>{{ $t('save') }}</span>
+					</button>
 
-				<div class="form-item">
-					<div class="form-item__buttons">
-						<button class="button button--confirm" @click="onSave">
-							<font-awesome-icon icon="spinner" v-if="saving" spin></font-awesome-icon>
-							<span v-else>{{ $t('save') }}</span>
-						</button>
-
-						<button class="button button--link pull-right" @click="onDownload">{{ $t('download-raw-config') }}</button>
-					</div>
+					<button class="button button--link pull-right" @click="onDownload">{{ $t('download-raw-config') }}</button>
 				</div>
 			</div>
-		</template>
+		</div>
 	</main>
 </template>
 
