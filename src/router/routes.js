@@ -12,7 +12,7 @@ export default [
 	{
 		path: '/page/home',
 		name: 'home',
-		component: () => import('../views/Home.vue')
+		redirect: { name: 'bots' }
 	},
 	{
 		path: '/page/setup',
@@ -40,6 +40,11 @@ export default [
 		path: '/page/bots',
 		name: 'bots',
 		component: () => import('../views/Bots.vue')
+	},
+	{
+		path: '/page/changelog',
+		name: 'changelog',
+		component: () => import('../views/Changelog.vue')
 	},
 	{
 		path: '/page/bot/new',

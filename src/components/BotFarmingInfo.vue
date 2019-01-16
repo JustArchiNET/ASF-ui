@@ -1,61 +1,39 @@
 <template>
-	<div v-if="botsFarmingCount !== 0" class="farming-info">
-		<h2 class="title">{{ $t('farming-info') }}</h2>
-
-		<div class="info-cards">
-			<div class="info-card">
-				<div class="info-card__icon">
-					<font-awesome-icon icon="gamepad"></font-awesome-icon>
-				</div>
-				<div class="info-card__body">
-					<p class="info-card__title">{{ $t('farming-info-games') }}</p>
-					<p class="info-card__value">{{ gamesRemaining }}</p>
-				</div>
-			</div>
-
-			<div class="info-card">
-				<div class="info-card__icon">
-					<font-awesome-icon icon="clock"></font-awesome-icon>
-				</div>
-				<div class="info-card__body">
-					<p class="info-card__title">{{ $t('farming-info-time') }}</p>
-					<p class="info-card__value">{{ timeRemaining }}</p>
-				</div>
-			</div>
-			<div class="info-card">
-				<div class="info-card__icon">
-					<font-awesome-icon icon="clone"></font-awesome-icon>
-				</div>
-				<div class="info-card__body">
-					<p class="info-card__title">{{ $t('farming-info-cards') }}</p>
-					<p class="info-card__value">{{ cardsRemaining }}</p>
-				</div>
-			</div>
-		</div>
+	<div class="info-cards">
+		<bot-farming-info-card :title="$t('farming-info-games')" :value="gamesRemaining" icon="gamepad"></bot-farming-info-card>
+		<bot-farming-info-card :title="$t('farming-info-time')" :value="timeRemaining" icon="clock"></bot-farming-info-card>
+		<bot-farming-info-card :title="$t('farming-info-cards')" :value="cardsRemaining" icon="gamepad"></bot-farming-info-card>
 	</div>
 </template>
 
 <script>
 	import { mapGetters } from 'vuex';
 	import humanizeDuration from 'humanize-duration';
+	import BotFarmingInfoCard from './BotFarmingInfoCard.vue';
 
 	export default {
 		name: 'bot-farming-info',
+		components: { BotFarmingInfoCard },
 		computed: {
 			...mapGetters({
-				gamesRemaining: 'bots/gamesRemaining',
-				timeRemaining: 'bots/timeRemaining',
-				cardsRemaining: 'bots/cardsRemaining',
 				botsFarmingCount: 'bots/botsFarmingCount'
 			}),
 			timeRemaining() {
-				if (this.$store.getters['bots/timeRemaining'] === 0) return 0;
+				if (this.botsFarmingCount === 0) return '-';
 
 				const language = ['zh-CN', 'zh-TW'].includes(this.$i18n.locale)
 						? this.$i18n.locale.replace('-', '_')
 						: this.$i18n.noRegionalLocale;
 
 				return humanizeDuration(this.$store.getters['bots/timeRemaining'] * 1000, { language });
+			},
+			gamesRemaining() {
+				if (this.botsFarmingCount === 0) return '-';
+				return this.$store.getters['bots/gamesRemaining'];
+			},
+			cardsRemaining() {
+				if (this.botsFarmingCount === 0) return '-';
+				return this.$store.getters['bots/cardsRemaining'];
 			}
 		}
 	};

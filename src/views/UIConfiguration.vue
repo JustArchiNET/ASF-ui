@@ -48,10 +48,10 @@
 					type: 'enum',
 					defaultValue: 'home',
 					values: {
-						[this.$t('home')]: 'home',
-						[this.$t('commands')]: 'commands',
 						[this.$t('bots')]: 'bots',
+						[this.$t('commands')]: 'commands',
 						[this.$t('log')]: 'log',
+						[this.$t('changelog')]: 'changelog',
 						[this.$t('last-visited-page')]: '_last-visited-page'
 					},
 					description: this.$t('default-page-description')

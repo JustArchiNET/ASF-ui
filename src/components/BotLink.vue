@@ -21,7 +21,7 @@
 				return this.condition();
 			}
 		}
-	}
+	};
 </script>
 
 <style lang="scss">
@@ -39,18 +39,6 @@
 				color: var(--color-text);
 			}
 		}
-
-		&.bot-action--red:hover {
-			color: red;
-		}
-
-		&.bot-action--orange:hover {
-			color: orange;
-		}
-
-		&.bot-action--green:hover {
-			color: green;
-		}
 	}
 
 	.bot-action__label {
@@ -58,8 +46,6 @@
 	}
 
 	.bot-action__icon {
-		font-size: 0.8em;
-
 		.bot-action__label + & {
 			margin-left: 0.5em;
 		}

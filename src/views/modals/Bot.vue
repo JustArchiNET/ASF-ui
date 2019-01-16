@@ -21,11 +21,11 @@
 					<bot-link icon="wrench" :link="{ name: 'bot-config', params: { bot: bot.name } }"></bot-link>
 					<bot-link icon="key" :link="{ name: 'bot-bgr', params: { bot: bot.name } }"></bot-link>
 
-					<bot-action icon="play" v-if="bot.paused && bot.active" @click="resume" color="green"></bot-action>
-					<bot-action icon="pause" v-if="!bot.paused && bot.active" @click="pause" color="orange"></bot-action>
+					<bot-action icon="play" v-if="bot.paused && bot.active" @click="resume"></bot-action>
+					<bot-action icon="pause" v-if="!bot.paused && bot.active" @click="pause"></bot-action>
 
-					<bot-action icon="power-off" v-if="!bot.active" @click="start" color="green"></bot-action>
-					<bot-action icon="power-off" v-if="bot.active" @click="stop" color="red"></bot-action>
+					<bot-action icon="power-off" v-if="!bot.active" @click="start"></bot-action>
+					<bot-action icon="power-off" v-if="bot.active" @click="stop"></bot-action>
 
 					<bot-link icon="trash" :link="{ name: 'bot-delete', params: { bot: bot.name } }" class="pull-right" color="red"></bot-link>
 				</div>

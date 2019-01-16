@@ -1,7 +1,5 @@
 <template>
 	<main class="main-container">
-		<h2 class="title">{{ $t('global-config') }}</h2>
-
 		<div class="container">
 			<template v-if="loading">
 				<h3 class="subtitle">

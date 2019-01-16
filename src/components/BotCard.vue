@@ -1,7 +1,7 @@
 <template>
 	<div class="bot" :class="[`status--${bot.status}`]">
 		<a target="_blank" :href="bot.profileURL" v-if="bot.steamid !== '0'">
-			<img class="bot__avatar" :src="bot.avatarURL">
+			<img class="bot__avatar" :src="bot.avatarURL" :alt="bot.name">
 		</a>
 		<router-link :to="{ name: 'bot', params: { bot: bot.name } }" tag="img" class="bot__avatar" :src="bot.avatarURL" v-else></router-link>
 
@@ -128,20 +128,6 @@
 			.app--dark-mode & {
 				color: var(--color-text);
 			}
-		}
-
-		&.bot__action--start:hover,
-		&.bot__action--resume:hover {
-			color: green;
-		}
-
-		&.bot__action--pause:hover {
-			color: orange;
-		}
-
-		&.bot__action--stop:hover,
-		&.bot__action--delete:hover {
-			color: red;
 		}
 	}
 
