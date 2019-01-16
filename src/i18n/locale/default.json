@@ -13,7 +13,6 @@
 	"commands": "Commands",
 	"bots": "Bots",
 	"bot-new": "Create new bot",
-	"not-found": "Not found!",
 	"create": "Create",
 	"bot-delete": "Do you want to delete {name}?",
 	"delete": "Delete",
