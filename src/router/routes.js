@@ -83,6 +83,15 @@ export default [
 		meta: { modal: true }
 	},
 	{
+		path: '/page/bot/:bot/2fa',
+		name: 'bot-2fa',
+		components: {
+			default: () => import('../views/Bots.vue'),
+			modal: () => import('../views/modals/Bot2FA.vue')
+		},
+		meta: { modal: true }
+	},
+	{
 		path: '/page/bot/:bot/delete',
 		name: 'bot-delete',
 		components: {
