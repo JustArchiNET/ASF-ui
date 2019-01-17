@@ -1,4 +1,7 @@
 {
+	"2fa-no": "Decline all trades",
+	"2fa-ok": "Accept all trades",
+	"2fa-refresh": "Refresh token",
 	"access": "Access",
 	"add": "Add",
 	"advanced": "Advanced",
