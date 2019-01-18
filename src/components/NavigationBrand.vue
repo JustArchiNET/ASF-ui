@@ -54,9 +54,9 @@
 				try {
 					this.$info(this.$t('update-initiated'));
 					const response = await this.$http.post('asf/update').catch(err => {
-						if (err.resonse && err.response.Result===null) {
+						if (!err.resonse || err.response.Result===null) {
 							throw err;
-						} else throw err;  
+						}
 					});
 					this.brandMenu = false;
 
