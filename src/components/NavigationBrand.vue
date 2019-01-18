@@ -53,7 +53,7 @@
 
 				try {
 					this.$info(this.$t('update-initiated'));
-					const response = await this.$http.post('asf/update');
+					const response = await this.$http.post('asf/update').catch;
 					this.brandMenu = false;
 
 					if (response.Success) {
@@ -65,6 +65,7 @@
 					} else {
 						if (response.Result!==null) {
 							this.$info(this.$t('update-uptodate', { message: response.message }));
+							response.Success=true;
 							this.brandMenu = false;
 						}
 					}
