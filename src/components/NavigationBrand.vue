@@ -62,6 +62,11 @@
 						await waitForRestart();
 						this.$success(this.$t('restart-complete'));
 						window.location.reload(true);
+					} else {
+						if (response.Result!==null) {
+							this.$info(this.$t('update-uptodate', { message: response.message }));
+							this.brandMenu = false;
+						}
 					}
 				} catch (err) {
 					this.$error(err.message);
