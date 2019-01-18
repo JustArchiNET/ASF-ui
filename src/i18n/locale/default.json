@@ -121,7 +121,7 @@
 	"update-check": "Checking for new version...",
 	"update-complete": "Updated!",
 	"update-initiated": "Updating...",
-	"update-uptodate": "ASF is up-to-date,{message}",
+	"update-uptodate": "ASF is up-to-date, {message}",
 	"updates": "Updates",
 	"version": "Version",
 	"welcome": "Welcome",
