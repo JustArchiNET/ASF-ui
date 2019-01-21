@@ -49,10 +49,8 @@
 				this.brandMenu = !this.brandMenu;
 			},
 			async update() {
-				this.$info(this.$t('update-check'));
-
 				try {
-					this.$info(this.$t('update-initiated'));
+					this.$info(this.$t('update-check'));
 					const response = await this.$http.post('asf/update');
 					this.brandMenu = false;
 
@@ -64,7 +62,12 @@
 						window.location.reload(true);
 					}
 				} catch (err) {
-					this.$error(err.message);
+					if (!err.message.includes('≥')) throw err;
+
+					const [localVersion, remoteVersion] = err.message.split(' ≥ ');
+
+					if (localVersion === remoteVersion) this.$info(this.$t('update-is-up-to-date'));
+					else this.$info(this.$t('update-is-newest'));
 				}
 			},
 			async restart() {
