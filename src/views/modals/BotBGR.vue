@@ -1,5 +1,5 @@
 <template>
-	<main class="main-container">
+	<main class="main-container" v-if="bot">
 		<h2 class="title" v-if="bot.nickname && nicknames">{{ bot.nickname }}</h2>
 		<h2 class="title" v-else>{{ bot.name }}</h2>
 
@@ -60,12 +60,11 @@
 				}
 			}
 		},
+		created() {
+			if (!this.bot) this.$router.replace({ name: 'bots' });
+		},
 		methods: {
 			async loadBGR() {
-				if (!this.bot) {
-					this.$router.replace({ name: 'bots' });
-					return;
-				}
 				return (await this.$http.get(`bot/${this.bot.name}/GamesToRedeemInBackground`))[this.bot.name];
 			},
 			onCheck(keys) {

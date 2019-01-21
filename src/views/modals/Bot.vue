@@ -1,5 +1,5 @@
 <template>
-	<main class="main-container main-container--bot-profile">
+	<main class="main-container main-container--bot-profile" v-if="bot">
 		<div class="bot-profile" :class="[`status--${bot.status}`]">
 			<div class="bot-profile__avatar-wrapper">
 				<a target="_blank" :href="bot.profileURL" v-if="bot.steamid !== '0'">
@@ -61,6 +61,9 @@
 			bot() {
 				return this.$store.getters['bots/bot'](this.$route.params.bot);
 			}
+		},
+		created() {
+			if (!this.bot) this.$router.replace({ name: 'bots' });
 		},
 		methods: {
 			async action(name, params = {}) {

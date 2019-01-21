@@ -1,5 +1,5 @@
 <template>
-	<main class="main-container main-container--bot-profile">
+	<main class="main-container main-container--bot-profile" v-if="bot">
 		<h2 class="title" v-if="bot.nickname && nicknames">{{ $t('bot-delete', { name: bot.nickname }) }}</h2>
 		<h2 class="title" v-else>{{ $t('bot-delete', { name: bot.name }) }}</h2>
 
@@ -35,6 +35,9 @@
 			bot() {
 				return this.$store.getters['bots/bot'](this.$route.params.bot);
 			}
+		},
+		created() {
+			if (!this.bot) this.$router.replace({ name: 'bots' });
 		},
 		methods: {
 			async onDelete() {

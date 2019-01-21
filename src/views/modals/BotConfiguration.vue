@@ -1,5 +1,5 @@
 <template>
-	<main class="main-container main-container--bot-configuration">
+	<main class="main-container main-container--bot-configuration" v-if="bot">
 		<h2 class="title" v-if="bot.nickname && nicknames">{{ bot.nickname }}</h2>
 		<h2 class="title" v-else>{{ bot.name }}</h2>
 
@@ -75,13 +75,11 @@
 				handler: 'loadConfig'
 			}
 		},
+		created() {
+			if (!this.bot) this.$router.replace({ name: 'bots' });
+		},
 		methods: {
 			async loadConfig() {
-				if (!this.bot) {
-					this.$router.replace({ name: 'bots' });
-					return;
-				}
-
 				const [
 					{ body: fields },
 					{ [this.bot.name]: { BotConfig: model } },
