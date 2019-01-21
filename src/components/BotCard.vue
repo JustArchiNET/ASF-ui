@@ -12,10 +12,10 @@
 		</router-link>
 
 		<div class="bot__actions">
-			<span class="bot__action bot__action--resume" v-if="bot.paused && bot.active" @click="resume"><font-awesome-icon icon="play"></font-awesome-icon></span>
-			<span class="bot__action bot__action--pause" v-if="!bot.paused && bot.active" @click="pause"><font-awesome-icon icon="pause"></font-awesome-icon></span>
-			<span class="bot__action bot__action--start" v-if="!bot.active" @click="start"><font-awesome-icon icon="power-off"></font-awesome-icon></span>
-			<span class="bot__action bot__action--stop" v-if="bot.active" @click="stop"><font-awesome-icon icon="power-off"></font-awesome-icon></span>
+			<span class="bot__action" v-if="bot.paused && bot.active" @click="resume"><font-awesome-icon icon="play"></font-awesome-icon></span>
+			<span class="bot__action" v-if="!bot.paused && bot.active" @click="pause"><font-awesome-icon icon="pause"></font-awesome-icon></span>
+			<span class="bot__action" v-if="!bot.active" @click="start"><font-awesome-icon icon="power-off"></font-awesome-icon></span>
+			<span class="bot__action" v-if="bot.active" @click="stop"><font-awesome-icon icon="power-off"></font-awesome-icon></span>
 		</div>
 	</div>
 </template>
@@ -130,6 +130,4 @@
 			}
 		}
 	}
-
-
 </style>
