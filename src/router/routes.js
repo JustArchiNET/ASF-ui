@@ -7,7 +7,7 @@ if (defaultView === '_last-visited-page') defaultView = storage.get('last-visite
 export default [
 	{
 		path: '/',
-		redirect: { name: defaultView }
+		redirect: typeof defaultView === 'string' ? { name: defaultView } : defaultView
 	},
 	{
 		path: '/page/home',

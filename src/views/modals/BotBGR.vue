@@ -1,26 +1,20 @@
 <template>
-	<main class="main-container">
-		<template v-if="!bot">
-			<h2 class="title" v-if="!bot">{{ $t('not-found') }}</h2>
-		</template>
+	<main class="main-container" v-if="bot">
+		<h2 class="title" v-if="bot.nickname && nicknames">{{ bot.nickname }}</h2>
+		<h2 class="title" v-else>{{ bot.name }}</h2>
 
-		<template v-else>
-			<h2 class="title" v-if="bot.nickname && nicknames">{{ bot.nickname }}</h2>
-			<h2 class="title" v-else>{{ bot.name }}</h2>
+		<h3 class="subtitle" v-if="loading">
+			<font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
+		</h3>
+		<bgr-status v-if="!loading && state === 'input'" :used-keys="usedKeys" :unused-keys="unusedKeys" @reset="onReset" @show-unused="state = 'unusedKeys'" @show-used="state = 'usedKeys'"></bgr-status>
 
-			<h3 class="subtitle" v-if="loading">
-				<font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
-			</h3>
-			<bgr-status v-if="!loading && state === 'input'" :used-keys="usedKeys" :unused-keys="unusedKeys" @reset="onReset" @show-unused="state = 'unusedKeys'" @show-used="state = 'usedKeys'"></bgr-status>
-
-			<keep-alive>
-				<bgr-input v-if="state === 'input'" @check="onCheck"></bgr-input>
-				<bgr-check v-if="state === 'check'" :keys="keys" :bot="bot" :confirming="confirming" @confirm="onConfirm" @cancel="onCancel"></bgr-check>
-				<bgr-summary v-if="state === 'summary'" :keys="summaryKeys" :title="$t('bgr-summary-success')" @back="$parent.close()"></bgr-summary>
-				<bgr-summary v-if="state === 'usedKeys'" :keys="usedKeys" :title="$t('bgr-used-keys')" @back="state = 'input'"></bgr-summary>
-				<bgr-summary v-if="state === 'unusedKeys'" :keys="unusedKeys" :title="$t('bgr-unused-keys')" @back="state = 'input'"></bgr-summary>
-			</keep-alive>
-		</template>
+		<keep-alive>
+			<bgr-input v-if="state === 'input'" @check="onCheck"></bgr-input>
+			<bgr-check v-if="state === 'check'" :keys="keys" :bot="bot" :confirming="confirming" @confirm="onConfirm" @cancel="onCancel"></bgr-check>
+			<bgr-summary v-if="state === 'summary'" :keys="summaryKeys" :title="$t('bgr-summary-success')" @back="$parent.close()"></bgr-summary>
+			<bgr-summary v-if="state === 'usedKeys'" :keys="usedKeys" :title="$t('bgr-used-keys')" @back="state = 'input'"></bgr-summary>
+			<bgr-summary v-if="state === 'unusedKeys'" :keys="unusedKeys" :title="$t('bgr-unused-keys')" @back="state = 'input'"></bgr-summary>
+		</keep-alive>
 	</main>
 </template>
 
@@ -66,9 +60,11 @@
 				}
 			}
 		},
+		created() {
+			if (!this.bot) this.$router.replace({ name: 'bots' });
+		},
 		methods: {
 			async loadBGR() {
-				if (!this.bot) return { UnusedKeys: {}, UsedKeys: {} };
 				return (await this.$http.get(`bot/${this.bot.name}/GamesToRedeemInBackground`))[this.bot.name];
 			},
 			onCheck(keys) {

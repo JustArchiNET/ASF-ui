@@ -1,49 +1,45 @@
 <template>
-	<main class="main-container main-container--bot-profile">
-		<h2 class="title" v-if="!bot">{{ $t('not-found') }}</h2>
-
-		<template v-else>
-			<div class="bot-profile" :class="[`status--${bot.status}`]">
-				<div class="bot-profile__avatar-wrapper">
-					<a target="_blank" :href="bot.profileURL" v-if="bot.steamid !== '0'">
-						<img class="bot-profile__avatar" :src="bot.avatarURL">
-					</a>
-					<img class="bot-profile__avatar" :src="bot.avatarURL" v-else>
-				</div>
-
-				<div class="bot-profile__meta">
-					<h3 class="bot-profile__name" v-if="bot.nickname && nicknames">{{ bot.nickname }}</h3>
-					<h3 class="bot-profile__name" v-else>{{ bot.name }}</h3>
-					<p class="bot-profile__status">{{ bot.statusText }}</p>
-				</div>
-
-				<div class="bot-profile__actions">
-					<bot-link icon="wrench" :link="{ name: 'bot-config', params: { bot: bot.name } }"></bot-link>
-					<bot-link icon="key" :link="{ name: 'bot-bgr', params: { bot: bot.name } }"></bot-link>
-
-					<bot-action icon="play" v-if="bot.paused && bot.active" @click="resume"></bot-action>
-					<bot-action icon="pause" v-if="!bot.paused && bot.active" @click="pause"></bot-action>
-
-					<bot-action icon="power-off" v-if="!bot.active" @click="start"></bot-action>
-					<bot-action icon="power-off" v-if="bot.active" @click="stop"></bot-action>
-
-					<bot-link icon="trash" :link="{ name: 'bot-delete', params: { bot: bot.name } }" class="pull-right" color="red"></bot-link>
-				</div>
+	<main class="main-container main-container--bot-profile" v-if="bot">
+		<div class="bot-profile" :class="[`status--${bot.status}`]">
+			<div class="bot-profile__avatar-wrapper">
+				<a target="_blank" :href="bot.profileURL" v-if="bot.steamid !== '0'">
+					<img class="bot-profile__avatar" :src="bot.avatarURL">
+				</a>
+				<img class="bot-profile__avatar" :src="bot.avatarURL" v-else>
 			</div>
 
-			<div class="bot-games" v-if="bot.games.length && botsFarmingCount !== 0">
-				<div class="bot-game" :title="game.GameName" :class="[game.farming ? 'status--farming' : 'status--disabled']" v-for="game in bot.games">
-					<a target="_blank" :href="`https://store.steampowered.com/app/${game.AppID}/`">
-						<div class="bot-game__info">
-							<span class="bot-game__name">{{ game.GameName }}</span>
-						</div>
-						<div class="bot-game__background">
-							<img class="bot-game__image" :src="`https://steamcdn-a.akamaihd.net/steam/apps/${game.AppID}/header.jpg`">
-						</div>
-					</a>
-				</div>
+			<div class="bot-profile__meta">
+				<h3 class="bot-profile__name" v-if="bot.nickname && nicknames">{{ bot.nickname }}</h3>
+				<h3 class="bot-profile__name" v-else>{{ bot.name }}</h3>
+				<p class="bot-profile__status">{{ bot.statusText }}</p>
 			</div>
-		</template>
+
+			<div class="bot-profile__actions">
+				<bot-link icon="wrench" :link="{ name: 'bot-config', params: { bot: bot.name } }"></bot-link>
+				<bot-link icon="key" :link="{ name: 'bot-bgr', params: { bot: bot.name } }"></bot-link>
+
+				<bot-action icon="play" v-if="bot.paused && bot.active" @click="resume"></bot-action>
+				<bot-action icon="pause" v-if="!bot.paused && bot.active" @click="pause"></bot-action>
+
+				<bot-action icon="power-off" v-if="!bot.active" @click="start"></bot-action>
+				<bot-action icon="power-off" v-if="bot.active" @click="stop"></bot-action>
+
+				<bot-link icon="trash" :link="{ name: 'bot-delete', params: { bot: bot.name } }" class="pull-right" color="red"></bot-link>
+			</div>
+		</div>
+
+		<div class="bot-games" v-if="bot.games.length && botsFarmingCount !== 0">
+			<div class="bot-game" :title="game.GameName" :class="[game.farming ? 'status--farming' : 'status--disabled']" v-for="game in bot.games">
+				<a target="_blank" :href="`https://store.steampowered.com/app/${game.AppID}/`">
+					<div class="bot-game__info">
+						<span class="bot-game__name">{{ game.GameName }}</span>
+					</div>
+					<div class="bot-game__background">
+						<img class="bot-game__image" :src="`https://steamcdn-a.akamaihd.net/steam/apps/${game.AppID}/header.jpg`">
+					</div>
+				</a>
+			</div>
+		</div>
 	</main>
 </template>
 
@@ -65,6 +61,9 @@
 			bot() {
 				return this.$store.getters['bots/bot'](this.$route.params.bot);
 			}
+		},
+		created() {
+			if (!this.bot) this.$router.replace({ name: 'bots' });
 		},
 		methods: {
 			async action(name, params = {}) {

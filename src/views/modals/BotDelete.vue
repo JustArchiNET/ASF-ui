@@ -1,20 +1,16 @@
 <template>
-	<main class="main-container main-container--bot-profile">
-		<h2 class="title" v-if="!bot">{{ $t('not-found') }}</h2>
+	<main class="main-container main-container--bot-profile" v-if="bot">
+		<h2 class="title" v-if="bot.nickname && nicknames">{{ $t('bot-delete', { name: bot.nickname }) }}</h2>
+		<h2 class="title" v-else>{{ $t('bot-delete', { name: bot.name }) }}</h2>
 
-		<div class="bot-delete" v-else>
-			<h2 class="title" v-if="bot.nickname && nicknames">{{ $t('bot-delete', { name: bot.nickname }) }}</h2>
-			<h2 class="title" v-else>{{ $t('bot-delete', { name: bot.name }) }}</h2>
+		<div class="form-item">
+			<div class="form-item__buttons form-item__buttons--center">
+				<button class="button button--cancel" @click="onDelete">
+					<font-awesome-icon icon="spinner" v-if="deleting" spin></font-awesome-icon>
+					<span v-else>{{ $t('delete') }}</span>
+				</button>
 
-			<div class="form-item">
-				<div class="form-item__buttons form-item__buttons--center">
-					<button class="button button--cancel" @click="onDelete">
-						<font-awesome-icon icon="spinner" v-if="deleting" spin></font-awesome-icon>
-						<span v-else>{{ $t('delete') }}</span>
-					</button>
-
-					<button class="button button--confirm" @click="$parent.close()">{{ $t('cancel') }}</button>
-				</div>
+				<button class="button button--confirm" @click="$parent.close()">{{ $t('cancel') }}</button>
 			</div>
 		</div>
 	</main>
@@ -39,6 +35,9 @@
 			bot() {
 				return this.$store.getters['bots/bot'](this.$route.params.bot);
 			}
+		},
+		created() {
+			if (!this.bot) this.$router.replace({ name: 'bots' });
 		},
 		methods: {
 			async onDelete() {
