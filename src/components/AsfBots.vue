@@ -10,6 +10,7 @@
 		</router-link>
 	</div>
 </template>
+
 <script>
 	import BotCard from './BotCard.vue';
 	import { mapGetters } from 'vuex';
@@ -23,6 +24,7 @@
 		})
 	};
 </script>
+
 <style lang="scss">
 	.bots {
 		min-height: 0;
