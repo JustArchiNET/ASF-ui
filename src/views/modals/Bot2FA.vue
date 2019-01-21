@@ -1,5 +1,5 @@
 <template>
-	<main class="main-container">
+	<main class="main-container" v-if="bot">
 		<h2 class="title" v-if="bot.nickname && nicknames">{{ bot.nickname }}</h2>
 		<h2 class="title" v-else>{{ bot.name }}</h2>
 
@@ -29,6 +29,9 @@
 			bot() {
 				return this.$store.getters['bots/bot'](this.$route.params.bot);
 			}
+		},
+		created() {
+			if (!this.bot) this.$router.replace({ name: 'bots' });
 		},
 		methods: {
 			async acceptTrades() {
