@@ -1,22 +1,5 @@
 import * as http from '../plugins/http';
-
-function compareVersion(a, b) {
-	let result = 0;
-
-	const aValues = a.split('.');
-	const bValues = b.split('.');
-
-	aValues.forEach((value, index) => {
-		if (result !== 0) return;
-
-		if (value === bValues[index]) return;
-
-		if (value > bValues[index]) result = 1;
-		else result = -1;
-	});
-
-	return result;
-}
+import { compareVersion } from './compareVersion';
 
 async function getURL(file, version) {
 	const defaultURL = `https://github.com/JustArchiNET/ArchiSteamFarm/wiki/${file}`;

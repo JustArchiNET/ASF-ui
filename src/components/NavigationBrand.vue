@@ -32,6 +32,7 @@
 	import waitForRestart from '../utils/waitForRestart';
 
 	import { mapGetters } from 'vuex';
+	import { composeVersionString } from '../utils/composeVersionString';
 
 	export default {
 		name: 'navigation-brand',
@@ -48,6 +49,25 @@
 			toggleBrandMenu() {
 				this.brandMenu = !this.brandMenu;
 			},
+			extractVersions(err) {
+				if (err.result) {
+					// Extract version from result, if available
+					return {
+						remoteVersion: composeVersionString(err.result),
+						localVersion: this.$store.getters['asf/version']
+					};
+				}
+
+				if (err.message.includes('≥')) {
+					// Fallback to message parsing
+					const [localVersion, remoteVersion] = err.message.split(' ≥ ');
+					return { remoteVersion, localVersion };
+				}
+
+				// Return empty object to prevent throws on destructing if extraction failed
+				// Shouldn't happen, but who knows...
+				return {};
+			},
 			async update() {
 				try {
 					this.$info(this.$t('update-check'));
@@ -62,9 +82,9 @@
 						window.location.reload(true);
 					}
 				} catch (err) {
-					if (!err.message.includes('≥')) throw err;
+					if (!err.result && !err.message.includes('≥')) throw err;
 
-					const [localVersion, remoteVersion] = err.message.split(' ≥ ');
+					const { remoteVersion, localVersion } = this.extractVersions(err);
 
 					if (localVersion === remoteVersion) this.$info(this.$t('update-is-up-to-date'));
 					else this.$info(this.$t('update-is-newest'));

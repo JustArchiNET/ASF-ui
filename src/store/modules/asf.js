@@ -1,6 +1,7 @@
 import * as http from '../../plugins/http';
 import * as humanizeDuration from 'humanize-duration';
 import Vue from 'vue';
+import { composeVersionString } from '../../utils/composeVersionString';
 
 const humanizer = humanizeDuration.humanizer({
 	language: 'shortEn',
@@ -64,7 +65,7 @@ export const actions = {
 export const getters = {
 	memory: state => `${(state.memoryUsage / 1024).toFixed(2)} MB`,
 	uptime: state => state.uptime,
-	version: state => `${state.version.Major}.${state.version.Minor}.${state.version.Build}.${state.version.Revision}`,
+	version: state => composeVersionString(state.version),
 	buildVariant: state => state.buildVariant,
 	startTime: state => state.startTime
 };
