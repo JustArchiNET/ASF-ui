@@ -8,7 +8,7 @@
 
 		<div class="form-item">
 			<div class="form-item__buttons form-item__buttons--center">
-				<button class="button button--confirm" v-if="!noKeys" @click="copyKeys">{{ $t('copy-keys') }}</button>
+				<button class="button button--confirm" v-if="!noKeys" @click="copyKeys">{{ $t('keys-copy') }}</button>
 				<button class="button button--confirm" @click="$emit('back')" :key="'back'">{{ $t('back') }}</button>
 			</div>
 		</div>
