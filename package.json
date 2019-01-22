@@ -20,7 +20,7 @@
 		"@babel/preset-env": "^7.3.0",
 		"babel-loader": "^8.0.5",
 		"before-build-webpack": "^0.2.6",
-		"clean-webpack-plugin": "^1.0.0",
+		"clean-webpack-plugin": "^1.0.1",
 		"copy-webpack-plugin": "^4.6.0",
 		"css-loader": "^2.1.0",
 		"file-loader": "^3.0.1",
