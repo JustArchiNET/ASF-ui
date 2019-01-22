@@ -39,7 +39,7 @@
 
 .terminal-message__sign {
 	color: var(--color-text-disabled);
-	margin-right: 0.1em;
+	margin-right: 0.5em;
 }
 
 .terminal-message__content {
@@ -76,7 +76,7 @@
 	position: relative;
 	grid-template-areas: 'sign text';
 
-	.terminal__sign {
+	.terminal-message__sign {
 		color: var(--color-text);
 	}
 }
@@ -105,8 +105,4 @@
 	pointer-events: none;
 	color: var(--color-text-disabled);
 	height: 1em;
-}
-
-.terminal__sign {
-	width: 1.2em;
 }

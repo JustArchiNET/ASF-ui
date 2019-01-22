@@ -2,12 +2,12 @@
 	<main class="main-container main-container--fullheight commands">
 		<div class="container">
 			<div class="terminal" @click="focusInput" ref="terminal">
-				<div class="terminal__message" v-for="{ type, message } in log">
-					<span class="terminal__sign">{{ type === 'out' ? '>' : '<' }}</span>
-					<span class="terminal__text">{{ message }}</span>
+				<div class="terminal-message" v-for="{ type, message } in log">
+					<span class="terminal-message__sign">{{ type === 'out' ? '>' : '<' }}</span>
+					<span class="terminal-message__content">{{ message }}</span>
 				</div>
 				<div class="terminal__input-wrapper">
-					<span class="terminal__sign">></span>
+					<span class="terminal-message__sign">></span>
 					<input type="text" spellcheck="false" :value="command" @input="command = $event.target.value" ref="terminal-input" class="terminal__input" @keydown.enter="sendCommand" @keydown.tab.prevent="autocomplete"
 								 @keydown.up="historyPrevious" @keydown.down="historyNext">
 					<input type="text" spellcheck="false" v-model="autocompleteSuggestion" class="terminal__input terminal__input--autocomplete">
