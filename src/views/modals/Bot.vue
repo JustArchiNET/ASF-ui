@@ -17,6 +17,7 @@
 			<div class="bot-profile__actions">
 				<bot-link icon="wrench" :link="{ name: 'bot-config', params: { bot: bot.name } }"></bot-link>
 				<bot-link icon="key" :link="{ name: 'bot-bgr', params: { bot: bot.name } }"></bot-link>
+				<bot-link icon="lock" :link="{ name: 'bot-2fa', params: { bot: bot.name } }"></bot-link>
 
 				<bot-action icon="play" v-if="bot.paused && bot.active" @click="resume"></bot-action>
 				<bot-action icon="pause" v-if="!bot.paused && bot.active" @click="pause"></bot-action>
