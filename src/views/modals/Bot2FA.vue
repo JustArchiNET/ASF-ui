@@ -4,7 +4,8 @@
 		<h2 class="title" v-else>{{ bot.name }}</h2>
 
 		<div class="form-item">
-			<div class="form-item__buttons form-item__buttons--center">
+			<div class="form-item__buttons form-item__buttons--center form-item__buttons--column">
+				<button class="button button--confirm" @click="getCurrentToken">{{ $t('token-copy') }}</button>
 				<button class="button button--confirm" @click="acceptTrades">{{ $t('2fa-ok') }}</button>
 				<button class="button button--cancel" @click="declineTrades">{{ $t('2fa-no') }}</button>
 			</div>
@@ -15,6 +16,10 @@
 <script>
 	import { mapGetters } from 'vuex';
 	import { command } from '../../plugins/http';
+	import * as copy from 'copy-to-clipboard';
+
+	// This whole module is based on commands instead of actions
+	// Refactor to use actions as these become available
 
 	export default {
 		name: 'bot-2fa',
@@ -38,7 +43,29 @@
 				const result = await command('2fano', this.bot.name);
 				this.$info(this.parseResultString(result));
 			},
+			async getCurrentToken() {
+				const result = await command('2fa', this.bot.name);
+
+				// Firstly, remove <bot-name> to prevent accidentally recognizing bot name as 2fa token
+				const message = this.parseResultString(result);
+
+				// Since we are parsing translated natural language string and there are no guarantees about it's structure
+				// We will simply extract the first 5-character long string composed exclusively of characters available in 2fa token
+				// To make the extraction stricter, we make sure the 5-character code is surrounded by word-boundaries (\b)
+				const tokenResult = /\b([23456789BCDFGHJKMNPQRTVWXY]{5})\b/.exec(result);
+
+				// If the extraction failed, we display the message
+				// In case we missed the token, it'll at least be displayed (but not copied)
+				if (!tokenResult) return this.$info(message);
+
+				// Finally, if the token was found, copy it to clipboard and notify the user
+				copy(tokenResult[1]);
+				this.$success(this.$t('token-copied'));
+			},
 			parseResultString(result) {
+				// Remove the response prefix, this is prone to command response format changes,
+				// but should gracefully stop working when such change happens
+
 				return result
 						.replace(`<${this.bot.name}> `, '') // Remove bot name
 						.replace('<ASF> ', ''); // Remove <ASF> if the bot doesn't exist
