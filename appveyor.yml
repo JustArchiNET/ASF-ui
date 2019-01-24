@@ -47,13 +47,36 @@ build_script:
     if ($LastExitCode -ne 0) {
         throw "Last command failed."
     }
-test_script:
+after_test:
 - pwsh: >-
     Set-StrictMode -Version Latest
 
     $ErrorActionPreference = 'Stop'
 
     $ProgressPreference = 'SilentlyContinue'
+
+
+    # By default use fastest compression
+
+    $compressionArgs = '-mx=1'
+
+
+    # Include extra logic for builds marked for release
+
+    if ($env:APPVEYOR_REPO_TAG -eq 'true') {
+        # If this build is going to be deployed further, prefer maximum compression
+        if ($env:APPVEYOR_BUILD_WORKER_IMAGE -eq 'Visual Studio 2017') {
+            $compressionArgs = '-mx=9', '-mpass=15', '-mfb=258'
+        }
+    }
+
+
+    7z a -bd -tzip '-mm=Deflate' $compressionArgs 'out\ASF-ui.zip' "$env:APPVEYOR_BUILD_FOLDER\dist\*"
+
+
+    # TODO: Change me to Push-AppveyorArtifact once https://github.com/appveyor/ci/issues/2183 is fixed
+
+    appveyor PushArtifact 'out\ASF-ui.zip' -FileName 'ASF-ui.zip' -DeploymentName 'ASF-ui.zip'
 
 
     if (!($env:APPVEYOR_PULL_REQUEST_NUMBER) -and ($env:APPVEYOR_REPO_BRANCH -eq 'master') -and ($env:APPVEYOR_REPO_TAG -eq 'false') -and (Test-Path 'crowdin.yml' -PathType Leaf) -and (Test-Path 'tools\ArchiCrowdin\crowdin_identity_example.yml' -PathType Leaf) -and (Test-Path 'tools\ArchiCrowdin\archi.ps1' -PathType Leaf)) {
@@ -65,7 +88,20 @@ test_script:
             Remove-Item 'tools\ArchiCrowdin\crowdin_identity.yml'
         }
     }
-deploy: off
+deploy:
+- provider: GitHub
+  tag: $(appveyor_repo_tag_name)
+  release: ASF-ui v$(appveyor_repo_tag_name)
+  description: '### Notice\n\n**This is automated AppVeyor GitHub deployment, human-readable description should be available soon. In the meantime please refer to **[GitHub commits](https://github.com/JustArchiNET/ASF-ui/commits/$(appveyor_repo_tag_name))**.'
+  auth_token:
+    secure: uYK1wf3znNdkuQqImXR6rZ94ESgzF1vJHCAcJ75Y+m+/pc/Ro6cikzy6O7DVZ39T
+  artifact: /.*/
+  prerelease: true
+  on:
+    branch: master
+    configuration: Release
+    appveyor_build_worker_image: Visual Studio 2017
+    appveyor_repo_tag: true
 notifications:
 - provider: Webhook
   url:
