@@ -47,6 +47,7 @@ build_script:
     if ($LastExitCode -ne 0) {
         throw "Last command failed."
     }
+test: off
 after_test:
 - pwsh: >-
     Set-StrictMode -Version Latest
