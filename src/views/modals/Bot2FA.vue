@@ -6,8 +6,14 @@
 		<div class="form-item">
 			<div class="form-item__buttons form-item__buttons--center form-item__buttons--column">
 				<button class="button button--confirm" @click="getCurrentToken">{{ $t('token-copy') }}</button>
-				<button class="button button--confirm" @click="acceptTrades">{{ $t('2fa-ok') }}</button>
-				<button class="button button--cancel" @click="declineTrades">{{ $t('2fa-no') }}</button>
+				<button class="button button--confirm" @click="acceptTrades">
+					<font-awesome-icon icon="spinner" v-if="accepting" spin></font-awesome-icon>
+					<span v-else>{{ $t('2fa-ok') }}</span>
+				</button>
+				<button class="button button--cancel" @click="declineTrades">
+					<font-awesome-icon icon="spinner" v-if="declining" spin></font-awesome-icon>
+					<span v-else>{{ $t('2fa-no') }}</span>
+				</button>
 			</div>
 		</div>
 	</main>
@@ -23,6 +29,12 @@
 
 	export default {
 		name: 'bot-2fa',
+		data() {
+			return {
+				accepting: false,
+				declining: false
+			};
+		},
 		computed: {
 			...mapGetters({
 				nicknames: 'settings/nicknames'
@@ -36,12 +48,20 @@
 		},
 		methods: {
 			async acceptTrades() {
+				if (this.accepting) return;
+
+				this.accepting = true;
 				const result = await command('2faok', this.bot.name);
 				this.$info(this.parseResultString(result));
+				this.accepting = false;
 			},
 			async declineTrades() {
+				if (this.declining) return;
+
+				this.declining = true;
 				const result = await command('2fano', this.bot.name);
 				this.$info(this.parseResultString(result));
+				this.declining = false;
 			},
 			async getCurrentToken() {
 				const result = await command('2fa', this.bot.name);
