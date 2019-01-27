@@ -11,7 +11,7 @@
 		<keep-alive>
 			<bgr-input v-if="state === 'input'" @check="onCheck"></bgr-input>
 			<bgr-check v-if="state === 'check'" :keys="keys" :bot="bot" :confirming="confirming" @confirm="onConfirm" @cancel="onCancel"></bgr-check>
-			<bgr-summary v-if="state === 'summary'" :keys="summaryKeys" :title="$t('bgr-summary-success')" @back="$parent.close()"></bgr-summary>
+			<bgr-summary v-if="state === 'summary'" :keys="summaryKeys" :title="$t('bgr-summary-success', { count: addedKeysCount })" @back="$parent.close()"></bgr-summary>
 			<bgr-summary v-if="state === 'usedKeys'" :keys="usedKeys" :title="$t('bgr-used-keys')" @back="state = 'input'"></bgr-summary>
 			<bgr-summary v-if="state === 'unusedKeys'" :keys="unusedKeys" :title="$t('bgr-unused-keys')" @back="state = 'input'"></bgr-summary>
 		</keep-alive>
@@ -46,6 +46,10 @@
 			}),
 			bot() {
 				return this.$store.getters['bots/bot'](this.$route.params.bot);
+			},
+			addedKeysCount() {
+				let keysCount = Object.keys(this.summaryKeys).length;
+				return (keysCount > 1) ? keysCount : '';
 			}
 		},
 		watch: {
