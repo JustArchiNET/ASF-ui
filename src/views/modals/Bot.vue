@@ -160,7 +160,7 @@
 		margin: 1em 0 0;
 		width: 100%;
 		display: grid;
-		grid-gap: 1em;
+		grid-gap: 0.7em;
 		grid-template-columns: repeat(3, 1fr);
 
 		@media screen and (max-width: 530px) {
