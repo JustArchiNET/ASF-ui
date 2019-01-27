@@ -12,7 +12,7 @@
 	import AsfFarmingInfoCard from './AsfFarmingInfoCard.vue';
 
 	export default {
-		name: 'bot-farming-info',
+		name: 'asf-farming-info',
 		components: { AsfFarmingInfoCard },
 		computed: {
 			...mapGetters({
