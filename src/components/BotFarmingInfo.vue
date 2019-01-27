@@ -2,7 +2,7 @@
 	<div class="info-cards">
 		<bot-farming-info-card :title="$t('farming-info-games')" :value="gamesRemaining" icon="gamepad"></bot-farming-info-card>
 		<bot-farming-info-card :title="$t('farming-info-time')" :value="timeRemaining" icon="clock"></bot-farming-info-card>
-		<bot-farming-info-card :title="$t('farming-info-cards')" :value="cardsRemaining" icon="gamepad"></bot-farming-info-card>
+		<bot-farming-info-card :title="$t('farming-info-cards')" :value="cardsRemaining" icon="clone"></bot-farming-info-card>
 	</div>
 </template>
 
