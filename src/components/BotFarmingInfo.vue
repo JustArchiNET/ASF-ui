@@ -3,9 +3,8 @@
 		<div class="farming-info__icon">
 			<font-awesome-icon :icon="icon"></font-awesome-icon>
 		</div>
-		<div class="farming-info__body">
-			<p class="farming-info__value">{{ value }}</p>
-		</div>
+
+		<p class="farming-info__value">{{ value }}</p>
 	</div>
 </template>
 
@@ -36,15 +35,8 @@
 		color: var(--color-text);
 	}
 
-	.farming-info__body {
-		display: flex;
-		flex-direction: column;
-		overflow: hidden;
-		padding: 5px;
-		justify-content: space-between;
-	}
-
 	.farming-info__value {
+		padding: 5px;
 		font-weight: 600;
 		font-size: 1.2em;
 		margin: 0;
