@@ -51,17 +51,29 @@
 				if (this.accepting) return;
 
 				this.accepting = true;
-				const result = await command('2faok', this.bot.name);
-				this.$info(this.parseResultString(result));
-				this.accepting = false;
+
+				try {
+					const result = await command('2faok', this.bot.name);
+					this.$info(this.parseResultString(result));
+				} catch (err) {
+					this.$error(err.message);
+				} finally {
+					this.accepting = false;
+				}
 			},
 			async declineTrades() {
 				if (this.declining) return;
 
 				this.declining = true;
-				const result = await command('2fano', this.bot.name);
-				this.$info(this.parseResultString(result));
-				this.declining = false;
+
+				try {
+					const result = await command('2fano', this.bot.name);
+					this.$info(this.parseResultString(result));
+				} catch (err) {
+					this.$error(err.message);
+				} finally {
+					this.declining = false;
+				}
 			},
 			async getCurrentToken() {
 				const result = await command('2fa', this.bot.name);
