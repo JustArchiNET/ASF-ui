@@ -1,19 +1,19 @@
 <template>
 	<div class="info-cards">
-		<bot-farming-info-card :title="$t('farming-info-games')" :value="gamesRemaining" icon="gamepad"></bot-farming-info-card>
-		<bot-farming-info-card :title="$t('farming-info-time')" :value="timeRemaining" icon="clock"></bot-farming-info-card>
-		<bot-farming-info-card :title="$t('farming-info-cards')" :value="cardsRemaining" icon="gamepad"></bot-farming-info-card>
+		<asf-farming-info-card :title="$t('farming-info-games')" :value="gamesRemaining" icon="gamepad"></asf-farming-info-card>
+		<asf-farming-info-card :title="$t('farming-info-time')" :value="timeRemaining" icon="clock"></asf-farming-info-card>
+		<asf-farming-info-card :title="$t('farming-info-cards')" :value="cardsRemaining" icon="clone"></asf-farming-info-card>
 	</div>
 </template>
 
 <script>
 	import { mapGetters } from 'vuex';
 	import humanizeDuration from 'humanize-duration';
-	import BotFarmingInfoCard from './BotFarmingInfoCard.vue';
+	import AsfFarmingInfoCard from './AsfFarmingInfoCard.vue';
 
 	export default {
 		name: 'bot-farming-info',
-		components: { BotFarmingInfoCard },
+		components: { AsfFarmingInfoCard },
 		computed: {
 			...mapGetters({
 				botsFarmingCount: 'bots/botsFarmingCount'
