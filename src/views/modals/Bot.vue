@@ -100,6 +100,10 @@
 <style lang="scss">
 	.main-container--bot-profile {
 		width: 400px;
+
+		@media screen and (max-width: 530px) {
+			width: auto;
+		}
 	}
 
 	.bot-profile {
@@ -166,6 +170,11 @@
 		@media screen and (max-width: 1200px) {
 			grid-template-columns: repeat(2, 1fr);
 			font-size: 1em;
+		}
+
+		@media screen and (max-width: 530px) {
+			grid-template-columns: none;
+			font-size: 1.2em;
 		}
 	}
 
