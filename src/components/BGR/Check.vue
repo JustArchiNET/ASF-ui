@@ -1,5 +1,7 @@
 <template>
 	<div class="bgr__check">
+		<h3 class="subtitle bgr__check-title" v-if="!noKeys">{{ title }}</h3>
+
 		<div class="form-item">
 			<bgr-keys :keys="keys"></bgr-keys>
 		</div>
@@ -25,7 +27,8 @@
 		props: {
 			bot: Object,
 			keys: Object,
-			confirming: Boolean
+			confirming: Boolean,
+			title: String
 		},
 		name: 'bgr-check',
 		computed: {
@@ -35,3 +38,9 @@
 		}
 	};
 </script>
+
+<style lang="scss">
+	.bgr__check-title {
+		margin-bottom: 0.5em;
+	}
+</style>
