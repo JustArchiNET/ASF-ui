@@ -1,0 +1,55 @@
+<template>
+	<div class="farming-info">
+		<div class="farming-info__icon">
+			<font-awesome-icon :icon="icon"></font-awesome-icon>
+		</div>
+		<div class="farming-info__body">
+			<p class="farming-info__value">{{ value }}</p>
+		</div>
+	</div>
+</template>
+
+<script>
+	export default {
+		name: 'bot-farming-info',
+		props: {
+			icon: String,
+			value: {},
+			title: String
+		}
+	};
+</script>
+
+<style lang="scss">
+	.farming-info {
+		background: var(--color-background-light);
+		display: grid;
+		grid-template-columns: auto 1fr;
+	}
+
+	.farming-info__icon {
+		padding: 0 0.5em;
+		font-size: 1.4em;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: var(--color-text);
+	}
+
+	.farming-info__body {
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
+		padding: 5px;
+		justify-content: space-between;
+	}
+
+	.farming-info__value {
+		font-weight: 600;
+		font-size: 1.2em;
+		margin: 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+</style>

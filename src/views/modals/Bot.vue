@@ -29,6 +29,12 @@
 			</div>
 		</div>
 
+		<div class="bot-farming-info">
+			<bot-farming-info :value="gamesRemaining" icon="gamepad"></bot-farming-info>
+			<bot-farming-info :value="timeRemaining" icon="clock"></bot-farming-info>
+			<bot-farming-info :value="cardsRemaining" icon="clone"></bot-farming-info>
+		</div>
+
 		<div class="bot-games" v-if="bot.games.length && botsFarmingCount !== 0">
 			<div class="bot-game" :title="game.GameName" :class="[game.farming ? 'status--farming' : 'status--disabled']" v-for="game in bot.games">
 				<a target="_blank" :href="`https://store.steampowered.com/app/${game.AppID}/`">
@@ -46,14 +52,16 @@
 
 <script>
 	import BotAction from '../../components/BotAction.vue';
+	import BotFarmingInfo from '../../components/BotFarmingInfo.vue';
 	import BotLink from '../../components/BotLink.vue';
 	import Dropdown from '../../components/utils/Dropdown.vue';
 
 	import { mapGetters } from 'vuex';
+	import humanizeDuration from 'humanize-duration';
 
 	export default {
 		name: 'bot',
-		components: { BotAction, BotLink, Dropdown },
+		components: { BotAction, BotFarmingInfo, BotLink, Dropdown },
 		computed: {
 			...mapGetters({
 				nicknames: 'settings/nicknames',
@@ -61,6 +69,23 @@
 			}),
 			bot() {
 				return this.$store.getters['bots/bot'](this.$route.params.bot);
+			},
+			timeRemaining() {
+				if (this.botsFarmingCount === 0) return '-';
+
+				const language = ['zh-CN', 'zh-TW'].includes(this.$i18n.locale)
+						? this.$i18n.locale.replace('-', '_')
+						: this.$i18n.noRegionalLocale;
+
+				return humanizeDuration(this.bot.timeRemainingSeconds, { language });
+			},
+			gamesRemaining() {
+				if (this.botsFarmingCount === 0) return '-';
+				return this.bot.gamesRemaining;
+			},
+			cardsRemaining() {
+				if (this.botsFarmingCount === 0) return '-';
+				return this.bot.cardsRemaining;
 			}
 		},
 		created() {
@@ -129,6 +154,19 @@
 
 	.bot-profile__meta {
 		min-width: 0;
+	}
+
+	.bot-farming-info {
+		margin: 1em 0 0;
+		width: 100%;
+		display: grid;
+		grid-gap: 1em;
+		grid-template-columns: repeat(3, 1fr);
+
+		@media screen and (max-width: 530px) {
+			grid-gap: 0.5em;
+			grid-template-columns: 1fr;
+		}
 	}
 
 	.bot-profile__name {
