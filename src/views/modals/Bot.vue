@@ -71,20 +71,20 @@
 				return this.$store.getters['bots/bot'](this.$route.params.bot);
 			},
 			timeRemaining() {
-				if (this.botsFarmingCount === 0) return '-';
+				if (this.bot.status !== 'farming') return '-';
 
 				const language = ['zh-CN', 'zh-TW'].includes(this.$i18n.locale)
 						? this.$i18n.locale.replace('-', '_')
 						: this.$i18n.noRegionalLocale;
 
-				return humanizeDuration(this.bot.timeRemainingSeconds, { language });
+				return humanizeDuration(this.bot.timeRemainingSeconds * 1000, { language });
 			},
 			gamesRemaining() {
-				if (this.botsFarmingCount === 0) return '-';
-				return this.bot.gamesRemaining;
+				if (this.bot.status !== 'farming') return '-';
+				return this.bot.gamesToFarm.length;
 			},
 			cardsRemaining() {
-				if (this.botsFarmingCount === 0) return '-';
+				if (this.bot.status !== 'farming') return '-';
 				return this.bot.cardsRemaining;
 			}
 		},
