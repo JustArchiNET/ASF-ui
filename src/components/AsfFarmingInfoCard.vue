@@ -12,7 +12,7 @@
 
 <script>
 	export default {
-		name: 'bot-farming-info-card',
+		name: 'asf-farming-info-card',
 		props: {
 			icon: String,
 			value: {},
