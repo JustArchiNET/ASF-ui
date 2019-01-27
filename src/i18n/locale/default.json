@@ -7,6 +7,7 @@
 	"advanced": "Advanced",
 	"back": "Back",
 	"basic": "Basic",
+	"bgr-check": "Do you want to add the following {PLURAL:n|{n} key|{n} keys} to BGR?",
 	"bgr-keys-insert": "Insert your keys here",
 	"bgr-keys-insert-example": "Example:\nAAAAA-BBBBB-CCCC0\nAAAAA-BBBBB-CCCC1\n\nYou can tag the keys with game names:\nAAAAA-BBBBB-CCCC2\tTurbo Pug\nAAAAA-BBBBB-CCCC3\tBad Rats",
 	"bgr-no-keys-detected": "No game keys detected",
