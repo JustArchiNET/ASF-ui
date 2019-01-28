@@ -25,8 +25,14 @@
 				<bot-action icon="power-off" v-if="!bot.active" @click="start"></bot-action>
 				<bot-action icon="power-off" v-if="bot.active" @click="stop"></bot-action>
 
-				<bot-link icon="trash" :link="{ name: 'bot-delete', params: { bot: bot.name } }" class="pull-right" color="red"></bot-link>
+				<bot-link icon="trash" :link="{ name: 'bot-delete', params: { bot: bot.name } }" class="pull-right"></bot-link>
 			</div>
+		</div>
+
+		<div class="bot-farming-info">
+			<bot-farming-info :value="gamesRemaining" icon="gamepad"></bot-farming-info>
+			<bot-farming-info :value="timeRemaining" icon="clock"></bot-farming-info>
+			<bot-farming-info :value="cardsRemaining" icon="clone"></bot-farming-info>
 		</div>
 
 		<div class="bot-games" v-if="bot.games.length && botsFarmingCount !== 0">
@@ -46,14 +52,16 @@
 
 <script>
 	import BotAction from '../../components/BotAction.vue';
+	import BotFarmingInfo from '../../components/BotFarmingInfo.vue';
 	import BotLink from '../../components/BotLink.vue';
 	import Dropdown from '../../components/utils/Dropdown.vue';
 
 	import { mapGetters } from 'vuex';
+	import humanizeDuration from 'humanize-duration';
 
 	export default {
 		name: 'bot',
-		components: { BotAction, BotLink, Dropdown },
+		components: { BotAction, BotFarmingInfo, BotLink, Dropdown },
 		computed: {
 			...mapGetters({
 				nicknames: 'settings/nicknames',
@@ -61,6 +69,23 @@
 			}),
 			bot() {
 				return this.$store.getters['bots/bot'](this.$route.params.bot);
+			},
+			timeRemaining() {
+				if (this.bot.status !== 'farming') return '-';
+
+				const language = ['zh-CN', 'zh-TW'].includes(this.$i18n.locale)
+						? this.$i18n.locale.replace('-', '_')
+						: this.$i18n.noRegionalLocale;
+
+				return humanizeDuration(this.bot.timeRemainingSeconds * 1000, { language });
+			},
+			gamesRemaining() {
+				if (this.bot.status !== 'farming') return '-';
+				return this.bot.gamesToFarm.length;
+			},
+			cardsRemaining() {
+				if (this.bot.status !== 'farming') return '-';
+				return this.bot.cardsRemaining;
 			}
 		},
 		created() {
@@ -157,6 +182,19 @@
 		grid-area: actions;
 		display: flex;
 		align-items: center;
+	}
+
+	.bot-farming-info {
+		margin: 1em 0 0;
+		width: 100%;
+		display: grid;
+		grid-gap: 0.7em;
+		grid-template-columns: repeat(3, 1fr);
+
+		@media screen and (max-width: 530px) {
+			grid-gap: 0.5em;
+			grid-template-columns: 1fr;
+		}
 	}
 
 	.bot-games {
