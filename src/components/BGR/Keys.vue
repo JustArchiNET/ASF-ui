@@ -36,5 +36,11 @@
 	.bgr__table {
 		min-width: 100%;
 		text-align: center;
+
+		td {
+			@media screen and (max-width: 335px) {
+				padding: 0.35em .5em;
+			}
+		}
 	}
 </style>
