@@ -51,6 +51,8 @@
 				} else {
 					this.selected.push(type);
 				}
+
+				if (this.selected.length === 4) this.selected = [];
 			}
 		}
 	};
