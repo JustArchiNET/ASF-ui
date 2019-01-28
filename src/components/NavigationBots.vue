@@ -16,13 +16,13 @@
 		components: { FitText },
 		data() {
 			return {
-				selectedBots: this.$store.getters['settings/selectedBots'],
 				botTypes: ['farming', 'online', 'offline', 'disabled']
 			};
 		},
 		computed: {
 			...mapGetters({
-				botsCount: 'bots/count'
+				botsCount: 'bots/count',
+				selectedBots: 'settings/selectedBots'
 			}),
 			count() {
 				return type => this.botsCount(type);
