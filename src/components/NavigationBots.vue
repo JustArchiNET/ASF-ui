@@ -42,11 +42,14 @@
 				this.transitioning = false;
 			},
 			select(type) {
-				const index = this.selected.indexOf(type)
+				if (this.$route.name !== 'bots') this.$router.replace({ name: 'bots' });
+
+				const index = this.selected.indexOf(type);
+
 				if (index >= 0) {
-					this.selected.splice(index,1)
+					this.selected.splice(index, 1);
 				} else {
-					this.selected.push(type)
+					this.selected.push(type);
 				}
 			}
 		}
