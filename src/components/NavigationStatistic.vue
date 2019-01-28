@@ -29,7 +29,7 @@
 
 <style lang="scss">
 	.navigation-statistic {
-		padding: .75em 1em;
+		padding: 0.75em 0.5em;
 		text-transform: uppercase;
 		color: var(--color-text-disabled);
 		display: flex;
@@ -40,7 +40,7 @@
 		white-space: nowrap;
 
 		.app--small-navigation & {
-			padding: .75em 0;
+			padding: 0.75em 0;
 
 			.navigation-statistic__icon {
 				display: inline-flex;
@@ -86,6 +86,9 @@
 	.navigation-statistic__left-side {
 		justify-content: space-between;
 		margin-right: 0.5em;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
 
 	.navigation-statistic__name {

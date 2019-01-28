@@ -118,7 +118,7 @@
 		align-items: center;
 		margin-top: 0;
 
-		@media screen and (max-width: 600px) {
+		@media screen and (max-width: 350px) {
 			flex-direction: column;
 			align-items: flex-start;
 		}
@@ -132,7 +132,7 @@
 	.release__time {
 		margin-left: auto;
 
-		@media screen and (max-width: 600px) {
+		@media screen and (max-width: 350px) {
 			margin-left: 0;
 		}
 	}
@@ -148,7 +148,7 @@
 		text-align: center;
 		vertical-align: baseline;
 
-		@media screen and (max-width: 600px) {
+		@media screen and (max-width: 350px) {
 			margin-left: 0;
 		}
 	}
@@ -173,6 +173,14 @@
 		a {
 			color: var(--color-theme);
 			text-decoration: none;
+		}
+
+		ul {
+			@media screen and (max-width: 450px) {
+				margin-inline-start: .2em;
+				margin-inline-end: .2em;
+				padding-inline-start: 1.2em;
+			}
 		}
 	}
 </style>

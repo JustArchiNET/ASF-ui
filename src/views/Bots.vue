@@ -1,12 +1,12 @@
 <template>
 	<main class="main-container dashboard">
-		<bot-farming-info></bot-farming-info>
+		<asf-farming-info></asf-farming-info>
 		<asf-bots></asf-bots>
 	</main>
 </template>
 
 <script>
-	import BotFarmingInfo from '../components/BotFarmingInfo.vue';
+	import AsfFarmingInfo from '../components/AsfFarmingInfo.vue';
 	import AsfBots from '../components/AsfBots.vue';
 
 	export default {
@@ -16,7 +16,7 @@
 				title: this.$t('bots')
 			};
 		},
-		components: { AsfBots, BotFarmingInfo }
+		components: { AsfBots, AsfFarmingInfo }
 	};
 </script>
 
