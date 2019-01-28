@@ -16,7 +16,7 @@
 		components: { FitText },
 		data() {
 			return {
-				selectedBots: [],
+				selectedBots: this.$store.getters['settings/selectedBots'],
 				botTypes: ['farming', 'online', 'offline', 'disabled']
 			};
 		},
