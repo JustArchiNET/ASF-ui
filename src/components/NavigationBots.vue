@@ -52,7 +52,7 @@
 					this.selected.push(type);
 				}
 
-				if (this.selected.length === 4) this.selected = [];
+				if (this.selected.length === this.botTypes.length) this.selected = [];
 			}
 		}
 	};
