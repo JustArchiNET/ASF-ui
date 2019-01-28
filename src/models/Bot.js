@@ -80,11 +80,12 @@ export class Bot {
 	}
 
 	isVisible(selectedBots) {
-		if (selectedBots.length === 0) return true;
-		if (this.status === BotStatus.DISABLED && selectedBots.includes('disabled')) return true;
-		if (this.status === BotStatus.OFFLINE && selectedBots.includes('offline')) return true;
-		if (this.status === BotStatus.ONLINE && selectedBots.includes('online')) return true;
-		if (this.status === BotStatus.FARMING && selectedBots.includes('farming')) return true;
-		return false;
+		let visible = false;
+		if (selectedBots.length === 0) visible = true;
+		if (this.status === BotStatus.DISABLED && selectedBots.includes('disabled')) visible = true;
+		if (this.status === BotStatus.OFFLINE && selectedBots.includes('offline')) visible = true;
+		if (this.status === BotStatus.ONLINE && selectedBots.includes('online')) visible = true;
+		if (this.status === BotStatus.FARMING && selectedBots.includes('farming')) visible = true;
+		return visible;
 	}
 }
