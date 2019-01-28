@@ -50,7 +50,7 @@
 
 				if (selectedBots.length === this.botTypes.length) selectedBots = [];
 
-				this.$store.dispatch('settings/setSelectedBots', selectedBots)
+				this.$store.dispatch('settings/setSelectedBots', selectedBots);
 			}
 		}
 	};
