@@ -32,7 +32,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		color: var(--color-text);
+		color: var(--color-text-disabled);
 	}
 
 	.farming-info__value {
