@@ -78,12 +78,4 @@ export class Bot {
 			farming: currentlyFarming.includes(game.AppID)
 		})).sort((lhs, rhs) => rhs.farming - lhs.farming);
 	}
-
-	isVisible(hideFlags) {
-		if (this.status === BotStatus.DISABLED && hideFlags & 1 << 0) return false;
-		if (this.status === BotStatus.OFFLINE && hideFlags & 1 << 1) return false;
-		if (this.status === BotStatus.ONLINE && hideFlags & 1 << 2) return false;
-		if (this.status === BotStatus.FARMING && hideFlags & 1 << 3) return false;
-		return true;
-	}
 }
