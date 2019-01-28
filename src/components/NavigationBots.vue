@@ -42,7 +42,7 @@
 				this.transitioning = false;
 			},
 			select(type) {
-				if (this.$route.name !== 'bots') this.$router.replace({ name: 'bots' });
+				if (this.$route.name !== 'bots') this.$router.push({ name: 'bots' });
 
 				const index = this.selectedBots.indexOf(type);
 
