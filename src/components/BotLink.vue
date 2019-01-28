@@ -1,5 +1,5 @@
 <template>
-	<router-link tag="div" class="bot-action" :class="[color ? `bot-action--${color}` : null]" :to="link" v-show="visible">
+	<router-link tag="div" class="bot-action" :to="link" v-show="visible">
 		<span class="bot-action__label" v-if="name">{{ name }}</span>
 		<font-awesome-icon class="bot-action__icon" :icon="icon" v-if="icon"></font-awesome-icon>
 	</router-link>
@@ -12,8 +12,7 @@
 			icon: String,
 			name: String,
 			link: Object,
-			condition: Function,
-			color: String
+			condition: Function
 		},
 		computed: {
 			visible() {

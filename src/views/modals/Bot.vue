@@ -25,7 +25,7 @@
 				<bot-action icon="power-off" v-if="!bot.active" @click="start"></bot-action>
 				<bot-action icon="power-off" v-if="bot.active" @click="stop"></bot-action>
 
-				<bot-link icon="trash" :link="{ name: 'bot-delete', params: { bot: bot.name } }" class="pull-right" color="red"></bot-link>
+				<bot-link icon="trash" :link="{ name: 'bot-delete', params: { bot: bot.name } }" class="pull-right"></bot-link>
 			</div>
 		</div>
 
@@ -156,19 +156,6 @@
 		min-width: 0;
 	}
 
-	.bot-farming-info {
-		margin: 1em 0 0;
-		width: 100%;
-		display: grid;
-		grid-gap: 0.7em;
-		grid-template-columns: repeat(3, 1fr);
-
-		@media screen and (max-width: 530px) {
-			grid-gap: 0.5em;
-			grid-template-columns: 1fr;
-		}
-	}
-
 	.bot-profile__name {
 		margin: 0;
 	}
@@ -195,6 +182,19 @@
 		grid-area: actions;
 		display: flex;
 		align-items: center;
+	}
+
+	.bot-farming-info {
+		margin: 1em 0 0;
+		width: 100%;
+		display: grid;
+		grid-gap: 0.7em;
+		grid-template-columns: repeat(3, 1fr);
+
+		@media screen and (max-width: 530px) {
+			grid-gap: 0.5em;
+			grid-template-columns: 1fr;
+		}
 	}
 
 	.bot-games {
