@@ -45,7 +45,7 @@
 		grid-gap: 1em;
 		grid-template-columns: repeat(3, 1fr);
 
-		@media screen and (max-width: 750px) {
+		@media screen and (max-width: 650px) {
 			grid-template-columns: 1fr;
 		}
 	}
