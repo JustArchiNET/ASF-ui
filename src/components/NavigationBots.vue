@@ -1,6 +1,6 @@
 <template>
 	<div class="bot-cards">
-		<div class="bot-card" :class="[`status--${type}`, { 'bot-card--selected': isSelected }]" @click.prevent="toggleSelect(type)" v-for="type in botTypes">
+		<div class="bot-card" :class="[`status--${type}`, { 'bot-card--selected': selected.includes(type) }]" @click.prevent="select(type)"  v-for="type in botTypes">
 			<fit-text ref="count" :max="1.2" class="bot-card__value">{{ count(type) }}</fit-text>
 			<span class="bot-card__name">{{ $t(`bot-status-${type}`) }}</span>
 		</div>
@@ -16,7 +16,7 @@
 		components: { FitText },
 		data() {
 			return {
-				isSelected: false,
+				selected: [],
 				botTypes: ['farming', 'online', 'offline', 'disabled']
 			};
 		},
@@ -41,8 +41,13 @@
 			onTransitionEnd() {
 				this.transitioning = false;
 			},
-			toggleSelect(type) {
-				this.isSelected = !this.isSelected;
+			select(type) {
+				const index = this.selected.indexOf(type)
+				if (index >= 0) {
+					this.selected.splice(index,1)
+				} else {
+					this.selected.push(type)
+				}
 			}
 		}
 	};
