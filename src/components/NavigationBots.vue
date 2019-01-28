@@ -1,6 +1,6 @@
 <template>
 	<div class="bot-cards">
-		<div class="bot-card" :class="[`status--${type}`, { 'bot-card--selected': selected.includes(type) }]" @click.prevent="select(type)"  v-for="type in botTypes">
+		<div class="bot-card" :class="[`status--${type}`, { 'bot-card--selected': selectedBots.includes(type) }]" @click.prevent="select(type)"  v-for="type in botTypes">
 			<fit-text ref="count" :max="1.2" class="bot-card__value">{{ count(type) }}</fit-text>
 			<span class="bot-card__name">{{ $t(`bot-status-${type}`) }}</span>
 		</div>
@@ -16,7 +16,7 @@
 		components: { FitText },
 		data() {
 			return {
-				selected: [],
+				selectedBots: [],
 				botTypes: ['farming', 'online', 'offline', 'disabled']
 			};
 		},
@@ -44,15 +44,17 @@
 			select(type) {
 				if (this.$route.name !== 'bots') this.$router.replace({ name: 'bots' });
 
-				const index = this.selected.indexOf(type);
+				const index = this.selectedBots.indexOf(type);
 
 				if (index >= 0) {
-					this.selected.splice(index, 1);
+					this.selectedBots.splice(index, 1);
 				} else {
-					this.selected.push(type);
+					this.selectedBots.push(type);
 				}
 
-				if (this.selected.length === this.botTypes.length) this.selected = [];
+				if (this.selectedBots.length === this.botTypes.length) this.selectedBots = [];
+
+				this.$store.dispatch('settings/setSelectedBots', this.selectedBots);
 			}
 		}
 	};

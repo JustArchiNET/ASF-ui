@@ -1,6 +1,6 @@
 <template>
 	<div class="bots">
-		<bot-card v-for="bot in bots" :bot="bot" :key="bot.name"></bot-card>
+		<bot-card v-for="bot in bots" :bot="bot" :key="bot.name" v-if="bot.isVisible(selectedBots)"></bot-card>
 
 		<router-link tag="div" :to="{ name: 'bot-create' }" class="bot-placeholder status--disabled">
 			<div class="bot-placeholder__button bot-placeholder__button--add">
@@ -19,7 +19,8 @@
 		name: 'asf-bots',
 		components: { BotCard },
 		computed: mapGetters({
-			bots: 'bots/bots'
+			bots: 'bots/bots',
+			selectedBots: 'settings/selectedBots'
 		})
 	};
 </script>

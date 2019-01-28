@@ -78,4 +78,13 @@ export class Bot {
 			farming: currentlyFarming.includes(game.AppID)
 		})).sort((lhs, rhs) => rhs.farming - lhs.farming);
 	}
+
+	isVisible(selectedBots) {
+		if (selectedBots.length === 0) return true;
+		if (this.status === BotStatus.DISABLED && selectedBots.includes('disabled')) return true;
+		if (this.status === BotStatus.OFFLINE && selectedBots.includes('offline')) return true;
+		if (this.status === BotStatus.ONLINE && selectedBots.includes('online')) return true;
+		if (this.status === BotStatus.FARMING && selectedBots.includes('farming')) return true;
+		return false;
+	}
 }
