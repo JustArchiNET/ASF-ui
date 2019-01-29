@@ -16,8 +16,6 @@ export class Bot {
 		this.steamid = data.s_SteamID;
 		this.avatarHash = data.AvatarHash || '0b46945851b3d26da93a6ddba3ac961206cc191d';
 
-		this.flags = data.AccountFlags;
-		this.isPlayingPossible = data.IsPlayingPossible;
 		this.active = data.KeepRunning;
 		this.config = data.BotConfig;
 		this.isConnected = data.IsConnectedAndLoggedOn;
