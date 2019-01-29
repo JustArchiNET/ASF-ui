@@ -48,7 +48,7 @@
 					type: 'enum',
 					defaultValue: 'home',
 					values: {
-						[this.$t('bots')]: 'bots',
+						[this.$t('bots')]: 'home',
 						[this.$t('commands')]: 'commands',
 						[this.$t('log')]: 'log',
 						[this.$t('changelog')]: 'changelog',
