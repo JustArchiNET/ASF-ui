@@ -1,7 +1,7 @@
 import * as storage from '../../utils/storage';
 
 export const state = {
-	defaultView: 'home',
+	defaultView: 'bots',
 	nicknames: false,
 	sentryInstalled: false,
 	sentryReporting: false,
@@ -18,7 +18,7 @@ export const mutations = {
 
 export const actions = {
 	init({ commit }) {
-		commit('setDefaultView', storage.get('settings:default-view', 'home'));
+		commit('setDefaultView', storage.get('settings:default-view', 'bots'));
 		commit('setNicknames', storage.get('settings:nicknames', false));
 		commit('setSentryInstalled', storage.get('settings:sentry-installed', false));
 		commit('setSentryReporting', storage.get('settings:sentry-reporting', false));
