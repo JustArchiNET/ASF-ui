@@ -73,7 +73,7 @@
 					await this.$store.dispatch('auth/setPassword', this.password);
 
 					const validPassword = await this.$store.dispatch('auth/validate');
-					if (validPassword) this.$router.replace({ name: 'home' });
+					if (validPassword) this.$router.replace({ name: 'bots' });
 					else this.$error(this.$t('password-invalid'));
 				} catch (err) {
 					this.$error(err.message);
