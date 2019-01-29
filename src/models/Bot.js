@@ -79,11 +79,12 @@ export class Bot {
 		})).sort((lhs, rhs) => rhs.farming - lhs.farming);
 	}
 
-	isVisible(hideFlags) {
-		if (this.status === BotStatus.DISABLED && hideFlags & 1 << 0) return false;
-		if (this.status === BotStatus.OFFLINE && hideFlags & 1 << 1) return false;
-		if (this.status === BotStatus.ONLINE && hideFlags & 1 << 2) return false;
-		if (this.status === BotStatus.FARMING && hideFlags & 1 << 3) return false;
-		return true;
+	isVisible(selectedBots) {
+		if (selectedBots.length === 0) return true;
+		if (this.status === BotStatus.DISABLED && selectedBots.includes('disabled')) return true;
+		if (this.status === BotStatus.OFFLINE && selectedBots.includes('offline')) return true;
+		if (this.status === BotStatus.ONLINE && selectedBots.includes('online')) return true;
+		if (this.status === BotStatus.FARMING && selectedBots.includes('farming')) return true;
+		return false;
 	}
 }

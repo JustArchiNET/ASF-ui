@@ -1,6 +1,6 @@
 <template>
 	<div class="bot-cards">
-		<div class="bot-card" :class="[`status--${type}`]" v-for="type in botTypes">
+		<div class="bot-card" :class="[`status--${type}`, { 'bot-card--selected': selectedBots.includes(type) }]" @click.prevent="selectType(type)" v-for="type in botTypes">
 			<fit-text ref="count" :max="1.2" class="bot-card__value">{{ count(type) }}</fit-text>
 			<span class="bot-card__name">{{ $t(`bot-status-${type}`) }}</span>
 		</div>
@@ -21,7 +21,8 @@
 		},
 		computed: {
 			...mapGetters({
-				botsCount: 'bots/count'
+				botsCount: 'bots/count',
+				selectedBots: 'settings/selectedBots'
 			}),
 			count() {
 				return type => this.botsCount(type);
@@ -39,6 +40,17 @@
 			},
 			onTransitionEnd() {
 				this.transitioning = false;
+			},
+			selectType(type) {
+				if (this.$route.name !== 'bots') this.$router.push({ name: 'bots' });
+
+				let selectedBots = this.selectedBots.includes(type)
+						? this.selectedBots.filter(botType => botType !== type)
+						: [ ...this.selectedBots, type ];
+
+				if (selectedBots.length === this.botTypes.length) selectedBots = [];
+
+				this.$store.dispatch('settings/setSelectedBots', selectedBots);
 			}
 		}
 	};
@@ -67,10 +79,12 @@
 		flex-direction: column;
 		align-items: center;
 		border-radius: 2px;
+		border: 1px solid var(--color-navigation);
 		color: var(--color-text);
 		text-shadow: 0 0 1px var(--color-text-dark);
 		background: var(--color-status);
 		overflow: hidden;
+		cursor: pointer;
 	}
 
 	.bot-card__value {
@@ -82,5 +96,10 @@
 	.bot-card__name {
 		font-size: 0.9em;
 		text-transform: capitalize;
+	}
+
+	.bot-card--selected {
+		border: 1px solid #0dc10a;
+		box-shadow: 0 0 0.5em #0dc10a;
 	}
 </style>
