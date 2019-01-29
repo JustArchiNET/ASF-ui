@@ -43,5 +43,6 @@
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
+		width: 100%;
 	}
 </style>
