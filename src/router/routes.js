@@ -2,12 +2,17 @@ import store from '../store';
 import * as storage from '../utils/storage';
 
 let defaultView = store.getters['settings/defaultView'];
-if (defaultView === '_last-visited-page') defaultView = storage.get('last-visited-page', 'bots');
+if (defaultView === '_last-visited-page') defaultView = storage.get('last-visited-page', 'home');
 
 export default [
 	{
 		path: '/',
 		redirect: typeof defaultView === 'string' ? { name: defaultView } : defaultView
+	},
+	{
+		path: '/page/home',
+		name: 'home',
+		redirect: { name: 'bots' }
 	},
 	{
 		path: '/page/setup',
@@ -16,7 +21,7 @@ export default [
 		meta: { noPasswordRequired: true },
 		async beforeEnter(to, from, next) {
 			const validated = await store.dispatch('auth/validate');
-			if (validated) return next({ name: 'bots' });
+			if (validated) return next({ name: 'home' });
 			return next();
 		}
 	},
@@ -117,6 +122,6 @@ export default [
 	{
 		path: '*',
 		name: '404',
-		redirect: { name: 'bots' }
+		redirect: { name: 'home' }
 	}
 ];
