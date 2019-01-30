@@ -89,6 +89,8 @@
 <style lang="scss">
 	.form-item__token {
 		padding-bottom: 1em;
+		display: flex;
+		justify-content: center;
 
 		:focus {
 			outline: none;
@@ -101,7 +103,6 @@
 		text-align: center;
 		letter-spacing: 0.3em;
 		width: 6em;
-		margin: 0 auto;
 
 		.app--dark-mode & {
 			border-color: var(--color-text-dark);
