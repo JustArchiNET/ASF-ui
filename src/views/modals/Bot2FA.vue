@@ -8,11 +8,11 @@
 				<button class="button button--confirm" @click="getCurrentToken">{{ $t('token-copy') }}</button>
 				<button class="button button--confirm" @click="acceptTrades">
 					<font-awesome-icon icon="spinner" v-if="accepting" spin></font-awesome-icon>
-					<span v-else>{{ $t('2fa-ok') }}</span>
+					<span v-else>{{ $t('2fa-accept') }}</span>
 				</button>
 				<button class="button button--cancel" @click="declineTrades">
 					<font-awesome-icon icon="spinner" v-if="declining" spin></font-awesome-icon>
-					<span v-else>{{ $t('2fa-no') }}</span>
+					<span v-else>{{ $t('2fa-deny') }}</span>
 				</button>
 			</div>
 		</div>
@@ -50,7 +50,7 @@
 
 				try {
 					await this.$http.botAction(this.bot.name, 'TwoFactorAuthentication/Confirmations/Accept');
-					this.$success(this.$t('2fa-ok-success'));
+					this.$success(this.$t('2fa-accept-success'));
 				} catch (err) {
 					this.$error(err.message);
 				} finally {
@@ -64,7 +64,7 @@
 
 				try {
 					await this.$http.botAction(this.bot.name, 'TwoFactorAuthentication/Confirmations/Deny');
-					this.$success(this.$t('2fa-no-success'));
+					this.$success(this.$t('2fa-deny-success'));
 				} catch (err) {
 					this.$error(err.message);
 				} finally {
