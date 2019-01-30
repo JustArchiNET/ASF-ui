@@ -10,9 +10,9 @@
 					<font-awesome-icon icon="spinner" v-if="accepting" spin></font-awesome-icon>
 					<span v-else>{{ $t('2fa-accept') }}</span>
 				</button>
-				<button class="button button--cancel" @click="declineTrades">
-					<font-awesome-icon icon="spinner" v-if="declining" spin></font-awesome-icon>
-					<span v-else>{{ $t('2fa-decline') }}</span>
+				<button class="button button--cancel" @click="cancelTrades">
+					<font-awesome-icon icon="spinner" v-if="canceling" spin></font-awesome-icon>
+					<span v-else>{{ $t('2fa-cancel') }}</span>
 				</button>
 			</div>
 		</div>
@@ -28,7 +28,7 @@
 		data() {
 			return {
 				accepting: false,
-				declining: false
+				canceling: false
 			};
 		},
 		computed: {
@@ -57,18 +57,18 @@
 					this.accepting = false;
 				}
 			},
-			async declineTrades() {
-				if (this.declining) return;
+			async cancelTrades() {
+				if (this.canceling) return;
 
-				this.declining = true;
+				this.canceling = true;
 
 				try {
-					await this.$http.botAction(this.bot.name, 'TwoFactorAuthentication/Confirmations/Deny');
-					this.$success(this.$t('2fa-decline-success'));
+					await this.$http.botAction(this.bot.name, 'TwoFactorAuthentication/Confirmations/Cancel');
+					this.$success(this.$t('2fa-cancel-success'));
 				} catch (err) {
 					this.$error(err.message);
 				} finally {
-					this.declining = false;
+					this.canceling = false;
 				}
 			},
 			async getCurrentToken() {
