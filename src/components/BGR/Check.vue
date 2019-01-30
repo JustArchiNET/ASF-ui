@@ -25,7 +25,6 @@
 	export default {
 		components: { BgrKeys },
 		props: {
-			bot: Object,
 			keys: Object,
 			confirming: Boolean,
 			title: String
