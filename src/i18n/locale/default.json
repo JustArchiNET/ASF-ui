@@ -11,6 +11,7 @@
 	"bgr-keys-insert": "Insert your keys here",
 	"bgr-keys-insert-example": "Example:\nAAAAA-BBBBB-CCCC0\nAAAAA-BBBBB-CCCC1\n\nYou can tag the keys with game names:\nAAAAA-BBBBB-CCCC2\tTurbo Pug\nAAAAA-BBBBB-CCCC3\tBad Rats",
 	"bgr-no-keys-detected": "No game keys detected",
+	"bgr-reset": "Do you want to reset your key files?",
 	"bgr-summary-success": "The following {PLURAL:n|key was|{n} keys were} successfully added to BGR",
 	"bgr-unused-keys": "Unused keys",
 	"bgr-unused-keys-count": "{count} unused",
