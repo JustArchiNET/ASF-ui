@@ -12,7 +12,7 @@
 				</button>
 				<button class="button button--cancel" @click="declineTrades">
 					<font-awesome-icon icon="spinner" v-if="declining" spin></font-awesome-icon>
-					<span v-else>{{ $t('2fa-deny') }}</span>
+					<span v-else>{{ $t('2fa-decline') }}</span>
 				</button>
 			</div>
 		</div>
@@ -64,7 +64,7 @@
 
 				try {
 					await this.$http.botAction(this.bot.name, 'TwoFactorAuthentication/Confirmations/Deny');
-					this.$success(this.$t('2fa-deny-success'));
+					this.$success(this.$t('2fa-decline-success'));
 				} catch (err) {
 					this.$error(err.message);
 				} finally {

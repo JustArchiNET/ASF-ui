@@ -1,8 +1,8 @@
 {
 	"2fa-accept": "Accept all trades",
 	"2fa-accept-success": "All trades accepted!",
-	"2fa-deny": "Decline all trades",
-	"2fa-deny-success": "All trades declined!",
+	"2fa-decline": "Decline all trades",
+	"2fa-decline-success": "All trades declined!",
 	"2fa-refresh": "Refresh token",
 	"access": "Access",
 	"add": "Add",
