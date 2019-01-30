@@ -4,8 +4,11 @@
 		<h2 class="title" v-else>{{ bot.name }}</h2>
 
 		<div class="form-item">
+			<div class="form-item__token">
+				<input class="form-item__input form-item__input-token" type="text" :value="token" readonly>
+			</div>
 			<div class="form-item__buttons form-item__buttons--center form-item__buttons--column">
-				<button class="button button--confirm" @click="getCurrentToken">{{ $t('token-copy') }}</button>
+				<button class="button button--confirm" @click="copyToken">{{ $t('token-copy') }}</button>
 				<button class="button button--confirm" @click="acceptTrades">
 					<font-awesome-icon icon="spinner" v-if="accepting" spin></font-awesome-icon>
 					<span v-else>{{ $t('2fa-accept') }}</span>
@@ -28,7 +31,8 @@
 		data() {
 			return {
 				accepting: false,
-				canceling: false
+				canceling: false,
+				token: '-----'
 			};
 		},
 		computed: {
@@ -39,8 +43,11 @@
 				return this.$store.getters['bots/bot'](this.$route.params.bot);
 			}
 		},
-		created() {
+		async created() {
 			if (!this.bot) this.$router.replace({ name: 'bots' });
+
+			const response = await this.$http.get(`bot/${this.bot.name}/TwoFactorAuthentication/Token`);
+			this.token = response[this.bot.name].Result;
 		},
 		methods: {
 			async acceptTrades() {
@@ -71,17 +78,33 @@
 					this.canceling = false;
 				}
 			},
-			async getCurrentToken() {
-				try {
-					const response = await this.$http.get(`bot/${this.bot.name}/TwoFactorAuthentication/Token`);
-					const token = response[this.bot.name].Result;
-
-					copy(token);
-					this.$success(this.$t('token-copied'));
-				} catch (err) {
-					this.$error(err.message);
-				}
+			copyToken() {
+				copy(this.token);
+				this.$info(this.$t('token-copied'));
 			}
 		}
 	};
 </script>
+
+<style lang="scss">
+	.form-item__token {
+		padding-bottom: 1em;
+
+		:focus {
+			outline: none;
+		}
+	}
+
+	.form-item__input-token {
+		font-size: 2em;
+		font-weight: bold;
+		text-align: center;
+		letter-spacing: 0.3em;
+		width: 6em;
+		margin: 0 auto;
+
+		.app--dark-mode & {
+			border-color: var(--color-text-dark);
+		}
+	}
+</style>
