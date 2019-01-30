@@ -72,11 +72,15 @@
 				}
 			},
 			async getCurrentToken() {
-				const response = await this.$http.get(`bot/${this.bot.name}/TwoFactorAuthentication/Token`);
-				const token = response[this.bot.name].Result;
+				try {
+					const response = await this.$http.get(`bot/${this.bot.name}/TwoFactorAuthentication/Token`);
+					const token = response[this.bot.name].Result;
 
-				copy(token);
-				this.$success(this.$t('token-copied'));
+					copy(token);
+					this.$success(this.$t('token-copied'));
+				} catch (err) {
+					this.$error(err.message);
+				}
 			}
 		}
 	};
