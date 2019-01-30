@@ -21,11 +21,7 @@
 
 <script>
 	import { mapGetters } from 'vuex';
-	import { command } from '../../plugins/http';
 	import * as copy from 'copy-to-clipboard';
-
-	// This whole module is based on commands instead of actions
-	// Refactor to use actions as these become available
 
 	export default {
 		name: 'bot-2fa',
@@ -53,8 +49,8 @@
 				this.accepting = true;
 
 				try {
-					const result = await command('2faok', this.bot.name);
-					this.$info(this.parseResultString(result));
+					await this.$http.botAction(this.bot.name, 'TwoFactorAuthentication/Confirmations/Accept');
+					this.$success(this.$t('2fa-ok-success'));
 				} catch (err) {
 					this.$error(err.message);
 				} finally {
@@ -67,8 +63,8 @@
 				this.declining = true;
 
 				try {
-					const result = await command('2fano', this.bot.name);
-					this.$info(this.parseResultString(result));
+					await this.$http.botAction(this.bot.name, 'TwoFactorAuthentication/Confirmations/Deny');
+					this.$success(this.$t('2fa-no-success'));
 				} catch (err) {
 					this.$error(err.message);
 				} finally {
@@ -76,31 +72,11 @@
 				}
 			},
 			async getCurrentToken() {
-				const result = await command('2fa', this.bot.name);
+				const response = await this.$http.get(`bot/${this.bot.name}/TwoFactorAuthentication/Token`);
+				const token = response[this.bot.name].Result;
 
-				// Firstly, remove <bot-name> to prevent accidentally recognizing bot name as 2fa token
-				const message = this.parseResultString(result);
-
-				// Since we are parsing translated natural language string and there are no guarantees about it's structure
-				// We will simply extract the first 5-character long string composed exclusively of characters available in 2fa token
-				// To make the extraction stricter, we make sure the 5-character code is surrounded by word-boundaries (\b)
-				const tokenResult = /\b([23456789BCDFGHJKMNPQRTVWXY]{5})\b/.exec(result);
-
-				// If the extraction failed, we display the message
-				// In case we missed the token, it'll at least be displayed (but not copied)
-				if (!tokenResult) return this.$info(message);
-
-				// Finally, if the token was found, copy it to clipboard and notify the user
-				copy(tokenResult[1]);
+				copy(token);
 				this.$success(this.$t('token-copied'));
-			},
-			parseResultString(result) {
-				// Remove the response prefix, this is prone to command response format changes,
-				// but should gracefully stop working when such change happens
-
-				return result
-						.replace(`<${this.bot.name}> `, '') // Remove bot name
-						.replace('<ASF> ', ''); // Remove <ASF> if the bot doesn't exist
 			}
 		}
 	};
