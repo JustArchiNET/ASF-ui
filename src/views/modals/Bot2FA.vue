@@ -4,15 +4,22 @@
 		<h2 class="title" v-else>{{ bot.name }}</h2>
 
 		<div class="form-item">
+			<div class="form-item__token">
+				<input class="form-item__input form-item__input-token" type="text" :value="token" readonly>
+			</div>
 			<div class="form-item__buttons form-item__buttons--center form-item__buttons--column">
-				<button class="button button--confirm" @click="getCurrentToken">{{ $t('token-copy') }}</button>
+				<button class="button button--confirm" @click="refreshToken">
+					<font-awesome-icon icon="spinner" v-if="refreshing" spin></font-awesome-icon>
+					<span v-else>{{ $t('2fa-token-refresh') }}</span>
+				</button>
+				<button class="button button--confirm" @click="copyToken">{{ $t('2fa-token-copy') }}</button>
 				<button class="button button--confirm" @click="acceptTrades">
 					<font-awesome-icon icon="spinner" v-if="accepting" spin></font-awesome-icon>
-					<span v-else>{{ $t('2fa-ok') }}</span>
+					<span v-else>{{ $t('2fa-accept') }}</span>
 				</button>
-				<button class="button button--cancel" @click="declineTrades">
-					<font-awesome-icon icon="spinner" v-if="declining" spin></font-awesome-icon>
-					<span v-else>{{ $t('2fa-no') }}</span>
+				<button class="button button--cancel" @click="cancelTrades">
+					<font-awesome-icon icon="spinner" v-if="canceling" spin></font-awesome-icon>
+					<span v-else>{{ $t('2fa-cancel') }}</span>
 				</button>
 			</div>
 		</div>
@@ -21,18 +28,16 @@
 
 <script>
 	import { mapGetters } from 'vuex';
-	import { command } from '../../plugins/http';
 	import * as copy from 'copy-to-clipboard';
-
-	// This whole module is based on commands instead of actions
-	// Refactor to use actions as these become available
 
 	export default {
 		name: 'bot-2fa',
 		data() {
 			return {
 				accepting: false,
-				declining: false
+				canceling: false,
+				refreshing: false,
+				token: '-----'
 			};
 		},
 		computed: {
@@ -43,8 +48,11 @@
 				return this.$store.getters['bots/bot'](this.$route.params.bot);
 			}
 		},
-		created() {
+		async created() {
 			if (!this.bot) this.$router.replace({ name: 'bots' });
+
+			const response = await this.$http.get(`bot/${this.bot.name}/TwoFactorAuthentication/Token`);
+			this.token = response[this.bot.name].Result;
 		},
 		methods: {
 			async acceptTrades() {
@@ -53,55 +61,83 @@
 				this.accepting = true;
 
 				try {
-					const result = await command('2faok', this.bot.name);
-					this.$info(this.parseResultString(result));
+					const response = await this.$http.post(`bot/${this.bot.name}/TwoFactorAuthentication/Confirmations/Accept`);
+
+					if (response[this.bot.name].Success) {
+						this.$success(this.$t('2fa-accept-success'));
+					} else {
+						this.$error(response[this.bot.name].Message);
+					}
 				} catch (err) {
 					this.$error(err.message);
 				} finally {
 					this.accepting = false;
 				}
 			},
-			async declineTrades() {
-				if (this.declining) return;
+			async cancelTrades() {
+				if (this.canceling) return;
 
-				this.declining = true;
+				this.canceling = true;
 
 				try {
-					const result = await command('2fano', this.bot.name);
-					this.$info(this.parseResultString(result));
+					const response = await this.$http.post(`bot/${this.bot.name}/TwoFactorAuthentication/Confirmations/Cancel`);
+					
+					if (response[this.bot.name].Success) {
+						this.$success(this.$t('2fa-cancel-success'));
+					} else {
+						this.$error(response[this.bot.name].Message);
+					}
 				} catch (err) {
 					this.$error(err.message);
 				} finally {
-					this.declining = false;
+					this.canceling = false;
 				}
 			},
-			async getCurrentToken() {
-				const result = await command('2fa', this.bot.name);
+			async refreshToken() {
+				if (this.refreshing) return;
 
-				// Firstly, remove <bot-name> to prevent accidentally recognizing bot name as 2fa token
-				const message = this.parseResultString(result);
+				this.refreshing = true;
+				this.token = '-----';
 
-				// Since we are parsing translated natural language string and there are no guarantees about it's structure
-				// We will simply extract the first 5-character long string composed exclusively of characters available in 2fa token
-				// To make the extraction stricter, we make sure the 5-character code is surrounded by word-boundaries (\b)
-				const tokenResult = /\b([23456789BCDFGHJKMNPQRTVWXY]{5})\b/.exec(result);
-
-				// If the extraction failed, we display the message
-				// In case we missed the token, it'll at least be displayed (but not copied)
-				if (!tokenResult) return this.$info(message);
-
-				// Finally, if the token was found, copy it to clipboard and notify the user
-				copy(tokenResult[1]);
-				this.$success(this.$t('token-copied'));
+				try {
+					const response = await this.$http.get(`bot/${this.bot.name}/TwoFactorAuthentication/Token`);
+					this.token = response[this.bot.name].Result;
+					this.$success(this.$t('2fa-token-refresh-success'));
+				} catch (err) {
+					this.$error(err.message);
+				} finally {
+					this.refreshing = false;
+				}
 			},
-			parseResultString(result) {
-				// Remove the response prefix, this is prone to command response format changes,
-				// but should gracefully stop working when such change happens
-
-				return result
-						.replace(`<${this.bot.name}> `, '') // Remove bot name
-						.replace('<ASF> ', ''); // Remove <ASF> if the bot doesn't exist
+			copyToken() {
+				copy(this.token);
+				this.$info(this.$t('2fa-token-copied'));
 			}
 		}
 	};
 </script>
+
+<style lang="scss">
+	.form-item__token {
+		padding-bottom: 1em;
+		display: flex;
+		justify-content: center;
+
+		:focus {
+			outline: none;
+		}
+	}
+
+	.form-item__input-token {
+		font-size: 1.6em;
+		font-weight: bold;
+		text-align: center;
+		letter-spacing: 0.3em;
+		width: 8em;
+		height: 2em;
+
+		.app--dark-mode & {
+			border-color: var(--color-text-dark);
+		}
+	}
+</style>
