@@ -8,7 +8,11 @@
 				<input class="form-item__input form-item__input-token" type="text" :value="token" readonly>
 			</div>
 			<div class="form-item__buttons form-item__buttons--center form-item__buttons--column">
-				<button class="button button--confirm" @click="copyToken">{{ $t('token-copy') }}</button>
+				<button class="button button--confirm" @click="refreshToken">
+					<font-awesome-icon icon="spinner" v-if="refreshing" spin></font-awesome-icon>
+					<span v-else>{{ $t('2fa-token-refresh') }}</span>
+				</button>
+				<button class="button button--confirm" @click="copyToken">{{ $t('2fa-token-copy') }}</button>
 				<button class="button button--confirm" @click="acceptTrades">
 					<font-awesome-icon icon="spinner" v-if="accepting" spin></font-awesome-icon>
 					<span v-else>{{ $t('2fa-accept') }}</span>
@@ -32,6 +36,7 @@
 			return {
 				accepting: false,
 				canceling: false,
+				refreshing: false,
 				token: '-----'
 			};
 		},
@@ -78,9 +83,25 @@
 					this.canceling = false;
 				}
 			},
+			async refreshToken() {
+				if (this.refreshing) return;
+
+				this.refreshing = true;
+				this.token = '-----';
+
+				try {
+					const response = await this.$http.get(`bot/${this.bot.name}/TwoFactorAuthentication/Token`);
+					this.token = response[this.bot.name].Result;
+					this.$success(this.$t('2fa-token-refresh-success'));
+				} catch (err) {
+					this.$error(err.message);
+				} finally {
+					this.refreshing = false;
+				}
+			},
 			copyToken() {
 				copy(this.token);
-				this.$info(this.$t('token-copied'));
+				this.$info(this.$t('2fa-token-copied'));
 			}
 		}
 	};
