@@ -61,8 +61,13 @@
 				this.accepting = true;
 
 				try {
-					await this.$http.botAction(this.bot.name, 'TwoFactorAuthentication/Confirmations/Accept');
-					this.$success(this.$t('2fa-accept-success'));
+					const response = await this.$http.post(`bot/${this.bot.name}/TwoFactorAuthentication/Confirmations/Accept`);
+
+					if (response[this.bot.name].Success) {
+						this.$success(this.$t('2fa-accept-success'));
+					} else {
+						this.$error(response[this.bot.name].Message);
+					}
 				} catch (err) {
 					this.$error(err.message);
 				} finally {
@@ -75,8 +80,13 @@
 				this.canceling = true;
 
 				try {
-					await this.$http.botAction(this.bot.name, 'TwoFactorAuthentication/Confirmations/Cancel');
-					this.$success(this.$t('2fa-cancel-success'));
+					const response = await this.$http.post(`bot/${this.bot.name}/TwoFactorAuthentication/Confirmations/Cancel`);
+					
+					if (response[this.bot.name].Success) {
+						this.$success(this.$t('2fa-cancel-success'));
+					} else {
+						this.$error(response[this.bot.name].Message);
+					}
 				} catch (err) {
 					this.$error(err.message);
 				} finally {
