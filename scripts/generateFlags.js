@@ -14,3 +14,4 @@ module.exports = function generateFlags() {
 
 	fs.writeFileSync('./generated/flags.js', fileContent);
 };
+
