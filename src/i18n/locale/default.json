@@ -23,6 +23,8 @@
 	"bgr-used-keys": "Used keys",
 	"bgr-used-keys-count": "{count} used",
 	"bot-delete": "Do you want to delete {name}?",
+	"bot-game-name": "Game names only",
+	"bot-game-name-description": "Only show game names (hide game banner)",
 	"bot-new": "Create new bot",
 	"bot-nicknames": "Nicknames",
 	"bot-nicknames-description": "Display steam nicknames (if available) instead of bot names.",

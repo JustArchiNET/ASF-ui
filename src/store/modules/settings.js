@@ -3,6 +3,7 @@ import * as storage from '../../utils/storage';
 export const state = {
 	defaultView: 'home',
 	nicknames: false,
+	gameName: false,
 	sentryInstalled: false,
 	sentryReporting: false,
 	selectedBots: []
@@ -11,6 +12,7 @@ export const state = {
 export const mutations = {
 	setDefaultView: (state, defaultView) => state.defaultView = defaultView,
 	setNicknames: (state, nicknames) => state.nicknames = nicknames,
+	setGameName: (state, gameName) => state.gameName = gameName,
 	setSentryInstalled: (state, sentryInstalled) => state.sentryInstalled = sentryInstalled,
 	setSentryReporting: (state, sentryReporting) => state.sentryReporting = sentryReporting,
 	setSelectedBots: (state, selectedBots) => state.selectedBots = selectedBots
@@ -20,6 +22,7 @@ export const actions = {
 	init({ commit }) {
 		commit('setDefaultView', storage.get('settings:default-view', 'home'));
 		commit('setNicknames', storage.get('settings:nicknames', false));
+		commit('setGameName', storage.get('settings:game-name', false));
 		commit('setSentryInstalled', storage.get('settings:sentry-installed', false));
 		commit('setSentryReporting', storage.get('settings:sentry-reporting', false));
 		commit('setSelectedBots', storage.get('settings:selected-bots', []));
@@ -31,6 +34,10 @@ export const actions = {
 	setNicknames({ commit }, value) {
 		storage.set('settings:nicknames', value);
 		commit('setNicknames', value);
+	},
+	setGameName({ commit }, value) {
+		storage.set('settings:game-name', value);
+		commit('setGameName', value);
 	},
 	setSentryInstalled({ commit }, value) {
 		storage.set('settings:sentry-installed', value);
@@ -49,6 +56,7 @@ export const actions = {
 export const getters = {
 	defaultView: state => state.defaultView,
 	nicknames: state => state.nicknames,
+	gameName: state => state.gameName,
 	sentryInstalled: state => state.sentryInstalled,
 	sentryReporting: state => state.sentryReporting,
 	selectedBots: state => state.selectedBots
