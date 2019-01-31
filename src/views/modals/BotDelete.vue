@@ -10,7 +10,7 @@
 					<span v-else>{{ $t('delete') }}</span>
 				</button>
 
-				<button class="button button--confirm" @click="$parent.close()">{{ $t('cancel') }}</button>
+				<button class="button button--confirm" @click="$parent.back()">{{ $t('cancel') }}</button>
 			</div>
 		</div>
 	</main>
