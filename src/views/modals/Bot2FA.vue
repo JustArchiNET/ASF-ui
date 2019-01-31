@@ -103,6 +103,7 @@
 		text-align: center;
 		letter-spacing: 0.3em;
 		width: 6em;
+		height: 2em;
 
 		.app--dark-mode & {
 			border-color: var(--color-text-dark);
