@@ -98,9 +98,9 @@
 	}
 
 	.form-item__input-token {
-		font-size: 2em;
+		font-size: 1.6em;
 		font-weight: bold;
-		text-align: center;
+		text-align: end;
 		letter-spacing: 0.3em;
 		width: 6em;
 		height: 2em;
