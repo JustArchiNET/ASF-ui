@@ -133,6 +133,7 @@
 		font-weight: bold;
 		text-align: center;
 		letter-spacing: 0.3em;
+		text-indent: 0.3em;
 		width: 8em;
 		height: 2em;
 
