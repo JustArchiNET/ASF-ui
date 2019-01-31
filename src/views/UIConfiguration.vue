@@ -1,8 +1,6 @@
 <template>
-	<main class="main-container main-container--center">
-		<div class="container container--small">
-			<h2 class="title">{{ $t('ui-configuration') }}</h2>
-
+	<main class="main-container">
+		<div class="container">
 			<config-editor :fields="fields" :categories="categories" :model="model"></config-editor>
 
 			<div class="form-item">
@@ -37,7 +35,7 @@
 		data() {
 			const categories = [
 				{ name: this.$t('general'), fields: [this.$t('default-page')] },
-				{ name: this.$t('bots'), fields: [this.$t('bot-nicknames'), this.$t('bot-game-name')] },
+				{ name: this.$t('bots'), fields: [this.$t('bot-nicknames'), this.$t('bot-game-name'), this.$t('bot-fav-button')] },
 				{ name: this.$t('debug'), fields: [this.$t('logging'), this.$t('reporting')] }
 			];
 
@@ -69,6 +67,19 @@
 					description: this.$t('bot-game-name-description')
 				},
 				{
+					param: this.$t('bot-fav-button'),
+					paramName: 'favButton',
+					type: 'enum',
+					defaultValue: { 'value': 'none', 'icon': 'none' },
+					values: {
+						[this.$t('bot-fav-button-none')]: { 'value': 'none', 'icon': 'none' },
+						[this.$t('bot-fav-button-2fa')]: { 'value': '2fa', 'icon': 'lock' },
+						[this.$t('bot-fav-button-bgr')]: { 'value': 'bgr', 'icon': 'key' },
+						[this.$t('bot-fav-button-config')]: { 'value': 'config', 'icon': 'wrench' }
+					},
+					description: this.$t('bot-fav-button-description')
+				},
+				{
 					param: this.$t('logging'),
 					paramName: 'sentryInstalled',
 					type: 'boolean',
@@ -89,6 +100,7 @@
 					defaultView: this.$store.getters['settings/defaultView'],
 					nicknames: this.$store.getters['settings/nicknames'],
 					gameName: this.$store.getters['settings/gameName'],
+					favButton: this.$store.getters['settings/favButton'],
 					sentryInstalled: this.$store.getters['settings/sentryInstalled'],
 					sentryReporting: this.$store.getters['settings/sentryReporting']
 				},
@@ -114,6 +126,7 @@
 				this.$store.dispatch('settings/setDefaultView', this.model.defaultView);
 				this.$store.dispatch('settings/setNicknames', this.model.nicknames);
 				this.$store.dispatch('settings/setGameName', this.model.gameName);
+				this.$store.dispatch('settings/setFavButton', this.model.favButton);
 				this.$store.dispatch('settings/setSentryInstalled', this.model.sentryInstalled);
 				this.$store.dispatch('settings/setSentryReporting', this.model.sentryReporting);
 

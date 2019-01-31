@@ -12,6 +12,9 @@
 		</router-link>
 
 		<div class="bot__actions">
+			<router-link v-if="this.favButton.value !== 'none'" :to="{ name: `bot-${this.favButton.value}`, params: { bot: bot.name } }">
+				<span class="bot__action"><font-awesome-icon :icon="this.favButton.icon"></font-awesome-icon></span>
+			</router-link>
 			<span class="bot__action" v-if="bot.paused && bot.active" @click="resume"><font-awesome-icon icon="play"></font-awesome-icon></span>
 			<span class="bot__action" v-if="!bot.paused && bot.active" @click="pause"><font-awesome-icon icon="pause"></font-awesome-icon></span>
 			<span class="bot__action" v-if="!bot.active" @click="start"><font-awesome-icon icon="power-off"></font-awesome-icon></span>
@@ -64,7 +67,8 @@
 		},
 		computed: {
 			...mapGetters({
-				nicknames: 'settings/nicknames'
+				nicknames: 'settings/nicknames',
+				favButton: 'settings/favButton'
 			})
 		}
 	};

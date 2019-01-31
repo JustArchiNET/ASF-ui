@@ -111,7 +111,7 @@
 
 				try {
 					await this.$http.post(`bot/${this.bot.name}`, { BotConfig: this.model });
-					this.$parent.close();
+					this.$parent.back();
 				} catch (err) {
 					this.$error(err.message);
 				} finally {

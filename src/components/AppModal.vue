@@ -22,6 +22,9 @@
 		},
 		methods: {
 			close() {
+				this.$router.push({ name: 'bots' });
+			},
+			back() {
 				this.$router.push(this.$route.path.slice(0, this.$route.path.lastIndexOf('/')));
 			},
 			onBackgroundClick() {
