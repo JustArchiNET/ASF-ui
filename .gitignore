@@ -1,6 +1,7 @@
 .idea
 node_modules
 dist
+dist.zip
 out
 .DS_Store
 test.js
