@@ -132,8 +132,8 @@
 		font-size: 1.6em;
 		font-weight: bold;
 		text-align: center;
-		letter-spacing: 0.3em;
-		text-indent: 0.3em;
+		letter-spacing: 0.5em;
+		text-indent: 0.5em;
 		width: 8em;
 		height: 2em;
 
