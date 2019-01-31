@@ -121,9 +121,9 @@
 	.form-item__input-token {
 		font-size: 1.6em;
 		font-weight: bold;
-		text-align: end;
+		text-align: center;
 		letter-spacing: 0.3em;
-		width: 6em;
+		width: 8em;
 		height: 2em;
 
 		.app--dark-mode & {
