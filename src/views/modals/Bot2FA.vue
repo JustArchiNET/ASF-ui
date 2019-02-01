@@ -51,8 +51,10 @@
 		async created() {
 			if (!this.bot) this.$router.replace({ name: 'bots' });
 
+			this.refreshing = true;
 			const response = await this.$http.get(`bot/${this.bot.name}/TwoFactorAuthentication/Token`);
 			this.token = response[this.bot.name].Result;
+			this.refreshing = false;
 		},
 		methods: {
 			async acceptTrades() {
