@@ -21,14 +21,10 @@
 			}
 		},
 		created() {
-			document.addEventListener('keydown', function(e) {
-				const charCode = (e.which) ? e.which : e.keyCode;
-
-				if (charCode === 27) {
-					this.close();
-					return e.preventDefault();
-				}
-			});
+			document.addEventListener('keydown', this.onEscapeClick);
+		},
+		beforeDestroy() {
+			document.removeEventListener('keydown', this.onEscapeClick)
 		},
 		methods: {
 			close() {
@@ -36,6 +32,14 @@
 			},
 			back() {
 				this.$router.push(this.$route.path.slice(0, this.$route.path.lastIndexOf('/')));
+			},
+			onEscapeClick(e) {
+				const charCode = (e.which) ? e.which : e.keyCode;
+
+				if (charCode === 27) {
+					this.close();
+					return e.preventDefault();
+				}
 			}
 		}
 	};
