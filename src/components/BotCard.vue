@@ -15,8 +15,8 @@
 			<router-link v-if="this.favButton.value !== 'none'" :to="{ name: `bot-${this.favButton.value}`, params: { bot: bot.name } }">
 				<span class="bot__action"><font-awesome-icon :icon="this.favButton.icon"></font-awesome-icon></span>
 			</router-link>
-			<span class="bot__action" v-if="bot.paused && bot.active" @click="resume"><font-awesome-icon icon="play"></font-awesome-icon></span>
-			<span class="bot__action" v-if="!bot.paused && bot.active" @click="pause"><font-awesome-icon icon="pause"></font-awesome-icon></span>
+			<span class="bot__action" v-if="bot.paused && bot.active && this.favButton.value == 'pause'" @click="resume"><font-awesome-icon icon="play"></font-awesome-icon></span>
+			<span class="bot__action" v-if="!bot.paused && bot.active && this.favButton.value == 'pause'" @click="pause"><font-awesome-icon icon="pause"></font-awesome-icon></span>
 			<span class="bot__action" v-if="!bot.active" @click="start"><font-awesome-icon icon="power-off"></font-awesome-icon></span>
 			<span class="bot__action" v-if="bot.active" @click="stop"><font-awesome-icon icon="power-off"></font-awesome-icon></span>
 		</div>
