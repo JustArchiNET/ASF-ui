@@ -1,7 +1,7 @@
 <template>
 	<transition name="modal" duration="200" appear>
 		<div class="modal" v-if="isShown">
-			<div class="modal__background" @click.self="back"></div>
+			<div class="modal__background" @click.self="close"></div>
 			<div class="modal__body">
 				<font-awesome-icon icon="times" class="modal__close" @click="close"></font-awesome-icon>
 				<div class="modal__main">
