@@ -75,7 +75,8 @@
 						[this.$t('bot-fav-button-none')]: { 'value': 'none', 'icon': 'none' },
 						[this.$t('bot-fav-button-2fa')]: { 'value': '2fa', 'icon': 'lock' },
 						[this.$t('bot-fav-button-bgr')]: { 'value': 'bgr', 'icon': 'key' },
-						[this.$t('bot-fav-button-config')]: { 'value': 'config', 'icon': 'wrench' }
+						[this.$t('bot-fav-button-config')]: { 'value': 'config', 'icon': 'wrench' },
+						[this.$t('bot-fav-button-pause')]: { 'value': 'pause', 'icon': 'none' }
 					},
 					description: this.$t('bot-fav-button-description')
 				},
