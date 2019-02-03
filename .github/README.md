@@ -1,6 +1,6 @@
 # ASF-ui
 
-Standalone interface for ASF
+Standalone web interface for ASF
 
 [![Build status (AppVeyor)](https://img.shields.io/appveyor/ci/JustArchi/ASF-ui/master.svg?label=AppVeyor&maxAge=600)](https://ci.appveyor.com/project/JustArchi/ASF-ui)
 [![Build status (Travis)](https://img.shields.io/travis/com/JustArchiNET/ASF-ui/master.svg?label=Travis&maxAge=600)](https://travis-ci.com/JustArchiNET/ASF-ui)
