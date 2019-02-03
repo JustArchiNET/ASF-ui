@@ -52,9 +52,20 @@
 			if (!this.bot) this.$router.replace({ name: 'bots' });
 
 			this.refreshing = true;
-			const response = await this.$http.get(`bot/${this.bot.name}/TwoFactorAuthentication/Token`);
-			this.token = response[this.bot.name].Result;
-			this.refreshing = false;
+
+			try {
+				const response = await this.$http.get(`bot/${this.bot.name}/TwoFactorAuthentication/Token`);
+				
+				if (response[this.bot.name].Result && response[this.bot.name].Success) {
+					this.token = response[this.bot.name].Result;
+				} else {
+					this.$error(response[this.bot.name].Message);
+				}
+			} catch (err) {
+				this.$error(err.message);
+			} finally {
+				this.refreshing = false;
+			}
 		},
 		methods: {
 			async acceptTrades() {
@@ -103,8 +114,13 @@
 
 				try {
 					const response = await this.$http.get(`bot/${this.bot.name}/TwoFactorAuthentication/Token`);
-					this.token = response[this.bot.name].Result;
-					this.$success(this.$t('2fa-token-refresh-success'));
+
+					if (response[this.bot.name].Result && response[this.bot.name].Success) {
+						this.token = response[this.bot.name].Result;
+						this.$success(this.$t('2fa-token-refresh-success'));
+					} else {
+						this.$error(response[this.bot.name].Message);
+					}
 				} catch (err) {
 					this.$error(err.message);
 				} finally {
