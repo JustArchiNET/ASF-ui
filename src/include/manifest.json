@@ -1,0 +1,28 @@
+{
+  "name": "ASF-ui",
+  "short_name": "ASF-ui",
+  "icons": [
+	{
+	  "src": "logo.png",
+	  "sizes": "128x128",
+	  "type": "image/png"
+	},
+	{
+	  "src": "logo.png",
+	  "sizes": "192x192",
+	  "type": "image/png"
+	},
+	{
+	  "src": "logo.png",
+	  "sizes": "256x256",
+	  "type": "image/png"
+	},
+	{
+	  "src": "logo.png",
+	  "sizes": "512x512",
+	  "type": "image/png"
+	}
+  ],
+  "display": "standalone",
+  "background_color": "#222d32"
+}
