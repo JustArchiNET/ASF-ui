@@ -1,7 +1,7 @@
 {
-	"name": "asf-ipc-gui",
+	"name": "ASF-ui",
 	"version": "0.0.1",
-	"description": "Friendly web interface consuming ASF's IPC interface",
+	"description": "Standalone web interface for ASF",
 	"scripts": {
 		"dev": "webpack --config webpack.config.js --env development --progress",
 		"pre-build": "node scripts/generate-flags",
