@@ -49,7 +49,7 @@
 					process,
 					level,
 					logger,
-					text: text.join()
+					text: text.join('|')
 				};
 			},
 			onClose(event) {
