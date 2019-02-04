@@ -25,11 +25,12 @@ router.beforeEach(async (routeTo, routeFrom, next) => {
 });
 
 router.afterEach((to, from) => {
-	storage.set('last-visited-page', to);
+	storage.set('last-visited-page', { name: to.name, query: to.query, params: to.params });
 });
 
 router.onError(err => {
 	if (err.type === 'missing') location.reload(true);
+	else throw err;
 });
 
 export default router;
