@@ -86,6 +86,7 @@
 
 				try {
 					await this.$store.dispatch('auth/updateStatus');
+					this.$router.replace({ name: 'home' });
 				} catch (err) {
 					this.$error(err.message);
 				} finally {
