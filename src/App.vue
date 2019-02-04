@@ -22,7 +22,7 @@
 	import AppModal from './components/AppModal.vue';
 
 	import { mapGetters } from 'vuex';
-	import * as storage from './utils/storage';
+	import { mapActions } from 'vuex';
 
 	export default {
 		name: 'App',
@@ -41,6 +41,9 @@
 				darkMode: 'layout/darkMode',
 				version: 'asf/version',
 				buildVariant: 'asf/buildVariant'
+			}),
+			...mapActions({
+				toggleNavigation: 'layout/toggleNavigation'
 			}),
 			themeClass() {
 				return `theme-${this.theme}`;
@@ -74,6 +77,17 @@
 		},
 		created() {
 			if (this.$store.getters['settings/sentryInstalled']) this.$sentry.install(this.$store);
+		},
+		mounted() {
+			window.addEventListener('resize', this.handleResize);
+		},
+		beforeDestroy() {
+			window.removeEventListener('resize', this.handleResize);
+		},
+		methods: {
+			handleResize() {
+				if (document.body.clientWidth < 700 && !this.smallNavigation) this.toggleNavigation;
+			}
 		}
 	};
 </script>
@@ -230,6 +244,10 @@
 			&.main-container--fullheight {
 				height: calc(100vh - 2 * var(--navigation-height));
 			}
+		}
+
+		@media screen and (max-width: 700px) {
+			padding-left: $size-navigation-small;
 		}
 	}
 </style>
