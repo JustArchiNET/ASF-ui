@@ -44,10 +44,10 @@
 		},
 		created() {
 			const activeButtons = Array.from(this.favButtons.toString(2))
-					.reduce((activeButtons, enabled, index) => {
-						if (enabled === '1') activeButtons.push(this.quickActionButtons[index]);
-						return activeButtons;
-					}, []);
+				.reduce((activeButtons, enabled, index) => {
+					if (enabled === '1') activeButtons.push(this.quickActionButtons[index]);
+					return activeButtons;
+				}, []);
 
 			this.selectedButtons = activeButtons;
 		},
