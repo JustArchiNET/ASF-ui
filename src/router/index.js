@@ -30,6 +30,7 @@ router.afterEach((to, from) => {
 
 router.onError(err => {
 	if (err.type === 'missing') location.reload(true);
+	else throw err;
 });
 
 export default router;
