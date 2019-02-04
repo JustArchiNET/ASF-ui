@@ -49,6 +49,7 @@
 			buttonText() {
 				switch (this.status) {
 					case STATUS.UNAUTHORIZED:
+					case STATUS.AUTHENTICATED:
 						return this.$t('continue');
 					default:
 						return this.$t('refresh');
@@ -62,6 +63,8 @@
 				switch (this.status) {
 					case STATUS.UNAUTHORIZED:
 						return this.updatePassword();
+					case STATUS.AUTHENTICATED:
+						return this.redirect();
 					default:
 						return this.refreshStatus();
 				}
@@ -91,6 +94,9 @@
 				} finally {
 					this.processing = false;
 				}
+			},
+			redirect() {
+				this.$router.replace({ name: 'home' });
 			}
 		}
 	};
