@@ -17,7 +17,6 @@ const initializer = createDefer();
 
 export const state = {
 	password: null,
-	validPassword: false,
 	status: STATUS.NOT_CONNECTED,
 	initialized: initializer.promise
 };
