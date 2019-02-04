@@ -35,7 +35,7 @@
 		data() {
 			const categories = [
 				{ name: this.$t('general'), fields: [this.$t('default-page')] },
-				{ name: this.$t('bots'), fields: [this.$t('bot-nicknames'), this.$t('bot-game-name'), this.$t('bot-fav-button')] },
+				{ name: this.$t('bots'), fields: [this.$t('bot-nicknames'), this.$t('bot-game-name'), this.$t('bot-fav-buttons')] },
 				{ name: this.$t('debug'), fields: [this.$t('logging'), this.$t('reporting')] }
 			];
 
@@ -67,18 +67,18 @@
 					description: this.$t('bot-game-name-description')
 				},
 				{
-					param: this.$t('bot-fav-button'),
-					paramName: 'favButton',
-					type: 'enum',
-					defaultValue: { 'value': 'none', 'icon': 'none' },
+					param: this.$t('bot-fav-buttons'),
+					paramName: 'favButtons',
+					type: 'flag',
+					defaultValue: 0,
 					values: {
-						[this.$t('bot-fav-button-none')]: { 'value': 'none', 'icon': 'none' },
-						[this.$t('bot-fav-button-2fa')]: { 'value': '2fa', 'icon': 'lock' },
-						[this.$t('bot-fav-button-bgr')]: { 'value': 'bgr', 'icon': 'key' },
-						[this.$t('bot-fav-button-config')]: { 'value': 'config', 'icon': 'wrench' },
-						[this.$t('bot-fav-button-pause')]: { 'value': 'pause', 'icon': 'none' }
+						[this.$t('bot-fav-buttons-none')]: 0,
+						[this.$t('bot-fav-buttons-2fa')]: 1 << 0,
+						[this.$t('bot-fav-buttons-bgr')]: 1 << 1,
+						[this.$t('bot-fav-buttons-config')]: 1 << 2,
+						[this.$t('bot-fav-buttons-pause')]: 1 << 3
 					},
-					description: this.$t('bot-fav-button-description')
+					description: this.$t('bot-fav-buttons-description')
 				},
 				{
 					param: this.$t('logging'),
@@ -101,7 +101,7 @@
 					defaultView: this.$store.getters['settings/defaultView'],
 					nicknames: this.$store.getters['settings/nicknames'],
 					gameName: this.$store.getters['settings/gameName'],
-					favButton: this.$store.getters['settings/favButton'],
+					favButtons: this.$store.getters['settings/favButtons'],
 					sentryInstalled: this.$store.getters['settings/sentryInstalled'],
 					sentryReporting: this.$store.getters['settings/sentryReporting']
 				},
@@ -127,7 +127,7 @@
 				this.$store.dispatch('settings/setDefaultView', this.model.defaultView);
 				this.$store.dispatch('settings/setNicknames', this.model.nicknames);
 				this.$store.dispatch('settings/setGameName', this.model.gameName);
-				this.$store.dispatch('settings/setFavButton', this.model.favButton);
+				this.$store.dispatch('settings/setFavButtons', this.model.favButtons);
 				this.$store.dispatch('settings/setSentryInstalled', this.model.sentryInstalled);
 				this.$store.dispatch('settings/setSentryReporting', this.model.sentryReporting);
 
