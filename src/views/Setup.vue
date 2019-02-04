@@ -55,6 +55,11 @@
 				}
 			}
 		},
+		watch: {
+			status(newStatus) {
+				if (newStatus === STATUS.AUTHENTICATED) this.$router.replace({ name: 'home' });
+			}
+		},
 		methods: {
 			async onButtonClick() {
 				if (this.processing) return;
@@ -86,7 +91,6 @@
 
 				try {
 					await this.$store.dispatch('auth/updateStatus');
-					this.$router.replace({ name: 'home' });
 				} catch (err) {
 					this.$error(err.message);
 				} finally {
