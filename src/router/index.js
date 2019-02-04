@@ -25,7 +25,7 @@ router.beforeEach(async (routeTo, routeFrom, next) => {
 });
 
 router.afterEach((to, from) => {
-	storage.set('last-visited-page', to);
+	storage.set('last-visited-page', { name: to.name, query: to.query, params: to.params });
 });
 
 router.onError(err => {
