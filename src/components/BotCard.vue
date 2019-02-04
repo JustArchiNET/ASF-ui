@@ -12,7 +12,7 @@
 		</router-link>
 
 		<div class="bot__actions">
-			<router-link v-if="button.name !== 'pause'" :to="{ name: `bot-${button.name}`, params: { bot: bot.name } }" v-for="button in this.myButtons" :key="button.name">
+			<router-link v-if="button.name !== 'pause'" :to="{ name: `bot-${button.name}`, params: { bot: bot.name } }" v-for="button in selectedButtons" :key="button.name">
 				<span class="bot__action"><font-awesome-icon :icon="button.icon"></font-awesome-icon></span>
 			</router-link>
 			<span class="bot__action" v-if="bot.paused && bot.active && isPauseButtonSelected" @click="resume"><font-awesome-icon icon="play"></font-awesome-icon></span>
@@ -33,25 +33,23 @@
 		},
 		data() {
 			return {
-				myButtons: []
+				selectedButtons: [],
+				quickActionButtons: [
+					{ name: '2fa', icon: 'lock' },
+					{ name: 'bgr', icon: 'key' },
+					{ name: 'config', icon: 'wrench' },
+					{ name: 'pause', icon: 'none'}
+				],
 			};
 		},
 		created() {
-			if (this.favButtons === 1) this.myButtons = [{ name: '2fa', icon: 'lock'}];
-			if (this.favButtons === 2) this.myButtons = [{ name: 'bgr', icon: 'key'}];
-			if (this.favButtons === 4) this.myButtons = [{ name: 'config', icon: 'wrench'}];
-			if (this.favButtons === 8) this.myButtons = [{ name: 'pause', icon: 'none'}];
-			if (this.favButtons === 3) this.myButtons = [{ name: '2fa', icon: 'lock'}, { name: 'bgr', icon: 'key'}];
-			if (this.favButtons === 5) this.myButtons = [{ name: '2fa', icon: 'lock'}, { name: 'config', icon: 'wrench'}];
-			if (this.favButtons === 6) this.myButtons = [{ name: 'bgr', icon: 'key'}, { name: 'config', icon: 'wrench'}];
-			if (this.favButtons === 7) this.myButtons = [{ name: '2fa', icon: 'lock'}, { name: 'bgr', icon: 'key'}, { name: 'config', icon: 'wrench'}];
-			if (this.favButtons === 9) this.myButtons = [{ name: '2fa', icon: 'lock'}, { name: 'pause', icon: 'none'}];
-			if (this.favButtons === 10) this.myButtons = [{ name: 'bgr', icon: 'key'}, { name: 'pause', icon: 'none'}];
-			if (this.favButtons === 11) this.myButtons = [{ name: '2fa', icon: 'lock'}, { name: 'bgr', icon: 'key'}, { name: 'pause', icon: 'none'}];
-			if (this.favButtons === 12) this.myButtons = [{ name: 'config', icon: 'wrench'}, { name: 'pause', icon: 'none'}];
-			if (this.favButtons === 13) this.myButtons = [{ name: '2fa', icon: 'lock'}, { name: 'config', icon: 'wrench'}, { name: 'pause', icon: 'none'}];
-			if (this.favButtons === 14) this.myButtons = [{ name: 'bgr', icon: 'key'}, { name: 'config', icon: 'wrench'}, { name: 'pause', icon: 'none'}];
-			if (this.favButtons === 15) this.myButtons = [{ name: '2fa', icon: 'lock'}, { name: 'bgr', icon: 'key'}, { name: 'config', icon: 'wrench'}, { name: 'pause', icon: 'none'}];
+			const activeButtons = Array.from(this.favButtons.toString(2))
+					.reduce((activeButtons, enabled, index) => {
+						if (enabled === '1') activeButtons.push(this.quickActionButtons[index]);
+						return activeButtons;
+					}, []);
+
+			this.selectedButtons = activeButtons;
 		},
 		methods: {
 			async pause() {
@@ -93,7 +91,7 @@
 				favButtons: 'settings/favButtons'
 			}),
 			isPauseButtonSelected() {
-				return this.myButtons.filter(e => e.name === 'pause').length > 0;
+				return this.selectedButtons.filter(e => e.name === 'pause').length > 0;
 			}
 		}
 	};
