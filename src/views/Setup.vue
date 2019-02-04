@@ -55,11 +55,6 @@
 				}
 			}
 		},
-		watch: {
-			status(newStatus) {
-				if (newStatus === STATUS.AUTHENTICATED) this.$router.replace({ name: 'home' });
-			}
-		},
 		methods: {
 			async onButtonClick() {
 				if (this.processing) return;
