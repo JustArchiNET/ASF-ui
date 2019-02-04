@@ -12,11 +12,11 @@
 		</router-link>
 
 		<div class="bot__actions">
-			<router-link v-if="this.favButton.value !== 'none'" :to="{ name: `bot-${this.favButton.value}`, params: { bot: bot.name } }">
-				<span class="bot__action"><font-awesome-icon :icon="this.favButton.icon"></font-awesome-icon></span>
+			<router-link v-if="button.name !== 'pause'" :to="{ name: `bot-${button.name}`, params: { bot: bot.name } }" v-for="button in selectedButtons" :key="button.name">
+				<span class="bot__action"><font-awesome-icon :icon="button.icon"></font-awesome-icon></span>
 			</router-link>
-			<span class="bot__action" v-if="bot.paused && bot.active && this.favButton.value == 'pause'" @click="resume"><font-awesome-icon icon="play"></font-awesome-icon></span>
-			<span class="bot__action" v-if="!bot.paused && bot.active && this.favButton.value == 'pause'" @click="pause"><font-awesome-icon icon="pause"></font-awesome-icon></span>
+			<span class="bot__action" v-if="bot.paused && bot.active && isPauseButtonSelected" @click="resume"><font-awesome-icon icon="play"></font-awesome-icon></span>
+			<span class="bot__action" v-if="!bot.paused && bot.active && isPauseButtonSelected" @click="pause"><font-awesome-icon icon="pause"></font-awesome-icon></span>
 			<span class="bot__action" v-if="!bot.active" @click="start"><font-awesome-icon icon="power-off"></font-awesome-icon></span>
 			<span class="bot__action" v-if="bot.active" @click="stop"><font-awesome-icon icon="power-off"></font-awesome-icon></span>
 		</div>
@@ -30,6 +30,26 @@
 		name: 'bot-card',
 		props: {
 			bot: Object
+		},
+		data() {
+			return {
+				selectedButtons: [],
+				quickActionButtons: [
+					{ name: '2fa', icon: 'lock' },
+					{ name: 'bgr', icon: 'key' },
+					{ name: 'config', icon: 'wrench' },
+					{ name: 'pause', icon: 'none'}
+				],
+			};
+		},
+		created() {
+			const activeButtons = Array.from(this.favButtons.toString(2))
+				.reduce((activeButtons, enabled, index) => {
+					if (enabled === '1') activeButtons.push(this.quickActionButtons[index]);
+					return activeButtons;
+				}, []);
+
+			this.selectedButtons = activeButtons;
 		},
 		methods: {
 			async pause() {
@@ -68,8 +88,11 @@
 		computed: {
 			...mapGetters({
 				nicknames: 'settings/nicknames',
-				favButton: 'settings/favButton'
-			})
+				favButtons: 'settings/favButtons'
+			}),
+			isPauseButtonSelected() {
+				return this.selectedButtons.filter(e => e.name === 'pause').length > 0;
+			}
 		}
 	};
 </script>
