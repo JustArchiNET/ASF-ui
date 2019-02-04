@@ -31,6 +31,28 @@
 		props: {
 			bot: Object
 		},
+		data() {
+			return {
+				myButtons: []
+			};
+		},
+		created() {
+			if (this.favButtons === 1) this.myButtons = [{ name: '2fa', icon: 'lock'}];
+			if (this.favButtons === 2) this.myButtons = [{ name: 'bgr', icon: 'key'}];
+			if (this.favButtons === 4) this.myButtons = [{ name: 'config', icon: 'wrench'}];
+			if (this.favButtons === 8) this.myButtons = [{ name: 'pause', icon: 'none'}];
+			if (this.favButtons === 3) this.myButtons = [{ name: '2fa', icon: 'lock'}, { name: 'bgr', icon: 'key'}];
+			if (this.favButtons === 5) this.myButtons = [{ name: '2fa', icon: 'lock'}, { name: 'config', icon: 'wrench'}];
+			if (this.favButtons === 6) this.myButtons = [{ name: 'bgr', icon: 'key'}, { name: 'config', icon: 'wrench'}];
+			if (this.favButtons === 7) this.myButtons = [{ name: '2fa', icon: 'lock'}, { name: 'bgr', icon: 'key'}, { name: 'config', icon: 'wrench'}];
+			if (this.favButtons === 9) this.myButtons = [{ name: '2fa', icon: 'lock'}, { name: 'pause', icon: 'none'}];
+			if (this.favButtons === 10) this.myButtons = [{ name: 'bgr', icon: 'key'}, { name: 'pause', icon: 'none'}];
+			if (this.favButtons === 11) this.myButtons = [{ name: '2fa', icon: 'lock'}, { name: 'bgr', icon: 'key'}, { name: 'pause', icon: 'none'}];
+			if (this.favButtons === 12) this.myButtons = [{ name: 'config', icon: 'wrench'}, { name: 'pause', icon: 'none'}];
+			if (this.favButtons === 13) this.myButtons = [{ name: '2fa', icon: 'lock'}, { name: 'config', icon: 'wrench'}, { name: 'pause', icon: 'none'}];
+			if (this.favButtons === 14) this.myButtons = [{ name: 'bgr', icon: 'key'}, { name: 'config', icon: 'wrench'}, { name: 'pause', icon: 'none'}];
+			if (this.favButtons === 15) this.myButtons = [{ name: '2fa', icon: 'lock'}, { name: 'bgr', icon: 'key'}, { name: 'config', icon: 'wrench'}, { name: 'pause', icon: 'none'}];
+		},
 		methods: {
 			async pause() {
 				try {
