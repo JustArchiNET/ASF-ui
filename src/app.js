@@ -24,5 +24,8 @@ const app = new Vue({
 });
 
 window.addEventListener('unhandledrejection', err => {
-	if (err.reason instanceof NotificationError) app.$error(err.reason.message);
+	if (err.reason instanceof NotificationError) {
+		app.$error(err.reason.message);
+		err.preventDefault();
+	}
 });
