@@ -231,9 +231,5 @@
 				height: calc(100vh - 2 * var(--navigation-height));
 			}
 		}
-
-		@media screen and (max-width: 700px) {
-			padding-left: $size-navigation-small;
-		}
 	}
 </style>
