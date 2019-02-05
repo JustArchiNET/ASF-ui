@@ -32,7 +32,7 @@
 		"vue-template-compiler": "^2.6.1",
 		"webpack": "^4.28.4",
 		"webpack-bundle-analyzer": "^3.0.3",
-		"webpack-cli": "^3.2.2",
+		"webpack-cli": "^3.2.3",
 		"webpack-dev-server": "^3.1.14"
 	},
 	"dependencies": {
