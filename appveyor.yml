@@ -92,7 +92,7 @@ deploy:
 - provider: GitHub
   tag: $(appveyor_repo_tag_name)
   release: ASF-ui v$(appveyor_repo_tag_name)
-  description: '### Notice\n\n**This is automated AppVeyor GitHub deployment, human-readable description should be available soon. In the meantime please refer to **[GitHub commits](https://github.com/JustArchiNET/ASF-ui/commits/$(appveyor_repo_tag_name))**.'
+  description: '### Notice\n\nThis is automated AppVeyor GitHub deployment, human-readable description should be available soon. In the meantime please refer to **[GitHub commits](https://github.com/JustArchiNET/ASF-ui/commits/$(appveyor_repo_tag_name))**.'
   auth_token:
     secure: uYK1wf3znNdkuQqImXR6rZ94ESgzF1vJHCAcJ75Y+m+/pc/Ro6cikzy6O7DVZ39T
   artifact: /.*/
