@@ -86,7 +86,11 @@
 		},
 		methods: {
 			handleResize() {
-				if (document.body.clientWidth < 700 && !this.smallNavigation) this.toggleNavigation;
+				let width = document.body.clientWidth;
+
+				if ((width < 700 && !this.smallNavigation) || (width > 700 && this.smallNavigation)) {
+					this.toggleNavigation;
+				}
 			}
 		}
 	};
