@@ -262,7 +262,7 @@
 				if (el.setSelectionRange) {
 					let len = this.command.length * 2;
 
-					setTimeout(function() {
+					this.$nextTick(function() {
 						el.setSelectionRange(len, len);
 					}, 1);
 				} else {
