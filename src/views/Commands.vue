@@ -246,6 +246,7 @@
 					this.commandHistoryIndex++;
 					this.command = this.commandHistory.get(this.commandHistoryIndex);
 				}
+				this.moveCursorToEnd(this.$refs['terminal-input']);
 			},
 			historyNext() {
 				if (this.commandHistoryIndex > 0) {
@@ -254,6 +255,18 @@
 				} else if (this.commandHistoryIndex === 0) {
 					this.commandHistoryIndex = -1;
 					this.command = '';
+				}
+				this.moveCursorToEnd(this.$refs['terminal-input']);
+			},
+			moveCursorToEnd(el) {
+				if (el.setSelectionRange) {
+					let len = this.command.length * 2;
+
+					setTimeout(function() {
+						el.setSelectionRange(len, len);
+					}, 1);
+				} else {
+					this.command = this.command;
 				}
 			},
 			parseCommandsHTML(commandsWikiRaw) {
