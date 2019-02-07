@@ -246,7 +246,8 @@
 					this.commandHistoryIndex++;
 					this.command = this.commandHistory.get(this.commandHistoryIndex);
 				}
-				this.moveCursorToEnd(this.$refs['terminal-input']);
+
+				this.moveCursorToEnd();
 			},
 			historyNext() {
 				if (this.commandHistoryIndex > 0) {
@@ -256,18 +257,22 @@
 					this.commandHistoryIndex = -1;
 					this.command = '';
 				}
-				this.moveCursorToEnd(this.$refs['terminal-input']);
-			},
-			moveCursorToEnd(el) {
-				if (el.setSelectionRange) {
-					let len = this.command.length * 2;
 
-					this.$nextTick(function() {
-						el.setSelectionRange(len, len);
-					}, 1);
-				} else {
+				this.moveCursorToEnd();
+			},
+			moveCursorToEnd() {
+				let el = this.$refs['terminal-input'];
+
+				if (!el.setSelectionRange) {
 					this.command = this.command;
+					return;
 				}
+
+				let len = this.command.length * 2;
+
+				setTimeout(function() {
+					el.setSelectionRange(len, len);
+				}, 1);
 			},
 			parseCommandsHTML(commandsWikiRaw) {
 				const commandsWikiHTML = document.createElement('html');
