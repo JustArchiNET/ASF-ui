@@ -272,7 +272,7 @@
 
 				setTimeout(function() {
 					el.setSelectionRange(len, len);
-				}, 1);
+				}, 0);
 			},
 			parseCommandsHTML(commandsWikiRaw) {
 				const commandsWikiHTML = document.createElement('html');
