@@ -2,9 +2,7 @@
 	<div class="bot-games" v-if="bot.games.length && botsFarmingCount !== 0">
 		<template v-if="gameName">
 			<div class="bot-game" :title="game.GameName" v-for="game in bot.games">
-				<a class="bot-game__name" target="_blank" :href="`https://store.steampowered.com/app/${game.AppID}/`">
-					{{ game.GameName }}
-				</a>
+				<a class="bot-game__name" target="_blank" :href="`https://store.steampowered.com/app/${game.AppID}/`">{{ game.GameName }}</a>
 			</div>
 		</template>
 
