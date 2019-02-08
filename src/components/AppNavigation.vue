@@ -94,5 +94,9 @@
 
 	.navigation-category--pull-bottom {
 		margin-top: auto;
+
+		.app--boxed-layout & {
+			margin-top: 1em;
+		}
 	}
 </style>
