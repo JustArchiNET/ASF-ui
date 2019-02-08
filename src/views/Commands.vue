@@ -262,13 +262,12 @@
 			},
 			moveCursorToEnd() {
 				let el = this.$refs['terminal-input'];
+				let len = this.command.length;
 
 				if (!el.setSelectionRange) {
 					this.command = this.command;
 					return;
 				}
-
-				let len = this.command.length * 2;
 
 				setTimeout(function() {
 					el.setSelectionRange(len, len);
