@@ -148,6 +148,12 @@
 				this.$store.dispatch('settings/setSentryInstalled', this.model.sentryInstalled);
 				this.$store.dispatch('settings/setSentryReporting', this.model.sentryReporting);
 
+				this.$snotify.setDefaults({
+					toast: {
+						position: this.model.notificationPosition
+					}
+				});
+
 				this.$success(this.$t('settings-saved'));
 			},
 			copyStoredEvents() {
