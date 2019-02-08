@@ -34,7 +34,7 @@
 		components: { ConfigEditor, Dropdown },
 		data() {
 			const categories = [
-				{ name: this.$t('general'), fields: [this.$t('default-page')] },
+				{ name: this.$t('general'), fields: [this.$t('default-page'), this.$t('notification-position')] },
 				{ name: this.$t('bots'), fields: [this.$t('bot-nicknames'), this.$t('bot-game-name'), this.$t('bot-fav-buttons')] },
 				{ name: this.$t('debug'), fields: [this.$t('logging'), this.$t('reporting')] }
 			];
@@ -53,6 +53,21 @@
 						[this.$t('last-visited-page')]: '_last-visited-page'
 					},
 					description: this.$t('default-page-description')
+				},
+				{
+					param: this.$t('notification-position'),
+					paramName: 'notificationPosition',
+					type: 'enum',
+					defaultValue: 'rightBottom',
+					values: {
+						[this.$t('notification-position-left-top')]: 'leftTop',
+						[this.$t('notification-position-left-bottom')]: 'leftBottom',
+						[this.$t('notification-position-right-top')]: 'rightTop',
+						[this.$t('notification-position-right-bottom')]: 'rightBottom',
+						[this.$t('notification-position-center-top')]: 'centerTop',
+						[this.$t('notification-position-center-bottom')]: 'centerBottom'
+					},
+					description: this.$t('notification-position-description')
 				},
 				{
 					param: this.$t('bot-nicknames'),
@@ -99,6 +114,7 @@
 				categories,
 				model: {
 					defaultView: this.$store.getters['settings/defaultView'],
+					notificationPosition: this.$store.getters['settings/notificationPosition'],
 					nicknames: this.$store.getters['settings/nicknames'],
 					gameName: this.$store.getters['settings/gameName'],
 					favButtons: this.$store.getters['settings/favButtons'],
@@ -125,6 +141,7 @@
 				else this.$sentry.disableReporting();
 
 				this.$store.dispatch('settings/setDefaultView', this.model.defaultView);
+				this.$store.dispatch('settings/setNotificationPosition', this.model.notificationPosition);
 				this.$store.dispatch('settings/setNicknames', this.model.nicknames);
 				this.$store.dispatch('settings/setGameName', this.model.gameName);
 				this.$store.dispatch('settings/setFavButtons', this.model.favButtons);

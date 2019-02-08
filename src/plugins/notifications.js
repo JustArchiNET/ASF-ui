@@ -1,4 +1,5 @@
 import Snotify from 'vue-snotify';
+import { get } from '../utils/storage';
 
 export default {
 	install(Vue) {
@@ -7,7 +8,9 @@ export default {
 
 		Vue.use(Snotify, {
 			toast: {
-				timeout: 3500
+				timeout: 3500,
+				position: get('settings:notification-position'),
+				pauseOnHover: true
 			}
 		});
 
