@@ -7,6 +7,7 @@ Standalone web interface for ASF
 [![Github last commit date](https://img.shields.io/github/last-commit/JustArchiNET/ASF-ui.svg?label=Updated&maxAge=600)](https://github.com/JustArchiNET/ASF-ui/commits)
 [![License](https://img.shields.io/github/license/JustArchiNET/ASF-ui.svg?label=License&maxAge=2592000)](https://github.com/JustArchiNET/ASF-ui/blob/master/LICENSE-2.0.txt)
 [![Localization](https://d322cqt584bo4o.cloudfront.net/archisteamfarm/localized.svg)](https://crowdin.com/project/archisteamfarm)
+[![Code Climate](https://codeclimate.com/github/JustArchiNET/ASF-ui/badges/gpa.svg)](https://codeclimate.com/github/JustArchiNET/ASF-ui)
 
 <img src="https://raw.githubusercontent.com/JustArchiNET/ASF-ui/master/.github/preview.png">
 
