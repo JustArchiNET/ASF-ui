@@ -2,6 +2,7 @@ import * as storage from '../../utils/storage';
 
 export const state = {
 	defaultView: 'home',
+	notificationPosition: 'rightBottom',
 	nicknames: false,
 	gameName: false,
 	favButtons: 0,
@@ -12,6 +13,7 @@ export const state = {
 
 export const mutations = {
 	setDefaultView: (state, defaultView) => state.defaultView = defaultView,
+	setNotificationPosition: (state, notificationPosition) => state.notificationPosition = notificationPosition,
 	setNicknames: (state, nicknames) => state.nicknames = nicknames,
 	setGameName: (state, gameName) => state.gameName = gameName,
 	setFavButtons: (state, favButtons) => state.favButtons = favButtons,
@@ -23,6 +25,7 @@ export const mutations = {
 export const actions = {
 	init({ commit }) {
 		commit('setDefaultView', storage.get('settings:default-view', 'home'));
+		commit('setNotificationPosition', storage.get('settings:notification-position', 'rightBottom'));
 		commit('setNicknames', storage.get('settings:nicknames', false));
 		commit('setGameName', storage.get('settings:game-name', false));
 		commit('setFavButtons', storage.get('settings:fav-buttons', 0));
@@ -33,6 +36,10 @@ export const actions = {
 	setDefaultView({ commit }, value) {
 		storage.set('settings:default-view', value);
 		commit('setDefaultView', value);
+	},
+	setNotificationPosition({ commit }, value) {
+		storage.set('settings:notification-position', value);
+		commit('setNotificationPosition', value);
 	},
 	setNicknames({ commit }, value) {
 		storage.set('settings:nicknames', value);
@@ -62,6 +69,7 @@ export const actions = {
 
 export const getters = {
 	defaultView: state => state.defaultView,
+	notificationPosition: state => state.notificationPosition,
 	nicknames: state => state.nicknames,
 	gameName: state => state.gameName,
 	favButtons: state => state.favButtons,
