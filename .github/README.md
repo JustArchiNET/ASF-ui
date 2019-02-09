@@ -38,4 +38,4 @@ You can now modify the source-code to your liking. When you are done with that y
 npm run build
 ```
 
-To make ASFs Kestrel serve your frontend you have to start ASF with the [command-line argument](https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Command-line-arguments) `--path`, which is explained in detail in [ASF's wiki](https://github.com/JustArchiNET/ArchiSteamFarm/wiki). Just copy the contents of the folder `dist` that was created by npm to the appropriate location described on ASF's wiki and you are good to go.
+To make ASF's Kestrel serve your frontend you have to start ASF with the [command-line argument](https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Command-line-arguments) `--path`, which is explained in detail in [ASF's wiki](https://github.com/JustArchiNET/ArchiSteamFarm/wiki). Just copy the contents of the folder `dist` that was created by npm to the appropriate location described on ASF's wiki and you are good to go.
