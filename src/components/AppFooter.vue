@@ -7,8 +7,14 @@
 		</div>
 
 		<div class="footer__statistics">
-			<span class="footer__statistic"><b>{{ $t('version-ui') }}</b> {{ uiVersion }}</span>
-			<span class="footer__statistic" v-if="authenticated"><b>{{ $t('version-asf') }}</b> {{ asfVersion }} - {{ buildVariant }}</span>
+			<span class="footer__statistic">
+				<span class="footer__statistic-name">{{ $t('version-ui') }}</span>
+				<span class="footer__statistic-value">{{ uiVersion }}</span>
+			</span>
+			<span class="footer__statistic" v-if="authenticated">
+				<span class="footer__statistic-name">{{ $t('version-asf') }}</span>
+				<span class="footer__statistic-value">{{ asfVersion }} - {{ buildVariant }}</span>
+			</span>
 		</div>
 	</footer>
 </template>
@@ -73,5 +79,10 @@
 		@media screen and (max-width: 600px) {
 			padding: 0 0.2em;
 		}
+	}
+
+	.footer__statistic-name {
+		color: var(--color-theme);
+		font-weight: 700;
 	}
 </style>
