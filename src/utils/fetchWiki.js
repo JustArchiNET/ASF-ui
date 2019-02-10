@@ -1,9 +1,9 @@
-import Vue from 'vue';
 import * as http from '../plugins/http';
 import { compareVersion } from './compareVersion';
+import { getLocaleForWiki } from './getLocaleForWiki';
 
 async function getURL(file, version) {
-	const locale = (Vue.i18n.locale !== 'en-US') ? '-' + Vue.i18n.locale : '';
+	const locale = getLocaleForWiki();
 	const defaultURL = `https://github.com/JustArchiNET/ArchiSteamFarm/wiki/${file}${locale}`;
 
 	if (!version) return defaultURL;

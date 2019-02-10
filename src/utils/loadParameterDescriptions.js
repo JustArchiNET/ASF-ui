@@ -1,9 +1,9 @@
-import Vue from 'vue';
 import fetchWiki from './fetchWiki';
 import * as storage from './storage';
+import { getLocaleForWiki } from './getLocaleForWiki';
 
 export default async function loadParameterDescriptions(version) {
-	const locale = (Vue.i18n.locale !== 'en-US') ? '-' + Vue.i18n.locale : '';
+	const locale = getLocaleForWiki();
 	const descriptionsCache = storage.get(`cache:parameter-descriptions:${locale}`);
 	if (descriptionsCache) {
 		const { timestamp, descriptions } = descriptionsCache;
