@@ -113,7 +113,10 @@ module.exports = async (env, argv) => {
 			minimizer: [
 				new TerserWebpackPlugin({
 					cache: true,
-					parallel: true
+					parallel: true,
+					terserOptions: {
+						safari10: true
+					}
 				})
 			]
 		}
