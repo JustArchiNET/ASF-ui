@@ -113,6 +113,7 @@
 		height: 2.25em; // (1em + 0.8em) * 1.25
 		width: 2.25em;
 		cursor: pointer;
+		display: block;
 	}
 
 	.bot__status {
