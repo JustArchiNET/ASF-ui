@@ -1,8 +1,10 @@
+import Vue from 'vue';
 import fetchWiki from './fetchWiki';
 import * as storage from './storage';
 
 export default async function loadParameterDescriptions(version) {
-	const descriptionsCache = storage.get('cache:parameter-descriptions');
+	const locale = (Vue.i18n.locale !== 'en-US') ? '-' + Vue.i18n.locale : '';
+	const descriptionsCache = storage.get(`cache:parameter-descriptions${locale}`);
 	if (descriptionsCache) {
 		const { timestamp, descriptions } = descriptionsCache;
 		if (timestamp > Date.now() - 24 * 60 * 60 * 1000) return descriptions;
@@ -31,7 +33,7 @@ export default async function loadParameterDescriptions(version) {
 		descriptions[parameterName] = parameterDescription.join(' ');
 	}
 
-	storage.set('cache:parameter-descriptions', { timestamp: Date.now(), descriptions });
+	storage.set(`cache:parameter-descriptions${locale}`, { timestamp: Date.now(), descriptions });
 
 	return descriptions;
 }

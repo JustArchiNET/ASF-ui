@@ -1,8 +1,10 @@
+import Vue from 'vue';
 import * as http from '../plugins/http';
 import { compareVersion } from './compareVersion';
 
 async function getURL(file, version) {
-	const defaultURL = `https://github.com/JustArchiNET/ArchiSteamFarm/wiki/${file}`;
+	const locale = (Vue.i18n.locale !== 'en-US') ? '-' + Vue.i18n.locale : '';
+	const defaultURL = `https://github.com/JustArchiNET/ArchiSteamFarm/wiki/${file}${locale}`;
 
 	if (!version) return defaultURL;
 
@@ -20,7 +22,7 @@ async function getURL(file, version) {
 	if (currentReleaseIndex === 0) return defaultURL;
 
 	const nextReleaseTime = new Date(releases[currentReleaseIndex - 1].published_at);
-	const wikiRevisionsRaw = await http.post('WWW/Send', { URL: `https://github.com/JustArchiNET/ArchiSteamFarm/wiki/${file}/_history` });
+	const wikiRevisionsRaw = await http.post('WWW/Send', { URL: `https://github.com/JustArchiNET/ArchiSteamFarm/wiki/${file}${locale}/_history` });
 
 	const wikiRevisionsHTML = document.createElement('html');
 	wikiRevisionsHTML.innerHTML = wikiRevisionsRaw;
@@ -31,7 +33,7 @@ async function getURL(file, version) {
 	}));
 
 	const latestWikiRevision = wikiRevisions.find(({ releaseTime }) => releaseTime < nextReleaseTime);
-	return latestWikiRevision ? `https://github.com/JustArchiNET/ArchiSteamFarm/wiki/${file}/${latestWikiRevision.version}` : defaultURL;
+	return latestWikiRevision ? `https://github.com/JustArchiNET/ArchiSteamFarm/wiki/${file}${locale}/${latestWikiRevision.version}` : defaultURL;
 }
 
 
