@@ -257,21 +257,16 @@
 					this.commandHistoryIndex = -1;
 					this.command = '';
 				}
-
-				this.moveCursorToEnd();
 			},
 			moveCursorToEnd() {
 				let el = this.$refs['terminal-input'];
 				let len = this.command.length;
 
-				if (!el.setSelectionRange) {
+				if (el.setSelectionRange) {
+					setTimeout(() => el.setSelectionRange(len, len), 0);
+				} else {
 					this.command = this.command;
-					return;
 				}
-
-				setTimeout(function() {
-					el.setSelectionRange(len, len);
-				}, 0);
 			},
 			parseCommandsHTML(commandsWikiRaw) {
 				const commandsWikiHTML = document.createElement('html');
