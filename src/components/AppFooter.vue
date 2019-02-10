@@ -21,14 +21,19 @@
 
 <script>
 	import { mapGetters } from 'vuex';
+	import { ui } from "../utils/ui";
 
 	export default {
 		name: 'app-footer',
+		data() {
+			return {
+				uiVersion: ui.version
+			}
+		},
 		computed: mapGetters({
 			authenticated: 'auth/authenticated',
 			asfVersion: 'asf/version',
-			buildVariant: 'asf/buildVariant',
-			uiVersion: 'ui/version'
+			buildVariant: 'asf/buildVariant'
 		})
 	};
 </script>
