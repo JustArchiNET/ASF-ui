@@ -142,7 +142,8 @@
 	"update-is-newest": "Local version is ahead of selected update channel",
 	"update-is-up-to-date": "Already running the latest version",
 	"updates": "Updates",
-	"version": "Version",
+	"version-asf": "ASF Version",
+	"version-ui": "UI Version",
 	"welcome": "Welcome",
 	"welcome-message": "Welcome to ASF-ui, standalone interface for ASF.",
 	"wiki": "Wiki"

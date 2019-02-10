@@ -3,23 +3,36 @@
 		<div class="footer__links">
 			<a class="footer__link" target="_blank" href="https://github.com/JustArchiNET/ArchiSteamFarm">GitHub</a>
 			<a class="footer__link" target="_blank" href="https://github.com/JustArchiNET/ArchiSteamFarm/wiki">{{ $t('wiki') }}</a>
-			<a class="footer__link" v-if="authenticated" target="_blank" :href="`https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${version}`">{{ $t('changelog') }}</a>
+			<a class="footer__link" v-if="authenticated" target="_blank" :href="`https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${asfVersion}`">{{ $t('changelog') }}</a>
 		</div>
 
-		<div class="footer__statistics" v-if="authenticated">
-			<span class="footer__statistic"><b>{{ $t('version') }}</b> {{ version }} - {{ buildVariant }}</span>
+		<div class="footer__statistics">
+			<span class="footer__statistic">
+				<span class="footer__statistic-name">{{ $t('version-ui') }}</span>
+				<span class="footer__statistic-value">{{ uiVersion }}</span>
+			</span>
+			<span class="footer__statistic" v-if="authenticated">
+				<span class="footer__statistic-name">{{ $t('version-asf') }}</span>
+				<span class="footer__statistic-value">{{ asfVersion }} - {{ buildVariant }}</span>
+			</span>
 		</div>
 	</footer>
 </template>
 
 <script>
 	import { mapGetters } from 'vuex';
+	import { ui } from "../utils/ui";
 
 	export default {
 		name: 'app-footer',
+		data() {
+			return {
+				uiVersion: ui.version
+			}
+		},
 		computed: mapGetters({
 			authenticated: 'auth/authenticated',
-			version: 'asf/version',
+			asfVersion: 'asf/version',
 			buildVariant: 'asf/buildVariant'
 		})
 	};
@@ -54,19 +67,27 @@
 		display: flex;
 		align-items: center;
 
-		@media screen and (max-width: 350px) {
+		@media screen and (max-width: 600px) {
 			padding: 0 0.2em;
 			margin: 0 0.2em;
 		}
 	}
 
 	.footer__statistics {
-		padding: 0 1em;
 		margin-left: auto;
 		text-align: center;
+	}
+
+	.footer__statistic {
+		padding: 0 0.5em;
 
 		@media screen and (max-width: 600px) {
-			padding: 0 0.25em;
+			padding: 0 0.2em;
 		}
+	}
+
+	.footer__statistic-name {
+		color: var(--color-theme);
+		font-weight: 700;
 	}
 </style>
