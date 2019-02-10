@@ -262,11 +262,8 @@
 				let el = this.$refs['terminal-input'];
 				let len = this.command.length;
 
-				if (el.setSelectionRange) {
-					setTimeout(() => el.setSelectionRange(len, len), 0);
-				} else {
-					this.command = this.command;
-				}
+				if (el.setSelectionRange) setTimeout(() => el.setSelectionRange(len, len), 0);
+				else this.command = this.command;
 			},
 			parseCommandsHTML(commandsWikiRaw) {
 				const commandsWikiHTML = document.createElement('html');
