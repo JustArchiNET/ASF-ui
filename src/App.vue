@@ -88,7 +88,7 @@
 			handleResize() {
 				let width = document.body.clientWidth;
 
-				if ((width < 700 && !this.smallNavigation) || (width > 700 && this.smallNavigation)) {
+				if ((width <= 700 && !this.smallNavigation) || (width > 700 && this.smallNavigation)) {
 					this.toggleNavigation;
 				}
 			}
