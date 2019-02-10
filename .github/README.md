@@ -13,6 +13,12 @@ Standalone web interface for ASF
 
 ***
 
+### Installation
+
+1. Download [latest ASF-ui release](https://github.com/JustArchiNET/ASF-ui/releases/latest)
+2. Extract the archive into ASF's `www` folder
+3. Clear cache and enjoy
+
 ### Development
 
 ```
