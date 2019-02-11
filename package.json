@@ -39,7 +39,7 @@
 		"@fortawesome/fontawesome-svg-core": "^1.2.14",
 		"@fortawesome/free-solid-svg-icons": "^5.7.1",
 		"@fortawesome/vue-fontawesome": "^0.1.5",
-		"@sentry/browser": "^4.5.3",
+		"@sentry/browser": "^4.5.4",
 		"axios": "^0.18.0",
 		"copy-to-clipboard": "^3.0.8",
 		"flag-icon-css": "^3.2.1",
