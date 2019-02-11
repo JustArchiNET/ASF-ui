@@ -42,9 +42,6 @@
 				version: 'asf/version',
 				buildVariant: 'asf/buildVariant'
 			}),
-			...mapActions({
-				toggleNavigation: 'layout/toggleNavigation'
-			}),
 			themeClass() {
 				return `theme-${this.theme}`;
 			}
@@ -85,8 +82,15 @@
 			window.removeEventListener('resize', this.handleResize);
 		},
 		methods: {
+			...mapActions({
+				toggleNavigation: 'layout/toggleNavigation'
+			}),
 			handleResize() {
-				if (document.body.clientWidth < 700 && !this.smallNavigation) this.toggleNavigation;
+				let width = document.body.clientWidth;
+
+				if ((width <= 700 && !this.smallNavigation) || (width > 700 && this.smallNavigation)) {
+					this.toggleNavigation();
+				}
 			}
 		}
 	};
