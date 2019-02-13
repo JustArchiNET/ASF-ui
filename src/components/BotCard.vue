@@ -1,5 +1,5 @@
 <template>
-	<div class="bot" :class="[`status--${bot.status}`]">
+	<div class="bot" :class="[`status--${bot.status}`, { 'bot--big': selectedButtons.length > 2 }]">
 		<a target="_blank" :href="bot.profileURL" v-if="bot.steamid !== '0'">
 			<img class="bot__avatar" :src="bot.avatarURL" :alt="bot.name">
 		</a>
@@ -15,8 +15,10 @@
 			<router-link v-if="button.name !== 'pause'" :to="{ name: `bot-${button.name}`, params: { bot: bot.name } }" v-for="button in selectedButtons" :key="button.name">
 				<span class="bot__action"><font-awesome-icon :icon="button.icon"></font-awesome-icon></span>
 			</router-link>
+
 			<span class="bot__action" v-if="bot.paused && bot.active && isPauseButtonSelected" @click="resume"><font-awesome-icon icon="play"></font-awesome-icon></span>
 			<span class="bot__action" v-if="!bot.paused && bot.active && isPauseButtonSelected" @click="pause"><font-awesome-icon icon="pause"></font-awesome-icon></span>
+
 			<span class="bot__action" v-if="!bot.active" @click="start"><font-awesome-icon icon="power-off"></font-awesome-icon></span>
 			<span class="bot__action" v-if="bot.active" @click="stop"><font-awesome-icon icon="power-off"></font-awesome-icon></span>
 		</div>
@@ -26,30 +28,33 @@
 <script>
 	import { mapGetters } from 'vuex';
 
+	const quickActionButtons = [
+		{ name: '2fa', icon: 'lock' },
+		{ name: 'bgr', icon: 'key' },
+		{ name: 'config', icon: 'wrench' },
+		{ name: 'pause', icon: 'none' }
+	];
+
 	export default {
 		name: 'bot-card',
 		props: {
 			bot: Object
 		},
-		data() {
-			return {
-				selectedButtons: [],
-				quickActionButtons: [
-					{ name: '2fa', icon: 'lock' },
-					{ name: 'bgr', icon: 'key' },
-					{ name: 'config', icon: 'wrench' },
-					{ name: 'pause', icon: 'none'}
-				],
-			};
-		},
-		created() {
-			const activeButtons = Array.from(this.favButtons.toString(2))
-				.reduce((activeButtons, enabled, index) => {
-					if (enabled === '1') activeButtons.push(this.quickActionButtons[index]);
-					return activeButtons;
-				}, []);
-
-			this.selectedButtons = activeButtons;
+		computed: {
+			...mapGetters({
+				nicknames: 'settings/nicknames',
+				favButtons: 'settings/favButtons'
+			}),
+			isPauseButtonSelected() {
+				return this.selectedButtons.filter(e => e.name === 'pause').length > 0;
+			},
+			selectedButtons() {
+				return Array.from(this.favButtons.toString(2))
+						.reduce((activeButtons, enabled, index) => {
+							if (enabled === '1') activeButtons.push(quickActionButtons[index]);
+							return activeButtons;
+						}, []);
+			}
 		},
 		methods: {
 			async pause() {
@@ -84,15 +89,6 @@
 					this.$error(err.message);
 				}
 			}
-		},
-		computed: {
-			...mapGetters({
-				nicknames: 'settings/nicknames',
-				favButtons: 'settings/favButtons'
-			}),
-			isPauseButtonSelected() {
-				return this.selectedButtons.filter(e => e.name === 'pause').length > 0;
-			}
 		}
 	};
 </script>
@@ -100,12 +96,28 @@
 <style lang="scss">
 	.bot {
 		display: grid;
-		grid-template-columns: auto 1fr auto;
+		grid-template-columns: min-content 1fr auto;
 		border-top: 3px solid var(--color-status);
 		padding: 0.5em;
 		background: var(--color-background-light);
 		border-radius: 0 0 4px 4px;
 		transition: border .3s;
+		grid-template-areas: 'avatar meta buttons';
+
+		&--big {
+			grid-template-columns: min-content 1fr;
+			grid-template-rows: auto min-content;
+			grid-template-areas: 'avatar meta' 'buttons buttons';
+
+			.bot__actions {
+				margin-top: 0.5rem;
+			}
+
+			.bot__action {
+				padding: 0 0.5rem;
+				font-size: 1.25rem;
+			}
+		}
 	}
 
 	.bot__avatar {
@@ -113,6 +125,7 @@
 		height: 2.25em; // (1em + 0.8em) * 1.25
 		width: 2.25em;
 		cursor: pointer;
+		display: block;
 	}
 
 	.bot__status {
@@ -141,6 +154,8 @@
 	.bot__actions {
 		display: flex;
 		align-items: center;
+		grid-area: buttons;
+		justify-content: space-around;
 	}
 
 	.bot__action {
@@ -148,6 +163,7 @@
 		cursor: pointer;
 		transition: color .3s;
 		color: var(--color-text-disabled);
+		display: block;
 
 		&:hover {
 			color: var(--color-text-dark);
