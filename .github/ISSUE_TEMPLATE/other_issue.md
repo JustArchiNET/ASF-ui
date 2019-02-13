@@ -1,15 +1,16 @@
 ---
-name: Other issue
+name: General question
 about: Any other issue
+label: 'Question'
 assignees: Aareksio
 
 ---
 
-## Description
-<!-- A clear and concise description of what the problem is. -->
+## Question
+<!-- A clear and concise question. -->
 
 ## Screenshots
-<!-- If applicable, add screenshots to help explain your problem. -->
+<!-- If applicable, add screenshots to help explain your question. -->
 
 ## Additional information
-<!-- Add any other information about the problem here. -->
+<!-- Add any other information about your question here. -->
