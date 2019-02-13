@@ -1,6 +1,6 @@
 ---
 name: General question
-about: Any other issue
+about: Got a question related to ASF-ui?
 label: 'Question'
 assignees: Aareksio
 
