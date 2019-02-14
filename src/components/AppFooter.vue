@@ -1,30 +1,28 @@
 <template>
 	<footer class="footer">
 		<div class="footer__links">
-			<a class="footer__link" target="_blank" href="https://github.com/JustArchiNET/ArchiSteamFarm">GitHub</a>
-			<a class="footer__link" target="_blank" href="https://github.com/JustArchiNET/ArchiSteamFarm/wiki">{{ $t('wiki') }}</a>
-			<a class="footer__link" v-if="authenticated" target="_blank" :href="`https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${asfVersion}`">{{ $t('changelog') }}</a>
+			<footer-link name="GitHub" prefix="fab" icon="github" to="https://github.com/JustArchiNET/ArchiSteamFarm"></footer-link>
+			<footer-link :name="$t('wiki')" icon="book" to="https://github.com/JustArchiNET/ArchiSteamFarm/wiki"></footer-link>
+			<footer-link v-if="authenticated" :name="$t('changelog')" icon="calendar-check" :to="`https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${asfVersion}`"></footer-link>
 		</div>
 
 		<div class="footer__statistics">
-			<span class="footer__statistic">
-				<span class="footer__statistic-name">{{ $t('version-ui') }}</span>
-				<span class="footer__statistic-value">{{ uiVersion }}</span>
-			</span>
-			<span class="footer__statistic" v-if="authenticated">
-				<span class="footer__statistic-name">{{ $t('version-asf') }}</span>
-				<span class="footer__statistic-value">{{ asfVersion }} - {{ buildVariant }}</span>
-			</span>
+			<footer-statistic :name="$t('version-ui')" short-name="UI" :value="uiVersion"></footer-statistic>
+			<footer-statistic v-if="authenticated" :name="$t('version-asf')" short-name="ASF" :value="`${asfVersion} - ${buildVariant}`"></footer-statistic>
 		</div>
 	</footer>
 </template>
 
 <script>
+	import FooterLink from './FooterLink.vue';
+	import FooterStatistic from "./FooterStatistic.vue";
+
 	import { mapGetters } from 'vuex';
 	import { ui } from "../utils/ui";
 
 	export default {
 		name: 'app-footer',
+		components: { FooterLink, FooterStatistic },
 		data() {
 			return {
 				uiVersion: ui.version
@@ -57,37 +55,8 @@
 		height: 100%;
 	}
 
-	.footer__link {
-		color: var(--color-theme);
-		font-weight: 700;
-		text-decoration: none;
-		height: 100%;
-		padding: 0 0.5em;
-		margin: 0 0.5em;
-		display: flex;
-		align-items: center;
-
-		@media screen and (max-width: 600px) {
-			padding: 0 0.2em;
-			margin: 0 0.2em;
-		}
-	}
-
 	.footer__statistics {
 		margin-left: auto;
 		text-align: center;
-	}
-
-	.footer__statistic {
-		padding: 0 0.5em;
-
-		@media screen and (max-width: 600px) {
-			padding: 0 0.2em;
-		}
-	}
-
-	.footer__statistic-name {
-		color: var(--color-theme);
-		font-weight: 700;
 	}
 </style>
