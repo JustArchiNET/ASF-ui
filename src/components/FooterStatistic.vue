@@ -3,7 +3,7 @@
 		<span class="footer__statistic-shortname">{{ shortName }}</span>
 		<span class="footer__statistic-name">{{ name }}</span>
 		<span class="footer__statistic-value">
-			{{ value }} <font-awesome-icon v-if="notify" class="footer__statistic-value--notify" icon="exclamation" size="sm"></font-awesome-icon>
+			{{ value }} <font-awesome-icon v-if="notify" class="footer__statistic-value--notify" :title="$t('update-available')" icon="exclamation" size="sm"></font-awesome-icon>
 		</span>
 	</span>
 </template>

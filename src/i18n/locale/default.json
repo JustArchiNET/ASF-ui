@@ -140,6 +140,7 @@
 	"ui": "UI",
 	"ui-configuration": "UI Configuration",
 	"update": "Update",
+	"update-available": "There is a new update available",
 	"update-check": "Checking for new version...",
 	"update-complete": "Updated!",
 	"update-is-newest": "Local version is ahead of selected update channel",
