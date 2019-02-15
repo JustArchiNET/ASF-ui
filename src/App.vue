@@ -42,7 +42,8 @@
 				theme: 'layout/theme',
 				darkMode: 'layout/darkMode',
 				version: 'asf/version',
-				buildVariant: 'asf/buildVariant'
+				buildVariant: 'asf/buildVariant',
+				notifyRelease: 'settings/notifyRelease'
 			}),
 			themeClass() {
 				return `theme-${this.theme}`;
@@ -76,7 +77,7 @@
 		},
 		created() {
 			if (this.$store.getters['settings/sentryInstalled']) this.$sentry.install(this.$store);
-			this.checkForUpdate();
+			if (this.notifyRelease) this.checkForUpdate();
 		},
 		mounted() {
 			window.addEventListener('resize', this.handleResize);
