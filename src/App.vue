@@ -21,8 +21,6 @@
 	import AppSideMenu from './components/AppSideMenu.vue';
 	import AppModal from './components/AppModal.vue';
 
-	import { newReleaseAvailable } from './utils/ui';
-
 	import { mapGetters } from 'vuex';
 	import { mapActions } from 'vuex';
 
@@ -42,8 +40,7 @@
 				theme: 'layout/theme',
 				darkMode: 'layout/darkMode',
 				version: 'asf/version',
-				buildVariant: 'asf/buildVariant',
-				notifyRelease: 'settings/notifyRelease'
+				buildVariant: 'asf/buildVariant'
 			}),
 			themeClass() {
 				return `theme-${this.theme}`;
@@ -77,7 +74,6 @@
 		},
 		created() {
 			if (this.$store.getters['settings/sentryInstalled']) this.$sentry.install(this.$store);
-			if (this.notifyRelease) this.checkForUpdate();
 		},
 		mounted() {
 			window.addEventListener('resize', this.handleResize);
@@ -95,10 +91,6 @@
 				if ((width <= 700 && !this.smallNavigation) || (width > 700 && this.smallNavigation)) {
 					this.toggleNavigation();
 				}
-			},
-			async checkForUpdate() {
-				const updateAvailable = await newReleaseAvailable();
-				if (updateAvailable) this.$info(this.$t('ui-new-release'));
 			}
 		}
 	};

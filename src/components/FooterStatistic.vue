@@ -2,7 +2,9 @@
 	<span class="footer__statistic">
 		<span class="footer__statistic-shortname">{{ shortName }}</span>
 		<span class="footer__statistic-name">{{ name }}</span>
-		<span class="footer__statistic-value">{{ value }}</span>
+		<span class="footer__statistic-value">
+			{{ value }} <font-awesome-icon v-if="notify" class="footer__statistic-value--notify" icon="exclamation" size="sm"></font-awesome-icon>
+		</span>
 	</span>
 </template>
 
@@ -21,6 +23,9 @@
 			value: {
 				type: String,
 				required: true
+			},
+			notify: {
+				type: Boolean
 			}
 		}
 	};
@@ -52,5 +57,9 @@
 		@media screen and (max-width: 460px) {
 			display: inline;
 		}
+	}
+
+	.footer__statistic-value--notify {
+		color: #ffa500;
 	}
 </style>

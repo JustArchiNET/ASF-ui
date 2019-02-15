@@ -7,8 +7,8 @@
 		</div>
 
 		<div class="footer__statistics">
-			<footer-statistic :name="$t('version-ui')" :short-name="$t('ui')" :value="uiVersion"></footer-statistic>
-			<footer-statistic v-if="authenticated" :name="$t('version-asf')" short-name="ASF" :value="`${asfVersion} - ${buildVariant}`"></footer-statistic>
+			<footer-statistic :name="$t('version-ui')" :short-name="$t('ui')" :value="uiVersion" :notify="notifyRelease && newUiReleaseAvailable"></footer-statistic>
+			<footer-statistic v-if="authenticated" :name="$t('version-asf')" short-name="ASF" :value="`${asfVersion} - ${buildVariant}`" :notify="notifyRelease && newAsfReleaseAvailable"></footer-statistic>
 		</div>
 	</footer>
 </template>
@@ -19,20 +19,33 @@
 
 	import { mapGetters } from 'vuex';
 	import { ui } from "../utils/ui";
+	import { newReleaseAvailable } from '../utils/ui';
 
 	export default {
 		name: 'app-footer',
 		components: { FooterLink, FooterStatistic },
 		data() {
 			return {
-				uiVersion: ui.version
+				uiVersion: ui.version,
+				newUiReleaseAvailable: false,
+				newAsfReleaseAvailable: false
 			}
 		},
 		computed: mapGetters({
 			authenticated: 'auth/authenticated',
 			asfVersion: 'asf/version',
-			buildVariant: 'asf/buildVariant'
-		})
+			buildVariant: 'asf/buildVariant',
+			notifyRelease: 'settings/notifyRelease'
+		}),
+		created() {
+			this.getNewVersions();
+		},
+		methods: {
+			async getNewVersions() {
+				this.newUiReleaseAvailable = await newReleaseAvailable('ASF-ui', ui.version);
+				this.newAsfReleaseAvailable = await newReleaseAvailable('ArchiSteamFarm', this.asfVersion);
+			}
+		}
 	};
 </script>
 
