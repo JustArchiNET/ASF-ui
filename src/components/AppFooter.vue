@@ -7,8 +7,8 @@
 		</div>
 
 		<div class="footer__statistics">
-			<footer-statistic :name="$t('version-ui')" :short-name="$t('ui')" :value="uiVersion" :to="`https://github.com/JustArchiNET/ASF-ui/releases/tag/${uiVersion}`"></footer-statistic>
-			<footer-statistic v-if="authenticated" :name="$t('version-asf')" short-name="ASF" :value="`${asfVersion} - ${buildVariant}`" :to="`https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${asfVersion}`"></footer-statistic>
+			<footer-statistic :name="$t('ui')" :value="uiVersion" :to="`https://github.com/JustArchiNET/ASF-ui/releases/tag/${uiVersion}`"></footer-statistic>
+			<footer-statistic v-if="authenticated" name="ASF" :value="`${asfVersion} - ${buildVariant}`" :to="`https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${asfVersion}`"></footer-statistic>
 		</div>
 	</footer>
 </template>
