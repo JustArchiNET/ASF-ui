@@ -1,7 +1,9 @@
 <template>
 	<a class="footer__statistic" :href="to" target="_blank">
 		<span class="footer__statistic-name">{{ name }}</span>
-		<span class="footer__statistic-value">{{ value }}</span>
+		<span class="footer__statistic-value">
+			{{ value }} <font-awesome-icon v-if="notify" class="footer__statistic-value--notify" :title="$t('update-available')" icon="exclamation" size="sm"></font-awesome-icon>
+		</span>
 	</a>
 </template>
 
@@ -20,6 +22,10 @@
 			to: {
 				type: String,
 				required: true
+			},
+			notify: {
+				type: Boolean,
+				default: false
 			}
 		}
 	};
@@ -38,5 +44,9 @@
 	.footer__statistic-name {
 		color: var(--color-theme);
 		font-weight: 700;
+	}
+
+	.footer__statistic-value--notify {
+		color: #ffa500;
 	}
 </style>
