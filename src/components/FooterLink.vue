@@ -58,6 +58,8 @@
 	}
 
 	.footer__link-name {
+		color: var(--color-text-dark);
+
 		@media screen and (max-width: 530px) {
 			display: none;
 		}
