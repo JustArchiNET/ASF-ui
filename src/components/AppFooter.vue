@@ -18,8 +18,7 @@
 	import FooterStatistic from "./FooterStatistic.vue";
 
 	import { mapGetters } from 'vuex';
-	import { ui } from "../utils/ui";
-	import { newReleaseAvailable } from '../utils/ui';
+	import { ui, newReleaseAvailable } from "../utils/ui";
 
 	export default {
 		name: 'app-footer',
@@ -42,8 +41,13 @@
 		},
 		methods: {
 			async getNewVersions() {
-				this.newUiReleaseAvailable = await newReleaseAvailable('ASF-ui', ui.version);
-				this.newAsfReleaseAvailable = await newReleaseAvailable('ArchiSteamFarm', this.asfVersion);
+				try {
+					this.newUiReleaseAvailable = await newReleaseAvailable('ASF-ui', ui.version);
+					this.newAsfReleaseAvailable = await newReleaseAvailable('ArchiSteamFarm', this.asfVersion);
+				} catch (err) {
+					if (err.message === 'HTTP Error 504') return;
+					this.$error(err.message);
+				}
 			}
 		}
 	};
