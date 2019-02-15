@@ -7,7 +7,7 @@
 		</div>
 
 		<div class="footer__statistics">
-			<footer-statistic :name="$t('version-ui')" short-name="UI" :value="uiVersion"></footer-statistic>
+			<footer-statistic :name="$t('version-ui')" :short-name="$t('ui')" :value="uiVersion"></footer-statistic>
 			<footer-statistic v-if="authenticated" :name="$t('version-asf')" short-name="ASF" :value="`${asfVersion} - ${buildVariant}`"></footer-statistic>
 		</div>
 	</footer>
