@@ -21,6 +21,8 @@
 	import AppSideMenu from './components/AppSideMenu.vue';
 	import AppModal from './components/AppModal.vue';
 
+	import { newReleaseAvailable } from './utils/ui';
+
 	import { mapGetters } from 'vuex';
 	import { mapActions } from 'vuex';
 
@@ -76,6 +78,8 @@
 			if (this.$store.getters['settings/sentryInstalled']) this.$sentry.install(this.$store);
 		},
 		mounted() {
+			this.checkForUpdate();
+
 			window.addEventListener('resize', this.handleResize);
 		},
 		beforeDestroy() {
@@ -91,6 +95,10 @@
 				if ((width <= 700 && !this.smallNavigation) || (width > 700 && this.smallNavigation)) {
 					this.toggleNavigation();
 				}
+			},
+			async checkForUpdate() {
+				const updateAvailable = await newReleaseAvailable();
+				if (updateAvailable) this.$info(this.$t('ui-new-release'));
 			}
 		}
 	};
