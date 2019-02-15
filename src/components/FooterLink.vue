@@ -41,12 +41,12 @@
 		display: flex;
 		align-items: center;
 
-		@media screen and (max-width: 750px) {
+		@media screen and (max-width: 530px) {
 			padding: 0 0.2em;
 			margin: 0 0.2em;
 		}
 
-		@media screen and (max-width: 530px) {
+		@media screen and (max-width: 460px) {
 			padding: 0 0.5em;
 			margin: 0 0.5em;
 		}
@@ -58,7 +58,9 @@
 	}
 
 	.footer__link-name {
-		@media screen and (max-width: 530px) {
+		color: var(--color-text-dark);
+
+		@media screen and (max-width: 460px) {
 			display: none;
 		}
 	}
