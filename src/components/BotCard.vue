@@ -50,6 +50,7 @@
 			},
 			selectedButtons() {
 				return Array.from(this.favButtons.toString(2))
+						.reverse()
 						.reduce((activeButtons, enabled, index) => {
 							if (enabled === '1') activeButtons.push(quickActionButtons[index]);
 							return activeButtons;
