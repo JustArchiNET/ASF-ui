@@ -41,33 +41,19 @@
 		display: flex;
 		align-items: center;
 
-		@media screen and (max-width: 750px) {
-			padding: 0 0.2em;
-			margin: 0 0.2em;
-		}
-
-		@media screen and (max-width: 530px) {
-			padding: 0 0.5em;
-			margin: 0 0.5em;
-		}
-
-		@media screen and (max-width: 350px) {
+		@media screen and (max-width: 500px) {
 			padding: 0 0.2em;
 			margin: 0 0.2em;
 		}
 	}
 
 	.footer__link-name {
-		@media screen and (max-width: 530px) {
+		@media screen and (max-width: 350px) {
 			display: none;
 		}
 	}
 
 	.footer__link-icon {
 		margin-right: 0.5em;
-
-		@media screen and (max-width: 530px) {
-			margin-right: 0.2em;
-		}
 	}
 </style>
