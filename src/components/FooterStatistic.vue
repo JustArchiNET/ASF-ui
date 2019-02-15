@@ -2,7 +2,7 @@
 	<span class="footer__statistic">
 		<span class="footer__statistic-shortname">{{ shortName }}</span>
 		<span class="footer__statistic-name">{{ name }}</span>
-		<span class="footer__statistic-value">{{ value }}</span>
+		<a class="footer__statistic-value" :href="to" target="_blank">{{ value }}</a>
 	</span>
 </template>
 
@@ -19,6 +19,10 @@
 				required: true
 			},
 			value: {
+				type: String,
+				required: true
+			},
+			to: {
 				type: String,
 				required: true
 			}
@@ -52,5 +56,9 @@
 		@media screen and (max-width: 460px) {
 			display: inline;
 		}
+	}
+
+	.footer__statistic-value {
+		color: var(--color-text-dark);
 	}
 </style>
