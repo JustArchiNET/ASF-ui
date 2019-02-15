@@ -1,5 +1,5 @@
 <template>
-	<main class="main-container">
+	<main class="main-container main-container--fullheight">
 		<div class="container">
 			<template v-if="loading">
 				<h3 class="subtitle">

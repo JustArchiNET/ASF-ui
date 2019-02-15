@@ -1,5 +1,5 @@
 <template>
-	<main class="main-container">
+	<main class="main-container main-container--fullheight">
 		<div class="container">
 			<asf-changelog></asf-changelog>
 		</div>
