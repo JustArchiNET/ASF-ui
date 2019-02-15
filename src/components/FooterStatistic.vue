@@ -30,7 +30,7 @@
 		padding: 0 0.5em;
 		color: var(--color-text-dark);
 
-		@media screen and (max-width: 700px) {
+		@media screen and (max-width: 530px) {
 			padding: 0 0.2em;
 		}
 	}
