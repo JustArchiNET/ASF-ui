@@ -1,9 +1,9 @@
 <template>
-	<span class="footer__statistic">
+	<a class="footer__statistic" :href="to" target="_blank">
 		<span class="footer__statistic-shortname">{{ shortName }}</span>
 		<span class="footer__statistic-name">{{ name }}</span>
-		<a class="footer__statistic-value" :href="to" target="_blank">{{ value }}</a>
-	</span>
+		<span class="footer__statistic-value">{{ value }}</span>
+	</a>
 </template>
 
 <script>
@@ -33,6 +33,7 @@
 <style lang="scss">
 	.footer__statistic {
 		padding: 0 0.5em;
+		color: var(--color-text-dark);
 
 		@media screen and (max-width: 750px) {
 			padding: 0 0.2em;
@@ -56,9 +57,5 @@
 		@media screen and (max-width: 460px) {
 			display: inline;
 		}
-	}
-
-	.footer__statistic-value {
-		color: var(--color-text-dark);
 	}
 </style>
