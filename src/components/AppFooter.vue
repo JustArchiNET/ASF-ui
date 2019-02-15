@@ -1,7 +1,7 @@
 <template>
 	<footer class="footer">
 		<div class="footer__links">
-			<footer-link name="GitHub" prefix="fab" icon="github" to="https://github.com/JustArchiNET/ArchiSteamFarm"></footer-link>
+			<footer-link name="GitHub" prefix="fab" icon="github" to="https://github.com/JustArchiNET"></footer-link>
 			<footer-link :name="$t('wiki')" icon="book" to="https://github.com/JustArchiNET/ArchiSteamFarm/wiki"></footer-link>
 			<footer-link v-if="authenticated" :name="$t('changelog')" icon="calendar-check" :to="`https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${asfVersion}`"></footer-link>
 		</div>
