@@ -6,6 +6,6 @@ export const ui = {
 
 export async function newReleaseAvailable() {
 	const latestReleaseRaw = await http.post('WWW/Send', { URL: 'https://api.github.com/repos/JustArchiNET/ASF-ui/releases/latest' });
-	const latestRelease = JSON.parse(latestReleaseRaw);
-	return (latestRelease.tag_name > ui.version);
+	const latestReleaseVersion = JSON.parse(latestReleaseRaw).tag_name;
+	return (latestReleaseVersion > ui.version);
 }

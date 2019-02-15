@@ -76,10 +76,9 @@
 		},
 		created() {
 			if (this.$store.getters['settings/sentryInstalled']) this.$sentry.install(this.$store);
+			this.checkForUpdate();
 		},
 		mounted() {
-			this.checkForUpdate();
-
 			window.addEventListener('resize', this.handleResize);
 		},
 		beforeDestroy() {
