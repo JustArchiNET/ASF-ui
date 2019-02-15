@@ -1,9 +1,8 @@
 <template>
-	<span class="footer__statistic">
-		<span class="footer__statistic-shortname">{{ shortName }}</span>
+	<a class="footer__statistic" :href="to" target="_blank">
 		<span class="footer__statistic-name">{{ name }}</span>
 		<span class="footer__statistic-value">{{ value }}</span>
-	</span>
+	</a>
 </template>
 
 <script>
@@ -14,11 +13,11 @@
 				type: String,
 				required: true
 			},
-			shortName: {
+			value: {
 				type: String,
 				required: true
 			},
-			value: {
+			to: {
 				type: String,
 				required: true
 			}
@@ -29,8 +28,9 @@
 <style lang="scss">
 	.footer__statistic {
 		padding: 0 0.5em;
+		color: var(--color-text-dark);
 
-		@media screen and (max-width: 750px) {
+		@media screen and (max-width: 530px) {
 			padding: 0 0.2em;
 		}
 	}
@@ -38,19 +38,5 @@
 	.footer__statistic-name {
 		color: var(--color-theme);
 		font-weight: 700;
-
-		@media screen and (max-width: 460px) {
-			display: none;
-		}
-	}
-
-	.footer__statistic-shortname {
-		display: none;
-		color: var(--color-theme);
-		font-weight: 700;
-
-		@media screen and (max-width: 460px) {
-			display: inline;
-		}
 	}
 </style>
