@@ -25,7 +25,8 @@
 				required: true
 			},
 			notify: {
-				type: Boolean
+				type: Boolean,
+				default: false
 			}
 		}
 	};
