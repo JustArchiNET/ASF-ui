@@ -1,16 +1,17 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
 import {
 	faWrench, faBars, faLaptop, faUsers, faFileAlt, faTachometerAlt, faPowerOff, faPause, faCogs, faClock,
 	faTimesCircle, faCheckCircle, faEdit, faTimes, faSquare, faMoon, faPalette, faPlay, faQuestion, faPlus,
 	faSpinner, faKey, faTrash, faCloudDownloadAlt, faSignOutAlt, faAngleDown, faLanguage, faGamepad, faClone,
-	faCalendarCheck, faLock
+	faCalendarCheck, faLock, faBook
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faWrench, faBars, faLaptop, faUsers, faFileAlt, faTachometerAlt, faPowerOff, faPause, faCogs,
 	faClock, faTimesCircle, faCheckCircle, faEdit, faTimes, faSquare, faMoon, faPalette, faPlay, faQuestion,
 	faPlus, faSpinner, faKey, faTrash, faCloudDownloadAlt, faSignOutAlt, faAngleDown, faLanguage, faGamepad,
-	faClone, faCalendarCheck, faLock);
+	faClone, faCalendarCheck, faLock, faGithub, faBook);
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 

@@ -137,6 +137,7 @@
 	"terminal-help-text": "Usage: help <Command>, available commands: commands",
 	"terminal-no-help": "There's no help text for {command} yet!",
 	"trade": "Trade",
+	"ui": "UI",
 	"ui-configuration": "UI Configuration",
 	"ui-new-release": "There is an update available for ASF-ui!",
 	"update": "Update",
