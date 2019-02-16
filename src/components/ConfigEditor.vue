@@ -162,7 +162,7 @@
 	}
 
 	.config-no-category {
-		padding: 0 1em;
+		padding: 0 1em 1em;
 		border: 0 solid var(--color-border);
 	}
 </style>
