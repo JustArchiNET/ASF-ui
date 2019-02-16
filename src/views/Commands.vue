@@ -23,7 +23,7 @@
 
 	import { mapGetters } from 'vuex';
 	import { getSelectedText } from '../utils/getSelectedText';
-	import { getLocaleForWiki, getLocaleCommand } from '../utils/getLocaleForWiki';
+	import { getLocaleCommand } from '../utils/getLocaleForWiki';
 
 	class CommandsCache {
 		constructor(maxLength) {
