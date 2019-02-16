@@ -23,7 +23,6 @@
 
 	import { mapGetters } from 'vuex';
 	import { getSelectedText } from '../utils/getSelectedText';
-	import { getLocaleCommand } from '../utils/getLocaleForWiki';
 
 	class CommandsCache {
 		constructor(maxLength) {
@@ -269,9 +268,7 @@
 			parseCommandsHTML(commandsWikiRaw) {
 				const commandsWikiHTML = document.createElement('html');
 				commandsWikiHTML.innerHTML = commandsWikiRaw;
-
-				const localeCommand = getLocaleCommand();
-				const commandsTableHTML = commandsWikiHTML.querySelector(`#user-content-${localeCommand}-1`).parentElement.nextElementSibling;
+				const commandsTableHTML = commandsWikiHTML.querySelector('h2 > a').parentElement.nextElementSibling;
 
 				return Array.from(commandsTableHTML.querySelectorAll('tbody tr'))
 						.map(tableRow => tableRow.textContent.trim().split('\n'))
