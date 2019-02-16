@@ -23,6 +23,7 @@
 
 	import { mapGetters } from 'vuex';
 	import { getSelectedText } from '../utils/getSelectedText';
+	import { getLocaleForWiki, getLocaleCommand } from '../utils/getLocaleForWiki';
 
 	class CommandsCache {
 		constructor(maxLength) {
@@ -269,7 +270,8 @@
 				const commandsWikiHTML = document.createElement('html');
 				commandsWikiHTML.innerHTML = commandsWikiRaw;
 
-				const commandsTableHTML = commandsWikiHTML.querySelector('#user-content-commands-1').parentElement.nextElementSibling;
+				const localeCommand = getLocaleCommand('commands');
+				const commandsTableHTML = commandsWikiHTML.querySelector(`#user-content-${localeCommand}-1`).parentElement.nextElementSibling;
 
 				return Array.from(commandsTableHTML.querySelectorAll('tbody tr'))
 						.map(tableRow => tableRow.textContent.trim().split('\n'))
@@ -278,11 +280,16 @@
 			async fetchCommands() {
 				const wiki = await fetchWiki('Commands', this.version);
 				const commands = this.parseCommandsHTML(wiki);
-				storage.set('cache:asf-commands', { timestamp: Date.now(), commands });
+				const locale = getLocaleForWiki();
+
+				storage.set(`cache:asf-commands:${locale}`, { timestamp: Date.now(), commands });
+
 				return commands;
 			},
 			async loadCommands() {
-				const commandsCache = storage.get('cache:asf-commands');
+				const locale = getLocaleForWiki();
+				const commandsCache = storage.get(`cache:asf-commands:${locale}`);
+
 				if (commandsCache) {
 					const { timestamp, commands } = commandsCache;
 					if (timestamp > Date.now() - 24 * 60 * 60 * 1000) return commands;
