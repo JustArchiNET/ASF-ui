@@ -7,7 +7,8 @@
 			<font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
 		</h3>
 		<div class="container" v-else>
-			<config-editor :fields="fields" :model="model" :categories="categories"></config-editor>
+			<config-editor v-if="displayCategories" :fields="fields" :model="model" :categories="categories"></config-editor>
+			<config-editor v-else :fields="fields" :model="model"></config-editor>
 
 			<div class="form-item">
 				<div class="form-item__buttons">
@@ -63,7 +64,8 @@
 		computed: {
 			...mapGetters({
 				version: 'asf/version',
-				nicknames: 'settings/nicknames'
+				nicknames: 'settings/nicknames',
+				displayCategories: 'settings/displayCategories'
 			}),
 			bot() {
 				return this.$store.getters['bots/bot'](this.$route.params.bot);

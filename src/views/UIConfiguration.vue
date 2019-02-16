@@ -1,7 +1,8 @@
 <template>
 	<main class="main-container">
 		<div class="container">
-			<config-editor :fields="fields" :categories="categories" :model="model"></config-editor>
+			<config-editor v-if="displayCategories" :fields="fields" :categories="categories" :model="model"></config-editor>
+			<config-editor v-else :fields="fields" :model="model"></config-editor>
 
 			<div class="form-item">
 				<div class="form-item__buttons">
@@ -36,6 +37,7 @@
 			const categories = [
 				{ name: this.$t('general'), fields: [this.$t('default-page'), this.$t('notification-position'), this.$t('notify-release')] },
 				{ name: this.$t('bots'), fields: [this.$t('bot-nicknames'), this.$t('bot-game-name'), this.$t('bot-fav-buttons')] },
+				{ name: this.$t('config'), fields: [this.$t('display-categories')] },
 				{ name: this.$t('debug'), fields: [this.$t('logging'), this.$t('reporting')] }
 			];
 
@@ -102,6 +104,12 @@
 					description: this.$t('bot-fav-buttons-description')
 				},
 				{
+					param: this.$t('display-categories'),
+					paramName: 'displayCategories',
+					type: 'boolean',
+					description: this.$t('display-categories-description')
+				},
+				{
 					param: this.$t('logging'),
 					paramName: 'sentryInstalled',
 					type: 'boolean',
@@ -125,6 +133,7 @@
 					nicknames: this.$store.getters['settings/nicknames'],
 					gameName: this.$store.getters['settings/gameName'],
 					favButtons: this.$store.getters['settings/favButtons'],
+					displayCategories: this.$store.getters['settings/displayCategories'],
 					sentryInstalled: this.$store.getters['settings/sentryInstalled'],
 					sentryReporting: this.$store.getters['settings/sentryReporting']
 				},
@@ -133,7 +142,8 @@
 		},
 		computed: {
 			...mapGetters({
-				sentryInstalled: 'settings/sentryInstalled'
+				sentryInstalled: 'settings/sentryInstalled',
+				displayCategories: 'settings/displayCategories'
 			}),
 			storedEventsCount() {
 				return this.storedEvents.length;
@@ -153,6 +163,7 @@
 				this.$store.dispatch('settings/setNicknames', this.model.nicknames);
 				this.$store.dispatch('settings/setGameName', this.model.gameName);
 				this.$store.dispatch('settings/setFavButtons', this.model.favButtons);
+				this.$store.dispatch('settings/setDisplayCategories', this.model.displayCategories);
 				this.$store.dispatch('settings/setSentryInstalled', this.model.sentryInstalled);
 				this.$store.dispatch('settings/setSentryReporting', this.model.sentryReporting);
 
