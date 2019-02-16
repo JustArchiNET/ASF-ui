@@ -1,9 +1,7 @@
 import fetchWiki from './fetchWiki';
 import * as storage from './storage';
-import { getLocaleForWiki } from './getLocaleForWiki';
 
-export default async function loadParameterDescriptions(version) {
-	const locale = getLocaleForWiki();
+export default async function loadParameterDescriptions(version, locale) {
 	const descriptionsCache = storage.get(`cache:parameter-descriptions:${locale}`);
 	if (descriptionsCache) {
 		const { timestamp, descriptions } = descriptionsCache;

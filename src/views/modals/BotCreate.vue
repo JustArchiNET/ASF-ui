@@ -68,7 +68,7 @@
 			async loadConfig() {
 				const [{ body: fields }, descriptions] = await Promise.all([
 					fetchConfigSchema('ArchiSteamFarm.BotConfig'),
-					loadParameterDescriptions(this.version)
+					loadParameterDescriptions(this.version, this.$i18n.locale)
 				]);
 
 				this.model = {};
