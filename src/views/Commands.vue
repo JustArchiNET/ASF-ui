@@ -270,7 +270,7 @@
 				const commandsWikiHTML = document.createElement('html');
 				commandsWikiHTML.innerHTML = commandsWikiRaw;
 
-				const localeCommand = getLocaleCommand('commands');
+				const localeCommand = getLocaleCommand();
 				const commandsTableHTML = commandsWikiHTML.querySelector(`#user-content-${localeCommand}-1`).parentElement.nextElementSibling;
 
 				return Array.from(commandsTableHTML.querySelectorAll('tbody tr'))
@@ -280,14 +280,14 @@
 			async fetchCommands() {
 				const wiki = await fetchWiki('Commands', this.version);
 				const commands = this.parseCommandsHTML(wiki);
-				const locale = getLocaleForWiki();
+				const locale = this.$i18n.locale;
 
 				storage.set(`cache:asf-commands:${locale}`, { timestamp: Date.now(), commands });
 
 				return commands;
 			},
 			async loadCommands() {
-				const locale = getLocaleForWiki();
+				const locale = this.$i18n.locale;
 				const commandsCache = storage.get(`cache:asf-commands:${locale}`);
 
 				if (commandsCache) {
