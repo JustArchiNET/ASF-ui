@@ -1,5 +1,5 @@
 <template>
-	<main class="main-container">
+	<main class="main-container main-container--fullheight">
 		<div class="container">
 			<config-editor v-if="displayCategories" :fields="fields" :categories="categories" :model="model"></config-editor>
 			<config-editor v-else :fields="fields" :model="model"></config-editor>
