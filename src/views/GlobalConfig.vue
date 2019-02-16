@@ -7,7 +7,8 @@
 				</h3>
 			</template>
 			<template v-else>
-				<config-editor :fields="fields" :model="model" :categories="categories" :descriptions="descriptions"></config-editor>
+				<config-editor v-if="displayCategories" :fields="fields" :model="model" :categories="categories" :descriptions="descriptions"></config-editor>
+				<config-editor v-else :fields="fields" :model="model" :descriptions="descriptions"></config-editor>
 
 				<div class="form-item">
 					<div class="form-item__buttons">
@@ -67,7 +68,10 @@
 			};
 		},
 		computed: {
-			...mapGetters({ version: 'asf/version' })
+			...mapGetters({
+				version: 'asf/version',
+				displayCategories: 'settings/displayCategories'
+			})
 		},
 		async created() {
 			const [

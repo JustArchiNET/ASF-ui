@@ -6,7 +6,8 @@
 			<font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
 		</h3>
 		<div class="container" v-else>
-			<config-editor :fields="fields" :model="model" :categories="categories"></config-editor>
+			<config-editor v-if="displayCategories" :fields="fields" :model="model" :categories="categories"></config-editor>
+			<config-editor v-else :fields="fields" :model="model"></config-editor>
 
 			<div class="form-item">
 				<div class="form-item__buttons">
@@ -55,7 +56,10 @@
 			};
 		},
 		computed: {
-			...mapGetters({ version: 'asf/version' })
+			...mapGetters({
+				version: 'asf/version',
+				displayCategories: 'settings/displayCategories'
+			})
 		},
 		async created() {
 			await this.loadConfig();
@@ -116,6 +120,6 @@
 
 <style lang="scss">
 	.main-container--bot-create {
-		width: 1000px;
+		max-width: 1000px;
 	}
 </style>
