@@ -11,7 +11,7 @@
 		</template>
 
 		<template v-if="!categories">
-			<fieldset class="config-no-category">
+			<fieldset class="config-uncategorized">
 				<component v-for="field in uncategorizedFields" class="form-item--config" :key="field.param" :is="componentFromField(field)" :schema="field" :current-value="model[field.paramName]" @update="updateModel"></component>
 			</fieldset>
 		</template>
@@ -161,7 +161,7 @@
 		}
 	}
 
-	.config-no-category {
+	.config-uncategorized {
 		padding: 0 1em 1em;
 		border: 0 solid var(--color-border);
 	}
