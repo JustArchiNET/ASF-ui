@@ -7,6 +7,7 @@ export const state = {
 	nicknames: false,
 	gameName: false,
 	favButtons: 0,
+	displayCategories: true,
 	sentryInstalled: false,
 	sentryReporting: false,
 	selectedBots: []
@@ -19,6 +20,7 @@ export const mutations = {
 	setNicknames: (state, nicknames) => state.nicknames = nicknames,
 	setGameName: (state, gameName) => state.gameName = gameName,
 	setFavButtons: (state, favButtons) => state.favButtons = favButtons,
+	setDisplayCategories: (state, displayCategories) => state.displayCategories = displayCategories,
 	setSentryInstalled: (state, sentryInstalled) => state.sentryInstalled = sentryInstalled,
 	setSentryReporting: (state, sentryReporting) => state.sentryReporting = sentryReporting,
 	setSelectedBots: (state, selectedBots) => state.selectedBots = selectedBots
@@ -32,6 +34,7 @@ export const actions = {
 		commit('setNicknames', storage.get('settings:nicknames', false));
 		commit('setGameName', storage.get('settings:game-name', false));
 		commit('setFavButtons', storage.get('settings:fav-buttons', 0));
+		commit('setDisplayCategories', storage.get('settings:display-categories', true));
 		commit('setSentryInstalled', storage.get('settings:sentry-installed', false));
 		commit('setSentryReporting', storage.get('settings:sentry-reporting', false));
 		commit('setSelectedBots', storage.get('settings:selected-bots', []));
@@ -60,6 +63,10 @@ export const actions = {
 		storage.set('settings:fav-buttons', value);
 		commit('setFavButtons', value);
 	},
+	setDisplayCategories({ commit }, value) {
+		storage.set('settings:display-categories', value);
+		commit('setDisplayCategories', value);
+	},
 	setSentryInstalled({ commit }, value) {
 		storage.set('settings:sentry-installed', value);
 		commit('setSentryInstalled', value);
@@ -81,6 +88,7 @@ export const getters = {
 	nicknames: state => state.nicknames,
 	gameName: state => state.gameName,
 	favButtons: state => state.favButtons,
+	displayCategories: state => state.displayCategories,
 	sentryInstalled: state => state.sentryInstalled,
 	sentryReporting: state => state.sentryReporting,
 	selectedBots: state => state.selectedBots
