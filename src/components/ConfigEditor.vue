@@ -1,18 +1,23 @@
 <template>
 	<div class="config-editor">
 		<template v-if="categories">
-			<config-category :name="category.name" v-for="category in categories" :key="category.name" v-if="categoryFields(category.name).length">
-				<component v-for="field in categoryFields(category.name)" class="form-item--config" :key="field.param" :is="componentFromField(field)" :schema="field" :current-value="model[field.paramName]" @update="updateModel"></component>
-			</config-category>
-
-			<config-category :name="$t('other')" v-if="uncategorizedFields.length" key="Other">
-				<component v-for="field in uncategorizedFields" class="form-item--config" :key="field.param" :is="componentFromField(field)" :schema="field" :current-value="model[field.paramName]" @update="updateModel"></component>
-			</config-category>
+			<masonry :cols="{default: 2, 900: 1}" :gutter="30">
+				<config-category :name="category.name" v-for="category in categories" :key="category.name" v-if="categoryFields(category.name).length">
+					<component v-for="field in categoryFields(category.name)" class="form-item--config" :key="field.param" :is="componentFromField(field)" :schema="field" :current-value="model[field.paramName]" @update="updateModel"></component>
+				</config-category>
+			</masonry>
+			<masonry :cols="{default: 2, 900: 1}" :gutter="30">
+				<config-category :name="$t('other')" v-if="uncategorizedFields.length" key="Other">
+					<component v-for="field in uncategorizedFields" class="form-item--config" :key="field.param" :is="componentFromField(field)" :schema="field" :current-value="model[field.paramName]" @update="updateModel"></component>
+				</config-category>
+			</masonry>
 		</template>
 
 		<template v-if="!categories">
 			<fieldset class="config-uncategorized">
-				<component v-for="field in uncategorizedFields" class="form-item--config" :key="field.param" :is="componentFromField(field)" :schema="field" :current-value="model[field.paramName]" @update="updateModel"></component>
+				<masonry :cols="{default: 2, 900: 1}" :gutter="30">
+					<component v-for="field in uncategorizedFields" class="form-item--config" :key="field.param" :is="componentFromField(field)" :schema="field" :current-value="model[field.paramName]" @update="updateModel"></component>
+				</masonry>
 			</fieldset>
 		</template>
 	</div>
