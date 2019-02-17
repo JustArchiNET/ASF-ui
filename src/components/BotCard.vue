@@ -102,7 +102,7 @@
 		display: grid;
 		grid-template-areas: 'avatar meta buttons';
 		grid-template-columns: min-content 1fr auto;
-		padding: 0.5em;
+		padding: .5em;
 		transition: border .3s;
 
 		&--big {
@@ -111,12 +111,12 @@
 			grid-template-rows: auto min-content;
 
 			.bot__actions {
-				margin-top: 0.5rem;
+				margin-top: .5rem;
 			}
 
 			.bot__action {
 				font-size: 1.25rem;
-				padding: 0 0.5rem;
+				padding: 0 .5rem;
 			}
 		}
 	}
@@ -124,8 +124,8 @@
 	.bot__avatar {
 		cursor: pointer;
 		display: block;
-		height: 2.25em; // (1em + 0.8em) * 1.25
-		padding-right: 0.5em;
+		height: 2.25em; // (1em + .8em) * 1.25
+		padding-right: .5em;
 		width: 2.25em;
 	}
 
@@ -148,7 +148,7 @@
 	}
 
 	.bot__status-property--text {
-		font-size: 0.8em;
+		font-size: .8em;
 		font-style: italic;
 	}
 
@@ -163,7 +163,7 @@
 		color: var(--color-text-disabled);
 		cursor: pointer;
 		display: block;
-		padding: 0.5em;
+		padding: .5em;
 		transition: color .3s;
 
 		&:hover {

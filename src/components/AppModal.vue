@@ -98,7 +98,7 @@
 		font-size: 1.2em;
 		position: absolute;
 		right: -1.5em;
-		top: 0.25em;
+		top: .25em;
 	}
 
 	.modal-enter, .modal-leave-to {

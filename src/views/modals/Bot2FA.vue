@@ -150,9 +150,9 @@
 		font-size: 1.6em;
 		font-weight: bold;
 		height: 2em;
-		letter-spacing: 0.5em;
+		letter-spacing: .5em;
 		text-align: center;
-		text-indent: 0.5em;
+		text-indent: .5em;
 		width: 8em;
 
 		.app--dark-mode & {

@@ -42,12 +42,12 @@
 		align-items: center;
 		display: inline-flex;
 		justify-content: space-between;
-		padding: 0.5em 1.5em;
+		padding: .5em 1.5em;
 		text-align: right;
 		white-space: nowrap;
 
 		.button--small & {
-			padding: 0.25em 0.5em;
+			padding: .25em .5em;
 		}
 
 		&:hover {
@@ -60,7 +60,7 @@
 	}
 
 	.dropdown__item-icon {
-		font-size: 0.8em;
+		font-size: .8em;
 	}
 
 	.dropdown__item--disabled {

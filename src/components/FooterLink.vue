@@ -37,23 +37,23 @@
 		display: flex;
 		font-weight: 700;
 		height: 100%;
-		margin: 0 0.5em;
-		padding: 0 0.5em;
+		margin: 0 .5em;
+		padding: 0 .5em;
 		text-decoration: none;
 
 		@media screen and (max-width: 530px) {
-			margin: 0 0.2em;
-			padding: 0 0.2em;
+			margin: 0 .2em;
+			padding: 0 .2em;
 		}
 
 		@media screen and (max-width: 460px) {
-			margin: 0 0.5em;
-			padding: 0 0.5em;
+			margin: 0 .5em;
+			padding: 0 .5em;
 		}
 
 		@media screen and (max-width: 350px) {
-			margin: 0 0.2em;
-			padding: 0 0.2em;
+			margin: 0 .2em;
+			padding: 0 .2em;
 		}
 	}
 
@@ -66,10 +66,10 @@
 	}
 
 	.footer__link-icon {
-		margin-right: 0.5em;
+		margin-right: .5em;
 
 		@media screen and (max-width: 530px) {
-			margin-right: 0.2em;
+			margin-right: .2em;
 		}
 	}
 </style>

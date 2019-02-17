@@ -41,8 +41,8 @@
 <style lang="scss">
 	.bot-games {
 		display: grid;
-		font-size: 0.8em;
-		grid-gap: 0.25em;
+		font-size: .8em;
+		grid-gap: .25em;
 		grid-template-columns: repeat(3, 1fr);
 		margin: 1em 0 0;
 		width: 100%;

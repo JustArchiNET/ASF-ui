@@ -34,13 +34,13 @@
 		color: var(--color-text-disabled);
 		display: flex;
 		justify-content: space-between;
-		padding: 0.75em 0.5em;
+		padding: .75em .5em;
 		text-transform: uppercase;
 		white-space: nowrap;
 		width: 100%;
 
 		.app--small-navigation & {
-			padding: 0.75em 0;
+			padding: .75em 0;
 
 			.navigation-statistic__icon {
 				display: inline-flex;
@@ -79,19 +79,19 @@
 		}
 
 		svg {
-			margin-right: 0.5em;
+			margin-right: .5em;
 		}
 	}
 
 	.navigation-statistic__left-side {
 		justify-content: space-between;
-		margin-right: 0.5em;
+		margin-right: .5em;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 	}
 
 	.navigation-statistic__name {
-		font-size: 0.9em;
+		font-size: .9em;
 	}
 </style>

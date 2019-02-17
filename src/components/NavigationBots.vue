@@ -59,9 +59,9 @@
 <style lang="scss">
 	.bot-cards {
 		display: grid;
-		grid-gap: 0.5em;
+		grid-gap: .5em;
 		grid-template-columns: 1fr 1fr;
-		padding: 0.5em;
+		padding: .5em;
 
 		.app--small-navigation & {
 			grid-template-columns: 1fr;
@@ -83,7 +83,7 @@
 		flex-direction: column;
 		min-width: 0;
 		overflow: hidden;
-		padding: 0.25em 0.1em;
+		padding: .25em .1em;
 		text-shadow: 0 0 1px var(--color-text-dark);
 	}
 
@@ -94,12 +94,12 @@
 	}
 
 	.bot-card__name {
-		font-size: 0.9em;
+		font-size: .9em;
 		text-transform: capitalize;
 	}
 
 	.bot-card--selected {
 		border: 1px solid #0dc10a;
-		box-shadow: 0 0 0.5em #0dc10a;
+		box-shadow: 0 0 .5em #0dc10a;
 	}
 </style>
