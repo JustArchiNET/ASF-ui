@@ -57,7 +57,7 @@
 	}
 
 	.dropdown__icon {
-		margin-left: .5em;
+		margin-left: 0.5em;
 		transition: transform .3s;
 	}
 

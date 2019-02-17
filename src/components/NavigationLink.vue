@@ -80,7 +80,7 @@
 		}
 
 		svg {
-			margin-right: .5em;
+			margin-right: 0.5em;
 		}
 	}
 </style>
