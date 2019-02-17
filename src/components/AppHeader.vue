@@ -52,12 +52,12 @@
 	}
 
 	.navigation__button {
-		display: flex;
 		align-items: center;
+		color: var(--color-text);
+		cursor: pointer;
+		display: flex;
 		justify-content: center;
 		padding: 0 1em;
-		cursor: pointer;
-		color: var(--color-text);
 
 		&.navigation__button--active, &:hover {
 			background: var(--color-theme-dark);
@@ -65,8 +65,8 @@
 	}
 
 	.navigation__menu {
-		margin-left: auto;
 		display: flex;
 		justify-content: space-between;
+		margin-left: auto;
 	}
 </style>

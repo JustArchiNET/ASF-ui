@@ -62,18 +62,18 @@
 	}
 
 	.dropdown__items {
-		user-select: none;
+		background: var(--color-navigation);
+		border-radius: .1875em 0 .1875em .1875em;
+		color: var(--color-text);
 		display: flex;
 		flex-direction: column;
 		margin: 0;
+		min-width: 100%;
+		overflow: hidden;
 		padding: 0;
 		position: absolute;
-		top: 100%;
 		right: 0;
-		min-width: 100%;
-		background: var(--color-navigation);
-		color: var(--color-text);
-		border-radius: .1875em 0 .1875em .1875em;
-		overflow: hidden;
+		top: 100%;
+		user-select: none;
 	}
 </style>

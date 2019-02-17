@@ -1,23 +1,23 @@
 .tooltip {
 	display: block;
-	z-index: 1004;
-	max-width: 100%;
 	font-size: 0.8em;
+	max-width: 100%;
+	z-index: 1004;
 
 	.tooltip-inner {
 		background: var(--color-navigation);
-		color: var(--color-text);
 		border-radius: 4px;
+		color: var(--color-text);
 		padding: 0.25em 0.75em;
 	}
 
 	.tooltip-arrow {
-		width: 0;
-		height: 0;
-		border-style: solid;
-		position: absolute;
-		margin: 5px;
 		border-color: var(--color-navigation);
+		border-style: solid;
+		height: 0;
+		margin: 5px;
+		position: absolute;
+		width: 0;
 		z-index: 1;
 	}
 
@@ -25,14 +25,14 @@
 		margin-bottom: 5px;
 
 		.tooltip-arrow {
-			border-width: 5px 5px 0 5px;
+			border-bottom-color: transparent !important;
 			border-left-color: transparent !important;
 			border-right-color: transparent !important;
-			border-bottom-color: transparent !important;
+			border-width: 5px 5px 0 5px;
 			bottom: -5px;
 			left: calc(50% - 5px);
-			margin-top: 0;
 			margin-bottom: 0;
+			margin-top: 0;
 		}
 	}
 
@@ -40,14 +40,14 @@
 		margin-top: 5px;
 
 		.tooltip-arrow {
-			border-width: 0 5px 5px 5px;
 			border-left-color: transparent !important;
 			border-right-color: transparent !important;
 			border-top-color: transparent !important;
-			top: -5px;
+			border-width: 0 5px 5px 5px;
 			left: calc(50% - 5px);
-			margin-top: 0;
 			margin-bottom: 0;
+			margin-top: 0;
+			top: -5px;
 		}
 	}
 
@@ -55,14 +55,14 @@
 		margin-left: 5px;
 
 		.tooltip-arrow {
-			border-width: 5px 5px 5px 0;
+			border-bottom-color: transparent !important;
 			border-left-color: transparent !important;
 			border-top-color: transparent !important;
-			border-bottom-color: transparent !important;
+			border-width: 5px 5px 5px 0;
 			left: -5px;
-			top: calc(50% - 5px);
 			margin-left: 0;
 			margin-right: 0;
+			top: calc(50% - 5px);
 		}
 	}
 
@@ -70,26 +70,26 @@
 		margin-right: 5px;
 
 		.tooltip-arrow {
-			border-width: 5px 0 5px 5px;
-			border-top-color: transparent !important;
-			border-right-color: transparent !important;
 			border-bottom-color: transparent !important;
-			right: -5px;
-			top: calc(50% - 5px);
+			border-right-color: transparent !important;
+			border-top-color: transparent !important;
+			border-width: 5px 0 5px 5px;
 			margin-left: 0;
 			margin-right: 0;
+			right: -5px;
+			top: calc(50% - 5px);
 		}
 	}
 
 	&[aria-hidden='true'] {
-		visibility: hidden;
 		opacity: 0;
 		transition: opacity .15s, visibility .15s;
+		visibility: hidden;
 	}
 
 	&[aria-hidden='false'] {
-		visibility: visible;
 		opacity: 1;
 		transition: opacity .15s;
+		visibility: visible;
 	}
 }

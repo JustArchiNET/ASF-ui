@@ -40,66 +40,66 @@
 
 <style lang="scss">
 	.bot-games {
+		display: grid;
+		font-size: 0.8em;
+		grid-gap: 0.25em;
+		grid-template-columns: repeat(3, 1fr);
 		margin: 1em 0 0;
 		width: 100%;
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		grid-gap: 0.25em;
-		font-size: 0.8em;
 
 		@media screen and (max-width: 1200px) {
-			grid-template-columns: repeat(2, 1fr);
 			font-size: 1em;
+			grid-template-columns: repeat(2, 1fr);
 		}
 
 		@media screen and (max-width: 530px) {
-			grid-template-columns: none;
 			font-size: 1.2em;
+			grid-template-columns: none;
 		}
 	}
 
 	.bot-game {
 		min-width: 0;
-		width: 100%;
 		position: relative;
+		width: 100%;
 	}
 
 	.bot-game__info {
-		position: absolute;
-		left: 0;
-		top: 0;
-		height: 100%;
-		width: 100%;
-		display: flex;
 		align-items: center;
-		justify-content: center;
-		flex-direction: column;
-		z-index: 2;
-		padding: 1em;
 		box-sizing: border-box;
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		justify-content: center;
+		left: 0;
+		padding: 1em;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		z-index: 2;
 	}
 
 	.bot-game__name {
-		font-weight: bold;
 		color: var(--color-text);
-		white-space: nowrap;
-		text-overflow: ellipsis;
+		font-weight: bold;
 		overflow: hidden;
-		width: 100%;
 		text-align: center;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		width: 100%;
 	}
 
 	.bot-game__background {
-		z-index: 1;
-		overflow: hidden;
-		line-height: 0;
+		border: 2px solid var(--color-status);
 		border-radius: 4px;
 		box-sizing: border-box;
-		border: 2px solid var(--color-status);
+		line-height: 0;
+		overflow: hidden;
+		z-index: 1;
 	}
 
 	.bot-game__image {
-		width: 100%;
 		filter: blur(1px) brightness(0.4);
+		width: 100%;
 	}
 </style>

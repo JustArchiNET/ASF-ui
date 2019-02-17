@@ -29,8 +29,8 @@
 
 <style lang="scss">
 	.bgr__no-keys {
-		text-align: center;
 		font-weight: bold;
+		text-align: center;
 	}
 
 	.bgr__table {

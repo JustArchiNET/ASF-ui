@@ -38,16 +38,16 @@
 
 <style lang="scss">
 	.side-menu {
-		position: fixed;
-		width: 15em;
 		background: var(--color-navigation);
-		z-index: 1001;
-		top: 0;
 		bottom: 0;
-		right: -15em;
-		transform: translate(-15em, 0);
 		padding-top: var(--navigation-height);
+		position: fixed;
+		right: -15em;
+		top: 0;
 		transition: transform ease-in-out .3s;
+		transform: translate(-15em, 0);
+		width: 15em;
+		z-index: 1001;
 
 		.app--boxed-layout & {
 			@media screen and (min-width: 1250px) {
@@ -61,22 +61,22 @@
 	}
 
 	.theme-switcher {
-		padding: 1em;
 		display: grid;
-		grid-template-columns: repeat(6, 1fr);
 		grid-gap: 0.5em;
+		grid-template-columns: repeat(6, 1fr);
+		padding: 1em;
 	}
 
 	.theme-switcher__theme {
-		width: 20px;
-		height: 20px;
-		box-sizing: border-box;
 		background: var(--color-theme);
-		margin: auto;
-		cursor: pointer;
-		transition: background .3s;
-		border-radius: 4px;
 		border: 3px solid var(--color-theme);
+		border-radius: 4px;
+		box-sizing: border-box;
+		cursor: pointer;
+		height: 20px;
+		margin: auto;
+		transition: background .3s;
+		width: 20px;
 
 		&:hover {
 			background: var(--color-theme-dark);
@@ -84,10 +84,10 @@
 	}
 
 	.side-menu__category {
-		padding: 0 1em;
-		margin: 1em 0 0.5em;
 		box-sizing: border-box;
 		color: var(--color-text-secondary);
+		margin: 1em 0 0.5em;
+		padding: 0 1em;
 	}
 
 	.side-menu__switch--boxed {
