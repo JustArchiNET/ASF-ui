@@ -13,9 +13,7 @@ export default async function loadParameterDescriptions(version, locale) {
 	const configWiki = await fetchWiki('Configuration', version);
 	const wikiHTML = document.createElement('html');
 	wikiHTML.innerHTML = configWiki;
-	window.wiki = wikiHTML;
-
-	const parametersHTML = Array.from(wiki.querySelectorAll('h3 > code'));
+	const parametersHTML = Array.from(wikiHTML.querySelectorAll('h3 > code'));
 
 	for (const parameterHTML of parametersHTML) {
 		const parameterName = parameterHTML.innerText;
