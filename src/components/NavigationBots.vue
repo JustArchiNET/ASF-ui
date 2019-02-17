@@ -59,8 +59,8 @@
 <style lang="scss">
 	.bot-cards {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
 		grid-gap: 0.5em;
+		grid-template-columns: 1fr 1fr;
 		padding: 0.5em;
 
 		.app--small-navigation & {
@@ -73,24 +73,24 @@
 	}
 
 	.bot-card {
-		min-width: 0;
-		padding: 0.25em 0.1em;
+		align-items: center;
+		background: var(--color-status);
+		border: 1px solid var(--color-navigation);
+		border-radius: 2px;
+		color: var(--color-text);
+		cursor: pointer;
 		display: flex;
 		flex-direction: column;
-		align-items: center;
-		border-radius: 2px;
-		border: 1px solid var(--color-navigation);
-		color: var(--color-text);
-		text-shadow: 0 0 1px var(--color-text-dark);
-		background: var(--color-status);
+		min-width: 0;
 		overflow: hidden;
-		cursor: pointer;
+		padding: 0.25em 0.1em;
+		text-shadow: 0 0 1px var(--color-text-dark);
 	}
 
 	.bot-card__value {
-		word-break: break-all;
-		font-weight: 600;
 		font-size: 1.2em;
+		font-weight: 600;
+		word-break: break-all;
 	}
 
 	.bot-card__name {

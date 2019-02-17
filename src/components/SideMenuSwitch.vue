@@ -32,12 +32,12 @@
 
 <style lang="scss">
 	.side-menu__switch {
-		padding: 1em 1em 0.5em;
+		align-items: center;
 		color: var(--color-text-secondary);
+		cursor: pointer;
 		display: flex;
 		justify-content: space-between;
-		cursor: pointer;
-		align-items: center;
+		padding: 1em 1em 0.5em;
 
 		> svg[data-icon="times-circle"] {
 			color: var(--color-text-disabled);

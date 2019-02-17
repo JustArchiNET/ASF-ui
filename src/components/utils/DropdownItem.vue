@@ -39,12 +39,12 @@
 
 <style lang="scss">
 	.dropdown__item {
+		align-items: center;
 		display: inline-flex;
 		justify-content: space-between;
 		padding: 0.5em 1.5em;
-		white-space: nowrap;
 		text-align: right;
-		align-items: center;
+		white-space: nowrap;
 
 		.button--small & {
 			padding: 0.25em 0.5em;

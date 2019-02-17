@@ -47,43 +47,43 @@
 
 <style lang="scss">
 	.modal {
-		position: fixed;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		z-index: 1020;
-		display: flex;
 		align-items: center;
+		bottom: 0;
+		display: flex;
 		justify-content: center;
+		left: 0;
+		position: fixed;
+		right: 0;
+		top: 0;
+		z-index: 1020;
 	}
 
 	.modal__background {
-		position: fixed;
-		top: 0;
+		background: rgba(0, 0, 0, 0.8);
 		bottom: 0;
 		left: 0;
+		position: fixed;
 		right: 0;
-		background: rgba(0, 0, 0, 0.8);
+		top: 0;
 		transition: background .2s linear;
 	}
 
 	.modal__body {
-		transition: opacity .3s ease-out, transform .3s ease-out;
 		position: relative;
+		transition: opacity .3s ease-out, transform .3s ease-out;
 	}
 
 	.modal__main {
 		background: var(--color-background);
-		box-shadow: 0 0 5px 0 var(--color-border);
 		border-radius: 4px;
-		z-index: 21;
-		position: relative;
+		box-shadow: 0 0 5px 0 var(--color-border);
 		box-sizing: border-box;
 		display: flex;
 		flex-direction: column;
-		max-width: 80vw;
 		max-height: 80vh;
+		max-width: 80vw;
+		position: relative;
+		z-index: 21;
 
 		> div {
 			box-sizing: border-box;
@@ -93,12 +93,12 @@
 	}
 
 	.modal__close {
+		color: var(--color-text-disabled);
+		cursor: pointer;
+		font-size: 1.2em;
 		position: absolute;
 		right: -1.5em;
 		top: 0.25em;
-		font-size: 1.2em;
-		color: var(--color-text-disabled);
-		cursor: pointer;
 	}
 
 	.modal-enter, .modal-leave-to {
@@ -107,8 +107,8 @@
 		}
 
 		.modal__body {
-			transform: scale(0.75);
 			opacity: 0;
+			transform: scale(0.75);
 		}
 	}
 </style>

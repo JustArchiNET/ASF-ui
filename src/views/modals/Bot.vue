@@ -122,18 +122,18 @@
 
 	.bot-profile {
 		display: grid;
-		grid-template-columns: auto 1fr;
-		grid-template-rows: auto auto;
 		grid-column-gap: 0.5em;
 		grid-template-areas: 'avatar meta' 'avatar actions';
+		grid-template-columns: auto 1fr;
+		grid-template-rows: auto auto;
 	}
 
 	.bot-profile__avatar-wrapper {
-		grid-area: avatar;
-		padding: 2px;
 		background: var(--color-status);
-		width: 75px;
+		grid-area: avatar;
 		height: 75px;
+		padding: 2px;
+		width: 75px;
 	}
 
 	.bot-profile__avatar {
@@ -150,16 +150,16 @@
 	}
 
 	.bot-profile__status {
-		margin: 0;
 		font-style: italic;
+		margin: 0;
 	}
 
 	.bot-profile__name,
 	.bot-profile__status {
+		display: inline-block;
+		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
-		overflow: hidden;
-		display: inline-block;
 		width: 100%;
 	}
 
@@ -168,17 +168,17 @@
 	}
 
 	.bot-profile__actions {
+		align-items: center;
 		grid-area: actions;
 		display: flex;
-		align-items: center;
 	}
 
 	.bot-farming-info {
-		margin: 1em 0 0;
-		width: 100%;
 		display: grid;
 		grid-gap: 0.7em;
 		grid-template-columns: repeat(3, 1fr);
+		margin: 1em 0 0;
+		width: 100%;
 
 		@media screen and (max-width: 530px) {
 			grid-gap: 0.5em;

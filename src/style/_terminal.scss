@@ -1,17 +1,17 @@
 @import './settings';
 
 .terminal {
-	width: 100%;
 	background: black;
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-	padding: 0.5em 1em;
-	color: var(--color-text);
-	font-family: monospace, monospace;
 	box-sizing: border-box;
-	height: 100%;
-	overflow-y: auto;
+	color: var(--color-text);
 	cursor: text;
+	font-family: monospace, monospace;
+	height: 100%;
 	line-height: 1;
+	overflow-y: auto;
+	padding: 0.5em 1em;
+	width: 100%;
 
 	@media screen and (max-width: 600px) {
 		font-size: 10px;
@@ -20,18 +20,18 @@
 }
 
 .terminal-message {
-	width: 100%;
 	display: grid;
 	grid-template-columns: auto 1fr;
-	margin: 0 0 0.1em;
 	line-height: 1.1;
+	margin: 0 0 0.1em;
+	width: 100%;
 
 	&.terminal-message--truncated {
 		&:not(:hover) {
 			.terminal-message__content {
 				overflow: hidden;
-				white-space: nowrap;
 				text-overflow: ellipsis;
+				white-space: nowrap;
 			}
 		}
 	}
@@ -70,11 +70,11 @@
 
 
 .terminal__input-wrapper {
-	width: 100%;
 	display: grid;
+	grid-template-areas: 'sign text';
 	grid-template-columns: auto 1fr;
 	position: relative;
-	grid-template-areas: 'sign text';
+	width: 100%;
 
 	.terminal-message__sign {
 		color: var(--color-text);
@@ -82,17 +82,17 @@
 }
 
 .terminal__input {
-	width: 100%;
-	border: none;
-	height: 1em;
-	box-sizing: border-box;
 	background: transparent;
+	border: none;
+	box-sizing: border-box;
 	color: var(--color-text);
 	font-family: inherit;
 	font-size: 100%;
+	height: 1em;
 	line-height: 1.1;
 	margin: 0;
 	padding: 0;
+	width: 100%;
 
 	&:focus {
 		outline: none;
@@ -100,9 +100,9 @@
 }
 
 .terminal__input--autocomplete {
-	padding-left: 1.2em;
-	position: absolute;
-	pointer-events: none;
 	color: var(--color-text-disabled);
 	height: 1em;
+	padding-left: 1.2em;
+	pointer-events: none;
+	position: absolute;
 }

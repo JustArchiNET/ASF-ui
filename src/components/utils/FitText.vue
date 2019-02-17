@@ -38,7 +38,7 @@
 				// first make it an inline block and set the line height to a fixed pixel value
 				element.style.display = 'inline-block';
 				element.style.lineHeight = '1px';
-				// then keep trying untill it fits
+				// then keep trying until it fits
 				let fontSize = this.max;
 				let stepSize = (this.unit === 'px') ? 1 : 0.05;
 				element.style.fontSize = fontSize + this.unit;

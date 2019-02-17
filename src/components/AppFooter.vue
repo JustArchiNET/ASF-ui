@@ -55,16 +55,16 @@
 
 <style lang="scss">
 	.footer {
-		grid-area: footer;
-		width: 100%;
-		height: var(--navigation-height);
+		align-items: center;
 		background: var(--color-background-light);
 		border-top: 1px solid var(--color-border);
 		box-sizing: border-box;
 		display: flex;
-		align-items: center;
 		font-size: 0.9em;
+		grid-area: footer;
+		height: var(--navigation-height);
 		padding: 0 0.5em;
+		width: 100%;
 	}
 
 	.footer__links {

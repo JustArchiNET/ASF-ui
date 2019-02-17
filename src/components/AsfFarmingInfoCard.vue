@@ -29,28 +29,28 @@
 	}
 
 	.info-card__icon {
-		height: 4rem;
-		width: 4rem;
-		font-size: 2.1em;
-		display: flex;
 		align-items: center;
-		justify-content: center;
 		background: var(--color-theme);
 		color: var(--color-text);
+		display: flex;
+		font-size: 2.1em;
+		height: 4rem;
+		justify-content: center;
+		width: 4rem;
 	}
 
 	.info-card__body {
 		display: flex;
 		flex-direction: column;
+		justify-content: space-between;
 		overflow: hidden;
 		padding: 5px 10px;
-		justify-content: space-between;
 	}
 
 	.info-card__title {
-		text-transform: uppercase;
 		font-size: 0.9em;
 		margin: 0;
+		text-transform: uppercase;
 	}
 
 	.info-card__value {

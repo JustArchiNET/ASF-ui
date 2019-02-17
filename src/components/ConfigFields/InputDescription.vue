@@ -42,10 +42,10 @@
 
 <style lang="scss">
 	.form-item__description {
-		will-change: height;
-		transform: translateZ(0);
 		backface-visibility: hidden;
 		perspective: 1000px;
+		transform: translateZ(0);
+		will-change: height;
 	}
 
 	.form-item__description-enter, .form-item__description-leave-to {

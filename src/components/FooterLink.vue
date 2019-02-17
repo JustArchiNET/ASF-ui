@@ -32,28 +32,28 @@
 
 <style lang="scss">
 	.footer__link {
-		color: var(--color-theme);
-		font-weight: 700;
-		text-decoration: none;
-		height: 100%;
-		padding: 0 0.5em;
-		margin: 0 0.5em;
-		display: flex;
 		align-items: center;
+		color: var(--color-theme);
+		display: flex;
+		font-weight: 700;
+		height: 100%;
+		margin: 0 0.5em;
+		padding: 0 0.5em;
+		text-decoration: none;
 
 		@media screen and (max-width: 530px) {
-			padding: 0 0.2em;
 			margin: 0 0.2em;
+			padding: 0 0.2em;
 		}
 
 		@media screen and (max-width: 460px) {
-			padding: 0 0.5em;
 			margin: 0 0.5em;
+			padding: 0 0.5em;
 		}
 
 		@media screen and (max-width: 350px) {
-			padding: 0 0.2em;
 			margin: 0 0.2em;
+			padding: 0 0.2em;
 		}
 	}
 

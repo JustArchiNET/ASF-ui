@@ -1,23 +1,23 @@
 .main-container {
-	padding: 1em;
 	height: 100%;
 	overflow: auto;
+	padding: 1em;
 }
 
 .main-container--center {
-	display: flex;
 	align-items: center;
+	display: flex;
 	justify-content: center;
 }
 
 .container {
-	border-top: 3px solid var(--color-theme);
 	background: var(--color-background-light);
-	max-width: 100%;
-	padding: 1em;
 	border-radius: 3px;
+	border-top: 3px solid var(--color-theme);
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 	margin-bottom: 1em;
+	max-width: 100%;
+	padding: 1em;
 
 	&:last-child {
 		margin-bottom: 0;
@@ -29,6 +29,6 @@
 }
 
 .container--fullheight {
-	height: 100%;
 	box-sizing: border-box;
+	height: 100%;
 }

@@ -8,21 +8,21 @@
 
 .form-item--config {
 	display: grid;
-	grid-template-rows: auto auto auto;
 	grid-template-areas: 'label' 'value' 'description';
+	grid-template-rows: auto auto auto;
 
 	@media screen and (min-width: 1200px) {
 		display: grid;
-		grid-template-columns: minmax(min-content, var(--label-width, 12em)) 1fr;
-		grid-template-rows: auto auto;
 		grid-column-gap: 1em;
 		grid-template-areas: 'label value' 'description description';
+		grid-template-columns: minmax(min-content, var(--label-width, 12em)) 1fr;
+		grid-template-rows: auto auto;
 	}
 }
 
 .form-item__buttons {
-	display: flex;
 	align-items: center;
+	display: flex;
 
 	> .button {
 		margin-right: 0.5em;
@@ -54,30 +54,30 @@
 .form-item__label {
 	display: block;
 	font-size: .9375em;
-	margin-bottom: 4px;
 	font-weight: 600;
+	margin-bottom: 4px;
 
 	@media screen and (min-width: 1200px) {
-		height: 2.66667em;
-		display: flex;
 		align-items: center;
+		display: flex;
+		height: 2.66667em;
 		margin-bottom: 0;
 	}
 }
 
 .form-item__input {
-	display: block;
-	width: 100%;
-	font-size: .9375em;
-	vertical-align: middle;
-	height: 2.66667em;
 	background-color: var(--color-background);
 	border: 1px solid rgba($color-text-dark, 0.1);
 	border-radius: .1875em;
 	box-shadow: none;
-	padding: 0 8px;
-	color: inherit;
 	box-sizing: border-box;
+	color: inherit;
+	display: block;
+	font-size: .9375em;
+	height: 2.66667em;
+	padding: 0 8px;
+	vertical-align: middle;
+	width: 100%;
 
 	&:focus, &.form-item__input--focus {
 		outline: var(--color-theme) auto 5px;
@@ -85,28 +85,28 @@
 }
 
 .form-item__input--small {
-	width: 50%;
 	min-width: 50%;
+	width: 50%;
 }
 
 .form-item__input--tag-wrapper {
 	display: flex;
 	flex-wrap: wrap;
-	padding: 0.5em 0 0 0.5em;
-	min-height: 2.66667em;
 	height: auto;
+	min-height: 2.66667em;
+	padding: 0.5em 0 0 0.5em;
 }
 
 .form-item__input--tag {
-	display: inline-block;
-	min-width: 5em;
-	width: auto;
-	border: none;
 	background: transparent;
-	padding: 0;
-	margin: 0 0.5em 0.5em 0;
-	height: auto;
+	border: none;
+	display: inline-block;
 	flex-grow: 1;
+	height: auto;
+	margin: 0 0.5em 0.5em 0;
+	min-width: 5em;
+	padding: 0;
+	width: auto;
 
 	&:focus {
 		outline: none;
@@ -114,11 +114,11 @@
 }
 
 .form-item__textarea {
-	padding: 0.5em;
 	border-color: var(--color-border);
-	width: 35em;
 	box-sizing: border-box;
 	max-width: 100%;
+	padding: 0.5em;
+	width: 35em;
 
 	.app--dark-mode & {
 		background: var(--color-background-dark);
@@ -127,25 +127,25 @@
 }
 
 .form-item__tag {
-	margin: 0 0.5em 0.5em 0;
-	flex-shrink: 0;
-	padding: 0.25em 0.5em;
-	min-height: 0;
-	display: inline-flex;
 	align-items: center;
-	justify-content: center;
-	border-radius: .1875em;
 	background: var(--color-navigation);
-	line-height: 1.2;
 	border: 0 solid transparent;
-	font-size: .9375em;
+	border-radius: .1875em;
 	color: var(--color-text);
+	display: inline-flex;
+	flex-shrink: 0;
+	font-size: .9375em;
+	justify-content: center;
+	line-height: 1.2;
+	margin: 0 0.5em 0.5em 0;
+	min-height: 0;
+	padding: 0.25em 0.5em;
 	transition: background .5s;
 }
 
 .form-item__tag-remove {
-	margin-left: 0.5em;
 	cursor: pointer;
+	margin-left: 0.5em;
 	transition: color .5s;
 
 	&:hover {
@@ -154,10 +154,10 @@
 }
 
 .form-item__description {
-	grid-area: description;
-	font-size: 0.75em;
-	margin-right: 0.1em;
 	color: var(--color-text-disabled);
+	font-size: 0.75em;
+	grid-area: description;
+	margin-right: 0.1em;
 	overflow: hidden;
 }
 
@@ -165,21 +165,21 @@
 	padding-top: 1em;
 
 	a {
-		text-decoration: none;
 		color: var(--color-theme);
+		text-decoration: none;
 	}
 
 	td, th {
-		text-align: left;
 		padding: 0 0.5em 0 0;
+		text-align: left;
 	}
 }
 
 .form-item__description-icon {
-	margin-left: 0.5em;
-	font-size: 0.75em;
 	color: var(--color-text-disabled);
 	cursor: pointer;
+	font-size: 0.75em;
+	margin-left: 0.5em;
 }
 
 .form-item__error {
@@ -187,12 +187,12 @@
 }
 
 .form-group {
+	border: 0 solid var(--color-border);
+	border-top-width: 1px;
 	font-family: inherit;
 	margin-bottom: 1em;
 	margin-top: 1em;
 	padding: 1em;
-	border: 0 solid var(--color-border);
-	border-top-width: 1px;
 
 	@media screen and (min-width: 1200px) {
 		padding: 1em 1em 0;
@@ -204,19 +204,19 @@
 }
 
 .form-group__legend {
-	font-weight: 600;
 	font-size: 0.75em;
-	text-transform: uppercase;
-	padding: 0 0.5rem;
-	margin-left: -0.5rem;
-	position: relative;
+	font-weight: 600;
 	line-height: 0;
+	margin-left: -0.5rem;
+	padding: 0 0.5rem;
+	position: relative;
+	text-transform: uppercase;
 }
 
 .input-option__field {
 	display: grid;
-	grid-template-columns: 1fr auto;
 	grid-column-gap: 1em;
+	grid-template-columns: 1fr auto;
 }
 
 .input-option__field--three {
@@ -224,36 +224,36 @@
 }
 
 .input-option__items {
-	margin-left: -0.5em;
 	display: flex;
 	flex-flow: row wrap;
+	margin-left: -0.5em;
 }
 
 .button.input-option__item {
-	margin: 0.5em 0 0 0.5em;
 	flex-shrink: 0;
-	padding: 0.25em 0.5em;
+	margin: 0.5em 0 0 0.5em;
 	min-height: 0;
+	padding: 0.25em 0.5em;
 }
 
 .button {
-	display: inline-flex;
-	text-align: center;
 	align-items: center;
-	justify-content: center;
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0.5em 1.5em;
-	border-radius: .1875em;
 	background: var(--color-navigation);
-	line-height: 1.2;
-	cursor: pointer;
 	border: 0 solid transparent;
-	font-size: .9375em;
+	border-radius: .1875em;
+	box-sizing: border-box;
 	color: var(--color-text);
-	transition: background .3s;
+	cursor: pointer;
+	display: inline-flex;
+	font-size: .9375em;
+	justify-content: center;
+	line-height: 1.2;
+	margin: 0;
 	min-height: 2.66667em;
 	outline: none;
+	padding: 0.5em 1.5em;
+	text-align: center;
+	transition: background .3s;
 
 	&:hover, &.button--active {
 		background: var(--color-theme);
@@ -302,9 +302,9 @@
 
 .button-group {
 	.button {
-		margin-right: 0;
 		border-radius: 0;
 		border-right: 1px solid rgba(0, 0, 0, 0.1);
+		margin-right: 0;
 
 		&:first-of-type {
 			border-radius: .1875em 0 0 .1875em;
@@ -319,8 +319,8 @@
 
 .checkbox {
 	.button {
-		transition: all .3s;
 		margin-right: 2px;
+		transition: all .3s;
 
 		&:last-of-type {
 			margin-right: 5px;
@@ -329,13 +329,13 @@
 }
 
 table {
-	text-align: initial;
-	border-spacing: 0;
 	border-collapse: collapse;
+	border-spacing: 0;
+	text-align: initial;
 
 	th, td {
-		padding: 0.35em 1em;
 		border-bottom: 1px solid var(--color-border);
+		padding: 0.35em 1em;
 	}
 
 	tr {

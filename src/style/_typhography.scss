@@ -1,15 +1,15 @@
 .title {
-	text-align: center;
 	position: relative;
+	text-align: center;
 
 	&:after {
+		border-bottom: 2px solid var(--color-theme);
+		bottom: -0.25em;
 		content: '';
+		left: 50%;
+		margin-left: -20px;
 		position: absolute;
 		width: 40px;
-		border-bottom: 2px solid var(--color-theme);
-		left: 50%;
-		bottom: -0.25em;
-		margin-left: -20px;
 	}
 }
 
