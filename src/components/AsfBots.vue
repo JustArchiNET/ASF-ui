@@ -46,7 +46,7 @@
 		display: flex;
 		height: 2.25em;
 		justify-content: center;
-		padding: .5em;
+		padding: 0.5em;
 		transition: border .3s;
 	}
 
@@ -56,11 +56,11 @@
 	}
 
 	.bot-placeholder__name {
-		font-size: .8em;
+		font-size: 0.8em;
 		font-weight: 600;
 	}
 
 	.bot-placeholder__icon {
-		margin-right: .5em;
+		margin-right: 0.5em;
 	}
 </style>

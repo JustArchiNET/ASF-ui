@@ -66,9 +66,9 @@
 	.navigation__language-picker {
 		background: var(--color-theme);
 		display: grid;
-		grid-gap: .25em;
+		grid-gap: 0.25em;
 		grid-template-columns: repeat(6, auto);
-		padding: .5em;
+		padding: 0.5em;
 		position: absolute;
 		right: 0;
 		top: var(--navigation-height);
@@ -83,7 +83,7 @@
 	.navigation__language {
 		border-radius: 4px;
 		cursor: pointer;
-		padding: .5em;
+		padding: 0.5em;
 
 		&:hover {
 			background: var(--color-theme-dark);

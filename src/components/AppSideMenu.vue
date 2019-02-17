@@ -62,7 +62,7 @@
 
 	.theme-switcher {
 		display: grid;
-		grid-gap: .5em;
+		grid-gap: 0.5em;
 		grid-template-columns: repeat(6, 1fr);
 		padding: 1em;
 	}
@@ -86,7 +86,7 @@
 	.side-menu__category {
 		box-sizing: border-box;
 		color: var(--color-text-secondary);
-		margin: 1em 0 .5em;
+		margin: 1em 0 0.5em;
 		padding: 0 1em;
 	}
 

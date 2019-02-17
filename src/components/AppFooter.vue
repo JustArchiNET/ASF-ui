@@ -60,10 +60,10 @@
 		border-top: 1px solid var(--color-border);
 		box-sizing: border-box;
 		display: flex;
-		font-size: .9em;
+		font-size: 0.9em;
 		grid-area: footer;
 		height: var(--navigation-height);
-		padding: 0 .5em;
+		padding: 0 0.5em;
 		width: 100%;
 	}
 

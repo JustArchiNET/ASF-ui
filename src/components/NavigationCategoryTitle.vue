@@ -22,8 +22,8 @@
 		background: rgba(black, 0.4);
 		color: var(--color-text-disabled);
 		display: flex;
-		font-size: .9em;
-		padding: .75em 1em;
+		font-size: 0.9em;
+		padding: 0.75em 1em;
 		text-transform: uppercase;
 		width: var(--navigation-width);
 

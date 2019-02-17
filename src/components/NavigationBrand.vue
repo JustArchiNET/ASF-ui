@@ -149,7 +149,7 @@
 			}
 
 			.brand__icon {
-				line-height: .5;
+				line-height: 0.5;
 			}
 
 			.brand__name--small {
@@ -196,7 +196,7 @@
 	}
 
 	.brand__menu-icon {
-		margin-right: .5em;
+		margin-right: 0.5em;
 
 		.app--small-navigation & {
 			margin-right: 0;
