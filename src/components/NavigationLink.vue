@@ -32,7 +32,7 @@
 		color: var(--color-text-secondary);
 		cursor: pointer;
 		display: flex;
-		padding: .95em 1.25em;
+		padding: 0.95em 1.25em;
 		text-decoration: none;
 		transition: background .2s;
 		white-space: nowrap;
@@ -48,7 +48,7 @@
 		}
 
 		.app--small-navigation & {
-			padding: .95em 0;
+			padding: 0.95em 0;
 
 			.navigation-link__icon {
 				display: inline-flex;

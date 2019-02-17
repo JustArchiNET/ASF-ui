@@ -63,7 +63,7 @@
 
 	.dropdown__items {
 		background: var(--color-navigation);
-		border-radius: .1875em 0 .1875em .1875em;
+		border-radius: 0.1875em 0 0.1875em 0.1875em;
 		color: var(--color-text);
 		display: flex;
 		flex-direction: column;

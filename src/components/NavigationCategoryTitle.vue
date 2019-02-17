@@ -23,7 +23,7 @@
 		color: var(--color-text-disabled);
 		display: flex;
 		font-size: 0.9em;
-		padding: .75em 1em;
+		padding: 0.75em 1em;
 		text-transform: uppercase;
 		width: var(--navigation-width);
 

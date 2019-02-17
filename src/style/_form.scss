@@ -53,7 +53,7 @@
 
 .form-item__label {
 	display: block;
-	font-size: .9375em;
+	font-size: 0.9375em;
 	font-weight: 600;
 	margin-bottom: 4px;
 
@@ -68,12 +68,12 @@
 .form-item__input {
 	background-color: var(--color-background);
 	border: 1px solid rgba($color-text-dark, 0.1);
-	border-radius: .1875em;
+	border-radius: 0.1875em;
 	box-shadow: none;
 	box-sizing: border-box;
 	color: inherit;
 	display: block;
-	font-size: .9375em;
+	font-size: 0.9375em;
 	height: 2.66667em;
 	padding: 0 8px;
 	vertical-align: middle;
@@ -130,11 +130,11 @@
 	align-items: center;
 	background: var(--color-navigation);
 	border: 0 solid transparent;
-	border-radius: .1875em;
+	border-radius: 0.1875em;
 	color: var(--color-text);
 	display: inline-flex;
 	flex-shrink: 0;
-	font-size: .9375em;
+	font-size: 0.9375em;
 	justify-content: center;
 	line-height: 1.2;
 	margin: 0 0.5em 0.5em 0;
@@ -240,12 +240,12 @@
 	align-items: center;
 	background: var(--color-navigation);
 	border: 0 solid transparent;
-	border-radius: .1875em;
+	border-radius: 0.1875em;
 	box-sizing: border-box;
 	color: var(--color-text);
 	cursor: pointer;
 	display: inline-flex;
-	font-size: .9375em;
+	font-size: 0.9375em;
 	justify-content: center;
 	line-height: 1.2;
 	margin: 0;
@@ -307,11 +307,11 @@
 		margin-right: 0;
 
 		&:first-of-type {
-			border-radius: .1875em 0 0 .1875em;
+			border-radius: 0.1875em 0 0 0.1875em;
 		}
 
 		&:last-of-type {
-			border-radius: 0 .1875em .1875em 0;
+			border-radius: 0 0.1875em 0.1875em 0;
 			border-right: 0;
 		}
 	}

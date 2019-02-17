@@ -147,8 +147,8 @@
 		border-radius: 4px;
 		display: inline-block;
 		line-height: 1;
-		margin-left: .5em;
-		padding: .25em .5em;
+		margin-left: 0.5em;
+		padding: 0.25em 0.5em;
 		text-align: center;
 		vertical-align: baseline;
 
@@ -181,8 +181,8 @@
 
 		ul {
 			@media screen and (max-width: 450px) {
-				margin-inline-end: .2em;
-				margin-inline-start: .2em;
+				margin-inline-end: 0.2em;
+				margin-inline-start: 0.2em;
 				padding-inline-start: 1.2em;
 			}
 		}
