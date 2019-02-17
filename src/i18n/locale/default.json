@@ -108,6 +108,7 @@
 	"released-ago-minutes": "Released {PLURAL:n|{n} minute|{n} minutes} ago",
 	"released-now": "Released just now",
 	"released-on": "Released {date}",
+	"releases": "Releases",
 	"remote-access": "Remote Access",
 	"reporting": "Reporting",
 	"reporting-description": "Automatically upload error reports. Logging needs to be enabled.",

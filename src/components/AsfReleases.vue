@@ -1,5 +1,5 @@
 <template>
-	<div class="changelog">
+	<div class="releases">
 		<h3 class="subtitle" v-if="loading && !statusText">
 			<font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
 		</h3>
@@ -26,7 +26,7 @@
 	import { mapGetters } from 'vuex';
 
 	export default {
-		name: 'asf-changelog',
+		name: 'asf-releases',
 		data() {
 			return {
 				loading: true,
@@ -101,7 +101,7 @@
 </script>
 
 <style lang="scss">
-	.changelog {
+	.releases {
 		word-break: break-word;
 	}
 

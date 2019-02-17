@@ -1,21 +1,21 @@
 <template>
 	<main class="main-container main-container--fullheight">
 		<div class="container">
-			<asf-changelog></asf-changelog>
+			<asf-releases></asf-releases>
 		</div>
 	</main>
 </template>
 
 <script>
-	import AsfChangelog from '../components/AsfChangelog.vue';
+	import AsfReleases from '../components/AsfReleases.vue';
 
 	export default {
-		name: 'changelog',
+		name: 'releases',
 		metaInfo() {
 			return {
-				title: this.$t('changelog')
+				title: this.$t('releases')
 			};
 		},
-		components: { AsfChangelog }
+		components: { AsfReleases }
 	};
 </script>

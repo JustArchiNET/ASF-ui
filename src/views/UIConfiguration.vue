@@ -51,7 +51,7 @@
 						[this.$t('bots')]: 'home',
 						[this.$t('commands')]: 'commands',
 						[this.$t('log')]: 'log',
-						[this.$t('changelog')]: 'changelog',
+						[this.$t('releases')]: 'releases',
 						[this.$t('last-visited-page')]: '_last-visited-page'
 					},
 					description: this.$t('default-page-description')
