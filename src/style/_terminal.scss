@@ -10,7 +10,7 @@
 	height: 100%;
 	line-height: 1;
 	overflow-y: auto;
-	padding: .5em 1em;
+	padding: 0.5em 1em;
 	width: 100%;
 
 	@media screen and (max-width: 600px) {
@@ -23,7 +23,7 @@
 	display: grid;
 	grid-template-columns: auto 1fr;
 	line-height: 1.1;
-	margin: 0 0 .1em;
+	margin: 0 0 0.1em;
 	width: 100%;
 
 	&.terminal-message--truncated {
@@ -39,7 +39,7 @@
 
 .terminal-message__sign {
 	color: var(--color-text-disabled);
-	margin-right: .5em;
+	margin-right: 0.5em;
 }
 
 .terminal-message__content {

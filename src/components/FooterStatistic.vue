@@ -34,10 +34,10 @@
 <style lang="scss">
 	.footer__statistic {
 		color: var(--color-text-dark);
-		padding: 0 .5em;
+		padding: 0 0.5em;
 
 		@media screen and (max-width: 530px) {
-			padding: 0 .2em;
+			padding: 0 0.2em;
 		}
 	}
 

@@ -122,7 +122,7 @@
 
 	.bot-profile {
 		display: grid;
-		grid-column-gap: .5em;
+		grid-column-gap: 0.5em;
 		grid-template-areas: 'avatar meta' 'avatar actions';
 		grid-template-columns: auto 1fr;
 		grid-template-rows: auto auto;
@@ -175,13 +175,13 @@
 
 	.bot-farming-info {
 		display: grid;
-		grid-gap: .7em;
+		grid-gap: 0.7em;
 		grid-template-columns: repeat(3, 1fr);
 		margin: 1em 0 0;
 		width: 100%;
 
 		@media screen and (max-width: 530px) {
-			grid-gap: .5em;
+			grid-gap: 0.5em;
 			grid-template-columns: 1fr;
 		}
 	}
