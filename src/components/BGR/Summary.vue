@@ -50,6 +50,6 @@
 
 <style lang="scss">
 	.bgr__summary-title {
-		margin-bottom: 0.5em;
+		margin-bottom: .5em;
 	}
 </style>

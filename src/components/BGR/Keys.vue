@@ -39,7 +39,7 @@
 
 		td {
 			@media screen and (max-width: 335px) {
-				padding: 0.35em .5em;
+				padding: .35em .5em;
 			}
 		}
 	}

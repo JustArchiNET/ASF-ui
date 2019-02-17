@@ -25,7 +25,7 @@
 	display: flex;
 
 	> .button {
-		margin-right: 0.5em;
+		margin-right: .5em;
 
 		&:last-child {
 			margin-right: 0;
@@ -37,7 +37,7 @@
 
 		> button {
 			margin-right: 0 !important;
-			margin-top: 0.5em;
+			margin-top: .5em;
 			width: 100%;
 
 			&:first-child {
@@ -94,7 +94,7 @@
 	flex-wrap: wrap;
 	height: auto;
 	min-height: 2.66667em;
-	padding: 0.5em 0 0 0.5em;
+	padding: .5em 0 0 .5em;
 }
 
 .form-item__input--tag {
@@ -103,7 +103,7 @@
 	display: inline-block;
 	flex-grow: 1;
 	height: auto;
-	margin: 0 0.5em 0.5em 0;
+	margin: 0 .5em .5em 0;
 	min-width: 5em;
 	padding: 0;
 	width: auto;
@@ -117,7 +117,7 @@
 	border-color: var(--color-border);
 	box-sizing: border-box;
 	max-width: 100%;
-	padding: 0.5em;
+	padding: .5em;
 	width: 35em;
 
 	.app--dark-mode & {
@@ -137,15 +137,15 @@
 	font-size: .9375em;
 	justify-content: center;
 	line-height: 1.2;
-	margin: 0 0.5em 0.5em 0;
+	margin: 0 .5em .5em 0;
 	min-height: 0;
-	padding: 0.25em 0.5em;
+	padding: .25em .5em;
 	transition: background .5s;
 }
 
 .form-item__tag-remove {
 	cursor: pointer;
-	margin-left: 0.5em;
+	margin-left: .5em;
 	transition: color .5s;
 
 	&:hover {
@@ -155,9 +155,9 @@
 
 .form-item__description {
 	color: var(--color-text-disabled);
-	font-size: 0.75em;
+	font-size: .75em;
 	grid-area: description;
-	margin-right: 0.1em;
+	margin-right: .1em;
 	overflow: hidden;
 }
 
@@ -170,7 +170,7 @@
 	}
 
 	td, th {
-		padding: 0 0.5em 0 0;
+		padding: 0 .5em 0 0;
 		text-align: left;
 	}
 }
@@ -178,8 +178,8 @@
 .form-item__description-icon {
 	color: var(--color-text-disabled);
 	cursor: pointer;
-	font-size: 0.75em;
-	margin-left: 0.5em;
+	font-size: .75em;
+	margin-left: .5em;
 }
 
 .form-item__error {
@@ -204,11 +204,11 @@
 }
 
 .form-group__legend {
-	font-size: 0.75em;
+	font-size: .75em;
 	font-weight: 600;
 	line-height: 0;
 	margin-left: -0.5rem;
-	padding: 0 0.5rem;
+	padding: 0 .5rem;
 	position: relative;
 	text-transform: uppercase;
 }
@@ -231,9 +231,9 @@
 
 .button.input-option__item {
 	flex-shrink: 0;
-	margin: 0.5em 0 0 0.5em;
+	margin: .5em 0 0 .5em;
 	min-height: 0;
-	padding: 0.25em 0.5em;
+	padding: .25em .5em;
 }
 
 .button {
@@ -251,7 +251,7 @@
 	margin: 0;
 	min-height: 2.66667em;
 	outline: none;
-	padding: 0.5em 1.5em;
+	padding: .5em 1.5em;
 	text-align: center;
 	transition: background .3s;
 
@@ -262,7 +262,7 @@
 
 .button--small {
 	min-height: 1.2em;
-	padding: 0.25em 0.5em;
+	padding: .25em .5em;
 }
 
 .button--confirm {
@@ -335,7 +335,7 @@ table {
 
 	th, td {
 		border-bottom: 1px solid var(--color-border);
-		padding: 0.35em 1em;
+		padding: .35em 1em;
 	}
 
 	tr {

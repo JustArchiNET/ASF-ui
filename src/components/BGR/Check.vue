@@ -40,6 +40,6 @@
 
 <style lang="scss">
 	.bgr__check-title {
-		margin-bottom: 0.5em;
+		margin-bottom: .5em;
 	}
 </style>

@@ -48,7 +48,7 @@
 	}
 
 	.info-card__title {
-		font-size: 0.9em;
+		font-size: .9em;
 		margin: 0;
 		text-transform: uppercase;
 	}

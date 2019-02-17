@@ -29,6 +29,6 @@
 <style lang="scss">
 	.bgr__status {
 		color: var(--color-text-disabled);
-		margin: 0.5em 0 1em;
+		margin: .5em 0 1em;
 	}
 </style>
