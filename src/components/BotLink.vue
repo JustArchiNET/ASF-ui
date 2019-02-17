@@ -25,11 +25,11 @@
 
 <style lang="scss">
 	.bot-action {
-		padding: 0.25em;
-		margin: 0 0.1em;
-		cursor: pointer;
-		transition: color .3s;
 		color: var(--color-text-disabled);
+		cursor: pointer;
+		margin: 0 .1em;
+		padding: .25em;
+		transition: color .3s;
 
 		&:hover {
 			color: var(--color-text-dark);
@@ -46,7 +46,7 @@
 
 	.bot-action__icon {
 		.bot-action__label + & {
-			margin-left: 0.5em;
+			margin-left: .5em;
 		}
 	}
 </style>

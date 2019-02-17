@@ -162,7 +162,7 @@
 	}
 
 	.config-uncategorized {
-		padding: 0 1em 1em;
 		border: 0 solid var(--color-border);
+		padding: 0 1em 1em;
 	}
 </style>

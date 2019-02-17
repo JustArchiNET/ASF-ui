@@ -23,8 +23,8 @@
 <style lang="scss">
 	.dashboard {
 		display: grid;
-		grid-template-rows: min-content min-content;
-		grid-template-columns: 1fr;
 		grid-gap: 1rem;
+		grid-template-columns: 1fr;
+		grid-template-rows: min-content min-content;
 	}
 </style>

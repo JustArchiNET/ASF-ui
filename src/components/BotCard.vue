@@ -96,51 +96,51 @@
 
 <style lang="scss">
 	.bot {
-		display: grid;
-		grid-template-columns: min-content 1fr auto;
-		border-top: 3px solid var(--color-status);
-		padding: 0.5em;
 		background: var(--color-background-light);
 		border-radius: 0 0 4px 4px;
-		transition: border .3s;
+		border-top: 3px solid var(--color-status);
+		display: grid;
 		grid-template-areas: 'avatar meta buttons';
+		grid-template-columns: min-content 1fr auto;
+		padding: .5em;
+		transition: border .3s;
 
 		&--big {
+			grid-template-areas: 'avatar meta' 'buttons buttons';
 			grid-template-columns: min-content 1fr;
 			grid-template-rows: auto min-content;
-			grid-template-areas: 'avatar meta' 'buttons buttons';
 
 			.bot__actions {
-				margin-top: 0.5rem;
+				margin-top: .5rem;
 			}
 
 			.bot__action {
-				padding: 0 0.5rem;
 				font-size: 1.25rem;
+				padding: 0 .5rem;
 			}
 		}
 	}
 
 	.bot__avatar {
-		padding-right: 0.5em;
-		height: 2.25em; // (1em + 0.8em) * 1.25
-		width: 2.25em;
 		cursor: pointer;
 		display: block;
+		height: 2.25em; // (1em + .8em) * 1.25
+		padding-right: .5em;
+		width: 2.25em;
 	}
 
 	.bot__status {
+		cursor: pointer;
 		display: flex;
 		flex-direction: column;
 		overflow: hidden;
-		cursor: pointer;
 	}
 
 	.bot__status-property {
+		display: inline-block;
+		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
-		overflow: hidden;
-		display: inline-block;
 	}
 
 	.bot__status-property--name {
@@ -148,23 +148,23 @@
 	}
 
 	.bot__status-property--text {
-		font-size: 0.8em;
+		font-size: .8em;
 		font-style: italic;
 	}
 
 	.bot__actions {
-		display: flex;
 		align-items: center;
+		display: flex;
 		grid-area: buttons;
 		justify-content: space-around;
 	}
 
 	.bot__action {
-		padding: 0.5em;
-		cursor: pointer;
-		transition: color .3s;
 		color: var(--color-text-disabled);
+		cursor: pointer;
 		display: block;
+		padding: .5em;
+		transition: color .3s;
 
 		&:hover {
 			color: var(--color-text-dark);

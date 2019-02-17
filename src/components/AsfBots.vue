@@ -27,10 +27,10 @@
 
 <style lang="scss">
 	.bots {
-		min-height: 0;
-		grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-		grid-gap: 1em;
 		display: grid;
+		grid-gap: 1em;
+		grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+		min-height: 0;
 
 		@media screen and (max-width: 400px) {
 			grid-template-columns: 1fr;
@@ -38,29 +38,29 @@
 	}
 
 	.bot-placeholder {
-		height: 2.25em;
-		display: flex;
-		justify-content: center;
 		align-items: center;
-		border-top: 3px solid var(--color-status);
-		padding: 0.5em;
 		background: var(--color-background-light);
 		border-radius: 0 0 4px 4px;
-		transition: border .3s;
+		border-top: 3px solid var(--color-status);
 		cursor: pointer;
+		display: flex;
+		height: 2.25em;
+		justify-content: center;
+		padding: .5em;
+		transition: border .3s;
 	}
 
 	.bot-placeholder__button {
-		display: flex;
 		align-items: center;
+		display: flex;
 	}
 
 	.bot-placeholder__name {
+		font-size: .8em;
 		font-weight: 600;
-		font-size: 0.8em;
 	}
 
 	.bot-placeholder__icon {
-		margin-right: 0.5em;
+		margin-right: .5em;
 	}
 </style>

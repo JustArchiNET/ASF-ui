@@ -106,27 +106,31 @@
 	}
 
 	.release {
+		border-bottom: 1px solid var(--color-background);
 		margin-bottom: 1em;
+		padding-bottom: 1em;
 
 		&:last-child {
+			border-bottom: none;
 			margin-bottom: 0;
+			padding-bottom: 0;
 		}
 	}
 
 	.release__title {
-		display: flex;
 		align-items: center;
+		display: flex;
 		margin-top: 0;
 
 		@media screen and (max-width: 350px) {
-			flex-direction: column;
 			align-items: flex-start;
+			flex-direction: column;
 		}
 	}
 
 	.release__version {
-		font-weight: bold;
 		font-size: 1.3em;
+		font-weight: bold;
 	}
 
 	.release__time {
@@ -139,12 +143,12 @@
 
 	.release__badge {
 		background-color: var(--color-background-light);
-		border-radius: 4px;
 		border: 2px solid currentColor;
-		padding: .25em .5em;
-		margin-left: .5em;
+		border-radius: 4px;
 		display: inline-block;
 		line-height: 1;
+		margin-left: .5em;
+		padding: .25em .5em;
 		text-align: center;
 		vertical-align: baseline;
 
@@ -177,8 +181,8 @@
 
 		ul {
 			@media screen and (max-width: 450px) {
-				margin-inline-start: .2em;
 				margin-inline-end: .2em;
+				margin-inline-start: .2em;
 				padding-inline-start: 1.2em;
 			}
 		}

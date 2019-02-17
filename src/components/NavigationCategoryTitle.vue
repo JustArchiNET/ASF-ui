@@ -18,14 +18,14 @@
 
 <style lang="scss">
 	.navigation-category__title {
-		padding: .75em 1em;
-		width: var(--navigation-width);
+		align-items: center;
 		background: rgba(black, 0.4);
-		text-transform: uppercase;
-		font-size: 0.9em;
 		color: var(--color-text-disabled);
 		display: flex;
-		align-items: center;
+		font-size: .9em;
+		padding: .75em 1em;
+		text-transform: uppercase;
+		width: var(--navigation-width);
 
 		.app--small-navigation & {
 			display: none;

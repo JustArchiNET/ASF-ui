@@ -27,20 +27,20 @@
 	}
 
 	.farming-info__icon {
-		padding: 0 0.5em;
-		font-size: 1.4em;
-		display: flex;
 		align-items: center;
-		justify-content: center;
 		color: var(--color-text-disabled);
+		display: flex;
+		font-size: 1.4em;
+		justify-content: center;
+		padding: 0 .5em;
 	}
 
 	.farming-info__value {
-		padding: 5px;
-		font-weight: 600;
 		font-size: 1.2em;
+		font-weight: 600;
 		margin: 0;
 		overflow: hidden;
+		padding: 5px;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		width: 100%;

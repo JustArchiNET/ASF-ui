@@ -29,8 +29,8 @@
 
 <style lang="scss">
 	.bgr__no-keys {
-		text-align: center;
 		font-weight: bold;
+		text-align: center;
 	}
 
 	.bgr__table {
@@ -39,7 +39,7 @@
 
 		td {
 			@media screen and (max-width: 335px) {
-				padding: 0.35em .5em;
+				padding: .35em .5em;
 			}
 		}
 	}

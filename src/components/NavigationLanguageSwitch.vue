@@ -54,9 +54,9 @@
 
 <style lang="scss">
 	.navigation__language-switch {
-		position: relative;
 		display: flex;
 		justify-content: center;
+		position: relative;
 	}
 
 	.navigation__language-icon {
@@ -64,16 +64,16 @@
 	}
 
 	.navigation__language-picker {
-		display: grid;
-		position: absolute;
-		top: var(--navigation-height);
-		right: 0;
-		grid-template-columns: repeat(6, auto);
 		background: var(--color-theme);
-		padding: 0.5em;
-		grid-gap: 0.25em;
-		transition: transform .3s;
+		display: grid;
+		grid-gap: .25em;
+		grid-template-columns: repeat(6, auto);
+		padding: .5em;
+		position: absolute;
+		right: 0;
+		top: var(--navigation-height);
 		transform-origin: top;
+		transition: transform .3s;
 
 		@media screen and (max-width: 600px) {
 			grid-template-columns: repeat(5, auto);
@@ -81,9 +81,9 @@
 	}
 
 	.navigation__language {
-		padding: 0.5em;
 		border-radius: 4px;
 		cursor: pointer;
+		padding: .5em;
 
 		&:hover {
 			background: var(--color-theme-dark);

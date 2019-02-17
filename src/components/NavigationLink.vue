@@ -26,17 +26,17 @@
 
 <style lang="scss">
 	.navigation-link {
-		padding: .95em 1.25em;
-		width: 100%;
-		box-sizing: border-box;
-		color: var(--color-text-secondary);
-		transition: background .2s;
-		cursor: pointer;
-		display: flex;
 		align-items: center;
 		border-left: 3px solid transparent;
-		white-space: nowrap;
+		box-sizing: border-box;
+		color: var(--color-text-secondary);
+		cursor: pointer;
+		display: flex;
+		padding: .95em 1.25em;
 		text-decoration: none;
+		transition: background .2s;
+		white-space: nowrap;
+		width: 100%;
 
 		&.navigation-link--active, &:hover {
 			background: var(--color-navigation-dark);
@@ -67,20 +67,20 @@
 				position: relative;
 
 				> .navigation-link__name {
-					background: var(--color-navigation-dark);
-					position: absolute;
-					left: calc(var(--navigation-width) - 3px);
-					height: 100%;
-					display: flex;
 					align-items: center;
-					padding: 0 1.25em;
+					background: var(--color-navigation-dark);
 					border-radius: 0 4px 4px 0;
+					display: flex;
+					height: 100%;
+					left: calc(var(--navigation-width) - 3px);
+					padding: 0 1.25em;
+					position: absolute;
 				}
 			}
 		}
 
 		svg {
-			margin-right: 0.5em;
+			margin-right: .5em;
 		}
 	}
 </style>

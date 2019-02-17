@@ -121,18 +121,18 @@
 
 <style lang="scss">
 	.brand {
-		padding: 0 1em;
-		background: var(--color-theme-dark);
-		width: var(--navigation-width);
-		color: var(--color-text);
-		box-sizing: border-box;
-		display: flex;
 		align-items: center;
-		justify-content: space-between;
+		background: var(--color-theme-dark);
+		box-sizing: border-box;
+		color: var(--color-text);
 		cursor: pointer;
+		display: flex;
 		height: var(--navigation-height);
-		transition: ease-in-out width .3s;
+		justify-content: space-between;
+		padding: 0 1em;
 		position: relative;
+		transition: ease-in-out width .3s;
+		width: var(--navigation-width);
 
 		.app--not-authorized & {
 			cursor: initial;
@@ -140,16 +140,16 @@
 		}
 
 		.app--small-navigation & {
-			padding: 0;
-			justify-content: center;
 			flex-direction: column;
+			justify-content: center;
+			padding: 0;
 
 			.brand__name--big {
 				display: none;
 			}
 
 			.brand__icon {
-				line-height: 0.5;
+				line-height: .5;
 			}
 
 			.brand__name--small {
@@ -168,26 +168,26 @@
 	}
 
 	.brand__menu {
+		left: 0;
 		position: absolute;
 		top: var(--navigation-height);
-		width: 100%;
-		left: 0;
-		transition: transform .3s;
 		transform-origin: top;
+		transition: transform .3s;
+		width: 100%;
 	}
 
 	.brand__menu-item {
-		height: var(--navigation-height);
+		align-items: center;
 		background: var(--color-theme);
 		color: var(--color-text);
-		display: flex;
-		align-items: center;
 		cursor: pointer;
+		display: flex;
+		height: var(--navigation-height);
 		padding: 0 1.5em;
 
 		.app--small-navigation & {
-			padding: 0;
 			justify-content: center;
+			padding: 0;
 		}
 
 		&:hover {
@@ -196,7 +196,7 @@
 	}
 
 	.brand__menu-icon {
-		margin-right: 0.5em;
+		margin-right: .5em;
 
 		.app--small-navigation & {
 			margin-right: 0;

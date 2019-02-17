@@ -123,15 +123,15 @@
 	}
 
 	html {
-		height: 100%;
 		font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
 		font-size: 16px;
+		height: 100%;
 	}
 
 	body {
+		background: var(--color-background-dark);
 		height: 100%;
 		margin: 0;
-		background: var(--color-background-dark);
 	}
 
 	@media screen and (max-height: 725px), screen and (max-width: 1366px) {
@@ -147,14 +147,14 @@
 	}
 
 	::-webkit-scrollbar {
-		width: 10px;
-		height: 10px;
 		background-color: #333;
+		height: 10px;
+		width: 10px;
 	}
 
 	::-webkit-scrollbar-thumb {
-		border-radius: 2px;
 		background: var(--color-background-dark);
+		border-radius: 2px;
 	}
 
 	a {
@@ -162,9 +162,9 @@
 	}
 
 	.app {
-		width: 100%;
 		background: var(--color-background);
 		color: var(--color-text-dark);
+		width: 100%;
 	}
 
 	.app--small-navigation {
@@ -173,11 +173,11 @@
 
 	.app--boxed-layout {
 		@media screen and (min-width: 1250px) {
-			position: relative;
-			overflow-x: hidden;
+			box-shadow: 0 0 25px 0 var(--color-navigation-dark);
 			max-width: 1250px;
 			margin: 0 auto;
-			box-shadow: 0 0 25px 0 var(--color-navigation-dark);
+			overflow-x: hidden;
+			position: relative;
 		}
 	}
 
@@ -230,15 +230,15 @@
 	}
 
 	.content {
-		padding-top: var(--navigation-height);
-		padding-left: var(--navigation-width);
-		transition: ease-in-out padding .3s;
-		position: relative;
+		box-sizing: border-box;
 		display: grid;
 		grid-template-rows: 1fr auto;
 		grid-template-areas: 'main' 'footer';
 		min-height: 100vh;
-		box-sizing: border-box;
+		padding-left: var(--navigation-width);
+		padding-top: var(--navigation-height);
+		position: relative;
+		transition: ease-in-out padding .3s;
 
 		> main {
 			box-sizing: border-box;

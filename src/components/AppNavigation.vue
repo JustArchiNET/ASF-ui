@@ -69,17 +69,17 @@
 <style lang="scss">
 	.side-navigation {
 		background: var(--color-navigation);
-		position: fixed;
-		left: 0;
-		top: 0;
 		bottom: 0;
-		width: var(--navigation-width);
-		padding-top: var(--navigation-height);
-		z-index: 1001;
-		transition: ease-in-out width .3s;
-		overflow: hidden;
 		display: flex;
 		flex-direction: column;
+		left: 0;
+		overflow: hidden;
+		padding-top: var(--navigation-height);
+		position: fixed;
+		top: 0;
+		transition: ease-in-out width .3s;
+		width: var(--navigation-width);
+		z-index: 1001;
 
 		.app--small-navigation & {
 			overflow: initial;
