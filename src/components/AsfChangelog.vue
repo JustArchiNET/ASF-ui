@@ -107,9 +107,13 @@
 
 	.release {
 		margin-bottom: 1em;
+		border-bottom: 1px solid var(--color-background);
+		padding-bottom: 1em;
 
 		&:last-child {
 			margin-bottom: 0;
+			border-bottom: none;
+			padding-bottom: 0;
 		}
 	}
 
