@@ -268,8 +268,7 @@
 			parseCommandsHTML(commandsWikiRaw) {
 				const commandsWikiHTML = document.createElement('html');
 				commandsWikiHTML.innerHTML = commandsWikiRaw;
-
-				const commandsTableHTML = commandsWikiHTML.querySelector('#user-content-commands-1').parentElement.nextElementSibling;
+				const commandsTableHTML = commandsWikiHTML.querySelector('h2 > a').parentElement.nextElementSibling;
 
 				return Array.from(commandsTableHTML.querySelectorAll('tbody tr'))
 						.map(tableRow => tableRow.textContent.trim().split('\n'))
@@ -278,11 +277,16 @@
 			async fetchCommands() {
 				const wiki = await fetchWiki('Commands', this.version);
 				const commands = this.parseCommandsHTML(wiki);
-				storage.set('cache:asf-commands', { timestamp: Date.now(), commands });
+				const locale = this.$i18n.locale;
+
+				storage.set(`cache:asf-commands:${locale}`, { timestamp: Date.now(), commands });
+
 				return commands;
 			},
 			async loadCommands() {
-				const commandsCache = storage.get('cache:asf-commands');
+				const locale = this.$i18n.locale;
+				const commandsCache = storage.get(`cache:asf-commands:${locale}`);
+
 				if (commandsCache) {
 					const { timestamp, commands } = commandsCache;
 					if (timestamp > Date.now() - 24 * 60 * 60 * 1000) return commands;

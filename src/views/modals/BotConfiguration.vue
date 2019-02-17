@@ -89,7 +89,7 @@
 				] = await Promise.all([
 					fetchConfigSchema('ArchiSteamFarm.BotConfig'),
 					this.$http.get(`bot/${this.bot.name}`),
-					loadParameterDescriptions(this.version)
+					loadParameterDescriptions(this.version, this.$i18n.locale)
 				]);
 
 				Object.keys(model).forEach(key => {

@@ -81,7 +81,7 @@
 			] = await Promise.all([
 				this.$http.get('ASF'),
 				fetchConfigSchema('ArchiSteamFarm.GlobalConfig'),
-				loadParameterDescriptions(this.version)
+				loadParameterDescriptions(this.version, this.$i18n.locale)
 			]);
 
 			Object.keys(model).forEach(key => {
