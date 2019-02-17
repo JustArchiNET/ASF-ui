@@ -42,9 +42,9 @@ export default [
 		component: () => import('../views/Bots.vue')
 	},
 	{
-		path: '/page/changelog',
-		name: 'changelog',
-		component: () => import('../views/Changelog.vue')
+		path: '/page/releases',
+		name: 'releases',
+		component: () => import('../views/Releases.vue')
 	},
 	{
 		path: '/page/bot/new',

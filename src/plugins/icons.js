@@ -5,13 +5,13 @@ import {
 	faWrench, faBars, faLaptop, faUsers, faFileAlt, faTachometerAlt, faPowerOff, faPause, faCogs, faClock,
 	faTimesCircle, faCheckCircle, faEdit, faTimes, faSquare, faMoon, faPalette, faPlay, faQuestion, faPlus,
 	faSpinner, faKey, faTrash, faCloudDownloadAlt, faSignOutAlt, faAngleDown, faLanguage, faGamepad, faClone,
-	faCalendarCheck, faLock, faBook, faExclamation
+	faCalendarCheck, faLock, faBook, faExclamation, faCodeBranch
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faWrench, faBars, faLaptop, faUsers, faFileAlt, faTachometerAlt, faPowerOff, faPause, faCogs,
 	faClock, faTimesCircle, faCheckCircle, faEdit, faTimes, faSquare, faMoon, faPalette, faPlay, faQuestion,
 	faPlus, faSpinner, faKey, faTrash, faCloudDownloadAlt, faSignOutAlt, faAngleDown, faLanguage, faGamepad,
-	faClone, faCalendarCheck, faLock, faGithub, faBook, faExclamation);
+	faClone, faCalendarCheck, faLock, faGithub, faBook, faExclamation, faCodeBranch);
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
