@@ -32,6 +32,7 @@
 	import loadParameterDescriptions from '../../utils/loadParameterDescriptions';
 	import prepareModelToDownload from '../../utils/prepareModelToDownload';
 	import delay from '../../utils/delay';
+	import botExists from '../../utils/botExists';
 
 	export default {
 		name: 'bot-create',
@@ -58,7 +59,8 @@
 		computed: {
 			...mapGetters({
 				version: 'asf/version',
-				displayCategories: 'settings/displayCategories'
+				displayCategories: 'settings/displayCategories',
+				bots: 'bots/bots'
 			})
 		},
 		async created() {
@@ -90,7 +92,22 @@
 				this.loading = false;
 			},
 			async onCreate() {
-				if (!this.model.Name || this.creating) return;
+				if (this.creating) return;
+
+				if (!this.model.Name) {
+					this.$error(this.$t('bot-create-name'));
+					return;
+				}
+
+				if (this.model.Name === 'ASF') {
+					this.$error(this.$t('bot-create-name-asf'));
+					return;
+				}
+
+				if (botExists(this.bots, this.model.Name)) {
+					this.$error(this.$t('bot-create-name-exist', { name: this.model.Name }));
+					return;
+				}
 
 				this.creating = true;
 
