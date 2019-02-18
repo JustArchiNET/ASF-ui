@@ -5,6 +5,7 @@
 		<h3 class="subtitle" v-if="loading">
 			<font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
 		</h3>
+
 		<div class="container" v-else>
 			<config-editor v-if="displayCategories" :fields="fields" :model="model" :categories="categories"></config-editor>
 			<config-editor v-else :fields="fields" :model="model"></config-editor>

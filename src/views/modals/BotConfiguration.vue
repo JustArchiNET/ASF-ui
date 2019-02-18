@@ -6,6 +6,7 @@
 		<h3 class="subtitle" v-if="loading">
 			<font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
 		</h3>
+
 		<div class="container" v-else>
 			<config-editor v-if="displayCategories" :fields="fields" :model="model" :categories="categories"></config-editor>
 			<config-editor v-else :fields="fields" :model="model"></config-editor>
@@ -16,6 +17,7 @@
 						<font-awesome-icon icon="spinner" v-if="saving" spin></font-awesome-icon>
 						<span v-else>{{ $t('save') }}</span>
 					</button>
+					<router-link tag="button" class="button button--confirm" :to="{ name: 'bot-copy', params: { bot: bot.name } }">{{ $t('bot-copy') }}</router-link>
 
 					<button class="button button--link pull-right" @click="onDownload">{{ $t('download-raw-config') }}</button>
 				</div>
