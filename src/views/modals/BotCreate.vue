@@ -32,6 +32,7 @@
 	import loadParameterDescriptions from '../../utils/loadParameterDescriptions';
 	import prepareModelToDownload from '../../utils/prepareModelToDownload';
 	import delay from '../../utils/delay';
+	import botExists from '../../utils/botExists';
 
 	export default {
 		name: 'bot-create',
@@ -90,13 +91,6 @@
 
 				this.loading = false;
 			},
-			doesBotExist(name) {
-				for (const bot of this.bots) {
-					if (bot.name === name) return true;
-				}
-
-				return false;
-			},
 			async onCreate() {
 				if (this.creating) return;
 
@@ -110,7 +104,7 @@
 					return;
 				}
 
-				if (this.doesBotExist(this.model.Name)) {
+				if (botExists(this.bots, this.model.Name)) {
 					this.$error(this.$t('bot-create-name-exist', { name: this.model.Name }));
 					return;
 				}
