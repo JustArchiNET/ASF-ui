@@ -26,6 +26,7 @@
 	import ConfigEditor from '../../components/ConfigEditor.vue';
 	import delay from '../../utils/delay';
 	import botExists from '../../utils/botExists';
+	import { get } from '../../utils/storage';
 
 	import { mapGetters } from 'vuex';
 
@@ -49,14 +50,15 @@
 					param: 'SteamLogin',
 					paramName: 'SteamLogin',
 					type: 'string',
-					description: this.$t('config-property-description-steam-login')
+					description: get(`cache:parameter-descriptions:${this.$i18n.locale}`).descriptions.SteamLogin
+
 				},
 				{
 					defaultValue: '',
 					param: 'SteamPassword',
 					paramName: 'SteamPassword',
 					type: 'string',
-					description: this.$t('config-property-description-steam-password')
+					description: get(`cache:parameter-descriptions:${this.$i18n.locale}`).descriptions.SteamPassword
 				}
 			];
 
