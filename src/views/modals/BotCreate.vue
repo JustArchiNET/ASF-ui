@@ -58,7 +58,8 @@
 		computed: {
 			...mapGetters({
 				version: 'asf/version',
-				displayCategories: 'settings/displayCategories'
+				displayCategories: 'settings/displayCategories',
+				bots: 'bots/bots'
 			})
 		},
 		async created() {
@@ -89,8 +90,30 @@
 
 				this.loading = false;
 			},
+			doesBotExist(name) {
+				for (const bot of this.bots) {
+					if (bot.name === name) return true;
+				}
+
+				return false;
+			},
 			async onCreate() {
-				if (!this.model.Name || this.creating) return;
+				if (this.creating) return;
+
+				if (!this.model.Name) {
+					this.$error(this.$t('bot-create-name'));
+					return;
+				}
+
+				if (this.model.Name === 'ASF') {
+					this.$error(this.$t('bot-create-name-asf'));
+					return;
+				}
+
+				if (this.doesBotExist(this.model.Name)) {
+					this.$error(this.$t('bot-create-name-exist', { name: this.model.Name }));
+					return;
+				}
 
 				this.creating = true;
 
