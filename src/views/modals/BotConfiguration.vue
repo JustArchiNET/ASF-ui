@@ -32,7 +32,6 @@
 	import { mapGetters } from 'vuex';
 	import loadParameterDescriptions from '../../utils/loadParameterDescriptions';
 	import prepareModelToDownload from '../../utils/prepareModelToDownload';
-	import delay from '../../utils/delay';
 	import botExists from '../../utils/botExists';
 
 	const extendedFields = {
