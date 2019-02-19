@@ -18,12 +18,19 @@ const humanizer = humanizeDuration.humanizer({
 	}
 });
 
+export const updateChannels = {
+	NONE: 0,
+	STABLE: 1,
+	EXPERIMENTAL: 2
+};
+
 export const state = {
 	memoryUsage: 0,
 	startTime: null,
 	buildVariant: null,
 	version: { Major: 0, Minor: 0, Build: 0, Revision: 0 },
-	uptime: '0s'
+	uptime: '0s',
+	updateChannel: 1
 };
 
 export const mutations = {
@@ -37,7 +44,8 @@ export const mutations = {
 
 		const timeDiff = Date.now() - state.startTime.getTime();
 		state.uptime = timeDiff > 0 ? humanizer(timeDiff) : Vue.i18n.translate('error');
-	}
+	},
+	updateUpdateChannel: (state, updateChannel) => state.updateChannel = updateChannel
 };
 
 export const actions = {
@@ -58,6 +66,7 @@ export const actions = {
 			commit('updateVersion', response.Version);
 			commit('updateBuildVariant', response.BuildVariant);
 			commit('calculateUptime');
+			commit('updateUpdateChannel', response.GlobalConfig.UpdateChannel);
 		} catch (err) {}
 	}
 };
@@ -67,5 +76,6 @@ export const getters = {
 	uptime: state => state.uptime,
 	version: state => composeVersionString(state.version),
 	buildVariant: state => state.buildVariant,
-	startTime: state => state.startTime
+	startTime: state => state.startTime,
+	updateChannel: state => state.updateChannel
 };
