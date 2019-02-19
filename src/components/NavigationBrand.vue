@@ -9,17 +9,17 @@
 
 		<transition name="brand__menu">
 			<div class="brand__menu" v-if="brandMenu && authenticated">
-				<div class="brand__menu-item" @click.stop="update">
+				<div class="brand__menu-item" @click="update">
 					<font-awesome-icon class="brand__menu-icon" icon="cloud-download-alt" fixed-width></font-awesome-icon>
 					<span>{{ $t('update') }}</span>
 				</div>
 
-				<div class="brand__menu-item" @click.stop="restart">
+				<div class="brand__menu-item" @click="restart">
 					<font-awesome-icon class="brand__menu-icon" icon="power-off" fixed-width></font-awesome-icon>
 					<span>{{ $t('restart') }}</span>
 				</div>
 
-				<div class="brand__menu-item" @click.stop="exit">
+				<div class="brand__menu-item" @click="exit">
 					<font-awesome-icon class="brand__menu-icon" icon="sign-out-alt" fixed-width></font-awesome-icon>
 					<span>{{ $t('exit') }}</span>
 				</div>
