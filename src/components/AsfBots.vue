@@ -29,7 +29,7 @@
 	.bots {
 		display: grid;
 		grid-gap: 1em;
-		grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
 		min-height: 0;
 
 		@media screen and (max-width: 400px) {
