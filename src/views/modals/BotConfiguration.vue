@@ -126,20 +126,18 @@
 					return;
 				}
 
-				if (botExists(this.bots, this.model.Name)) {
-					this.$error(this.$t('bot-create-name-exist', { name: this.model.Name }));
-					return;
-				}
-
 				this.saving = true;
 
 				try {
-					await this.$http.post(`bot/${this.model.Name}`, { BotConfig: this.model });
+					await this.$http.post(`bot/${this.bot.name}`, { BotConfig: this.model });
 
-					if (this.bot.name !== this.model.Name) {
-						await this.$http.del(`bot/${this.bot.name}`);
-						await delay(1000);
-						await this.$store.dispatch('bots/updateBot', { name: this.bot.name });
+					if (this.model.Name && this.bot.name !== this.model.Name) {
+						if (botExists(this.bots, this.model.Name)) {
+							this.$error(this.$t('bot-create-name-exist', { name: this.model.Name }));
+							return;
+						}
+
+						await this.$http.post(`bot/${this.bot.name}/Rename`, { NewName: this.model.Name });
 						this.$router.push({ name: 'bots' });
 						return;
 					}
