@@ -105,7 +105,7 @@
 				this.creating = true;
 
 				try {
-					await this.$http.post(`bot/${this.model.Name}`, { BotConfig: this.model });
+					await this.$http.post(`bot/${this.model.Name}`, { botConfig: this.model });
 					this.$parent.close();
 				} catch (err) {
 					this.$error(err.message);
