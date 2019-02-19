@@ -8,7 +8,7 @@ async function getURL(file, version) {
 
 	if (!version) return defaultURL;
 
-	const releasesRaw = await http.post('WWW/Send', { URL: 'https://api.github.com/repos/JustArchiNET/ArchiSteamFarm/releases?per_page=20' });
+	const releasesRaw = await http.post('www/send', { url: 'https://api.github.com/repos/JustArchiNET/ArchiSteamFarm/releases?per_page=20' });
 	const releases = JSON.parse(releasesRaw);
 
 	const currentReleaseIndex = releases.findIndex(release => compareVersion(version, release.tag_name) > -1);
@@ -22,7 +22,7 @@ async function getURL(file, version) {
 	if (currentReleaseIndex === 0) return defaultURL;
 
 	const nextReleaseTime = new Date(releases[currentReleaseIndex - 1].published_at);
-	const wikiRevisionsRaw = await http.post('WWW/Send', { URL: `https://github.com/JustArchiNET/ArchiSteamFarm/wiki/${file}${locale}/_history` });
+	const wikiRevisionsRaw = await http.post('www/send', { url: `https://github.com/JustArchiNET/ArchiSteamFarm/wiki/${file}${locale}/_history` });
 
 	const wikiRevisionsHTML = document.createElement('html');
 	wikiRevisionsHTML.innerHTML = wikiRevisionsRaw;
@@ -39,5 +39,5 @@ async function getURL(file, version) {
 
 export default async function fetchWiki(file, version) {
 	const URL = await getURL(file, version);
-	return await http.post('WWW/Send', { URL });
+	return await http.post('www/send', { URL });
 }
