@@ -43,9 +43,7 @@
 			};
 		},
 		computed: {
-			...mapGetters({
-				status: 'auth/status'
-			}),
+			...mapGetters({ status: 'auth/status' }),
 			buttonText() {
 				switch (this.status) {
 					case STATUS.UNAUTHORIZED:

@@ -8,7 +8,7 @@ export const STATUS = {
 };
 
 export async function getStatus() {
-	return http.get('ASF')
+	return http.get('asf')
 		.then(response => STATUS.AUTHENTICATED)
 		.catch(err => {
 			if (err.message === 'HTTP Error 401') return STATUS.UNAUTHORIZED;

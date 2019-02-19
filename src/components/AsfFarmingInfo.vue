@@ -15,9 +15,7 @@
 		name: 'asf-farming-info',
 		components: { AsfFarmingInfoCard },
 		computed: {
-			...mapGetters({
-				botsFarmingCount: 'bots/botsFarmingCount'
-			}),
+			...mapGetters({ botsFarmingCount: 'bots/botsFarmingCount' }),
 			timeRemaining() {
 				if (this.botsFarmingCount === 0) return '-';
 

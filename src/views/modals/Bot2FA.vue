@@ -41,9 +41,7 @@
 			};
 		},
 		computed: {
-			...mapGetters({
-				nicknames: 'settings/nicknames'
-			}),
+			...mapGetters({ nicknames: 'settings/nicknames' }),
 			bot() {
 				return this.$store.getters['bots/bot'](this.$route.params.bot);
 			}
@@ -54,7 +52,7 @@
 			this.refreshing = true;
 
 			try {
-				const response = await this.$http.get(`bot/${this.bot.name}/TwoFactorAuthentication/Token`);
+				const response = await this.$http.get(`bot/${this.bot.name}/twoFactorAuthentication/token`);
 				
 				if (response[this.bot.name].Result && response[this.bot.name].Success) {
 					this.token = response[this.bot.name].Result;
@@ -74,7 +72,7 @@
 				this.accepting = true;
 
 				try {
-					const response = await this.$http.post(`bot/${this.bot.name}/TwoFactorAuthentication/Confirmations/Accept`);
+					const response = await this.$http.post(`bot/${this.bot.name}/twoFactorAuthentication/confirmations/accept`);
 
 					if (response[this.bot.name].Success) {
 						this.$success(this.$t('2fa-accept-success'));
@@ -93,7 +91,7 @@
 				this.canceling = true;
 
 				try {
-					const response = await this.$http.post(`bot/${this.bot.name}/TwoFactorAuthentication/Confirmations/Cancel`);
+					const response = await this.$http.post(`bot/${this.bot.name}/twoFactorAuthentication/confirmations/cancel`);
 					
 					if (response[this.bot.name].Success) {
 						this.$success(this.$t('2fa-cancel-success'));
@@ -113,7 +111,7 @@
 				this.token = '-----';
 
 				try {
-					const response = await this.$http.get(`bot/${this.bot.name}/TwoFactorAuthentication/Token`);
+					const response = await this.$http.get(`bot/${this.bot.name}/twoFactorAuthentication/token`);
 
 					if (response[this.bot.name].Result && response[this.bot.name].Success) {
 						this.token = response[this.bot.name].Result;
