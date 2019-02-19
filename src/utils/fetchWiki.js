@@ -38,6 +38,6 @@ async function getURL(file, version) {
 
 
 export default async function fetchWiki(file, version) {
-	const URL = await getURL(file, version);
-	return await http.post('www/send', { URL });
+	const url = await getURL(file, version);
+	return await http.post('www/send', { url });
 }
