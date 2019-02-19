@@ -22,7 +22,7 @@
 	import { mapGetters } from 'vuex';
 
 	export default {
-		name: 'bot',
+		name: 'bot-delete',
 		data() {
 			return {
 				deleting: false
