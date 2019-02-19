@@ -41,9 +41,7 @@
 			};
 		},
 		computed: {
-			...mapGetters({
-				nicknames: 'settings/nicknames'
-			}),
+			...mapGetters({ nicknames: 'settings/nicknames' }),
 			bot() {
 				return this.$store.getters['bots/bot'](this.$route.params.bot);
 			}

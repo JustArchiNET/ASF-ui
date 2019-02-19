@@ -29,12 +29,10 @@
 		props: {
 			bot: Object
 		},
-		computed: {
-			...mapGetters({
-				botsFarmingCount: 'bots/botsFarmingCount',
-				gameName: 'settings/gameName'
-			})
-		}
+		computed: mapGetters({
+			botsFarmingCount: 'bots/botsFarmingCount',
+			gameName: 'settings/gameName'
+		})
 	};
 </script>
 

@@ -76,9 +76,7 @@
 			};
 		},
 		computed: {
-			...mapGetters({
-				version: 'asf/version'
-			}),
+			...mapGetters({ version: 'asf/version' }),
 			commands() {
 				return [
 					...this.asfCommands.filter(({ command }) => command !== 'help'),

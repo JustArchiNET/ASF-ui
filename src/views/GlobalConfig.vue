@@ -67,12 +67,10 @@
 				categories
 			};
 		},
-		computed: {
-			...mapGetters({
+		computed: mapGetters({
 				version: 'asf/version',
 				displayCategories: 'settings/displayCategories'
-			})
-		},
+		}),
 		async created() {
 			const [
 				{ GlobalConfig: model },

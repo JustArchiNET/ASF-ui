@@ -56,13 +56,11 @@
 				categories
 			};
 		},
-		computed: {
-			...mapGetters({
-				version: 'asf/version',
-				displayCategories: 'settings/displayCategories',
-				bots: 'bots/bots'
-			})
-		},
+		computed: mapGetters({
+			version: 'asf/version',
+			displayCategories: 'settings/displayCategories',
+			bots: 'bots/bots'
+		}),
 		async created() {
 			await this.loadConfig();
 		},
