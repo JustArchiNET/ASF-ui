@@ -67,19 +67,17 @@
 				categories
 			};
 		},
-		computed: {
-			...mapGetters({
+		computed: mapGetters({
 				version: 'asf/version',
 				displayCategories: 'settings/displayCategories'
-			})
-		},
+		}),
 		async created() {
 			const [
 				{ GlobalConfig: model },
 				{ body: fields },
 				descriptions
 			] = await Promise.all([
-				this.$http.get('ASF'),
+				this.$http.get('asf'),
 				fetchConfigSchema('ArchiSteamFarm.GlobalConfig'),
 				loadParameterDescriptions(this.version, this.$i18n.locale)
 			]);
@@ -104,7 +102,7 @@
 				this.saving = true;
 
 				try {
-					await this.$http.post('ASF', { GlobalConfig: this.model });
+					await this.$http.post('asf', { globalConfig: this.model });
 					this.$info(this.$t('restart-initiated'));
 					await waitForRestart();
 					this.$success(this.$t('restart-complete'));

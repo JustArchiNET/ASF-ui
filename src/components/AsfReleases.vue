@@ -44,7 +44,7 @@
 		},
 		methods: {
 			async getReleases() {
-				return await this.$http.get('WWW/GitHub/Releases');
+				return await this.$http.get('www/github/releases');
 			},
 			getTimeText({ releasedFor, publishDate }) {
 				if (releasedFor.days > 30) return this.$t('released-on', {

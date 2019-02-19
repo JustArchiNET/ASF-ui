@@ -32,6 +32,7 @@
 	import { mapGetters } from 'vuex';
 	import loadParameterDescriptions from '../../utils/loadParameterDescriptions';
 	import prepareModelToDownload from '../../utils/prepareModelToDownload';
+	import botExists from '../../utils/botExists';
 
 	const extendedFields = {
 		SteamLogin: { placeholder: '<keep unchanged>' },
@@ -65,7 +66,8 @@
 			...mapGetters({
 				version: 'asf/version',
 				nicknames: 'settings/nicknames',
-				displayCategories: 'settings/displayCategories'
+				displayCategories: 'settings/displayCategories',
+				bots: 'bots/bots'
 			}),
 			bot() {
 				return this.$store.getters['bots/bot'](this.$route.params.bot);
@@ -98,21 +100,48 @@
 
 				this.model = model;
 
-				this.fields = Object.keys(fields).map(key => ({
-					description: descriptions[key],
-					...fields[key],
-					...(extendedFields[key] || [])
-				}));
+				this.fields = [
+					{
+						defaultValue: this.bot.name,
+						placeholder: this.bot.name,
+						param: 'Name',
+						paramName: 'Name',
+						type: 'string',
+						description: this.$t('name-description')
+					},
+					...Object.keys(fields).map(key => ({
+						description: descriptions[key],
+						...fields[key],
+						...(extendedFields[key] || [])
+					}))
+				];
 
 				this.loading = false;
 			},
 			async onSave() {
 				if (this.saving) return;
 
+				if (this.model.Name === 'ASF') {
+					this.$error(this.$t('bot-create-name-asf'));
+					return;
+				}
+
 				this.saving = true;
 
 				try {
-					await this.$http.post(`bot/${this.bot.name}`, { BotConfig: this.model });
+					await this.$http.post(`bot/${this.bot.name}`, { botConfig: this.model });
+
+					if (this.bot.name !== this.model.Name) {
+						if (botExists(this.bots, this.model.Name)) {
+							this.$error(this.$t('bot-create-name-exist', { name: this.model.Name }));
+							return;
+						}
+
+						await this.$http.post(`bot/${this.bot.name}/rename`, { newName: this.model.Name });
+						this.$router.push({ name: 'bots' });
+						return;
+					}
+
 					this.$parent.back();
 				} catch (err) {
 					this.$error(err.message);

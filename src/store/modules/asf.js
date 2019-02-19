@@ -52,7 +52,7 @@ export const actions = {
 		if (!rootGetters['auth/authenticated']) return;
 
 		try {
-			const response = await http.get('ASF');
+			const response = await http.get('asf');
 			commit('updateMemoryUsage', response.MemoryUsage);
 			commit('updateStartTime', new Date(response.ProcessStartTime));
 			commit('updateVersion', response.Version);
