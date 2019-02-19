@@ -106,8 +106,6 @@
 
 				try {
 					await this.$http.post(`bot/${this.model.Name}`, { BotConfig: this.model });
-					await delay(1000);
-					await this.$store.dispatch('bots/updateBot', { name: this.model.name });
 					this.$parent.close();
 				} catch (err) {
 					this.$error(err.message);
