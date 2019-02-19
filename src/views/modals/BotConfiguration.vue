@@ -129,7 +129,7 @@
 				this.saving = true;
 
 				try {
-					await this.$http.post(`bot/${this.bot.name}`, { BotConfig: this.model });
+					await this.$http.post(`bot/${this.bot.name}`, { botConfig: this.model });
 
 					if (this.bot.name !== this.model.Name) {
 						if (botExists(this.bots, this.model.Name)) {
@@ -137,7 +137,7 @@
 							return;
 						}
 
-						await this.$http.post(`bot/${this.bot.name}/Rename`, { NewName: this.model.Name });
+						await this.$http.post(`bot/${this.bot.name}/rename`, { newName: this.model.Name });
 						this.$router.push({ name: 'bots' });
 						return;
 					}

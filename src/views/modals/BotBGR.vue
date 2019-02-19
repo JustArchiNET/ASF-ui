@@ -74,7 +74,7 @@
 		},
 		methods: {
 			async loadBGR() {
-				return (await this.$http.get(`bot/${this.bot.name}/GamesToRedeemInBackground`))[this.bot.name];
+				return (await this.$http.get(`bot/${this.bot.name}/gamesToRedeemInBackground`))[this.bot.name];
 			},
 			onCheck(keys) {
 				this.keys = keys;
@@ -84,7 +84,7 @@
 				this.confirming = true;
 
 				try {
-					const activatedKeys = await this.$http.post(`bot/${this.bot.name}/GamesToRedeemInBackground`, { GamesToRedeemInBackground: this.keys });
+					const activatedKeys = await this.$http.post(`bot/${this.bot.name}/gamesToRedeemInBackground`, { gamesToRedeemInBackground: this.keys });
 					this.state = 'summary';
 					this.summaryKeys = activatedKeys[this.bot.name];
 				} finally {
@@ -101,7 +101,7 @@
 				this.resetting = true;
 
 				try {
-					await this.$http.del(`bot/${this.bot.name}/GamesToRedeemInBackground`);
+					await this.$http.del(`bot/${this.bot.name}/gamesToRedeemInBackground`);
 					this.unusedKeys = {};
 					this.usedKeys = {};
 				} finally {
