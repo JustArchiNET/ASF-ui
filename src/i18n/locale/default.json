@@ -100,7 +100,7 @@
 	"notification-position-right-bottom": "Right bottom",
 	"notification-position-right-top": "Right top",
 	"notify-release": "New release notification",
-	"notify-release-description": "Notify me if a new release is available",
+	"notify-release-description": "Notify me when a new stable release is available",
 	"other": "Other",
 	"password": "Password",
 	"password-invalid": "Invalid password!",
