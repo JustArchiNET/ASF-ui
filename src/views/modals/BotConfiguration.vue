@@ -102,7 +102,7 @@
 
 				this.fields = [
 					{
-						defaultValue: this.bot.name,
+						placeholder: this.bot.name,
 						param: 'Name',
 						paramName: 'Name',
 						type: 'string',
@@ -130,7 +130,7 @@
 				try {
 					await this.$http.post(`bot/${this.bot.name}`, { BotConfig: this.model });
 
-					if (this.model.Name && this.bot.name !== this.model.Name) {
+					if (this.bot.name !== this.model.Name) {
 						if (botExists(this.bots, this.model.Name)) {
 							this.$error(this.$t('bot-create-name-exist', { name: this.model.Name }));
 							return;
