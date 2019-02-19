@@ -105,6 +105,7 @@
 				this.fields = [
 					{
 						defaultValue: this.bot.name,
+						placeholder: this.bot.name,
 						param: 'Name',
 						paramName: 'Name',
 						type: 'string',
