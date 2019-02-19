@@ -35,6 +35,7 @@
 	import loadParameterDescriptions from '../../utils/loadParameterDescriptions';
 	import prepareModelToDownload from '../../utils/prepareModelToDownload';
 	import botExists from '../../utils/botExists';
+	import delay from '../../utils/delay';
 
 	const extendedFields = {
 		SteamLogin: { placeholder: '<keep unchanged>' },
@@ -140,6 +141,9 @@
 						}
 
 						await this.$http.post(`bot/${this.bot.name}/rename`, { newName: this.model.Name });
+						await delay(1000);
+						await this.$store.dispatch('bots/updateBot', { name: this.bot.name });
+						await this.$store.dispatch('bots/updateBot', { name: this.model.Name });
 						this.$router.push({ name: 'bots' });
 						return;
 					}
