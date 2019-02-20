@@ -37,12 +37,12 @@
 			notifyRelease: 'settings/notifyRelease'
 		}),
 		created() {
-			this.getNewVersions();
+			if (this.authenticated) this.getNewVersions();
 		},
 		methods: {
 			async getNewVersions() {
 				try {
-					this.newUiReleaseAvailable = await newReleaseAvailable('ASF-ui', ui.version);
+					this.newUiReleaseAvailable = await newReleaseAvailable('ASF-ui', this.uiVersion);
 					this.newAsfReleaseAvailable = await newReleaseAvailable('ArchiSteamFarm', this.asfVersion);
 				} catch (err) {
 					if (err.message === 'HTTP Error 504') return;

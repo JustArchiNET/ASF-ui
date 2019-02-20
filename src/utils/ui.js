@@ -8,6 +8,10 @@ export const ui = {
 export async function newReleaseAvailable(repo, version) {
 	const updateChannel = (asf.updateChannel === UPDATECHANNEL.EXPERIMENTAL) ? 'releases' : 'releases/latest';
 	const latestReleaseRaw = await http.post('www/send', { url: `https://api.github.com/repos/JustArchiNET/${repo}/${updateChannel}` });
-	const latestReleaseVersion = (asf.updateChannel === UPDATECHANNEL.EXPERIMENTAL) ? JSON.parse(latestReleaseRaw)[0].tag_name : JSON.parse(latestReleaseRaw).tag_name;
-	return (latestReleaseVersion > version);
+	const latestReleaseVersion = JSON.parse(latestReleaseRaw);
+
+	if (!latestReleaseVersion) return;
+
+	const latestVersion = (asf.updateChannel === UPDATECHANNEL.EXPERIMENTAL) ? latestReleaseVersion[0].tag_name : latestReleaseVersion.tag_name;
+	return (latestVersion > version);
 }
