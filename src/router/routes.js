@@ -101,6 +101,15 @@ export default [
 		meta: { modal: true }
 	},
 	{
+		path: '/page/bot/:bot/copy',
+		name: 'bot-copy',
+		components: {
+			default: () => import('../views/Bots.vue'),
+			modal: () => import('../views/modals/BotCopy.vue')
+		},
+		meta: { modal: true }
+	},
+	{
 		path: '/page/bot',
 		redirect: { name: 'bots' }
 	},
