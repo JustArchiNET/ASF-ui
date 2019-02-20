@@ -23,14 +23,7 @@ export default async function loadParameterDescriptions(version, locale) {
 
 		while (description && description.tagName.toLowerCase() !== 'hr') {
 			const wikiLinks = description.querySelectorAll('a[href^="#"]');
-
-			for (const link of wikiLinks ) {
-				if (link) {
-					link.setAttribute('href', `https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Configuration${link.hash}`);
-					link.setAttribute('target', '_blank');
-				}
-			}
-
+			fixWikiLinks(wikiLinks);
 			parameterDescription.push(description.outerHTML);
 			description = description.nextElementSibling;
 		}
@@ -41,4 +34,13 @@ export default async function loadParameterDescriptions(version, locale) {
 	storage.set(`cache:parameter-descriptions:${locale}`, { timestamp: Date.now(), descriptions });
 
 	return descriptions;
+}
+
+export function fixWikiLinks(links) {
+	for (const link of links ) {
+		if (link) {
+			link.setAttribute('href', `https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Configuration${link.hash}`);
+			link.setAttribute('target', '_blank');
+		}
+	}
 }
