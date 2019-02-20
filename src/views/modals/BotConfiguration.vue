@@ -37,12 +37,6 @@
 	import botExists from '../../utils/botExists';
 	import delay from '../../utils/delay';
 
-	const extendedFields = {
-		SteamLogin: { placeholder: '<keep unchanged>' },
-		SteamPassword: { placeholder: '<keep unchanged>' },
-		SteamParentalCode: { placeholder: '<keep unchanged>' }
-	};
-
 	export default {
 		name: 'bot-config',
 		components: { ConfigEditor },
@@ -102,6 +96,12 @@
 				});
 
 				this.model = model;
+
+				const extendedFields = {
+					SteamLogin: { placeholder: this.$t('keep-unchanged') },
+					SteamPassword: { placeholder: this.$t('keep-unchanged') },
+					SteamParentalCode: { placeholder: this.$t('keep-unchanged') }
+				};
 
 				this.fields = [
 					{

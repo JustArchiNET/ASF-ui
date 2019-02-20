@@ -78,6 +78,7 @@
 	"info": "Info",
 	"input-all-selected": "All values selected",
 	"input-unknown-type": "Unknown field type",
+	"keep-unchanged": "<keep unchanged>",
 	"keys-copied": "Copied keys to clipboard!",
 	"keys-copy": "Copy keys to clipboard",
 	"language-translation-bad": "Only {percent}% of selected language is translated!",
