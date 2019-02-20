@@ -1,4 +1,5 @@
 import fetchWiki from './fetchWiki';
+import { getLocaleForWiki } from './getLocaleForWiki';
 import * as storage from './storage';
 
 export default async function loadParameterDescriptions(version, locale) {
@@ -23,7 +24,7 @@ export default async function loadParameterDescriptions(version, locale) {
 
 		while (description && description.tagName.toLowerCase() !== 'hr') {
 			const wikiLinks = description.querySelectorAll('a[href^="#"]');
-			fixWikiLinks(wikiLinks);
+			fixWikiLinks(wikiLinks, 'Configuration');
 			parameterDescription.push(description.outerHTML);
 			description = description.nextElementSibling;
 		}
@@ -36,10 +37,12 @@ export default async function loadParameterDescriptions(version, locale) {
 	return descriptions;
 }
 
-export function fixWikiLinks(links) {
+export function fixWikiLinks(links, page) {
+	const locale = getLocaleForWiki();
+
 	for (const link of links ) {
 		if (link) {
-			link.setAttribute('href', `https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Configuration${link.hash}`);
+			link.setAttribute('href', `https://github.com/JustArchiNET/ArchiSteamFarm/wiki/${page}${locale}${link.hash}`);
 			link.setAttribute('target', '_blank');
 		}
 	}
