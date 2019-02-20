@@ -37,12 +37,6 @@
 	import botExists from '../../utils/botExists';
 	import delay from '../../utils/delay';
 
-	const extendedFields = {
-		SteamLogin: { placeholder: '<keep unchanged>' },
-		SteamPassword: { placeholder: '<keep unchanged>' },
-		SteamParentalPIN: { placeholder: '<keep unchanged>' }
-	};
-
 	export default {
 		name: 'bot-config',
 		components: { ConfigEditor },
@@ -50,8 +44,8 @@
 			const categories = [
 				{ name: this.$t('basic'), fields: ['Name', 'SteamLogin', 'SteamPassword', 'Enabled', 'IsBotAccount', 'Paused'] },
 				{ name: this.$t('security'), fields: ['PasswordFormat', 'UseLoginKeys'] },
-				{ name: this.$t('access'), fields: ['SteamUserPermissions', 'SteamParentalPIN'] },
-				{ name: this.$t('trade'), fields: ['SteamTradeToken', 'TradingPreferences', 'LootableTypes', 'MatchableTypes', 'AcceptGifts', 'DismissInventoryNotifications'] },
+				{ name: this.$t('access'), fields: ['SteamUserPermissions', 'SteamParentalCode'] },
+				{ name: this.$t('trade'), fields: ['SteamTradeToken', 'TradingPreferences', 'LootableTypes', 'TransferableTypes', 'MatchableTypes', 'AcceptGifts', 'DismissInventoryNotifications'] },
 				{ name: this.$t('farming'), fields: ['FarmingOrders', 'SendTradePeriod', 'AutoSteamSaleEvent', 'IdlePriorityQueueOnly', 'IdleRefundableGames', 'FarmOffline', 'SendOnFarmingFinished', 'ShutdownOnFarmingFinished'] },
 				{ name: this.$t('customization'), fields: ['SteamMasterClanID', 'GamesPlayedWhileIdle', 'CustomGamePlayedWhileFarming', 'CustomGamePlayedWhileIdle'] },
 				{ name: this.$t('performance'), fields: ['HoursUntilCardDrops'] }
@@ -102,6 +96,12 @@
 				});
 
 				this.model = model;
+
+				const extendedFields = {
+					SteamLogin: { placeholder: this.$t('keep-unchanged') },
+					SteamPassword: { placeholder: this.$t('keep-unchanged') },
+					SteamParentalCode: { placeholder: this.$t('keep-unchanged') }
+				};
 
 				this.fields = [
 					{

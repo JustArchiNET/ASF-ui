@@ -171,7 +171,7 @@
 					case '<type>':
 						if (this.selectedCommand !== 'input') return;
 
-						return ['DeviceID', 'Login', 'Password', 'SteamGuard', 'SteamParentalPIN', 'TwoFactorAuthentication']
+						return ['DeviceID', 'Login', 'Password', 'SteamGuard', 'SteamParentalCode', 'TwoFactorAuthentication']
 								.find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
 					case '<settings>':
 						if (this.selectedCommand !== 'privacy') return;
