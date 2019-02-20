@@ -17,6 +17,7 @@
 						<font-awesome-icon icon="spinner" v-if="saving" spin></font-awesome-icon>
 						<span v-else>{{ $t('save') }}</span>
 					</button>
+					<router-link tag="button" class="button button--confirm" :to="{ name: 'bot-copy', params: { bot: bot.name } }">{{ $t('bot-copy') }}</router-link>
 
 					<button class="button button--link pull-right" @click="onDownload">{{ $t('download-raw-config') }}</button>
 				</div>
