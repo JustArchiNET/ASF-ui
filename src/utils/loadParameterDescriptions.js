@@ -22,6 +22,15 @@ export default async function loadParameterDescriptions(version, locale) {
 		let description = parameterHTML.parentElement.nextElementSibling;
 
 		while (description && description.tagName.toLowerCase() !== 'hr') {
+			const wikiLinks = description.querySelectorAll('a[href^="#"]');
+
+			for (const link of wikiLinks ) {
+				if (link) {
+					link.setAttribute('href', `https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Configuration${link.hash}`);
+					link.setAttribute('target', '_blank');
+				}
+			}
+
 			parameterDescription.push(description.outerHTML);
 			description = description.nextElementSibling;
 		}
