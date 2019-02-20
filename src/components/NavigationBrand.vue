@@ -29,10 +29,11 @@
 </template>
 
 <script>
+	import { composeVersionString } from '../utils/composeVersionString';
+	import { newReleaseAvailable } from "../utils/ui";
 	import waitForRestart from '../utils/waitForRestart';
 
 	import { mapGetters } from 'vuex';
-	import { composeVersionString } from '../utils/composeVersionString';
 
 	export default {
 		name: 'navigation-brand',
@@ -43,7 +44,8 @@
 			};
 		},
 		computed: mapGetters({
-			authenticated: 'auth/authenticated'
+			authenticated: 'auth/authenticated',
+			version: 'asf/version'
 		}),
 		methods: {
 			toggleBrandMenu() {
@@ -71,6 +73,8 @@
 			async update() {
 				try {
 					this.$info(this.$t('update-check'));
+					const newVersionAvailable = await newReleaseAvailable('ArchiSteamFarm', this.version);
+					if (newVersionAvailable) this.$info(this.$t('update-trying'));
 					const response = await this.$http.post('asf/update');
 					this.brandMenu = false;
 
