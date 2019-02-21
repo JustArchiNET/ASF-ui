@@ -121,6 +121,7 @@
 
 		--color-button-cancel: #{$color-theme-red};
 		--color-button-cancel-active: #{lighten($color-theme-red, 5)};
+		--color-button-default: #222d32;
 	}
 
 	html {
@@ -191,6 +192,7 @@
 		--color-border: rgba(0, 0, 0, .5);
 		--color-text-secondary: #{darken(#bfbfbf, 10)};
 		--color-text-disabled: #{darken(#bfbfbf, 20)};
+		--color-button-default: #4f5454;
 	}
 
 	.theme-blue {
