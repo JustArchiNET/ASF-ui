@@ -120,6 +120,7 @@
 
 		--color-button-cancel: #{$color-theme-red};
 		--color-button-cancel-active: #{lighten($color-theme-red, 5)};
+		--color-button-default: #4f5454;
 	}
 
 	html {
