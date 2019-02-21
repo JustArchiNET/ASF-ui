@@ -112,7 +112,7 @@
 		--color-text-disabled: #{darken($color-text, 25)};
 		--color-border: #{darken($color-text, 25)};
 		--color-background: #ecf0f5;
-		--color-background-modal: #ecf0f5;
+		--color-background-modal: #1c1c1c;
 		--color-background-light: #fff;
 		--color-background-dark: #a7a7a7;
 		--color-navigation: #222d32;
