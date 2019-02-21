@@ -154,16 +154,14 @@
 }
 
 .form-item__description {
-	color: var(--color-text-disabled);
-	font-size: 0.75em;
+	color: var(--color-text-dark);
+	font-size: 0.85em;
 	grid-area: description;
 	margin-right: 0.1em;
 	overflow: hidden;
 }
 
 .form-item__description-content {
-	padding-top: 1em;
-
 	a {
 		color: var(--color-theme);
 		text-decoration: none;
