@@ -74,7 +74,7 @@
 	}
 
 	.modal__main {
-		background: var(--color-background);
+		background: var(--color-background-modal);
 		border-radius: 4px;
 		box-shadow: 0 0 5px 0 var(--color-border);
 		box-sizing: border-box;

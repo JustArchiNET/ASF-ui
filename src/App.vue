@@ -112,6 +112,7 @@
 		--color-text-disabled: #{darken($color-text, 25)};
 		--color-border: #{darken($color-text, 25)};
 		--color-background: #ecf0f5;
+		--color-background-modal: #1c1c1c;
 		--color-background-light: #fff;
 		--color-background-dark: #a7a7a7;
 		--color-navigation: #222d32;
@@ -185,6 +186,7 @@
 	.app--dark-mode {
 		--color-background: #111;
 		--color-background-light: #222;
+		--color-background-modal: #2d2d2d;
 		--color-text: #e0e0e0;
 		--color-text-dark: #94999b;
 		--color-border: rgba(0, 0, 0, .5);
