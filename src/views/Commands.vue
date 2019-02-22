@@ -72,7 +72,8 @@
 				log: [],
 				commandHistory: new CommandsCache(20),
 				commandHistoryIndex: -1,
-				asfCommands: []
+				asfCommands: [],
+				lastTabPressTime: 0
 			};
 		},
 		computed: {
@@ -237,6 +238,10 @@
 					const splitCurrentParameter = splitCommand[splitCommand.length - 1].split(',');
 
 					this.command = [...splitCommand.slice(0, -1), [...splitCurrentParameter.slice(0, -1), this.suggestedParameterValue].join(',')].join(' ');
+				} else if (this.command === '') {
+					let tabPressTime = new Date();
+					if (tabPressTime - this.lastTabPressTime <= 500) this.command = 'commands';
+					this.lastTabPressTime = tabPressTime;
 				}
 			},
 			historyPrevious() {
