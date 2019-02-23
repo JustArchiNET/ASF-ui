@@ -1,4 +1,4 @@
-import * as http from '../plugins/http';
+import * as http from '../plugins/http'; 
 import { compareVersion } from './compareVersion';
 import { getLocaleForWiki } from './getLocaleForWiki';
 
