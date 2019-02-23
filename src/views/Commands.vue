@@ -278,9 +278,9 @@
 						.map(([command, access, description]) => ({ command, access, description }));
 			},
 			async fetchCommands() {
-				const wiki = await fetchWiki('Commands', this.version);
-				const commands = this.parseCommandsHTML(wiki);
 				const locale = this.$i18n.locale;
+				const wiki = await fetchWiki('Commands', this.version, locale);
+				const commands = this.parseCommandsHTML(wiki);
 
 				storage.set(`cache:asf-commands:${locale}`, { timestamp: Date.now(), commands });
 
