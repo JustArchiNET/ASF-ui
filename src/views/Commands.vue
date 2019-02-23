@@ -239,7 +239,7 @@
 
 					this.command = [...splitCommand.slice(0, -1), [...splitCurrentParameter.slice(0, -1), this.suggestedParameterValue].join(',')].join(' ');
 				} else if (this.command === '') {
-					let tabPressTime = new Date();
+					let tabPressTime = Date.now();
 					if (tabPressTime - this.lastTabPressTime <= 500) this.command = 'commands';
 					this.lastTabPressTime = tabPressTime;
 				}
