@@ -42,12 +42,12 @@
 		components: { ConfigEditor },
 		data() {
 			const categories = [
-				{ name: this.$t('basic'), fields: ['Name', 'SteamLogin', 'SteamPassword', 'Enabled', 'IsBotAccount', 'Paused'] },
+				{ name: this.$t('basic'), fields: ['Name', 'SteamLogin', 'SteamPassword', 'Enabled', 'Paused', 'OnlineStatus', 'BotBehaviour'] },
 				{ name: this.$t('security'), fields: ['PasswordFormat', 'UseLoginKeys'] },
 				{ name: this.$t('access'), fields: ['SteamUserPermissions', 'SteamParentalCode'] },
-				{ name: this.$t('trade'), fields: ['SteamTradeToken', 'TradingPreferences', 'LootableTypes', 'TransferableTypes', 'MatchableTypes', 'AcceptGifts', 'DismissInventoryNotifications'] },
-				{ name: this.$t('farming'), fields: ['FarmingOrders', 'SendTradePeriod', 'AutoSteamSaleEvent', 'IdlePriorityQueueOnly', 'IdleRefundableGames', 'FarmOffline', 'SendOnFarmingFinished', 'ShutdownOnFarmingFinished'] },
-				{ name: this.$t('customization'), fields: ['SteamMasterClanID', 'GamesPlayedWhileIdle', 'CustomGamePlayedWhileFarming', 'CustomGamePlayedWhileIdle'] },
+				{ name: this.$t('trade'), fields: ['SteamTradeToken', 'AcceptGifts', 'SendTradePeriod', 'SendOnFarmingFinished', 'TradingPreferences', 'LootableTypes', 'TransferableTypes', 'MatchableTypes'] },
+				{ name: this.$t('farming'), fields: ['FarmingOrders', 'AutoSteamSaleEvent', 'IdlePriorityQueueOnly', 'IdleRefundableGames', 'FarmOffline', 'ShutdownOnFarmingFinished'] },
+				{ name: this.$t('customization'), fields: ['SteamMasterClanID', 'RedeemingPreferences', 'GamesPlayedWhileIdle', 'CustomGamePlayedWhileFarming', 'CustomGamePlayedWhileIdle'] },
 				{ name: this.$t('performance'), fields: ['HoursUntilCardDrops'] }
 			];
 
