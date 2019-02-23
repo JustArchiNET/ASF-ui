@@ -1,6 +1,6 @@
 {
 	"name": "ASF-ui",
-	"version": "1.0.7",
+	"version": "1.0.8",
 	"description": "Standalone web interface for ASF",
 	"scripts": {
 		"dev": "webpack --config webpack.config.js --env development --progress",
