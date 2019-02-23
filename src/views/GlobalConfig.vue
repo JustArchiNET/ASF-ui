@@ -50,10 +50,8 @@
 				{ name: this.$t('customization'), fields: ['AutoRestart', 'Blacklist', 'CommandPrefix', 'CurrentCulture', 'Statistics', 'SteamMessagePrefix'] },
 				{ name: this.$t('remote-access'), fields: ['Headless', 'IPC', 'IPCPassword'] },
 				{ name: this.$t('connection'), fields: ['ConnectionTimeout', 'SteamProtocols', 'WebProxy', 'WebProxyPassword', 'WebProxyUsername'] },
-				{
-					name: this.$t('performance'),
-					fields: ['ConfirmationsLimiterDelay', 'FarmingDelay', 'GiftsLimiterDelay', 'IdleFarmingPeriod', 'InventoryLimiterDelay', 'LoginLimiterDelay', 'MaxFarmingTime', 'OptimizationMode', 'WebLimiterDelay']
-				},
+				{ name: this.$t('farming'), fields: ['FarmingDelay', 'IdleFarmingPeriod', 'MaxFarmingTime'] },
+				{ name: this.$t('performance'), fields: ['OptimizationMode', 'ConfirmationsLimiterDelay', 'GiftsLimiterDelay', 'InventoryLimiterDelay', 'LoginLimiterDelay', 'WebLimiterDelay'] },
 				{ name: this.$t('updates'), fields: ['UpdateChannel', 'UpdatePeriod'] },
 				{ name: this.$t('advanced'), fields: ['Debug'] }
 			];
