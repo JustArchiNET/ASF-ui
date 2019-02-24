@@ -30,8 +30,6 @@ if(condition) { ... }    // ✗ avoid
 
 #### **Always use === instead of ==**
 
-*Exception: `obj == null` is allowed to check for `null` or `undefined`*
-
 ```javascript
 if (name === 'John')   // ✓ ok
 if (name == 'John')    // ✗ avoid
@@ -41,6 +39,8 @@ if (name == 'John')    // ✗ avoid
 if (name !== 'John')   // ✓ ok
 if (name != 'John')    // ✗ avoid
 ```
+
+*Exception: `obj == null` is allowed to check for `null` or `undefined`*
 
 #### **Commas should have a space after them**
 
@@ -175,12 +175,13 @@ let obj = { 'key': 'value' }     // ✓ ok
 
 #### **No floating decimals**
 
-*Exception: `transition`*
 
 ```javascript
 const value = .5      // ✗ avoid
 const value = 0.5     // ✓ ok
 ```
+
+*Exception: `transition`*
 
 #### **Must have a space before blocks**
 
