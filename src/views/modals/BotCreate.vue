@@ -64,6 +64,7 @@
 		}),
 		async created() {
 			await this.loadConfig();
+			document.getElementById('Name').focus();
 		},
 		methods: {
 			async loadConfig() {
