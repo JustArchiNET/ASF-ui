@@ -1,5 +1,5 @@
-import * as http from "../plugins/http";
-import { state as asf, UPDATECHANNEL} from "../store/modules/asf";
+import * as http from '../plugins/http';
+import { state as asf, UPDATECHANNEL } from '../store/modules/asf';
 
 export const ui = {
 	version: APP_RELEASE

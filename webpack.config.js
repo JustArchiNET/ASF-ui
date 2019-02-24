@@ -103,9 +103,7 @@ module.exports = async (env, argv) => {
 				APP_DEBUG: JSON.stringify(!isProd)
 			})
 		],
-		optimization: {
-
-		}
+		optimization: {}
 	};
 
 	if (isProd) {
@@ -120,7 +118,7 @@ module.exports = async (env, argv) => {
 					}
 				})
 			]
-		}
+		};
 	}
 
 	if (!isProd) {
