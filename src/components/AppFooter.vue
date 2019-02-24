@@ -3,12 +3,12 @@
 		<div class="footer__links">
 			<footer-link name="GitHub" prefix="fab" icon="github" to="https://github.com/JustArchiNET"></footer-link>
 			<footer-link :name="$t('wiki')" icon="book" to="https://github.com/JustArchiNET/ArchiSteamFarm/wiki"></footer-link>
-			<footer-link v-if="authenticated" :name="$t('changelog')" icon="calendar-check" :to="releaseUrl(asfVersion)"></footer-link>
+			<footer-link v-if="authenticated" :name="$t('changelog')" icon="calendar-check" :to="asfReleaseUrl"></footer-link>
 		</div>
 
 		<div class="footer__statistics">
-			<footer-statistic :name="$t('ui')" :value="uiVersion" :notify="notifyRelease && newUiReleaseAvailable" :to="releaseUrl(uiVersion)"></footer-statistic>
-			<footer-statistic v-if="authenticated" name="ASF" :value="asfVersionString" :notify="notifyRelease && newAsfReleaseAvailable" :to="releaseUrl(asfVersion)"></footer-statistic>
+			<footer-statistic :name="$t('ui')" :value="uiVersion" :notify="notifyRelease && newUiReleaseAvailable" :to="uiReleaseUrl"></footer-statistic>
+			<footer-statistic v-if="authenticated" name="ASF" :value="asfVersionString" :notify="notifyRelease && newAsfReleaseAvailable" :to="asfReleaseUrl"></footer-statistic>
 		</div>
 	</footer>
 </template>
@@ -40,8 +40,11 @@
 			asfVersionString() {
 				return `${this.asfVersion} - ${this.buildVariant}`;
 			},
-			releaseUrl(project) {
-				return `https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${project}`;
+			asfReleaseUrl() {
+				return `https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${this.asfVersion}`;
+			},
+			uiReleaseUrl() {
+				return `https://github.com/JustArchiNET/ASF-ui/releases/tag/${this.uiVersion}`;
 			}
 		},
 		created() {
