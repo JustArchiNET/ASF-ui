@@ -3,22 +3,22 @@
 		<div class="footer__links">
 			<footer-link name="GitHub" prefix="fab" icon="github" to="https://github.com/JustArchiNET"></footer-link>
 			<footer-link :name="$t('wiki')" icon="book" to="https://github.com/JustArchiNET/ArchiSteamFarm/wiki"></footer-link>
-			<footer-link v-if="authenticated" :name="$t('changelog')" icon="calendar-check" :to="`https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${asfVersion}`"></footer-link>
+			<footer-link v-if="authenticated" :name="$t('changelog')" icon="calendar-check" :to="releaseUrl(asfVersion)"></footer-link>
 		</div>
 
 		<div class="footer__statistics">
-			<footer-statistic :name="$t('ui')" :value="uiVersion" :notify="notifyRelease && newUiReleaseAvailable" :to="`https://github.com/JustArchiNET/ASF-ui/releases/tag/${uiVersion}`"></footer-statistic>
-			<footer-statistic v-if="authenticated" name="ASF" :value="`${asfVersion} - ${buildVariant}`" :notify="notifyRelease && newAsfReleaseAvailable" :to="`https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${asfVersion}`"></footer-statistic>
+			<footer-statistic :name="$t('ui')" :value="uiVersion" :notify="notifyRelease && newUiReleaseAvailable" :to="releaseUrl(uiVersion)"></footer-statistic>
+			<footer-statistic v-if="authenticated" name="ASF" :value="asfVersionString" :notify="notifyRelease && newAsfReleaseAvailable" :to="releaseUrl(asfVersion)"></footer-statistic>
 		</div>
 	</footer>
 </template>
 
 <script>
 	import FooterLink from './FooterLink.vue';
-	import FooterStatistic from "./FooterStatistic.vue";
+	import FooterStatistic from './FooterStatistic.vue';
 
 	import { mapGetters } from 'vuex';
-	import { ui, newReleaseAvailable } from "../utils/ui";
+	import { ui, newReleaseAvailable } from '../utils/ui';
 
 	export default {
 		name: 'app-footer',
@@ -28,14 +28,22 @@
 				uiVersion: ui.version,
 				newUiReleaseAvailable: false,
 				newAsfReleaseAvailable: false
+			};
+		},
+		computed: {
+			...mapGetters({
+				authenticated: 'auth/authenticated',
+				asfVersion: 'asf/version',
+				buildVariant: 'asf/buildVariant',
+				notifyRelease: 'settings/notifyRelease'
+			}),
+			asfVersionString() {
+				return `${this.asfVersion} - ${this.buildVariant}`;
+			},
+			releaseUrl(project) {
+				return `https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${project}`;
 			}
 		},
-		computed: mapGetters({
-			authenticated: 'auth/authenticated',
-			asfVersion: 'asf/version',
-			buildVariant: 'asf/buildVariant',
-			notifyRelease: 'settings/notifyRelease'
-		}),
 		created() {
 			if (this.authenticated) this.getNewVersions();
 		},
