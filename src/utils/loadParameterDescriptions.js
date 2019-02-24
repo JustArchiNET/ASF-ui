@@ -39,7 +39,7 @@ export default async function loadParameterDescriptions(version, locale) {
 }
 
 export function fixWikiLinks(links, page, locale) {
-	for (const link of links ) {
+	for (const link of links) {
 		if (link) {
 			link.setAttribute('href', `https://github.com/JustArchiNET/ArchiSteamFarm/wiki/${page}${locale}${link.hash}`);
 			link.setAttribute('target', '_blank');
