@@ -66,8 +66,8 @@
 			};
 		},
 		computed: mapGetters({
-				version: 'asf/version',
-				displayCategories: 'settings/displayCategories'
+			version: 'asf/version',
+			displayCategories: 'settings/displayCategories'
 		}),
 		async created() {
 			const [
