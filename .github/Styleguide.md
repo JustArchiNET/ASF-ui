@@ -28,7 +28,7 @@ if (condition) { ... }   // ✓ ok
 if(condition) { ... }    // ✗ avoid
 ```
 
-#### **Always use `===` instead of `==`**
+#### **Always use === instead of ==**
 
 *Exception: `obj == null` is allowed to check for `null` or `undefined`*
 
