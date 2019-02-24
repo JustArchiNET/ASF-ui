@@ -4,7 +4,7 @@ The following is a set of guidelines for contributing to ASF-ui. These are mostl
 
 ## Styleguide
 
-Before sending a pull request you should make sure that your code follows our [Styleguide](Styleguide.md)
+Before sending a pull request you should make sure that your code follows our [Styleguide](Styleguide.md).
 
 ## Code of Conduct
 
