@@ -1,5 +1,5 @@
 import * as http from '../plugins/http';
-import { compareVersion } from './compareVersion';
+import compareVersion from './compareVersion';
 import { getLocaleForWiki } from './getLocaleForWiki';
 
 async function getURL(file, version, locale) {

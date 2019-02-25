@@ -24,7 +24,7 @@
 
 <script>
 	import { mapGetters } from 'vuex';
-	import { timeDifference } from '../utils/timeDifference';
+	import timeDifference from '../utils/timeDifference';
 	import * as storage from '../utils/storage';
 
 	export default {

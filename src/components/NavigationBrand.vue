@@ -30,7 +30,7 @@
 
 <script>
 	import { mapGetters } from 'vuex';
-	import { composeVersionString } from '../utils/composeVersionString';
+	import composeVersionString from '../utils/composeVersionString';
 	import { newReleaseAvailable } from '../utils/ui';
 	import waitForRestart from '../utils/waitForRestart';
 

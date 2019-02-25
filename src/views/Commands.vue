@@ -22,7 +22,7 @@
 	import { mapGetters } from 'vuex';
 	import * as storage from '../utils/storage';
 	import fetchWiki from '../utils/fetchWiki';
-	import { getSelectedText } from '../utils/getSelectedText';
+	import getSelectedText from '../utils/getSelectedText';
 
 	class CommandsCache {
 		constructor(maxLength) {
