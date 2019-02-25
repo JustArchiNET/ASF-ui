@@ -1,7 +1,7 @@
 import * as humanizeDuration from 'humanize-duration';
 import Vue from 'vue';
 import * as http from '../../plugins/http';
-import { composeVersionString } from '../../utils/composeVersionString';
+import composeVersionString from '../../utils/composeVersionString';
 
 const humanizer = humanizeDuration.humanizer({
 	language: 'shortEn',

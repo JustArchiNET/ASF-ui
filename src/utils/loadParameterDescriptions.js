@@ -1,5 +1,5 @@
 import fetchWiki from './fetchWiki';
-import { getLocaleForWiki } from './getLocaleForWiki';
+import getLocaleForWiki from './getLocaleForWiki';
 import * as storage from './storage';
 
 export default async function loadParameterDescriptions(version, locale) {
