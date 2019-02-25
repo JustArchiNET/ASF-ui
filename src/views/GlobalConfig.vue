@@ -13,11 +13,13 @@
 				<div class="form-item">
 					<div class="form-item__buttons">
 						<button class="button button--confirm" @click="onSave">
-							<font-awesome-icon icon="spinner" v-if="saving" spin></font-awesome-icon>
+							<font-awesome-icon v-if="saving" icon="spinner" spin></font-awesome-icon>
 							<span v-else>{{ $t('save') }}</span>
 						</button>
 
-						<button class="button button--link pull-right" @click="onDownload">{{ $t('download-raw-config') }}</button>
+						<button class="button button--link pull-right" @click="onDownload">
+							{{ $t('download-raw-config') }}
+						</button>
 					</div>
 				</div>
 			</template>
@@ -26,12 +28,10 @@
 </template>
 
 <script>
+	import { mapGetters } from 'vuex';
 	import ConfigEditor from '../components/ConfigEditor.vue';
 	import loadParameterDescriptions from '../utils/loadParameterDescriptions';
-
 	import fetchConfigSchema from '../utils/fetchConfigSchema';
-
-	import { mapGetters } from 'vuex';
 	import prepareModelToDownload from '../utils/prepareModelToDownload';
 	import waitForRestart from '../utils/waitForRestart';
 
@@ -112,7 +112,7 @@
 			},
 			async onDownload() {
 				const element = document.createElement('a');
-				element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(prepareModelToDownload(this.model)));
+				element.setAttribute('href', `data:text/plain;charset=utf-8,${encodeURIComponent(prepareModelToDownload(this.model))}`);
 				element.setAttribute('download', 'ASF.json');
 				element.style.display = 'none';
 				document.body.appendChild(element);

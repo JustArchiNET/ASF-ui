@@ -1,4 +1,4 @@
-export function timeDifference(startTime, endTime = new Date()) {
+export default function timeDifference(startTime, endTime = new Date()) {
 	const difference = (endTime - startTime) / 1000;
 
 	return {

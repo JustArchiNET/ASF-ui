@@ -1,16 +1,17 @@
 <template>
 	<main class="main-container main-container--fullheight commands">
 		<div class="container">
-			<div class="terminal" @click="focusInput" ref="terminal">
-				<div class="terminal-message" v-for="{ type, message } in log">
+			<div ref="terminal" class="terminal" @click="focusInput">
+				<div v-for="{ type, message } in log" class="terminal-message">
 					<span class="terminal-message__sign">{{ type === 'out' ? '>' : '<' }}</span>
 					<span class="terminal-message__content">{{ message }}</span>
 				</div>
 				<div class="terminal__input-wrapper">
 					<span class="terminal-message__sign sign-input" @click="sendCommand">></span>
-					<input type="text" spellcheck="false" :value="command" @input="command = $event.target.value" ref="terminal-input" class="terminal__input"
-						   @keydown.enter="sendCommand" @keydown.tab.prevent="autocomplete" @keydown.up="historyPrevious" @keydown.down="historyNext">
-					<input type="text" spellcheck="false" v-model="autocompleteSuggestion" class="terminal__input terminal__input--autocomplete">
+					<input ref="terminal-input" type="text" spellcheck="false" :value="command" class="terminal__input" @input="command = $event.target.value"
+						@keydown.enter="sendCommand" @keydown.tab.prevent="autocomplete" @keydown.up="historyPrevious" @keydown.down="historyNext"
+					>
+					<input v-model="autocompleteSuggestion" type="text" spellcheck="false" class="terminal__input terminal__input--autocomplete">
 				</div>
 			</div>
 		</div>
@@ -18,11 +19,10 @@
 </template>
 
 <script>
+	import { mapGetters } from 'vuex';
 	import * as storage from '../utils/storage';
 	import fetchWiki from '../utils/fetchWiki';
-
-	import { mapGetters } from 'vuex';
-	import { getSelectedText } from '../utils/getSelectedText';
+	import getSelectedText from '../utils/getSelectedText';
 
 	class CommandsCache {
 		constructor(maxLength) {
@@ -90,8 +90,8 @@
 			},
 			commandsParameters() {
 				return this.commands.map(({ command }) => command.split(' '))
-						.map(([command, ...params]) => ({ command, params }))
-						.reduce((commandParameters, { command, params }) => (commandParameters[command] = params, commandParameters), {});
+					.map(([command, ...params]) => ({ command, params }))
+					.reduce((commandParameters, { command, params }) => (commandParameters[command] = params, commandParameters), {});
 			},
 			autocompleteSuggestion() {
 				if (this.suggestedCommand) return this.command.replace(/./g, ' ') + this.suggestedCommand.substr(this.command.length);
@@ -109,9 +109,9 @@
 					const remainingParameters = this.suggestedParameters.slice(this.currentParameterValue.length ? this.currentParameterIndex : this.currentParameterIndex - 1);
 					if (!remainingParameters.length && this.currentParameter) remainingParameters.push(this.currentParameter);
 
-					return this.command.replace(/./g, ' ') +
-							(this.currentParameterValue.length ? ' ' : '') +
-							remainingParameters.join(' ');
+					return this.command.replace(/./g, ' ')
+						+ (this.currentParameterValue.length ? ' ' : '')
+						+ remainingParameters.join(' ');
 				}
 			},
 			suggestedCommand() {
@@ -119,8 +119,7 @@
 				return this.commandsNames.find(command => command.startsWith(this.command));
 			},
 			suggestedParameters() {
-				if (this.selectedCommand && this.commandsParameters[this.selectedCommand])
-					return this.commandsParameters[this.selectedCommand];
+				if (this.selectedCommand && this.commandsParameters[this.selectedCommand]) return this.commandsParameters[this.selectedCommand];
 
 				return [];
 			},
@@ -149,43 +148,60 @@
 				if (!this.currentParameter) return;
 
 				switch (this.currentParameter.toLowerCase()) {
-					case '<bot>':
-					case '<bots>':
-					case '<targetbot>':
-						const suggestedBot = [...this.$store.getters['bots/bots'].map(bot => bot.name), 'ASF']
-								.find(name => name.startsWith(this.currentParameterValue));
+				case '<bot>':
+				case '<bots>':
+				case '<targetbot>':
+					const suggestedBot = [...this.$store.getters['bots/bots'].map(bot => bot.name), 'ASF']
+						.find(name => name.startsWith(this.currentParameterValue));
 
-						if (suggestedBot) return suggestedBot;
+					if (suggestedBot) return suggestedBot;
 
-						return [...this.$store.getters['bots/bots'].map(bot => bot.name), 'ASF']
-								.find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
-					case '<command>':
-						return this.commandsNames.find(name => name.startsWith(this.currentParameterValue));
-					case '<modes>':
-						if (this.selectedCommand === 'transfer') return ['All', 'Background', 'Booster', 'Card', 'Emoticon', 'Foil', 'Gems', 'Unknown']
-								.find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
+					return [...this.$store.getters['bots/bots'].map(bot => bot.name), 'ASF']
+						.find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
+				case '<command>':
+					return this.commandsNames.find(name => name.startsWith(this.currentParameterValue));
+				case '<modes>':
+					if (this.selectedCommand === 'transfer') {
+						return ['All', 'Background', 'Booster', 'Card', 'Emoticon', 'Foil', 'Gems', 'Unknown']
+							.find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
+					}
 
-						if (this.selectedCommand === 'redeem^') return ['FD', 'FF', 'FKMD', 'SD', 'SF', 'SI', 'SKMG', 'V']
-								.find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
+					if (this.selectedCommand === 'redeem^') {
+						return ['FD', 'FF', 'FKMD', 'SD', 'SF', 'SI', 'SKMG', 'V']
+							.find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
+					}
 
-						return;
-					case '<type>':
-						if (this.selectedCommand !== 'input') return;
+					return;
+				case '<type>':
+					if (this.selectedCommand !== 'input') return;
 
-						return ['DeviceID', 'Login', 'Password', 'SteamGuard', 'SteamParentalCode', 'TwoFactorAuthentication']
-								.find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
-					case '<settings>':
-						if (this.selectedCommand !== 'privacy') return;
+					return ['DeviceID', 'Login', 'Password', 'SteamGuard', 'SteamParentalCode', 'TwoFactorAuthentication']
+						.find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
+				case '<settings>':
+					if (this.selectedCommand !== 'privacy') return;
 
-						return ['Private', 'FriendsOnly', 'Public']
-								.find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
-
+					return ['Private', 'FriendsOnly', 'Public']
+						.find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
 				}
 			},
 			selectedCommand() {
 				if (!this.command) return;
 				return this.commandsNames.find(command => command === this.command.split(' ')[0]);
 			}
+		},
+		watch: {
+			log() {
+				this.$nextTick(() => {
+					this.$refs.terminal.scrollTop = Math.max(0, this.$refs.terminal.scrollHeight - this.$refs.terminal.clientHeight);
+				});
+			}
+		},
+		async created() {
+			this.commandHistory.load();
+			this.asfCommands = await this.loadCommands();
+		},
+		mounted() {
+			this.$refs['terminal-input'].focus();
 		},
 		methods: {
 			async sendCommand() {
@@ -211,11 +227,11 @@
 			},
 			async executeCommand(commandToExecute) {
 				switch (commandToExecute.split(' ')[0]) {
-					case 'commands':
-						return this.$t('terminal-available-commands', { commands: this.commandsNames.join(', ') });
-					case 'help':
-						if (commandToExecute.split(' ')[1]) return this.commandHelp(commandToExecute.split(' ')[1]);
-						return this.$t('terminal-help-text');
+				case 'commands':
+					return this.$t('terminal-available-commands', { commands: this.commandsNames.join(', ') });
+				case 'help':
+					if (commandToExecute.split(' ')[1]) return this.commandHelp(commandToExecute.split(' ')[1]);
+					return this.$t('terminal-help-text');
 				}
 
 				return this.$http.command(commandToExecute);
@@ -223,7 +239,7 @@
 			commandHelp(command) {
 				const asfCommand = this.commands.find(asfCommand => asfCommand.command.split(' ')[0] === command);
 				if (asfCommand) return asfCommand.description;
-				return this.$t('terminal-no-help', { command: command });
+				return this.$t('terminal-no-help', { command });
 			},
 			focusInput() {
 				const selectedText = getSelectedText();
@@ -239,7 +255,7 @@
 
 					this.command = [...splitCommand.slice(0, -1), [...splitCurrentParameter.slice(0, -1), this.suggestedParameterValue].join(',')].join(' ');
 				} else if (this.command === '') {
-					let tabPressTime = Date.now();
+					const tabPressTime = Date.now();
 					if (tabPressTime - this.lastTabPressTime <= 500) this.command = 'commands';
 					this.lastTabPressTime = tabPressTime;
 				}
@@ -262,8 +278,8 @@
 				}
 			},
 			moveCursorToEnd() {
-				let el = this.$refs['terminal-input'];
-				let len = this.command.length;
+				const el = this.$refs['terminal-input'];
+				const len = this.command.length;
 
 				if (el.setSelectionRange) setTimeout(() => el.setSelectionRange(len, len), 0);
 				else this.command = this.command;
@@ -274,11 +290,11 @@
 				const commandsTableHTML = commandsWikiHTML.querySelector('h2 > a').parentElement.nextElementSibling;
 
 				return Array.from(commandsTableHTML.querySelectorAll('tbody tr'))
-						.map(tableRow => tableRow.textContent.trim().split('\n'))
-						.map(([command, access, description]) => ({ command, access, description }));
+					.map(tableRow => tableRow.textContent.trim().split('\n'))
+					.map(([command, access, description]) => ({ command, access, description }));
 			},
 			async fetchCommands() {
-				const locale = this.$i18n.locale;
+				const { locale } = this.$i18n;
 				const wiki = await fetchWiki('Commands', this.version, locale);
 				const commands = this.parseCommandsHTML(wiki);
 
@@ -287,7 +303,7 @@
 				return commands;
 			},
 			async loadCommands() {
-				const locale = this.$i18n.locale;
+				const { locale } = this.$i18n;
 				const commandsCache = storage.get(`cache:asf-commands:${locale}`);
 
 				if (commandsCache) {
@@ -297,20 +313,6 @@
 
 				return this.fetchCommands();
 			}
-		},
-		watch: {
-			log() {
-				this.$nextTick(() => {
-					this.$refs.terminal.scrollTop = Math.max(0, this.$refs.terminal.scrollHeight - this.$refs.terminal.clientHeight);
-				});
-			}
-		},
-		async created() {
-			this.commandHistory.load();
-			this.asfCommands = await this.loadCommands();
-		},
-		mounted() {
-			this.$refs['terminal-input'].focus();
 		}
 	};
 </script>

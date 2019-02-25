@@ -1,9 +1,13 @@
 <template>
-	<main class="main-container" v-if="bot">
-		<h2 class="title" v-if="bot.nickname && nicknames">{{ bot.nickname }}</h2>
-		<h2 class="title" v-else>{{ bot.name }}</h2>
+	<main v-if="bot" class="main-container">
+		<h2 v-if="bot.nickname && nicknames" class="title">
+			{{ bot.nickname }}
+		</h2>
+		<h2 v-else class="title">
+			{{ bot.name }}
+		</h2>
 
-		<h3 class="subtitle" v-if="loading">
+		<h3 v-if="loading" class="subtitle">
 			<font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
 		</h3>
 
@@ -21,17 +25,18 @@
 </template>
 
 <script>
+	import { mapGetters } from 'vuex';
 	import BgrCheck from '../../components/BGR/Check.vue';
 	import BgrInput from '../../components/BGR/Input.vue';
 	import BgrReset from '../../components/BGR/Reset.vue';
 	import BgrStatus from '../../components/BGR/Status.vue';
 	import BgrSummary from '../../components/BGR/Summary.vue';
 
-	import { mapGetters } from 'vuex';
-
 	export default {
 		name: 'bot-bgr',
-		components: { BgrCheck, BgrInput, BgrReset, BgrStatus, BgrSummary },
+		components: {
+			BgrCheck, BgrInput, BgrReset, BgrStatus, BgrSummary
+		},
 		data() {
 			return {
 				loading: true,
@@ -57,9 +62,9 @@
 			}
 		},
 		watch: {
-			'$route': {
+			$route: {
 				immediate: true,
-				handler: async function() {
+				async handler() {
 					this.loading = true;
 					const { UnusedKeys, UsedKeys } = await this.loadBGR();
 					this.unusedKeys = UnusedKeys;

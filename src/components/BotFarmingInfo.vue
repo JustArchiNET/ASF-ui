@@ -4,7 +4,9 @@
 			<font-awesome-icon :icon="icon"></font-awesome-icon>
 		</div>
 
-		<p class="farming-info__value">{{ value }}</p>
+		<p class="farming-info__value">
+			{{ value }}
+		</p>
 	</div>
 </template>
 

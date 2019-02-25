@@ -1,7 +1,7 @@
 <template>
-	<div class="bot-action" :class="[color ? `bot-action--${color}` : null]" @click="onClick" v-show="visible">
-		<span class="bot-action__label" v-if="name">{{ name }}</span>
-		<font-awesome-icon class="bot-action__icon" :icon="icon" v-if="icon"></font-awesome-icon>
+	<div v-show="visible" class="bot-action" :class="[color ? `bot-action--${color}` : null]" @click="onClick">
+		<span v-if="name" class="bot-action__label">{{ name }}</span>
+		<font-awesome-icon v-if="icon" class="bot-action__icon" :icon="icon"></font-awesome-icon>
 	</div>
 </template>
 

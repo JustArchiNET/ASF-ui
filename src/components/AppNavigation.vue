@@ -32,16 +32,17 @@
 </template>
 
 <script>
+	import { mapGetters } from 'vuex';
 	import NavigationLink from './NavigationLink.vue';
 	import NavigationCategoryTitle from './NavigationCategoryTitle.vue';
 	import NavigationBots from './NavigationBots.vue';
 	import NavigationStatistics from './NavigationStatistics.vue';
 
-	import { mapGetters } from 'vuex';
-
 	export default {
 		name: 'app-navigation',
-		components: { NavigationLink, NavigationCategoryTitle, NavigationStatistics, NavigationBots },
+		components: {
+			NavigationLink, NavigationCategoryTitle, NavigationStatistics, NavigationBots
+		},
 		computed: mapGetters({
 			authenticated: 'auth/authenticated',
 			smallNavigation: 'layout/smallNavigation'

@@ -1,7 +1,7 @@
-import * as http from '../../plugins/http';
 import * as humanizeDuration from 'humanize-duration';
 import Vue from 'vue';
-import { composeVersionString } from '../../utils/composeVersionString';
+import * as http from '../../plugins/http';
+import composeVersionString from '../../utils/composeVersionString';
 
 const humanizer = humanizeDuration.humanizer({
 	language: 'shortEn',
@@ -28,7 +28,9 @@ export const state = {
 	memoryUsage: 0,
 	startTime: null,
 	buildVariant: null,
-	version: { Major: 0, Minor: 0, Build: 0, Revision: 0 },
+	version: {
+		Major: 0, Minor: 0, Build: 0, Revision: 0
+	},
 	uptime: '0s',
 	updateChannel: 1
 };
@@ -39,7 +41,7 @@ export const mutations = {
 	updateVersion: (state, version) => state.version = version,
 	updateBuildVariant: (state, buildVariant) => state.buildVariant = buildVariant,
 	updateBots: (state, bots) => state.bots = bots,
-	calculateUptime: (state) => {
+	calculateUptime: state => {
 		if (!state.startTime) return;
 
 		const timeDiff = Date.now() - state.startTime.getTime();

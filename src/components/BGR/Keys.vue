@@ -1,8 +1,8 @@
 <template>
 	<div class="bgr__keys">
-		<span class="bgr__no-keys" v-if="noKeys">{{ $t('bgr-no-keys-detected') }}</span>
+		<span v-if="noKeys" class="bgr__no-keys">{{ $t('bgr-no-keys-detected') }}</span>
 
-		<table class="bgr__table" v-else>
+		<table v-else class="bgr__table">
 			<tr>
 				<th>Game</th>
 				<th>Key</th>
@@ -17,8 +17,8 @@
 
 <script>
 	export default {
-		props: { keys: Object },
 		name: 'bgr-keys',
+		props: { keys: Object },
 		computed: {
 			noKeys() {
 				return Object.keys(this.keys).length === 0;

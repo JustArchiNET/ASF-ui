@@ -1,7 +1,11 @@
 <template>
-	<main class="main-container" v-if="bot">
-		<h2 class="title" v-if="bot.nickname && nicknames">{{ bot.nickname }}</h2>
-		<h2 class="title" v-else>{{ bot.name }}</h2>
+	<main v-if="bot" class="main-container">
+		<h2 v-if="bot.nickname && nicknames" class="title">
+			{{ bot.nickname }}
+		</h2>
+		<h2 v-else class="title">
+			{{ bot.name }}
+		</h2>
 
 		<div class="form-item">
 			<div class="form-item__token">
@@ -9,16 +13,18 @@
 			</div>
 			<div class="form-item__buttons form-item__buttons--center form-item__buttons--column">
 				<button class="button button--confirm" @click="refreshToken">
-					<font-awesome-icon icon="spinner" v-if="refreshing" spin></font-awesome-icon>
+					<font-awesome-icon v-if="refreshing" icon="spinner" spin></font-awesome-icon>
 					<span v-else>{{ $t('2fa-token-refresh') }}</span>
 				</button>
-				<button class="button button--confirm" @click="copyToken">{{ $t('2fa-token-copy') }}</button>
+				<button class="button button--confirm" @click="copyToken">
+					{{ $t('2fa-token-copy') }}
+				</button>
 				<button class="button button--confirm" @click="acceptTrades">
-					<font-awesome-icon icon="spinner" v-if="accepting" spin></font-awesome-icon>
+					<font-awesome-icon v-if="accepting" icon="spinner" spin></font-awesome-icon>
 					<span v-else>{{ $t('2fa-accept') }}</span>
 				</button>
 				<button class="button button--cancel" @click="cancelTrades">
-					<font-awesome-icon icon="spinner" v-if="canceling" spin></font-awesome-icon>
+					<font-awesome-icon v-if="canceling" icon="spinner" spin></font-awesome-icon>
 					<span v-else>{{ $t('2fa-cancel') }}</span>
 				</button>
 			</div>

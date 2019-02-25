@@ -20,8 +20,8 @@
 				if (this.botsFarmingCount === 0) return '-';
 
 				const language = ['zh-CN', 'zh-TW'].includes(this.$i18n.locale)
-						? this.$i18n.locale.replace('-', '_')
-						: this.$i18n.noRegionalLocale;
+					? this.$i18n.locale.replace('-', '_')
+					: this.$i18n.noRegionalLocale;
 
 				return humanizeDuration(this.$store.getters['bots/timeRemaining'] * 1000, { language });
 			},

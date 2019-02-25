@@ -1,4 +1,4 @@
-export function compareVersion(a, b) {
+export default function compareVersion(a, b) {
 	let result = 0;
 
 	const aValues = a.split('.');

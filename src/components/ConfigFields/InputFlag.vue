@@ -4,12 +4,14 @@
 
 		<div class="form-item__value">
 			<div class="input-option__field">
-				<select class="form-item__input" v-model="flagValue" :id="field">
-					<option v-for="(flagValue, name) in flags" :value="flagValue" v-show="flagValue === 0 || !((value & flagValue) === flagValue)">
+				<select :id="field" v-model="flagValue" class="form-item__input">
+					<option v-for="(flagValue, name) in flags" v-show="flagValue === 0 || !((value & flagValue) === flagValue)" :value="flagValue">
 						{{ name }}
 					</option>
 				</select>
-				<button class="button" @click.prevent="addFlag">{{ $t('add') }}</button>
+				<button class="button" @click.prevent="addFlag">
+					{{ $t('add') }}
+				</button>
 			</div>
 
 			<div class="input-option__items">
@@ -19,7 +21,7 @@
 			</div>
 		</div>
 
-		<input-description :description="description" v-if="hasDescription" v-show="showDescription"></input-description>
+		<input-description v-if="hasDescription" v-show="showDescription" :description="description"></input-description>
 	</div>
 </template>
 
@@ -27,8 +29,8 @@
 	import Input from './Input.vue';
 
 	export default {
-		mixins: [Input],
 		name: 'input-flag',
+		mixins: [Input],
 		data() {
 			return {
 				flagValue: this.schema.defaultValue

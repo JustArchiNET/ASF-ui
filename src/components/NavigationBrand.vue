@@ -8,7 +8,7 @@
 		</div>
 
 		<transition name="brand__menu">
-			<div class="brand__menu" v-if="brandMenu && authenticated">
+			<div v-if="brandMenu && authenticated" class="brand__menu">
 				<div class="brand__menu-item" @click="update">
 					<font-awesome-icon class="brand__menu-icon" icon="cloud-download-alt" fixed-width></font-awesome-icon>
 					<span>{{ $t('update') }}</span>
@@ -29,11 +29,10 @@
 </template>
 
 <script>
-	import { composeVersionString } from '../utils/composeVersionString';
+	import { mapGetters } from 'vuex';
+	import composeVersionString from '../utils/composeVersionString';
 	import { newReleaseAvailable } from '../utils/ui';
 	import waitForRestart from '../utils/waitForRestart';
-
-	import { mapGetters } from 'vuex';
 
 	export default {
 		name: 'navigation-brand',

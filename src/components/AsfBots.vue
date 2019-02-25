@@ -1,6 +1,6 @@
 <template>
 	<div class="bots">
-		<bot-card v-for="bot in bots" :bot="bot" :key="bot.name" v-if="bot.isVisible(selectedBots)"></bot-card>
+		<bot-card v-for="bot in bots" v-if="bot.isVisible(selectedBots)" :key="bot.name" :bot="bot"></bot-card>
 
 		<router-link tag="div" :to="{ name: 'bot-create' }" class="bot-placeholder status--disabled">
 			<div class="bot-placeholder__button bot-placeholder__button--add">
@@ -12,8 +12,8 @@
 </template>
 
 <script>
-	import BotCard from './BotCard.vue';
 	import { mapGetters } from 'vuex';
+	import BotCard from './BotCard.vue';
 
 	export default {
 		name: 'asf-bots',

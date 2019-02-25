@@ -9,14 +9,13 @@
 		</div>
 
 		<div class="theme-switcher">
-			<div class="theme-switcher__theme" :class="[`theme-${theme}`]" v-for="theme in availableThemes" @click="changeTheme(theme)"></div>
+			<div v-for="theme in availableThemes" class="theme-switcher__theme" :class="[`theme-${theme}`]" @click="changeTheme(theme)"></div>
 		</div>
 	</aside>
 </template>
 
 <script>
 	import { mapActions, mapGetters } from 'vuex';
-
 	import SideMenuSwitch from './SideMenuSwitch.vue';
 
 	export default {

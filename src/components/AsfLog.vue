@@ -1,6 +1,6 @@
 <template>
-	<div class="terminal" ref="terminal">
-		<div class="terminal-message terminal-message--truncated" v-for="{ type, message } in log">
+	<div ref="terminal" class="terminal">
+		<div v-for="{ type, message } in log" class="terminal-message terminal-message--truncated">
 			<span class="terminal-message__content">
 				<span class="terminal-message__time">[{{ message.time.toLocaleTimeString() }}]</span>
 				<span class="terminal-message__level" :class="`terminal-message__level--${message.level.toLowerCase()}`">{{ message.level }}</span>
@@ -25,6 +25,15 @@
 		computed: mapGetters({
 			password: 'auth/password'
 		}),
+		watch: {
+			log() {
+				if (this.$refs.terminal.scrollTop < this.$refs.terminal.scrollHeight - this.$refs.terminal.clientHeight - 20) return;
+
+				this.$nextTick(() => {
+					this.$refs.terminal.scrollTop = Math.max(0, this.$refs.terminal.scrollHeight - this.$refs.terminal.clientHeight);
+				});
+			}
+		},
 		created() {
 			const websocketURL = `${window.__BASE_URL__.replace(/^http/, 'ws')}api/nlog${this.password ? `?password=${encodeURIComponent(this.password)}` : ''}`;
 
@@ -32,6 +41,9 @@
 			this.ws.onopen = this.onOpen.bind(this);
 			this.ws.onmessage = this.onMessage.bind(this);
 			this.ws.onclose = this.onClose.bind(this);
+		},
+		beforeDestroy() {
+			this.ws.close();
 		},
 		methods: {
 			onOpen(event) {
@@ -55,18 +67,6 @@
 			onClose(event) {
 
 			}
-		},
-		watch: {
-			log() {
-				if (this.$refs.terminal.scrollTop < this.$refs.terminal.scrollHeight - this.$refs.terminal.clientHeight - 20) return;
-
-				this.$nextTick(() => {
-					this.$refs.terminal.scrollTop = Math.max(0, this.$refs.terminal.scrollHeight - this.$refs.terminal.clientHeight);
-				});
-			}
-		},
-		beforeDestroy() {
-			this.ws.close();
 		}
 	};
 </script>

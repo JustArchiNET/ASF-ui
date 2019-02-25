@@ -4,8 +4,12 @@
 			<font-awesome-icon :icon="icon"></font-awesome-icon>
 		</div>
 		<div class="info-card__body">
-			<p class="info-card__title">{{ title }}</p>
-			<p class="info-card__value">{{ value }}</p>
+			<p class="info-card__title">
+				{{ title }}
+			</p>
+			<p class="info-card__value">
+				{{ value }}
+			</p>
 		</div>
 	</div>
 </template>

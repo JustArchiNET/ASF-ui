@@ -14,10 +14,9 @@
 </template>
 
 <script>
+	import { mapGetters } from 'vuex';
 	import FooterLink from './FooterLink.vue';
 	import FooterStatistic from './FooterStatistic.vue';
-
-	import { mapGetters } from 'vuex';
 	import { ui, newReleaseAvailable } from '../utils/ui';
 
 	export default {

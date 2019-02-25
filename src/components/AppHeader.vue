@@ -17,10 +17,9 @@
 </template>
 
 <script>
+	import { mapActions } from 'vuex';
 	import NavigationBrand from './NavigationBrand.vue';
 	import NavigationLanguageSwitch from './NavigationLanguageSwitch.vue';
-
-	import { mapActions } from 'vuex';
 
 	export default {
 		name: 'app-header',

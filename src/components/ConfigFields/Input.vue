@@ -1,23 +1,16 @@
 <script>
 	import InputDescription from './InputDescription.vue';
 	import InputLabel from './InputLabel.vue';
-
 	import validator from '../../utils/validator';
 
 	export default {
+		components: { InputLabel, InputDescription },
 		props: {
 			schema: {
 				type: Object,
 				required: true
 			},
 			currentValue: true
-		},
-		components: { InputLabel, InputDescription },
-		watch: {
-			value: {
-				handler: 'update',
-				deep: true
-			}
 		},
 		data() {
 			const initialValue = typeof this.currentValue !== 'undefined' ? this.currentValue : this.schema.defaultValue;
@@ -58,6 +51,12 @@
 			},
 			errorText() {
 				return this.errors.map(error => `Value is ${error}!`).join(' ');
+			}
+		},
+		watch: {
+			value: {
+				handler: 'update',
+				deep: true
 			}
 		},
 		methods: {

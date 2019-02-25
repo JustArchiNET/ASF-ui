@@ -9,14 +9,16 @@
 						<span class="form-item__tag-value">{{ item }}</span>
 						<font-awesome-icon class="form-item__tag-remove" icon="times"></font-awesome-icon>
 					</button>
-					<input class="form-item__input form-item__input--tag" type="text" @keydown="onKeyDown" @focus="onFocus" @blur="onBlur" v-model="element">
+					<input v-model="element" class="form-item__input form-item__input--tag" type="text" @keydown="onKeyDown" @focus="onFocus" @blur="onBlur">
 				</div>
-				<button class="button" @click.prevent="addElement">{{ $t('add') }}</button>
+				<button class="button" @click.prevent="addElement">
+					{{ $t('add') }}
+				</button>
 			</div>
 			<span v-if="hasErrors" class="form-item__error">{{ errorText }}</span>
 		</div>
 
-		<input-description :description="description" v-if="hasDescription" v-show="showDescription"></input-description>
+		<input-description v-if="hasDescription" v-show="showDescription" :description="description"></input-description>
 	</div>
 </template>
 
@@ -25,8 +27,14 @@
 	import validator from '../../utils/validator';
 
 	export default {
-		mixins: [Input],
 		name: 'input-tag',
+		mixins: [Input],
+		data() {
+			return {
+				focus: false,
+				element: ''
+			};
+		},
 		computed: {
 			isString() {
 				return ['string', 'uint64'].includes(this.schema.values.type);
@@ -41,12 +49,6 @@
 			isValid() {
 				return true;
 			}
-		},
-		data() {
-			return {
-				focus: false,
-				element: ''
-			};
 		},
 		watch: {
 			element(newValue, oldValue) {

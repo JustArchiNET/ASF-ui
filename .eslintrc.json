@@ -1,0 +1,44 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "extends": [
+		"plugin:vue/recommended",
+		"airbnb-base"
+	],
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "vue"
+    ],
+    "rules": {
+		"indent": ["error", "tab"],
+		"no-tabs": ["error", { "allowIndentationTabs": true }],
+		"no-await-in-loop": "off",
+		"space-before-function-paren": ["error", { "anonymous": "never", "named": "never", "asyncArrow": "always" }],
+		"comma-dangle": ["error", "never"],
+		"prefer-template": "warn",
+		"arrow-parens": ["error", "as-needed"],
+		"no-underscore-dangle": ["error", { "allowAfterThis": true }],
+		"vue/script-indent": ["error", "tab", { "baseIndent": 1 }],
+		"vue/html-indent": ["error", "tab"],
+		"vue/name-property-casing": ["error", "kebab-case"],
+		"vue/max-attributes-per-line": "off",
+		"vue/html-self-closing": ["error", { "html": { "void": "never", "normal": "never", "component": "never" }}]
+    },
+	"overrides": [
+		{
+			"files": ["*.vue"],
+			"rules": {
+				"indent": "off"
+			}
+		}
+	]
+}

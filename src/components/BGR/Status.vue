@@ -1,20 +1,26 @@
 <template>
-	<div class="bgr__status form-item" v-if="usedKeysCount || unusedKeysCount">
+	<div v-if="usedKeysCount || unusedKeysCount" class="bgr__status form-item">
 		<div class="form-item__buttons form-item__buttons--center">
-			<button class="button" @click="$emit('show-used')">{{ $t('bgr-used-keys-count', { count: usedKeysCount }) }}</button>
-			<button class="button" @click="$emit('show-unused')">{{ $t('bgr-unused-keys-count', { count: unusedKeysCount }) }}</button>
-			<button class="button" @click="$emit('reset')">{{ $t('reset') }}</button>
+			<button class="button" @click="$emit('show-used')">
+				{{ $t('bgr-used-keys-count', { count: usedKeysCount }) }}
+			</button>
+			<button class="button" @click="$emit('show-unused')">
+				{{ $t('bgr-unused-keys-count', { count: unusedKeysCount }) }}
+			</button>
+			<button class="button" @click="$emit('reset')">
+				{{ $t('reset') }}
+			</button>
 		</div>
 	</div>
 </template>
 
 <script>
 	export default {
+		name: 'bgr-status',
 		props: {
 			usedKeys: Object,
 			unusedKeys: Object
 		},
-		name: 'bgr-status',
 		computed: {
 			unusedKeysCount() {
 				return Object.keys(this.unusedKeys).length;

@@ -20,7 +20,7 @@
 				element.style.visibility = 'hidden';
 				element.style.height = 'auto';
 
-				const height = getComputedStyle(element).height;
+				const { height } = getComputedStyle(element);
 
 				element.style.width = null;
 				element.style.position = null;

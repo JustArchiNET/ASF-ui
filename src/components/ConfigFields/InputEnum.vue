@@ -3,12 +3,14 @@
 		<input-label :label="label" :has-description="hasDescription"></input-label>
 
 		<div class="form-item__value">
-			<select class="form-item__input" :name="field" :id="field" v-model="value">
-				<option v-for="(enumValue, name) in values" :value="enumValue" v-if="!(name === 'Max' && isLastValue(enumValue))">{{ name }}</option>
+			<select :id="field" v-model="value" class="form-item__input" :name="field">
+				<option v-for="(enumValue, name) in values" v-if="!(name === 'Max' && isLastValue(enumValue))" :value="enumValue">
+					{{ name }}
+				</option>
 			</select>
 		</div>
 
-		<input-description :description="description" v-if="hasDescription" v-show="showDescription"></input-description>
+		<input-description v-if="hasDescription" v-show="showDescription" :description="description"></input-description>
 	</div>
 </template>
 
@@ -16,8 +18,8 @@
 	import Input from './Input.vue';
 
 	export default {
-		mixins: [Input],
 		name: 'input-enum',
+		mixins: [Input],
 		computed: {
 			values() {
 				return this.schema.values;

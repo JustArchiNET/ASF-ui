@@ -1,6 +1,8 @@
 <template>
 	<div class="bgr__check">
-		<h3 class="subtitle bgr__check-title" v-if="!noKeys">{{ title }}</h3>
+		<h3 v-if="!noKeys" class="subtitle bgr__check-title">
+			{{ title }}
+		</h3>
 
 		<div class="form-item">
 			<bgr-keys :keys="keys"></bgr-keys>
@@ -8,12 +10,14 @@
 
 		<div class="form-item">
 			<div class="form-item__buttons form-item__buttons--center">
-				<button class="button button--confirm" @click="$emit('confirm')" v-if="!noKeys">
-					<font-awesome-icon icon="spinner" v-if="confirming" spin></font-awesome-icon>
+				<button v-if="!noKeys" class="button button--confirm" @click="$emit('confirm')">
+					<font-awesome-icon v-if="confirming" icon="spinner" spin></font-awesome-icon>
 					<span v-else>{{ $t('confirm') }}</span>
 				</button>
 
-				<button class="button button--cancel" @click="$emit('cancel')" :key="'cancel'">{{ $t('cancel') }}</button>
+				<button :key="'cancel'" class="button button--cancel" @click="$emit('cancel')">
+					{{ $t('cancel') }}
+				</button>
 			</div>
 		</div>
 	</div>
@@ -23,13 +27,13 @@
 	import BgrKeys from './Keys.vue';
 
 	export default {
+		name: 'bgr-check',
 		components: { BgrKeys },
 		props: {
 			keys: Object,
 			confirming: Boolean,
 			title: String
 		},
-		name: 'bgr-check',
 		computed: {
 			noKeys() {
 				return !Object.keys(this.keys).length;

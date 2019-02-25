@@ -1,12 +1,14 @@
 <template>
 	<div class="releases">
-		<h3 class="subtitle" v-if="loading && !statusText">
+		<h3 v-if="loading && !statusText" class="subtitle">
 			<font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
 		</h3>
 
-		<h3 class="subtitle" v-if="statusText">{{ statusText }}</h3>
+		<h3 v-if="statusText" class="subtitle">
+			{{ statusText }}
+		</h3>
 
-		<div class="release" v-for="release in releases" v-else>
+		<div v-for="release in releases" v-else class="release">
 			<div class="release__title">
 				<span class="release__version">v{{ release.version }}</span>
 				<span class="release__badge" :class="[release.stable ? 'release__badge--stable' : 'release__badge--prerelease']">{{ release.stable ? $t('stable') : $t('pre-release') }}</span>
@@ -21,9 +23,9 @@
 </template>
 
 <script>
-	import { timeDifference } from '../utils/timeDifference';
-	import * as storage from '../utils/storage';
 	import { mapGetters } from 'vuex';
+	import timeDifference from '../utils/timeDifference';
+	import * as storage from '../utils/storage';
 
 	export default {
 		name: 'asf-releases',
@@ -42,22 +44,32 @@
 				if (!this.loading && !this.releases.length) return 'No releases found!';
 			}
 		},
+		async created() {
+			try {
+				this.releases = await this.loadReleases();
+				this.loading = false;
+			} catch (err) {
+				this.error = err.message;
+			}
+		},
 		methods: {
 			async getReleases() {
 				return await this.$http.get('www/github/releases');
 			},
 			getTimeText({ releasedFor, publishDate }) {
-				if (releasedFor.days > 30) return this.$t('released-on', {
-					date: (new Date(publishDate)).toLocaleString({
-						weekday: 'short',
-						year: 'numeric',
-						month: 'short',
-						day: 'numeric',
-						hour: '2-digit',
-						minute: '2-digit',
-						timeZoneName: 'short'
-					})
-				});
+				if (releasedFor.days > 30) {
+					return this.$t('released-on', {
+						date: (new Date(publishDate)).toLocaleString({
+							weekday: 'short',
+							year: 'numeric',
+							month: 'short',
+							day: 'numeric',
+							hour: '2-digit',
+							minute: '2-digit',
+							timeZoneName: 'short'
+						})
+					});
+				}
 
 				if (releasedFor.days > 1) return this.$t('released-ago-days', { n: releasedFor.days }, releasedFor.days);
 				if (releasedFor.hours > 1) return this.$t('released-ago-hours', { n: releasedFor.hours }, releasedFor.hours);
@@ -73,28 +85,20 @@
 
 				const [latestRelease, ...olderReleases] = await this.getReleases();
 				const releases = [latestRelease, ...olderReleases.filter(release => release.Stable || release.Version === this.version)]
-						.map(release => {
-							const publishDate = new Date(release.ReleasedAt);
+					.map(release => {
+						const publishDate = new Date(release.ReleasedAt);
 
-							return {
-								changelog: release.ChangelogHTML,
-								releasedFor: timeDifference(publishDate),
-								stable: release.Stable,
-								version: release.Version,
-								publishDate
-							};
-						});
+						return {
+							changelog: release.ChangelogHTML,
+							releasedFor: timeDifference(publishDate),
+							stable: release.Stable,
+							version: release.Version,
+							publishDate
+						};
+					});
 
 				storage.set('cache:releases', { timestamp: Date.now(), releases, version: this.version });
 				return releases;
-			}
-		},
-		async created() {
-			try {
-				this.releases = await this.loadReleases();
-				this.loading = false;
-			} catch (err) {
-				this.error = err.message;
 			}
 		}
 	};

@@ -1,9 +1,13 @@
 <template>
-	<main class="main-container main-container--bot-copy" v-if="bot">
-		<h2 class="title">{{ $t('bot-new') }}</h2>
+	<main v-if="bot" class="main-container main-container--bot-copy">
+		<h2 class="title">
+			{{ $t('bot-new') }}
+		</h2>
 
 		<div class="container">
-			<p class="container-description">{{ $t('bot-new-copy', {name: bot.name}) }}</p>
+			<p class="container-description">
+				{{ $t('bot-new-copy', {name: bot.name}) }}
+			</p>
 
 			<config-editor v-if="displayCategories" :fields="fields" :model="model" :categories="categories"></config-editor>
 			<config-editor v-else :fields="fields" :model="model"></config-editor>
@@ -11,11 +15,13 @@
 			<div class="form-item">
 				<div class="form-item__buttons">
 					<button class="button button--confirm" @click="onCreate">
-						<font-awesome-icon icon="spinner" v-if="creating" spin></font-awesome-icon>
+						<font-awesome-icon v-if="creating" icon="spinner" spin></font-awesome-icon>
 						<span v-else>{{ $t('create') }}</span>
 					</button>
 
-					<router-link tag="button" class="button button--cancel pull-right" :to="{ name: 'bot-config', params: { bot: bot.name } }">{{ $t('cancel') }}</router-link>
+					<router-link tag="button" class="button button--cancel pull-right" :to="{ name: 'bot-config', params: { bot: bot.name } }">
+						{{ $t('cancel') }}
+					</router-link>
 				</div>
 			</div>
 		</div>
@@ -23,15 +29,15 @@
 </template>
 
 <script>
+	import { mapGetters } from 'vuex';
 	import ConfigEditor from '../../components/ConfigEditor.vue';
 	import delay from '../../utils/delay';
 	import botExists from '../../utils/botExists';
 	import { get } from '../../utils/storage';
 
-	import { mapGetters } from 'vuex';
-
 	export default {
 		name: 'bot-copy',
+		components: { ConfigEditor },
 		data() {
 			const categories = [
 				{ name: this.$t('basic'), fields: ['Name', 'SteamLogin', 'SteamPassword'] }
@@ -69,7 +75,6 @@
 				model: {}
 			};
 		},
-		components: { ConfigEditor },
 		computed: {
 			...mapGetters({
 				displayCategories: 'settings/displayCategories',

@@ -1,25 +1,30 @@
 <template>
-	<main class="main-container main-container--bot-profile" v-if="bot">
-		<h2 class="title" v-if="bot.nickname && nicknames">{{ $t('bot-delete', { name: bot.nickname }) }}</h2>
-		<h2 class="title" v-else>{{ $t('bot-delete', { name: bot.name }) }}</h2>
+	<main v-if="bot" class="main-container main-container--bot-profile">
+		<h2 v-if="bot.nickname && nicknames" class="title">
+			{{ $t('bot-delete', { name: bot.nickname }) }}
+		</h2>
+		<h2 v-else class="title">
+			{{ $t('bot-delete', { name: bot.name }) }}
+		</h2>
 
 		<div class="form-item">
 			<div class="form-item__buttons form-item__buttons--center">
 				<button class="button button--cancel" @click="onDelete">
-					<font-awesome-icon icon="spinner" v-if="deleting" spin></font-awesome-icon>
+					<font-awesome-icon v-if="deleting" icon="spinner" spin></font-awesome-icon>
 					<span v-else>{{ $t('delete') }}</span>
 				</button>
 
-				<button class="button button--confirm" @click="$parent.back()">{{ $t('cancel') }}</button>
+				<button class="button button--confirm" @click="$parent.back()">
+					{{ $t('cancel') }}
+				</button>
 			</div>
 		</div>
 	</main>
 </template>
 
 <script>
-	import delay from '../../utils/delay';
-
 	import { mapGetters } from 'vuex';
+	import delay from '../../utils/delay';
 
 	export default {
 		name: 'bot-delete',
