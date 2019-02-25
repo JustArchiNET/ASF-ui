@@ -1,11 +1,11 @@
 <template>
 	<transition name="modal" duration="200" appear>
-		<div class="modal" v-if="isShown">
-			<div class="modal__background" @click.self="close"></div>
+		<div v-if="isShown" class="modal">
+			<div class="modal__background" @click.self="close" />
 			<div class="modal__body">
-				<font-awesome-icon icon="times" class="modal__close" @click="close"></font-awesome-icon>
+				<font-awesome-icon icon="times" class="modal__close" @click="close" />
 				<div class="modal__main">
-					<router-view name="modal" ref="modal"></router-view>
+					<router-view ref="modal" name="modal" />
 				</div>
 			</div>
 		</div>

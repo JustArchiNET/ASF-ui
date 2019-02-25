@@ -1,18 +1,18 @@
 <template>
 	<div class="config-editor">
 		<template v-if="categories">
-			<config-category :name="category.name" v-for="category in categories" :key="category.name" v-if="categoryFields(category.name).length">
-				<component v-for="field in categoryFields(category.name)" class="form-item--config" :key="field.param" :is="componentFromField(field)" :schema="field" :current-value="model[field.paramName]" @update="updateModel"></component>
+			<config-category v-for="category in categories" v-if="categoryFields(category.name).length" :key="category.name" :name="category.name">
+				<component :is="componentFromField(field)" v-for="field in categoryFields(category.name)" :key="field.param" class="form-item--config" :schema="field" :current-value="model[field.paramName]" @update="updateModel" />
 			</config-category>
 
-			<config-category :name="$t('other')" v-if="uncategorizedFields.length" key="Other">
-				<component v-for="field in uncategorizedFields" class="form-item--config" :key="field.param" :is="componentFromField(field)" :schema="field" :current-value="model[field.paramName]" @update="updateModel"></component>
+			<config-category v-if="uncategorizedFields.length" key="Other" :name="$t('other')">
+				<component :is="componentFromField(field)" v-for="field in uncategorizedFields" :key="field.param" class="form-item--config" :schema="field" :current-value="model[field.paramName]" @update="updateModel" />
 			</config-category>
 		</template>
 
 		<template v-if="!categories">
 			<fieldset class="config-uncategorized">
-				<component v-for="field in uncategorizedFields" class="form-item--config" :key="field.param" :is="componentFromField(field)" :schema="field" :current-value="model[field.paramName]" @update="updateModel"></component>
+				<component :is="componentFromField(field)" v-for="field in uncategorizedFields" :key="field.param" class="form-item--config" :schema="field" :current-value="model[field.paramName]" @update="updateModel" />
 			</fieldset>
 		</template>
 	</div>
@@ -29,11 +29,11 @@
 	import InputEnum from './ConfigFields/InputEnum.vue';
 	import InputDictionary from './ConfigFields/InputDictionary.vue';
 	import InputUnknown from './ConfigFields/InputUnknown.vue';
-
 	import ConfigCategory from './ConfigCategory.vue';
 
 	export default {
 		name: 'config-editor',
+		components: { ConfigCategory },
 		props: {
 			fields: {
 				type: Array,
@@ -47,14 +47,11 @@
 			descriptions: Object,
 			extendedFields: Object
 		},
-		components: { ConfigCategory },
 		computed: {
 			uncategorizedFields() {
 				if (!this.categories) return this.fields;
 
-				const categorizedFields = this.categories.map(category => category.fields).reduce((categorizedFields, categoryFields) => {
-					return [...categorizedFields, ...categoryFields];
-				}, []);
+				const categorizedFields = this.categories.map(category => category.fields).reduce((categorizedFields, categoryFields) => [...categorizedFields, ...categoryFields], []);
 
 				return this.fields.filter(field => !categorizedFields.includes(field.param));
 			},
@@ -70,31 +67,38 @@
 				return this.$children.every(child => child.isValid);
 			}
 		},
+		mounted() {
+			window.addEventListener('resize', this.computeLabelWidth);
+			this.computeLabelWidth();
+		},
+		beforeDestroy() {
+			window.removeEventListener('resize', this.computeLabelWidth);
+		},
 		methods: {
 			componentFromField(field) {
 				switch (field.type) {
-					case 'string':
-					case 'uint64':
-						return InputString;
-					case 'boolean':
-						return InputBoolean;
-					case 'uint32':
-					case 'uint16':
-					case 'byte':
-						return InputNumber;
-					case 'flag':
-						return InputFlag;
-					case 'enum':
-						return InputEnum;
-					case 'hashSet':
-					case 'list':
-						if (['enum'].includes(field.values.type)) return field.type === 'list' ? InputList : InputSet;
-						if (['byte', 'uint16', 'uint32', 'uint64', 'string'].includes(field.values.type)) return InputTag;
-						return InputUnknown;
-					case 'dictionary':
-						return InputDictionary;
-					default:
-						return InputUnknown;
+				case 'string':
+				case 'uint64':
+					return InputString;
+				case 'boolean':
+					return InputBoolean;
+				case 'uint32':
+				case 'uint16':
+				case 'byte':
+					return InputNumber;
+				case 'flag':
+					return InputFlag;
+				case 'enum':
+					return InputEnum;
+				case 'hashSet':
+				case 'list':
+					if (['enum'].includes(field.values.type)) return field.type === 'list' ? InputList : InputSet;
+					if (['byte', 'uint16', 'uint32', 'uint64', 'string'].includes(field.values.type)) return InputTag;
+					return InputUnknown;
+				case 'dictionary':
+					return InputDictionary;
+				default:
+					return InputUnknown;
 				}
 			},
 			updateModel(value, field) {
@@ -113,19 +117,19 @@
 				if (typeof a !== typeof b) return false;
 
 				switch (type) {
-					case 'uint32':
-					case 'byte':
-					case 'uint16':
-					case 'uint64':
-					case 'string':
-					case 'boolean':
-						return a === b;
-					case 'hashSet':
-						return a.length === b.length && a.every(item => b.includes(item));
-					case 'list':
-						return a.length === b.length && a.every((item, index) => item === b[index]);
-					case 'dictionary':
-						return Object.keys(a).length === Object.keys(b).length && Object.keys(a).every(key => a[key] === b[key]);
+				case 'uint32':
+				case 'byte':
+				case 'uint16':
+				case 'uint64':
+				case 'string':
+				case 'boolean':
+					return a === b;
+				case 'hashSet':
+					return a.length === b.length && a.every(item => b.includes(item));
+				case 'list':
+					return a.length === b.length && a.every((item, index) => item === b[index]);
+				case 'dictionary':
+					return Object.keys(a).length === Object.keys(b).length && Object.keys(a).every(key => a[key] === b[key]);
 				}
 
 				return false;
@@ -138,16 +142,9 @@
 
 				this.$nextTick(() => {
 					const labelWidth = Math.max(...Array.from(this.$el.querySelectorAll('.form-item__label')).map(el => Math.ceil(parseFloat(getComputedStyle(el).width))));
-					this.$el.style.setProperty('--label-width', labelWidth + 'px');
+					this.$el.style.setProperty('--label-width', `${labelWidth}px`);
 				});
 			}
-		},
-		mounted() {
-			window.addEventListener('resize', this.computeLabelWidth);
-			this.computeLabelWidth();
-		},
-		beforeDestroy() {
-			window.removeEventListener('resize', this.computeLabelWidth);
 		}
 	};
 </script>

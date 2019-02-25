@@ -1,12 +1,14 @@
 <template>
 	<div class="bgr__input">
 		<div class="form-item">
-			<textarea class="form-item__textarea" cols="70" rows="15" :placeholder="$t('bgr-keys-insert') + '\n\n' + $t('bgr-keys-insert-example')" v-model="userInput" spellcheck="false"></textarea>
+			<textarea v-model="userInput" class="form-item__textarea" cols="70" rows="15" :placeholder="$t('bgr-keys-insert') + '\n\n' + $t('bgr-keys-insert-example')" spellcheck="false" />
 		</div>
 
 		<div class="form-item">
 			<div class="form-item__buttons form-item__buttons--center">
-				<button class="button button--confirm" @click="$emit('check', keys, userInput)">{{ $t('check') }}</button>
+				<button class="button button--confirm" @click="$emit('check', keys, userInput)">
+					{{ $t('check') }}
+				</button>
 			</div>
 		</div>
 	</div>
@@ -27,10 +29,10 @@
 		computed: {
 			keys() {
 				const lines = this.userInput
-						.trim()
-						.split(/\r?\n/)
-						.map(line => line.trim())
-						.filter(line => !!line);
+					.trim()
+					.split(/\r?\n/)
+					.map(line => line.trim())
+					.filter(line => !!line);
 
 				return this.parseKeys(lines);
 			}

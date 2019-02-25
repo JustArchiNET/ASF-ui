@@ -1,11 +1,11 @@
 <template>
 	<button class="dropdown button button-confirm" :class="[{ 'dropdown--active': open, 'button--disabled': disabled, 'button--small': small }, buttonStyle ? `button--${buttonStyle}` : null]" @click="toggle">
 		<span class="dropdown__label">{{ label }}</span>
-		<font-awesome-icon class="dropdown__icon" icon="angle-down"></font-awesome-icon>
+		<font-awesome-icon class="dropdown__icon" icon="angle-down" />
 
-		<ul class="dropdown__items" v-if="open">
-			<dropdown-item v-for="item in items" :item="item" :key="item.name"></dropdown-item>
-			<slot></slot>
+		<ul v-if="open" class="dropdown__items">
+			<dropdown-item v-for="item in items" :key="item.name" :item="item" />
+			<slot />
 		</ul>
 	</button>
 </template>
@@ -15,6 +15,7 @@
 
 	export default {
 		name: 'dropdown',
+		components: { DropdownItem },
 		props: {
 			label: String,
 			disabled: Boolean,
@@ -22,7 +23,6 @@
 			buttonStyle: String,
 			items: Array
 		},
-		components: { DropdownItem },
 		data() {
 			return {
 				open: false

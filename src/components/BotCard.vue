@@ -1,26 +1,26 @@
 <template>
 	<div class="bot" :class="[`status--${bot.status}`, { 'bot--big': selectedButtons.length > 2 }]">
-		<a target="_blank" :href="bot.profileURL" v-if="bot.steamid !== '0'">
+		<a v-if="bot.steamid !== '0'" target="_blank" :href="bot.profileURL">
 			<img class="bot__avatar" :src="bot.avatarURL" :alt="bot.name">
 		</a>
-		<router-link :to="{ name: 'bot', params: { bot: bot.name } }" tag="img" class="bot__avatar" :src="bot.avatarURL" v-else></router-link>
+		<router-link v-else :to="{ name: 'bot', params: { bot: bot.name } }" tag="img" class="bot__avatar" :src="bot.avatarURL" />
 
 		<router-link tag="div" :to="{ name: 'bot', params: { bot: bot.name } }" class="bot__status">
-			<span class="bot__status-property bot__status-property--name" v-if="bot.nickname && nicknames">{{ bot.nickname }}</span>
-			<span class="bot__status-property bot__status-property--name" v-else>{{ bot.name }}</span>
+			<span v-if="bot.nickname && nicknames" class="bot__status-property bot__status-property--name">{{ bot.nickname }}</span>
+			<span v-else class="bot__status-property bot__status-property--name">{{ bot.name }}</span>
 			<span class="bot__status-property bot__status-property--text">{{ bot.statusText }}</span>
 		</router-link>
 
 		<div class="bot__actions">
-			<router-link v-if="button.name !== 'pause'" :to="{ name: `bot-${button.name}`, params: { bot: bot.name } }" v-for="button in selectedButtons" :key="button.name">
-				<span class="bot__action"><font-awesome-icon :icon="button.icon"></font-awesome-icon></span>
+			<router-link v-for="button in selectedButtons" v-if="button.name !== 'pause'" :key="button.name" :to="{ name: `bot-${button.name}`, params: { bot: bot.name } }">
+				<span class="bot__action"><font-awesome-icon :icon="button.icon" /></span>
 			</router-link>
 
-			<span class="bot__action" v-if="bot.paused && bot.active && isPauseButtonSelected" @click="resume"><font-awesome-icon icon="play"></font-awesome-icon></span>
-			<span class="bot__action" v-if="!bot.paused && bot.active && isPauseButtonSelected" @click="pause"><font-awesome-icon icon="pause"></font-awesome-icon></span>
+			<span v-if="bot.paused && bot.active && isPauseButtonSelected" class="bot__action" @click="resume"><font-awesome-icon icon="play" /></span>
+			<span v-if="!bot.paused && bot.active && isPauseButtonSelected" class="bot__action" @click="pause"><font-awesome-icon icon="pause" /></span>
 
-			<span class="bot__action" v-if="!bot.active" @click="start"><font-awesome-icon icon="power-off"></font-awesome-icon></span>
-			<span class="bot__action" v-if="bot.active" @click="stop"><font-awesome-icon icon="power-off"></font-awesome-icon></span>
+			<span v-if="!bot.active" class="bot__action" @click="start"><font-awesome-icon icon="power-off" /></span>
+			<span v-if="bot.active" class="bot__action" @click="stop"><font-awesome-icon icon="power-off" /></span>
 		</div>
 	</div>
 </template>
@@ -50,11 +50,11 @@
 			},
 			selectedButtons() {
 				return Array.from(this.favButtons.toString(2))
-						.reverse()
-						.reduce((activeButtons, enabled, index) => {
-							if (enabled === '1') activeButtons.push(quickActionButtons[index]);
-							return activeButtons;
-						}, []);
+					.reverse()
+					.reduce((activeButtons, enabled, index) => {
+						if (enabled === '1') activeButtons.push(quickActionButtons[index]);
+						return activeButtons;
+					}, []);
 			}
 		},
 		methods: {

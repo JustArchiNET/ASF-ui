@@ -6,7 +6,7 @@
 
 <script>
 	export default {
-		name: 'navigation-category__title',
+		name: 'navigation-category-title',
 		props: {
 			name: {
 				type: String,

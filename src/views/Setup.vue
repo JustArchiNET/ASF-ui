@@ -1,22 +1,32 @@
 <template>
 	<main class="main-container main-container--center">
 		<div class="container container--small">
-			<h2 class="title">{{ $t('setup') }}</h2>
+			<h2 class="title">
+				{{ $t('setup') }}
+			</h2>
 
-			<p class="status-text status-text--error" v-if="status === 'NOT_CONNECTED'">{{ $t('setup-not-connected') }}</p>
-			<p class="status-text status-text--error" v-if="status === 'RATE_LIMITED'">{{ $t('setup-rate-limited') }}</p>
-			<p class="status-text" v-if="status === 'AUTHENTICATED'">{{ $t('setup-authenticated') }}</p>
-			<p class="status-text" v-if="status === 'UNAUTHORIZED'">{{ $t('setup-description') }}</p>
+			<p v-if="status === 'NOT_CONNECTED'" class="status-text status-text--error">
+				{{ $t('setup-not-connected') }}
+			</p>
+			<p v-if="status === 'RATE_LIMITED'" class="status-text status-text--error">
+				{{ $t('setup-rate-limited') }}
+			</p>
+			<p v-if="status === 'AUTHENTICATED'" class="status-text">
+				{{ $t('setup-authenticated') }}
+			</p>
+			<p v-if="status === 'UNAUTHORIZED'" class="status-text">
+				{{ $t('setup-description') }}
+			</p>
 
-			<div class="form-item" v-if="status === 'UNAUTHORIZED'">
+			<div v-if="status === 'UNAUTHORIZED'" class="form-item">
 				<label for="password" class="form-item__label">{{ $t('password') }}</label>
-				<input id="password" class="form-item__input" type="password" v-model="password" @keydown.enter="updatePassword">
+				<input id="password" v-model="password" class="form-item__input" type="password" @keydown.enter="updatePassword">
 			</div>
 
 			<div class="form-item">
 				<div class="form-item__buttons form-item__buttons--center">
 					<button class="button button--confirm" @click="onButtonClick">
-						<font-awesome-icon icon="spinner" v-if="processing" spin></font-awesome-icon>
+						<font-awesome-icon v-if="processing" icon="spinner" spin />
 						<span v-else>{{ buttonText }}</span>
 					</button>
 				</div>
@@ -46,11 +56,11 @@
 			...mapGetters({ status: 'auth/status' }),
 			buttonText() {
 				switch (this.status) {
-					case STATUS.UNAUTHORIZED:
-					case STATUS.AUTHENTICATED:
-						return this.$t('continue');
-					default:
-						return this.$t('refresh');
+				case STATUS.UNAUTHORIZED:
+				case STATUS.AUTHENTICATED:
+					return this.$t('continue');
+				default:
+					return this.$t('refresh');
 				}
 			}
 		},
@@ -59,12 +69,14 @@
 				if (this.processing) return;
 
 				switch (this.status) {
-					case STATUS.UNAUTHORIZED:
-						return this.updatePassword();
-					case STATUS.AUTHENTICATED:
-						return this.redirect();
-					default:
-						return this.refreshStatus();
+				case STATUS.UNAUTHORIZED:
+					this.updatePassword();
+					break;
+				case STATUS.AUTHENTICATED:
+					this.redirect();
+					break;
+				default:
+					this.refreshStatus();
 				}
 			},
 			async updatePassword() {

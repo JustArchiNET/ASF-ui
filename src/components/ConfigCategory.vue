@@ -1,7 +1,9 @@
 <template>
 	<fieldset class="config-category form-group">
-		<legend class="form-group__legend" v-if="name">{{ name }}</legend>
-		<slot></slot>
+		<legend v-if="name" class="form-group__legend">
+			{{ name }}
+		</legend>
+		<slot />
 	</fieldset>
 </template>
 

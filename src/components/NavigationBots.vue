@@ -1,7 +1,9 @@
 <template>
 	<div class="bot-cards">
-		<div class="bot-card" :class="[`status--${type}`, { 'bot-card--selected': selectedBots.includes(type) }]" @click.prevent="selectType(type)" v-for="type in botTypes">
-			<fit-text ref="count" :max="1.2" class="bot-card__value">{{ count(type) }}</fit-text>
+		<div v-for="type in botTypes" class="bot-card" :class="[`status--${type}`, { 'bot-card--selected': selectedBots.includes(type) }]" @click.prevent="selectType(type)">
+			<fit-text ref="count" :max="1.2" class="bot-card__value">
+				{{ count(type) }}
+			</fit-text>
 			<span class="bot-card__name">{{ $t(`bot-status-${type}`) }}</span>
 		</div>
 	</div>
@@ -45,8 +47,8 @@
 				if (this.$route.name !== 'bots') this.$router.push({ name: 'bots' });
 
 				let selectedBots = this.selectedBots.includes(type)
-						? this.selectedBots.filter(botType => botType !== type)
-						: [...this.selectedBots, type];
+					? this.selectedBots.filter(botType => botType !== type)
+					: [...this.selectedBots, type];
 
 				if (selectedBots.length === this.botTypes.length) selectedBots = [];
 

@@ -1,37 +1,42 @@
 <template>
-	<main class="main-container" v-if="bot">
-		<h2 class="title" v-if="bot.nickname && nicknames">{{ bot.nickname }}</h2>
-		<h2 class="title" v-else>{{ bot.name }}</h2>
+	<main v-if="bot" class="main-container">
+		<h2 v-if="bot.nickname && nicknames" class="title">
+			{{ bot.nickname }}
+		</h2>
+		<h2 v-else class="title">
+			{{ bot.name }}
+		</h2>
 
-		<h3 class="subtitle" v-if="loading">
-			<font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
+		<h3 v-if="loading" class="subtitle">
+			<font-awesome-icon icon="spinner" size="lg" spin />
 		</h3>
 
-		<bgr-status v-if="!loading && state === 'input'" :used-keys="usedKeys" :unused-keys="unusedKeys" @reset="showReset" @show-unused="state = 'unusedKeys'" @show-used="state = 'usedKeys'"></bgr-status>
+		<bgr-status v-if="!loading && state === 'input'" :used-keys="usedKeys" :unused-keys="unusedKeys" @reset="showReset" @show-unused="state = 'unusedKeys'" @show-used="state = 'usedKeys'" />
 
 		<keep-alive>
-			<bgr-input v-if="state === 'input'" @check="onCheck"></bgr-input>
-			<bgr-check v-if="state === 'check'" :keys="keys" :title="$t('bgr-check', { n: foundKeysCount })" :bot="bot" :confirming="confirming" @confirm="onConfirm" @cancel="onCancel"></bgr-check>
-			<bgr-reset v-if="state === 'reset'" :title="$t('bgr-reset')" :resetting="resetting" @reset="onReset" @cancel="onCancel"></bgr-reset>
-			<bgr-summary v-if="state === 'summary'" :keys="summaryKeys" :title="$t('bgr-summary-success', { n: addedKeysCount })" @back="$parent.back()"></bgr-summary>
-			<bgr-summary v-if="state === 'usedKeys'" :keys="usedKeys" :title="$t('bgr-used-keys')" @back="state = 'input'"></bgr-summary>
-			<bgr-summary v-if="state === 'unusedKeys'" :keys="unusedKeys" :title="$t('bgr-unused-keys')" @back="state = 'input'"></bgr-summary>
+			<bgr-input v-if="state === 'input'" @check="onCheck" />
+			<bgr-check v-if="state === 'check'" :keys="keys" :title="$t('bgr-check', { n: foundKeysCount })" :bot="bot" :confirming="confirming" @confirm="onConfirm" @cancel="onCancel" />
+			<bgr-reset v-if="state === 'reset'" :title="$t('bgr-reset')" :resetting="resetting" @reset="onReset" @cancel="onCancel" />
+			<bgr-summary v-if="state === 'summary'" :keys="summaryKeys" :title="$t('bgr-summary-success', { n: addedKeysCount })" @back="$parent.back()" />
+			<bgr-summary v-if="state === 'usedKeys'" :keys="usedKeys" :title="$t('bgr-used-keys')" @back="state = 'input'" />
+			<bgr-summary v-if="state === 'unusedKeys'" :keys="unusedKeys" :title="$t('bgr-unused-keys')" @back="state = 'input'" />
 		</keep-alive>
 	</main>
 </template>
 
 <script>
+	import { mapGetters } from 'vuex';
 	import BgrCheck from '../../components/BGR/Check.vue';
 	import BgrInput from '../../components/BGR/Input.vue';
 	import BgrReset from '../../components/BGR/Reset.vue';
 	import BgrStatus from '../../components/BGR/Status.vue';
 	import BgrSummary from '../../components/BGR/Summary.vue';
 
-	import { mapGetters } from 'vuex';
-
 	export default {
 		name: 'bot-bgr',
-		components: { BgrCheck, BgrInput, BgrReset, BgrStatus, BgrSummary },
+		components: {
+			BgrCheck, BgrInput, BgrReset, BgrStatus, BgrSummary
+		},
 		data() {
 			return {
 				loading: true,
@@ -57,9 +62,9 @@
 			}
 		},
 		watch: {
-			'$route': {
+			$route: {
 				immediate: true,
-				handler: async function() {
+				async handler() {
 					this.loading = true;
 					const { UnusedKeys, UsedKeys } = await this.loadBGR();
 					this.unusedKeys = UnusedKeys;

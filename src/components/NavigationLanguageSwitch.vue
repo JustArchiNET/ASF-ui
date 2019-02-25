@@ -1,13 +1,13 @@
 <template>
 	<div class="navigation__language-switch">
 		<div class="navigation__button" @click="open = !open">
-			<font-awesome-icon class="navigation__language-icon" icon="language" fixed-width></font-awesome-icon>
+			<font-awesome-icon class="navigation__language-icon" icon="language" fixed-width />
 		</div>
 
 		<transition name="navigation__language-picker">
-			<div class="navigation__language-picker" v-if="open">
-				<div class="navigation__language" :class="{ 'navigation__language--active': $i18n.locale === locale }" v-for="locale in $i18n.availableLocales" :key="locale" @click.prevent="changeLocale(locale)">
-					<flag :country="getFlagCountry(locale)" :title="locale"></flag>
+			<div v-if="open" class="navigation__language-picker">
+				<div v-for="locale in $i18n.availableLocales" :key="locale" class="navigation__language" :class="{ 'navigation__language--active': $i18n.locale === locale }" @click.prevent="changeLocale(locale)">
+					<flag :country="getFlagCountry(locale)" :title="locale" />
 				</div>
 			</div>
 		</transition>
@@ -32,7 +32,7 @@
 				return locale.split('-')[1].toLowerCase();
 			},
 			displayTranslationStatus() {
-				const translationPercent = this.$i18n.translationPercent;
+				const { translationPercent } = this.$i18n;
 
 				if (translationPercent === 100) return; // Nothing to do here
 				if (translationPercent > 80) return this.$info(this.$t('language-translation-good', { percent: translationPercent.toFixed(2), locale: this.$i18n.locale }));

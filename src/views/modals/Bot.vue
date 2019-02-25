@@ -1,57 +1,64 @@
 <template>
-	<main class="main-container main-container--bot-profile" v-if="bot">
+	<main v-if="bot" class="main-container main-container--bot-profile">
 		<div class="bot-profile" :class="[`status--${bot.status}`]">
 			<div class="bot-profile__avatar-wrapper">
-				<a target="_blank" :href="bot.profileURL" v-if="bot.steamid !== '0'">
+				<a v-if="bot.steamid !== '0'" target="_blank" :href="bot.profileURL">
 					<img class="bot-profile__avatar" :src="bot.avatarURL">
 				</a>
-				<img class="bot-profile__avatar" :src="bot.avatarURL" v-else>
+				<img v-else class="bot-profile__avatar" :src="bot.avatarURL">
 			</div>
 
 			<div class="bot-profile__meta">
-				<h3 class="bot-profile__name" v-if="bot.nickname && nicknames">{{ bot.nickname }}</h3>
-				<h3 class="bot-profile__name" v-else>{{ bot.name }}</h3>
-				<p class="bot-profile__status">{{ bot.statusText }}</p>
+				<h3 v-if="bot.nickname && nicknames" class="bot-profile__name">
+					{{ bot.nickname }}
+				</h3>
+				<h3 v-else class="bot-profile__name">
+					{{ bot.name }}
+				</h3>
+				<p class="bot-profile__status">
+					{{ bot.statusText }}
+				</p>
 			</div>
 
 			<div class="bot-profile__actions">
-				<bot-link icon="wrench" :link="{ name: 'bot-config', params: { bot: bot.name } }"></bot-link>
-				<bot-link icon="key" :link="{ name: 'bot-bgr', params: { bot: bot.name } }"></bot-link>
-				<bot-link icon="lock" :link="{ name: 'bot-2fa', params: { bot: bot.name } }"></bot-link>
+				<bot-link icon="wrench" :link="{ name: 'bot-config', params: { bot: bot.name } }" />
+				<bot-link icon="key" :link="{ name: 'bot-bgr', params: { bot: bot.name } }" />
+				<bot-link icon="lock" :link="{ name: 'bot-2fa', params: { bot: bot.name } }" />
 
-				<bot-action icon="play" v-if="bot.paused && bot.active" @click="resume"></bot-action>
-				<bot-action icon="pause" v-if="!bot.paused && bot.active" @click="pause"></bot-action>
+				<bot-action v-if="bot.paused && bot.active" icon="play" @click="resume" />
+				<bot-action v-if="!bot.paused && bot.active" icon="pause" @click="pause" />
 
-				<bot-action icon="power-off" v-if="!bot.active" @click="start"></bot-action>
-				<bot-action icon="power-off" v-if="bot.active" @click="stop"></bot-action>
+				<bot-action v-if="!bot.active" icon="power-off" @click="start" />
+				<bot-action v-if="bot.active" icon="power-off" @click="stop" />
 
-				<bot-link icon="trash" :link="{ name: 'bot-delete', params: { bot: bot.name } }" class="pull-right"></bot-link>
+				<bot-link icon="trash" :link="{ name: 'bot-delete', params: { bot: bot.name } }" class="pull-right" />
 			</div>
 		</div>
 
 		<div class="bot-farming-info">
-			<bot-farming-info :value="gamesRemaining" icon="gamepad"></bot-farming-info>
-			<bot-farming-info :value="timeRemaining" icon="clock"></bot-farming-info>
-			<bot-farming-info :value="cardsRemaining" icon="clone"></bot-farming-info>
+			<bot-farming-info :value="gamesRemaining" icon="gamepad" />
+			<bot-farming-info :value="timeRemaining" icon="clock" />
+			<bot-farming-info :value="cardsRemaining" icon="clone" />
 		</div>
 
-		<bot-games :bot="bot"></bot-games>
+		<bot-games :bot="bot" />
 	</main>
 </template>
 
 <script>
+	import { mapGetters } from 'vuex';
+	import humanizeDuration from 'humanize-duration';
 	import BotAction from '../../components/BotAction.vue';
 	import BotFarmingInfo from '../../components/BotFarmingInfo.vue';
 	import BotGames from '../../components/BotGames.vue';
 	import BotLink from '../../components/BotLink.vue';
 	import Dropdown from '../../components/utils/Dropdown.vue';
 
-	import { mapGetters } from 'vuex';
-	import humanizeDuration from 'humanize-duration';
-
 	export default {
 		name: 'bot',
-		components: { BotAction, BotFarmingInfo, BotGames, BotLink, Dropdown },
+		components: {
+			BotAction, BotFarmingInfo, BotGames, BotLink, Dropdown
+		},
 		computed: {
 			...mapGetters({ nicknames: 'settings/nicknames' }),
 			bot() {
@@ -61,8 +68,8 @@
 				if (this.bot.status !== 'farming') return '-';
 
 				const language = ['zh-CN', 'zh-TW'].includes(this.$i18n.locale)
-						? this.$i18n.locale.replace('-', '_')
-						: this.$i18n.noRegionalLocale;
+					? this.$i18n.locale.replace('-', '_')
+					: this.$i18n.noRegionalLocale;
 
 				return humanizeDuration(this.bot.timeRemainingSeconds * 1000, { language });
 			},

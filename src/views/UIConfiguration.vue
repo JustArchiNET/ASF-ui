@@ -1,16 +1,22 @@
 <template>
 	<main class="main-container main-container--fullheight">
 		<div class="container">
-			<config-editor v-if="displayCategories" :fields="fields" :categories="categories" :model="model"></config-editor>
-			<config-editor v-else :fields="fields" :model="model"></config-editor>
+			<config-editor v-if="displayCategories" :fields="fields" :categories="categories" :model="model" />
+			<config-editor v-else :fields="fields" :model="model" />
 
 			<div class="form-item">
 				<div class="form-item__buttons">
-					<button class="button button--confirm" @click="save">{{ $t('save') }}</button>
+					<button class="button button--confirm" @click="save">
+						{{ $t('save') }}
+					</button>
 
 					<dropdown :label="$t('debug')" class="button--confirm pull-right" :disabled="!sentryInstalled">
-						<li class="dropdown__item" @click="captureSnapshot">{{ $t('snapshot-capture') }}</li>
-						<li class="dropdown__item" :class="{ 'dropdown__item--disabled': !storedEventsCount }" @click="copyStoredEvents">{{ $t('log-copy') }}</li>
+						<li class="dropdown__item" @click="captureSnapshot">
+							{{ $t('snapshot-capture') }}
+						</li>
+						<li class="dropdown__item" :class="{ 'dropdown__item--disabled': !storedEventsCount }" @click="copyStoredEvents">
+							{{ $t('log-copy') }}
+						</li>
 					</dropdown>
 				</div>
 			</div>
@@ -19,11 +25,10 @@
 </template>
 
 <script>
+	import * as copy from 'copy-to-clipboard';
+	import { mapGetters } from 'vuex';
 	import ConfigEditor from '../components/ConfigEditor.vue';
 	import Dropdown from '../components/utils/Dropdown.vue';
-	import * as copy from 'copy-to-clipboard';
-
-	import { mapGetters } from 'vuex';
 
 	export default {
 		name: 'ui-configuration',

@@ -1,18 +1,20 @@
 <template>
 	<div class="form-item">
-		<input-label :label="label" :has-description="hasDescription"></input-label>
+		<input-label :label="label" :has-description="hasDescription" />
 
 		<div class="form-item__value">
 			<div class="input-option__field input-option__field--three">
-				<input class="form-item__input" type="text" :id="`${field}-key`" v-model="elementKey" @keydown.enter="addElement" v-if="keyIsString">
+				<input v-if="keyIsString" :id="`${field}-key`" v-model="elementKey" class="form-item__input" type="text" @keydown.enter="addElement">
 
-				<select class="form-item__input" v-model="elementValue" :id="`${field}-value`" v-if="valueIsEnum">
+				<select v-if="valueIsEnum" :id="`${field}-value`" v-model="elementValue" class="form-item__input">
 					<option v-for="(enumValue, name) in schema.value.values" :value="enumValue">
 						{{ name }}
 					</option>
 				</select>
 
-				<button class="button" @click.prevent="addElement">{{ $t('add') }}</button>
+				<button class="button" @click.prevent="addElement">
+					{{ $t('add') }}
+				</button>
 			</div>
 
 			<div class="input-option__items">
@@ -22,7 +24,7 @@
 			</div>
 		</div>
 
-		<input-description :description="description" v-if="hasDescription" v-show="showDescription"></input-description>
+		<input-description v-if="hasDescription" v-show="showDescription" :description="description" />
 	</div>
 </template>
 
@@ -30,8 +32,14 @@
 	import Input from './Input.vue';
 
 	export default {
-		mixins: [Input],
 		name: 'input-dictionary',
+		mixins: [Input],
+		data() {
+			return {
+				elementKey: null,
+				elementValue: null
+			};
+		},
 		computed: {
 			keyIsString() {
 				return ['string', 'uint64'].includes(this.schema.key.type);
@@ -48,12 +56,6 @@
 
 				return availableEnumValues;
 			}
-		},
-		data() {
-			return {
-				elementKey: null,
-				elementValue: null
-			};
 		},
 		created() {
 			this.elementKey = this.getDefaultKey();

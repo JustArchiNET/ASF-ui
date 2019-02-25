@@ -1,8 +1,8 @@
 <template>
 	<div class="navigation-statistics">
-		<navigation-statistic v-if="botsFarmingCount !== 0" :title="$t('farming-info-cards')" :name="$t('farming-info-cards')" icon="clone" :value="cardsRemaining"></navigation-statistic>
-		<navigation-statistic :title="$t('statistics-memory-usage')" :name="$t('statistics-memory-usage')" icon="tachometer-alt" :value="memory"></navigation-statistic>
-		<navigation-statistic :title="$t('statistics-uptime')" :name="$t('statistics-uptime')" icon="clock" :value="uptime"></navigation-statistic>
+		<navigation-statistic v-if="botsFarmingCount !== 0" :title="$t('farming-info-cards')" :name="$t('farming-info-cards')" icon="clone" :value="cardsRemaining" />
+		<navigation-statistic :title="$t('statistics-memory-usage')" :name="$t('statistics-memory-usage')" icon="tachometer-alt" :value="memory" />
+		<navigation-statistic :title="$t('statistics-uptime')" :name="$t('statistics-uptime')" icon="clock" :value="uptime" />
 	</div>
 </template>
 

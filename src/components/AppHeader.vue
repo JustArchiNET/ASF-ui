@@ -1,26 +1,25 @@
 <template>
 	<header class="upper-navigation">
-		<navigation-brand></navigation-brand>
+		<navigation-brand />
 
 		<div class="navigation__button" @click="toggleNavigation">
-			<font-awesome-icon icon="bars" fixed-width></font-awesome-icon>
+			<font-awesome-icon icon="bars" fixed-width />
 		</div>
 
 		<div class="navigation__menu">
-			<navigation-language-switch></navigation-language-switch>
+			<navigation-language-switch />
 
 			<div class="navigation__button" @click="toggleSideMenu">
-				<font-awesome-icon icon="cogs" fixed-width></font-awesome-icon>
+				<font-awesome-icon icon="cogs" fixed-width />
 			</div>
 		</div>
 	</header>
 </template>
 
 <script>
+	import { mapActions } from 'vuex';
 	import NavigationBrand from './NavigationBrand.vue';
 	import NavigationLanguageSwitch from './NavigationLanguageSwitch.vue';
-
-	import { mapActions } from 'vuex';
 
 	export default {
 		name: 'app-header',

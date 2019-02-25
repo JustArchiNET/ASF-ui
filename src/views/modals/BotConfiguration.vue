@@ -1,25 +1,33 @@
 <template>
-	<main class="main-container main-container--bot-configuration" v-if="bot">
-		<h2 class="title" v-if="bot.nickname && nicknames">{{ bot.nickname }}</h2>
-		<h2 class="title" v-else>{{ bot.name }}</h2>
+	<main v-if="bot" class="main-container main-container--bot-configuration">
+		<h2 v-if="bot.nickname && nicknames" class="title">
+			{{ bot.nickname }}
+		</h2>
+		<h2 v-else class="title">
+			{{ bot.name }}
+		</h2>
 
-		<h3 class="subtitle" v-if="loading">
-			<font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
+		<h3 v-if="loading" class="subtitle">
+			<font-awesome-icon icon="spinner" size="lg" spin />
 		</h3>
 
-		<div class="container" v-else>
-			<config-editor v-if="displayCategories" :fields="fields" :model="model" :categories="categories"></config-editor>
-			<config-editor v-else :fields="fields" :model="model"></config-editor>
+		<div v-else class="container">
+			<config-editor v-if="displayCategories" :fields="fields" :model="model" :categories="categories" />
+			<config-editor v-else :fields="fields" :model="model" />
 
 			<div class="form-item">
 				<div class="form-item__buttons">
 					<button class="button button--confirm" @click="onSave">
-						<font-awesome-icon icon="spinner" v-if="saving" spin></font-awesome-icon>
+						<font-awesome-icon v-if="saving" icon="spinner" spin />
 						<span v-else>{{ $t('save') }}</span>
 					</button>
-					<router-link tag="button" class="button button--confirm" :to="{ name: 'bot-copy', params: { bot: bot.name } }">{{ $t('bot-copy') }}</router-link>
+					<router-link tag="button" class="button button--confirm" :to="{ name: 'bot-copy', params: { bot: bot.name } }">
+						{{ $t('bot-copy') }}
+					</router-link>
 
-					<button class="button button--link pull-right" @click="onDownload">{{ $t('download-raw-config') }}</button>
+					<button class="button button--link pull-right" @click="onDownload">
+						{{ $t('download-raw-config') }}
+					</button>
 				</div>
 			</div>
 		</div>
@@ -27,11 +35,9 @@
 </template>
 
 <script>
-	import ConfigEditor from '../../components/ConfigEditor.vue';
-
-	import fetchConfigSchema from '../../utils/fetchConfigSchema';
-
 	import { mapGetters } from 'vuex';
+	import ConfigEditor from '../../components/ConfigEditor.vue';
+	import fetchConfigSchema from '../../utils/fetchConfigSchema';
 	import loadParameterDescriptions from '../../utils/loadParameterDescriptions';
 	import prepareModelToDownload from '../../utils/prepareModelToDownload';
 	import botExists from '../../utils/botExists';
@@ -71,7 +77,7 @@
 			}
 		},
 		watch: {
-			'$route': {
+			$route: {
 				immediate: true,
 				handler: 'loadConfig'
 			}
@@ -157,7 +163,7 @@
 			},
 			async onDownload() {
 				const element = document.createElement('a');
-				element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(prepareModelToDownload(this.model)));
+				element.setAttribute('href', `data:text/plain;charset=utf-8,${encodeURIComponent(prepareModelToDownload(this.model))}`);
 				element.setAttribute('download', `${this.bot.name}.json`);
 				element.style.display = 'none';
 				document.body.appendChild(element);

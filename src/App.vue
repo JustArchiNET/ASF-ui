@@ -1,36 +1,36 @@
 <template>
 	<div class="app" :class="[{ 'app--not-authorized': !authenticated, 'app--small-navigation': smallNavigation, 'app--boxed-layout': boxedLayout, 'app--dark-mode': darkMode }, themeClass]">
-		<app-header></app-header>
-		<app-navigation></app-navigation>
-		<app-side-menu></app-side-menu>
+		<app-header />
+		<app-navigation />
+		<app-side-menu />
 
 		<section class="content">
-			<router-view></router-view>
-			<app-footer @click="smallNavigation = !smallNavigation"></app-footer>
+			<router-view />
+			<app-footer @click="smallNavigation = !smallNavigation" />
 		</section>
 
-		<app-modal></app-modal>
-		<vue-snotify></vue-snotify>
+		<app-modal />
+		<vue-snotify />
 	</div>
 </template>
 
 <script>
+	import { mapGetters, mapActions } from 'vuex';
 	import AppHeader from './components/AppHeader.vue';
 	import AppNavigation from './components/AppNavigation.vue';
 	import AppFooter from './components/AppFooter.vue';
 	import AppSideMenu from './components/AppSideMenu.vue';
 	import AppModal from './components/AppModal.vue';
 
-	import { mapGetters } from 'vuex';
-	import { mapActions } from 'vuex';
-
 	export default {
-		name: 'App',
+		name: 'app',
 		metaInfo: {
 			title: 'ArchiSteamFarm',
 			titleTemplate: 'ASF | %s'
 		},
-		components: { AppHeader, AppNavigation, AppFooter, AppSideMenu, AppModal },
+		components: {
+			AppHeader, AppNavigation, AppFooter, AppSideMenu, AppModal
+		},
 		computed: {
 			...mapGetters({
 				authenticated: 'auth/authenticated',
@@ -53,7 +53,7 @@
 					document.documentElement.style.setProperty('--color-background-dark', value ? '#0c0c0c' : '#a7a7a7');
 				}
 			},
-			'$route': {
+			$route: {
 				immediate: true,
 				handler: value => {
 					document.body.style.overflowY = value.meta.modal ? 'hidden' : 'auto';
@@ -86,7 +86,7 @@
 				toggleNavigation: 'layout/toggleNavigation'
 			}),
 			handleResize() {
-				let width = document.body.clientWidth;
+				const width = document.body.clientWidth;
 
 				if ((width <= 700 && !this.smallNavigation) || (width > 700 && this.smallNavigation)) {
 					this.toggleNavigation();

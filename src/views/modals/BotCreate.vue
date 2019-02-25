@@ -1,23 +1,27 @@
 <template>
 	<main class="main-container main-container--bot-create">
-		<h2 class="title">{{ $t('bot-new') }}</h2>
+		<h2 class="title">
+			{{ $t('bot-new') }}
+		</h2>
 
-		<h3 class="subtitle" v-if="loading">
-			<font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
+		<h3 v-if="loading" class="subtitle">
+			<font-awesome-icon icon="spinner" size="lg" spin />
 		</h3>
 
-		<div class="container" v-else>
-			<config-editor v-if="displayCategories" :fields="fields" :model="model" :categories="categories"></config-editor>
-			<config-editor v-else :fields="fields" :model="model"></config-editor>
+		<div v-else class="container">
+			<config-editor v-if="displayCategories" :fields="fields" :model="model" :categories="categories" />
+			<config-editor v-else :fields="fields" :model="model" />
 
 			<div class="form-item">
 				<div class="form-item__buttons">
 					<button class="button button--confirm" @click="onCreate">
-						<font-awesome-icon icon="spinner" v-if="creating" spin></font-awesome-icon>
+						<font-awesome-icon v-if="creating" icon="spinner" spin />
 						<span v-else>{{ $t('create') }}</span>
 					</button>
 
-					<button class="button button--link pull-right" @click="onDownload">{{ $t('download-raw-config') }}</button>
+					<button class="button button--link pull-right" @click="onDownload">
+						{{ $t('download-raw-config') }}
+					</button>
 				</div>
 			</div>
 		</div>
@@ -25,11 +29,9 @@
 </template>
 
 <script>
-	import ConfigEditor from '../../components/ConfigEditor.vue';
-
-	import fetchConfigSchema from '../../utils/fetchConfigSchema';
-
 	import { mapGetters } from 'vuex';
+	import ConfigEditor from '../../components/ConfigEditor.vue';
+	import fetchConfigSchema from '../../utils/fetchConfigSchema';
 	import loadParameterDescriptions from '../../utils/loadParameterDescriptions';
 	import prepareModelToDownload from '../../utils/prepareModelToDownload';
 	import delay from '../../utils/delay';
@@ -124,7 +126,7 @@
 			},
 			async onDownload() {
 				const element = document.createElement('a');
-				element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(prepareModelToDownload(this.model)));
+				element.setAttribute('href', `data:text/plain;charset=utf-8,${encodeURIComponent(prepareModelToDownload(this.model))}`);
 				element.setAttribute('download', `${this.model.Name}.json`);
 				element.style.display = 'none';
 				document.body.appendChild(element);

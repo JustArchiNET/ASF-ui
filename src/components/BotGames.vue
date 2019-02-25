@@ -1,13 +1,13 @@
 <template>
-	<div class="bot-games" v-if="bot.games.length && botsFarmingCount !== 0">
+	<div v-if="bot.games.length && botsFarmingCount !== 0" class="bot-games">
 		<template v-if="gameName">
-			<div class="bot-game" :title="game.GameName" v-for="game in bot.games">
+			<div v-for="game in bot.games" class="bot-game" :title="game.GameName">
 				<a class="bot-game__name" target="_blank" :href="`https://store.steampowered.com/app/${game.AppID}/`">{{ game.GameName }}</a>
 			</div>
 		</template>
 
 		<template v-else>
-			<div class="bot-game" :title="game.GameName" :class="[game.farming ? 'status--farming' : 'status--disabled']" v-for="game in bot.games">
+			<div v-for="game in bot.games" class="bot-game" :title="game.GameName" :class="[game.farming ? 'status--farming' : 'status--disabled']">
 				<a target="_blank" :href="`https://store.steampowered.com/app/${game.AppID}/`">
 					<div class="bot-game__info">
 						<span class="bot-game__name">{{ game.GameName }}</span>
