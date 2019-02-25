@@ -33,7 +33,7 @@
 		"webpack": "^4.28.4",
 		"webpack-bundle-analyzer": "^3.0.4",
 		"webpack-cli": "^3.2.3",
-		"webpack-dev-server": "^3.2.0"
+		"webpack-dev-server": "^3.2.1"
 	},
 	"dependencies": {
 		"@fortawesome/fontawesome-svg-core": "^1.2.15",
