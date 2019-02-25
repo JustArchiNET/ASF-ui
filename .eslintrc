@@ -1,13 +1,11 @@
 {
-    "env": {
-        "browser": true,
-        "es6": true
-    },
-    "extends": "airbnb-base",
-    "plugins": [
-        "vue"
-    ],
-    "rules": {
+	"env": {
+		"browser": true,
+		"es6": true
+	},
+	"extends": "airbnb-base",
+	"plugins": "vue",
+	"rules": {
 		"indent": ["error", "tab"],
 		"no-tabs": ["error", { "allowIndentationTabs": true }],
 		"no-await-in-loop": "off",
