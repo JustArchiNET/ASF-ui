@@ -12,7 +12,7 @@ export class NotificationError extends Error {
 }
 
 const http = axios.create({
-	baseURL: window.__BASE_PATH__ ? window.__BASE_PATH__ + 'api' : '/api'
+	baseURL: window.__BASE_PATH__ ? `${window.__BASE_PATH__}api` : '/api'
 });
 
 function extractResult(response) {

@@ -42,7 +42,7 @@ export default {
 		locales: state => Object.keys(state.translations),
 		translation: state => (locale, key) => state.translations[locale][key],
 		hasTranslation: state => (locale, key) => !!locale && !!state.translations[locale] && !!state.translations[locale][key],
-		noRegionalLocale: state => state.locale ? state.locale.split('-')[0] : state.locale,
+		noRegionalLocale: state => (state.locale ? state.locale.split('-')[0] : state.locale),
 		translationLocale: (state, getters) => key => {
 			if (state.locale && getters.hasTranslation(state.locale, key)) return state.locale;
 			if (getters.noRegionalLocale && getters.hasTranslation(getters.noRegionalLocale, key)) return getters.noRegionalLocale;

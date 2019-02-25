@@ -1,13 +1,13 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import VueMeta from 'vue-meta';
 import store from '../store';
 import * as storage from '../utils/storage';
-import VueMeta from 'vue-meta';
+
+import routes from './routes';
 
 Vue.use(VueRouter);
 Vue.use(VueMeta);
-
-import routes from './routes';
 
 const router = new VueRouter({
 	routes,

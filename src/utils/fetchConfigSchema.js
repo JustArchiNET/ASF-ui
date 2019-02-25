@@ -33,28 +33,28 @@ async function resolveType(type) {
 	const subtypes = resolveSubtypes(type);
 
 	switch (type.split('`')[0]) {
-		case 'System.Boolean':
-			return { type: 'boolean' };
-		case 'System.String':
-			return { type: 'string' };
-		case 'System.Byte':
-			return { type: 'byte' };
-		case 'System.UInt32':
-			return { type: 'uint32' };
-		case 'System.UInt16':
-			return { type: 'uint16' };
-		case 'System.Collections.Generic.HashSet':
-		case 'System.Collections.Immutable.ImmutableHashSet':
-			return { type: 'hashSet', values: await resolveType(subtypes[0]) };
-		case 'System.Collections.Immutable.ImmutableList':
-			return { type: 'list', values: await resolveType(subtypes[0]) };
-		case 'System.UInt64':
-			return { type: 'uint64' };
-		case 'System.Collections.Generic.Dictionary':
-		case 'System.Collections.Immutable.ImmutableDictionary':
-			return { type: 'dictionary', key: await resolveType(subtypes[0]), value: await resolveType(subtypes[1]) };
-		default: // Complex type
-			return unwindType(type);
+	case 'System.Boolean':
+		return { type: 'boolean' };
+	case 'System.String':
+		return { type: 'string' };
+	case 'System.Byte':
+		return { type: 'byte' };
+	case 'System.UInt32':
+		return { type: 'uint32' };
+	case 'System.UInt16':
+		return { type: 'uint16' };
+	case 'System.Collections.Generic.HashSet':
+	case 'System.Collections.Immutable.ImmutableHashSet':
+		return { type: 'hashSet', values: await resolveType(subtypes[0]) };
+	case 'System.Collections.Immutable.ImmutableList':
+		return { type: 'list', values: await resolveType(subtypes[0]) };
+	case 'System.UInt64':
+		return { type: 'uint64' };
+	case 'System.Collections.Generic.Dictionary':
+	case 'System.Collections.Immutable.ImmutableDictionary':
+		return { type: 'dictionary', key: await resolveType(subtypes[0]), value: await resolveType(subtypes[1]) };
+	default: // Complex type
+		return unwindType(type);
 	}
 }
 
@@ -98,16 +98,16 @@ async function unwindType(type) {
 	const typeDefinition = await getTypeDefinition(type);
 
 	switch (typeDefinition.Properties.BaseType) {
-		case 'System.Object':
-			return unwindObject(type, typeDefinition);
-		case 'System.Enum':
-			return {
-				type: (typeDefinition.Properties.CustomAttributes || []).includes('System.FlagsAttribute') ? 'flag' : 'enum',
-				values: parseEnumValues(typeDefinition.Body)
-			};
-		default:
-			const structureDefinition = await getStructureDefinition(type);
-			return { type: 'unknown', typeDefinition, structureDefinition };
+	case 'System.Object':
+		return unwindObject(type, typeDefinition);
+	case 'System.Enum':
+		return {
+			type: (typeDefinition.Properties.CustomAttributes || []).includes('System.FlagsAttribute') ? 'flag' : 'enum',
+			values: parseEnumValues(typeDefinition.Body)
+		};
+	default:
+		const structureDefinition = await getStructureDefinition(type);
+		return { type: 'unknown', typeDefinition, structureDefinition };
 	}
 }
 
