@@ -9,7 +9,7 @@ Standalone web interface for ASF
 [![Version](https://img.shields.io/github/release/JustArchiNET/ASF-ui.svg?colorB=brightgreen&label=Version&maxAge=600)](https://github.com/JustArchiNET/ASF-ui/releases)
 [![License](https://img.shields.io/github/license/JustArchiNET/ASF-ui.svg?label=License&maxAge=2592000)](https://github.com/JustArchiNET/ASF-ui/blob/master/LICENSE-2.0.txt)
 
-<img src="https://raw.githubusercontent.com/JustArchiNET/ASF-ui/master/.github/preview.png">
+<img src="https://raw.githubusercontent.com/JustArchiNET/ASF-ui/master/.github/previews/bots.png">
 
 ***
 
