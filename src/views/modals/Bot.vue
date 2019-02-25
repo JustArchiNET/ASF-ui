@@ -52,12 +52,11 @@
 	import BotFarmingInfo from '../../components/BotFarmingInfo.vue';
 	import BotGames from '../../components/BotGames.vue';
 	import BotLink from '../../components/BotLink.vue';
-	import Dropdown from '../../components/utils/Dropdown.vue';
 
 	export default {
 		name: 'bot',
 		components: {
-			BotAction, BotFarmingInfo, BotGames, BotLink, Dropdown
+			BotAction, BotFarmingInfo, BotGames, BotLink
 		},
 		computed: {
 			...mapGetters({ nicknames: 'settings/nicknames' }),

@@ -26,6 +26,7 @@
 		"comma-dangle": ["error", "never"],
 		"prefer-template": "warn",
 		"arrow-parens": ["error", "as-needed"],
+		"no-underscore-dangle": ["error", { "allowAfterThis": true }],
 		"vue/script-indent": ["error", "tab", { "baseIndent": 1 }],
 		"vue/html-indent": ["error", "tab"],
 		"vue/name-property-casing": ["error", "kebab-case"],
