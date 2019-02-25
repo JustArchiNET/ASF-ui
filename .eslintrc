@@ -1,0 +1,26 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "extends": "airbnb-base",
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "vue"
+    ],
+    "rules": {
+	  "indent": ["error", "tab"],
+	  "no-tabs": ["error", { "allowIndentationTabs": true }],
+	  "no-await-in-loop": "off",
+	  "space-before-function-paren": ["error", "never"],
+	  "comma-dangle": ["error", "never"],
+	  "prefer-template": "warn"
+	}
+}
