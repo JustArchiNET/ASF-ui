@@ -30,14 +30,14 @@
 		"file-loader": "^3.0.1",
 		"node-sass": "^4.11.0",
 		"sass-loader": "^7.1.0",
-		"terser-webpack-plugin": "^1.2.2",
+		"terser-webpack-plugin": "^1.2.3",
 		"url-loader": "^1.1.2",
 		"vue-loader": "^15.6.4",
 		"vue-template-compiler": "^2.6.7",
 		"webpack": "^4.28.4",
 		"webpack-bundle-analyzer": "^3.0.4",
 		"webpack-cli": "^3.2.3",
-		"webpack-dev-server": "^3.2.0"
+		"webpack-dev-server": "^3.2.1"
 	},
 	"dependencies": {
 		"@fortawesome/fontawesome-svg-core": "^1.2.15",
