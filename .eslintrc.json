@@ -19,7 +19,7 @@
         "vue"
     ],
     "rules": {
-		"indent": ["error", "tab"],
+		"indent": ["error", "tab", { "SwitchCase": 1 }],
 		"no-tabs": ["error", { "allowIndentationTabs": true }],
 		"no-await-in-loop": "off",
 		"space-before-function-paren": ["error", { "anonymous": "never", "named": "never", "asyncArrow": "always" }],
@@ -27,6 +27,8 @@
 		"prefer-template": "warn",
 		"arrow-parens": ["error", "as-needed"],
 		"no-underscore-dangle": ["error", { "allowAfterThis": true }],
+		"no-use-before-define": ["error", { "functions": false }],
+		"no-shadow": "warn",
 		"vue/script-indent": ["error", "tab", { "baseIndent": 1 }],
 		"vue/html-indent": ["error", "tab"],
 		"vue/name-property-casing": ["error", "kebab-case"],
