@@ -1,7 +1,7 @@
 <template>
 	<a class="footer__link" target="_blank" :href="to">
 		<span class="footer__link-icon">
-			<font-awesome-icon :icon="[prefix, icon]" size="lg" :title="name" fixed-width />
+			<font-awesome-icon :icon="[prefix, icon]" size="lg" :title="name" fixed-width></font-awesome-icon>
 		</span>
 		<span class="footer__link-name">{{ name }}</span>
 	</a>

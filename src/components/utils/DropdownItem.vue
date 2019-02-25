@@ -1,16 +1,16 @@
 <template>
 	<li v-if="item.action" v-show="active" class="dropdown__item" @click="onClick">
-		<font-awesome-icon v-if="item.icon" class="dropdown__item-icon" :icon="item.icon" />
+		<font-awesome-icon v-if="item.icon" class="dropdown__item-icon" :icon="item.icon"></font-awesome-icon>
 		<span class="dropdown__item-name">{{ item.name }}</span>
 	</li>
 
 	<router-link v-else-if="item.link" v-show="active" tag="li" class="dropdown__item" :to="item.link">
-		<font-awesome-icon v-if="item.icon" class="dropdown__item-icon" :icon="item.icon" />
+		<font-awesome-icon v-if="item.icon" class="dropdown__item-icon" :icon="item.icon"></font-awesome-icon>
 		<span class="dropdown__item-name">{{ item.name }}</span>
 	</router-link>
 
 	<li v-show="active" v-else class="dropdown__item">
-		<font-awesome-icon v-if="item.icon" class="dropdown__item-icon" :icon="item.icon" />
+		<font-awesome-icon v-if="item.icon" class="dropdown__item-icon" :icon="item.icon"></font-awesome-icon>
 		<span class="dropdown__item-name">{{ item.name }}</span>
 	</li>
 </template>

@@ -1,12 +1,12 @@
 <template>
 	<div class="side-menu__switch" @click="$emit('click')">
 		<span class="side-menu__switch-left-side">
-			<font-awesome-icon :icon="icon" fixed-width />
+			<font-awesome-icon :icon="icon" fixed-width></font-awesome-icon>
 			<span>{{ name }}</span>
 		</span>
 
-		<font-awesome-icon v-if="checked" icon="check-circle" />
-		<font-awesome-icon v-else icon="times-circle" />
+		<font-awesome-icon v-if="checked" icon="check-circle"></font-awesome-icon>
+		<font-awesome-icon v-else icon="times-circle"></font-awesome-icon>
 	</div>
 </template>
 

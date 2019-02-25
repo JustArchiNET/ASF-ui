@@ -3,17 +3,17 @@
 		<div class="container">
 			<template v-if="loading">
 				<h3 class="subtitle">
-					<font-awesome-icon icon="spinner" size="lg" spin />
+					<font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
 				</h3>
 			</template>
 			<template v-else>
-				<config-editor v-if="displayCategories" :fields="fields" :model="model" :categories="categories" :descriptions="descriptions" />
-				<config-editor v-else :fields="fields" :model="model" :descriptions="descriptions" />
+				<config-editor v-if="displayCategories" :fields="fields" :model="model" :categories="categories" :descriptions="descriptions"></config-editor>
+				<config-editor v-else :fields="fields" :model="model" :descriptions="descriptions"></config-editor>
 
 				<div class="form-item">
 					<div class="form-item__buttons">
 						<button class="button button--confirm" @click="onSave">
-							<font-awesome-icon v-if="saving" icon="spinner" spin />
+							<font-awesome-icon v-if="saving" icon="spinner" spin></font-awesome-icon>
 							<span v-else>{{ $t('save') }}</span>
 						</button>
 

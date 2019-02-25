@@ -1,8 +1,8 @@
 <template>
 	<main class="main-container main-container--fullheight">
 		<div class="container">
-			<config-editor v-if="displayCategories" :fields="fields" :categories="categories" :model="model" />
-			<config-editor v-else :fields="fields" :model="model" />
+			<config-editor v-if="displayCategories" :fields="fields" :categories="categories" :model="model"></config-editor>
+			<config-editor v-else :fields="fields" :model="model"></config-editor>
 
 			<div class="form-item">
 				<div class="form-item__buttons">

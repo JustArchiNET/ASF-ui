@@ -21,27 +21,27 @@
 			</div>
 
 			<div class="bot-profile__actions">
-				<bot-link icon="wrench" :link="{ name: 'bot-config', params: { bot: bot.name } }" />
-				<bot-link icon="key" :link="{ name: 'bot-bgr', params: { bot: bot.name } }" />
-				<bot-link icon="lock" :link="{ name: 'bot-2fa', params: { bot: bot.name } }" />
+				<bot-link icon="wrench" :link="{ name: 'bot-config', params: { bot: bot.name } }"></bot-link>
+				<bot-link icon="key" :link="{ name: 'bot-bgr', params: { bot: bot.name } }"></bot-link>
+				<bot-link icon="lock" :link="{ name: 'bot-2fa', params: { bot: bot.name } }"></bot-link>
 
-				<bot-action v-if="bot.paused && bot.active" icon="play" @click="resume" />
-				<bot-action v-if="!bot.paused && bot.active" icon="pause" @click="pause" />
+				<bot-action v-if="bot.paused && bot.active" icon="play" @click="resume"></bot-action>
+				<bot-action v-if="!bot.paused && bot.active" icon="pause" @click="pause"></bot-action>
 
-				<bot-action v-if="!bot.active" icon="power-off" @click="start" />
-				<bot-action v-if="bot.active" icon="power-off" @click="stop" />
+				<bot-action v-if="!bot.active" icon="power-off" @click="start"></bot-action>
+				<bot-action v-if="bot.active" icon="power-off" @click="stop"></bot-action>
 
-				<bot-link icon="trash" :link="{ name: 'bot-delete', params: { bot: bot.name } }" class="pull-right" />
+				<bot-link icon="trash" :link="{ name: 'bot-delete', params: { bot: bot.name } }" class="pull-right"></bot-link>
 			</div>
 		</div>
 
 		<div class="bot-farming-info">
-			<bot-farming-info :value="gamesRemaining" icon="gamepad" />
-			<bot-farming-info :value="timeRemaining" icon="clock" />
-			<bot-farming-info :value="cardsRemaining" icon="clone" />
+			<bot-farming-info :value="gamesRemaining" icon="gamepad"></bot-farming-info>
+			<bot-farming-info :value="timeRemaining" icon="clock"></bot-farming-info>
+			<bot-farming-info :value="cardsRemaining" icon="clone"></bot-farming-info>
 		</div>
 
-		<bot-games :bot="bot" />
+		<bot-games :bot="bot"></bot-games>
 	</main>
 </template>
 

@@ -1,15 +1,15 @@
 <template>
 	<aside class="side-menu" :class="{ 'side-menu--hidden': !sideMenu }">
-		<side-menu-switch class="side-menu__switch--boxed" :name="$t('sidebar-boxed-layout')" icon="square" :checked="boxedLayout" @click="toggleBoxed" />
-		<side-menu-switch :name="$t('sidebar-dark-mode')" icon="moon" :checked="darkMode" @click="toggleDarkMode" />
+		<side-menu-switch class="side-menu__switch--boxed" :name="$t('sidebar-boxed-layout')" icon="square" :checked="boxedLayout" @click="toggleBoxed"></side-menu-switch>
+		<side-menu-switch :name="$t('sidebar-dark-mode')" icon="moon" :checked="darkMode" @click="toggleDarkMode"></side-menu-switch>
 
 		<div class="side-menu__category">
-			<font-awesome-icon icon="palette" fixed-width />
+			<font-awesome-icon icon="palette" fixed-width></font-awesome-icon>
 			<span>{{ $t('sidebar-theme') }}</span>
 		</div>
 
 		<div class="theme-switcher">
-			<div v-for="theme in availableThemes" class="theme-switcher__theme" :class="[`theme-${theme}`]" @click="changeTheme(theme)" />
+			<div v-for="theme in availableThemes" class="theme-switcher__theme" :class="[`theme-${theme}`]" @click="changeTheme(theme)"></div>
 		</div>
 	</aside>
 </template>

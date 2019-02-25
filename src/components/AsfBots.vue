@@ -1,10 +1,10 @@
 <template>
 	<div class="bots">
-		<bot-card v-for="bot in bots" v-if="bot.isVisible(selectedBots)" :key="bot.name" :bot="bot" />
+		<bot-card v-for="bot in bots" v-if="bot.isVisible(selectedBots)" :key="bot.name" :bot="bot"></bot-card>
 
 		<router-link tag="div" :to="{ name: 'bot-create' }" class="bot-placeholder status--disabled">
 			<div class="bot-placeholder__button bot-placeholder__button--add">
-				<font-awesome-icon icon="plus" class="bot-placeholder__icon" />
+				<font-awesome-icon icon="plus" class="bot-placeholder__icon"></font-awesome-icon>
 				<span class="bot-placeholder__name">{{ $t('bot-new') }}</span>
 			</div>
 		</router-link>

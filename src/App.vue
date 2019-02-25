@@ -1,16 +1,16 @@
 <template>
 	<div class="app" :class="[{ 'app--not-authorized': !authenticated, 'app--small-navigation': smallNavigation, 'app--boxed-layout': boxedLayout, 'app--dark-mode': darkMode }, themeClass]">
-		<app-header />
-		<app-navigation />
-		<app-side-menu />
+		<app-header></app-header>
+		<app-navigation></app-navigation>
+		<app-side-menu></app-side-menu>
 
 		<section class="content">
-			<router-view />
-			<app-footer @click="smallNavigation = !smallNavigation" />
+			<router-view></router-view>
+			<app-footer @click="smallNavigation = !smallNavigation"></app-footer>
 		</section>
 
-		<app-modal />
-		<vue-snotify />
+		<app-modal></app-modal>
+		<vue-snotify></vue-snotify>
 	</div>
 </template>
 

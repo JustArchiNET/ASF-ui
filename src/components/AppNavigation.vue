@@ -2,30 +2,30 @@
 	<nav class="side-navigation" @transitionend="onTransitionEnd">
 		<template v-if="authenticated">
 			<div class="navigation-category">
-				<navigation-category-title :name="$t('control')" />
-				<navigation-link :name="$t('bots')" icon="users" :to="{ name: 'bots' }" />
-				<navigation-link :name="$t('commands')" icon="laptop" :to="{ name: 'commands' }" />
-				<navigation-link :name="$t('log')" icon="file-alt" :to="{ name: 'log' }" />
-				<navigation-link :name="$t('releases')" icon="code-branch" :to="{ name: 'releases' }" />
+				<navigation-category-title :name="$t('control')"></navigation-category-title>
+				<navigation-link :name="$t('bots')" icon="users" :to="{ name: 'bots' }"></navigation-link>
+				<navigation-link :name="$t('commands')" icon="laptop" :to="{ name: 'commands' }"></navigation-link>
+				<navigation-link :name="$t('log')" icon="file-alt" :to="{ name: 'log' }"></navigation-link>
+				<navigation-link :name="$t('releases')" icon="code-branch" :to="{ name: 'releases' }"></navigation-link>
 			</div>
 
 			<div class="navigation-category">
-				<navigation-category-title :name="$t('configuration')" />
-				<navigation-link :name="$t('ui-configuration')" icon="wrench" :to="{ name: 'ui-configuration' }" />
-				<navigation-link :name="$t('global-config')" icon="edit" :to="{ name: 'global-config' }" />
+				<navigation-category-title :name="$t('configuration')"></navigation-category-title>
+				<navigation-link :name="$t('ui-configuration')" icon="wrench" :to="{ name: 'ui-configuration' }"></navigation-link>
+				<navigation-link :name="$t('global-config')" icon="edit" :to="{ name: 'global-config' }"></navigation-link>
 			</div>
 
 			<div class="navigation-category navigation-category--pull-bottom">
-				<navigation-category-title :name="$t('statistics')" />
-				<navigation-bots ref="bots" />
-				<navigation-statistics />
+				<navigation-category-title :name="$t('statistics')"></navigation-category-title>
+				<navigation-bots ref="bots"></navigation-bots>
+				<navigation-statistics></navigation-statistics>
 			</div>
 		</template>
 
 		<template v-else>
 			<div class="navigation-category">
-				<navigation-category-title :name="$t('configuration')" />
-				<navigation-link :name="$t('setup')" icon="wrench" :to="{ name: 'setup' }" />
+				<navigation-category-title :name="$t('configuration')"></navigation-category-title>
+				<navigation-link :name="$t('setup')" icon="wrench" :to="{ name: 'setup' }"></navigation-link>
 			</div>
 		</template>
 	</nav>

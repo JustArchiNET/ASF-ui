@@ -1,7 +1,7 @@
 <template>
 	<main class="main-container main-container--fullheight log">
 		<div class="container">
-			<asf-log />
+			<asf-log></asf-log>
 		</div>
 	</main>
 </template>x

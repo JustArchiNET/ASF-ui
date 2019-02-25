@@ -3,7 +3,7 @@
 		<legend v-if="name" class="form-group__legend">
 			{{ name }}
 		</legend>
-		<slot />
+		<slot></slot>
 	</fieldset>
 </template>
 

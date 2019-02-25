@@ -1,7 +1,7 @@
 <template>
 	<main class="main-container main-container--fullheight dashboard">
-		<asf-farming-info />
-		<asf-bots />
+		<asf-farming-info></asf-farming-info>
+		<asf-bots></asf-bots>
 	</main>
 </template>
 

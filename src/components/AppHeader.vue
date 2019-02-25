@@ -1,16 +1,16 @@
 <template>
 	<header class="upper-navigation">
-		<navigation-brand />
+		<navigation-brand></navigation-brand>
 
 		<div class="navigation__button" @click="toggleNavigation">
-			<font-awesome-icon icon="bars" fixed-width />
+			<font-awesome-icon icon="bars" fixed-width></font-awesome-icon>
 		</div>
 
 		<div class="navigation__menu">
-			<navigation-language-switch />
+			<navigation-language-switch></navigation-language-switch>
 
 			<div class="navigation__button" @click="toggleSideMenu">
-				<font-awesome-icon icon="cogs" fixed-width />
+				<font-awesome-icon icon="cogs" fixed-width></font-awesome-icon>
 			</div>
 		</div>
 	</header>

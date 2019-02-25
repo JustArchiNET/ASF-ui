@@ -1,7 +1,7 @@
 <template>
 	<transition name="form-item__description" @enter="enter" @after-enter="afterEnter" @leave="leave">
 		<div class="form-item__description" :class="{ 'form-item__description--shown': shown }">
-			<div class="form-item__description-content" v-html="description" />
+			<div class="form-item__description-content" v-html="description"></div>
 		</div>
 	</transition>
 </template>

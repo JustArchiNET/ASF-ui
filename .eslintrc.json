@@ -30,7 +30,8 @@
 		"vue/script-indent": ["error", "tab", { "baseIndent": 1 }],
 		"vue/html-indent": ["error", "tab"],
 		"vue/name-property-casing": ["error", "kebab-case"],
-		"vue/max-attributes-per-line": "off"
+		"vue/max-attributes-per-line": "off",
+		"vue/html-self-closing": ["error", { "html": { "void": "never", "normal": "never", "component": "never" }}]
     },
 	"overrides": [
 		{

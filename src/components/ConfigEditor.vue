@@ -2,17 +2,17 @@
 	<div class="config-editor">
 		<template v-if="categories">
 			<config-category v-for="category in categories" v-if="categoryFields(category.name).length" :key="category.name" :name="category.name">
-				<component :is="componentFromField(field)" v-for="field in categoryFields(category.name)" :key="field.param" class="form-item--config" :schema="field" :current-value="model[field.paramName]" @update="updateModel" />
+				<component :is="componentFromField(field)" v-for="field in categoryFields(category.name)" :key="field.param" class="form-item--config" :schema="field" :current-value="model[field.paramName]" @update="updateModel"></component>
 			</config-category>
 
 			<config-category v-if="uncategorizedFields.length" key="Other" :name="$t('other')">
-				<component :is="componentFromField(field)" v-for="field in uncategorizedFields" :key="field.param" class="form-item--config" :schema="field" :current-value="model[field.paramName]" @update="updateModel" />
+				<component :is="componentFromField(field)" v-for="field in uncategorizedFields" :key="field.param" class="form-item--config" :schema="field" :current-value="model[field.paramName]" @update="updateModel"></component>
 			</config-category>
 		</template>
 
 		<template v-if="!categories">
 			<fieldset class="config-uncategorized">
-				<component :is="componentFromField(field)" v-for="field in uncategorizedFields" :key="field.param" class="form-item--config" :schema="field" :current-value="model[field.paramName]" @update="updateModel" />
+				<component :is="componentFromField(field)" v-for="field in uncategorizedFields" :key="field.param" class="form-item--config" :schema="field" :current-value="model[field.paramName]" @update="updateModel"></component>
 			</fieldset>
 		</template>
 	</div>

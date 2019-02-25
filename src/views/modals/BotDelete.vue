@@ -10,7 +10,7 @@
 		<div class="form-item">
 			<div class="form-item__buttons form-item__buttons--center">
 				<button class="button button--cancel" @click="onDelete">
-					<font-awesome-icon v-if="deleting" icon="spinner" spin />
+					<font-awesome-icon v-if="deleting" icon="spinner" spin></font-awesome-icon>
 					<span v-else>{{ $t('delete') }}</span>
 				</button>
 

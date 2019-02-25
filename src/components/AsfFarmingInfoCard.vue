@@ -1,7 +1,7 @@
 <template>
 	<div class="info-card">
 		<div class="info-card__icon">
-			<font-awesome-icon :icon="icon" />
+			<font-awesome-icon :icon="icon"></font-awesome-icon>
 		</div>
 		<div class="info-card__body">
 			<p class="info-card__title">

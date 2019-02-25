@@ -1,7 +1,7 @@
 <template>
 	<div class="farming-info">
 		<div class="farming-info__icon">
-			<font-awesome-icon :icon="icon" />
+			<font-awesome-icon :icon="icon"></font-awesome-icon>
 		</div>
 
 		<p class="farming-info__value">

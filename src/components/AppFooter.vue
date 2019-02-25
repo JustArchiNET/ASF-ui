@@ -1,14 +1,14 @@
 <template>
 	<footer class="footer">
 		<div class="footer__links">
-			<footer-link name="GitHub" prefix="fab" icon="github" to="https://github.com/JustArchiNET" />
-			<footer-link :name="$t('wiki')" icon="book" to="https://github.com/JustArchiNET/ArchiSteamFarm/wiki" />
-			<footer-link v-if="authenticated" :name="$t('changelog')" icon="calendar-check" :to="asfReleaseUrl" />
+			<footer-link name="GitHub" prefix="fab" icon="github" to="https://github.com/JustArchiNET"></footer-link>
+			<footer-link :name="$t('wiki')" icon="book" to="https://github.com/JustArchiNET/ArchiSteamFarm/wiki"></footer-link>
+			<footer-link v-if="authenticated" :name="$t('changelog')" icon="calendar-check" :to="asfReleaseUrl"></footer-link>
 		</div>
 
 		<div class="footer__statistics">
-			<footer-statistic :name="$t('ui')" :value="uiVersion" :notify="notifyRelease && newUiReleaseAvailable" :to="uiReleaseUrl" />
-			<footer-statistic v-if="authenticated" name="ASF" :value="asfVersionString" :notify="notifyRelease && newAsfReleaseAvailable" :to="asfReleaseUrl" />
+			<footer-statistic :name="$t('ui')" :value="uiVersion" :notify="notifyRelease && newUiReleaseAvailable" :to="uiReleaseUrl"></footer-statistic>
+			<footer-statistic v-if="authenticated" name="ASF" :value="asfVersionString" :notify="notifyRelease && newAsfReleaseAvailable" :to="asfReleaseUrl"></footer-statistic>
 		</div>
 	</footer>
 </template>

@@ -1,6 +1,6 @@
 <template>
 	<div class="form-item input-option">
-		<input-label :label="label" :has-description="hasDescription" />
+		<input-label :label="label" :has-description="hasDescription"></input-label>
 
 		<div class="form-item__value">
 			<div class="input-option__field">
@@ -21,7 +21,7 @@
 			</div>
 		</div>
 
-		<input-description v-if="hasDescription" v-show="showDescription" :description="description" />
+		<input-description v-if="hasDescription" v-show="showDescription" :description="description"></input-description>
 	</div>
 </template>
 

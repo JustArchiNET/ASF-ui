@@ -5,17 +5,17 @@
 		</h2>
 
 		<h3 v-if="loading" class="subtitle">
-			<font-awesome-icon icon="spinner" size="lg" spin />
+			<font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
 		</h3>
 
 		<div v-else class="container">
-			<config-editor v-if="displayCategories" :fields="fields" :model="model" :categories="categories" />
-			<config-editor v-else :fields="fields" :model="model" />
+			<config-editor v-if="displayCategories" :fields="fields" :model="model" :categories="categories"></config-editor>
+			<config-editor v-else :fields="fields" :model="model"></config-editor>
 
 			<div class="form-item">
 				<div class="form-item__buttons">
 					<button class="button button--confirm" @click="onCreate">
-						<font-awesome-icon v-if="creating" icon="spinner" spin />
+						<font-awesome-icon v-if="creating" icon="spinner" spin></font-awesome-icon>
 						<span v-else>{{ $t('create') }}</span>
 					</button>
 

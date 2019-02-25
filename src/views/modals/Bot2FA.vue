@@ -13,18 +13,18 @@
 			</div>
 			<div class="form-item__buttons form-item__buttons--center form-item__buttons--column">
 				<button class="button button--confirm" @click="refreshToken">
-					<font-awesome-icon v-if="refreshing" icon="spinner" spin />
+					<font-awesome-icon v-if="refreshing" icon="spinner" spin></font-awesome-icon>
 					<span v-else>{{ $t('2fa-token-refresh') }}</span>
 				</button>
 				<button class="button button--confirm" @click="copyToken">
 					{{ $t('2fa-token-copy') }}
 				</button>
 				<button class="button button--confirm" @click="acceptTrades">
-					<font-awesome-icon v-if="accepting" icon="spinner" spin />
+					<font-awesome-icon v-if="accepting" icon="spinner" spin></font-awesome-icon>
 					<span v-else>{{ $t('2fa-accept') }}</span>
 				</button>
 				<button class="button button--cancel" @click="cancelTrades">
-					<font-awesome-icon v-if="canceling" icon="spinner" spin />
+					<font-awesome-icon v-if="canceling" icon="spinner" spin></font-awesome-icon>
 					<span v-else>{{ $t('2fa-cancel') }}</span>
 				</button>
 			</div>

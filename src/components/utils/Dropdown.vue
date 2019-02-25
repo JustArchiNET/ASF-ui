@@ -1,11 +1,11 @@
 <template>
 	<button class="dropdown button button-confirm" :class="[{ 'dropdown--active': open, 'button--disabled': disabled, 'button--small': small }, buttonStyle ? `button--${buttonStyle}` : null]" @click="toggle">
 		<span class="dropdown__label">{{ label }}</span>
-		<font-awesome-icon class="dropdown__icon" icon="angle-down" />
+		<font-awesome-icon class="dropdown__icon" icon="angle-down"></font-awesome-icon>
 
 		<ul v-if="open" class="dropdown__items">
-			<dropdown-item v-for="item in items" :key="item.name" :item="item" />
-			<slot />
+			<dropdown-item v-for="item in items" :key="item.name" :item="item"></dropdown-item>
+			<slot></slot>
 		</ul>
 	</button>
 </template>

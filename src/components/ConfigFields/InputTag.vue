@@ -1,13 +1,13 @@
 <template>
 	<div class="form-item">
-		<input-label :label="label" :has-description="hasDescription" />
+		<input-label :label="label" :has-description="hasDescription"></input-label>
 
 		<div class="form-item__value">
 			<div class="input-option__field">
 				<div class="form-item__input form-item__input--tag-wrapper" :class="{ 'form-item__input--focus': focus }">
 					<button v-for="(item, index) in value" class="form-item__tag" @click.prevent="removeElement(index)">
 						<span class="form-item__tag-value">{{ item }}</span>
-						<font-awesome-icon class="form-item__tag-remove" icon="times" />
+						<font-awesome-icon class="form-item__tag-remove" icon="times"></font-awesome-icon>
 					</button>
 					<input v-model="element" class="form-item__input form-item__input--tag" type="text" @keydown="onKeyDown" @focus="onFocus" @blur="onBlur">
 				</div>
@@ -18,7 +18,7 @@
 			<span v-if="hasErrors" class="form-item__error">{{ errorText }}</span>
 		</div>
 
-		<input-description v-if="hasDescription" v-show="showDescription" :description="description" />
+		<input-description v-if="hasDescription" v-show="showDescription" :description="description"></input-description>
 	</div>
 </template>
 
