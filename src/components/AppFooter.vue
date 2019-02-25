@@ -7,8 +7,8 @@
 		</div>
 
 		<div class="footer__statistics">
-			<footer-statistic :name="$t('ui')" :value="uiVersion" :notify="notifyRelease && newUiReleaseAvailable" :to="uiReleaseUrl"></footer-statistic>
-			<footer-statistic v-if="authenticated" name="ASF" :value="asfVersionString" :notify="notifyRelease && newAsfReleaseAvailable" :to="asfReleaseUrl"></footer-statistic>
+			<footer-statistic :name="$t('ui')" :value="uiVersion" :notify="uiReleaseAvailable" :to="uiReleaseUrl"></footer-statistic>
+			<footer-statistic v-if="authenticated" name="ASF" :value="asfVersionString" :notify="asfReleaseAvailable" :to="asfReleaseUrl"></footer-statistic>
 		</div>
 	</footer>
 </template>
@@ -18,6 +18,7 @@
 	import FooterLink from './FooterLink.vue';
 	import FooterStatistic from './FooterStatistic.vue';
 	import { ui, newReleaseAvailable } from '../utils/ui';
+	import delay from '../utils/delay';
 
 	export default {
 		name: 'app-footer',
@@ -25,8 +26,8 @@
 		data() {
 			return {
 				uiVersion: ui.version,
-				newUiReleaseAvailable: false,
-				newAsfReleaseAvailable: false
+				uiReleaseAvailable: false,
+				asfReleaseAvailable: false
 			};
 		},
 		computed: {
@@ -46,14 +47,15 @@
 				return `https://github.com/JustArchiNET/ASF-ui/releases/tag/${this.uiVersion}`;
 			}
 		},
-		created() {
-			if (this.authenticated) this.getNewVersions();
+		async mounted() {
+			await delay(3000);
+			if (this.authenticated && this.notifyRelease) this.getNewVersions();
 		},
 		methods: {
 			async getNewVersions() {
 				try {
-					this.newUiReleaseAvailable = await newReleaseAvailable('ASF-ui', this.uiVersion);
-					this.newAsfReleaseAvailable = await newReleaseAvailable('ArchiSteamFarm', this.asfVersion);
+					this.uiReleaseAvailable = await newReleaseAvailable('ASF-ui', this.uiVersion);
+					this.asfReleaseAvailable = await newReleaseAvailable('ArchiSteamFarm', this.asfVersion);
 				} catch (err) {
 					if (err.message === 'HTTP Error 504') return;
 					this.$error(err.message);
