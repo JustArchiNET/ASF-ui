@@ -59,16 +59,16 @@ export default class Formatter {
 
 	compileToken(token, values, locale) {
 		switch (token.type) {
-		case 'text':
-			return token.value;
-		case 'list':
-			return values[parseInt(token.value.trim(), 10)];
-		case 'plural':
-			return this.compilePluralToken(token, values, locale);
-		case 'named':
-			return values[token.value.trim()];
-		default:
-			return '';
+			case 'text':
+				return token.value;
+			case 'list':
+				return values[parseInt(token.value.trim(), 10)];
+			case 'plural':
+				return this.compilePluralToken(token, values, locale);
+			case 'named':
+				return values[token.value.trim()];
+			default:
+				return '';
 		}
 	}
 

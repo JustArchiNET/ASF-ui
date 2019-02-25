@@ -1,11 +1,11 @@
 const steamidRegex = /^[1-9][0-9]{16,17}$/;
 
 function isNumber(value) {
-	return (`${value}`).split('').every(n => !isNaN(n));
+	return (`${value}`).split('').every(n => !Number.isNaN(n));
 }
 
 export function steamid() {
-	return function(value) {
+	return function validate(value) {
 		const errors = [];
 
 		if (!isNumber(value)) errors.push('not a number');
@@ -16,7 +16,7 @@ export function steamid() {
 }
 
 function limitedNumber(min = 0, max) {
-	return function(value) {
+	return function validate(value) {
 		const errors = [];
 
 		if (!isNumber(value)) errors.push('not a number');

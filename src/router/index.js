@@ -3,7 +3,6 @@ import VueRouter from 'vue-router';
 import VueMeta from 'vue-meta';
 import store from '../store';
 import * as storage from '../utils/storage';
-
 import routes from './routes';
 
 Vue.use(VueRouter);
@@ -29,7 +28,7 @@ router.afterEach((to, from) => {
 });
 
 router.onError(err => {
-	if (err.type === 'missing') location.reload(true);
+	if (err.type === 'missing') window.location.reload(true);
 	else throw err;
 });
 
