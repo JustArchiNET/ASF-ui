@@ -46,7 +46,7 @@
 
 				let selectedBots = this.selectedBots.includes(type)
 						? this.selectedBots.filter(botType => botType !== type)
-						: [ ...this.selectedBots, type ];
+						: [...this.selectedBots, type];
 
 				if (selectedBots.length === this.botTypes.length) selectedBots = [];
 

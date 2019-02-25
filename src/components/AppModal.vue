@@ -24,7 +24,7 @@
 			document.addEventListener('keydown', this.onEscapeClick);
 		},
 		beforeDestroy() {
-			document.removeEventListener('keydown', this.onEscapeClick)
+			document.removeEventListener('keydown', this.onEscapeClick);
 		},
 		methods: {
 			close() {

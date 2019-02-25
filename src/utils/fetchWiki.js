@@ -36,7 +36,6 @@ async function getURL(file, version, locale) {
 	return latestWikiRevision ? `https://github.com/JustArchiNET/ArchiSteamFarm/wiki/${file}${wikiLocale}/${latestWikiRevision.version}` : defaultURL;
 }
 
-
 export default async function fetchWiki(file, version, locale) {
 	const url = await getURL(file, version, locale);
 	return await http.post('www/send', { url });

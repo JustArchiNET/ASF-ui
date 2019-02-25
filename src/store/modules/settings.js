@@ -78,7 +78,7 @@ export const actions = {
 	setSelectedBots({ commit }, value) {
 		storage.set('settings:selected-bots', value);
 		commit('setSelectedBots', value);
-	},
+	}
 };
 
 export const getters = {

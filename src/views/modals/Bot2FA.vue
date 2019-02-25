@@ -53,7 +53,7 @@
 
 			try {
 				const response = await this.$http.get(`bot/${this.bot.name}/twoFactorAuthentication/token`);
-				
+
 				if (response[this.bot.name].Result && response[this.bot.name].Success) {
 					this.token = response[this.bot.name].Result;
 				} else {
@@ -92,7 +92,7 @@
 
 				try {
 					const response = await this.$http.post(`bot/${this.bot.name}/twoFactorAuthentication/confirmations/cancel`);
-					
+
 					if (response[this.bot.name].Success) {
 						this.$success(this.$t('2fa-cancel-success'));
 					} else {
