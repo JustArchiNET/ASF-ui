@@ -29,11 +29,13 @@
 		"no-underscore-dangle": ["error", { "allowAfterThis": true }],
 		"no-use-before-define": ["error", { "functions": false }],
 		"no-shadow": "warn",
-		"vue/script-indent": ["error", "tab", { "baseIndent": 1 }],
+		"max-len": "off",
+		"vue/script-indent": ["error", "tab", { "baseIndent": 1, "switchCase": 1}],
 		"vue/html-indent": ["error", "tab"],
 		"vue/name-property-casing": ["error", "kebab-case"],
 		"vue/max-attributes-per-line": "off",
-		"vue/html-self-closing": ["error", { "html": { "void": "never", "normal": "never", "component": "never" }}]
+		"vue/html-self-closing": ["error", { "html": { "void": "never", "normal": "never", "component": "never" }}],
+		"vue/singleline-html-element-content-newline": "off"
     },
 	"overrides": [
 		{
