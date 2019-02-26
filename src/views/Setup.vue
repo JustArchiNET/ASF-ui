@@ -1,22 +1,12 @@
 <template>
 	<main class="main-container main-container--center">
 		<div class="container container--small">
-			<h2 class="title">
-				{{ $t('setup') }}
-			</h2>
+			<h2 class="title">{{ $t('setup') }}</h2>
 
-			<p v-if="status === 'NOT_CONNECTED'" class="status-text status-text--error">
-				{{ $t('setup-not-connected') }}
-			</p>
-			<p v-if="status === 'RATE_LIMITED'" class="status-text status-text--error">
-				{{ $t('setup-rate-limited') }}
-			</p>
-			<p v-if="status === 'AUTHENTICATED'" class="status-text">
-				{{ $t('setup-authenticated') }}
-			</p>
-			<p v-if="status === 'UNAUTHORIZED'" class="status-text">
-				{{ $t('setup-description') }}
-			</p>
+			<p v-if="status === 'NOT_CONNECTED'" class="status-text status-text--error">{{ $t('setup-not-connected') }}</p>
+			<p v-if="status === 'RATE_LIMITED'" class="status-text status-text--error">{{ $t('setup-rate-limited') }}</p>
+			<p v-if="status === 'AUTHENTICATED'" class="status-text">{{ $t('setup-authenticated') }}</p>
+			<p v-if="status === 'UNAUTHORIZED'" class="status-text">{{ $t('setup-description') }}</p>
 
 			<div v-if="status === 'UNAUTHORIZED'" class="form-item">
 				<label for="password" class="form-item__label">{{ $t('password') }}</label>
@@ -56,11 +46,11 @@
 			...mapGetters({ status: 'auth/status' }),
 			buttonText() {
 				switch (this.status) {
-				case STATUS.UNAUTHORIZED:
-				case STATUS.AUTHENTICATED:
-					return this.$t('continue');
-				default:
-					return this.$t('refresh');
+					case STATUS.UNAUTHORIZED:
+					case STATUS.AUTHENTICATED:
+						return this.$t('continue');
+					default:
+						return this.$t('refresh');
 				}
 			}
 		},
@@ -69,14 +59,14 @@
 				if (this.processing) return;
 
 				switch (this.status) {
-				case STATUS.UNAUTHORIZED:
-					this.updatePassword();
-					break;
-				case STATUS.AUTHENTICATED:
-					this.redirect();
-					break;
-				default:
-					this.refreshStatus();
+					case STATUS.UNAUTHORIZED:
+						this.updatePassword();
+						break;
+					case STATUS.AUTHENTICATED:
+						this.redirect();
+						break;
+					default:
+						this.refreshStatus();
 				}
 			},
 			async updatePassword() {
