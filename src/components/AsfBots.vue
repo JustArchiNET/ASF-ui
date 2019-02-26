@@ -2,7 +2,7 @@
 	<div class="bots">
 		<bot-card v-for="bot in bots" v-if="bot.isVisible(selectedBots)" :key="bot.name" :bot="bot"></bot-card>
 
-		<router-link tag="div" :to="{ name: 'bot-create' }" class="bot-placeholder status--disabled">
+		<router-link tag="div" :to="{ name: 'bot-create' }" class="bot-placeholder status--disabled" :class="{ 'bot-placeholder--big': selectedButtonsCount > 2 }">
 			<div class="bot-placeholder__button bot-placeholder__button--add">
 				<font-awesome-icon icon="plus" class="bot-placeholder__icon"></font-awesome-icon>
 				<span class="bot-placeholder__name">{{ $t('bot-new') }}</span>
@@ -18,10 +18,16 @@
 	export default {
 		name: 'asf-bots',
 		components: { BotCard },
-		computed: mapGetters({
-			bots: 'bots/bots',
-			selectedBots: 'settings/selectedBots'
-		})
+		computed: {
+			...mapGetters({
+				bots: 'bots/bots',
+				selectedBots: 'settings/selectedBots',
+				favButtons: 'settings/favButtons'
+			}),
+			selectedButtonsCount() {
+				return Array.from(this.favButtons.toString(2)).length;
+			}
+		}
 	};
 </script>
 
@@ -48,6 +54,11 @@
 		justify-content: center;
 		padding: 0.5em;
 		transition: border .3s;
+
+		&--big {
+			font-size: 1.25rem;
+			height: auto;
+		}
 	}
 
 	.bot-placeholder__button {
