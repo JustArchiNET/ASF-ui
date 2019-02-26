@@ -56,8 +56,8 @@
 		transition: border .3s;
 
 		&--big {
-			height: auto;
 			font-size: 1.25rem;
+			height: auto;
 		}
 	}
 
