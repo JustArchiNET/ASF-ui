@@ -13,6 +13,18 @@
 
 		<bgr-status v-if="!loading && state === 'input'" :used-keys="usedKeys" :unused-keys="unusedKeys" @reset="showReset" @show-unused="state = 'unusedKeys'" @show-used="state = 'usedKeys'"></bgr-status>
 
+		<div v-if="!loading && state === 'input' && bot.bgrCount !== 0" class="bgr__info">
+			<div v-if="bot.isConnected" class="bgr__info-icon">
+				<font-awesome-layers class="hourglass-spin">
+					<font-awesome-icon icon="hourglass-start"></font-awesome-icon>
+					<font-awesome-icon icon="hourglass-half"></font-awesome-icon>
+					<font-awesome-icon icon="hourglass-end"></font-awesome-icon>
+					<font-awesome-icon icon="hourglass-end" spin></font-awesome-icon>
+				</font-awesome-layers>
+			</div>
+			<p class="subtitle">{{ backgroundQueueText }}</p>
+		</div>
+
 		<keep-alive>
 			<bgr-input v-if="state === 'input'" @check="onCheck"></bgr-input>
 			<bgr-check v-if="state === 'check'" :keys="keys" :title="$t('bgr-check', { n: foundKeysCount })" :bot="bot" :confirming="confirming" @confirm="onConfirm" @cancel="onCancel"></bgr-check>
@@ -59,6 +71,10 @@
 			},
 			addedKeysCount() {
 				return Object.keys(this.summaryKeys).length;
+			},
+			backgroundQueueText() {
+				const text = this.$t('bgr-background-queue', { n: this.bot.bgrCount });
+				return (this.bot.isConnected) ? `${text}..` : text;
 			}
 		},
 		watch: {
@@ -116,3 +132,48 @@
 		}
 	};
 </script>
+
+<style lang="scss">
+	.bgr__info {
+		align-items: center;
+		display: flex;
+		justify-content: center;
+	}
+
+	.bgr__info-icon {
+		padding-right: 0.5em;
+	}
+
+	.hourglass-spin {
+		[class*="fa-hourglass"] {
+			animation: showHide 4s steps(1) infinite;
+			opacity: 0;
+		}
+
+		.fa-hourglass-half {
+			animation-delay: 1s;
+		}
+		.fa-hourglass-start {
+			animation-delay: 0s;
+		}
+		.fa-hourglass-end {
+			animation-delay: 2s;
+		}
+
+		.fa-hourglass-end.fa-spin {
+			animation: showHideSpin 4s linear infinite;
+		}
+	}
+
+	@keyframes showHide {
+		0% { opacity: 1 }
+		25% { opacity: 0 }
+	}
+
+	@keyframes showHideSpin {
+		0% { opacity: 0 }
+		74.99% { opacity: 0 }
+		75% { opacity: 1; transform: rotate(0deg); }
+		100% { opacity: 1; transform: rotate(180deg); }
+	}
+</style>
