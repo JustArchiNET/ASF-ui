@@ -25,6 +25,7 @@
 
 <style lang="scss">
 	.flag-icon {
+		box-shadow: 1px 1px 1px 0 var(--color-navigation-dark);
 		width: 20px;
 	}
 </style>
