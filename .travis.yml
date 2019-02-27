@@ -13,7 +13,7 @@ node_js: lts/*
 
 script:
   - |
-    set -eu
+    set -euo pipefail
 
     npm run-script build:ci
 
