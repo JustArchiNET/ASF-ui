@@ -75,7 +75,7 @@
 				return Object.keys(this.summaryKeys).length;
 			},
 			backgroundQueueText() {
-				const text = this.$t('bgr-background-queue', { n: 120 });
+				const text = this.$t('bgr-background-queue', { n: this.bot.bgrCount });
 				return (this.bot.isConnected) ? `${text}..` : text;
 			}
 		},
