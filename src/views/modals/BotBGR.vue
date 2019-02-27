@@ -11,8 +11,8 @@
 			<font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
 		</h3>
 
-		<p v-if="!loading && state === 'input' && bot.gamesToRedeemInBackgroundCount !== 0" class="subtitle">
-			{{ $t('bgr-background-queue', { n: bot.gamesToRedeemInBackgroundCount }) }}
+		<p v-if="!loading && state === 'input' && bot.bgrCount !== 0" class="subtitle">
+			{{ $t('bgr-background-queue', { n: bot.bgrCount }) }}
 		</p>
 
 		<bgr-status v-if="!loading && state === 'input'" :used-keys="usedKeys" :unused-keys="unusedKeys" @reset="showReset" @show-unused="state = 'unusedKeys'" @show-used="state = 'usedKeys'"></bgr-status>
