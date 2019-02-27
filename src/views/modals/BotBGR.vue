@@ -22,9 +22,7 @@
 					<font-awesome-icon icon="hourglass-end" spin></font-awesome-icon>
 				</font-awesome-layers>
 			</div>
-			<p class="subtitle">
-				{{ backgroundQueueText }}
-			</p>
+			<p class="subtitle">{{ backgroundQueueText }}</p>
 		</div>
 
 		<keep-alive>
