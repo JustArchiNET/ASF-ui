@@ -12,6 +12,7 @@
 	"advanced": "Avançado",
 	"back": "Voltar",
 	"basic": "Básico",
+	"bgr-background-queue": "Há {PLURAL:n| {n} jogo| {n} jogos} restantes na lista de ativação em segundo plano.",
 	"bgr-check": "Gostaria de adicionar a(s) seguinte(s) {PLURAL:n|key|{n} keys} no BGR?",
 	"bgr-keys-insert": "Insira aqui as suas chaves",
 	"bgr-keys-insert-example": "Exemplo:\nAAAAA-BBBBB-CCCC0\nAAAAA-BBBBB-CCCC1\n\nVocê também pode marcar as chaves com o nome dos jogos:\nAAAAA-BBBBB-CCCC2\tTurbo Pug\nAAAAA-BBBBB-CCCC3\tBad Rats",

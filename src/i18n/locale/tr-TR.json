@@ -12,6 +12,7 @@
 	"advanced": "Gelişmiş",
 	"back": "Geri",
 	"basic": "Temel",
+	"bgr-background-queue": "",
 	"bgr-check": "Bu {PLURAL:n|anahtarı|{n} anahtarı} BGR içine eklemek istiyor musun?",
 	"bgr-keys-insert": "Anahtarlarınızı buraya girin",
 	"bgr-keys-insert-example": "Örnek:\nAAAAA-BBBBB-CCCC0\nAAAAA-BBBBB-CCCC1\n\nAnahtarları oyun adları ile etiketleyebilirsiniz:\nAAAAA-BBBBB-CCCC2\tTurbo Pug\nAAAAA-BBBBB-CCCC3\tBad Rats",

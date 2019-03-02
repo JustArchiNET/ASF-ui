@@ -12,6 +12,7 @@
 	"advanced": "高级",
 	"back": "返回",
 	"basic": "基本",
+	"bgr-background-queue": "后台队列中剩余 {n} 个游戏。",
 	"bgr-check": "是否将{PLURAL:n|此序列号|以下 {n} 个序列号}添加到后台激活器队列中？",
 	"bgr-keys-insert": "在此处输入序列号",
 	"bgr-keys-insert-example": "示例：\nAAAAA-BBBBB-CCCC0\nAAAAA-BBBBB-CCCC1\n\n您可以用游戏名标记序列号：\nAAAAA-BBBBB-CCCC2\tTurbo Pug\nAAAAA-BBBBB-CCCC3\tBad Rats",

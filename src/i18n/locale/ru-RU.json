@@ -12,6 +12,7 @@
 	"advanced": "Дополнительно",
 	"back": "Назад",
 	"basic": "Основные настройки",
+	"bgr-background-queue": "В фоновой очереди {PLURAL:n|осталась {n} игра|осталось {n} игры|осталось {n} игр|осталось {n} игры}.",
 	"bgr-check": "Вы хотите добавить в BGR {PLURAL:n|следующий {n} ключ|следующие {n} ключа|следующие {n} ключей|следующие {n} ключа}?",
 	"bgr-keys-insert": "Введите ваши ключи здесь",
 	"bgr-keys-insert-example": "Пример:\nAAAAA-BBBBB-CCCC0\nAAAAA-BBBBB-CCCC1\n\nВы можете пометить ключи именем игры:\nAAAAA-BBBBB-CCCC2\tTurbo Pug\nAAAAA-BBBBB-CCCC3\tBad Rats",

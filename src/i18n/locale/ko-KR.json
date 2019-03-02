@@ -12,6 +12,7 @@
 	"advanced": "고급",
 	"back": "돌아가기",
 	"basic": "기본",
+	"bgr-background-queue": "",
 	"bgr-check": "",
 	"bgr-keys-insert": "여기에 키를 입력하십시오.",
 	"bgr-keys-insert-example": "예:\nAAAAA-BBBBB-CCCC0\nAAAAA-BBBBB-CCCC1\n\n게임 이름으로 키에 태그를 붙일 수 있습니다:\nAAAAA-BBBBB-CCCC2 Turbo Pug\nAAAAA-BBBBB-CCCC3 Bad Rats",

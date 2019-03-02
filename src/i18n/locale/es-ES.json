@@ -12,6 +12,7 @@
 	"advanced": "Avanzado",
 	"back": "Atrás",
 	"basic": "Básico",
+	"bgr-background-queue": "",
 	"bgr-check": "",
 	"bgr-keys-insert": "Ingrese sus keys aqui",
 	"bgr-keys-insert-example": "Ejemplo:\nAAAAA-BBBBB-CCCC0\nAAAAA-BBBBB-CCCC1\n\nPuedes marcar las claves con los nombres de los juegos:\nAAAAA-BBBBB-CCCC2\tTurbo Pug\nAAAAA-BBBBB-CCCC3\tBad Rats",

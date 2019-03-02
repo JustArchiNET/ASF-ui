@@ -12,6 +12,7 @@
 	"advanced": "Haladó beállítások",
 	"back": "Vissza",
 	"basic": "Alap",
+	"bgr-background-queue": "",
 	"bgr-check": "",
 	"bgr-keys-insert": "Írja be ide a kulcsot",
 	"bgr-keys-insert-example": "Példa:\nAAAAA-BBBBB-CCCC0\nAAAAA-BBBBB-CCCC1\n\nMegjelölheted a játékkulcsokat nevekkel is. Pl.:\nAAAAA-BBBBB-CCCC2\tTurbo Pug\nAAAAA-BBBBB-CCCC3\tBad Rats",

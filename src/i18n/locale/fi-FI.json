@@ -12,6 +12,7 @@
 	"advanced": "Edistynyt",
 	"back": "Takaisin",
 	"basic": "Perus",
+	"bgr-background-queue": "",
 	"bgr-check": "Haluatko lisätä seuraavat {n} avain(ta) BGR:ään?",
 	"bgr-keys-insert": "Lisää avaimesi tähän",
 	"bgr-keys-insert-example": "Esimerkki:\nAAAAA-BBBBB-CCCC0\nAAAAA-BBBBB-CCCC1\n\nVoit merkata avaimet pelin nimellä:\nAAAAA-BBBBB-CCCC2\tTurbo Pug\nAAAAA-BBBBB-CCCC3\tBad Rats",

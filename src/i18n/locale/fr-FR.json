@@ -12,6 +12,7 @@
 	"advanced": "Configuration avancée",
 	"back": "Précédent",
 	"basic": "Basique",
+	"bgr-background-queue": "",
 	"bgr-check": "",
 	"bgr-keys-insert": "Insérer vos clés ici",
 	"bgr-keys-insert-example": "Example:\nAAAAA-BBBBB-CCCC0\nAAAAA-BBBBB-CCCC1\n\nVous pouvez tag les clés avec le nom des jeux :\nAAAAA-BBBBB-CCCC2\tTurbo Pug\nAAAAA-BBBBB-CCCC3\tBad Rats",
