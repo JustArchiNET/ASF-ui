@@ -42,7 +42,7 @@
 	"dependencies": {
 		"@fortawesome/fontawesome-svg-core": "^1.2.16",
 		"@fortawesome/free-brands-svg-icons": "^5.8.0",
-		"@fortawesome/free-solid-svg-icons": "^5.8.0",
+		"@fortawesome/free-solid-svg-icons": "^5.8.1",
 		"@fortawesome/vue-fontawesome": "^0.1.6",
 		"@sentry/browser": "^4.6.4",
 		"axios": "^0.18.0",
