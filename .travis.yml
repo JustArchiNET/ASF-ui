@@ -29,6 +29,6 @@ matrix:
       dist: xenial
     # Ref: https://docs.travis-ci.com/user/reference/osx
     - os: osx
-      osx_image: xcode10.1
+      osx_image: xcode10.2
     # Ref: https://docs.travis-ci.com/user/reference/windows
     - os: windows
