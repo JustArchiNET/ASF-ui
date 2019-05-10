@@ -57,7 +57,8 @@
 				const [time, process, level, logger, ...text] = message.split('|');
 
 				return {
-					time: new Date(time),
+					// older safari versions do not support YYYY-MM-DD, that's why we replace the dashes
+					time: new Date(time.replace(/-/g, '/')),
 					process,
 					level,
 					logger,
