@@ -12,6 +12,7 @@
 	"advanced": "Разширени настройки",
 	"back": "Назад",
 	"basic": "Основни",
+	"bgr-background-queue": "",
 	"bgr-check": "Искате ли да добавите следните {PLURAL:n|key|{n} keys} до лева?",
 	"bgr-keys-insert": "Поставете вашите ключове тук",
 	"bgr-keys-insert-example": "Пример:\nAAAAA-BBBBB-CCCC0\nAAAAA-BBBBB-CCCC1\n\nМожете да маркирате ключовете с името на играта:\nAAAAA-BBBBB-CCCC2   Turbo Pug\nAAAAA-BBBBB-CCCC3   Bad Rats",

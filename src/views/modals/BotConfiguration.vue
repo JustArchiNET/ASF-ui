@@ -109,21 +109,11 @@
 					SteamParentalCode: { placeholder: this.$t('keep-unchanged') }
 				};
 
-				this.fields = [
-					{
-						defaultValue: this.bot.name,
-						placeholder: this.bot.name,
-						param: 'Name',
-						paramName: 'Name',
-						type: 'string',
-						description: this.$t('name-description')
-					},
-					...Object.keys(fields).map(key => ({
-						description: descriptions[key],
-						...fields[key],
-						...(extendedFields[key] || [])
-					}))
-				];
+				this.fields = Object.keys(fields).map(key => ({
+					description: descriptions[key],
+					...fields[key],
+					...(extendedFields[key] || [])
+				}));
 
 				this.loading = false;
 			},
@@ -139,21 +129,6 @@
 
 				try {
 					await this.$http.post(`bot/${this.bot.name}`, { botConfig: this.model });
-
-					if (this.bot.name !== this.model.Name) {
-						if (botExists(this.bots, this.model.Name)) {
-							this.$error(this.$t('bot-create-name-exist', { name: this.model.Name }));
-							return;
-						}
-
-						await this.$http.post(`bot/${this.bot.name}/rename`, { newName: this.model.Name });
-						await delay(1000);
-						await this.$store.dispatch('bots/updateBot', { name: this.bot.name });
-						await this.$store.dispatch('bots/updateBot', { name: this.model.Name });
-						this.$router.push({ name: 'bots' });
-						return;
-					}
-
 					this.$parent.back();
 				} catch (err) {
 					this.$error(err.message);

@@ -15,6 +15,7 @@ export class Bot {
 		this.nickname = data.Nickname;
 		this.steamid = data.s_SteamID;
 		this.avatarHash = data.AvatarHash || '0b46945851b3d26da93a6ddba3ac961206cc191d';
+		this.bgrCount = data.GamesToRedeemInBackgroundCount;
 
 		this.active = data.KeepRunning;
 		this.config = data.BotConfig;

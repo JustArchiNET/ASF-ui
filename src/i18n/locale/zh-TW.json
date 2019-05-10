@@ -12,6 +12,7 @@
 	"advanced": "進階",
 	"back": "返回",
 	"basic": "基本",
+	"bgr-background-queue": "",
 	"bgr-check": "你是否要將下列 {n} 個序號加入背景序號啟動器？",
 	"bgr-keys-insert": "在此處輸入你的序號",
 	"bgr-keys-insert-example": "範例：\nAAAAA-BBBBB-CCCC0\nAAAAA-BBBBB-CCCC1\n\n你可以在序號後方標記遊戲名稱：\nAAAAA-BBBBB-CCCC2\tTurbo Pug\nAAAAA-BBBBB-CCCC3\tBad Rats",

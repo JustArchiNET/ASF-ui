@@ -12,6 +12,7 @@
 	"advanced": "Další nastavení",
 	"back": "Zpět",
 	"basic": "Základní",
+	"bgr-background-queue": "",
 	"bgr-check": "Chcete přidat následující {PLURAL:n|klíč|{n} klíče} do BGR?",
 	"bgr-keys-insert": "Vložte klíče sem",
 	"bgr-keys-insert-example": "Příklad:\nAAAAA-BBBBB-CCCC0\nAAAAA-BBBBB-CCCC1\n\nKlíče můžete označit názvem hry:\nAAAAA-BBBBB-CCCC2\tTurbo Pug\nAAAAA-BBBBB-CCCC3\tBad Rats",

@@ -30,6 +30,7 @@
 		"no-use-before-define": ["error", { "functions": false }],
 		"no-shadow": "warn",
 		"max-len": "off",
+		"linebreak-style": "off",
 		"vue/script-indent": ["error", "tab", { "baseIndent": 1, "switchCase": 1}],
 		"vue/html-indent": ["error", "tab"],
 		"vue/name-property-casing": ["error", "kebab-case"],

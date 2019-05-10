@@ -12,6 +12,7 @@
 	"advanced": "Geavanceerd",
 	"back": "Vorige",
 	"basic": "Basis",
+	"bgr-background-queue": "Er {PLURAL:n|is {n} spel|zijn {n} spellen} resterend in de achtergrondwachtrij.",
 	"bgr-check": "Wil je deze {PLURAL:n|productcode|{n} productcodes} toevoegen aan de BGR?",
 	"bgr-keys-insert": "Voer hier je productcode(s) in",
 	"bgr-keys-insert-example": "Voorbeeld:\nAAAAA-BBBBB-CCCC0\nAAAAA-BBBBB-CCCC1\n\nJe kunt de productcodes labelen met spelnamen:\nAAAAA-BBBBB-CCCC2 Turbo Pug\nAAAAA-BBBBB-CCCC3 Bad Rats",
