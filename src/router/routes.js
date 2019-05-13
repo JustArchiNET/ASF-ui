@@ -21,6 +21,14 @@ export default [
 		meta: { noPasswordRequired: true },
 		async beforeEnter(to, from, next) {
 			const validated = await store.dispatch('auth/validate');
+			const firstTime = storage.get('first-time', true);
+			const botsDetected = await store.dispatch('bots/detectBots');
+
+			if (validated && firstTime && !botsDetected) {
+				storage.set('first-time', false);
+				return next({ name: 'bot-create' });
+			}
+
 			if (validated) return next({ name: 'home' });
 			return next();
 		}
