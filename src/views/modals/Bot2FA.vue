@@ -11,11 +11,11 @@
 			<div class="form-item__token">
 				<input class="form-item__input form-item__input-token" type="text" :value="token" readonly>
 				<div class="form-item__buttons form-item__buttons--column">
-					<button class="button" :title="$t('2fa-token-refresh')" @click="refreshToken">
+					<button class="button button--helper" :title="$t('2fa-token-refresh')" @click="refreshToken">
 						<font-awesome-icon v-if="refreshing" icon="spinner" size="lg" spin></font-awesome-icon>
 						<font-awesome-icon v-else icon="redo-alt" size="lg"></font-awesome-icon>
 					</button>
-					<button class="button" :title="$t('2fa-token-copy')" @click="copyToken">
+					<button class="button button--helper" :title="$t('2fa-token-copy')" @click="copyToken">
 						<font-awesome-icon icon="clipboard" size="lg"></font-awesome-icon>
 					</button>
 				</div>
@@ -154,7 +154,7 @@
 	}
 
 	.form-item__input-token {
-		font-size: 2.6em;
+		font-size: 2.4em;
 		font-weight: bold;
 		height: 2em;
 		letter-spacing: 0.3em;
@@ -165,5 +165,9 @@
 		.app--dark-mode & {
 			border-color: var(--color-text-dark);
 		}
+	}
+
+	.button--helper {
+		max-width: 2em;
 	}
 </style>
