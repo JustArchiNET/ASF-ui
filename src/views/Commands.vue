@@ -9,7 +9,8 @@
 				<div class="terminal__input-wrapper">
 					<span class="terminal-message__sign sign-input" @click="sendCommand">></span>
 					<input ref="terminal-input" type="text" spellcheck="false" :value="command" class="terminal__input" @input="command = $event.target.value"
-						@keydown.enter="sendCommand" @keydown.tab.prevent="autocomplete" @keydown.up="historyPrevious" @keydown.down="historyNext">
+						@keydown.enter="sendCommand" @keydown.tab.prevent="autocomplete" @keydown.up="historyPrevious" @keydown.down="historyNext"
+						@keydown.ctrl.76="clearTerminal" @keydown.ctrl.65="jumpToStart" @keydown.ctrl.75="removeAfterCursor">
 					<input v-model="autocompleteSuggestion" type="text" spellcheck="false" class="terminal__input terminal__input--autocomplete">
 				</div>
 			</div>
@@ -275,6 +276,17 @@
 					this.commandHistoryIndex = -1;
 					this.command = '';
 				}
+			},
+			clearTerminal() {
+				this.log = [];
+			},
+			jumpToStart() {
+				this.$refs['terminal-input'].focus();
+				this.$refs['terminal-input'].setSelectionRange(0, 0);
+			},
+			removeAfterCursor() {
+				const pos = this.$refs['terminal-input'].selectionStart;
+				this.command = this.command.substr(0, pos);
 			},
 			moveCursorToEnd() {
 				const el = this.$refs['terminal-input'];
