@@ -19,6 +19,7 @@
 	import FooterStatistic from './FooterStatistic.vue';
 	import { ui, newReleaseAvailable } from '../utils/ui';
 	import delay from '../utils/delay';
+	import { get } from '../utils/storage';
 
 	export default {
 		name: 'app-footer',
@@ -41,10 +42,12 @@
 				return `${this.asfVersion} - ${this.buildVariant}`;
 			},
 			asfReleaseUrl() {
-				return `https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${this.asfVersion}`;
+				const version = this.asfReleaseAvailable ? get('version-latest-ArchiSteamFarm') : this.asfVersion;
+				return `https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${version}`;
 			},
 			uiReleaseUrl() {
-				return `https://github.com/JustArchiNET/ASF-ui/releases/tag/${this.uiVersion}`;
+				const version = this.uiReleaseAvailable ? get('version-latest-ASF-ui') : this.uiVersion;
+				return `https://github.com/JustArchiNET/ASF-ui/releases/tag/${version}`;
 			}
 		},
 		async mounted() {
