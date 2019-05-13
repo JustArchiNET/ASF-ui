@@ -38,6 +38,10 @@ export const actions = {
 			const [response] = await http.get(`bot/${bot.name}`);
 			commit('setBot', new Bot(response[bot.name]));
 		} catch (err) {}
+	},
+	async detectBots({ dispatch, getters }) {
+		await dispatch('updateBots');
+		return getters.bots.length !== 0;
 	}
 };
 

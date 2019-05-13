@@ -32,7 +32,6 @@
 		}),
 		created() {
 			set('welcome', true);
-			set('bots-detected', this.bots.length !== 0);
 		}
 	};
 </script>
