@@ -6,7 +6,7 @@
 		<router-link v-else :to="{ name: 'bot', params: { bot: bot.name } }" tag="img" class="bot__avatar" :src="bot.avatarURL"></router-link>
 
 		<router-link tag="div" :to="{ name: 'bot', params: { bot: bot.name } }" class="bot__status">
-			<span v-if="bot.nickname && nicknames" class="bot__status-property bot__status-property--name">{{ bot.nickname }}</span>
+			<span v-if="bot.nickname && nicknames" class="bot__status-property bot__status-property--name" :title="bot.name">{{ bot.nickname }}</span>
 			<span v-else class="bot__status-property bot__status-property--name">{{ bot.name }}</span>
 			<span class="bot__status-property bot__status-property--text">{{ bot.statusText }}</span>
 		</router-link>
