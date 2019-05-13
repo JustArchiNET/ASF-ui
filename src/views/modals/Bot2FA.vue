@@ -143,7 +143,7 @@
 <style lang="scss">
 	.form-item__token {
 		display: grid;
-		grid-column-gap: 1em;
+		grid-column-gap: 0.75em;
 		grid-template-columns: 1fr auto;
 		justify-content: center;
 		padding-bottom: 1em;
