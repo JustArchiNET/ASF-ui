@@ -22,8 +22,9 @@ export default [
 		async beforeEnter(to, from, next) {
 			const validated = await store.dispatch('auth/validate');
 			const firstTime = storage.get('first-time', true);
+			const botsDetected = storage.get('bots-detected', false);
 
-			if (validated && firstTime) {
+			if (validated && firstTime && !botsDetected) {
 				storage.set('first-time', false);
 				return next({ name: 'bot-create' });
 			}
