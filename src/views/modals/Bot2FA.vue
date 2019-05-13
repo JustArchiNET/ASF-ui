@@ -156,7 +156,7 @@
 	.form-item__input-token {
 		font-size: 2.4em;
 		font-weight: bold;
-		height: 2em;
+		height: 2.3em;
 		letter-spacing: 0.3em;
 		text-align: center;
 		text-indent: 0.3em;
