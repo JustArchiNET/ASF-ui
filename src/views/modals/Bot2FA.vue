@@ -10,15 +10,17 @@
 		<div class="form-item">
 			<div class="form-item__token">
 				<input class="form-item__input form-item__input-token" type="text" :value="token" readonly>
+				<div class="form-item__buttons form-item__buttons--column">
+					<button class="button" :title="$t('2fa-token-refresh')" @click="refreshToken">
+						<font-awesome-icon v-if="refreshing" icon="spinner" size="lg" spin></font-awesome-icon>
+						<font-awesome-icon v-else icon="redo-alt" size="lg"></font-awesome-icon>
+					</button>
+					<button class="button" :title="$t('2fa-token-copy')" @click="copyToken">
+						<font-awesome-icon icon="clipboard" size="lg"></font-awesome-icon>
+					</button>
+				</div>
 			</div>
 			<div class="form-item__buttons form-item__buttons--center form-item__buttons--column">
-				<button class="button button--confirm" @click="refreshToken">
-					<font-awesome-icon v-if="refreshing" icon="spinner" spin></font-awesome-icon>
-					<span v-else>{{ $t('2fa-token-refresh') }}</span>
-				</button>
-				<button class="button button--confirm" @click="copyToken">
-					{{ $t('2fa-token-copy') }}
-				</button>
 				<button class="button button--confirm" @click="acceptTrades">
 					<font-awesome-icon v-if="accepting" icon="spinner" spin></font-awesome-icon>
 					<span v-else>{{ $t('2fa-accept') }}</span>
@@ -141,7 +143,9 @@
 
 <style lang="scss">
 	.form-item__token {
-		display: flex;
+		display: grid;
+		grid-column-gap: 1em;
+		grid-template-columns: 1fr auto;
 		justify-content: center;
 		padding-bottom: 1em;
 
@@ -151,13 +155,13 @@
 	}
 
 	.form-item__input-token {
-		font-size: 1.6em;
+		font-size: 2.6em;
 		font-weight: bold;
 		height: 2em;
-		letter-spacing: 0.5em;
+		letter-spacing: 0.3em;
 		text-align: center;
-		text-indent: 0.5em;
-		width: 8em;
+		text-indent: 0.3em;
+		width: 6em;
 
 		.app--dark-mode & {
 			border-color: var(--color-text-dark);
