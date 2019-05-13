@@ -123,7 +123,6 @@
 
 					if (response[this.bot.name].Result && response[this.bot.name].Success) {
 						this.token = response[this.bot.name].Result;
-						this.$success(this.$t('2fa-token-refresh-success'));
 					} else {
 						this.$error(response[this.bot.name].Message);
 					}
