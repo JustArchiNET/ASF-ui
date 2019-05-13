@@ -281,7 +281,6 @@
 				this.log = [];
 			},
 			jumpToStart() {
-				this.$refs['terminal-input'].focus();
 				this.$refs['terminal-input'].setSelectionRange(0, 0);
 			},
 			removeAfterCursor() {
