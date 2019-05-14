@@ -6,7 +6,6 @@
 	"2fa-token-copied": "Copied token to clipboard!",
 	"2fa-token-copy": "Copy token to clipboard",
 	"2fa-token-refresh": "Refresh token",
-	"2fa-token-refresh-success": "Token refreshed!",
 	"access": "Access",
 	"add": "Add",
 	"advanced": "Advanced",
@@ -160,5 +159,6 @@
 	"updates": "Updates",
 	"welcome": "Welcome",
 	"welcome-message": "Welcome to ASF-ui, standalone interface for ASF.",
+	"welcome-message-bots": "It looks like this might be the first time you are using ASF-ui, since you haven't set up any bots yet.",
 	"wiki": "Wiki"
 }
