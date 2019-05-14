@@ -10,7 +10,8 @@ export const state = {
 	displayCategories: true,
 	sentryInstalled: false,
 	sentryReporting: false,
-	selectedBots: []
+	selectedBots: [],
+	timestamps: false
 };
 
 export const mutations = {
@@ -23,7 +24,8 @@ export const mutations = {
 	setDisplayCategories: (state, displayCategories) => state.displayCategories = displayCategories,
 	setSentryInstalled: (state, sentryInstalled) => state.sentryInstalled = sentryInstalled,
 	setSentryReporting: (state, sentryReporting) => state.sentryReporting = sentryReporting,
-	setSelectedBots: (state, selectedBots) => state.selectedBots = selectedBots
+	setSelectedBots: (state, selectedBots) => state.selectedBots = selectedBots,
+	setTimestamps: (state, timestamps) => state.timestamps = timestamps
 };
 
 export const actions = {
@@ -38,6 +40,7 @@ export const actions = {
 		commit('setSentryInstalled', storage.get('settings:sentry-installed', false));
 		commit('setSentryReporting', storage.get('settings:sentry-reporting', false));
 		commit('setSelectedBots', storage.get('settings:selected-bots', []));
+		commit('setTimestamps', storage.get('settings:timestamps', false));
 	},
 	setDefaultView({ commit }, value) {
 		storage.set('settings:default-view', value);
@@ -78,6 +81,10 @@ export const actions = {
 	setSelectedBots({ commit }, value) {
 		storage.set('settings:selected-bots', value);
 		commit('setSelectedBots', value);
+	},
+	setTimestamps({ commit }, value) {
+		storage.set('settings:timestamps', value);
+		commit('setTimestamps', value);
 	}
 };
 
@@ -91,5 +98,6 @@ export const getters = {
 	displayCategories: state => state.displayCategories,
 	sentryInstalled: state => state.sentryInstalled,
 	sentryReporting: state => state.sentryReporting,
-	selectedBots: state => state.selectedBots
+	selectedBots: state => state.selectedBots,
+	timestamps: state => state.timestamps
 };
