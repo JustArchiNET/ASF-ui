@@ -217,18 +217,18 @@
 				this.commandHistoryIndex = -1;
 				this.commandHistory.add(commandToExecute);
 
-				const response = { type: 'in', time: this.getTimestamp(), message: '...' };
+				const response = { type: 'in', time: '...', message: '...' };
 
 				this.log.push({ type: 'out', time: this.getTimestamp(), message: commandToExecute });
 				this.log.push(response);
 
 				try {
 					const result = await this.executeCommand(commandToExecute);
-					response.time = this.getTimestamp();
 					response.message = result.trim();
 				} catch (err) {
-					response.time = this.getTimestamp();
 					response.message = `Error: ${err.message}`;
+				} finally {
+					response.time = this.getTimestamp();
 				}
 			},
 			async executeCommand(commandToExecute) {
