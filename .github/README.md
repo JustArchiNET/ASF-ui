@@ -13,11 +13,9 @@ Standalone web interface for ASF
 
 ***
 
-### Installation
+### How to use
 
-1. Download [latest ASF-ui release](https://github.com/JustArchiNET/ASF-ui/releases/latest)
-2. Extract the archive into ASF's `www` folder
-3. Clear cache and enjoy
+Read the wiki guide [here](https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Setting-up#using-asf-ui).
 
 ### Development
 
