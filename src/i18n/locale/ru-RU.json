@@ -6,7 +6,6 @@
 	"2fa-token-copied": "Токен скопирован в буфер обмена!",
 	"2fa-token-copy": "Скопировать токен в буфер обмена",
 	"2fa-token-refresh": "Обновить токен",
-	"2fa-token-refresh-success": "Token обновлён!",
 	"access": "Доступ",
 	"add": "Добавить",
 	"advanced": "Дополнительно",
@@ -147,6 +146,8 @@
 	"terminal-help": "Выводит справку.",
 	"terminal-help-text": "Использование: help <команда>, доступные команды: commands",
 	"terminal-no-help": "Справка для команды {command} пока отсутствует!",
+	"timestamps": "Метки времени",
+	"timestamps-description": "Показывать метки времени в консоли.",
 	"trade": "Обмены",
 	"ui": "UI",
 	"ui-configuration": "Настройка интерфейса",
@@ -160,5 +161,6 @@
 	"updates": "Обновления",
 	"welcome": "Добро пожаловать",
 	"welcome-message": "Добро пожаловать в ASF-ui, автономный интерфейс для ASF.",
+	"welcome-message-bots": "Похоже вы первый раз пользуетесь ASF-ui, поскольку у вас ещё не настроено ни одного бота.",
 	"wiki": "Вики"
 }

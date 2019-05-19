@@ -2,15 +2,16 @@
 	<main class="main-container main-container--fullheight commands">
 		<div class="container">
 			<div ref="terminal" class="terminal" @click="focusInput">
-				<div v-for="{ type, message } in log" class="terminal-message">
-					<span class="terminal-message__sign">{{ type === 'out' ? '>' : '<' }}</span>
+				<div v-for="{ type, time, message } in log" class="terminal-message">
+					<span class="terminal-message__time timestamp" v-if="timestamps">[{{ time }}]</span>
+					<span class="terminal-message__sign" :class="`terminal-message__sign--${type}`">{{ type === 'out' ? '>' : '<' }}</span>
 					<span class="terminal-message__content">{{ message }}</span>
 				</div>
 				<div class="terminal__input-wrapper">
 					<span class="terminal-message__sign sign-input" @click="sendCommand">></span>
 					<input ref="terminal-input" type="text" spellcheck="false" :value="command" class="terminal__input" @input="command = $event.target.value"
 						@keydown.enter="sendCommand" @keydown.tab.prevent="autocomplete" @keydown.up="historyPrevious" @keydown.down="historyNext"
-						@keydown.ctrl.76="clearTerminal" @keydown.ctrl.65="jumpToStart" @keydown.ctrl.75="removeAfterCursor">
+						@keydown.ctrl.76.prevent="clearTerminal" @keydown.ctrl.65.prevent="jumpToStart" @keydown.ctrl.75.prevent="removeAfterCursor">
 					<input v-model="autocompleteSuggestion" type="text" spellcheck="false" class="terminal__input terminal__input--autocomplete">
 				</div>
 			</div>
@@ -77,7 +78,10 @@
 			};
 		},
 		computed: {
-			...mapGetters({ version: 'asf/version' }),
+			...mapGetters({
+				version: 'asf/version',
+				timestamps: 'settings/timestamps'
+			}),
 			commands() {
 				return [
 					...this.asfCommands.filter(({ command }) => command !== 'help'),
@@ -213,9 +217,9 @@
 				this.commandHistoryIndex = -1;
 				this.commandHistory.add(commandToExecute);
 
-				const response = { type: 'in', message: '...' };
+				const response = { type: 'in', time: '...', message: '...' };
 
-				this.log.push({ type: 'out', message: commandToExecute });
+				this.log.push({ type: 'out', time: this.getTimestamp(), message: commandToExecute });
 				this.log.push(response);
 
 				try {
@@ -223,6 +227,8 @@
 					response.message = result.trim();
 				} catch (err) {
 					response.message = `Error: ${err.message}`;
+				} finally {
+					response.time = this.getTimestamp();
 				}
 			},
 			async executeCommand(commandToExecute) {
@@ -235,6 +241,9 @@
 				}
 
 				return this.$http.command(commandToExecute);
+			},
+			getTimestamp() {
+				return new Date().toLocaleTimeString();
 			},
 			commandHelp(command) {
 				const asfCommand = this.commands.find(asfCommand => asfCommand.command.split(' ')[0] === command);
@@ -339,5 +348,9 @@
 
 	.sign-input {
 		cursor: pointer;
+	}
+
+	.timestamp {
+		margin-right: 0.5em;
 	}
 </style>

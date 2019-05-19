@@ -6,7 +6,6 @@
 	"2fa-token-copied": "Token copiato negli appunti!",
 	"2fa-token-copy": "Copia token negli appunti",
 	"2fa-token-refresh": "Aggiorna token",
-	"2fa-token-refresh-success": "Token aggiornato!",
 	"access": "Accesso",
 	"add": "Aggiungi",
 	"advanced": "Avanzate",
@@ -147,6 +146,8 @@
 	"terminal-help": "Stampa aiuto.",
 	"terminal-help-text": "All'utilizzo: Guida <Command>, comandi disponibili: comandi",
 	"terminal-no-help": "Non c'è ancora testo di aiuto per {command}!",
+	"timestamps": "",
+	"timestamps-description": "",
 	"trade": "Scambia",
 	"ui": "UI",
 	"ui-configuration": "Configurazione UI",
@@ -160,5 +161,6 @@
 	"updates": "Aggiornamenti",
 	"welcome": "Benvenuto",
 	"welcome-message": "Benvenuti a ASF-ui, interfaccia stand-alone per ASF.",
+	"welcome-message-bots": "",
 	"wiki": "Wiki"
 }

@@ -21,7 +21,7 @@
 
 .terminal-message {
 	display: grid;
-	grid-template-columns: auto 1fr;
+	grid-template-columns: auto auto 1fr;
 	line-height: 1.1;
 	margin: 0 0 0.1em;
 	width: 100%;
@@ -40,6 +40,10 @@
 .terminal-message__sign {
 	color: var(--color-text-disabled);
 	margin-right: 0.5em;
+}
+
+.terminal-message__sign--in {
+	color: var(--color-theme);
 }
 
 .terminal-message__content {
