@@ -78,6 +78,7 @@
 
 	.terminal-message__sign {
 		color: var(--color-text);
+		line-height: 1.3em;
 	}
 }
 
@@ -88,7 +89,7 @@
 	color: var(--color-text);
 	font-family: inherit;
 	font-size: 100%;
-	line-height: 1.1;
+	line-height: 1.3em;
 	margin: 0;
 	padding: 0;
 	width: 100%;
@@ -100,7 +101,7 @@
 
 .terminal__input--autocomplete {
 	color: var(--color-text-disabled);
-	height: 1em;
+	line-height: 1.3em;
 	padding-left: 1.2em;
 	pointer-events: none;
 	position: absolute;
