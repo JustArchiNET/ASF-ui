@@ -11,7 +11,7 @@
 					<span class="terminal-message__sign sign-input" @click="sendCommand">></span>
 					<input ref="terminal-input" type="text" spellcheck="false" :value="command" class="terminal__input" @input="command = $event.target.value"
 						@keydown.enter="sendCommand" @keydown.tab.prevent="autocomplete" @keydown.up="historyPrevious" @keydown.down="historyNext"
-						@keydown.ctrl.76="clearTerminal" @keydown.ctrl.65="jumpToStart" @keydown.ctrl.75="removeAfterCursor">
+						@keydown.ctrl.76.prevent="clearTerminal" @keydown.ctrl.65.prevent="jumpToStart" @keydown.ctrl.75.prevent="removeAfterCursor">
 					<input v-model="autocompleteSuggestion" type="text" spellcheck="false" class="terminal__input terminal__input--autocomplete">
 				</div>
 			</div>
