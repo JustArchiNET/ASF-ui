@@ -15,7 +15,7 @@ Standalone web interface for ASF
 
 ### How to use
 
-You don't have to install or download ASF-ui manually. ASF already comes with ASF-ui included!
+You don't have to install or download ASF-ui manually. ASF already comes with ASF-ui included!  
 If you are unsure about how to setup ASF-ui you can read more about it on [ASF's wiki](https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Setting-up#using-asf-ui).
 
 ### Development
