@@ -185,7 +185,7 @@
 }
 
 .form-group {
-	border: 0 solid var(--color-border);
+	border: 0 solid var(--color-theme-dark);
 	border-top-width: 1px;
 	font-family: inherit;
 	margin-bottom: 1em;
@@ -202,6 +202,7 @@
 }
 
 .form-group__legend {
+	color: var(--color-theme);
 	font-size: 0.75em;
 	font-weight: 600;
 	line-height: 0;
