@@ -147,7 +147,7 @@
 	"terminal-help-text": "Usage: help <Command>, available commands: commands",
 	"terminal-no-help": "There's no help text for {command} yet!",
 	"timestamps": "Timestamps",
-	"timestamps-description": "Add timestamps to terminal prompts.",
+	"timestamps-description": "Show timestamps in terminal.",
 	"trade": "Trade",
 	"ui": "UI",
 	"ui-configuration": "UI Configuration",
