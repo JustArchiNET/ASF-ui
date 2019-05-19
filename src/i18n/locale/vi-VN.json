@@ -6,7 +6,6 @@
 	"2fa-token-copied": "",
 	"2fa-token-copy": "",
 	"2fa-token-refresh": "",
-	"2fa-token-refresh-success": "",
 	"access": "Truy cập",
 	"add": "Thêm",
 	"advanced": "Nâng cao",
@@ -147,6 +146,8 @@
 	"terminal-help": "",
 	"terminal-help-text": "",
 	"terminal-no-help": "",
+	"timestamps": "",
+	"timestamps-description": "",
 	"trade": "",
 	"ui": "",
 	"ui-configuration": "",
@@ -160,5 +161,6 @@
 	"updates": "Cập nhật",
 	"welcome": "",
 	"welcome-message": "",
+	"welcome-message-bots": "",
 	"wiki": "Wiki"
 }

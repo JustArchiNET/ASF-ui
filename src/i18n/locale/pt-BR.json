@@ -6,7 +6,6 @@
 	"2fa-token-copied": "Código copiado para a área de transferência!",
 	"2fa-token-copy": "Copiar código para a área de transferência",
 	"2fa-token-refresh": "Atualizar código",
-	"2fa-token-refresh-success": "Código atualizado!",
 	"access": "Permissão de acesso",
 	"add": "Adicionar",
 	"advanced": "Avançado",
@@ -147,6 +146,8 @@
 	"terminal-help": "Exibe a mensagem de ajuda.",
 	"terminal-help-text": "Uso: help <Comando>, comandos disponíveis: {commands}",
 	"terminal-no-help": "Não há uma mensagem de ajuda para o comando \"{command}\" ainda!",
+	"timestamps": "Datas",
+	"timestamps-description": "Adiciona datas aos comandos do terminal.",
 	"trade": "Troca",
 	"ui": "IU",
 	"ui-configuration": "Configuração da interface",
@@ -160,5 +161,6 @@
 	"updates": "Atualizações",
 	"welcome": "Boas-vindas",
 	"welcome-message": "Boas-vindas ao ASF-ui, a interface independente para o ASF.",
+	"welcome-message-bots": "Parece que você está usando o ASF-ui pela primeira vez, pois não há nenhum bot configurado ainda.",
 	"wiki": "Wiki"
 }

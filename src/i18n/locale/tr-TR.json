@@ -6,7 +6,6 @@
 	"2fa-token-copied": "Belirteç panoya kopyalandı!",
 	"2fa-token-copy": "Belirteci panoya kopyala",
 	"2fa-token-refresh": "Belirteci yenile",
-	"2fa-token-refresh-success": "Belirteç yenilendi!",
 	"access": "Erişim",
 	"add": "Ekle",
 	"advanced": "Gelişmiş",
@@ -147,6 +146,8 @@
 	"terminal-help": "Yardımı gösterir.",
 	"terminal-help-text": "Kullanım: yardım <komut>, kullanılabilen komutlar: komutlar",
 	"terminal-no-help": "Henüz {command} komutu için yardım metni yok!",
+	"timestamps": "",
+	"timestamps-description": "",
 	"trade": "Takas",
 	"ui": "Arayüz",
 	"ui-configuration": "Kullanıcı arabirimi yapılandırması",
@@ -160,5 +161,6 @@
 	"updates": "Güncellemeler",
 	"welcome": "Hoş Geldiniz",
 	"welcome-message": "ASF'nin tek başına çalışabilir arabirimi ASF-ui'ye hoş geldiniz.",
+	"welcome-message-bots": "Herhangi bir bot ayarlamadığınız için ASF-ui'yi ilk defa kullanıyorsunuz gibi görünüyor.",
 	"wiki": "Viki"
 }

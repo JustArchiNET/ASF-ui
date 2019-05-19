@@ -6,7 +6,6 @@
 	"2fa-token-copied": "已複製代碼到剪貼簿！",
 	"2fa-token-copy": "將代碼複製到剪貼簿",
 	"2fa-token-refresh": "刷新代碼",
-	"2fa-token-refresh-success": "已刷新代碼！",
 	"access": "權限",
 	"add": "新增",
 	"advanced": "進階",
@@ -147,6 +146,8 @@
 	"terminal-help": "顯示說明.",
 	"terminal-help-text": "用法：help <Command>，可用指令：commands",
 	"terminal-no-help": "{command} 尚未有說明！",
+	"timestamps": "",
+	"timestamps-description": "",
 	"trade": "交易",
 	"ui": "使用者介面",
 	"ui-configuration": "介面設置",
@@ -160,5 +161,6 @@
 	"updates": "更新",
 	"welcome": "歡迎",
 	"welcome-message": "歡迎使用 ASF-ui，一個獨立的 ASF 使用者介面。",
+	"welcome-message-bots": "",
 	"wiki": "Wiki"
 }

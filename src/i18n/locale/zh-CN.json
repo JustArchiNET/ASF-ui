@@ -6,7 +6,6 @@
 	"2fa-token-copied": "已将令牌复制到剪贴板！",
 	"2fa-token-copy": "复制令牌到剪贴板",
 	"2fa-token-refresh": "刷新令牌",
-	"2fa-token-refresh-success": "已刷新令牌！",
 	"access": "权限",
 	"add": "添加",
 	"advanced": "高级",
@@ -147,6 +146,8 @@
 	"terminal-help": "显示帮助。",
 	"terminal-help-text": "用法：help <命令>，查看可用命令：commands",
 	"terminal-no-help": "目前没有关于 {command} 的帮助文本！",
+	"timestamps": "时间戳",
+	"timestamps-description": "向终端提示符添加时间戳。",
 	"trade": "交易",
 	"ui": "UI",
 	"ui-configuration": "界面配置",
@@ -160,5 +161,6 @@
 	"updates": "更新",
 	"welcome": "欢迎",
 	"welcome-message": "欢迎使用 ASF-ui，一个独立的 ASF 管理界面。",
+	"welcome-message-bots": "看起来您是第一次使用 ASF-ui，因为您尚未配置机器人。",
 	"wiki": "Wiki"
 }

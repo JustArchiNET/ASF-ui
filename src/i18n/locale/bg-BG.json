@@ -6,7 +6,6 @@
 	"2fa-token-copied": "Маркетър е копиран в клипборда!",
 	"2fa-token-copy": "Копирай маркерът в клипборда",
 	"2fa-token-refresh": "Обнови маркер",
-	"2fa-token-refresh-success": "Маркерът е подменен!",
 	"access": "Достъп",
 	"add": "Добави",
 	"advanced": "Разширени настройки",
@@ -147,6 +146,8 @@
 	"terminal-help": "",
 	"terminal-help-text": "",
 	"terminal-no-help": "",
+	"timestamps": "",
+	"timestamps-description": "",
 	"trade": "Търговия",
 	"ui": "Потребителски интерфейс",
 	"ui-configuration": "Настройка на потребителския интерфейс",
@@ -160,5 +161,6 @@
 	"updates": "Обновления",
 	"welcome": "Добре дошли",
 	"welcome-message": "",
+	"welcome-message-bots": "",
 	"wiki": "Wiki"
 }
