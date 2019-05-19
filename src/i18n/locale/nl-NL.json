@@ -6,7 +6,6 @@
 	"2fa-token-copied": "Code naar het klembord gekopieerd!",
 	"2fa-token-copy": "Code naar het klembord kopiëren",
 	"2fa-token-refresh": "Code vernieuwen",
-	"2fa-token-refresh-success": "Code is vernieuwd!",
 	"access": "Toegang",
 	"add": "Toevoegen",
 	"advanced": "Geavanceerd",
@@ -147,6 +146,8 @@
 	"terminal-help": "Toont de help.",
 	"terminal-help-text": "Gebruik: help <Commando>, beschikbare commando's: commands",
 	"terminal-no-help": "Voor {command} is nog geen helptekst beschikbaar!",
+	"timestamps": "Tijdstempels",
+	"timestamps-description": "Tijdstempels toevoegen aan terminal prompts.",
 	"trade": "Ruilaanbod",
 	"ui": "UI",
 	"ui-configuration": "UI-Configuratie",
@@ -160,5 +161,6 @@
 	"updates": "Updates",
 	"welcome": "Welkom",
 	"welcome-message": "Welkom op de ASF-ui, de standalone-interface voor ASF.",
+	"welcome-message-bots": "Het lijkt erop dat het de eerste keer is dat je de ASF-ui gebruikt, omdat je nog geen bots hebt ingesteld.",
 	"wiki": "Wiki"
 }

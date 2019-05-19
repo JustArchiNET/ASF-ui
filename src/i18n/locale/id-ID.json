@@ -6,7 +6,6 @@
 	"2fa-token-copied": "Token telah disalin!",
 	"2fa-token-copy": "Salin token",
 	"2fa-token-refresh": "Segarkan token",
-	"2fa-token-refresh-success": "Token telah disegarkan!",
 	"access": "Akses",
 	"add": "Menambahkan",
 	"advanced": "Tingkat lanjut",
@@ -147,6 +146,8 @@
 	"terminal-help": "",
 	"terminal-help-text": "",
 	"terminal-no-help": "",
+	"timestamps": "",
+	"timestamps-description": "",
 	"trade": "",
 	"ui": "",
 	"ui-configuration": "",
@@ -160,5 +161,6 @@
 	"updates": "Update",
 	"welcome": "",
 	"welcome-message": "",
+	"welcome-message-bots": "",
 	"wiki": ""
 }

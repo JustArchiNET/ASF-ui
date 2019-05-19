@@ -6,7 +6,6 @@
 	"2fa-token-copied": "Kopieret token til udklipsholder!",
 	"2fa-token-copy": "Kopier token til udklipsholderen",
 	"2fa-token-refresh": "Opdater token",
-	"2fa-token-refresh-success": "Token opdateret!",
 	"access": "Adgang",
 	"add": "Tilføj",
 	"advanced": "Avanceret",
@@ -147,6 +146,8 @@
 	"terminal-help": "Vis hjælp.",
 	"terminal-help-text": "Brug: help <Command>, tilgængelige kommandoer: commands",
 	"terminal-no-help": "Der findes endnu ikke en hjælpetekst for \"{command}\"!",
+	"timestamps": "",
+	"timestamps-description": "",
 	"trade": "Handel",
 	"ui": "UI",
 	"ui-configuration": "UI konfiguration",
@@ -160,5 +161,6 @@
 	"updates": "Opdateringer",
 	"welcome": "Velkommen",
 	"welcome-message": "Velkommen til ASF-ui, standalone interface til ASF.",
+	"welcome-message-bots": "",
 	"wiki": "Wiki"
 }

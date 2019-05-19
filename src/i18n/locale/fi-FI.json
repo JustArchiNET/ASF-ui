@@ -6,7 +6,6 @@
 	"2fa-token-copied": "Token kopioitu leikepöydälle!",
 	"2fa-token-copy": "Kopioi token leikepöydälle",
 	"2fa-token-refresh": "Päivitä token",
-	"2fa-token-refresh-success": "Tunnus päivitetty!",
 	"access": "Pääsy",
 	"add": "Lisää",
 	"advanced": "Edistynyt",
@@ -147,6 +146,8 @@
 	"terminal-help": "",
 	"terminal-help-text": "",
 	"terminal-no-help": "",
+	"timestamps": "",
+	"timestamps-description": "",
 	"trade": "",
 	"ui": "",
 	"ui-configuration": "",
@@ -160,5 +161,6 @@
 	"updates": "Päivitykset",
 	"welcome": "Tervetuloa",
 	"welcome-message": "",
+	"welcome-message-bots": "",
 	"wiki": "Wiki"
 }

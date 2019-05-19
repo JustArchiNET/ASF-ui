@@ -6,7 +6,6 @@
 	"2fa-token-copied": "Code in Zwischenablage kopiert!",
 	"2fa-token-copy": "Code in Zwischenablage kopieren",
 	"2fa-token-refresh": "Code aktualisieren",
-	"2fa-token-refresh-success": "Code aktualisiert!",
 	"access": "Zugriff",
 	"add": "Hinzufügen",
 	"advanced": "Erweitert",
@@ -147,6 +146,8 @@
 	"terminal-help": "Zeigt die Hilfe an.",
 	"terminal-help-text": "Verwendung: help <Befehl>, verfügbare Befehle: commands",
 	"terminal-no-help": "Es gibt noch keinen Hilfetext für {command}!",
+	"timestamps": "Zeitstempel",
+	"timestamps-description": "Zeitstempel zu Terminal-Ausgaben hinzugefügt.",
 	"trade": "Handel",
 	"ui": "UI",
 	"ui-configuration": "UI-Konfiguration",
@@ -160,5 +161,6 @@
 	"updates": "Aktualisierungen",
 	"welcome": "Willkommen",
 	"welcome-message": "Willkommen bei ASF-ui, dem Standalone-Interface für ASF.",
+	"welcome-message-bots": "Es sieht so aus, als ob dies das erste Mal ist, dass du ASF-ui benutzt, da du noch keine Bots eingerichtet hast.",
 	"wiki": "Wiki"
 }
