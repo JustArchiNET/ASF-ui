@@ -15,31 +15,9 @@ Standalone web interface for ASF
 
 ### How to use
 
-Read the wiki guide [here](https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Setting-up#using-asf-ui).
+You don't have to install or download ASF-ui manually. ASF already comes with ASF-ui included!
+If you are unsure about how to setup ASF-ui you can read more about it on [ASF's wiki](https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Setting-up#using-asf-ui).
 
 ### Development
 
-```
-git clone
-npm i
-npm start
-```
-
-Note: A local instance of ASF with IPC enabled is required.
-
-### Custom builds
-
-Using a custom build of ASF-ui with ASF's internal http-server, a downloaded copy of it or your custom web-interface is very easy. First you need to clone your fork or this repository and install all dependencies.
-
-```
-git clone
-npm i
-```
-
-You can now modify the source-code to your liking. When you are done with that you can build your custom version. 
-
-```
-npm run build
-```
-
-To make ASF's Kestrel serve your frontend you have to start ASF with the [command-line argument](https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Command-line-arguments) `--path`, which is explained in detail in [ASF's wiki](https://github.com/JustArchiNET/ArchiSteamFarm/wiki). Just copy the contents of the folder `dist` that was created by npm to the appropriate location described on ASF's wiki and you are good to go.
+If you are more than the average user you can read more [here](https://github.com/JustArchiNET/ASF-ui/.github/DEVELOPMENT.md).
