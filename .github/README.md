@@ -20,4 +20,4 @@ If you are unsure about how to setup ASF-ui you can read more about it on [ASF's
 
 ### Development
 
-If you are more than the average user you can read more [here](https://github.com/JustArchiNET/ASF-ui/.github/DEVELOPMENT.md).
+If you are more than the average user you can read more [here](https://github.com/JustArchiNET/ASF-ui/blob/master/.github/DEVELOPMENT.md).
