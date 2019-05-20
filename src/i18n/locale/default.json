@@ -113,7 +113,7 @@
 	"released-ago-hours": "Released {PLURAL:n|{n} hour|{n} hours} ago",
 	"released-ago-minutes": "Released {PLURAL:n|{n} minute|{n} minutes} ago",
 	"released-now": "Released just now",
-	"released-on": "Released {date}",
+	"released-on": "Released on {date}",
 	"releases": "Releases",
 	"remote-access": "Remote Access",
 	"reporting": "Reporting",

@@ -57,19 +57,7 @@
 				return await this.$http.get('www/github/releases');
 			},
 			getTimeText({ releasedFor, publishDate }) {
-				if (releasedFor.days > 30) {
-					return this.$t('released-on', {
-						date: (new Date(publishDate)).toLocaleString({
-							weekday: 'short',
-							year: 'numeric',
-							month: 'short',
-							day: 'numeric',
-							hour: '2-digit',
-							minute: '2-digit',
-							timeZoneName: 'short'
-						})
-					});
-				}
+				if (releasedFor.days > 30) return this.$t('released-on', { date: new Date(publishDate).toLocaleDateString() });
 
 				const realHours = releasedFor.hours + (releasedFor.days * 24);
 				const realMinutes = releasedFor.minutes + (releasedFor.hours * 60);
