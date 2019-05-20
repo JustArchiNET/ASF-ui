@@ -12,7 +12,7 @@
 			<div class="release__title">
 				<span class="release__version">v{{ release.version }}</span>
 				<span class="release__badge" :class="[release.stable ? 'release__badge--stable' : 'release__badge--prerelease']">{{ release.stable ? $t('stable') : $t('pre-release') }}</span>
-				<span class="release__time">{{ getTimeText(release) }}</span>
+				<span class="release__time">{{ getTimeText(release.publishDate) }}</span>
 			</div>
 
 			<div class="release__changes" v-html="release.changelog"></div>
@@ -56,13 +56,13 @@
 			async getReleases() {
 				return await this.$http.get('www/github/releases');
 			},
-			getTimeText({ publishDate }) {
+			getTimeText(releaseDate) {
 				const lang = ['zh-CN', 'zh-TW'].includes(this.$i18n.locale)
 					? this.$i18n.locale.replace('-', '_')
 					: this.$i18n.noRegionalLocale;
 
-				const difference = new Date() - new Date(publishDate);
-				const duration = humanizeDuration(difference, { language: lang, largest: 1 });
+				const releasedSeconds = new Date() - new Date(releaseDate);
+				const duration = humanizeDuration(releasedSeconds, { language: lang, largest: 1 });
 
 				return this.$t('released-ago', { time: duration });
 			},
