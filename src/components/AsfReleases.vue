@@ -71,9 +71,12 @@
 					});
 				}
 
+				const realHours = releasedFor.hours + (releasedFor.days * 24);
+				const realMinutes = releasedFor.minutes + (releasedFor.hours * 60);
+
 				if (releasedFor.days > 1) return this.$t('released-ago-days', { n: releasedFor.days }, releasedFor.days);
-				if (releasedFor.hours > 1) return this.$t('released-ago-hours', { n: releasedFor.hours }, releasedFor.hours);
-				if (releasedFor.minutes > 1) return this.$t('released-ago-minutes', { n: releasedFor.minutes }, releasedFor.minutes);
+				if (releasedFor.hours > 1 || releasedFor.days > 0) return this.$t('released-ago-hours', { n: realHours }, realHours);
+				if (releasedFor.minutes > 1 || releasedFor.hours > 0) return this.$t('released-ago-minutes', { n: realMinutes }, realMinutes);
 				return this.$t('released-now');
 			},
 			async loadReleases() {
