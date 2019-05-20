@@ -24,7 +24,7 @@
 
 <script>
 	import { mapGetters } from 'vuex';
-	import timeDifference from '../utils/timeDifference';
+	import humanizeDuration from 'humanize-duration';
 	import * as storage from '../utils/storage';
 
 	export default {
@@ -56,16 +56,15 @@
 			async getReleases() {
 				return await this.$http.get('www/github/releases');
 			},
-			getTimeText({ releasedFor, publishDate }) {
-				if (releasedFor.days > 30) return this.$t('released-on', { date: new Date(publishDate).toLocaleDateString() });
+			getTimeText({ publishDate }) {
+				const lang = ['zh-CN', 'zh-TW'].includes(this.$i18n.locale)
+					? this.$i18n.locale.replace('-', '_')
+					: this.$i18n.noRegionalLocale;
 
-				const realHours = releasedFor.hours + (releasedFor.days * 24);
-				const realMinutes = releasedFor.minutes + (releasedFor.hours * 60);
+				const difference = new Date() - new Date(publishDate);
+				const duration = humanizeDuration(difference, { language: lang, largest: 1 });
 
-				if (releasedFor.days > 1) return this.$t('released-ago-days', { n: releasedFor.days }, releasedFor.days);
-				if (releasedFor.hours > 1 || releasedFor.days > 0) return this.$t('released-ago-hours', { n: realHours }, realHours);
-				if (releasedFor.minutes > 1 || releasedFor.hours > 0) return this.$t('released-ago-minutes', { n: realMinutes }, realMinutes);
-				return this.$t('released-now');
+				return this.$t('released-ago', { time: duration });
 			},
 			async loadReleases() {
 				const releasesCache = storage.get('cache:releases');
@@ -81,7 +80,6 @@
 
 						return {
 							changelog: release.ChangelogHTML,
-							releasedFor: timeDifference(publishDate),
 							stable: release.Stable,
 							version: release.Version,
 							publishDate
