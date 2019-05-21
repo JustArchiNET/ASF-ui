@@ -25,6 +25,7 @@
 <script>
 	import { mapGetters } from 'vuex';
 	import humanizeDuration from 'humanize-duration';
+	import getLocaleForHD from '../utils/getLocaleForHD';
 	import * as storage from '../utils/storage';
 
 	export default {
@@ -57,13 +58,9 @@
 				return await this.$http.get('www/github/releases');
 			},
 			getTimeText(releaseDate) {
-				const lang = ['zh-CN', 'zh-TW'].includes(this.$i18n.locale)
-					? this.$i18n.locale.replace('-', '_')
-					: this.$i18n.noRegionalLocale;
-
+				const language = getLocaleForHD();
 				const releasedSeconds = new Date() - new Date(releaseDate);
-				const duration = humanizeDuration(releasedSeconds, { language: lang, largest: 1 });
-
+				const duration = humanizeDuration(releasedSeconds, { language, largest: 1 });
 				return this.$t('released-ago', { time: duration });
 			},
 			async loadReleases() {
