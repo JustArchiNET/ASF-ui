@@ -9,6 +9,7 @@
 <script>
 	import { mapGetters } from 'vuex';
 	import humanizeDuration from 'humanize-duration';
+	import getLocaleForHD from '../utils/getLocaleForHD';
 	import AsfFarmingInfoCard from './AsfFarmingInfoCard.vue';
 
 	export default {
@@ -18,11 +19,7 @@
 			...mapGetters({ botsFarmingCount: 'bots/botsFarmingCount' }),
 			timeRemaining() {
 				if (this.botsFarmingCount === 0) return '-';
-
-				const language = ['zh-CN', 'zh-TW'].includes(this.$i18n.locale)
-					? this.$i18n.locale.replace('-', '_')
-					: this.$i18n.noRegionalLocale;
-
+				const language = getLocaleForHD();
 				return humanizeDuration(this.$store.getters['bots/timeRemaining'] * 1000, { language });
 			},
 			gamesRemaining() {

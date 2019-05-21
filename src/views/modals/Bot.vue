@@ -48,6 +48,7 @@
 <script>
 	import { mapGetters } from 'vuex';
 	import humanizeDuration from 'humanize-duration';
+	import getLocaleForHD from '../../utils/getLocaleForHD';
 	import BotAction from '../../components/BotAction.vue';
 	import BotFarmingInfo from '../../components/BotFarmingInfo.vue';
 	import BotGames from '../../components/BotGames.vue';
@@ -65,11 +66,7 @@
 			},
 			timeRemaining() {
 				if (this.bot.status !== 'farming') return '-';
-
-				const language = ['zh-CN', 'zh-TW'].includes(this.$i18n.locale)
-					? this.$i18n.locale.replace('-', '_')
-					: this.$i18n.noRegionalLocale;
-
+				const language = getLocaleForHD();
 				return humanizeDuration(this.bot.timeRemainingSeconds * 1000, { language });
 			},
 			gamesRemaining() {

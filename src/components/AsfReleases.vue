@@ -12,7 +12,7 @@
 			<div class="release__title">
 				<span class="release__version">v{{ release.version }}</span>
 				<span class="release__badge" :class="[release.stable ? 'release__badge--stable' : 'release__badge--prerelease']">{{ release.stable ? $t('stable') : $t('pre-release') }}</span>
-				<span class="release__time">{{ getTimeText(release) }}</span>
+				<span class="release__time">{{ getTimeText(release.publishDate) }}</span>
 			</div>
 
 			<div class="release__changes" v-html="release.changelog"></div>
@@ -24,7 +24,8 @@
 
 <script>
 	import { mapGetters } from 'vuex';
-	import timeDifference from '../utils/timeDifference';
+	import humanizeDuration from 'humanize-duration';
+	import getLocaleForHD from '../utils/getLocaleForHD';
 	import * as storage from '../utils/storage';
 
 	export default {
@@ -56,25 +57,11 @@
 			async getReleases() {
 				return await this.$http.get('www/github/releases');
 			},
-			getTimeText({ releasedFor, publishDate }) {
-				if (releasedFor.days > 30) {
-					return this.$t('released-on', {
-						date: (new Date(publishDate)).toLocaleString({
-							weekday: 'short',
-							year: 'numeric',
-							month: 'short',
-							day: 'numeric',
-							hour: '2-digit',
-							minute: '2-digit',
-							timeZoneName: 'short'
-						})
-					});
-				}
-
-				if (releasedFor.days > 1) return this.$t('released-ago-days', { n: releasedFor.days }, releasedFor.days);
-				if (releasedFor.hours > 1) return this.$t('released-ago-hours', { n: releasedFor.hours }, releasedFor.hours);
-				if (releasedFor.minutes > 1) return this.$t('released-ago-minutes', { n: releasedFor.minutes }, releasedFor.minutes);
-				return this.$t('released-now');
+			getTimeText(releaseDate) {
+				const language = getLocaleForHD();
+				const releasedSeconds = new Date() - new Date(releaseDate);
+				const time = humanizeDuration(releasedSeconds, { language, largest: 2, delimiter: this.$t('released-delimiter') });
+				return this.$t('released-ago', { time });
 			},
 			async loadReleases() {
 				const releasesCache = storage.get('cache:releases');
@@ -90,7 +77,6 @@
 
 						return {
 							changelog: release.ChangelogHTML,
-							releasedFor: timeDifference(publishDate),
 							stable: release.Stable,
 							version: release.Version,
 							publishDate
