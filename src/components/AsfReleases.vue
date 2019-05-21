@@ -60,8 +60,8 @@
 			getTimeText(releaseDate) {
 				const language = getLocaleForHD();
 				const releasedSeconds = new Date() - new Date(releaseDate);
-				const duration = humanizeDuration(releasedSeconds, { language, largest: 1 });
-				return this.$t('released-ago', { time: duration });
+				const time = humanizeDuration(releasedSeconds, { language, largest: 1 });
+				return this.$t('released-ago', { time });
 			},
 			async loadReleases() {
 				const releasesCache = storage.get('cache:releases');
