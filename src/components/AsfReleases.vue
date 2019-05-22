@@ -60,7 +60,7 @@
 			getTimeText(releaseDate) {
 				const language = getLocaleForHD();
 				const releasedSeconds = new Date() - new Date(releaseDate);
-				const time = humanizeDuration(releasedSeconds, { language, largest: 2, delimiter: this.$t('released-delimiter') });
+				const time = humanizeDuration(releasedSeconds, { language, largest: 2 });
 				return this.$t('released-ago', { time });
 			},
 			async loadReleases() {
