@@ -110,7 +110,6 @@
 	"rate-limited": "Ограничение частоты запросов!",
 	"refresh": "Обновить статус",
 	"released-ago": "Выпущена {time} назад",
-	"released-delimiter": " и ",
 	"releases": "Выпуски",
 	"remote-access": "Удалённый доступ",
 	"reporting": "Отправка отчёта",

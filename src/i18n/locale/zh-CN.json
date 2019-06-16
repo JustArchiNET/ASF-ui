@@ -110,7 +110,6 @@
 	"rate-limited": "已被限制访问！",
 	"refresh": "刷新状态",
 	"released-ago": "发布于 {time}前",
-	"released-delimiter": " ",
 	"releases": "版本发布",
 	"remote-access": "远程访问",
 	"reporting": "报告",

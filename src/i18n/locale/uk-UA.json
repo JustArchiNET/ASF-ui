@@ -110,7 +110,6 @@
 	"rate-limited": "Обмеження частоти запитів!",
 	"refresh": "Оновити статус",
 	"released-ago": "Випущена {time} тому",
-	"released-delimiter": " та ",
 	"releases": "Версії",
 	"remote-access": "Дистанційний доступ",
 	"reporting": "Звітування",
