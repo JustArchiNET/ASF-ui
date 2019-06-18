@@ -44,7 +44,7 @@
 		"@fortawesome/free-brands-svg-icons": "^5.9.0",
 		"@fortawesome/free-solid-svg-icons": "^5.9.0",
 		"@fortawesome/vue-fontawesome": "^0.1.6",
-		"@sentry/browser": "^4.6.5",
+		"@sentry/browser": "^5.4.0",
 		"axios": "^0.18.1",
 		"copy-to-clipboard": "^3.2.0",
 		"flag-icon-css": "^3.3.0",
