@@ -58,8 +58,7 @@ export function del(endpoint, options = {}) {
 }
 
 export function command(...args) {
-	const command = encodeURIComponent(args.join(' '));
-	return http.post(`command/${command}`).then(processResponse).catch(catchError);
+	return http.post('command', { Command: args.join(' ') }).then(processResponse).catch(catchError);
 }
 
 export function botAction(bots, action, params) {
