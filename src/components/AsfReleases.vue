@@ -27,6 +27,7 @@
 	import humanizeDuration from 'humanize-duration';
 	import getLocaleForHD from '../utils/getLocaleForHD';
 	import * as storage from '../utils/storage';
+	import compareVersion from '../utils/compareVersion';
 
 	export default {
 		name: 'asf-releases',
@@ -54,9 +55,6 @@
 			}
 		},
 		methods: {
-			async getReleases() {
-				return await this.$http.get('www/github/releases');
-			},
 			getTimeText(releaseDate) {
 				const language = getLocaleForHD();
 				const releasedSeconds = new Date() - new Date(releaseDate);
@@ -70,8 +68,13 @@
 					if (version === this.version && timestamp > Date.now() - 24 * 60 * 60 * 1000) return releases;
 				}
 
-				const [latestRelease, ...olderReleases] = await this.getReleases();
-				const releases = [latestRelease, ...olderReleases.filter(release => release.Stable || release.Version === this.version)]
+				const rawReleases = [];
+				rawReleases.push(await this.$http.get('www/github/release'));
+				if (!rawReleases[0].Stable) rawReleases.push(await this.$http.get('www/github/release/latest'));
+				if (!rawReleases.find(release => release.version === this.version)) rawReleases.push(await this.$http.get(`www/github/release/${this.version}`));
+
+				const releases = rawReleases
+					.sort((lhs, rhs) => compareVersion(lhs.Version, rhs.Version))
 					.map(release => {
 						const publishDate = new Date(release.ReleasedAt);
 
@@ -79,14 +82,14 @@
 							changelog: release.ChangelogHTML,
 							stable: release.Stable,
 							version: release.Version,
-							publishDate
+							publishDate,
 						};
 					});
 
 				storage.set('cache:releases', { timestamp: Date.now(), releases, version: this.version });
 				return releases;
-			}
-		}
+			},
+		},
 	};
 </script>
 
