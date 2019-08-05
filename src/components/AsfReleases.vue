@@ -42,7 +42,7 @@
 			...mapGetters({ version: 'asf/version' }),
 			statusText() {
 				if (this.error) return this.error;
-				if (!this.loading && !this.releases.length) return 'No releases found!';
+				if (!this.loading && !this.releases.length) return this.$t('releases-not-found');
 			}
 		},
 		async created() {
