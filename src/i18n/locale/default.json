@@ -116,6 +116,7 @@
 	"refresh": "Refresh status",
 	"released-ago": "Released {time} ago",
 	"releases": "Releases",
+	"releases-not-found": "No releases found!",
 	"remote-access": "Remote Access",
 	"reporting": "Reporting",
 	"reporting-description": "Automatically upload error reports. Logging needs to be enabled.",
