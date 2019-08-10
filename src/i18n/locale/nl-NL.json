@@ -116,6 +116,7 @@
 	"refresh": "Status vernieuwen",
 	"released-ago": "{time} geleden uitgebracht",
 	"releases": "Versies",
+	"releases-not-found": "Geen versies gevonden!",
 	"remote-access": "Toegang op afstand",
 	"reporting": "Rapportage",
 	"reporting-description": "Automatisch foutmeldingen uploaden. Loggen moet ingeschakeld zijn.",

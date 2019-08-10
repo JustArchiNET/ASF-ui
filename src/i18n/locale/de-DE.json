@@ -116,6 +116,7 @@
 	"refresh": "Status aktualisieren",
 	"released-ago": "Vor {time} veröffentlicht",
 	"releases": "Veröffentlichungen",
+	"releases-not-found": "",
 	"remote-access": "Fernzugriff",
 	"reporting": "Berichterstattung",
 	"reporting-description": "Automatisches Hochladen von Fehlerberichten. Die Protokollierung muss hierfür aktiviert sein.",

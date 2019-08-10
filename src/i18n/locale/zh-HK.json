@@ -116,6 +116,7 @@
 	"refresh": "刷新狀態",
 	"released-ago": "{time} 前發布",
 	"releases": "發佈版本",
+	"releases-not-found": "",
 	"remote-access": "遠端存取",
 	"reporting": "報告",
 	"reporting-description": "自動上傳錯誤報表。需要啟用日誌記錄。",

@@ -116,6 +116,7 @@
 	"refresh": "刷新状态",
 	"released-ago": "发布于 {time}前",
 	"releases": "版本发布",
+	"releases-not-found": "未找到版本！",
 	"remote-access": "远程访问",
 	"reporting": "报告",
 	"reporting-description": "自动上传错误报告，需要启用日志。",

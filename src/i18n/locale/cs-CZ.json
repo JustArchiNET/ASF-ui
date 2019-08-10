@@ -116,6 +116,7 @@
 	"refresh": "Obnovit stav",
 	"released-ago": "",
 	"releases": "",
+	"releases-not-found": "",
 	"remote-access": "Vzdálený přístup",
 	"reporting": "Hlášení",
 	"reporting-description": "Automaticky nahrávat chybová nahlášení. Pro zapnutí musí být zaplý logging.",

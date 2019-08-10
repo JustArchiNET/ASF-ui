@@ -116,6 +116,7 @@
 	"refresh": "Állapot frissítése",
 	"released-ago": "Ennyi ideje jelent meg: {time}",
 	"releases": "Megjelenések",
+	"releases-not-found": "",
 	"remote-access": "Távoli elérés",
 	"reporting": "Jelentés",
 	"reporting-description": "Hibajelentések automatikus feltöltése. A jelentéseknek bekapcsolva kell lenni.",

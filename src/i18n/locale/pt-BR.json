@@ -116,6 +116,7 @@
 	"refresh": "Atualizar status",
 	"released-ago": "Lançado há {time} atrás",
 	"releases": "Versões",
+	"releases-not-found": "Nenhuma nova versão encontrada!",
 	"remote-access": "Acesso remoto",
 	"reporting": "Reportando",
 	"reporting-description": "Enviar automaticamente os relatórios de erro. O registro precisa ser ativado.",

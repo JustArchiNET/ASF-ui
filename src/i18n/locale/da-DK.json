@@ -116,6 +116,7 @@
 	"refresh": "Opdater status",
 	"released-ago": "Udgivet for {time} siden",
 	"releases": "Udgivelser",
+	"releases-not-found": "",
 	"remote-access": "Fjernadgang",
 	"reporting": "Rapporterer",
 	"reporting-description": "Upload fejllogs automatisk. Logning skal være aktiveret.",

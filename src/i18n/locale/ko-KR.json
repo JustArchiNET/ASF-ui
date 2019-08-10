@@ -116,6 +116,7 @@
 	"refresh": "상태 새로고침",
 	"released-ago": "",
 	"releases": "릴리스",
+	"releases-not-found": "",
 	"remote-access": "원격 접근",
 	"reporting": "보고",
 	"reporting-description": "자동으로 오류 보고를 업로드합니다. 로깅이 활성화 되어있어야 합니다.",

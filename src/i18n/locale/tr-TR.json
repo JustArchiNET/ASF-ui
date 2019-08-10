@@ -116,6 +116,7 @@
 	"refresh": "Durumu yenile",
 	"released-ago": "{time} önce yayınlandı",
 	"releases": "Sürümler",
+	"releases-not-found": "",
 	"remote-access": "Uzaktan Erişim",
 	"reporting": "Raporlama",
 	"reporting-description": "Hata raporlarını otomatik olarak yükle. Günlüğe kaydetme etkinleştirilmelidir.",
