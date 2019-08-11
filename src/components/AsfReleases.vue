@@ -69,12 +69,18 @@
 				}
 
 				const rawReleases = [];
-				rawReleases.push(await this.$http.get('www/github/release'));
-				if (!rawReleases[0].Stable) rawReleases.push(await this.$http.get('www/github/release/latest'));
-				if (!rawReleases.find(release => release.version === this.version)) rawReleases.push(await this.$http.get(`www/github/release/${this.version}`));
+				try { rawReleases.push(await this.$http.get('www/github/release')); } catch (err) {}
+
+				if (!rawReleases[0].Stable) { // If the latest release is not stable, try fetching latest stable
+				  try { rawReleases.push(await this.$http.get('www/github/release/latest')); } catch (err) {}
+        }
+
+				if (!rawReleases.find(release => release.version === this.version)) { // If the release list doesn't include our version, try fetching it explicitly
+				  try { rawReleases.push(await this.$http.get(`www/github/release/${this.version}`)); } catch (err) {}
+        }
 
 				const releases = rawReleases
-					.sort((lhs, rhs) => compareVersion(lhs.Version, rhs.Version))
+					.sort((lhs, rhs) => compareVersion(rhs.Version, lhs.Version))
 					.map(release => {
 						const publishDate = new Date(release.ReleasedAt);
 
