@@ -1,17 +1,16 @@
 export default function compareVersion(a, b) {
-	let result = 0;
+	const aValues = a.split('.').map(v => parseInt(v, 10));
+	const bValues = b.split('.').map(v => parseInt(v, 10));
 
-	const aValues = a.split('.');
-	const bValues = b.split('.');
+	const versionLength = Math.max(aValues.length, bValues.length)
 
-	aValues.forEach((value, index) => {
-		if (result !== 0) return;
+	for (let i = 0; i < versionLength; ++i) {
+		const aValue = aValues[i] || 0;
+		const bValue = bValues[i] || 0;
 
-		if (value === bValues[index]) return;
+		if (aValue === bValue) continue;
+		return aValue > bValue ? 1 : -1;
+	}
 
-		if (value > bValues[index]) result = 1;
-		else result = -1;
-	});
-
-	return result;
+	return 0;
 }
