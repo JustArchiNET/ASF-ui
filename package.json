@@ -24,7 +24,7 @@
 		"copy-webpack-plugin": "^5.0.4",
 		"css-loader": "^3.2.0",
 		"eslint": "^5.16.0",
-		"eslint-config-airbnb-base": "^13.2.0",
+		"eslint-config-airbnb-base": "^14.0.0",
 		"eslint-plugin-import": "^2.18.2",
 		"eslint-plugin-vue": "^5.2.3",
 		"file-loader": "^4.2.0",
