@@ -40,7 +40,7 @@
 		"webpack-dev-server": "^3.8.1"
 	},
 	"dependencies": {
-		"@fortawesome/fontawesome-svg-core": "^1.2.23",
+		"@fortawesome/fontawesome-svg-core": "^1.2.24",
 		"@fortawesome/free-brands-svg-icons": "^5.11.0",
 		"@fortawesome/free-solid-svg-icons": "^5.11.0",
 		"@fortawesome/vue-fontawesome": "^0.1.6",
