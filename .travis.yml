@@ -24,11 +24,11 @@ matrix:
   include:
     # We're building ASF-ui with node.js on latest versions of all available OSes
     # We need to declare latest image ourselves until https://github.com/travis-ci/travis-ci/issues/8922 is dealt with
-    # Ref: https://docs.travis-ci.com/user/reference/xenial
+    # Ref: https://docs.travis-ci.com/user/reference/bionic
     - os: linux
-      dist: xenial
+      dist: bionic
     # Ref: https://docs.travis-ci.com/user/reference/osx
     - os: osx
-      osx_image: xcode10.2
+      osx_image: xcode11
     # Ref: https://docs.travis-ci.com/user/reference/windows
     - os: windows
