@@ -9,7 +9,7 @@ export default {
 		Vue.use(Snotify, {
 			toast: {
 				timeout: 3500,
-				position: get('settings:notification-position'),
+				position: get('settings:notification-position', 'rightBottom'),
 				pauseOnHover: true
 			}
 		});
