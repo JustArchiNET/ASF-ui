@@ -1,7 +1,6 @@
 import * as humanizeDuration from 'humanize-duration';
 import Vue from 'vue';
 import * as http from '../../plugins/http';
-import composeVersionString from '../../utils/composeVersionString';
 
 const humanizer = humanizeDuration.humanizer({
 	language: 'shortEn',
@@ -28,9 +27,7 @@ export const state = {
 	memoryUsage: 0,
 	startTime: null,
 	buildVariant: null,
-	version: {
-		Major: 0, Minor: 0, Build: 0, Revision: 0
-	},
+	version: null,
 	uptime: '0s',
 	updateChannel: 1
 };
@@ -76,7 +73,7 @@ export const actions = {
 export const getters = {
 	memory: state => `${(state.memoryUsage / 1024).toFixed(2)} MB`,
 	uptime: state => state.uptime,
-	version: state => composeVersionString(state.version),
+	version: state => state.version,
 	buildVariant: state => state.buildVariant,
 	startTime: state => state.startTime,
 	updateChannel: state => state.updateChannel
