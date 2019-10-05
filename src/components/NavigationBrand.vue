@@ -30,7 +30,6 @@
 
 <script>
 	import { mapGetters } from 'vuex';
-	import composeVersionString from '../utils/composeVersionString';
 	import { newReleaseAvailable } from '../utils/ui';
 	import waitForRestart from '../utils/waitForRestart';
 
@@ -54,7 +53,7 @@
 				if (err.result) {
 					// Extract version from result, if available
 					return {
-						remoteVersion: composeVersionString(err.result),
+						remoteVersion: err.result,
 						localVersion: this.$store.getters['asf/version']
 					};
 				}
