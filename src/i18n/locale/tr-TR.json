@@ -29,7 +29,7 @@
 	"bot-delete": "{name} botunu silmek istiyor musunuz?",
 	"bot-fav-buttons": "Hızlı işlem düğmesi",
 	"bot-fav-buttons-2fa": "2AD",
-	"bot-fav-buttons-bgr": "BGR",
+	"bot-fav-buttons-bgr": "ARKAPL",
 	"bot-fav-buttons-config": "Yapılandırma",
 	"bot-fav-buttons-description": "Kolay ve hızlı eylem için bot kartında görüntülenmesini istediğin düğmeyi seç.",
 	"bot-fav-buttons-none": "Hiçbiri",
@@ -163,6 +163,6 @@
 	"updates": "Güncellemeler",
 	"welcome": "Hoş Geldiniz",
 	"welcome-message": "ASF'nin tek başına çalışabilir arabirimi ASF-ui'ye hoş geldiniz.",
-	"welcome-message-bots": "Herhangi bir bot ayarlamadığınız için ASF-ui'yi ilk defa kullanıyorsunuz gibi görünüyor.",
+	"welcome-message-bots": "Herhangi bir bot ayarlamadığınız için ASF-ui'yi ilk defa kullanıyor olabilirsiniz.",
 	"wiki": "Viki"
 }
