@@ -256,7 +256,7 @@
 				this.$refs['terminal-input'].focus();
 			},
 			autocomplete() {
-				if (!this.selectedCommand) this.command = this.suggestedCommand || '';
+				if (!this.selectedCommand) this.command = this.suggestedCommand || this.command;
 
 				if (this.selectedCommand && this.suggestedParameterValue) {
 					const splitCommand = this.command.split(' ');
