@@ -5,9 +5,6 @@ language: node_js
 git:
   depth: 10
 
-# Use latest images for building: https://blog.travis-ci.com/2017-12-01-new-update-schedule-for-linux-build-images
-group: travis_latest
-
 # We target latest lts version of node.js
 node_js: lts/*
 
@@ -15,7 +12,7 @@ script:
   - |
     set -euo pipefail
 
-    npm run-script build:ci
+    npm run-script build:ci --no-progress
 
     set +u # This is needed to continue Travis build
 matrix:
@@ -24,11 +21,11 @@ matrix:
   include:
     # We're building ASF-ui with node.js on latest versions of all available OSes
     # We need to declare latest image ourselves until https://github.com/travis-ci/travis-ci/issues/8922 is dealt with
-    # Ref: https://docs.travis-ci.com/user/reference/bionic
+    # Ref: https://docs.travis-ci.com/user/reference/linux
     - os: linux
       dist: bionic
     # Ref: https://docs.travis-ci.com/user/reference/osx
     - os: osx
-      osx_image: xcode11
+      osx_image: xcode11.2
     # Ref: https://docs.travis-ci.com/user/reference/windows
     - os: windows
