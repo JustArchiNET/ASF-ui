@@ -10,7 +10,7 @@ node_js: lts/*
 
 script:
   - |
-    set -euo pipefail
+    set -eu
 
     npm run-script build:ci --no-progress
 
