@@ -33,7 +33,7 @@ build_script:
     $ProgressPreference = 'SilentlyContinue'
 
 
-    npm ci
+    npm ci --no-progress
 
 
     if ($LastExitCode -ne 0) {
@@ -41,7 +41,7 @@ build_script:
     }
 
 
-    npm run-script build:ci
+    npm run-script build:ci --no-progress
 
 
     if ($LastExitCode -ne 0) {
