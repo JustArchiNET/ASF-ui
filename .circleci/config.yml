@@ -20,7 +20,7 @@ jobs:
           command: |
             set -eu
 
-            mkdir -p "~/artifacts"
+            mkdir -p "${HOME}/artifacts"
 
             compressionArgs="-1"
 
@@ -30,9 +30,10 @@ jobs:
 
             (
                 cd "dist"
-                zip -r $compressionArgs "~/artifacts/ASF-ui.zip" .
+                zip -r $compressionArgs "${HOME}/artifacts/ASF-ui.zip" .
             )
       - store_artifacts:
+          destination: ""
           path: ~/artifacts
 
   osx:
@@ -51,7 +52,7 @@ jobs:
           command: |
             set -eu
 
-            mkdir -p "~/artifacts"
+            mkdir -p "${HOME}/artifacts"
 
             compressionArgs="-1"
 
@@ -61,9 +62,10 @@ jobs:
 
             (
                 cd "dist"
-                zip -r $compressionArgs "~/artifacts/ASF-ui.zip" .
+                zip -r $compressionArgs "${HOME}/artifacts/ASF-ui.zip" .
             )
       - store_artifacts:
+          destination: ""
           path: ~/artifacts
 
   windows:
@@ -75,7 +77,7 @@ jobs:
           command: npm ci --no-progress
       - run:
           name: Build npm project
-          command: npm run-script build:ci --no-progress
+          command: npm run-scriptt build:ci --no-progress
       - run:
           name: Create artifacts
           command: |
@@ -93,6 +95,7 @@ jobs:
 
             Compress-Archive -Path "dist\*" -CompressionLevel "$compressionLevel" -DestinationPath "~\artifacts\ASF-ui.zip"
       - store_artifacts:
+          destination: ""
           path: ~\artifacts
 
 workflows:
