@@ -24,7 +24,7 @@ jobs:
 
             compressionArgs="-mx=1"
 
-            if [ -n "${CIRCLE_TAG}-" ]; then
+            if [ -n "${CIRCLE_TAG-}" ]; then
                 compressionArgs="-mx=9 -mpass=15 -mfb=258"
             fi
 
