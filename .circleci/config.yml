@@ -79,19 +79,19 @@ jobs:
       - run:
           name: Create artifacts
           command: |
-            Set-StrictMode -Version Latest
-            $ErrorActionPreference = 'Stop'
-            $ProgressPreference = 'SilentlyContinue'
+            Set-StrictMode -Version "Latest"
+            $ErrorActionPreference = "Stop"
+            $ProgressPreference = "SilentlyContinue"
 
-            New-Item -ItemType Directory -Path '~\artifacts'
+            New-Item -ItemType "Directory" -Path "~\artifacts"
 
-            $compressionLevel = 'Fastest'
+            $compressionLevel = "Fastest"
 
             if ($env:CIRCLE_TAG) {
-                $compressionLevel = 'Optimal'
+                $compressionLevel = "Optimal"
             }
 
-            Compress-Archive -Path 'dist\*' -CompressionLevel "$compressionLevel" -DestinationPath '~\artifacts\ASF-ui.zip'
+            Compress-Archive -Path "dist\*" -CompressionLevel "$compressionLevel" -DestinationPath "~\artifacts\ASF-ui.zip"
       - store_artifacts:
           path: ~\artifacts
 
@@ -99,6 +99,6 @@ workflows:
   version: 2
   ci:
     jobs:
-#      - linux
+      - linux
 #      - osx
       - windows
