@@ -17,7 +17,7 @@ jobs:
           command: npm run-script build:ci --no-progress
 
   windows:
-    executor: windows
+    executor: windows/default
     steps:
       - checkout
       - run:
