@@ -16,6 +16,18 @@ jobs:
           name: Build npm project
           command: npm run-script build:ci --no-progress
 
+  osx:
+    macos:
+      xcode: "11.2.0"
+    steps:
+      - checkout
+      - run:
+          name: Install npm modules
+          command: npm ci --no-progress
+      - run:
+          name: Build npm project
+          command: npm run-script build:ci --no-progress
+
   windows:
     executor: windows/default
     steps:
@@ -32,4 +44,5 @@ workflows:
   ci:
     jobs:
       - linux
+      - osx
       - windows
