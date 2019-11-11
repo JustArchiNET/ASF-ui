@@ -17,6 +17,7 @@ jobs:
           command: npm run-script build:ci --no-progress
       - run:
           name: Create artifacts
+          shell: /usr/bin/env sh
           command: |
             set -eu
 
@@ -46,6 +47,26 @@ jobs:
       - run:
           name: Build npm project
           command: npm run-script build:ci --no-progress
+      - run:
+          name: Create artifacts
+          shell: /usr/bin/env sh
+          command: |
+            set -eu
+
+            mkdir -p /tmp/artifacts
+
+            compressionArgs="-1"
+
+            if [ -n "${CIRCLE_TAG-}" ]; then
+                compressionArgs="-9"
+            fi
+
+            (
+                cd "dist"
+                zip -r $compressionArgs "/tmp/artifacts/ASF-ui.zip" .
+            )
+      - store_artifacts:
+          path: /tmp/artifacts
 
   windows:
     executor: windows/default
@@ -57,11 +78,25 @@ jobs:
       - run:
           name: Build npm project
           command: npm run-script build:ci --no-progress
+      - run:
+          name: Create artifacts
+          command: |
+            New-Item -ItemType Directory -Path "C:\tmp\artifacts"
+
+            $compressionLevel = 'Fastest'
+
+            if ($env:CIRCLE_TAG) {
+                $compressionLevel = 'Optimal'
+            }
+
+            Compress-Archive -Path 'dist\*' -CompressionLevel "$compressionLevel" -DestinationPath 'C:\tmp\artifacts\ASF-ui.zip'
+      - store_artifacts:
+          path: C:\tmp\artifacts
 
 workflows:
   version: 2
   ci:
     jobs:
-      - linux
+#      - linux
 #      - osx
-#      - windows
+      - windows
