@@ -33,7 +33,7 @@ jobs:
                 zip -r $compressionArgs "${HOME}/artifacts/ASF-ui.zip" .
             )
       - store_artifacts:
-          destination: ""
+          destination: "test"
           path: ~/artifacts
 
   osx:
@@ -65,7 +65,7 @@ jobs:
                 zip -r $compressionArgs "${HOME}/artifacts/ASF-ui.zip" .
             )
       - store_artifacts:
-          destination: ""
+          destination: "test"
           path: ~/artifacts
 
   windows:
@@ -77,7 +77,7 @@ jobs:
           command: npm ci --no-progress
       - run:
           name: Build npm project
-          command: npm run-scriptt build:ci --no-progress
+          command: npm run-script build:ci --no-progress
       - run:
           name: Create artifacts
           command: |
@@ -95,7 +95,7 @@ jobs:
 
             Compress-Archive -Path "dist\*" -CompressionLevel "$compressionLevel" -DestinationPath "~\artifacts\ASF-ui.zip"
       - store_artifacts:
-          destination: ""
+          destination: "test"
           path: ~\artifacts
 
 workflows:
