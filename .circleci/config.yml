@@ -33,7 +33,7 @@ jobs:
                 zip -r $compressionArgs "${HOME}/artifacts/ASF-ui.zip" .
             )
       - store_artifacts:
-          destination: "test"
+          destination: "artifacts"
           path: ~/artifacts
 
   osx:
@@ -65,7 +65,7 @@ jobs:
                 zip -r $compressionArgs "${HOME}/artifacts/ASF-ui.zip" .
             )
       - store_artifacts:
-          destination: "test"
+          destination: "artifacts"
           path: ~/artifacts
 
   windows:
@@ -95,7 +95,7 @@ jobs:
 
             Compress-Archive -Path "dist\*" -CompressionLevel "$compressionLevel" -DestinationPath "~\artifacts\ASF-ui.zip"
       - store_artifacts:
-          destination: "test"
+          destination: "artifacts"
           path: ~\artifacts
 
 workflows:
