@@ -79,6 +79,10 @@ jobs:
       - run:
           name: Create artifacts
           command: |
+            Set-StrictMode -Version Latest
+            $ErrorActionPreference = 'Stop'
+            $ProgressPreference = 'SilentlyContinue'
+
             New-Item -ItemType Directory -Path '~\artifacts'
 
             $compressionLevel = 'Fastest'
