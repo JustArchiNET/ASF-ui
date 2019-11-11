@@ -68,33 +68,28 @@
 					if (version === this.version && timestamp > Date.now() - 24 * 60 * 60 * 1000) return releases;
 				}
 
-				const rawReleases = [];
-				try { rawReleases.push(await this.$http.get('www/github/release')); } catch (err) {}
-
-				if (!rawReleases[0].Stable) { // If the latest release is not stable, try fetching latest stable
-				  try { rawReleases.push(await this.$http.get('www/github/release/latest')); } catch (err) {}
-        }
-
-				if (!rawReleases.find(release => release.version === this.version)) { // If the release list doesn't include our version, try fetching it explicitly
-				  try { rawReleases.push(await this.$http.get(`www/github/release/${this.version}`)); } catch (err) {}
-        }
-
-				const releases = rawReleases
-					.sort((lhs, rhs) => compareVersion(rhs.Version, lhs.Version))
-					.map(release => {
-						const publishDate = new Date(release.ReleasedAt);
-
-						return {
-							changelog: release.ChangelogHTML,
-							stable: release.Stable,
-							version: release.Version,
-							publishDate,
-						};
-					});
-
+				const releases = await this.fetchReleases();
 				storage.set('cache:releases', { timestamp: Date.now(), releases, version: this.version });
 				return releases;
 			},
+			async fetchReleases () {
+				const releases = [];
+
+				releases.push(await this.fetchRelease()); // Fetch latest release
+				if (!releases[0] || !releases[0].stable) releases.push(await this.fetchRelease('latest')); // If the latest releases is not stable, fetch latest stable release
+				if (!releases.some(release => release.version === this.version)) releases.push(await this.fetchRelease(this.version)); // If current version is neither latest nor latest stable, fetch it
+
+				return releases
+					.filter((value, index) => !!value && releases.findIndex(release => release.version === value.version) === index) // Clean the list in case any of the fetches failed, remove any duplicates
+					.sort((lhs, rhs) => compareVersion(rhs.version, lhs.version)); // Order the releases descending by version
+			},
+			async fetchRelease (version = '') {
+				try {
+					const release = await this.$http.get(`www/github/release/${version}`);
+					const publishedAt = new Date(release.ReleasedAt);
+					return { changelog: release.ChangelogHTML, stable: release.Stable, version: release.Version, publishedAt };
+				} catch (err) {}
+			}
 		},
 	};
 </script>
