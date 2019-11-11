@@ -29,7 +29,7 @@ jobs:
             fi
 
             (
-                cd "${CIRCLE_WORKING_DIRECTORY}/dist"
+                cd "dist"
                 zip -r $compressionArgs "/tmp/artifacts/ASF-ui.zip" .
             )
       - store_artifacts:
