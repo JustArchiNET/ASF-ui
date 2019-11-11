@@ -15,6 +15,22 @@ jobs:
       - run:
           name: Build npm project
           command: npm run-script build:ci --no-progress
+      - run:
+          name: Create artifacts
+          command: |
+            set -eu
+
+            mkdir -p /tmp/artifacts
+
+            compressionArgs="-mx=1"
+
+            if [ -n "${CIRCLE_TAG}-" ]; then
+                compressionArgs="-mx=9 -mpass=15 -mfb=258"
+            fi
+
+            7z a -bd -tzip -mm=Deflate $compressionArgs "/tmp/artifacts/ASF-ui.zip" "${CIRCLE_WORKING_DIRECTORY}/dist/*"
+      - store_artifacts:
+          path: /tmp/artifacts
 
   osx:
     macos:
@@ -44,5 +60,5 @@ workflows:
   ci:
     jobs:
       - linux
-      - osx
+#      - osx
       - windows
