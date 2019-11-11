@@ -10,6 +10,12 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Sync git submodules
+          command: git submodule sync
+      - run:
+          name: Update git submodules
+          command: git submodule update --init --recursive
+      - run:
           name: Install npm modules
           command: npm ci --no-progress
       - run:
@@ -42,6 +48,12 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Sync git submodules
+          command: git submodule sync
+      - run:
+          name: Update git submodules
+          command: git submodule update --init --recursive
+      - run:
           name: Install npm modules
           command: npm ci --no-progress
       - run:
@@ -72,6 +84,12 @@ jobs:
     executor: windows/default
     steps:
       - checkout
+      - run:
+          name: Sync git submodules
+          command: git submodule sync
+      - run:
+          name: Update git submodules
+          command: git submodule update --init --recursive
       - run:
           name: Install npm modules
           command: npm ci --no-progress
