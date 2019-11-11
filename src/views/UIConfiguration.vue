@@ -9,15 +9,6 @@
 					<button class="button button--confirm" @click="save">
 						{{ $t('save') }}
 					</button>
-
-					<dropdown :label="$t('debug')" class="button--confirm pull-right" :disabled="!sentryInstalled">
-						<li class="dropdown__item" @click="captureSnapshot">
-							{{ $t('snapshot-capture') }}
-						</li>
-						<li class="dropdown__item" :class="{ 'dropdown__item--disabled': !storedEventsCount }" @click="copyStoredEvents">
-							{{ $t('log-copy') }}
-						</li>
-					</dropdown>
 				</div>
 			</div>
 		</div>
@@ -25,7 +16,6 @@
 </template>
 
 <script>
-	import * as copy from 'copy-to-clipboard';
 	import { mapGetters } from 'vuex';
 	import ConfigEditor from '../components/ConfigEditor.vue';
 	import Dropdown from '../components/utils/Dropdown.vue';
@@ -120,18 +110,6 @@
 					paramName: 'displayCategories',
 					type: 'boolean',
 					description: this.$t('display-categories-description')
-				},
-				{
-					param: this.$t('logging'),
-					paramName: 'sentryInstalled',
-					type: 'boolean',
-					description: this.$t('logging-description')
-				},
-				{
-					param: this.$t('reporting'),
-					paramName: 'sentryReporting',
-					type: 'boolean',
-					description: this.$t('reporting-description')
 				}
 			];
 
@@ -146,30 +124,17 @@
 					nicknames: this.$store.getters['settings/nicknames'],
 					gameName: this.$store.getters['settings/gameName'],
 					favButtons: this.$store.getters['settings/favButtons'],
-					displayCategories: this.$store.getters['settings/displayCategories'],
-					sentryInstalled: this.$store.getters['settings/sentryInstalled'],
-					sentryReporting: this.$store.getters['settings/sentryReporting']
-				},
-				storedEvents: this.$sentry.storedEvents
+					displayCategories: this.$store.getters['settings/displayCategories']
+				}
 			};
 		},
 		computed: {
 			...mapGetters({
-				sentryInstalled: 'settings/sentryInstalled',
 				displayCategories: 'settings/displayCategories'
-			}),
-			storedEventsCount() {
-				return this.storedEvents.length;
-			}
+			})
 		},
 		methods: {
 			save() {
-				if (this.model.sentryInstalled) this.$sentry.install(this.$store);
-				else this.$sentry.destroy();
-
-				if (this.model.sentryReporting) this.$sentry.enableReporting();
-				else this.$sentry.disableReporting();
-
 				this.$store.dispatch('settings/setDefaultView', this.model.defaultView);
 				this.$store.dispatch('settings/setNotificationPosition', this.model.notificationPosition);
 				this.$store.dispatch('settings/setNotifyRelease', this.model.notifyRelease);
@@ -178,8 +143,6 @@
 				this.$store.dispatch('settings/setGameName', this.model.gameName);
 				this.$store.dispatch('settings/setFavButtons', this.model.favButtons);
 				this.$store.dispatch('settings/setDisplayCategories', this.model.displayCategories);
-				this.$store.dispatch('settings/setSentryInstalled', this.model.sentryInstalled);
-				this.$store.dispatch('settings/setSentryReporting', this.model.sentryReporting);
 
 				this.$snotify.setDefaults({
 					toast: {
@@ -188,15 +151,6 @@
 				});
 
 				this.$success(this.$t('settings-saved'));
-			},
-			copyStoredEvents() {
-				if (!this.storedEventsCount) return;
-				copy(JSON.stringify(this.$sentry.storedEvents));
-				this.$info(this.$t('log-copied'));
-			},
-			captureSnapshot() {
-				this.$sentry.captureSnapshot();
-				this.$info(this.$t('snapshot-captured'));
 			}
 		}
 	};

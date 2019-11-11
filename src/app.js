@@ -8,13 +8,11 @@ import i18n from './plugins/i18n';
 import Notifications from './plugins/notifications';
 import Icons from './plugins/icons';
 import http, { NotificationError } from './plugins/http';
-import sentry from './plugins/sentry';
 
 Vue.use(Notifications);
 Vue.use(Icons);
 Vue.use(i18n, store);
 Vue.use(http);
-Vue.use(sentry);
 
 const app = new Vue({
 	el: '#app',
