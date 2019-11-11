@@ -22,13 +22,16 @@ jobs:
 
             mkdir -p /tmp/artifacts
 
-            compressionArgs="-mx=1"
+            compressionArgs="-1"
 
             if [ -n "${CIRCLE_TAG-}" ]; then
-                compressionArgs="-mx=9 -mpass=15 -mfb=258"
+                compressionArgs="-9"
             fi
 
-            7z a -bd -tzip -mm=Deflate $compressionArgs "/tmp/artifacts/ASF-ui.zip" "${CIRCLE_WORKING_DIRECTORY}/dist/*"
+            (
+                cd "${CIRCLE_WORKING_DIRECTORY}/dist"
+                zip -r $compressionArgs "/tmp/artifacts/ASF-ui.zip" .
+            )
       - store_artifacts:
           path: /tmp/artifacts
 
@@ -61,4 +64,4 @@ workflows:
     jobs:
       - linux
 #      - osx
-      - windows
+#      - windows
