@@ -72,7 +72,10 @@
 				try { rawReleases.push(await this.$http.get('www/github/release')); } catch (err) {}
 
 				if (!rawReleases[0].Stable) { // If the latest release is not stable, try fetching latest stable
-				  try { rawReleases.push(await this.$http.get('www/github/release/latest')); } catch (err) {}
+				  try {
+				    const release = await this.$http.get('www/github/release/latest');
+				    if (release.Version !== rawReleases[0].Version) rawReleases.push(release)
+					} catch (err) {}
         }
 
 				if (!rawReleases.find(release => release.version === this.version)) { // If the release list doesn't include our version, try fetching it explicitly
