@@ -17,11 +17,10 @@ jobs:
           command: npm run-script build:ci --no-progress
       - run:
           name: Create artifacts
-          shell: /usr/bin/env sh
           command: |
             set -eu
 
-            mkdir -p /tmp/artifacts
+            mkdir -p "~/artifacts"
 
             compressionArgs="-1"
 
@@ -31,10 +30,10 @@ jobs:
 
             (
                 cd "dist"
-                zip -r $compressionArgs "/tmp/artifacts/ASF-ui.zip" .
+                zip -r $compressionArgs "~/artifacts/ASF-ui.zip" .
             )
       - store_artifacts:
-          path: /tmp/artifacts
+          path: ~/artifacts
 
   osx:
     macos:
@@ -49,11 +48,10 @@ jobs:
           command: npm run-script build:ci --no-progress
       - run:
           name: Create artifacts
-          shell: /usr/bin/env sh
           command: |
             set -eu
 
-            mkdir -p /tmp/artifacts
+            mkdir -p "~/artifacts"
 
             compressionArgs="-1"
 
@@ -63,10 +61,10 @@ jobs:
 
             (
                 cd "dist"
-                zip -r $compressionArgs "/tmp/artifacts/ASF-ui.zip" .
+                zip -r $compressionArgs "~/artifacts/ASF-ui.zip" .
             )
       - store_artifacts:
-          path: /tmp/artifacts
+          path: ~/artifacts
 
   windows:
     executor: windows/default
@@ -81,7 +79,7 @@ jobs:
       - run:
           name: Create artifacts
           command: |
-            New-Item -ItemType Directory -Path "C:\tmp\artifacts"
+            New-Item -ItemType Directory -Path '~\artifacts'
 
             $compressionLevel = 'Fastest'
 
@@ -89,9 +87,9 @@ jobs:
                 $compressionLevel = 'Optimal'
             }
 
-            Compress-Archive -Path 'dist\*' -CompressionLevel "$compressionLevel" -DestinationPath 'C:\tmp\artifacts\ASF-ui.zip'
+            Compress-Archive -Path 'dist\*' -CompressionLevel "$compressionLevel" -DestinationPath '~\artifacts\ASF-ui.zip'
       - store_artifacts:
-          path: C:\tmp\artifacts
+          path: ~\artifacts
 
 workflows:
   version: 2
