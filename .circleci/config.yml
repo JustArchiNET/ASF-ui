@@ -1,0 +1,35 @@
+version: 2.1
+
+orbs:
+  windows: circleci/windows@2.2.0
+
+jobs:
+  linux:
+    docker:
+      - image: circleci/node:lts
+    steps:
+      - checkout
+      - run:
+          name: Install npm modules
+          command: npm ci --no-progress
+      - run:
+          name: Build npm project
+          command: npm run-script build:ci --no-progress
+
+  windows:
+    executor: windows
+    steps:
+      - checkout
+      - run:
+          name: Install npm modules
+          command: npm ci --no-progress
+      - run:
+          name: Build npm project
+          command: npm run-script build:ci --no-progress
+
+workflows:
+  version: 2
+  ci:
+    jobs:
+      - linux
+      - windows
