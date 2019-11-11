@@ -68,26 +68,26 @@
 					if (version === this.version && timestamp > Date.now() - 24 * 60 * 60 * 1000) return releases;
 				}
 
-				const releases = await this.fetchReleases()
+				const releases = await this.fetchReleases();
 				storage.set('cache:releases', { timestamp: Date.now(), releases, version: this.version });
 				return releases;
 			},
 			async fetchReleases () {
-			  const releases = []
+				const releases = [];
 
-			  releases.push(await this.fetchRelease()); // Fetch latest release
-			  if (!releases[0] || !releases[0].stable) releases.push(await this.fetchRelease('latest')); // If the latest releases is not stable, fetch latest stable release
-			  if (!releases.some(release => release.version === this.version)) releases.push(await this.fetchRelease(this.version)); // If current version is neither latest nor latest stable, fetch it
+				releases.push(await this.fetchRelease()); // Fetch latest release
+				if (!releases[0] || !releases[0].stable) releases.push(await this.fetchRelease('latest')); // If the latest releases is not stable, fetch latest stable release
+				if (!releases.some(release => release.version === this.version)) releases.push(await this.fetchRelease(this.version)); // If current version is neither latest nor latest stable, fetch it
 
-			  return releases
+				return releases
 					.filter((value, index) => !!value && releases.findIndex(release => release.version === value.version) === index) // Clean the list in case any of the fetches failed, remove any duplicates
-					.sort((lhs, rhs) => compareVersion(rhs.version, lhs.version)) // Order the releases descending by version
+					.sort((lhs, rhs) => compareVersion(rhs.version, lhs.version)); // Order the releases descending by version
 			},
 			async fetchRelease (version = '') {
-			  try {
-          const release = await this.$http.get(`www/github/release/${version}`);
-          const publishedAt = new Date(release.ReleasedAt);
-          return { changelog: release.ChangelogHTML, stable: release.Stable, version: release.Version, publishedAt }
+				try {
+					const release = await this.$http.get(`www/github/release/${version}`);
+					const publishedAt = new Date(release.ReleasedAt);
+					return { changelog: release.ChangelogHTML, stable: release.Stable, version: release.Version, publishedAt };
 				} catch (err) {}
 			}
 		},
