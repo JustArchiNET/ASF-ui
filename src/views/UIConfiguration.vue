@@ -5,11 +5,7 @@
 			<config-editor v-else :fields="fields" :model="model"></config-editor>
 
 			<div class="form-item">
-				<div class="form-item__buttons">
-					<button class="button button--confirm" @click="save">
-						{{ $t('save') }}
-					</button>
-				</div>
+				<button class="button button--confirm" @click="save">{{ $t('save') }}</button>
 			</div>
 		</div>
 	</main>

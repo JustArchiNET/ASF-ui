@@ -272,15 +272,6 @@
 	}
 }
 
-.button--disabled {
-	background: var(--color-text-disabled);
-	cursor: not-allowed;
-
-	&:hover, &.button--active {
-		background: var(--color-text-disabled);
-	}
-}
-
 .button--link {
 	background: transparent;
 	color: var(--color-theme);

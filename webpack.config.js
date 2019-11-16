@@ -99,7 +99,6 @@ module.exports = async (env, argv) => {
 			new DefinePlugin({
 				APP_VERSION: JSON.stringify(await getVersion()),
 				APP_RELEASE: JSON.stringify(process.env.npm_package_version),
-				SENTRY_DSN: JSON.stringify('https://e93b07e78df747708403e423ebc5e97e@sentry.io/1312571'),
 				APP_DEBUG: JSON.stringify(!isProd)
 			})
 		],
