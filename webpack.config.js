@@ -11,19 +11,6 @@ const WebpackBeforeBuildPlugin = require('before-build-webpack');
 
 const generateFlags = require('./scripts/generateFlags');
 
-async function getGitCommitHash() {
-	return new Promise((resolve, reject) => {
-		exec('git rev-parse HEAD', (err, out) => {
-			if (err) return reject(err);
-			return resolve(out.trim());
-		});
-	});
-}
-
-async function getVersion() {
-	return getGitCommitHash().catch(err => 'no-git');
-}
-
 module.exports = async (env, argv) => {
 	const isProd = env === 'production';
 	const isDeploy = !!argv.deploy;
@@ -97,9 +84,7 @@ module.exports = async (env, argv) => {
 			new VueLoaderPlugin(),
 			new CopyWebpackPlugin(['src/include']),
 			new DefinePlugin({
-				APP_VERSION: JSON.stringify(await getVersion()),
-				APP_RELEASE: JSON.stringify(process.env.npm_package_version),
-				APP_DEBUG: JSON.stringify(!isProd)
+				APP_RELEASE: JSON.stringify(process.env.npm_package_version)
 			})
 		],
 		optimization: {}
