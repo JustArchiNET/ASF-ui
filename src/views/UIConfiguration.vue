@@ -18,7 +18,6 @@
 <script>
 	import { mapGetters } from 'vuex';
 	import ConfigEditor from '../components/ConfigEditor.vue';
-	import Dropdown from '../components/utils/Dropdown.vue';
 
 	export default {
 		name: 'ui-configuration',
@@ -27,7 +26,7 @@
 				title: this.$t('ui-configuration')
 			};
 		},
-		components: { ConfigEditor, Dropdown },
+		components: { ConfigEditor },
 		data() {
 			const categories = [
 				{ name: this.$t('general'), fields: [this.$t('default-page'), this.$t('notification-position'), this.$t('notify-release')] },
