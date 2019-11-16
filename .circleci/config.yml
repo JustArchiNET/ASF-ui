@@ -1,0 +1,125 @@
+version: 2.1
+
+orbs:
+  windows: circleci/windows@2.2.0
+
+jobs:
+  linux:
+    docker:
+      - image: circleci/node:lts
+    steps:
+      - checkout
+      - run:
+          name: Sync git submodules
+          command: git submodule sync
+      - run:
+          name: Update git submodules
+          command: git submodule update --init --recursive
+      - run:
+          name: Install npm modules
+          command: npm ci --no-progress
+      - run:
+          name: Build npm project
+          command: npm run-script build:ci --no-progress
+      - run:
+          name: Create artifacts
+          command: |
+            set -eu
+
+            mkdir -p "${HOME}/artifacts"
+
+            compressionArgs="-1"
+
+            if [ -n "${CIRCLE_TAG-}" ]; then
+                compressionArgs="-9"
+            fi
+
+            (
+                cd "dist"
+                zip -r $compressionArgs "${HOME}/artifacts/ASF-ui.zip" .
+            )
+      - store_artifacts:
+          destination: "artifacts"
+          path: ~/artifacts
+
+  osx:
+    macos:
+      xcode: "11.2.0"
+    steps:
+      - checkout
+      - run:
+          name: Sync git submodules
+          command: git submodule sync
+      - run:
+          name: Update git submodules
+          command: git submodule update --init --recursive
+      - run:
+          name: Install npm modules
+          command: npm ci --no-progress
+      - run:
+          name: Build npm project
+          command: npm run-script build:ci --no-progress
+      - run:
+          name: Create artifacts
+          command: |
+            set -eu
+
+            mkdir -p "${HOME}/artifacts"
+
+            compressionArgs="-1"
+
+            if [ -n "${CIRCLE_TAG-}" ]; then
+                compressionArgs="-9"
+            fi
+
+            (
+                cd "dist"
+                zip -r $compressionArgs "${HOME}/artifacts/ASF-ui.zip" .
+            )
+      - store_artifacts:
+          destination: "artifacts"
+          path: ~/artifacts
+
+  windows:
+    executor: windows/default
+    steps:
+      - checkout
+      - run:
+          name: Sync git submodules
+          command: git submodule sync
+      - run:
+          name: Update git submodules
+          command: git submodule update --init --recursive
+      - run:
+          name: Install npm modules
+          command: npm ci --no-progress
+      - run:
+          name: Build npm project
+          command: npm run-script build:ci --no-progress
+      - run:
+          name: Create artifacts
+          command: |
+            Set-StrictMode -Version "Latest"
+            $ErrorActionPreference = "Stop"
+            $ProgressPreference = "SilentlyContinue"
+
+            New-Item -ItemType "Directory" -Path "~\artifacts"
+
+            $compressionLevel = "Fastest"
+
+            if ($env:CIRCLE_TAG) {
+                $compressionLevel = "Optimal"
+            }
+
+            Compress-Archive -Path "dist\*" -CompressionLevel "$compressionLevel" -DestinationPath "~\artifacts\ASF-ui.zip"
+      - store_artifacts:
+          destination: "artifacts"
+          path: ~\artifacts
+
+workflows:
+  version: 2
+  ci:
+    jobs:
+      - linux
+#      - osx
+      - windows
