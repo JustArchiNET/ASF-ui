@@ -33,8 +33,7 @@
 				{ name: this.$t('general'), fields: [this.$t('default-page'), this.$t('notification-position'), this.$t('notify-release')] },
 				{ name: this.$t('commands'), fields: [this.$t('timestamps')] },
 				{ name: this.$t('bots'), fields: [this.$t('bot-nicknames'), this.$t('bot-game-name'), this.$t('bot-fav-buttons')] },
-				{ name: this.$t('config'), fields: [this.$t('display-categories')] },
-				{ name: this.$t('debug'), fields: [this.$t('logging'), this.$t('reporting')] }
+				{ name: this.$t('config'), fields: [this.$t('display-categories')] }
 			];
 
 			const fields = [

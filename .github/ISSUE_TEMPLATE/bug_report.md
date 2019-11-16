@@ -22,9 +22,6 @@ labels: 'Bug'
 ## Current behavior
 <!-- A clear and concise description of what is currently happening. -->
 
-## Full snapshot
-<!-- Enable `Logging` in UI Configuration and capture a snapshot. -->
-
 ## Screenshots
 <!-- If applicable, add screenshots to help explain your problem. -->
 
