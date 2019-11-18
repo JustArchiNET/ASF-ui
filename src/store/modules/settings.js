@@ -8,8 +8,6 @@ export const state = {
 	gameName: false,
 	favButtons: 0,
 	displayCategories: true,
-	sentryInstalled: false,
-	sentryReporting: false,
 	selectedBots: [],
 	timestamps: false
 };
@@ -22,8 +20,6 @@ export const mutations = {
 	setGameName: (state, gameName) => state.gameName = gameName,
 	setFavButtons: (state, favButtons) => state.favButtons = favButtons,
 	setDisplayCategories: (state, displayCategories) => state.displayCategories = displayCategories,
-	setSentryInstalled: (state, sentryInstalled) => state.sentryInstalled = sentryInstalled,
-	setSentryReporting: (state, sentryReporting) => state.sentryReporting = sentryReporting,
 	setSelectedBots: (state, selectedBots) => state.selectedBots = selectedBots,
 	setTimestamps: (state, timestamps) => state.timestamps = timestamps
 };
@@ -37,8 +33,6 @@ export const actions = {
 		commit('setGameName', storage.get('settings:game-name', false));
 		commit('setFavButtons', storage.get('settings:fav-buttons', 0));
 		commit('setDisplayCategories', storage.get('settings:display-categories', true));
-		commit('setSentryInstalled', storage.get('settings:sentry-installed', false));
-		commit('setSentryReporting', storage.get('settings:sentry-reporting', false));
 		commit('setSelectedBots', storage.get('settings:selected-bots', []));
 		commit('setTimestamps', storage.get('settings:timestamps', false));
 	},
@@ -70,14 +64,6 @@ export const actions = {
 		storage.set('settings:display-categories', value);
 		commit('setDisplayCategories', value);
 	},
-	setSentryInstalled({ commit }, value) {
-		storage.set('settings:sentry-installed', value);
-		commit('setSentryInstalled', value);
-	},
-	setSentryReporting({ commit }, value) {
-		storage.set('settings:sentry-reporting', value);
-		commit('setSentryReporting', value);
-	},
 	setSelectedBots({ commit }, value) {
 		storage.set('settings:selected-bots', value);
 		commit('setSelectedBots', value);
@@ -96,8 +82,6 @@ export const getters = {
 	gameName: state => state.gameName,
 	favButtons: state => state.favButtons,
 	displayCategories: state => state.displayCategories,
-	sentryInstalled: state => state.sentryInstalled,
-	sentryReporting: state => state.sentryReporting,
 	selectedBots: state => state.selectedBots,
 	timestamps: state => state.timestamps
 };

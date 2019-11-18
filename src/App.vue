@@ -58,22 +58,7 @@
 				handler: value => {
 					document.body.style.overflowY = value.meta.modal ? 'hidden' : 'auto';
 				}
-			},
-			version: {
-				immediate: true,
-				handler(value) {
-					this.$sentry.setTag('asf.version', value);
-				}
-			},
-			buildVariant: {
-				immediate: true,
-				handler(value) {
-					this.$sentry.setTag('asf.buildVariant', value);
-				}
 			}
-		},
-		created() {
-			if (this.$store.getters['settings/sentryInstalled']) this.$sentry.install(this.$store);
 		},
 		mounted() {
 			window.addEventListener('resize', this.handleResize);
