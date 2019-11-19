@@ -3,10 +3,9 @@ const path = require('path');
 const { VueLoaderPlugin } = require('vue-loader');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
-const DefinePlugin = require('webpack').DefinePlugin;
-const exec = require('child_process').exec;
+const { DefinePlugin } = require('webpack');
 const WebpackBeforeBuildPlugin = require('before-build-webpack');
 
 const generateFlags = require('./scripts/generateFlags');
@@ -42,7 +41,7 @@ module.exports = async (env, argv) => {
 						loader: 'babel-loader',
 						options: {
 							presets: [
-								['@babel/preset-env', { 'targets': { 'browsers': ['> 1%', 'not ie <= 11'] }, 'modules': false }]
+								['@babel/preset-env', { targets: { browsers: ['> 1%', 'not ie <= 11'] }, modules: false }]
 							],
 							plugins: ['@babel/plugin-syntax-dynamic-import']
 						}
@@ -80,7 +79,7 @@ module.exports = async (env, argv) => {
 				generateFlags();
 				callback();
 			}),
-			new CleanWebpackPlugin(['dist']),
+			new CleanWebpackPlugin(),
 			new VueLoaderPlugin(),
 			new CopyWebpackPlugin(['src/include']),
 			new DefinePlugin({
