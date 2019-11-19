@@ -1,7 +1,7 @@
 const path = require('path');
 
 const { VueLoaderPlugin } = require('vue-loader');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin: CleanWP } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
@@ -79,7 +79,7 @@ module.exports = async (env, argv) => {
 				generateFlags();
 				callback();
 			}),
-			new CleanWebpackPlugin(),
+			new CleanWP(),
 			new VueLoaderPlugin(),
 			new CopyWebpackPlugin(['src/include']),
 			new DefinePlugin({
