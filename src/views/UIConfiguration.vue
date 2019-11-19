@@ -25,10 +25,9 @@
 		components: { ConfigEditor },
 		data() {
 			const categories = [
-				{ name: this.$t('general'), fields: [this.$t('default-page'), this.$t('notification-position'), this.$t('notify-release')] },
+				{ name: this.$t('general'), fields: [this.$t('default-page'), this.$t('notification-position'), this.$t('notify-release'), this.$t('display-categories')] },
 				{ name: this.$t('commands'), fields: [this.$t('timestamps')] },
-				{ name: this.$t('bots'), fields: [this.$t('bot-nicknames'), this.$t('bot-game-name'), this.$t('bot-fav-buttons')] },
-				{ name: this.$t('config'), fields: [this.$t('display-categories')] }
+				{ name: this.$t('bots'), fields: [this.$t('bot-nicknames'), this.$t('bot-game-name'), this.$t('bot-fav-buttons')] }
 			];
 
 			const fields = [
@@ -68,6 +67,12 @@
 					description: this.$t('notify-release-description')
 				},
 				{
+					param: this.$t('display-categories'),
+					paramName: 'displayCategories',
+					type: 'boolean',
+					description: this.$t('display-categories-description')
+				},
+				{
 					param: this.$t('timestamps'),
 					paramName: 'timestamps',
 					type: 'boolean',
@@ -98,12 +103,6 @@
 						[this.$t('bot-fav-buttons-pause')]: 1 << 3
 					},
 					description: this.$t('bot-fav-buttons-description')
-				},
-				{
-					param: this.$t('display-categories'),
-					paramName: 'displayCategories',
-					type: 'boolean',
-					description: this.$t('display-categories-description')
 				}
 			];
 
@@ -114,11 +113,11 @@
 					defaultView: this.$store.getters['settings/defaultView'],
 					notificationPosition: this.$store.getters['settings/notificationPosition'],
 					notifyRelease: this.$store.getters['settings/notifyRelease'],
+					displayCategories: this.$store.getters['settings/displayCategories'],
 					timestamps: this.$store.getters['settings/timestamps'],
 					nicknames: this.$store.getters['settings/nicknames'],
 					gameName: this.$store.getters['settings/gameName'],
-					favButtons: this.$store.getters['settings/favButtons'],
-					displayCategories: this.$store.getters['settings/displayCategories']
+					favButtons: this.$store.getters['settings/favButtons']
 				}
 			};
 		},
@@ -132,11 +131,11 @@
 				this.$store.dispatch('settings/setDefaultView', this.model.defaultView);
 				this.$store.dispatch('settings/setNotificationPosition', this.model.notificationPosition);
 				this.$store.dispatch('settings/setNotifyRelease', this.model.notifyRelease);
+				this.$store.dispatch('settings/setDisplayCategories', this.model.displayCategories);
 				this.$store.dispatch('settings/setTimestamps', this.model.timestamps);
 				this.$store.dispatch('settings/setNicknames', this.model.nicknames);
 				this.$store.dispatch('settings/setGameName', this.model.gameName);
 				this.$store.dispatch('settings/setFavButtons', this.model.favButtons);
-				this.$store.dispatch('settings/setDisplayCategories', this.model.displayCategories);
 
 				this.$snotify.setDefaults({
 					toast: {
