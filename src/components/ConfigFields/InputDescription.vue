@@ -55,4 +55,12 @@
 	.form-item__description-enter-active, .form-item__description-leave-active {
 		transition: height .25s, opacity .25s;
 	}
+
+	.form-item__description-content {
+		display: block;
+		margin-block-start: 1em;
+		margin-block-end: 1em;
+		margin-inline-start: 0px;
+		margin-inline-end: 0px;
+	}
 </style>
