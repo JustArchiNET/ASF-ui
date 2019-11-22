@@ -29,7 +29,8 @@ export const state = {
 	buildVariant: null,
 	version: null,
 	uptime: '0s',
-	updateChannel: 1
+	updateChannel: 1,
+	steamOwnerID: 0
 };
 
 export const mutations = {
@@ -44,7 +45,8 @@ export const mutations = {
 		const timeDiff = Date.now() - state.startTime.getTime();
 		state.uptime = timeDiff > 0 ? humanizer(timeDiff) : Vue.i18n.translate('error');
 	},
-	updateUpdateChannel: (state, updateChannel) => state.updateChannel = updateChannel
+	updateUpdateChannel: (state, updateChannel) => state.updateChannel = updateChannel,
+	updateSteamOwnerID: (state, steamOwnerID) => state.steamOwnerID = steamOwnerID,
 };
 
 export const actions = {
@@ -60,13 +62,19 @@ export const actions = {
 
 		try {
 			const response = await http.get('asf');
+			const steamOwnerID = response.GlobalConfig.s_SteamOwnerID;
 			commit('updateMemoryUsage', response.MemoryUsage);
 			commit('updateStartTime', new Date(response.ProcessStartTime));
 			commit('updateVersion', response.Version);
 			commit('updateBuildVariant', response.BuildVariant);
 			commit('calculateUptime');
 			commit('updateUpdateChannel', response.GlobalConfig.UpdateChannel);
+			commit('updateSteamOwnerID', (!steamOwnerID) ? 0 : steamOwnerID);
 		} catch (err) {}
+	},
+	getSteamOwnerID: async ({ dispatch, getters }) => {
+		await dispatch('update');
+		return getters.steamOwnerID;
 	}
 };
 
@@ -76,5 +84,6 @@ export const getters = {
 	version: state => state.version,
 	buildVariant: state => state.buildVariant,
 	startTime: state => state.startTime,
-	updateChannel: state => state.updateChannel
+	updateChannel: state => state.updateChannel,
+	steamOwnerID: state => state.steamOwnerID
 };

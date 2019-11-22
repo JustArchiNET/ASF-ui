@@ -153,6 +153,8 @@
 	"updates": "Updates",
 	"welcome": "Welcome",
 	"welcome-message": "Welcome to ASF-ui, standalone interface for ASF.",
-	"welcome-message-bots": "It looks like this might be the first time you are using ASF-ui, since you haven't set up any bots yet.",
+	"welcome-message-first-time": "It looks like this might be the first time you are using ASF-ui.",
+	"welcome-message-no-bots": "No bots were detected.",
+	"welcome-message-no-id": "SteamOwnerID is not set.",
 	"wiki": "Wiki"
 }

@@ -23,6 +23,11 @@ export default [
 			const validated = await store.dispatch('auth/validate');
 			const firstTime = storage.get('first-time', true);
 			const botsDetected = await store.dispatch('bots/detectBots');
+			const steamOwnerID = await store.dispatch('asf/getSteamOwnerID');
+
+			if (validated && firstTime && steamOwnerID === 0) {
+				return next({ name: 'global-config' });
+			}
 
 			if (validated && firstTime && !botsDetected) {
 				storage.set('first-time', false);
