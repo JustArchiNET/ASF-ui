@@ -22,7 +22,7 @@
 		"before-build-webpack": "^0.2.9",
 		"copy-webpack-plugin": "^5.0.5",
 		"css-loader": "^3.2.0",
-		"eslint": "^6.7.1",
+		"eslint": "^6.7.2",
 		"eslint-config-airbnb-base": "^14.0.0",
 		"eslint-plugin-import": "^2.18.2",
 		"eslint-plugin-vue": "^6.0.1",
