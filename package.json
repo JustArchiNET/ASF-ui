@@ -15,7 +15,7 @@
 	"author": "Reimu",
 	"private": true,
 	"devDependencies": {
-		"@babel/core": "^7.7.4",
+		"@babel/core": "^7.7.5",
 		"@babel/plugin-syntax-dynamic-import": "^7.7.4",
 		"@babel/preset-env": "^7.7.4",
 		"babel-loader": "^8.0.6",
