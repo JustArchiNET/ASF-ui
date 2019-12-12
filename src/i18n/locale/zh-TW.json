@@ -77,7 +77,7 @@
 	"farming-info-games": "剩餘遊戲",
 	"farming-info-time": "剩餘時間",
 	"general": "常規",
-	"global-config": "全域設定",
+	"global-config": "全域設定檔",
 	"info": "資訊",
 	"input-all-selected": "已選定所有的值",
 	"input-unknown-type": "未知的檔案類型",
@@ -100,7 +100,7 @@
 	"notification-position-right-bottom": "底部居右",
 	"notification-position-right-top": "頂部居右",
 	"notify-release": "新版本更新通知",
-	"notify-release-description": "當一個新版本可用時通知我（取決於全域設定內<code>UpdateChannel</code>的設定內容）。",
+	"notify-release-description": "當一個新版本可用時通知我（取決於全域設定檔內<code>UpdateChannel</code>的設定內容）。",
 	"other": "其他",
 	"password": "密碼",
 	"password-invalid": "密碼錯誤！",
@@ -153,6 +153,6 @@
 	"updates": "更新",
 	"welcome": "歡迎",
 	"welcome-message": "歡迎使用 ASF-ui，一個獨立的 ASF 使用者介面。",
-	"welcome-message-bots": "看起來這是您第一次使用 ASF-ui，因為您還沒有設定任何 BOT 。",
+	"welcome-message-bots": "看起來這是您第一次使用 ASF-ui，因為您還沒有設定任何 BOT。",
 	"wiki": "Wiki"
 }
