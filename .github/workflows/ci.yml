@@ -1,0 +1,48 @@
+name: ASF-ui CI
+
+on: [push, pull_request]
+
+env:
+  GITHUB_JOBS: 2 # 2-core CPU, without HT: https://help.github.com/en/actions/automating-your-workflow-with-github-actions/virtual-environments-for-github-hosted-runners#supported-runners-and-hardware-resources
+  NODE_JS_VERSION: 12.x
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Sync git submodules
+      run: git submodule sync --recursive
+
+    - name: Update git submodules
+      run: git submodule update -j ${{ env.GITHUB_JOBS }} --init --recursive
+
+    - name: Setup Node.js with npm
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ env.NODE_JS_VERSION }}
+
+    - name: Verify Node.js
+      run: node -v
+
+    - name: Verify npm
+      run: npm -v
+
+    - name: Install npm modules for ASF-ui
+      run: npm ci --no-progress
+
+    - name: Build ASF-ui
+      run: npm run-script build:ci --no-progress
+
+    - name: Upload ASF-ui
+      uses: actions/upload-artifact@v1
+      with:
+        name: ${{ matrix.os }}_ASF-ui
+        path: dist
