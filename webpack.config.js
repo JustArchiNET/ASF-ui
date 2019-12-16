@@ -8,6 +8,7 @@ const TerserWebpackPlugin = require('terser-webpack-plugin');
 const { DefinePlugin } = require('webpack');
 const WebpackBeforeBuildPlugin = require('before-build-webpack');
 
+const gitCommitHash = require('child_process').execSync('git rev-parse HEAD').toString();
 const generateFlags = require('./scripts/generateFlags');
 
 module.exports = async (env, argv) => {
@@ -83,7 +84,7 @@ module.exports = async (env, argv) => {
 			new VueLoaderPlugin(),
 			new CopyWebpackPlugin(['src/include']),
 			new DefinePlugin({
-				APP_RELEASE: JSON.stringify(process.env.npm_package_version)
+				APP_RELEASE: JSON.stringify(gitCommitHash)
 			})
 		],
 		optimization: {}

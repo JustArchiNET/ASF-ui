@@ -7,8 +7,7 @@
 		</div>
 
 		<div class="footer__statistics">
-			<footer-statistic :name="$t('ui')" :value="uiVersion" :notify="uiReleaseAvailable" :to="uiReleaseUrl"></footer-statistic>
-			<footer-statistic v-if="authenticated" name="ASF" :value="asfVersionString" :notify="asfReleaseAvailable" :to="asfReleaseUrl"></footer-statistic>
+			<footer-statistic v-if="authenticated" name="ASF" :title="uiRelease" :value="asfVersionString" :notify="asfReleaseAvailable"></footer-statistic>
 		</div>
 	</footer>
 </template>
@@ -26,7 +25,8 @@
 		components: { FooterLink, FooterStatistic },
 		data() {
 			return {
-				uiVersion: ui.version,
+				uiRelease: ui.release,
+				uiReleaseShort: ui.release.slice(0, 7),
 				uiReleaseAvailable: false,
 				asfReleaseAvailable: false
 			};
@@ -39,15 +39,11 @@
 				notifyRelease: 'settings/notifyRelease'
 			}),
 			asfVersionString() {
-				return `${this.asfVersion} - ${this.buildVariant}`;
+				return `${this.asfVersion} - ${this.buildVariant} - ${this.uiReleaseShort}`;
 			},
 			asfReleaseUrl() {
 				const version = this.asfReleaseAvailable ? get('version-latest-ArchiSteamFarm') : this.asfVersion;
 				return `https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${version}`;
-			},
-			uiReleaseUrl() {
-				const version = this.uiReleaseAvailable ? get('version-latest-ASF-ui') : this.uiVersion;
-				return `https://github.com/JustArchiNET/ASF-ui/releases/tag/${version}`;
 			}
 		},
 		async mounted() {
@@ -57,7 +53,6 @@
 		methods: {
 			async getNewVersions() {
 				try {
-					this.uiReleaseAvailable = await newReleaseAvailable('ASF-ui', this.uiVersion);
 					this.asfReleaseAvailable = await newReleaseAvailable('ArchiSteamFarm', this.asfVersion);
 				} catch (err) {
 					if (err.message === 'HTTP Error 504') return;
