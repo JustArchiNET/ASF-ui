@@ -7,7 +7,11 @@
 		</div>
 
 		<div class="footer__statistics">
-			<footer-statistic v-if="authenticated" name="ASF" :title="uiRelease" :value="asfVersionString" :notify="asfReleaseAvailable"></footer-statistic>
+			<div v-if="authenticated" class="footer__statistic">
+				<font-awesome-icon class="footer__statistic-value--notify" :title="$t('update-available')" icon="exclamation" size="sm">{{ $t('update-available') }}</font-awesome-icon>
+				<span class="footer__statistic-name">ASF</span>
+				<span class="footer__statistic-value">{{ asfVersionString }}</span>
+			</div>
 		</div>
 	</footer>
 </template>
@@ -15,14 +19,13 @@
 <script>
 	import { mapGetters } from 'vuex';
 	import FooterLink from './FooterLink.vue';
-	import FooterStatistic from './FooterStatistic.vue';
 	import { ui, newReleaseAvailable } from '../utils/ui';
 	import delay from '../utils/delay';
 	import { get } from '../utils/storage';
 
 	export default {
 		name: 'app-footer',
-		components: { FooterLink, FooterStatistic },
+		components: { FooterLink },
 		data() {
 			return {
 				uiRelease: ui.release,
@@ -85,5 +88,23 @@
 	.footer__statistics {
 		margin-left: auto;
 		text-align: center;
+	}
+
+	.footer__statistic {
+		color: var(--color-text-dark);
+		padding: 0 0.5em;
+
+		@media screen and (max-width: 530px) {
+			padding: 0 0.2em;
+		}
+	}
+
+	.footer__statistic-name {
+		color: var(--color-theme);
+		font-weight: 700;
+	}
+
+	.footer__statistic-value--notify {
+		color: #ffa500;
 	}
 </style>
