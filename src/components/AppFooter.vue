@@ -6,12 +6,10 @@
 			<footer-link v-if="authenticated" :name="$t('changelog')" icon="calendar-check" :to="asfReleaseUrl"></footer-link>
 		</div>
 
-		<div class="footer__statistics">
-			<div v-if="authenticated" class="footer__statistic">
-				<font-awesome-icon class="footer__statistic-value--notify" :title="$t('update-available')" icon="exclamation" size="sm">{{ $t('update-available') }}</font-awesome-icon>
-				<span class="footer__statistic-name">ASF</span>
-				<span class="footer__statistic-value">{{ asfVersionString }}</span>
-			</div>
+		<div v-if="authenticated" class="footer__statistic">
+			<font-awesome-icon v-if="asfReleaseAvailable" class="footer__statistic-notify" :title="$t('update-available')" icon="exclamation" size="sm"></font-awesome-icon>
+			<span class="footer__statistic-name">ASF</span>
+			<span class="footer__statistic-value" :title="uiRelease">{{ asfVersionString }}</span>
 		</div>
 	</footer>
 </template>
@@ -85,18 +83,9 @@
 		height: 100%;
 	}
 
-	.footer__statistics {
+	.footer__statistic {
 		margin-left: auto;
 		text-align: center;
-	}
-
-	.footer__statistic {
-		color: var(--color-text-dark);
-		padding: 0 0.5em;
-
-		@media screen and (max-width: 530px) {
-			padding: 0 0.2em;
-		}
 	}
 
 	.footer__statistic-name {
@@ -104,7 +93,8 @@
 		font-weight: 700;
 	}
 
-	.footer__statistic-value--notify {
+	.footer__statistic-notify {
 		color: #ffa500;
+		padding-right: 0.2em;
 	}
 </style>
