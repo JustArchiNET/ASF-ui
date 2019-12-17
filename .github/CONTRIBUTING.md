@@ -17,7 +17,7 @@ Before creating bug reports, please check [this list](#before-submitting-a-bug-r
 #### Before submitting a bug report
 
 * Clear the cache of your browser.
-* Check if you can reproduce the problem [in the latest version of ASF-ui](https://github.com/JustArchiNET/ASF-ui/releases/latest).
+* Check if you can reproduce the problem [in the latest version of ASF](https://github.com/JustArchiNET/ArchiSteamFarm/releases/latest).
 * Check if your problem has already been [reported](https://github.com/JustArchiNET/ASF-ui/issues). If it has **and the issue is still open**, add a comment to the existing issue instead of opening a new one.
 
 #### How do I submit a (good) bug report?
@@ -33,8 +33,8 @@ Bugs are tracked as [GitHub issues](https://guides.github.com/features/issues/).
 
 Provide more context by answering these questions:
 
-* **Did the problem start happening recently** (e.g. after updating to a new version of ASF-ui) or was this always a problem?
-* If the problem started happening recently, **can you reproduce the problem in an older version of ASF-ui?** What's the most recent version in which the problem doesn't happen? You can download older versions of ASF-ui from [the releases page](https://github.com/JustArchiNET/ASF-ui/releases).
+* **Did the problem start happening recently** (e.g. after updating to a new version of ASF) or was this always a problem?
+* If the problem started happening recently, **can you reproduce the problem in an older version of ASF?** What's the most recent version in which the problem doesn't happen? You can download older versions of ASF from [the releases page](https://github.com/JustArchiNET/ArchiSteamFarm/releases).
 * **Can you reliably reproduce the issue?** If not, provide details about how often the problem happens and under which conditions it normally happens.
 
 ## Feature Request
@@ -45,7 +45,7 @@ Before creating feature requests, please check [this list](#before-submitting-a-
 
 #### Before submitting a feature request
 
-* Check if you're using [the latest version of ASF-ui](https://github.com/JustArchiNET/ASF-ui/releases/latest). You might discover that the feature is already available.
+* Check if you're using [the latest version of ASF](https://github.com/JustArchiNET/ArchiSteamFarm/releases/latest). You might discover that the feature is already available.
 * Check if there's already [a pull request](https://github.com/JustArchiNET/ASF-ui/pulls) which provides that feature.
 * Check if your feature has already been [suggested](https://github.com/JustArchiNET/ASF-ui/issues). If it has, add a comment to the existing issue instead of opening a new one.
 
