@@ -152,40 +152,40 @@
 				if (!this.currentParameter) return;
 
 				switch (this.currentParameter.toLowerCase()) {
-				case '<bot>':
-				case '<bots>':
-				case '<targetbot>':
-					const suggestedBot = [...this.$store.getters['bots/bots'].map(bot => bot.name), 'ASF']
-						.find(name => name.startsWith(this.currentParameterValue));
+					case '<bot>':
+					case '<bots>':
+					case '<targetbot>':
+						const suggestedBot = [...this.$store.getters['bots/bots'].map(bot => bot.name), 'ASF']
+							.find(name => name.startsWith(this.currentParameterValue));
 
-					if (suggestedBot) return suggestedBot;
+						if (suggestedBot) return suggestedBot;
 
-					return [...this.$store.getters['bots/bots'].map(bot => bot.name), 'ASF']
-						.find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
-				case '<command>':
-					return this.commandsNames.find(name => name.startsWith(this.currentParameterValue));
-				case '<modes>':
-					if (this.selectedCommand === 'transfer') {
-						return ['All', 'Background', 'Booster', 'Card', 'Emoticon', 'Foil', 'Gems', 'Unknown']
+						return [...this.$store.getters['bots/bots'].map(bot => bot.name), 'ASF']
 							.find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
-					}
+					case '<command>':
+						return this.commandsNames.find(name => name.startsWith(this.currentParameterValue));
+					case '<modes>':
+						if (this.selectedCommand === 'transfer') {
+							return ['All', 'Background', 'Booster', 'Card', 'Emoticon', 'Foil', 'Gems', 'Unknown']
+								.find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
+						}
 
-					if (this.selectedCommand === 'redeem^') {
-						return ['FD', 'FF', 'FKMD', 'SD', 'SF', 'SI', 'SKMG', 'V']
+						if (this.selectedCommand === 'redeem^') {
+							return ['FD', 'FF', 'FKMD', 'SD', 'SF', 'SI', 'SKMG', 'V']
+								.find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
+						}
+
+						return;
+					case '<type>':
+						if (this.selectedCommand !== 'input') return;
+
+						return ['DeviceID', 'Login', 'Password', 'SteamGuard', 'SteamParentalCode', 'TwoFactorAuthentication']
 							.find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
-					}
+					case '<settings>':
+						if (this.selectedCommand !== 'privacy') return;
 
-					return;
-				case '<type>':
-					if (this.selectedCommand !== 'input') return;
-
-					return ['DeviceID', 'Login', 'Password', 'SteamGuard', 'SteamParentalCode', 'TwoFactorAuthentication']
-						.find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
-				case '<settings>':
-					if (this.selectedCommand !== 'privacy') return;
-
-					return ['Private', 'FriendsOnly', 'Public']
-						.find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
+						return ['Private', 'FriendsOnly', 'Public']
+							.find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
 				}
 			},
 			selectedCommand() {
@@ -233,11 +233,11 @@
 			},
 			async executeCommand(commandToExecute) {
 				switch (commandToExecute.split(' ')[0]) {
-				case 'commands':
-					return this.$t('terminal-available-commands', { commands: this.commandsNames.join(', ') });
-				case 'help':
-					if (commandToExecute.split(' ')[1]) return this.commandHelp(commandToExecute.split(' ')[1]);
-					return this.$t('terminal-help-text');
+					case 'commands':
+						return this.$t('terminal-available-commands', { commands: this.commandsNames.join(', ') });
+					case 'help':
+						if (commandToExecute.split(' ')[1]) return this.commandHelp(commandToExecute.split(' ')[1]);
+						return this.$t('terminal-help-text');
 				}
 
 				return this.$http.command(commandToExecute);

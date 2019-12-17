@@ -1,7 +1,7 @@
 <template>
 	<div class="bgr__input">
 		<div class="form-item">
-			<textarea v-model="userInput" class="form-item__textarea" cols="70" rows="15" ref="user-input" :placeholder="$t('bgr-keys-insert') + '\n\n' + $t('bgr-keys-insert-example')" spellcheck="false"></textarea>
+			<textarea ref="user-input" v-model="userInput" class="form-item__textarea" cols="70" rows="15" :placeholder="$t('bgr-keys-insert') + '\n\n' + $t('bgr-keys-insert-example')" spellcheck="false"></textarea>
 		</div>
 
 		<div class="form-item">

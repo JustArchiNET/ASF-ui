@@ -1,6 +1,6 @@
 {
 	"name": "ASF-ui",
-	"version": "1.0.9",
+	"version": "0.0.0",
 	"description": "Standalone web interface for ASF",
 	"scripts": {
 		"dev": "webpack --config webpack.config.js --env development --progress",
@@ -12,7 +12,6 @@
 		"start": "webpack-dev-server --hot --open --env development",
 		"generate-flags": "node scripts/generate-flags"
 	},
-	"author": "Reimu",
 	"private": true,
 	"devDependencies": {
 		"@babel/core": "^7.7.5",

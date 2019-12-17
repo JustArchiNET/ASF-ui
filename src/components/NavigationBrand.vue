@@ -72,7 +72,7 @@
 			async update() {
 				try {
 					this.$info(this.$t('update-check'));
-					const newVersionAvailable = await newReleaseAvailable('ArchiSteamFarm', this.version);
+					const newVersionAvailable = await newReleaseAvailable();
 					if (newVersionAvailable) this.$info(this.$t('update-trying'));
 					const response = await this.$http.post('asf/update');
 					this.brandMenu = false;

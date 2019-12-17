@@ -77,28 +77,28 @@
 		methods: {
 			componentFromField(field) {
 				switch (field.type) {
-				case 'string':
-				case 'uint64':
-					return InputString;
-				case 'boolean':
-					return InputBoolean;
-				case 'uint32':
-				case 'uint16':
-				case 'byte':
-					return InputNumber;
-				case 'flag':
-					return InputFlag;
-				case 'enum':
-					return InputEnum;
-				case 'hashSet':
-				case 'list':
-					if (['enum'].includes(field.values.type)) return field.type === 'list' ? InputList : InputSet;
-					if (['byte', 'uint16', 'uint32', 'uint64', 'string'].includes(field.values.type)) return InputTag;
-					return InputUnknown;
-				case 'dictionary':
-					return InputDictionary;
-				default:
-					return InputUnknown;
+					case 'string':
+					case 'uint64':
+						return InputString;
+					case 'boolean':
+						return InputBoolean;
+					case 'uint32':
+					case 'uint16':
+					case 'byte':
+						return InputNumber;
+					case 'flag':
+						return InputFlag;
+					case 'enum':
+						return InputEnum;
+					case 'hashSet':
+					case 'list':
+						if (['enum'].includes(field.values.type)) return field.type === 'list' ? InputList : InputSet;
+						if (['byte', 'uint16', 'uint32', 'uint64', 'string'].includes(field.values.type)) return InputTag;
+						return InputUnknown;
+					case 'dictionary':
+						return InputDictionary;
+					default:
+						return InputUnknown;
 				}
 			},
 			updateModel(value, field) {
@@ -117,19 +117,19 @@
 				if (typeof a !== typeof b) return false;
 
 				switch (type) {
-				case 'uint32':
-				case 'byte':
-				case 'uint16':
-				case 'uint64':
-				case 'string':
-				case 'boolean':
-					return a === b;
-				case 'hashSet':
-					return a.length === b.length && a.every(item => b.includes(item));
-				case 'list':
-					return a.length === b.length && a.every((item, index) => item === b[index]);
-				case 'dictionary':
-					return Object.keys(a).length === Object.keys(b).length && Object.keys(a).every(key => a[key] === b[key]);
+					case 'uint32':
+					case 'byte':
+					case 'uint16':
+					case 'uint64':
+					case 'string':
+					case 'boolean':
+						return a === b;
+					case 'hashSet':
+						return a.length === b.length && a.every(item => b.includes(item));
+					case 'list':
+						return a.length === b.length && a.every((item, index) => item === b[index]);
+					case 'dictionary':
+						return Object.keys(a).length === Object.keys(b).length && Object.keys(a).every(key => a[key] === b[key]);
 				}
 
 				return false;

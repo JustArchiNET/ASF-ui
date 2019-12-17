@@ -72,7 +72,7 @@
 				storage.set('cache:releases', { timestamp: Date.now(), releases, version: this.version });
 				return releases;
 			},
-			async fetchReleases () {
+			async fetchReleases() {
 				const releases = [];
 
 				releases.push(await this.fetchRelease()); // Fetch latest release
@@ -83,14 +83,19 @@
 					.filter((value, index) => !!value && releases.findIndex(release => release.version === value.version) === index) // Clean the list in case any of the fetches failed, remove any duplicates
 					.sort((lhs, rhs) => compareVersion(rhs.version, lhs.version)); // Order the releases descending by version
 			},
-			async fetchRelease (version = '') {
+			async fetchRelease(version = '') {
 				try {
 					const release = await this.$http.get(`www/github/release/${version}`);
 					const publishedAt = new Date(release.ReleasedAt);
-					return { changelog: release.ChangelogHTML, stable: release.Stable, version: release.Version, publishedAt };
+					return {
+						changelog: release.ChangelogHTML,
+						stable: release.Stable,
+						version: release.Version,
+						publishedAt
+					};
 				} catch (err) {}
 			}
-		},
+		}
 	};
 </script>
 
