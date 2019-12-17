@@ -84,7 +84,7 @@ module.exports = async (env, argv) => {
 			new VueLoaderPlugin(),
 			new CopyWebpackPlugin(['src/include']),
 			new DefinePlugin({
-				APP_RELEASE: JSON.stringify(gitCommitHash)
+				APP_HASH: JSON.stringify(gitCommitHash)
 			})
 		],
 		optimization: {}

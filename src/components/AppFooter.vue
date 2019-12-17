@@ -9,7 +9,7 @@
 		<div v-if="authenticated" class="footer__statistic">
 			<font-awesome-icon v-if="releaseAvailable" class="footer__statistic-notify" :title="$t('update-available')" icon="exclamation" size="sm"></font-awesome-icon>
 			<span class="footer__statistic-name">ASF</span>
-			<span class="footer__statistic-value" :title="uiHashLong">{{ versionString }}</span>
+			<span class="footer__statistic-value">{{ versionString }}</span>
 		</div>
 	</footer>
 </template>
@@ -26,9 +26,8 @@
 		components: { FooterLink },
 		data() {
 			return {
-				uiHashLong: ui.release,
-				uiHash: ui.release.slice(0, 7),
-				releaseAvailable: false
+				releaseAvailable: false,
+				uiHash: ui.gitCommitHash.slice(0, 7)
 			};
 		},
 		computed: {
@@ -42,7 +41,7 @@
 				return `${this.version} - ${this.buildVariant} - ${this.uiHash}`;
 			},
 			releaseUrl() {
-				const v = this.releaseAvailable ? get('version-latest-ArchiSteamFarm') : this.version;
+				const v = this.releaseAvailable ? get('latest-release') : this.version;
 				return `https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${v}`;
 			}
 		},
