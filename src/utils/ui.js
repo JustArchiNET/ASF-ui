@@ -4,7 +4,7 @@ import { set } from './storage';
 
 export const ui = { release: APP_RELEASE };
 
-export async function newReleaseAvailable(version) {
+export async function newReleaseAvailable() {
 	const updateChannel = (asf.updateChannel === UPDATECHANNEL.EXPERIMENTAL) ? 'releases' : 'releases/latest';
 	const latestReleaseRaw = await http.post('www/send', { url: `https://api.github.com/repos/JustArchiNET/ArchiSteamFarm/${updateChannel}` });
 	const latestReleaseVersion = JSON.parse(latestReleaseRaw);
@@ -13,5 +13,5 @@ export async function newReleaseAvailable(version) {
 
 	const latestVersion = (asf.updateChannel === UPDATECHANNEL.EXPERIMENTAL) ? latestReleaseVersion[0].tag_name : latestReleaseVersion.tag_name;
 	set('version-latest-ArchiSteamFarm', latestVersion);
-	return (latestVersion > version);
+	return (latestVersion > asf.version);
 }

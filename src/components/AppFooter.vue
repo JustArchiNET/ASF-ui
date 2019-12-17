@@ -3,13 +3,13 @@
 		<div class="footer__links">
 			<footer-link name="GitHub" prefix="fab" icon="github" to="https://github.com/JustArchiNET"></footer-link>
 			<footer-link :name="$t('wiki')" icon="book" to="https://github.com/JustArchiNET/ArchiSteamFarm/wiki"></footer-link>
-			<footer-link v-if="authenticated" :name="$t('changelog')" icon="calendar-check" :to="asfReleaseUrl"></footer-link>
+			<footer-link v-if="authenticated" :name="$t('changelog')" icon="calendar-check" :to="releaseUrl"></footer-link>
 		</div>
 
 		<div v-if="authenticated" class="footer__statistic">
-			<font-awesome-icon v-if="asfReleaseAvailable" class="footer__statistic-notify" :title="$t('update-available')" icon="exclamation" size="sm"></font-awesome-icon>
+			<font-awesome-icon v-if="releaseAvailable" class="footer__statistic-notify" :title="$t('update-available')" icon="exclamation" size="sm"></font-awesome-icon>
 			<span class="footer__statistic-name">ASF</span>
-			<span class="footer__statistic-value" :title="uiRelease">{{ asfVersionString }}</span>
+			<span class="footer__statistic-value" :title="uiHashLong">{{ versionString }}</span>
 		</div>
 	</footer>
 </template>
@@ -26,35 +26,36 @@
 		components: { FooterLink },
 		data() {
 			return {
-				uiRelease: ui.release,
-				uiReleaseShort: ui.release.slice(0, 7),
-				uiReleaseAvailable: false,
-				asfReleaseAvailable: false
+				uiHashLong: ui.release,
+				uiHash: ui.release.slice(0, 7),
+				releaseAvailable: false
 			};
 		},
 		computed: {
 			...mapGetters({
 				authenticated: 'auth/authenticated',
-				asfVersion: 'asf/version',
+				version: 'asf/version',
 				buildVariant: 'asf/buildVariant',
 				notifyRelease: 'settings/notifyRelease'
 			}),
-			asfVersionString() {
-				return `${this.asfVersion} - ${this.buildVariant} - ${this.uiReleaseShort}`;
+			versionString() {
+				return `${this.version} - ${this.buildVariant} - ${this.uiHash}`;
 			},
-			asfReleaseUrl() {
-				const version = this.asfReleaseAvailable ? get('version-latest-ArchiSteamFarm') : this.asfVersion;
-				return `https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${version}`;
+			releaseUrl() {
+				const v = this.releaseAvailable ? get('version-latest-ArchiSteamFarm') : this.version;
+				return `https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${v}`;
 			}
 		},
 		async mounted() {
 			await delay(3000);
-			if (this.authenticated && this.notifyRelease) this.getNewVersions();
+			if (this.authenticated) this.checkForNewRelease();
 		},
 		methods: {
-			async getNewVersions() {
+			async checkForNewRelease() {
 				try {
-					this.asfReleaseAvailable = await newReleaseAvailable('ArchiSteamFarm', this.asfVersion);
+					const newVersionAvailable = await newReleaseAvailable();
+					if (newVersionAvailable && this.notifyRelease) this.$info(this.$t('update-available'));
+					this.releaseAvailable = newVersionAvailable;
 				} catch (err) {
 					if (err.message === 'HTTP Error 504') return;
 					this.$error(err.message);
