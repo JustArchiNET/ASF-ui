@@ -3,12 +3,13 @@
 		<div class="footer__links">
 			<footer-link name="GitHub" prefix="fab" icon="github" to="https://github.com/JustArchiNET"></footer-link>
 			<footer-link :name="$t('wiki')" icon="book" to="https://github.com/JustArchiNET/ArchiSteamFarm/wiki"></footer-link>
-			<footer-link v-if="authenticated" :name="$t('changelog')" icon="calendar-check" :to="asfReleaseUrl"></footer-link>
+			<footer-link v-if="authenticated" :name="$t('changelog')" icon="calendar-check" :to="releaseUrl"></footer-link>
 		</div>
 
-		<div class="footer__statistics">
-			<footer-statistic :name="$t('ui')" :value="uiVersion" :notify="uiReleaseAvailable" :to="uiReleaseUrl"></footer-statistic>
-			<footer-statistic v-if="authenticated" name="ASF" :value="asfVersionString" :notify="asfReleaseAvailable" :to="asfReleaseUrl"></footer-statistic>
+		<div v-if="authenticated" class="footer__statistic">
+			<font-awesome-icon v-if="releaseAvailable" class="footer__statistic-notify" :title="$t('update-available')" icon="exclamation" size="sm"></font-awesome-icon>
+			<span class="footer__statistic-name">ASF</span>
+			<span class="footer__statistic-value">{{ versionString }}</span>
 		</div>
 	</footer>
 </template>
@@ -16,49 +17,44 @@
 <script>
 	import { mapGetters } from 'vuex';
 	import FooterLink from './FooterLink.vue';
-	import FooterStatistic from './FooterStatistic.vue';
 	import { ui, newReleaseAvailable } from '../utils/ui';
 	import delay from '../utils/delay';
 	import { get } from '../utils/storage';
 
 	export default {
 		name: 'app-footer',
-		components: { FooterLink, FooterStatistic },
+		components: { FooterLink },
 		data() {
 			return {
-				uiVersion: ui.version,
-				uiReleaseAvailable: false,
-				asfReleaseAvailable: false
+				releaseAvailable: false,
+				uiHash: ui.gitCommitHash.slice(0, 7)
 			};
 		},
 		computed: {
 			...mapGetters({
 				authenticated: 'auth/authenticated',
-				asfVersion: 'asf/version',
+				version: 'asf/version',
 				buildVariant: 'asf/buildVariant',
 				notifyRelease: 'settings/notifyRelease'
 			}),
-			asfVersionString() {
-				return `${this.asfVersion} - ${this.buildVariant}`;
+			versionString() {
+				return `${this.version} - ${this.buildVariant} - ${this.uiHash}`;
 			},
-			asfReleaseUrl() {
-				const version = this.asfReleaseAvailable ? get('version-latest-ArchiSteamFarm') : this.asfVersion;
-				return `https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${version}`;
-			},
-			uiReleaseUrl() {
-				const version = this.uiReleaseAvailable ? get('version-latest-ASF-ui') : this.uiVersion;
-				return `https://github.com/JustArchiNET/ASF-ui/releases/tag/${version}`;
+			releaseUrl() {
+				const v = this.releaseAvailable ? get('latest-release') : this.version;
+				return `https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${v}`;
 			}
 		},
 		async mounted() {
 			await delay(3000);
-			if (this.authenticated && this.notifyRelease) this.getNewVersions();
+			if (this.authenticated) this.checkForNewRelease();
 		},
 		methods: {
-			async getNewVersions() {
+			async checkForNewRelease() {
 				try {
-					this.uiReleaseAvailable = await newReleaseAvailable('ASF-ui', this.uiVersion);
-					this.asfReleaseAvailable = await newReleaseAvailable('ArchiSteamFarm', this.asfVersion);
+					const newVersionAvailable = await newReleaseAvailable();
+					if (newVersionAvailable && this.notifyRelease) this.$info(this.$t('update-available'));
+					this.releaseAvailable = newVersionAvailable;
 				} catch (err) {
 					if (err.message === 'HTTP Error 504') return;
 					this.$error(err.message);
@@ -87,8 +83,18 @@
 		height: 100%;
 	}
 
-	.footer__statistics {
+	.footer__statistic {
 		margin-left: auto;
 		text-align: center;
+	}
+
+	.footer__statistic-name {
+		color: var(--color-theme);
+		font-weight: 700;
+	}
+
+	.footer__statistic-notify {
+		color: #ffa500;
+		padding-right: 0.2em;
 	}
 </style>
