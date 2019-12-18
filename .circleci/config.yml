@@ -11,7 +11,7 @@ jobs:
       - checkout
       - run:
           name: Sync git submodules
-          command: git submodule sync
+          command: git submodule sync --recursive
       - run:
           name: Update git submodules
           command: git submodule update --init --recursive
