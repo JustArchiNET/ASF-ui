@@ -8,7 +8,7 @@ const TerserWebpackPlugin = require('terser-webpack-plugin');
 const { DefinePlugin } = require('webpack');
 const WebpackBeforeBuildPlugin = require('before-build-webpack');
 
-const gitCommitHash = require('child_process').execSync('git rev-parse HEAD').toString();
+const gitCommitHash = require('child_process').execSync('if [ "(git --is-inside-work-tree)" ]; then git rev-parse --short HEAD; else echo "OutOfGit"; fi').toString();
 const generateFlags = require('./scripts/generateFlags');
 
 module.exports = async (env, argv) => {

@@ -27,7 +27,7 @@
 		data() {
 			return {
 				releaseAvailable: false,
-				uiHash: ui.gitCommitHash.slice(0, 7)
+				uiHash: ui.gitCommitHash
 			};
 		},
 		computed: {
