@@ -7,7 +7,6 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const { DefinePlugin } = require('webpack');
 const WebpackBeforeBuildPlugin = require('before-build-webpack');
-
 const { execSync } = require('child_process');
 
 let gitCommitHash;
@@ -15,7 +14,7 @@ let gitCommitHash;
 try {
 	gitCommitHash = execSync('git rev-parse --short HEAD').toString();
 } catch (err) {
-	gitCommitHash = 'OOOOOOO';
+	gitCommitHash = '0000000';
 }
 
 const generateFlags = require('./scripts/generateFlags');
