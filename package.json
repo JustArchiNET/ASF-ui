@@ -44,7 +44,7 @@
 		"@fortawesome/vue-fontawesome": "^0.1.9",
 		"axios": "^0.19.2",
 		"clean-webpack-plugin": "^3.0.0",
-		"copy-to-clipboard": "^3.2.0",
+		"copy-to-clipboard": "^3.2.1",
 		"flag-icon-css": "^3.4.5",
 		"flat": "^5.0.0",
 		"humanize-duration": "^3.21.0",
