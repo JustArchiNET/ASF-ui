@@ -43,7 +43,7 @@ jobs:
 
     - name: Upload ASF-ui
       continue-on-error: true
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v2
       with:
         name: ${{ matrix.os }}_ASF-ui
         path: dist
