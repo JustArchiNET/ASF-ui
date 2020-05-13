@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 env:
   GITHUB_JOBS: 2 # 2-core CPU, without HT: https://help.github.com/en/actions/automating-your-workflow-with-github-actions/virtual-environments-for-github-hosted-runners#supported-runners-and-hardware-resources
-  NODE_JS_VERSION: 12.x
+  NODE_JS_VERSION: 12
 
 jobs:
   build:
@@ -42,6 +42,7 @@ jobs:
       run: npm run-script build:ci --no-progress
 
     - name: Upload ASF-ui
+      continue-on-error: true
       uses: actions/upload-artifact@v1
       with:
         name: ${{ matrix.os }}_ASF-ui

@@ -26,6 +26,6 @@ matrix:
       dist: bionic
     # Ref: https://docs.travis-ci.com/user/reference/osx
     - os: osx
-      osx_image: xcode11.2
+      osx_image: xcode11.4
     # Ref: https://docs.travis-ci.com/user/reference/windows
     - os: windows
