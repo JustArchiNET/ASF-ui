@@ -93,7 +93,11 @@
 				return [
 					...this.asfCommands.filter(({ command }) => command !== 'help'),
 					{ command: 'commands', description: this.$t('terminal-commands') },
-					{ command: 'help <Command>', description: this.$t('terminal-help') }
+					{ command: 'help <Command>', description: this.$t('terminal-help') },
+					{ command: 'oa', description: this.$t('terminal-commands-oa') },
+					{ command: 'r', description: this.$t('terminal-command-r') },
+					{ command: 'r^', description: this.$t('terminal-command-r-mode') },
+					{ command: 'sa', description: this.$t('terminal-command-sa') }
 				];
 			},
 			commandsNames() {
@@ -270,6 +274,14 @@
 					const splitCurrentParameter = splitCommand[splitCommand.length - 1].split(',');
 
 					this.command = [...splitCommand.slice(0, -1), [...splitCurrentParameter.slice(0, -1), this.suggestedParameterValue].join(',')].join(' ');
+				} else if (this.command === 'oa') {
+					this.command = 'owns ASF';
+				} else if (this.command === 'sa') {
+					this.command = 'status ASF';
+				} else if (this.command === 'r') {
+					this.command = 'redeem';
+				} else if (this.command === 'r^') {
+					this.command = 'redeem^';
 				} else if (this.command === '') {
 					const tabPressTime = Date.now();
 					if (tabPressTime - this.lastTabPressTime <= 500) this.command = 'commands';
