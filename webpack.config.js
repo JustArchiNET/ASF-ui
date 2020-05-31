@@ -90,7 +90,11 @@ module.exports = async (env, argv) => {
 			}),
 			new CleanWP(),
 			new VueLoaderPlugin(),
-			new CopyWebpackPlugin(['src/include']),
+			new CopyWebpackPlugin({
+				patterns: [
+					{ from: '**/*', to: 'src/include' }
+				]
+			}),
 			new DefinePlugin({
 				APP_HASH: JSON.stringify(gitCommitHash)
 			})
