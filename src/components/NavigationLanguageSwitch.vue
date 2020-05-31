@@ -1,11 +1,11 @@
 <template>
 	<div class="navigation__language-switch">
-		<div class="navigation__button" @click="open = !open">
+		<div class="navigation__button" @click="toggleLanguageMenu">
 			<font-awesome-icon class="navigation__language-icon" icon="language" fixed-width></font-awesome-icon>
 		</div>
 
 		<transition name="navigation__language-picker">
-			<div v-if="open" class="navigation__language-picker">
+			<div v-if="languageMenu" class="navigation__language-picker">
 				<div v-for="locale in $i18n.availableLocales" :key="locale" class="navigation__language" :class="{ 'navigation__language--active': $i18n.locale === locale }" @click.prevent="changeLocale(locale)">
 					<flag :country="getFlagCountry(locale)" :title="locale"></flag>
 				</div>
@@ -15,18 +15,22 @@
 </template>
 
 <script>
+	import { mapActions, mapGetters } from 'vuex';
 	import * as storage from '../utils/storage';
 	import Flag from './utils/Flag.vue';
 
 	export default {
 		name: 'navigation-language-switch',
 		components: { Flag },
-		data() {
-			return {
-				open: false
-			};
+		computed: {
+			...mapGetters({
+				languageMenu: 'layout/languageMenu'
+			})
 		},
 		methods: {
+			...mapActions({
+				toggleLanguageMenu: 'layout/toggleLanguageMenu'
+			}),
 			getFlagCountry(locale) {
 				if (locale === 'sr-CS') return 'rs';
 				return locale.split('-')[1].toLowerCase();
@@ -46,7 +50,7 @@
 
 				this.displayTranslationStatus();
 
-				this.open = false;
+				this.$store.dispatch('layout/toggleLanguageMenu');
 			}
 		}
 	};
