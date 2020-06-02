@@ -9,6 +9,7 @@ environment:
   CROWDIN_API_KEY:
     secure: oGuZaQo2z5/JkEYaKrD9Ing+TgwZ3qQVf+9Jdz73Fephy04z5rWPGCCtkjaMLTcY
   CROWDIN_PROJECT_IDENTIFIER: archisteamfarm
+  NODE_JS_VERSION: lts
 install:
 - pwsh: >-
     Set-StrictMode -Version Latest
@@ -32,6 +33,7 @@ install:
     if ($LastExitCode -ne 0) {
         throw "Last command failed."
     }
+- ps: Install-Product node "$env:NODE_JS_VERSION"
 build_script:
 - pwsh: >-
     Set-StrictMode -Version Latest
