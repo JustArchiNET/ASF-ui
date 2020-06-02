@@ -96,6 +96,10 @@
 			async onCreate() {
 				if (this.creating) return;
 
+				// Remove name property from config - Ugly but works
+				const config = JSON.parse(JSON.stringify(this.model));
+				delete config.Name;
+
 				if (!this.model.Name) {
 					this.$error(this.$t('bot-create-name'));
 					return;
@@ -114,7 +118,7 @@
 				this.creating = true;
 
 				try {
-					await this.$http.post(`bot/${this.model.Name}`, { botConfig: this.model });
+					await this.$http.post(`bot/${this.model.Name}`, { botConfig: config });
 					await delay(1000);
 					await this.$store.dispatch('bots/updateBot', { name: this.model.Name });
 					this.$parent.close();
@@ -125,8 +129,12 @@
 				}
 			},
 			async onDownload() {
+				// Remove name property from config - Ugly but works
+				const config = JSON.parse(JSON.stringify(this.model));
+				delete config.Name;
+
 				const element = document.createElement('a');
-				element.setAttribute('href', `data:text/plain;charset=utf-8,${encodeURIComponent(prepareModelToDownload(this.model))}`);
+				element.setAttribute('href', `data:text/plain;charset=utf-8,${encodeURIComponent(prepareModelToDownload(config))}`);
 				element.setAttribute('download', `${this.model.Name}.json`);
 				element.style.display = 'none';
 				document.body.appendChild(element);
