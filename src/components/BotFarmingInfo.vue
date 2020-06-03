@@ -34,7 +34,7 @@
 		display: flex;
 		font-size: 1.4em;
 		justify-content: center;
-		padding: 0 0.5em;
+		padding: 0 0.1em 0 0.5em;
 	}
 
 	.farming-info__value {
@@ -45,6 +45,5 @@
 		padding: 5px;
 		text-overflow: ellipsis;
 		white-space: nowrap;
-		width: 100%;
 	}
 </style>
