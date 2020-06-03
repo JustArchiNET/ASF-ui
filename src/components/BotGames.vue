@@ -1,9 +1,7 @@
 <template>
-	<div v-if="bot.games.length && botsFarmingCount !== 0" class="bot-games">
+	<div v-if="bot.games.length && botsFarmingCount !== 0" :class="[gameName ? 'bot-games-text' : 'bot-games']">
 		<template v-if="gameName">
-			<div v-for="game in bot.games" class="bot-game" :title="game.GameName">
-				<a class="bot-game__name" target="_blank" :href="`https://store.steampowered.com/app/${game.AppID}/`">{{ game.GameName }}</a>
-			</div>
+			<div v-html="games"></div>
 		</template>
 
 		<template v-else>
@@ -29,10 +27,22 @@
 		props: {
 			bot: Object
 		},
-		computed: mapGetters({
-			botsFarmingCount: 'bots/botsFarmingCount',
-			gameName: 'settings/gameName'
-		})
+		computed: {
+			...mapGetters({
+				botsFarmingCount: 'bots/botsFarmingCount',
+				gameName: 'settings/gameName'
+			}),
+			games() {
+				let html = '';
+
+				this.bot.games.forEach(game => {
+					const aTag = `<a class="text-dark" target="_blank" href="https://store.steampowered.com/app/${game.AppID}/">${game.GameName}</a>`;
+					html = `${html + aTag}, `;
+				});
+
+				return html.slice(0, -2);
+			}
+		}
 	};
 </script>
 
@@ -98,6 +108,16 @@
 
 	.bot-game__image {
 		filter: blur(1px) brightness(0.4);
+		width: 100%;
+	}
+
+	.text-dark {
+		color: var(--color-text-dark)
+	}
+
+	.bot-games-text {
+		display: flex;
+		margin: 1em 0 0;
 		width: 100%;
 	}
 </style>
