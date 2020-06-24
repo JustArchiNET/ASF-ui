@@ -87,8 +87,9 @@
 				try {
 					const release = await this.$http.get(`www/github/release/${version}`);
 					const publishedAt = new Date(release.ReleasedAt);
+					const changelog = release.ChangelogHTML.replace(/<a href="/g, '<a target="_blank" href="');
 					return {
-						changelog: release.ChangelogHTML,
+						changelog,
 						stable: release.Stable,
 						version: release.Version,
 						publishedAt
