@@ -7,6 +7,7 @@
 				<navigation-link :name="$t('commands')" icon="laptop" :to="{ name: 'commands' }"></navigation-link>
 				<navigation-link :name="$t('log')" icon="file-alt" :to="{ name: 'log' }"></navigation-link>
 				<navigation-link :name="$t('releases')" icon="code-branch" :to="{ name: 'releases' }"></navigation-link>
+				<navigation-link :name="$t('plugins')" icon="puzzle-piece" :to="{ name: 'plugins' }"></navigation-link>
 			</div>
 
 			<div class="navigation-category">

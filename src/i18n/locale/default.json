@@ -105,6 +105,7 @@
 	"password": "Password",
 	"password-invalid": "Invalid password!",
 	"performance": "Performance",
+	"plugins": "Plugins",
 	"pre-release": "Pre-Release",
 	"rate-limited": "Rate limited!",
 	"refresh": "Refresh status",
