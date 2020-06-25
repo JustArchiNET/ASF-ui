@@ -12,7 +12,7 @@ script:
   - |
     set -eu
 
-    npm run-script build:ci --no-progress
+    npm run-script deploy --no-progress
 
     set +u # This is needed to continue Travis build
 matrix:
@@ -26,6 +26,6 @@ matrix:
       dist: bionic
     # Ref: https://docs.travis-ci.com/user/reference/osx
     - os: osx
-      osx_image: xcode11.4
+      osx_image: xcode11.6
     # Ref: https://docs.travis-ci.com/user/reference/windows
     - os: windows

@@ -5,8 +5,8 @@
 	"scripts": {
 		"start": "webpack-dev-server --hot --open",
 		"build": "webpack --config webpack.prod.config.js",
-		"build:ci": "webpack --config webpack.deploy.config.js",
-		"build:analyze": "webpack --config webpack.analyze.config.js"
+		"build:analyze": "webpack --config webpack.analyze.config.js",
+		"deploy": "webpack --config webpack.deploy.config.js"
 	},
 	"private": true,
 	"devDependencies": {
