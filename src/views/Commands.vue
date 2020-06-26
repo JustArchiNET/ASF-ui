@@ -31,6 +31,7 @@
 	import * as storage from '../utils/storage';
 	import fetchWiki from '../utils/fetchWiki';
 	import getSelectedText from '../utils/getSelectedText';
+	import { createVirtualDOM } from '../utils/createVirtualDOM';
 
 	class CommandsCache {
 		constructor(maxLength) {
@@ -323,9 +324,8 @@
 				else this.command = this.command;
 			},
 			parseCommandsHTML(commandsWikiRaw) {
-				const commandsWikiHTML = document.createElement('html');
-				commandsWikiHTML.innerHTML = commandsWikiRaw;
-				const commandsTableHTML = commandsWikiHTML.querySelector('h2 > a').parentElement.nextElementSibling;
+				const virtualDOM = createVirtualDOM(commandsWikiRaw);
+				const commandsTableHTML = virtualDOM.querySelector('h2 > a').parentElement.nextElementSibling;
 
 				return Array.from(commandsTableHTML.querySelectorAll('tbody tr'))
 					.map(tableRow => tableRow.textContent.trim().split('\n'))
