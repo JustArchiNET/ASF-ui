@@ -44,14 +44,14 @@
 				required: true
 			},
 			categories: Array,
-			descriptions: Object,
 			extendedFields: Object
 		},
 		computed: {
 			uncategorizedFields() {
 				if (!this.categories) return this.fields;
 
-				const categorizedFields = this.categories.map(category => category.fields).reduce((categorizedFields, categoryFields) => [...categorizedFields, ...categoryFields], []);
+				const categorizedFields = this.categories.map(category => category.fields)
+						.reduce((categorizedFields, categoryFields) => [...categorizedFields, ...categoryFields], []);
 
 				return this.fields.filter(field => !categorizedFields.includes(field.param));
 			},
@@ -60,7 +60,8 @@
 					if (!this.categories) return [];
 					const category = this.categories.find(({ name }) => name === categoryName);
 					if (!category) return [];
-					return this.getFields(category.fields).sort((a, b) => category.fields.indexOf(a.paramName) - category.fields.indexOf(b.paramName));
+					return this.getFields(category.fields)
+							.sort((a, b) => category.fields.indexOf(a.paramName) - category.fields.indexOf(b.paramName));
 				};
 			},
 			isValid() {
@@ -76,27 +77,24 @@
 		},
 		methods: {
 			componentFromField(field) {
+				console.log({ ...field });
+
 				switch (field.type) {
 					case 'string':
-					case 'uint64':
+						if (field.enum) {
+							if (field.format === 'flags') return InputFlag;
+							return InputEnum;
+						}
+
 						return InputString;
 					case 'boolean':
 						return InputBoolean;
-					case 'uint32':
-					case 'uint16':
-					case 'byte':
+					case 'integer':
+						if (field.format === 'int64') return InputString;
 						return InputNumber;
-					case 'flag':
-						return InputFlag;
-					case 'enum':
-						return InputEnum;
-					case 'hashSet':
-					case 'list':
-						if (['enum'].includes(field.values.type)) return field.type === 'list' ? InputList : InputSet;
-						if (['byte', 'uint16', 'uint32', 'uint64', 'string'].includes(field.values.type)) return InputTag;
-						return InputUnknown;
-					case 'dictionary':
-						return InputDictionary;
+					case 'array':
+						if (field.items.type === 'enum') return InputSet;
+						return InputTag;
 					default:
 						return InputUnknown;
 				}
@@ -129,7 +127,8 @@
 					case 'list':
 						return a.length === b.length && a.every((item, index) => item === b[index]);
 					case 'dictionary':
-						return Object.keys(a).length === Object.keys(b).length && Object.keys(a).every(key => a[key] === b[key]);
+						return Object.keys(a).length === Object.keys(b).length && Object.keys(a)
+								.every(key => a[key] === b[key]);
 				}
 
 				return false;
@@ -141,7 +140,8 @@
 				this.$el.style.setProperty('--label-width', 'auto');
 
 				this.$nextTick(() => {
-					const labelWidth = Math.max(...Array.from(this.$el.querySelectorAll('.form-item__label')).map(el => Math.ceil(parseFloat(getComputedStyle(el).width))));
+					const labelWidth = Math.max(...Array.from(this.$el.querySelectorAll('.form-item__label'))
+							.map(el => Math.ceil(parseFloat(getComputedStyle(el).width))));
 					this.$el.style.setProperty('--label-width', `${labelWidth}px`);
 				});
 			}

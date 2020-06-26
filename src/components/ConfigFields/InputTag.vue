@@ -9,12 +9,15 @@
 						<span class="form-item__tag-value">{{ item }}</span>
 						<font-awesome-icon class="form-item__tag-remove" icon="times"></font-awesome-icon>
 					</button>
+
 					<input v-model="element" class="form-item__input form-item__input--tag" type="text" @keydown="onKeyDown" @focus="onFocus" @blur="onBlur">
 				</div>
+
 				<button class="button" @click.prevent="addElement">
 					{{ $t('add') }}
 				</button>
 			</div>
+
 			<span v-if="hasErrors" class="form-item__error">{{ errorText }}</span>
 		</div>
 
@@ -37,13 +40,13 @@
 		},
 		computed: {
 			isString() {
-				return ['string', 'uint64'].includes(this.schema.values.type);
+				return ['string'].includes(this.schema.items.type);
 			},
 			isNumber() {
-				return ['uint32', 'uint16'].includes(this.schema.values.type);
+				return ['uint32', 'uint16'].includes(this.schema.items.type);
 			},
 			errors() {
-				if (validator.hasOwnProperty(this.schema.values.type)) return validator[this.schema.values.type](this.element);
+				if (validator.hasOwnProperty(this.schema.items.type)) return validator[this.schema.items.type](this.element);
 				return [];
 			},
 			isValid() {

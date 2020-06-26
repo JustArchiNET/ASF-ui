@@ -90,7 +90,8 @@ module.exports = {
 			'/api': {
 				target: 'http://localhost:1242',
 				ws: true
-			}
+			},
+			'/swagger': { target: 'http://localhost:1242' }
 		}
 	}
 };

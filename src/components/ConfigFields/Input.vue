@@ -13,7 +13,7 @@
 			currentValue: true
 		},
 		data() {
-			const initialValue = typeof this.currentValue !== 'undefined' ? this.currentValue : this.schema.defaultValue;
+			const initialValue = typeof this.currentValue !== 'undefined' ? this.currentValue : null;
 
 			return {
 				value: typeof initialValue === 'object' ? JSON.parse(JSON.stringify(initialValue)) : initialValue,

@@ -5,12 +5,8 @@
 		<div class="form-item__value">
 			<div class="input-option__field">
 				<select :id="field" v-model="element" class="form-item__input" :disabled="!availableEnumValues.length">
-					<option v-for="(enumValue, name) in enumValues" v-show="!value.includes(enumValue)" :value="enumValue">
-						{{ name }}
-					</option>
-					<option v-if="!availableEnumValues.length" :value="undefined" disabled>
-						{{ $t('input-all-selected') }}
-					</option>
+					<option v-for="value in enumValues" v-show="!value.includes(value)" :value="value">{{ value }}</option>
+					<option v-if="!availableEnumValues.length" :value="undefined" disabled>{{ $t('input-all-selected') }}</option>
 				</select>
 
 				<button class="button" @click.prevent="addElement">
@@ -20,7 +16,7 @@
 
 			<div class="input-option__items">
 				<button v-for="(item, index) in value" class="button input-option__item" @click.prevent="removeElement(index)">
-					{{ resolveOption(item) }}
+					{{ item }}
 				</button>
 			</div>
 		</div>
@@ -44,15 +40,15 @@
 			availableEnumValues() {
 				const availableEnumValues = [];
 
-				for (const key of Object.keys(this.enumValues)) {
-					if (this.value.includes(this.enumValues[key])) continue;
-					availableEnumValues.push(this.enumValues[key]);
+				for (const value of this.enumValues) {
+					if (this.value.includes(value)) continue;
+					availableEnumValues.push(value);
 				}
 
 				return availableEnumValues;
 			},
 			enumValues() {
-				return this.schema.values.values;
+				return this.schema.enum;
 			}
 		},
 		created() {
@@ -72,9 +68,6 @@
 			removeElement(index) {
 				this.value.splice(index, 1);
 				this.element = this.getDefaultElement();
-			},
-			resolveOption(value) {
-				return Object.keys(this.enumValues).find(key => this.enumValues[key] === value);
 			}
 		}
 	};
