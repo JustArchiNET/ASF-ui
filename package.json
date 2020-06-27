@@ -42,7 +42,6 @@
 		"copy-to-clipboard": "^3.3.1",
 		"flat": "^5.0.0",
 		"humanize-duration": "^3.23.1",
-		"json-schema-deref-sync": "^0.13.0",
 		"lodash-es": "^4.17.15",
 		"plurals-cldr": "^1.0.4",
 		"svg-country-flags": "^1.2.7",
