@@ -77,24 +77,25 @@
 		},
 		methods: {
 			componentFromField(field) {
-				console.log({ ...field });
+				if (field.format === 'flags') return InputFlag;
+				if (field.enum) return InputEnum;
 
 				switch (field.type) {
 					case 'string':
-						if (field.enum) {
-							if (field.format === 'flags') return InputFlag;
-							return InputEnum;
-						}
-
 						return InputString;
 					case 'boolean':
 						return InputBoolean;
 					case 'integer':
-						if (field.format === 'int64') return InputString;
 						return InputNumber;
 					case 'array':
-						if (field.items.type === 'enum') return InputSet;
+						if (field.items.enum) {
+							if (field.uniqueItems) return InputSet;
+							return InputList;
+						}
+
 						return InputTag;
+					case 'object':
+						return InputDictionary;
 					default:
 						return InputUnknown;
 				}

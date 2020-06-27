@@ -43,7 +43,7 @@
 				return ['string'].includes(this.schema.items.type);
 			},
 			isNumber() {
-				return ['uint32', 'uint16'].includes(this.schema.items.type);
+				return ['integer'].includes(this.schema.items.type);
 			},
 			errors() {
 				if (validator.hasOwnProperty(this.schema.items.type)) return validator[this.schema.items.type](this.element);

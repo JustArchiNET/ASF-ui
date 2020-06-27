@@ -69,23 +69,23 @@
 			displayCategories: 'settings/displayCategories'
 		}),
 		async created() {
-			const [
-				{ GlobalConfig: model },
-				scheme,
-				descriptions
-			] = await Promise.all([
-				this.$http.get('asf'),
+			const [model, schema, descriptions] = await Promise.all([
+				this.getModel(),
 				getType('GlobalConfig'),
 				loadParameterDescriptions(this.version, this.$i18n.locale)
 			]);
 
-			Object.keys(scheme).forEach(name => {
-				if (name.startsWith('s_')) delete scheme[name.substr(2)]
+			Object.keys(schema).forEach(name => {
+				if (name.startsWith('s_')) {
+					const paramName = name.substr(2);
+					delete model[paramName]
+					delete schema[paramName]
+				}
 			});
 
-			this.fields = Object.keys(scheme).map(name => ({
-				description: descriptions[name],
-				...scheme[name],
+			this.fields = Object.keys(schema).map(name => ({
+				description: descriptions[name.replace('s_', '')],
+				...schema[name],
 				param: name.replace('s_', ''),
 				paramName: name
 			}));
@@ -95,6 +95,10 @@
 			await getType('BotConfig').then(c => console.log(c))
 		},
 		methods: {
+			async getModel () {
+				const { GlobalConfig: model } = await this.$http.get('asf');
+				return model;
+			},
 			async onSave() {
 				if (this.saving) return;
 

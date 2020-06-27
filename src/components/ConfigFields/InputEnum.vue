@@ -4,7 +4,7 @@
 
 		<div class="form-item__value">
 			<select :id="field" v-model="value" class="form-item__input" :name="field">
-				<option v-for="value in values" :value="value">{{ value }}</option>
+				<option v-for="{ label, value } in enums" :value="value">{{ label }}</option>
 			</select>
 		</div>
 
@@ -19,8 +19,8 @@
 		name: 'input-enum',
 		mixins: [Input],
 		computed: {
-			values() {
-				return this.schema.enum;
+			enums() {
+				return Object.entries(this.schema['x-definition']).map(([label, value]) => ({ label, value }))
 			}
 		}
 	};

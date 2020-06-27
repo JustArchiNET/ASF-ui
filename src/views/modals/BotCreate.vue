@@ -36,6 +36,7 @@
 	import prepareModelToDownload from '../../utils/prepareModelToDownload';
 	import delay from '../../utils/delay';
 	import botExists from '../../utils/botExists';
+	import { getType } from '../../utils/swagger/parse';
 
 	export default {
 		name: 'bot-create',
@@ -70,27 +71,30 @@
 		},
 		methods: {
 			async loadConfig() {
-				const [{ body: fields }, descriptions] = await Promise.all([
-					fetchConfigSchema('ArchiSteamFarm.BotConfig'),
-					loadParameterDescriptions(this.version, this.$i18n.locale)
-				]);
-
-				this.model = {};
-
-				this.fields = [
+				const ADDITIONAL_FIELDS = [
 					{
-						defaultValue: '',
 						param: 'Name',
 						paramName: 'Name',
 						type: 'string',
 						description: this.$t('name-description')
-					},
-					...Object.keys(fields).map(key => ({
-						description: descriptions[key],
-						...fields[key]
+					}
+				]
+
+				const [schema, descriptions] = await Promise.all([
+					getType('BotConfig'),
+					loadParameterDescriptions(this.version, this.$i18n.locale)
+				]);
+
+				this.fields = [
+					...ADDITIONAL_FIELDS,
+					...Object.keys(schema).map(name => ({
+						description: descriptions[name.replace('s_', '')],
+						...schema[name],
+						param: name.replace('s_', ''),
+						paramName: name
 					}))
 				];
-
+				this.model = {};
 				this.loading = false;
 			},
 			async onCreate() {
@@ -129,13 +133,11 @@
 				}
 			},
 			async onDownload() {
-				// Remove name property from config - Ugly but works
-				const config = JSON.parse(JSON.stringify(this.model));
-				delete config.Name;
+				const { Name: name, ...config } = JSON.parse(JSON.stringify(this.model));
 
 				const element = document.createElement('a');
 				element.setAttribute('href', `data:text/plain;charset=utf-8,${encodeURIComponent(prepareModelToDownload(config))}`);
-				element.setAttribute('download', `${this.model.Name}.json`);
+				element.setAttribute('download', `${name}.json`);
 				element.style.display = 'none';
 				document.body.appendChild(element);
 				element.click();
@@ -147,6 +149,7 @@
 
 <style lang="scss">
 	.main-container--bot-create {
-		max-width: 1000px;
+		max-width: 800px;
+		width: 100vw;
 	}
 </style>

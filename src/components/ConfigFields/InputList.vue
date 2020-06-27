@@ -5,8 +5,8 @@
 		<div class="form-item__value">
 			<div class="input-option__field">
 				<select :id="field" v-model="element" class="form-item__input" :disabled="!availableEnumValues.length">
-					<option v-for="value in enumValues" v-show="!value.includes(value)" :value="value">{{ value }}</option>
-					<option v-if="!availableEnumValues.length" :value="undefined" disabled>{{ $t('input-all-selected') }}</option>
+					<option v-for="{ label, value } in availableEnumValues" :value="value">{{ label }}</option>
+					<option v-if="!availableEnumValues.length" :value="null" disabled>{{ $t('input-all-selected') }}</option>
 				</select>
 
 				<button class="button" @click.prevent="addElement">
@@ -16,7 +16,7 @@
 
 			<div class="input-option__items">
 				<button v-for="(item, index) in value" class="button input-option__item" @click.prevent="removeElement(index)">
-					{{ item }}
+					{{ resolveValue(item) }}
 				</button>
 			</div>
 		</div>
@@ -38,17 +38,18 @@
 		},
 		computed: {
 			availableEnumValues() {
-				const availableEnumValues = [];
-
-				for (const value of this.enumValues) {
-					if (this.value.includes(value)) continue;
-					availableEnumValues.push(value);
-				}
-
-				return availableEnumValues;
+				return this.enumValues.filter(({ value }) => !this.value.includes(value))
 			},
 			enumValues() {
-				return this.schema.enum;
+				return Object.entries(this.schema.items['x-definition'])
+						.map(([label, value]) => ({ label, value }))
+			},
+			resolveValue() {
+				return value => {
+					const enumValue = this.enumValues.find(({ value: enumValue }) => value === enumValue)
+					if (!enumValue) return value
+					return enumValue.label
+				}
 			}
 		},
 		created() {
@@ -56,10 +57,10 @@
 		},
 		methods: {
 			getDefaultElement() {
-				return this.availableEnumValues[0];
+				return this.availableEnumValues[0] ? this.availableEnumValues[0].value : null;
 			},
 			addElement() {
-				if (!this.element && this.element !== 0) return;
+				if (!this.element && this.element !== 0) return
 				if (this.value.includes(this.element)) return;
 
 				this.value.push(this.element);

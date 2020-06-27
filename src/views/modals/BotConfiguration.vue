@@ -37,11 +37,9 @@
 <script>
 	import { mapGetters } from 'vuex';
 	import ConfigEditor from '../../components/ConfigEditor.vue';
-	import fetchConfigSchema from '../../utils/fetchConfigSchema';
 	import loadParameterDescriptions from '../../utils/loadParameterDescriptions';
 	import prepareModelToDownload from '../../utils/prepareModelToDownload';
-	import botExists from '../../utils/botExists';
-	import delay from '../../utils/delay';
+	import { getType } from '../../utils/swagger/parse';
 
 	export default {
 		name: 'bot-config',
@@ -88,20 +86,22 @@
 		methods: {
 			async loadConfig() {
 				const [
-					{ body: fields },
+					schema,
 					{ [this.bot.name]: { BotConfig: model } },
 					descriptions
 				] = await Promise.all([
-					fetchConfigSchema('ArchiSteamFarm.BotConfig'),
+					getType('BotConfig'),
 					this.$http.get(`bot/${this.bot.name}`),
 					loadParameterDescriptions(this.version, this.$i18n.locale)
 				]);
 
-				Object.keys(model).forEach(key => {
-					if (key.startsWith('s_')) delete model[key.substr(2)];
+				Object.keys(schema).forEach(name => {
+					if (name.startsWith('s_')) {
+						const paramName = name.substr(2);
+						delete model[paramName]
+						delete schema[paramName]
+					}
 				});
-
-				this.model = model;
 
 				const extendedFields = {
 					SteamLogin: { placeholder: this.$t('keep-unchanged') },
@@ -109,12 +109,14 @@
 					SteamParentalCode: { placeholder: this.$t('keep-unchanged') }
 				};
 
-				this.fields = Object.keys(fields).map(key => ({
-					description: descriptions[key],
-					...fields[key],
-					...(extendedFields[key] || [])
+				this.fields = Object.keys(schema).map(name => ({
+					description: descriptions[name.replace('s_', '')],
+					...schema[name],
+					...(extendedFields[name] || {}),
+					param: name.replace('s_', ''),
+					paramName: name
 				}));
-
+				this.model = model;
 				this.loading = false;
 			},
 			async onSave() {
@@ -151,6 +153,7 @@
 
 <style lang="scss">
 	.main-container--bot-configuration {
-		max-width: 1000px;
+		max-width: 800px;
+		width: 100vw;
 	}
 </style>

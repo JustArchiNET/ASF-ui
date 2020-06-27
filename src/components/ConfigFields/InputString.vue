@@ -3,7 +3,7 @@
 		<input-label :label="label" :has-description="hasDescription"></input-label>
 
 		<div class="form-item__value">
-			<input :id="field" v-model="value" class="form-item__input" type="text" :name="field" :placeholder="placeholder" @blur="onBlur" @keypress="onKeyPress">
+			<input :id="field" v-model="value" class="form-item__input" type="text" :name="field" :placeholder="placeholder" @keypress="onKeyPress">
 			<span v-if="hasErrors" class="form-item__error">{{ errorText }}</span>
 		</div>
 
@@ -18,9 +18,6 @@
 		name: 'input-string',
 		mixins: [Input],
 		methods: {
-			onBlur() {
-				if (this.value === '') this.value = this.defaultValue;
-			},
 			onKeyPress($event) {
 				if (this.schema.type !== 'uint64') return true;
 

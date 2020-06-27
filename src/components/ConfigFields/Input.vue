@@ -21,9 +21,6 @@
 			};
 		},
 		computed: {
-			defaultValue() {
-				return this.schema.defaultValue;
-			},
 			label() {
 				return this.schema.label || this.schema.param || this.schema.paramName;
 			},
@@ -31,7 +28,7 @@
 				return this.schema.paramName;
 			},
 			placeholder() {
-				return this.schema.placeholder || this.schema.defaultValue;
+				return this.schema.placeholder;
 			},
 			description() {
 				return this.schema.description;
