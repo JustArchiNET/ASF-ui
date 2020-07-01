@@ -15,13 +15,13 @@
 				</div>
 
 				<div class="brand__menu-item" @click="restart">
-					<font-awesome-icon class="brand__menu-icon" icon="power-off" fixed-width></font-awesome-icon>
+					<font-awesome-icon class="brand__menu-icon" icon="redo-alt" fixed-width></font-awesome-icon>
 					<span>{{ $t('restart') }}</span>
 				</div>
 
-				<div class="brand__menu-item" @click="exit">
-					<font-awesome-icon class="brand__menu-icon" icon="sign-out-alt" fixed-width></font-awesome-icon>
-					<span>{{ $t('exit') }}</span>
+				<div class="brand__menu-item" @click="shutdown">
+					<font-awesome-icon class="brand__menu-icon" icon="power-off" fixed-width></font-awesome-icon>
+					<span>{{ $t('shutdown') }}</span>
 				</div>
 			</div>
 		</transition>
@@ -109,10 +109,10 @@
 					this.restarting = false;
 				}
 			},
-			async exit() {
+			async shutdown() {
 				try {
 					await this.$http.post('asf/exit');
-					this.$info(this.$t('exit-message'));
+					this.$info(this.$t('shutdown-message'));
 					this.brandMenu = false;
 				} catch (err) {
 					this.$error(err.message);
