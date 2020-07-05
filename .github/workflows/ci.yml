@@ -34,7 +34,7 @@ jobs:
       run: npm ci --no-progress
 
     - name: Build ASF-ui
-      run: npm run-script build:ci --no-progress
+      run: npm run-script deploy --no-progress
 
     - name: Upload ASF-ui
       continue-on-error: true

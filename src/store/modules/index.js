@@ -2,7 +2,7 @@
 // will mirror [sub-]directory hierarchy and modules are namespaced
 // as the camelCase equivalent of their file name.
 
-import camelCase from 'lodash/camelCase';
+import { camelCase } from 'lodash-es';
 
 // https://webpack.js.org/guides/dependency-management/#require-context
 const requireModule = require.context(
