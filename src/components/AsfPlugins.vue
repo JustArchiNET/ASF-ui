@@ -1,4 +1,20 @@
 <template>
+	<div class="plugins">
+		<h3 v-if="loading" class="subtitle">
+			<font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
+		</h3>
+
+		<h3 v-if="statusText" class="subtitle">
+			{{ statusText }}
+		</h3>
+
+		<div v-for="(plugin, i) in plugins" :key="i" v-else class="plugin">
+			<div class="plugin__title">
+				<span class="plugin__name">{{ plugin.Name }}</span>
+				<span class="plugin__version">v{{ plugin.Version }}</span>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script>
@@ -7,8 +23,51 @@
 		data() {
 			return {
 				loading: true,
+				error: null,
 				plugins: []
 			};
 		},
+		computed: {
+			statusText() {
+				if (this.error) return this.error;
+				if (!this.loading && !this.plugins.length) return this.$t('plugins-not-loaded');
+			}
+		},
+		async created() {
+			try {
+				this.plugins = await this.$http.get('Plugins');
+				this.loading = false;
+			} catch (err) {
+				this.error = err.message;
+			}
+		}
 	};
 </script>
+
+<style lang="scss">
+	.plugins {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.plugin {
+		border-bottom: 1px solid var(--color-background);
+		margin-bottom: 1em;
+		padding-bottom: 1em;
+
+		&:last-child {
+			border-bottom: none;
+			margin-bottom: 0;
+			padding-bottom: 0;
+		}
+	}
+
+	.plugin__name {
+		font-size: 1.3em;
+		font-weight: bold;
+	}
+
+	.plugin__version {
+		padding-left: 10px;
+	}
+</style>
