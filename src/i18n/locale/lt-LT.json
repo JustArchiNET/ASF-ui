@@ -103,6 +103,8 @@
 	"password": "Slaptažodis",
 	"password-invalid": "",
 	"performance": "Efektyvumas",
+	"plugins": "Priedai",
+	"plugins-not-loaded": "",
 	"pre-release": "",
 	"rate-limited": "",
 	"refresh": "",

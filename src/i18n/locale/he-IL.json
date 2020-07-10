@@ -103,6 +103,8 @@
 	"password": "סיסמה",
 	"password-invalid": "",
 	"performance": "ביצועים",
+	"plugins": "",
+	"plugins-not-loaded": "",
 	"pre-release": "",
 	"rate-limited": "",
 	"refresh": "",

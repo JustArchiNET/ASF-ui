@@ -103,6 +103,8 @@
 	"password": "Lösenord",
 	"password-invalid": "",
 	"performance": "Prestanda",
+	"plugins": "",
+	"plugins-not-loaded": "",
 	"pre-release": "",
 	"rate-limited": "",
 	"refresh": "",
