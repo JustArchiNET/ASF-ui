@@ -37,6 +37,7 @@
 <script>
 	import { mapGetters } from 'vuex';
 	import * as copy from 'copy-to-clipboard';
+	import delay from '../../utils/delay';
 
 	export default {
 		name: 'bot-2fa',
@@ -71,6 +72,13 @@
 				this.$error(err.message);
 			} finally {
 				this.refreshing = false;
+			}
+		},
+		watch: {
+			async token() {
+				if (this.token === '-----') return;
+				await delay(30000); // Steam 2FA token is only valid for 30 seconds
+				this.token = '-----';
 			}
 		},
 		methods: {
