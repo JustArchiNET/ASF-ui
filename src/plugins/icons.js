@@ -5,8 +5,8 @@ import {
 	faWrench, faBars, faLaptop, faUsers, faFileAlt, faTachometerAlt, faPowerOff, faPause, faCogs, faClock,
 	faTimesCircle, faCheckCircle, faEdit, faTimes, faSquare, faMoon, faPalette, faPlay, faQuestion, faPlus,
 	faSpinner, faKey, faTrash, faCloudDownloadAlt, faSignOutAlt, faAngleDown, faLanguage, faGamepad, faClone,
-	faCalendarCheck, faLock, faBook, faExclamation, faCodeBranch, faHourglassEnd, faHourglassHalf, faHourglassStart,
-	faRedoAlt, faClipboard
+	faCalendarCheck, faLock, faBookOpen, faExclamation, faCodeBranch, faHourglassEnd, faHourglassHalf, faHourglassStart,
+	faRedoAlt, faClipboard, faPuzzlePiece
 } from '@fortawesome/free-solid-svg-icons';
 
 import { FontAwesomeIcon, FontAwesomeLayers } from '@fortawesome/vue-fontawesome';
@@ -14,8 +14,8 @@ import { FontAwesomeIcon, FontAwesomeLayers } from '@fortawesome/vue-fontawesome
 library.add(faWrench, faBars, faLaptop, faUsers, faFileAlt, faTachometerAlt, faPowerOff, faPause, faCogs,
 	faClock, faTimesCircle, faCheckCircle, faEdit, faTimes, faSquare, faMoon, faPalette, faPlay, faQuestion,
 	faPlus, faSpinner, faKey, faTrash, faCloudDownloadAlt, faSignOutAlt, faAngleDown, faLanguage, faGamepad,
-	faClone, faCalendarCheck, faLock, faGithub, faBook, faExclamation, faCodeBranch, faHourglassEnd, faHourglassHalf,
-	faHourglassStart, faRedoAlt, faClipboard);
+	faClone, faCalendarCheck, faLock, faGithub, faBookOpen, faExclamation, faCodeBranch, faHourglassEnd, faHourglassHalf,
+	faHourglassStart, faRedoAlt, faClipboard, faPuzzlePiece);
 
 export default {
 	install(Vue) {

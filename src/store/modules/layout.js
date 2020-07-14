@@ -3,6 +3,7 @@ import * as storage from '../../utils/storage';
 export const state = {
 	smallNavigation: false,
 	sideMenu: false,
+	languageMenu: false,
 	theme: 'blue',
 	availableThemes: ['blue', 'red', 'teal', 'purple', 'green', 'orange'],
 	boxed: false,
@@ -14,6 +15,7 @@ export const mutations = {
 	toggleNavigation: state => state.smallNavigation = !state.smallNavigation,
 	changeTheme: (state, theme) => state.theme = theme,
 	toggleSideMenu: state => state.sideMenu = !state.sideMenu,
+	toggleLanguageMenu: state => state.languageMenu = !state.languageMenu,
 	toggleBoxed: state => state.boxed = !state.boxed,
 	setBoxed: (state, value) => state.boxed = value,
 	toggleDarkMode: state => state.darkMode = !state.darkMode,
@@ -39,8 +41,13 @@ export const actions = {
 		commit('toggleNavigation');
 		storage.set('layout:small-navigation', getters.smallNavigation);
 	},
-	toggleSideMenu: ({ commit }) => {
+	toggleSideMenu: ({ commit, getters }) => {
+		if (getters.languageMenu) commit('toggleLanguageMenu');
 		commit('toggleSideMenu');
+	},
+	toggleLanguageMenu: ({ commit, getters }) => {
+		if (getters.sideMenu) commit('toggleSideMenu');
+		commit('toggleLanguageMenu');
 	},
 	changeTheme: ({ commit }, theme) => {
 		commit('changeTheme', theme);
@@ -59,6 +66,7 @@ export const actions = {
 export const getters = {
 	smallNavigation: state => state.smallNavigation,
 	sideMenu: state => state.sideMenu,
+	languageMenu: state => state.languageMenu,
 	theme: state => state.theme,
 	availableThemes: state => state.availableThemes,
 	boxed: state => state.boxed,

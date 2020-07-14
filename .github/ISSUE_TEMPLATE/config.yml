@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: ArchiSteamFarm issue, unrelated to ASF-ui
+    url: https://github.com/JustArchiNET/ArchiSteamFarm/issues/new/choose
+    about: Please open issue in ArchiSteamFarm repo.
+  - name: Localization improvement
+    url: https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Localization
+    about: Please use our crowdin platform.

@@ -12,7 +12,7 @@
 			<div class="release__title">
 				<span class="release__version">v{{ release.version }}</span>
 				<span class="release__badge" :class="[release.stable ? 'release__badge--stable' : 'release__badge--prerelease']">{{ release.stable ? $t('stable') : $t('pre-release') }}</span>
-				<span class="release__time">{{ getTimeText(release.publishDate) }}</span>
+				<span class="release__time">{{ getTimeText(release.publishedAt) }}</span>
 			</div>
 
 			<div class="release__changes" v-html="release.changelog"></div>
@@ -87,8 +87,9 @@
 				try {
 					const release = await this.$http.get(`www/github/release/${version}`);
 					const publishedAt = new Date(release.ReleasedAt);
+					const changelog = release.ChangelogHTML.replace(/<a href="/g, '<a target="_blank" href="');
 					return {
-						changelog: release.ChangelogHTML,
+						changelog,
 						stable: release.Stable,
 						version: release.Version,
 						publishedAt

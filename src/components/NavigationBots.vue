@@ -101,7 +101,7 @@
 	}
 
 	.bot-card--selected {
-		border: 1px solid #0dc10a;
+		border: 1px solid #fff;
 		box-shadow: 0 0 0.5em #0dc10a;
 	}
 </style>

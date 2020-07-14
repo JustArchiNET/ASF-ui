@@ -60,6 +60,11 @@ export default [
 		component: () => import('../views/Releases.vue')
 	},
 	{
+		path: '/page/plugins',
+		name: 'plugins',
+		component: () => import('../views/Plugins.vue')
+	},
+	{
 		path: '/page/bot/new',
 		name: 'bot-create',
 		components: {

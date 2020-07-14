@@ -1,6 +1,7 @@
 import fetchWiki from './fetchWiki';
 import getLocaleForWiki from './getLocaleForWiki';
 import * as storage from './storage';
+import { createVirtualDOM } from './createVirtualDOM';
 
 export default async function loadParameterDescriptions(version, locale) {
 	const descriptionsCache = storage.get(`cache:parameter-descriptions:${locale}`);
@@ -12,9 +13,8 @@ export default async function loadParameterDescriptions(version, locale) {
 	const descriptions = {};
 
 	const configWiki = await fetchWiki('Configuration', version, locale);
-	const wikiHTML = document.createElement('html');
-	wikiHTML.innerHTML = configWiki;
-	const parametersHTML = Array.from(wikiHTML.querySelectorAll('h3 > code'));
+	const virtualDOM = createVirtualDOM(configWiki);
+	const parametersHTML = Array.from(virtualDOM.querySelectorAll('h3 > code'));
 
 	for (const parameterHTML of parametersHTML) {
 		const parameterName = parameterHTML.innerText;

@@ -41,6 +41,7 @@
 						[this.$t('commands')]: 'commands',
 						[this.$t('log')]: 'log',
 						[this.$t('releases')]: 'releases',
+						[this.$t('plugins')]: 'plugins',
 						[this.$t('last-visited-page')]: '_last-visited-page'
 					},
 					description: this.$t('default-page-description')

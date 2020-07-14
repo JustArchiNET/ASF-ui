@@ -2,7 +2,7 @@
 	<footer class="footer">
 		<div class="footer__links">
 			<footer-link name="GitHub" prefix="fab" icon="github" to="https://github.com/JustArchiNET"></footer-link>
-			<footer-link :name="$t('wiki')" icon="book" to="https://github.com/JustArchiNET/ArchiSteamFarm/wiki"></footer-link>
+			<footer-link :name="$t('wiki')" icon="book-open" to="https://github.com/JustArchiNET/ArchiSteamFarm/wiki"></footer-link>
 			<footer-link v-if="authenticated" :name="$t('changelog')" icon="calendar-check" :to="releaseUrl"></footer-link>
 		</div>
 
@@ -27,7 +27,7 @@
 		data() {
 			return {
 				releaseAvailable: false,
-				uiHash: ui.gitCommitHash.slice(0, 7)
+				uiHash: ui.gitCommitHash
 			};
 		},
 		computed: {

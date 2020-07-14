@@ -152,6 +152,7 @@
 		background: var(--color-background);
 		color: var(--color-text-dark);
 		width: 100%;
+		-webkit-overflow-scrolling: touch;
 	}
 
 	.app--small-navigation {

@@ -7,6 +7,10 @@
 		</div>
 
 		<div class="navigation__menu">
+			<div v-if="status === 'AUTHENTICATED' && password" class="navigation__button" @click="logout">
+				<font-awesome-icon icon="sign-out-alt" fixed-width></font-awesome-icon>
+			</div>
+
 			<navigation-language-switch></navigation-language-switch>
 
 			<div class="navigation__button" @click="toggleSideMenu">
@@ -17,18 +21,28 @@
 </template>
 
 <script>
-	import { mapActions } from 'vuex';
+	import { mapActions, mapGetters } from 'vuex';
 	import NavigationBrand from './NavigationBrand.vue';
 	import NavigationLanguageSwitch from './NavigationLanguageSwitch.vue';
 
 	export default {
 		name: 'app-header',
 		components: { NavigationBrand, NavigationLanguageSwitch },
+		computed: {
+			...mapGetters({
+				status: 'auth/status',
+				password: 'auth/password'
+			})
+		},
 		methods: {
 			...mapActions({
 				toggleNavigation: 'layout/toggleNavigation',
 				toggleSideMenu: 'layout/toggleSideMenu'
-			})
+			}),
+			async logout() {
+				await this.$store.dispatch('auth/setPassword');
+				this.$router.replace({ name: 'setup' });
+			}
 		}
 	};
 </script>
