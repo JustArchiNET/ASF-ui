@@ -103,6 +103,7 @@
 					await waitForRestart();
 					this.$success(this.$t('restart-complete'));
 					this.brandMenu = false;
+					window.location.reload(false);
 				} catch (err) {
 					this.$error(err.message);
 				} finally {
