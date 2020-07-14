@@ -15,11 +15,14 @@ const router = new VueRouter({
 });
 
 router.beforeEach(async (routeTo, routeFrom, next) => {
-	// console.log('from: ' + routeFrom.name + ' to: ' + routeTo.name)
-	if (!storage.get('welcome') && routeTo.name !== 'welcome') return next({ name: 'welcome' });
-
 	const noPasswordRequired = routeTo.matched.every(route => route.meta.noPasswordRequired);
 	if (noPasswordRequired || await store.dispatch('auth/validate')) return next();
+
+	// const steamOwnerID = await store.dispatch('asf/getSteamOwnerID');
+	// const botsDetected = await store.dispatch('bots/detectBots');
+	// if (steamOwnerID !== '0' && botsDetected) storage.set('setup-complete', true);
+
+	if (storage.get('first-time', true) && routeTo.name !== 'welcome') return next({ name: 'welcome' });
 
 	return next({ name: 'setup' });
 });

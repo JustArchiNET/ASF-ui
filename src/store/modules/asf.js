@@ -30,7 +30,7 @@ export const state = {
 	version: null,
 	uptime: '0s',
 	updateChannel: 1,
-	steamOwnerID: 0
+	steamOwnerID: '0'
 };
 
 export const mutations = {
@@ -62,14 +62,13 @@ export const actions = {
 
 		try {
 			const response = await http.get('asf');
-			const steamOwnerID = response.GlobalConfig.s_SteamOwnerID;
 			commit('updateMemoryUsage', response.MemoryUsage);
 			commit('updateStartTime', new Date(response.ProcessStartTime));
 			commit('updateVersion', response.Version);
 			commit('updateBuildVariant', response.BuildVariant);
 			commit('calculateUptime');
 			commit('updateUpdateChannel', response.GlobalConfig.UpdateChannel);
-			commit('updateSteamOwnerID', (!steamOwnerID) ? 0 : steamOwnerID);
+			commit('updateSteamOwnerID', response.GlobalConfig.s_SteamOwnerID);
 		} catch (err) {}
 	},
 	getSteamOwnerID: async ({ dispatch, getters }) => {

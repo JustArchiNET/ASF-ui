@@ -12,31 +12,26 @@ export default [
 	{
 		path: '/page/home',
 		name: 'home',
-		redirect: { name: 'bots' }
+		async beforeEnter(to, from, next) {
+			const setupComplete = storage.get('setup-complete', false);
+			if (!setupComplete && from.name !== 'welcome') return next({ name: 'welcome' });
+			
+			const steamOwnerID = await store.dispatch('asf/getSteamOwnerID');
+			if (from.name === 'welcome' && steamOwnerID === '0') return next({ name: 'global-config' });
+
+			const botsDetected = await store.dispatch('bots/detectBots');
+			if (from.name === 'welcome' && !botsDetected) return next({ name: 'bot-create' });
+
+			storage.set('setup-complete', true);
+
+			return next({ name: 'bots' });
+		}
 	},
 	{
 		path: '/page/setup',
 		name: 'setup',
 		component: () => import('../views/Setup.vue'),
-		meta: { noPasswordRequired: true },
-		async beforeEnter(to, from, next) {
-			const validated = await store.dispatch('auth/validate');
-			const firstTime = storage.get('first-time', true);
-			const botsDetected = await store.dispatch('bots/detectBots');
-			const steamOwnerID = await store.dispatch('asf/getSteamOwnerID');
-
-			if (validated && firstTime && steamOwnerID === 0) {
-				return next({ name: 'global-config' });
-			}
-
-			if (validated && firstTime && !botsDetected) {
-				storage.set('first-time', false);
-				return next({ name: 'bot-create' });
-			}
-
-			if (validated) return next({ name: 'home' });
-			return next();
-		}
+		meta: { noPasswordRequired: true }
 	},
 	{
 		path: '/page/ui-configuration',
@@ -46,8 +41,7 @@ export default [
 	{
 		path: '/page/welcome',
 		name: 'welcome',
-		component: () => import('../views/Welcome.vue'),
-		meta: { noPasswordRequired: true }
+		component: () => import('../views/Welcome.vue')
 	},
 	{
 		path: '/page/bots',
