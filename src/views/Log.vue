@@ -4,7 +4,7 @@
 			<asf-log></asf-log>
 		</div>
 	</main>
-</template>x
+</template>
 
 <script>
 	import AsfLog from '../components/AsfLog.vue';
