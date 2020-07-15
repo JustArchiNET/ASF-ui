@@ -33,6 +33,9 @@
 				else window.removeEventListener('click', this.onWindowClick);
 			}
 		},
+		beforeDestroy() {
+			window.removeEventListener('click', this.onWindowClick);
+		},
 		methods: {
 			...mapActions({
 				changeTheme: 'layout/changeTheme',

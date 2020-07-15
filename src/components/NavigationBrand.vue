@@ -52,6 +52,9 @@
 				else window.removeEventListener('click', this.onWindowClick);
 			}
 		},
+		beforeDestroy() {
+			window.removeEventListener('click', this.onWindowClick);
+		},
 		methods: {
 			toggleBrandMenu() {
 				this.brandMenu = !this.brandMenu;
