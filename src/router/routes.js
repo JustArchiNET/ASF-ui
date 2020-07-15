@@ -14,17 +14,15 @@ export default [
 		name: 'home',
 		async beforeEnter(to, from, next) {
 			const setupComplete = storage.get('setup-complete', false);
-			if (!setupComplete && from.name !== 'welcome') return next({ name: 'welcome' });
-			
 			const steamOwnerID = await store.dispatch('asf/getSteamOwnerID');
-			if (from.name === 'welcome' && steamOwnerID === '0') return next({ name: 'global-config' });
-
 			const botsDetected = await store.dispatch('bots/detectBots');
-			if (from.name === 'welcome' && !botsDetected) return next({ name: 'bot-create' });
-
-			storage.set('setup-complete', true);
-
-			return next({ name: 'bots' });
+			if (!setupComplete && from.name !== 'welcome' && (steamOwnerID === '0' || !botsDetected)) return next({ name: 'welcome' });
+			else if (from.name === 'welcome' && steamOwnerID === '0') return next({ name: 'global-config' });
+			else if (from.name === 'welcome' && !botsDetected) return next({ name: 'bot-create' });
+			else if (steamOwnerID !== '0' || botsDetected) {
+				storage.set('setup-complete', true);
+				next({ name: 'bots' });
+			} else next({ name: 'bots' });
 		}
 	},
 	{
