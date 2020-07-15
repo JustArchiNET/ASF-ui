@@ -19,7 +19,8 @@ export const mutations = {
 	toggleBoxed: state => state.boxed = !state.boxed,
 	setBoxed: (state, value) => state.boxed = value,
 	toggleDarkMode: state => state.darkMode = !state.darkMode,
-	setDarkMode: (state, value) => state.darkMode = value
+	setDarkMode: (state, value) => state.darkMode = value,
+	setSideMenu: (state, value) => state.sideMenu = value
 };
 
 export const actions = {
@@ -41,12 +42,10 @@ export const actions = {
 		commit('toggleNavigation');
 		storage.set('layout:small-navigation', getters.smallNavigation);
 	},
-	toggleSideMenu: ({ commit, getters }) => {
-		if (getters.languageMenu) commit('toggleLanguageMenu');
+	toggleSideMenu: ({ commit }) => {
 		commit('toggleSideMenu');
 	},
-	toggleLanguageMenu: ({ commit, getters }) => {
-		if (getters.sideMenu) commit('toggleSideMenu');
+	toggleLanguageMenu: ({ commit }) => {
 		commit('toggleLanguageMenu');
 	},
 	changeTheme: ({ commit }, theme) => {
@@ -60,6 +59,9 @@ export const actions = {
 	toggleDarkMode: ({ commit, getters }) => {
 		commit('toggleDarkMode');
 		storage.set('layout:dark-mode', getters.darkMode);
+	},
+	closeSideMenu: ({ commit }) => {
+		commit('setSideMenu', false);
 	}
 };
 

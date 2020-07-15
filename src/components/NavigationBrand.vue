@@ -46,6 +46,12 @@
 			version: 'asf/version',
 			updateChannel: 'asf/updateChannel'
 		}),
+		watch: {
+			brandMenu(value) {
+				if (value) window.addEventListener('click', this.onWindowClick);
+				else window.removeEventListener('click', this.onWindowClick);
+			}
+		},
 		methods: {
 			toggleBrandMenu() {
 				this.brandMenu = !this.brandMenu;
@@ -118,6 +124,11 @@
 				} catch (err) {
 					this.$error(err.message);
 				}
+			},
+			onWindowClick($e) {
+				const path = $e.path || $e.composedPath();
+				if (path.includes(this.$el)) return;
+				this.brandMenu = false;
 			}
 		}
 	};

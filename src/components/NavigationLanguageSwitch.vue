@@ -27,6 +27,12 @@
 				languageMenu: 'layout/languageMenu'
 			})
 		},
+		watch: {
+			languageMenu(value) {
+				if (value) window.addEventListener('click', this.onWindowClick);
+				else window.removeEventListener('click', this.onWindowClick);
+			}
+		},
 		methods: {
 			...mapActions({
 				toggleLanguageMenu: 'layout/toggleLanguageMenu'
@@ -51,6 +57,11 @@
 				this.displayTranslationStatus();
 
 				this.$store.dispatch('layout/toggleLanguageMenu');
+			},
+			onWindowClick($e) {
+				const path = $e.path || $e.composedPath();
+				if (path.includes(this.$el)) return;
+				this.toggleLanguageMenu();
 			}
 		}
 	};
