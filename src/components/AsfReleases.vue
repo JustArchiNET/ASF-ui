@@ -8,7 +8,7 @@
 			{{ statusText }}
 		</h3>
 
-		<div v-for="release in releases" v-else class="release">
+		<div v-for="(release, i) in releases" :key="i" v-else class="release">
 			<div class="release__title">
 				<span class="release__version">v{{ release.version }}</span>
 				<span class="release__badge" :class="[release.stable ? 'release__badge--stable' : 'release__badge--prerelease']">{{ release.stable ? $t('stable') : $t('pre-release') }}</span>

@@ -1,6 +1,6 @@
 <template>
 	<div class="bot-cards">
-		<div v-for="type in botTypes" class="bot-card" :class="[`status--${type}`, { 'bot-card--selected': selectedBots.includes(type) }]" @click.prevent="selectType(type)">
+		<div v-for="(type, i) in botTypes" :key="i" class="bot-card" :class="[`status--${type}`, { 'bot-card--selected': selectedBots.includes(type) }]" @click.prevent="selectType(type)">
 			<fit-text ref="count" :max="1.2" class="bot-card__value">
 				{{ count(type) }}
 			</fit-text>
