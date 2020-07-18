@@ -16,6 +16,8 @@ export class Bot {
 		this.steamid = data.s_SteamID;
 		this.avatarHash = data.AvatarHash || '0b46945851b3d26da93a6ddba3ac961206cc191d';
 		this.bgrCount = data.GamesToRedeemInBackgroundCount;
+		this.walletBalance = data.WalletBalance;
+		this.walletCurrency = data.WalletCurrency;
 
 		this.active = data.KeepRunning;
 		this.config = data.BotConfig;
@@ -85,5 +87,22 @@ export class Bot {
 		if (this.status === BotStatus.ONLINE && selectedBots.includes('online')) return true;
 		if (this.status === BotStatus.FARMING && selectedBots.includes('farming')) return true;
 		return false;
+	}
+
+	get walletInfo() {
+		if (this.walletCurrency === 0) return;
+		let currency = this.walletBalance / 100;
+
+		// Resolve ECurrencyCode
+		switch (this.walletCurrency) {
+			case 1:
+				countryCode = 'USD';
+				break;
+		
+			default:
+				countryCode = 'EUR';
+		}
+
+		return currency.toLocaleString(Vue.i18n.locale, { style: 'currency', currency: countryCode });
 	}
 }

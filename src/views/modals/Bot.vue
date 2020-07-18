@@ -15,6 +15,9 @@
 				<h3 v-else class="bot-profile__name">
 					{{ bot.name }}
 				</h3>
+				<div class="bot-profile__wallet">
+					{{ bot.walletInfo }}
+				</div>
 				<p class="bot-profile__status">
 					{{ bot.statusText }}
 				</p>
@@ -132,9 +135,9 @@
 	.bot-profile__avatar-wrapper {
 		background: var(--color-status);
 		grid-area: avatar;
-		height: 75px;
+		height: 80px;
 		padding: 2px;
-		width: 75px;
+		width: 80px;
 	}
 
 	.bot-profile__avatar {
