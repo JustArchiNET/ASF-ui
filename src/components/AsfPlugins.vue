@@ -36,6 +36,9 @@
 		async created() {
 			try {
 				this.plugins = await this.$http.get('Plugins');
+				this.plugins.forEach((plugin, i) => {
+					if (!plugin.hasOwnProperty('Name') || !plugin.hasOwnProperty('Version')) this.plugins.splice(i, 1);
+				});
 				this.loading = false;
 			} catch (err) {
 				this.error = err.message;
