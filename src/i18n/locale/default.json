@@ -103,6 +103,8 @@
 	"password": "Password",
 	"password-invalid": "Invalid password!",
 	"performance": "Performance",
+	"plugin-unknown-name": "Unknown Plugin #{number}",
+	"plugin-unknown-version": "Unknown Version",
 	"plugins": "Plugins",
 	"plugins-not-loaded": "No plugins loaded",
 	"pre-release": "Pre-Release",

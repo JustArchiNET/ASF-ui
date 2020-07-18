@@ -11,7 +11,7 @@
 		<div v-for="(plugin, i) in plugins" :key="i" v-else class="plugin">
 			<div class="plugin__title">
 				<span class="plugin__name">{{ plugin.Name }}</span>
-				<span class="plugin__version">v{{ plugin.Version }}</span>
+				<span class="plugin__version">{{ plugin.Version }}</span>
 			</div>
 		</div>
 	</div>
@@ -37,7 +37,8 @@
 			try {
 				this.plugins = await this.$http.get('Plugins');
 				this.plugins.forEach((plugin, i) => {
-					if (!plugin.hasOwnProperty('Name') || !plugin.hasOwnProperty('Version')) this.plugins.splice(i, 1);
+					if (!plugin.hasOwnProperty('Name')) plugin['Name'] = this.$t('plugin-unknown-name', { number: i });
+					if (!plugin.hasOwnProperty('Version')) plugin['Version'] = this.$t('plugin-unknown-version');
 				});
 				this.loading = false;
 			} catch (err) {
