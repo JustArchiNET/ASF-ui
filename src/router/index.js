@@ -15,12 +15,10 @@ const router = new VueRouter({
 });
 
 router.beforeEach(async (routeTo, routeFrom, next) => {
-	if (!storage.get('welcome') && routeTo.name !== 'welcome') return next({ name: 'welcome' });
-
 	const noPasswordRequired = routeTo.matched.every(route => route.meta.noPasswordRequired);
-	if (noPasswordRequired || await store.dispatch('auth/validate')) return next();
-
-	return next({ name: 'setup' });
+	if (noPasswordRequired || await store.dispatch('auth/validate')) next();
+	else if (storage.get('first-time', true) && routeTo.name !== 'welcome') next({ name: 'welcome' });
+	else next({ name: 'setup' });
 });
 
 router.afterEach((to, from) => {

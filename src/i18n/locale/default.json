@@ -122,7 +122,7 @@
 	"settings-saved": "Settings saved!",
 	"setup": "Setup",
 	"setup-authenticated": "Everything configured",
-	"setup-description": "Before continuing, you need to configure IPC access",
+	"setup-description": "Please enter your IPC password",
 	"setup-not-connected": "Unable to connect to ASF IPC server. Make sure ASF is running!",
 	"setup-rate-limited": "Seems like you are rate limited, restart ASF or try again in a while!",
 	"shutdown": "Shutdown",
@@ -159,6 +159,8 @@
 	"updates": "Updates",
 	"welcome": "Welcome",
 	"welcome-message": "Welcome to ASF-ui, standalone interface for ASF.",
-	"welcome-message-bots": "It looks like this might be the first time you are using ASF-ui, since you haven't set up any bots yet.",
+	"welcome-message-todo": "The following things should be done:",
+	"welcome-message-bot": "Create a bot",
+	"welcome-message-id": "Set a SteamOwnerID",
 	"wiki": "Wiki"
 }
