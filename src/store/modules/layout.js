@@ -19,8 +19,7 @@ export const mutations = {
 	toggleBoxed: state => state.boxed = !state.boxed,
 	setBoxed: (state, value) => state.boxed = value,
 	toggleDarkMode: state => state.darkMode = !state.darkMode,
-	setDarkMode: (state, value) => state.darkMode = value,
-	setSideMenu: (state, value) => state.sideMenu = value
+	setDarkMode: (state, value) => state.darkMode = value
 };
 
 export const actions = {
@@ -59,9 +58,6 @@ export const actions = {
 	toggleDarkMode: ({ commit, getters }) => {
 		commit('toggleDarkMode');
 		storage.set('layout:dark-mode', getters.darkMode);
-	},
-	closeSideMenu: ({ commit }) => {
-		commit('setSideMenu', false);
 	}
 };
 

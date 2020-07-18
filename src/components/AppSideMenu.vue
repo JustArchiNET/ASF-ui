@@ -27,27 +27,12 @@
 			boxedLayout: 'layout/boxed',
 			darkMode: 'layout/darkMode'
 		}),
-		watch: {
-			sideMenu(value) {
-				if (value) window.addEventListener('click', this.onWindowClick);
-				else window.removeEventListener('click', this.onWindowClick);
-			}
-		},
-		beforeDestroy() {
-			window.removeEventListener('click', this.onWindowClick);
-		},
 		methods: {
 			...mapActions({
 				changeTheme: 'layout/changeTheme',
 				toggleBoxed: 'layout/toggleBoxed',
-				toggleDarkMode: 'layout/toggleDarkMode',
-				closeSideMenu: 'layout/closeSideMenu'
-			}),
-			onWindowClick($e) {
-				const path = $e.path || $e.composedPath();
-				if (path.includes(this.$el)) return;
-				this.closeSideMenu();
-			}
+				toggleDarkMode: 'layout/toggleDarkMode'
+			})
 		}
 	};
 </script>
