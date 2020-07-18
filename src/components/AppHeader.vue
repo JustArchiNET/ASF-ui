@@ -31,8 +31,18 @@
 		computed: {
 			...mapGetters({
 				status: 'auth/status',
-				password: 'auth/password'
+				password: 'auth/password',
+				sideMenu: 'layout/sideMenu'
 			})
+		},
+		watch: {
+			sideMenu(value) {
+				if (value) window.addEventListener('click', this.onWindowClick);
+				else window.removeEventListener('click', this.onWindowClick);
+			}
+		},
+		beforeDestroy() {
+			window.removeEventListener('click', this.onWindowClick);
 		},
 		methods: {
 			...mapActions({
@@ -42,6 +52,11 @@
 			async logout() {
 				await this.$store.dispatch('auth/setPassword');
 				this.$router.replace({ name: 'setup' });
+			},
+			onWindowClick($e) {
+				const path = $e.path || $e.composedPath();
+				if (path.includes(this.$el)) return;
+				this.toggleSideMenu();
 			}
 		}
 	};

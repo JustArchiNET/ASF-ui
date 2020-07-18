@@ -29,7 +29,7 @@
 </template>
 
 <script>
-	import { mapGetters } from 'vuex';
+	import { mapGetters, mapActions } from 'vuex';
 	import { newReleaseAvailable } from '../utils/ui';
 	import waitForRestart from '../utils/waitForRestart';
 
@@ -44,10 +44,24 @@
 		computed: mapGetters({
 			authenticated: 'auth/authenticated',
 			version: 'asf/version',
-			updateChannel: 'asf/updateChannel'
+			updateChannel: 'asf/updateChannel',
+			sideMenu: 'layout/sideMenu'
 		}),
+		watch: {
+			brandMenu(value) {
+				if (value) window.addEventListener('click', this.onWindowClick);
+				else window.removeEventListener('click', this.onWindowClick);
+			}
+		},
+		beforeDestroy() {
+			window.removeEventListener('click', this.onWindowClick);
+		},
 		methods: {
+			...mapActions({
+				setSideMenu: 'layout/setSideMenu'
+			}),
 			toggleBrandMenu() {
+				if (this.sideMenu) this.setSideMenu(false);
 				this.brandMenu = !this.brandMenu;
 			},
 			extractVersions(err) {
@@ -118,6 +132,11 @@
 				} catch (err) {
 					this.$error(err.message);
 				}
+			},
+			onWindowClick($e) {
+				const path = $e.path || $e.composedPath();
+				if (path.includes(this.$el)) return;
+				this.brandMenu = false;
 			}
 		}
 	};

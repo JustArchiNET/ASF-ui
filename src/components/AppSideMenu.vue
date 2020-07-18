@@ -9,7 +9,7 @@
 		</div>
 
 		<div class="theme-switcher">
-			<div v-for="theme in availableThemes" class="theme-switcher__theme" :class="[`theme-${theme}`]" @click="changeTheme(theme)"></div>
+			<div v-for="(theme, i) in availableThemes" :key="i" class="theme-switcher__theme" :class="[`theme-${theme}`]" @click="changeTheme(theme)"></div>
 		</div>
 	</aside>
 </template>
@@ -27,11 +27,13 @@
 			boxedLayout: 'layout/boxed',
 			darkMode: 'layout/darkMode'
 		}),
-		methods: mapActions({
-			changeTheme: 'layout/changeTheme',
-			toggleBoxed: 'layout/toggleBoxed',
-			toggleDarkMode: 'layout/toggleDarkMode'
-		})
+		methods: {
+			...mapActions({
+				changeTheme: 'layout/changeTheme',
+				toggleBoxed: 'layout/toggleBoxed',
+				toggleDarkMode: 'layout/toggleDarkMode'
+			})
+		}
 	};
 </script>
 
