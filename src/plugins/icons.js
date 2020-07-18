@@ -6,7 +6,7 @@ import {
 	faTimesCircle, faCheckCircle, faEdit, faTimes, faSquare, faMoon, faPalette, faPlay, faQuestion, faPlus,
 	faSpinner, faKey, faTrash, faCloudDownloadAlt, faSignOutAlt, faAngleDown, faLanguage, faGamepad, faClone,
 	faCalendarCheck, faLock, faBookOpen, faExclamation, faCodeBranch, faHourglassEnd, faHourglassHalf, faHourglassStart,
-	faRedoAlt, faClipboard, faPuzzlePiece
+	faRedoAlt, faClipboard, faPuzzlePiece, faUndoAlt
 } from '@fortawesome/free-solid-svg-icons';
 
 import { FontAwesomeIcon, FontAwesomeLayers } from '@fortawesome/vue-fontawesome';
@@ -15,7 +15,7 @@ library.add(faWrench, faBars, faLaptop, faUsers, faFileAlt, faTachometerAlt, faP
 	faClock, faTimesCircle, faCheckCircle, faEdit, faTimes, faSquare, faMoon, faPalette, faPlay, faQuestion,
 	faPlus, faSpinner, faKey, faTrash, faCloudDownloadAlt, faSignOutAlt, faAngleDown, faLanguage, faGamepad,
 	faClone, faCalendarCheck, faLock, faGithub, faBookOpen, faExclamation, faCodeBranch, faHourglassEnd, faHourglassHalf,
-	faHourglassStart, faRedoAlt, faClipboard, faPuzzlePiece);
+	faHourglassStart, faRedoAlt, faClipboard, faPuzzlePiece, faUndoAlt);
 
 export default {
 	install(Vue) {

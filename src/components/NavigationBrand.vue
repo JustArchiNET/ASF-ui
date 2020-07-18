@@ -15,7 +15,7 @@
 				</div>
 
 				<div class="brand__menu-item" @click="restart">
-					<font-awesome-icon class="brand__menu-icon" icon="redo-alt" fixed-width></font-awesome-icon>
+					<font-awesome-icon class="brand__menu-icon" icon="undo-alt" fixed-width></font-awesome-icon>
 					<span>{{ $t('restart') }}</span>
 				</div>
 
