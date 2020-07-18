@@ -90,17 +90,16 @@ export class Bot {
 	}
 
 	get walletInfo() {
-		if (this.walletCurrency === 0) return;
-		let currency = this.walletBalance / 100;
+		if (this.walletCurrency === 0) return null;
+		const currency = this.walletBalance / 100;
+		let countryCode = 'EUR';
 
 		// Resolve ECurrencyCode
 		switch (this.walletCurrency) {
 			case 1:
 				countryCode = 'USD';
 				break;
-		
-			default:
-				countryCode = 'EUR';
+			//...
 		}
 
 		return currency.toLocaleString(Vue.i18n.locale, { style: 'currency', currency: countryCode });
