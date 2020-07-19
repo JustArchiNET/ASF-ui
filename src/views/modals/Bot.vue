@@ -9,12 +9,19 @@
 			</div>
 
 			<div class="bot-profile__meta">
-				<h3 v-if="bot.nickname && nicknames" class="bot-profile__name" :title="bot.name">
-					{{ bot.nickname }}
-				</h3>
-				<h3 v-else class="bot-profile__name">
-					{{ bot.name }}
-				</h3>
+				<div class="bot-profile__info">
+					<div class="bot-profile__name">
+						<h3 v-if="bot.nickname && nicknames" class="bot-profile__name" :title="bot.name">
+							{{ bot.nickname }}
+						</h3>
+						<h3 v-else class="bot-profile__name">
+							{{ bot.name }}
+						</h3>
+					</div>
+					<div v-if="bot.walletInfo" class="bot-profile__wallet pull-right">
+						{{ bot.walletInfo }}
+					</div>
+				</div>
 				<p class="bot-profile__status">
 					{{ bot.statusText }}
 				</p>
@@ -144,6 +151,11 @@
 
 	.bot-profile__meta {
 		min-width: 0;
+	}
+
+	.bot-profile__info {
+		display: flex;
+		align-items: center;
 	}
 
 	.bot-profile__name {

@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import getCountryCode from '../utils/getCountryCode';
 
 const timeSpanRegex = /(?:(\d+).)?(\d{2}):(\d{2}):(\d{2})(?:.?(\d{7}))?/;
 
@@ -16,6 +17,8 @@ export class Bot {
 		this.steamid = data.s_SteamID;
 		this.avatarHash = data.AvatarHash || '0b46945851b3d26da93a6ddba3ac961206cc191d';
 		this.bgrCount = data.GamesToRedeemInBackgroundCount;
+		this.walletBalance = data.WalletBalance;
+		this.walletCurrency = data.WalletCurrency;
 
 		this.active = data.KeepRunning;
 		this.config = data.BotConfig;
@@ -85,5 +88,13 @@ export class Bot {
 		if (this.status === BotStatus.ONLINE && selectedBots.includes('online')) return true;
 		if (this.status === BotStatus.FARMING && selectedBots.includes('farming')) return true;
 		return false;
+	}
+
+	get walletInfo() {
+		if (this.walletCurrency === 0) return null;
+		const currency = this.walletBalance / 100;
+		const currencyCode = getCountryCode(this.walletCurrency);
+		if (typeof currencyCode === 'undefined') return null;
+		return currency.toLocaleString(Vue.i18n.locale, { style: 'currency', currency: currencyCode });
 	}
 }
