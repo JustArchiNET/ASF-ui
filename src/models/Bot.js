@@ -94,6 +94,7 @@ export class Bot {
 		if (this.walletCurrency === 0) return null;
 		const currency = this.walletBalance / 100;
 		const currencyCode = getCountryCode(this.walletCurrency);
+		if (typeof currencyCode === 'undefined') return null;
 		return currency.toLocaleString(Vue.i18n.locale, { style: 'currency', currency: currencyCode });
 	}
 }
