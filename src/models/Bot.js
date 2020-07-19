@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import getCountryCode from '../utils/getCountryCode';
 
 const timeSpanRegex = /(?:(\d+).)?(\d{2}):(\d{2}):(\d{2})(?:.?(\d{7}))?/;
 
@@ -92,16 +93,7 @@ export class Bot {
 	get walletInfo() {
 		if (this.walletCurrency === 0) return null;
 		const currency = this.walletBalance / 100;
-		let countryCode = 'EUR';
-
-		// Resolve ECurrencyCode
-		switch (this.walletCurrency) {
-			case 1:
-				countryCode = 'USD';
-				break;
-			//...
-		}
-
-		return currency.toLocaleString(Vue.i18n.locale, { style: 'currency', currency: countryCode });
+		const currencyCode = getCountryCode(this.walletCurrency);
+		return currency.toLocaleString(Vue.i18n.locale, { style: 'currency', currency: currencyCode });
 	}
 }
