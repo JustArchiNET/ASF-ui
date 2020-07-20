@@ -63,9 +63,18 @@
 			},
 			async loadReleases() {
 				const releasesCache = storage.get('cache:releases');
+
 				if (releasesCache) {
 					const { timestamp, releases, version } = releasesCache;
-					if (version === this.version && timestamp > Date.now() - 24 * 60 * 60 * 1000) return releases;
+					const currentTimestamp = Date.now() - 24 * 60 * 60 * 1000;
+					let isReadable = true;
+
+					releases.forEach(r => {
+						const cl = r.changelog;
+						if (typeof cl !== 'undefined') isReadable = !cl.startsWith('<p>This is automated');
+					});
+
+					if (version === this.version && timestamp > currentTimestamp && isReadable) return releases;
 				}
 
 				const releases = await this.fetchReleases();
