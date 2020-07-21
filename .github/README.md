@@ -19,6 +19,10 @@ You don't have to install or download anything. ASF already comes with ASF-ui in
 
 If you are unsure about how to setup ASF-ui you can read more about it on [ASF's wiki](https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Setting-up#using-asf-ui).
 
+### Hidden features
+
+There are some 'hidden' features you can read more about [here](https://github.com/JustArchiNET/ASF-ui/blob/master/.github/FEATURES.md).
+
 ### Development
 
 If you are more than the average user you can read more [here](https://github.com/JustArchiNET/ASF-ui/blob/master/.github/DEVELOPMENT.md).

@@ -15,13 +15,13 @@
 				</div>
 
 				<div class="brand__menu-item" @click="restart">
-					<font-awesome-icon class="brand__menu-icon" icon="power-off" fixed-width></font-awesome-icon>
+					<font-awesome-icon class="brand__menu-icon" icon="undo-alt" fixed-width></font-awesome-icon>
 					<span>{{ $t('restart') }}</span>
 				</div>
 
-				<div class="brand__menu-item" @click="exit">
-					<font-awesome-icon class="brand__menu-icon" icon="sign-out-alt" fixed-width></font-awesome-icon>
-					<span>{{ $t('exit') }}</span>
+				<div class="brand__menu-item" @click="shutdown">
+					<font-awesome-icon class="brand__menu-icon" icon="power-off" fixed-width></font-awesome-icon>
+					<span>{{ $t('shutdown') }}</span>
 				</div>
 			</div>
 		</transition>
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-	import { mapGetters } from 'vuex';
+	import { mapGetters, mapActions } from 'vuex';
 	import { newReleaseAvailable } from '../utils/ui';
 	import waitForRestart from '../utils/waitForRestart';
 
@@ -44,10 +44,24 @@
 		computed: mapGetters({
 			authenticated: 'auth/authenticated',
 			version: 'asf/version',
-			updateChannel: 'asf/updateChannel'
+			updateChannel: 'asf/updateChannel',
+			sideMenu: 'layout/sideMenu'
 		}),
+		watch: {
+			brandMenu(value) {
+				if (value) window.addEventListener('click', this.onWindowClick);
+				else window.removeEventListener('click', this.onWindowClick);
+			}
+		},
+		beforeDestroy() {
+			window.removeEventListener('click', this.onWindowClick);
+		},
 		methods: {
+			...mapActions({
+				setSideMenu: 'layout/setSideMenu'
+			}),
 			toggleBrandMenu() {
+				if (this.sideMenu) this.setSideMenu(false);
 				this.brandMenu = !this.brandMenu;
 			},
 			extractVersions(err) {
@@ -103,20 +117,26 @@
 					await waitForRestart();
 					this.$success(this.$t('restart-complete'));
 					this.brandMenu = false;
+					window.location.reload(false);
 				} catch (err) {
 					this.$error(err.message);
 				} finally {
 					this.restarting = false;
 				}
 			},
-			async exit() {
+			async shutdown() {
 				try {
 					await this.$http.post('asf/exit');
-					this.$info(this.$t('exit-message'));
+					this.$info(this.$t('shutdown-message'));
 					this.brandMenu = false;
 				} catch (err) {
 					this.$error(err.message);
 				}
+			},
+			onWindowClick($e) {
+				const path = $e.path || $e.composedPath();
+				if (path.includes(this.$el)) return;
+				this.brandMenu = false;
 			}
 		}
 	};

@@ -1,5 +1,5 @@
 <template>
-	<main class="main-container main-container--fullheight dashboard">
+	<main class="main-container main-container--fullheight bots-overview">
 		<asf-farming-info></asf-farming-info>
 		<asf-bots></asf-bots>
 	</main>
@@ -10,7 +10,7 @@
 	import AsfBots from '../components/AsfBots.vue';
 
 	export default {
-		name: 'dashboard',
+		name: 'bots-overview',
 		metaInfo() {
 			return {
 				title: this.$t('bots')
@@ -21,7 +21,7 @@
 </script>
 
 <style lang="scss">
-	.dashboard {
+	.bots-overview {
 		display: grid;
 		grid-gap: 1rem;
 		grid-template-columns: 1fr;

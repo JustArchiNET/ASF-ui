@@ -1,6 +1,7 @@
 import * as http from '../plugins/http';
 import compareVersion from './compareVersion';
 import getLocaleForWiki from './getLocaleForWiki';
+import { createVirtualDOM } from './createVirtualDOM';
 
 async function getURL(file, version, locale) {
 	const wikiLocale = getLocaleForWiki(locale);
@@ -24,10 +25,9 @@ async function getURL(file, version, locale) {
 	const nextReleaseTime = new Date(releases[currentReleaseIndex - 1].published_at);
 	const wikiRevisionsRaw = await http.post('www/send', { url: `https://github.com/JustArchiNET/ArchiSteamFarm/wiki/${file}${wikiLocale}/_history` });
 
-	const wikiRevisionsHTML = document.createElement('html');
-	wikiRevisionsHTML.innerHTML = wikiRevisionsRaw;
+	const virtualDOM = createVirtualDOM(wikiRevisionsRaw);
 
-	const wikiRevisions = Array.from(wikiRevisionsHTML.querySelectorAll('.js-wiki-history-revision')).map(revisionHTML => ({
+	const wikiRevisions = Array.from(virtualDOM.querySelectorAll('.js-wiki-history-revision')).map(revisionHTML => ({
 		releaseTime: new Date(revisionHTML.querySelector('relative-time').getAttribute('datetime')),
 		version: revisionHTML.querySelector('.js-wiki-history-checkbox').value
 	}));

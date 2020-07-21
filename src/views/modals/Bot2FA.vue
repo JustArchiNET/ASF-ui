@@ -37,6 +37,7 @@
 <script>
 	import { mapGetters } from 'vuex';
 	import * as copy from 'copy-to-clipboard';
+	import delay from '../../utils/delay';
 
 	export default {
 		name: 'bot-2fa',
@@ -73,6 +74,13 @@
 				this.refreshing = false;
 			}
 		},
+		watch: {
+			async token() {
+				if (this.token === '-----') return;
+				await delay(30000); // Steam 2FA token is only valid for 30 seconds
+				this.token = '-----';
+			}
+		},
 		methods: {
 			async acceptTrades() {
 				if (this.accepting) return;
@@ -80,12 +88,13 @@
 				this.accepting = true;
 
 				try {
-					const response = await this.$http.post(`bot/${this.bot.name}/twoFactorAuthentication/confirmations/accept`);
-
-					if (response[this.bot.name].Success) {
-						this.$success(this.$t('2fa-accept-success'));
+					const bot = this.bot.name;
+					const response = await this.$http.post(`bot/${bot}/twoFactorAuthentication/confirmations/accept`);
+					
+					if (response[bot].Success) {
+						this.$success(this.$t('2fa-accept-success', { bot: bot }));
 					} else {
-						this.$error(response[this.bot.name].Message);
+						this.$error(response[bot].Message);
 					}
 				} catch (err) {
 					this.$error(err.message);
@@ -99,12 +108,13 @@
 				this.canceling = true;
 
 				try {
-					const response = await this.$http.post(`bot/${this.bot.name}/twoFactorAuthentication/confirmations/cancel`);
+					const bot = this.bot.name;
+					const response = await this.$http.post(`bot/${bot}/twoFactorAuthentication/confirmations/cancel`);
 
-					if (response[this.bot.name].Success) {
-						this.$success(this.$t('2fa-cancel-success'));
+					if (response[bot].Success) {
+						this.$success(this.$t('2fa-cancel-success', { bot: bot }));
 					} else {
-						this.$error(response[this.bot.name].Message);
+						this.$error(response[bot].Message);
 					}
 				} catch (err) {
 					this.$error(err.message);
