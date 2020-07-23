@@ -4,9 +4,9 @@
 	"description": "Standalone web interface for ASF",
 	"scripts": {
 		"start": "webpack-dev-server --hot --open",
-		"build": "webpack --config webpack.prod.config.js",
-		"build:analyze": "webpack --config webpack.analyze.config.js",
-		"deploy": "webpack --config webpack.deploy.config.js"
+		"build": "webpack --config webpack.config.prod.js",
+		"build:analyze": "webpack --config webpack.config.analyze.js",
+		"deploy": "webpack --config webpack.config.deploy.js"
 	},
 	"private": true,
 	"devDependencies": {
