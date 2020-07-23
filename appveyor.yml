@@ -84,10 +84,7 @@ after_test:
     7z a -bd -tzip '-mm=Deflate' $compressionArgs 'out\ASF-ui.zip' "$env:APPVEYOR_BUILD_FOLDER\dist\*"
 
 
-    # TODO: Change me to Push-AppveyorArtifact once https://github.com/appveyor/ci/issues/2183 is fixed
-
-    appveyor PushArtifact 'out\ASF-ui.zip' -FileName 'ASF-ui.zip' -DeploymentName 'ASF-ui.zip'
-
+    Push-AppveyorArtifact 'out\ASF-ui.zip' -FileName 'ASF-ui.zip' -DeploymentName 'ASF-ui.zip'
 
     if (!($env:APPVEYOR_PULL_REQUEST_NUMBER) -and ($env:APPVEYOR_REPO_BRANCH -eq 'master') -and ($env:APPVEYOR_REPO_TAG -eq 'false') -and (Test-Path 'crowdin.yml' -PathType Leaf) -and (Test-Path 'tools\ArchiCrowdin\crowdin_identity_example.yml' -PathType Leaf) -and (Test-Path 'tools\ArchiCrowdin\archi.ps1' -PathType Leaf)) {
         (Get-Content 'tools\ArchiCrowdin\crowdin_identity_example.yml').Replace('CROWDIN_API_KEY', "$env:CROWDIN_API_KEY").Replace('CROWDIN_PROJECT_IDENTIFIER', "$env:CROWDIN_PROJECT_IDENTIFIER") | Set-Content 'tools\ArchiCrowdin\crowdin_identity.yml'
