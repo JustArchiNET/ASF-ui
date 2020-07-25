@@ -1,49 +1,49 @@
 <template>
-	<div v-if="bot.games.length && botsFarmingCount !== 0" :class="[gameName ? 'bot-games-text' : 'bot-games']">
-		<template v-if="gameName">
-			<div v-html="games"></div>
-		</template>
+  <div v-if="bot.games.length && botsFarmingCount !== 0" :class="[gameName ? 'bot-games-text' : 'bot-games']">
+    <template v-if="gameName">
+      <div v-html="games"></div>
+    </template>
 
-		<template v-else>
-			<div v-for="(game, i) in bot.games" :key="i" class="bot-game" :title="game.GameName" :class="[game.farming ? 'status--farming' : 'status--disabled']">
-				<a target="_blank" :href="`https://store.steampowered.com/app/${game.AppID}/`">
-					<div class="bot-game__info">
-						<span class="bot-game__name">{{ game.GameName }}</span>
-					</div>
-					<div class="bot-game__background">
-						<img class="bot-game__image" :src="`https://steamcdn-a.akamaihd.net/steam/apps/${game.AppID}/header.jpg`">
-					</div>
-				</a>
-			</div>
-		</template>
-	</div>
+    <template v-else>
+      <div v-for="(game, i) in bot.games" :key="i" class="bot-game" :title="game.GameName" :class="[game.farming ? 'status--farming' : 'status--disabled']">
+        <a target="_blank" :href="`https://store.steampowered.com/app/${game.AppID}/`">
+          <div class="bot-game__info">
+            <span class="bot-game__name">{{ game.GameName }}</span>
+          </div>
+          <div class="bot-game__background">
+            <img class="bot-game__image" :src="`https://steamcdn-a.akamaihd.net/steam/apps/${game.AppID}/header.jpg`">
+          </div>
+        </a>
+      </div>
+    </template>
+  </div>
 </template>
 
 <script>
-	import { mapGetters } from 'vuex';
+  import { mapGetters } from 'vuex';
 
-	export default {
-		name: 'bot-games',
-		props: {
-			bot: Object
-		},
-		computed: {
-			...mapGetters({
-				botsFarmingCount: 'bots/botsFarmingCount',
-				gameName: 'settings/gameName'
-			}),
-			games() {
-				let html = '';
+  export default {
+    name: 'bot-games',
+    props: {
+      bot: Object,
+    },
+    computed: {
+      ...mapGetters({
+        botsFarmingCount: 'bots/botsFarmingCount',
+        gameName: 'settings/gameName',
+      }),
+      games() {
+        let html = '';
 
-				this.bot.games.forEach(game => {
-					const aTag = `<a class="text-dark" target="_blank" href="https://store.steampowered.com/app/${game.AppID}/">${game.GameName}</a>`;
-					html = `${html + aTag}, `;
-				});
+        this.bot.games.forEach(game => {
+          const aTag = `<a class="text-dark" target="_blank" href="https://store.steampowered.com/app/${game.AppID}/">${game.GameName}</a>`;
+          html = `${html + aTag}, `;
+        });
 
-				return html.slice(0, -2);
-			}
-		}
-	};
+        return html.slice(0, -2);
+      },
+    },
+  };
 </script>
 
 <style lang="scss">

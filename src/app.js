@@ -15,15 +15,15 @@ Vue.use(i18n, store);
 Vue.use(http);
 
 const app = new Vue({
-	el: '#app',
-	render: h => h(App),
-	router,
-	store
+  el: '#app',
+  render: h => h(App),
+  router,
+  store,
 });
 
 window.addEventListener('unhandledrejection', err => {
-	if (err.reason instanceof NotificationError) {
-		app.$error(err.reason.message);
-		err.preventDefault();
-	}
+  if (err.reason instanceof NotificationError) {
+    app.$error(err.reason.message);
+    err.preventDefault();
+  }
 });

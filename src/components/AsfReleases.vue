@@ -1,112 +1,112 @@
 <template>
-	<div class="releases">
-		<h3 v-if="loading && !statusText" class="subtitle">
-			<font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
-		</h3>
+  <div class="releases">
+    <h3 v-if="loading && !statusText" class="subtitle">
+      <font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
+    </h3>
 
-		<h3 v-if="statusText" class="subtitle">
-			{{ statusText }}
-		</h3>
+    <h3 v-if="statusText" class="subtitle">
+      {{ statusText }}
+    </h3>
 
-		<div v-for="(release, i) in releases" :key="i" v-else class="release">
-			<div class="release__title">
-				<span class="release__version">v{{ release.version }}</span>
-				<span class="release__badge" :class="[release.stable ? 'release__badge--stable' : 'release__badge--prerelease']">{{ release.stable ? $t('stable') : $t('pre-release') }}</span>
-				<span class="release__time">{{ getTimeText(release.publishedAt) }}</span>
-			</div>
+    <div v-for="(release, i) in releases" v-else :key="i" class="release">
+      <div class="release__title">
+        <span class="release__version">v{{ release.version }}</span>
+        <span class="release__badge" :class="[release.stable ? 'release__badge--stable' : 'release__badge--prerelease']">{{ release.stable ? $t('stable') : $t('pre-release') }}</span>
+        <span class="release__time">{{ getTimeText(release.publishedAt) }}</span>
+      </div>
 
-			<div class="release__changes" v-html="release.changelog"></div>
+      <div class="release__changes" v-html="release.changelog"></div>
 
-			<a class="release__changelog-link" :href="`https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${release.version}`" target="_blank">{{ $t('changelog-full') }}</a>
-		</div>
-	</div>
+      <a class="release__changelog-link" :href="`https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${release.version}`" target="_blank">{{ $t('changelog-full') }}</a>
+    </div>
+  </div>
 </template>
 
 <script>
-	import { mapGetters } from 'vuex';
-	import humanizeDuration from 'humanize-duration';
-	import getLocaleForHD from '../utils/getLocaleForHD';
-	import * as storage from '../utils/storage';
-	import compareVersion from '../utils/compareVersion';
+  import { mapGetters } from 'vuex';
+  import humanizeDuration from 'humanize-duration';
+  import getLocaleForHD from '../utils/getLocaleForHD';
+  import * as storage from '../utils/storage';
+  import compareVersion from '../utils/compareVersion';
 
-	export default {
-		name: 'asf-releases',
-		data() {
-			return {
-				loading: true,
-				error: null,
-				releases: [],
-				releaseCount: 5
-			};
-		},
-		computed: {
-			...mapGetters({ version: 'asf/version' }),
-			statusText() {
-				if (this.error) return this.error;
-				if (!this.loading && !this.releases.length) return this.$t('releases-not-found');
-			}
-		},
-		async created() {
-			try {
-				this.releases = await this.loadReleases();
-				this.loading = false;
-			} catch (err) {
-				this.error = err.message;
-			}
-		},
-		methods: {
-			getTimeText(releaseDate) {
-				const language = getLocaleForHD();
-				const releasedSeconds = new Date() - new Date(releaseDate);
-				const time = humanizeDuration(releasedSeconds, { language, largest: 2 });
-				return this.$t('released-ago', { time });
-			},
-			async loadReleases() {
-				const releasesCache = storage.get('cache:releases');
+  export default {
+    name: 'asf-releases',
+    data() {
+      return {
+        loading: true,
+        error: null,
+        releases: [],
+        releaseCount: 5,
+      };
+    },
+    computed: {
+      ...mapGetters({ version: 'asf/version' }),
+      statusText() {
+        if (this.error) return this.error;
+        if (!this.loading && !this.releases.length) return this.$t('releases-not-found');
+      },
+    },
+    async created() {
+      try {
+        this.releases = await this.loadReleases();
+        this.loading = false;
+      } catch (err) {
+        this.error = err.message;
+      }
+    },
+    methods: {
+      getTimeText(releaseDate) {
+        const language = getLocaleForHD();
+        const releasedSeconds = new Date() - new Date(releaseDate);
+        const time = humanizeDuration(releasedSeconds, { language, largest: 2 });
+        return this.$t('released-ago', { time });
+      },
+      async loadReleases() {
+        const releasesCache = storage.get('cache:releases');
 
-				if (releasesCache) {
-					const { timestamp, releases, version } = releasesCache;
-					const currentTimestamp = Date.now() - 24 * 60 * 60 * 1000;
-					let isReadable = true;
+        if (releasesCache) {
+          const { timestamp, releases, version } = releasesCache;
+          const currentTimestamp = Date.now() - 24 * 60 * 60 * 1000;
+          let isReadable = true;
 
-					releases.forEach(r => {
-						const cl = r.changelog;
-						if (typeof cl !== 'undefined') isReadable = !cl.startsWith('<p>This is automated');
-					});
+          releases.forEach(r => {
+            const cl = r.changelog;
+            if (typeof cl !== 'undefined') isReadable = !cl.startsWith('<p>This is automated');
+          });
 
-					if (version === this.version && timestamp > currentTimestamp && isReadable) return releases;
-				}
+          if (version === this.version && timestamp > currentTimestamp && isReadable) return releases;
+        }
 
-				const releases = await this.fetchReleases();
-				storage.set('cache:releases', { timestamp: Date.now(), releases, version: this.version });
-				return releases;
-			},
-			async fetchReleases() {
-				const releases = [];
+        const releases = await this.fetchReleases();
+        storage.set('cache:releases', { timestamp: Date.now(), releases, version: this.version });
+        return releases;
+      },
+      async fetchReleases() {
+        const releases = [];
 
-				releases.push(await this.fetchRelease()); // Fetch latest release
-				if (!releases[0] || !releases[0].stable) releases.push(await this.fetchRelease('latest')); // If the latest releases is not stable, fetch latest stable release
-				if (!releases.some(release => release.version === this.version)) releases.push(await this.fetchRelease(this.version)); // If current version is neither latest nor latest stable, fetch it
+        releases.push(await this.fetchRelease()); // Fetch latest release
+        if (!releases[0] || !releases[0].stable) releases.push(await this.fetchRelease('latest')); // If the latest releases is not stable, fetch latest stable release
+        if (!releases.some(release => release.version === this.version)) releases.push(await this.fetchRelease(this.version)); // If current version is neither latest nor latest stable, fetch it
 
-				return releases
-					.filter((value, index) => !!value && releases.findIndex(release => release.version === value.version) === index) // Clean the list in case any of the fetches failed, remove any duplicates
-					.sort((lhs, rhs) => compareVersion(rhs.version, lhs.version)); // Order the releases descending by version
-			},
-			async fetchRelease(version = '') {
-				try {
-					const release = await this.$http.get(`www/github/release/${version}`);
-					const publishedAt = new Date(release.ReleasedAt);
-					const changelog = release.ChangelogHTML.replace(/<a href="/g, '<a target="_blank" href="');
-					return {
-						changelog,
-						stable: release.Stable,
-						version: release.Version,
-						publishedAt
-					};
-				} catch (err) {}
-			}
-		}
-	};
+        return releases
+          .filter((value, index) => !!value && releases.findIndex(release => release.version === value.version) === index) // Clean the list in case any of the fetches failed, remove any duplicates
+          .sort((lhs, rhs) => compareVersion(rhs.version, lhs.version)); // Order the releases descending by version
+      },
+      async fetchRelease(version = '') {
+        try {
+          const release = await this.$http.get(`www/github/release/${version}`);
+          const publishedAt = new Date(release.ReleasedAt);
+          const changelog = release.ChangelogHTML.replace(/<a href="/g, '<a target="_blank" href="');
+          return {
+            changelog,
+            stable: release.Stable,
+            version: release.Version,
+            publishedAt,
+          };
+        } catch (err) {}
+      },
+    },
+  };
 </script>
 
 <style lang="scss">
