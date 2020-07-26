@@ -1,4 +1,4 @@
-const config = require('./webpack.config');
+const config = require('./config');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 delete config.devServer;
