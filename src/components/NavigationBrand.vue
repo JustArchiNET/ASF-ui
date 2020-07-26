@@ -1,145 +1,145 @@
 <template>
-	<div class="brand" @click="toggleBrandMenu">
-		<span class="brand__name brand__name--small"><b>A</b>SF</span>
-		<span class="brand__name brand__name--big"><b>Archi</b>SteamFarm</span>
-		<div v-if="authenticated" class="brand__icon">
-			<font-awesome-icon v-if="brandMenu" icon="times"></font-awesome-icon>
-			<font-awesome-icon v-else icon="angle-down"></font-awesome-icon>
-		</div>
+  <div class="brand" @click="toggleBrandMenu">
+    <span class="brand__name brand__name--small"><b>A</b>SF</span>
+    <span class="brand__name brand__name--big"><b>Archi</b>SteamFarm</span>
+    <div v-if="authenticated" class="brand__icon">
+      <font-awesome-icon v-if="brandMenu" icon="times"></font-awesome-icon>
+      <font-awesome-icon v-else icon="angle-down"></font-awesome-icon>
+    </div>
 
-		<transition name="brand__menu">
-			<div v-if="brandMenu && authenticated" class="brand__menu">
-				<div v-if="updateChannel !== 0" class="brand__menu-item" @click="update">
-					<font-awesome-icon class="brand__menu-icon" icon="cloud-download-alt" fixed-width></font-awesome-icon>
-					<span>{{ $t('update') }}</span>
-				</div>
+    <transition name="brand__menu">
+      <div v-if="brandMenu && authenticated" class="brand__menu">
+        <div v-if="updateChannel !== 0" class="brand__menu-item" @click="update">
+          <font-awesome-icon class="brand__menu-icon" icon="cloud-download-alt" fixed-width></font-awesome-icon>
+          <span>{{ $t('update') }}</span>
+        </div>
 
-				<div class="brand__menu-item" @click="restart">
-					<font-awesome-icon class="brand__menu-icon" icon="undo-alt" fixed-width></font-awesome-icon>
-					<span>{{ $t('restart') }}</span>
-				</div>
+        <div class="brand__menu-item" @click="restart">
+          <font-awesome-icon class="brand__menu-icon" icon="undo-alt" fixed-width></font-awesome-icon>
+          <span>{{ $t('restart') }}</span>
+        </div>
 
-				<div class="brand__menu-item" @click="shutdown">
-					<font-awesome-icon class="brand__menu-icon" icon="power-off" fixed-width></font-awesome-icon>
-					<span>{{ $t('shutdown') }}</span>
-				</div>
-			</div>
-		</transition>
-	</div>
+        <div class="brand__menu-item" @click="shutdown">
+          <font-awesome-icon class="brand__menu-icon" icon="power-off" fixed-width></font-awesome-icon>
+          <span>{{ $t('shutdown') }}</span>
+        </div>
+      </div>
+    </transition>
+  </div>
 </template>
 
 <script>
-	import { mapGetters, mapActions } from 'vuex';
-	import { newReleaseAvailable } from '../utils/ui';
-	import waitForRestart from '../utils/waitForRestart';
+  import { mapGetters, mapActions } from 'vuex';
+  import { newReleaseAvailable } from '../utils/ui';
+  import waitForRestart from '../utils/waitForRestart';
 
-	export default {
-		name: 'navigation-brand',
-		data() {
-			return {
-				brandMenu: false,
-				restarting: false
-			};
-		},
-		computed: mapGetters({
-			authenticated: 'auth/authenticated',
-			version: 'asf/version',
-			updateChannel: 'asf/updateChannel',
-			sideMenu: 'layout/sideMenu'
-		}),
-		watch: {
-			brandMenu(value) {
-				if (value) window.addEventListener('click', this.onWindowClick);
-				else window.removeEventListener('click', this.onWindowClick);
-			}
-		},
-		beforeDestroy() {
-			window.removeEventListener('click', this.onWindowClick);
-		},
-		methods: {
-			...mapActions({
-				setSideMenu: 'layout/setSideMenu'
-			}),
-			toggleBrandMenu() {
-				if (this.sideMenu) this.setSideMenu(false);
-				this.brandMenu = !this.brandMenu;
-			},
-			extractVersions(err) {
-				if (err.result) {
-					// Extract version from result, if available
-					return {
-						remoteVersion: err.result,
-						localVersion: this.$store.getters['asf/version']
-					};
-				}
+  export default {
+    name: 'navigation-brand',
+    data() {
+      return {
+        brandMenu: false,
+        restarting: false,
+      };
+    },
+    computed: mapGetters({
+      authenticated: 'auth/authenticated',
+      version: 'asf/version',
+      updateChannel: 'asf/updateChannel',
+      sideMenu: 'layout/sideMenu',
+    }),
+    watch: {
+      brandMenu(value) {
+        if (value) window.addEventListener('click', this.onWindowClick);
+        else window.removeEventListener('click', this.onWindowClick);
+      },
+    },
+    beforeDestroy() {
+      window.removeEventListener('click', this.onWindowClick);
+    },
+    methods: {
+      ...mapActions({
+        setSideMenu: 'layout/setSideMenu',
+      }),
+      toggleBrandMenu() {
+        if (this.sideMenu) this.setSideMenu(false);
+        this.brandMenu = !this.brandMenu;
+      },
+      extractVersions(err) {
+        if (err.result) {
+          // Extract version from result, if available
+          return {
+            remoteVersion: err.result,
+            localVersion: this.$store.getters['asf/version'],
+          };
+        }
 
-				if (err.message.includes('≥')) {
-					// Fallback to message parsing
-					const [localVersion, remoteVersion] = err.message.split(' ≥ ');
-					return { remoteVersion, localVersion };
-				}
+        if (err.message.includes('≥')) {
+          // Fallback to message parsing
+          const [localVersion, remoteVersion] = err.message.split(' ≥ ');
+          return { remoteVersion, localVersion };
+        }
 
-				// Return empty object to prevent throws on destructing if extraction failed
-				// Shouldn't happen, but who knows...
-				return {};
-			},
-			async update() {
-				try {
-					this.$info(this.$t('update-check'));
-					const newVersionAvailable = await newReleaseAvailable();
-					if (newVersionAvailable) this.$info(this.$t('update-trying'));
-					const response = await this.$http.post('asf/update');
-					this.brandMenu = false;
+        // Return empty object to prevent throws on destructing if extraction failed
+        // Shouldn't happen, but who knows...
+        return {};
+      },
+      async update() {
+        try {
+          this.$info(this.$t('update-check'));
+          const newVersionAvailable = await newReleaseAvailable();
+          if (newVersionAvailable) this.$info(this.$t('update-trying'));
+          const response = await this.$http.post('asf/update');
+          this.brandMenu = false;
 
-					if (response.Success) {
-						this.$success(this.$t('update-complete'));
-						this.$info(this.$t('restart-initiated'));
-						await waitForRestart();
-						this.$success(this.$t('restart-complete'));
-						window.location.reload(true);
-					}
-				} catch (err) {
-					if (!err.result && !err.message.includes('≥')) throw err;
+          if (response.Success) {
+            this.$success(this.$t('update-complete'));
+            this.$info(this.$t('restart-initiated'));
+            await waitForRestart();
+            this.$success(this.$t('restart-complete'));
+            window.location.reload(true);
+          }
+        } catch (err) {
+          if (!err.result && !err.message.includes('≥')) throw err;
 
-					const { remoteVersion, localVersion } = this.extractVersions(err);
+          const { remoteVersion, localVersion } = this.extractVersions(err);
 
-					if (localVersion === remoteVersion) this.$info(this.$t('update-is-up-to-date'));
-					else this.$info(this.$t('update-is-newest'));
-				}
-			},
-			async restart() {
-				if (this.restarting) return;
-				this.restarting = true;
+          if (localVersion === remoteVersion) this.$info(this.$t('update-is-up-to-date'));
+          else this.$info(this.$t('update-is-newest'));
+        }
+      },
+      async restart() {
+        if (this.restarting) return;
+        this.restarting = true;
 
-				try {
-					await this.$http.post('asf/restart');
-					this.$info(this.$t('restart-initiated'));
-					await waitForRestart();
-					this.$success(this.$t('restart-complete'));
-					this.brandMenu = false;
-					window.location.reload(false);
-				} catch (err) {
-					this.$error(err.message);
-				} finally {
-					this.restarting = false;
-				}
-			},
-			async shutdown() {
-				try {
-					await this.$http.post('asf/exit');
-					this.$info(this.$t('shutdown-message'));
-					this.brandMenu = false;
-				} catch (err) {
-					this.$error(err.message);
-				}
-			},
-			onWindowClick($e) {
-				const path = $e.path || $e.composedPath();
-				if (path.includes(this.$el)) return;
-				this.brandMenu = false;
-			}
-		}
-	};
+        try {
+          await this.$http.post('asf/restart');
+          this.$info(this.$t('restart-initiated'));
+          await waitForRestart();
+          this.$success(this.$t('restart-complete'));
+          this.brandMenu = false;
+          window.location.reload(false);
+        } catch (err) {
+          this.$error(err.message);
+        } finally {
+          this.restarting = false;
+        }
+      },
+      async shutdown() {
+        try {
+          await this.$http.post('asf/exit');
+          this.$info(this.$t('shutdown-message'));
+          this.brandMenu = false;
+        } catch (err) {
+          this.$error(err.message);
+        }
+      },
+      onWindowClick($e) {
+        const path = $e.path || $e.composedPath();
+        if (path.includes(this.$el)) return;
+        this.brandMenu = false;
+      },
+    },
+  };
 </script>
 
 <style lang="scss">

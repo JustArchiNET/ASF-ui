@@ -1,30 +1,31 @@
 <template>
-	<div class="navigation-statistic">
-		<span class="navigation-statistic__left-side">
-			<span v-if="icon" class="navigation-statistic__icon"><font-awesome-icon :icon="icon" fixed-width :title="name"></font-awesome-icon></span>
-			<span class="navigation-statistic__name">{{ name }}</span>
-		</span>
-		<span class="navigation-statistic__value">{{ value }}</span>
-	</div>
+  <div class="navigation-statistic">
+    <span class="navigation-statistic__left-side">
+      <span v-if="icon" class="navigation-statistic__icon"><font-awesome-icon :icon="icon" fixed-width :title="name"></font-awesome-icon></span>
+      <span class="navigation-statistic__name">{{ name }}</span>
+    </span>
+    <span class="navigation-statistic__value">{{ value }}</span>
+  </div>
 </template>
 
 <script>
-	export default {
-		name: 'navigation-statistic',
-		props: {
-			name: {
-				type: String,
-				required: true
-			},
-			value: {
-				required: true
-			},
-			icon: {
-				type: String,
-				required: true
-			}
-		}
-	};
+  export default {
+    name: 'navigation-statistic',
+    props: {
+      name: {
+        required: true,
+        type: String,
+      },
+      value: {
+        required: true,
+        type: String,
+      },
+      icon: {
+        required: true,
+        type: String,
+      },
+    },
+  };
 </script>
 
 <style lang="scss">

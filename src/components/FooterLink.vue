@@ -1,33 +1,34 @@
 <template>
-	<a class="footer__link" target="_blank" :href="to">
-		<span class="footer__link-icon">
-			<font-awesome-icon :icon="[prefix, icon]" size="lg" :title="name" fixed-width></font-awesome-icon>
-		</span>
-		<span class="footer__link-name">{{ name }}</span>
-	</a>
+  <a class="footer__link" target="_blank" :href="to">
+    <span class="footer__link-icon">
+      <font-awesome-icon :icon="[prefix, icon]" size="lg" :title="name" fixed-width></font-awesome-icon>
+    </span>
+    <span class="footer__link-name">{{ name }}</span>
+  </a>
 </template>
 
 <script>
-	export default {
-		name: 'footer-link',
-		props: {
-			name: {
-				type: String,
-				required: true
-			},
-			to: {
-				required: true
-			},
-			prefix: {
-				type: String,
-				default: 'fas'
-			},
-			icon: {
-				type: String,
-				required: true
-			}
-		}
-	};
+  export default {
+    name: 'footer-link',
+    props: {
+      name: {
+        required: true,
+        type: String,
+      },
+      to: {
+        required: true,
+        type: String,
+      },
+      prefix: {
+        type: String,
+        default: 'fas',
+      },
+      icon: {
+        required: true,
+        type: String,
+      },
+    },
+  };
 </script>
 
 <style lang="scss">

@@ -1,26 +1,26 @@
 <template>
-	<router-link v-show="visible" tag="div" class="bot-action" :to="link">
-		<span v-if="name" class="bot-action__label">{{ name }}</span>
-		<font-awesome-icon v-if="icon" class="bot-action__icon" :icon="icon"></font-awesome-icon>
-	</router-link>
+  <router-link v-show="visible" tag="div" class="bot-action" :to="link">
+    <span v-if="name" class="bot-action__label">{{ name }}</span>
+    <font-awesome-icon v-if="icon" class="bot-action__icon" :icon="icon"></font-awesome-icon>
+  </router-link>
 </template>
 
 <script>
-	export default {
-		name: 'bot-link',
-		props: {
-			icon: String,
-			name: String,
-			link: Object,
-			condition: Function
-		},
-		computed: {
-			visible() {
-				if (!this.condition) return true;
-				return this.condition();
-			}
-		}
-	};
+  export default {
+    name: 'bot-link',
+    props: {
+      icon: String,
+      name: String,
+      link: Object,
+      condition: Function,
+    },
+    computed: {
+      visible() {
+        if (!this.condition) return true;
+        return this.condition();
+      },
+    },
+  };
 </script>
 
 <style lang="scss">

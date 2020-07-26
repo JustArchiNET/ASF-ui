@@ -1,23 +1,23 @@
 <template>
-	<main class="main-container main-container--fullheight log">
-		<div class="container">
-			<asf-log></asf-log>
-		</div>
-	</main>
+  <main class="main-container main-container--fullheight log">
+    <div class="container">
+      <asf-log></asf-log>
+    </div>
+  </main>
 </template>
 
 <script>
-	import AsfLog from '../components/AsfLog.vue';
+  import AsfLog from '../components/AsfLog.vue';
 
-	export default {
-		name: 'log',
-		metaInfo() {
-			return {
-				title: this.$t('log')
-			};
-		},
-		components: { AsfLog }
-	};
+  export default {
+    name: 'log',
+    metaInfo() {
+      return {
+        title: this.$t('log'),
+      };
+    },
+    components: { AsfLog },
+  };
 </script>
 
 <style lang="scss">

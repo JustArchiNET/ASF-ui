@@ -1,19 +1,19 @@
 <template>
-	<div class="navigation-category__title">
-		<span>{{ name }}</span>
-	</div>
+  <div class="navigation-category__title">
+    <span>{{ name }}</span>
+  </div>
 </template>
 
 <script>
-	export default {
-		name: 'navigation-category-title',
-		props: {
-			name: {
-				type: String,
-				required: true
-			}
-		}
-	};
+  export default {
+    name: 'navigation-category-title',
+    props: {
+      name: {
+        type: String,
+        required: true,
+      },
+    },
+  };
 </script>
 
 <style lang="scss">

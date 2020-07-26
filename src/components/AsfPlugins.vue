@@ -1,51 +1,51 @@
 <template>
-	<div class="plugins">
-		<h3 v-if="loading" class="subtitle">
-			<font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
-		</h3>
+  <div class="plugins">
+    <h3 v-if="loading" class="subtitle">
+      <font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
+    </h3>
 
-		<h3 v-if="statusText" class="subtitle">
-			{{ statusText }}
-		</h3>
+    <h3 v-if="statusText" class="subtitle">
+      {{ statusText }}
+    </h3>
 
-		<div v-for="(plugin, i) in plugins" :key="i" v-else class="plugin">
-			<div class="plugin__title">
-				<span class="plugin__name">{{ plugin.Name }}</span>
-				<span class="plugin__version">{{ plugin.Version }}</span>
-			</div>
-		</div>
-	</div>
+    <div v-for="(plugin, i) in plugins" v-else :key="i" class="plugin">
+      <div class="plugin__title">
+        <span class="plugin__name">{{ plugin.Name }}</span>
+        <span class="plugin__version">{{ plugin.Version }}</span>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-	export default {
-		name: 'asf-plugins',
-		data() {
-			return {
-				loading: true,
-				error: null,
-				plugins: []
-			};
-		},
-		computed: {
-			statusText() {
-				if (this.error) return this.error;
-				if (!this.loading && !this.plugins.length) return this.$t('plugins-not-loaded');
-			}
-		},
-		async created() {
-			try {
-				this.plugins = await this.$http.get('Plugins');
-				this.plugins.forEach((plugin, i) => {
-					if (!plugin.hasOwnProperty('Name')) plugin['Name'] = this.$t('plugin-unknown-name', { number: i });
-					if (!plugin.hasOwnProperty('Version')) plugin['Version'] = this.$t('plugin-unknown-version');
-				});
-				this.loading = false;
-			} catch (err) {
-				this.error = err.message;
-			}
-		}
-	};
+  export default {
+    name: 'asf-plugins',
+    data() {
+      return {
+        loading: true,
+        error: null,
+        plugins: [],
+      };
+    },
+    computed: {
+      statusText() {
+        if (this.error) return this.error;
+        if (!this.loading && !this.plugins.length) return this.$t('plugins-not-loaded');
+      },
+    },
+    async created() {
+      try {
+        this.plugins = await this.$http.get('Plugins');
+        this.plugins.forEach((plugin, i) => {
+          if (!Object.prototype.hasOwnProperty.call(plugin, 'Name')) plugin.Name = this.$t('plugin-unknown-name', { number: i });
+          if (!Object.prototype.hasOwnProperty.call(plugin, 'Version')) plugin.Version = this.$t('plugin-unknown-version');
+        });
+        this.loading = false;
+      } catch (err) {
+        this.error = err.message;
+      }
+    },
+  };
 </script>
 
 <style lang="scss">

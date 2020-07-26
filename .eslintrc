@@ -1,0 +1,130 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": [
+    "plugin:vue/recommended",
+    "airbnb-base"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "vue"
+  ],
+  "rules": {
+    "indent": [
+      2,
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "space-before-function-paren": [
+      2,
+      {
+        "anonymous": "never",
+        "named": "never",
+        "asyncArrow": "always"
+      }
+    ],
+    "prefer-template": 1,
+    "arrow-parens": [
+      2,
+      "as-needed"
+    ],
+    "max-len": 0,
+    "consistent-return": [
+      2,
+      {
+        "treatUndefinedAsUnspecified": true
+      }
+    ],
+    "no-param-reassign": [
+      2,
+      {
+        "props": false
+      }
+    ],
+    "no-return-assign": [
+      2,
+      "except-parens"
+    ],
+    "linebreak-style": 0,
+    "quote-props": [
+      1,
+      "consistent-as-needed"
+    ],
+    "no-tabs": [
+      2,
+      {
+        "allowIndentationTabs": true
+      }
+    ],
+    "no-use-before-define": [
+      2,
+      {
+        "functions": false
+      }
+    ],
+    "no-unused-vars": [
+      1,
+      {
+        "vars": "local",
+        "args": "none"
+      }
+    ],
+    "no-await-in-loop": 0,
+    "no-shadow": 0,
+    "no-plusplus": 0,
+    "no-continue": 0,
+    "no-console": 0,
+    "no-alert": 0,
+    "no-underscore-dangle": 0,
+    "vue/script-indent": [
+      2,
+      2,
+      {
+        "baseIndent": 1,
+        "switchCase": 1
+      }
+    ],
+    "vue/html-indent": [
+      2,
+      2
+    ],
+    "vue/name-property-casing": [
+      2,
+      "kebab-case"
+    ],
+    "vue/max-attributes-per-line": 0,
+    "vue/html-self-closing": [
+      2,
+      {
+        "html": {
+          "void": "never",
+          "normal": "never",
+          "component": "never"
+        }
+      }
+    ],
+    "vue/singleline-html-element-content-newline": 0,
+    "vue/comma-dangle": 2
+  },
+  "overrides": [
+    {
+      "files": [
+        "*.vue"
+      ],
+      "rules": {
+        "indent": 0
+      }
+    }
+  ]
+}

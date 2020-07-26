@@ -1,24 +1,24 @@
 <template>
-	<div class="farming-info">
-		<div class="farming-info__icon">
-			<font-awesome-icon :icon="icon"></font-awesome-icon>
-		</div>
+  <div class="farming-info">
+    <div class="farming-info__icon">
+      <font-awesome-icon :icon="icon"></font-awesome-icon>
+    </div>
 
-		<p class="farming-info__value">
-			{{ value }}
-		</p>
-	</div>
+    <p class="farming-info__value">
+      {{ value }}
+    </p>
+  </div>
 </template>
 
 <script>
-	export default {
-		name: 'bot-farming-info',
-		props: {
-			icon: String,
-			value: {},
-			title: String
-		}
-	};
+  export default {
+    name: 'bot-farming-info',
+    props: {
+      icon: String,
+      value: {},
+      title: String,
+    },
+  };
 </script>
 
 <style lang="scss">

@@ -1,61 +1,61 @@
 <template>
-	<div class="bot-cards">
-		<div v-for="(type, i) in botTypes" :key="i" class="bot-card" :class="[`status--${type}`, { 'bot-card--selected': selectedBots.includes(type) }]" @click.prevent="selectType(type)">
-			<fit-text ref="count" :max="1.2" class="bot-card__value">
-				{{ count(type) }}
-			</fit-text>
-			<span class="bot-card__name">{{ $t(`bot-status-${type}`) }}</span>
-		</div>
-	</div>
+  <div class="bot-cards">
+    <div v-for="(type, i) in botTypes" :key="i" class="bot-card" :class="[`status--${type}`, { 'bot-card--selected': selectedBots.includes(type) }]" @click.prevent="selectType(type)">
+      <fit-text ref="count" :max="1.2" class="bot-card__value">
+        {{ count(type) }}
+      </fit-text>
+      <span class="bot-card__name">{{ $t(`bot-status-${type}`) }}</span>
+    </div>
+  </div>
 </template>
 
 <script>
-	import { mapGetters } from 'vuex';
-	import FitText from './utils/FitText.vue';
+  import { mapGetters } from 'vuex';
+  import FitText from './utils/FitText.vue';
 
-	export default {
-		name: 'navigation-bots',
-		components: { FitText },
-		data() {
-			return {
-				botTypes: ['farming', 'online', 'offline', 'disabled']
-			};
-		},
-		computed: {
-			...mapGetters({
-				botsCount: 'bots/count',
-				selectedBots: 'settings/selectedBots'
-			}),
-			count() {
-				return type => this.botsCount(type);
-			}
-		},
-		methods: {
-			recalculateText() {
-				this.$refs.count.forEach(fitText => fitText.calculate());
-				if (this.transitioning) requestAnimationFrame(() => this.recalculateText());
-			},
-			onTransitionStart() {
-				if (this.transitioning) return;
-				this.transitioning = true;
-				this.recalculateText();
-			},
-			onTransitionEnd() {
-				this.transitioning = false;
-			},
-			selectType(type) {
-				if (this.$route.name !== 'bots') this.$router.push({ name: 'bots' });
+  export default {
+    name: 'navigation-bots',
+    components: { FitText },
+    data() {
+      return {
+        botTypes: ['farming', 'online', 'offline', 'disabled'],
+      };
+    },
+    computed: {
+      ...mapGetters({
+        botsCount: 'bots/count',
+        selectedBots: 'settings/selectedBots',
+      }),
+      count() {
+        return type => this.botsCount(type);
+      },
+    },
+    methods: {
+      recalculateText() {
+        this.$refs.count.forEach(fitText => fitText.calculate());
+        if (this.transitioning) requestAnimationFrame(() => this.recalculateText());
+      },
+      onTransitionStart() {
+        if (this.transitioning) return;
+        this.transitioning = true;
+        this.recalculateText();
+      },
+      onTransitionEnd() {
+        this.transitioning = false;
+      },
+      selectType(type) {
+        if (this.$route.name !== 'bots') this.$router.push({ name: 'bots' });
 
-				let selectedBots = this.selectedBots.includes(type)
-					? this.selectedBots.filter(botType => botType !== type)
-					: [...this.selectedBots, type];
+        let selectedBots = this.selectedBots.includes(type)
+          ? this.selectedBots.filter(botType => botType !== type)
+          : [...this.selectedBots, type];
 
-				if (selectedBots.length === this.botTypes.length) selectedBots = [];
+        if (selectedBots.length === this.botTypes.length) selectedBots = [];
 
-				this.$store.dispatch('settings/setSelectedBots', selectedBots);
-			}
-		}
-	};
+        this.$store.dispatch('settings/setSelectedBots', selectedBots);
+      },
+    },
+  };
 </script>
 
 <style lang="scss">

@@ -1,34 +1,34 @@
 <template>
-	<div class="bots">
-		<bot-card v-for="bot in bots" v-if="bot.isVisible(selectedBots)" :key="bot.name" :bot="bot"></bot-card>
+  <div class="bots">
+    <bot-card v-for="bot in bots" v-if="bot.isVisible(selectedBots)" :key="bot.name" :bot="bot"></bot-card>
 
-		<router-link tag="div" :to="{ name: 'bot-create' }" class="bot-placeholder status--disabled" :class="{ 'bot-placeholder--big': selectedButtonsCount > 2 }">
-			<div class="bot-placeholder__button bot-placeholder__button--add">
-				<font-awesome-icon icon="plus" class="bot-placeholder__icon"></font-awesome-icon>
-				<span class="bot-placeholder__name">{{ $t('bot-new') }}</span>
-			</div>
-		</router-link>
-	</div>
+    <router-link tag="div" :to="{ name: 'bot-create' }" class="bot-placeholder status--disabled" :class="{ 'bot-placeholder--big': selectedButtonsCount > 2 }">
+      <div class="bot-placeholder__button bot-placeholder__button--add">
+        <font-awesome-icon icon="plus" class="bot-placeholder__icon"></font-awesome-icon>
+        <span class="bot-placeholder__name">{{ $t('bot-new') }}</span>
+      </div>
+    </router-link>
+  </div>
 </template>
 
 <script>
-	import { mapGetters } from 'vuex';
-	import BotCard from './BotCard.vue';
+  import { mapGetters } from 'vuex';
+  import BotCard from './BotCard.vue';
 
-	export default {
-		name: 'asf-bots',
-		components: { BotCard },
-		computed: {
-			...mapGetters({
-				bots: 'bots/bots',
-				selectedBots: 'settings/selectedBots',
-				favButtons: 'settings/favButtons'
-			}),
-			selectedButtonsCount() {
-				return Array.from(this.favButtons.toString(2)).length;
-			}
-		}
-	};
+  export default {
+    name: 'asf-bots',
+    components: { BotCard },
+    computed: {
+      ...mapGetters({
+        bots: 'bots/bots',
+        selectedBots: 'settings/selectedBots',
+        favButtons: 'settings/favButtons',
+      }),
+      selectedButtonsCount() {
+        return Array.from(this.favButtons.toString(2)).length;
+      },
+    },
+  };
 </script>
 
 <style lang="scss">

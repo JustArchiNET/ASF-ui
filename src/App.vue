@@ -1,84 +1,84 @@
 <template>
-	<div class="app" :class="[{ 'app--not-authorized': !authenticated, 'app--small-navigation': smallNavigation, 'app--boxed-layout': boxedLayout, 'app--dark-mode': darkMode }, themeClass]">
-		<app-header></app-header>
-		<app-navigation></app-navigation>
-		<app-side-menu></app-side-menu>
+  <div class="app" :class="[{ 'app--not-authorized': !authenticated, 'app--small-navigation': smallNavigation, 'app--boxed-layout': boxedLayout, 'app--dark-mode': darkMode }, themeClass]">
+    <app-header></app-header>
+    <app-navigation></app-navigation>
+    <app-side-menu></app-side-menu>
 
-		<section class="content">
-			<router-view></router-view>
-			<app-footer @click="smallNavigation = !smallNavigation"></app-footer>
-		</section>
+    <section class="content">
+      <router-view></router-view>
+      <app-footer @click="smallNavigation = !smallNavigation"></app-footer>
+    </section>
 
-		<app-modal></app-modal>
-		<vue-snotify></vue-snotify>
-	</div>
+    <app-modal></app-modal>
+    <vue-snotify></vue-snotify>
+  </div>
 </template>
 
 <script>
-	import { mapGetters, mapActions } from 'vuex';
-	import AppHeader from './components/AppHeader.vue';
-	import AppNavigation from './components/AppNavigation.vue';
-	import AppFooter from './components/AppFooter.vue';
-	import AppSideMenu from './components/AppSideMenu.vue';
-	import AppModal from './components/AppModal.vue';
+  import { mapGetters, mapActions } from 'vuex';
+  import AppHeader from './components/AppHeader.vue';
+  import AppNavigation from './components/AppNavigation.vue';
+  import AppFooter from './components/AppFooter.vue';
+  import AppSideMenu from './components/AppSideMenu.vue';
+  import AppModal from './components/AppModal.vue';
 
-	export default {
-		name: 'app',
-		metaInfo: {
-			title: 'ArchiSteamFarm',
-			titleTemplate: 'ASF | %s'
-		},
-		components: {
-			AppHeader, AppNavigation, AppFooter, AppSideMenu, AppModal
-		},
-		computed: {
-			...mapGetters({
-				authenticated: 'auth/authenticated',
-				smallNavigation: 'layout/smallNavigation',
-				sideMenu: 'layout/sideMenu',
-				boxedLayout: 'layout/boxed',
-				theme: 'layout/theme',
-				darkMode: 'layout/darkMode',
-				version: 'asf/version',
-				buildVariant: 'asf/buildVariant'
-			}),
-			themeClass() {
-				return `theme-${this.theme}`;
-			}
-		},
-		watch: {
-			darkMode: {
-				immediate: true,
-				handler: value => {
-					document.documentElement.style.setProperty('--color-background-dark', value ? '#0c0c0c' : '#a7a7a7');
-				}
-			},
-			$route: {
-				immediate: true,
-				handler: value => {
-					document.body.style.overflowY = value.meta.modal ? 'hidden' : 'auto';
-				}
-			}
-		},
-		mounted() {
-			window.addEventListener('resize', this.handleResize);
-		},
-		beforeDestroy() {
-			window.removeEventListener('resize', this.handleResize);
-		},
-		methods: {
-			...mapActions({
-				toggleNavigation: 'layout/toggleNavigation'
-			}),
-			handleResize() {
-				const width = document.body.clientWidth;
+  export default {
+    name: 'app',
+    metaInfo: {
+      title: 'ArchiSteamFarm',
+      titleTemplate: 'ASF | %s',
+    },
+    components: {
+      AppHeader, AppNavigation, AppFooter, AppSideMenu, AppModal,
+    },
+    computed: {
+      ...mapGetters({
+        authenticated: 'auth/authenticated',
+        smallNavigation: 'layout/smallNavigation',
+        sideMenu: 'layout/sideMenu',
+        boxedLayout: 'layout/boxed',
+        theme: 'layout/theme',
+        darkMode: 'layout/darkMode',
+        version: 'asf/version',
+        buildVariant: 'asf/buildVariant',
+      }),
+      themeClass() {
+        return `theme-${this.theme}`;
+      },
+    },
+    watch: {
+      darkMode: {
+        immediate: true,
+        handler: value => {
+          document.documentElement.style.setProperty('--color-background-dark', value ? '#0c0c0c' : '#a7a7a7');
+        },
+      },
+      $route: {
+        immediate: true,
+        handler: value => {
+          document.body.style.overflowY = value.meta.modal ? 'hidden' : 'auto';
+        },
+      },
+    },
+    mounted() {
+      window.addEventListener('resize', this.handleResize);
+    },
+    beforeDestroy() {
+      window.removeEventListener('resize', this.handleResize);
+    },
+    methods: {
+      ...mapActions({
+        toggleNavigation: 'layout/toggleNavigation',
+      }),
+      handleResize() {
+        const width = document.body.clientWidth;
 
-				if ((width <= 700 && !this.smallNavigation) || (width > 700 && this.smallNavigation)) {
-					this.toggleNavigation();
-				}
-			}
-		}
-	};
+        if ((width <= 700 && !this.smallNavigation) || (width > 700 && this.smallNavigation)) {
+          this.toggleNavigation();
+        }
+      },
+    },
+  };
 </script>
 
 <style lang="scss">
