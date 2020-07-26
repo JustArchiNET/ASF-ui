@@ -1,7 +1,7 @@
 import fetchWiki from './fetchWiki';
 import getLocaleForWiki from './getLocaleForWiki';
 import * as storage from './storage';
-import { createVirtualDOM } from './createVirtualDOM';
+import createVirtualDOM from './createVirtualDOM';
 
 export default async function loadParameterDescriptions(version, locale) {
   const descriptionsCache = storage.get(`cache:parameter-descriptions:${locale}`);

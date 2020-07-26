@@ -31,7 +31,7 @@
   import * as storage from '../utils/storage';
   import fetchWiki from '../utils/fetchWiki';
   import getSelectedText from '../utils/getSelectedText';
-  import { createVirtualDOM } from '../utils/createVirtualDOM';
+  import createVirtualDOM from '../utils/createVirtualDOM';
 
   class CommandsCache {
     constructor(maxLength) {

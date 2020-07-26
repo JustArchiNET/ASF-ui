@@ -28,7 +28,7 @@ export const mutations = {
     if (password) storage.set('ipc-password', password);
     else storage.remove('ipc-password');
   },
-  setStatus: (state, status) => state.status = status,
+  setStatus: (state, status) => (state.status = status),
 };
 
 export const actions = {

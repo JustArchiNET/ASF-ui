@@ -46,7 +46,7 @@
         return this.errors.length;
       },
       errors() {
-        if (validator.hasOwnProperty(this.schema.type)) return validator[this.schema.type](this.value, this.schema);
+        if (Object.prototype.hasOwnProperty.call(validator, this.schema.type)) return validator[this.schema.type](this.value, this.schema);
         return [];
       },
       errorText() {

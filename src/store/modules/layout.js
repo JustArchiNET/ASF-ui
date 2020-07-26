@@ -11,17 +11,17 @@ export const state = {
 };
 
 export const mutations = {
-  setSmallNavigation: (state, value) => state.smallNavigation = value,
-  toggleNavigation: state => state.smallNavigation = !state.smallNavigation,
-  changeTheme: (state, theme) => state.theme = theme,
-  toggleSideMenu: state => state.sideMenu = !state.sideMenu,
-  toggleLanguageMenu: state => state.languageMenu = !state.languageMenu,
-  toggleBoxed: state => state.boxed = !state.boxed,
-  setBoxed: (state, value) => state.boxed = value,
-  toggleDarkMode: state => state.darkMode = !state.darkMode,
-  setDarkMode: (state, value) => state.darkMode = value,
-  setSideMenu: (state, value) => state.sideMenu = value,
-  setLanguageMenu: (state, value) => state.languageMenu = value,
+  setSmallNavigation: (state, value) => (state.smallNavigation = value),
+  toggleNavigation: state => (state.smallNavigation = !state.smallNavigation),
+  changeTheme: (state, theme) => (state.theme = theme),
+  toggleSideMenu: state => (state.sideMenu = !state.sideMenu),
+  toggleLanguageMenu: state => (state.languageMenu = !state.languageMenu),
+  toggleBoxed: state => (state.boxed = !state.boxed),
+  setBoxed: (state, value) => (state.boxed = value),
+  toggleDarkMode: state => (state.darkMode = !state.darkMode),
+  setDarkMode: (state, value) => (state.darkMode = value),
+  setSideMenu: (state, value) => (state.sideMenu = value),
+  setLanguageMenu: (state, value) => (state.languageMenu = value),
 };
 
 export const actions = {
@@ -43,11 +43,11 @@ export const actions = {
     commit('toggleNavigation');
     storage.set('layout:small-navigation', getters.smallNavigation);
   },
-  toggleSideMenu: ({ commit }) => {
+  toggleSideMenu: ({ commit, getters }) => {
     if (getters.languageMenu) commit('setLanguageMenu', false);
     commit('toggleSideMenu');
   },
-  toggleLanguageMenu: ({ commit }) => {
+  toggleLanguageMenu: ({ commit, getters }) => {
     if (getters.sideMenu) commit('setSideMenu', false);
     commit('toggleLanguageMenu');
   },

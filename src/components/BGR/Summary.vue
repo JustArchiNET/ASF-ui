@@ -42,7 +42,7 @@
         let keys = '';
 
         for (const key in this.keys) {
-          if (this.keys.hasOwnProperty(key)) {
+          if (Object.prototype.hasOwnProperty.call(this.keys, key)) {
             keys += `${this.keys[key]}\t${key}\n`;
           }
         }

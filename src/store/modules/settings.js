@@ -13,15 +13,15 @@ export const state = {
 };
 
 export const mutations = {
-  setDefaultView: (state, defaultView) => state.defaultView = defaultView,
-  setNotificationPosition: (state, notificationPosition) => state.notificationPosition = notificationPosition,
-  setNotifyRelease: (state, notifyRelease) => state.notifyRelease = notifyRelease,
-  setNicknames: (state, nicknames) => state.nicknames = nicknames,
-  setGameName: (state, gameName) => state.gameName = gameName,
-  setFavButtons: (state, favButtons) => state.favButtons = favButtons,
-  setDisplayCategories: (state, displayCategories) => state.displayCategories = displayCategories,
-  setSelectedBots: (state, selectedBots) => state.selectedBots = selectedBots,
-  setTimestamps: (state, timestamps) => state.timestamps = timestamps,
+  setDefaultView: (state, defaultView) => (state.defaultView = defaultView),
+  setNotificationPosition: (state, notificationPosition) => (state.notificationPosition = notificationPosition),
+  setNotifyRelease: (state, notifyRelease) => (state.notifyRelease = notifyRelease),
+  setNicknames: (state, nicknames) => (state.nicknames = nicknames),
+  setGameName: (state, gameName) => (state.gameName = gameName),
+  setFavButtons: (state, favButtons) => (state.favButtons = favButtons),
+  setDisplayCategories: (state, displayCategories) => (state.displayCategories = displayCategories),
+  setSelectedBots: (state, selectedBots) => (state.selectedBots = selectedBots),
+  setTimestamps: (state, timestamps) => (state.timestamps = timestamps),
 };
 
 export const actions = {

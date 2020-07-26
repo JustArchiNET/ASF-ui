@@ -1,7 +1,7 @@
 import * as http from '../plugins/http';
 import compareVersion from './compareVersion';
 import getLocaleForWiki from './getLocaleForWiki';
-import { createVirtualDOM } from './createVirtualDOM';
+import createVirtualDOM from './createVirtualDOM';
 
 async function getURL(file, version, locale) {
   const wikiLocale = getLocaleForWiki(locale);
@@ -38,5 +38,5 @@ async function getURL(file, version, locale) {
 
 export default async function fetchWiki(file, version, locale) {
   const url = await getURL(file, version, locale);
-  return await http.post('www/send', { url });
+  return http.post('www/send', { url });
 }

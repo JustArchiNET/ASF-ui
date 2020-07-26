@@ -43,7 +43,7 @@
         return ['uint32', 'uint16'].includes(this.schema.values.type);
       },
       errors() {
-        if (validator.hasOwnProperty(this.schema.values.type)) return validator[this.schema.values.type](this.element);
+        if (Object.prototype.hasOwnProperty.call(validator, this.schema.values.type)) return validator[this.schema.values.type](this.element);
         return [];
       },
       isValid() {

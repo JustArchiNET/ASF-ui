@@ -34,19 +34,19 @@ export const state = {
 };
 
 export const mutations = {
-  updateMemoryUsage: (state, memoryUsage) => state.memoryUsage = memoryUsage,
-  updateStartTime: (state, startTime) => state.startTime = startTime,
-  updateVersion: (state, version) => state.version = version,
-  updateBuildVariant: (state, buildVariant) => state.buildVariant = buildVariant,
-  updateBots: (state, bots) => state.bots = bots,
+  updateMemoryUsage: (state, memoryUsage) => (state.memoryUsage = memoryUsage),
+  updateStartTime: (state, startTime) => (state.startTime = startTime),
+  updateVersion: (state, version) => (state.version = version),
+  updateBuildVariant: (state, buildVariant) => (state.buildVariant = buildVariant),
+  updateBots: (state, bots) => (state.bots = bots),
   calculateUptime: state => {
     if (!state.startTime) return;
 
     const timeDiff = Date.now() - state.startTime.getTime();
     state.uptime = timeDiff > 0 ? humanizer(timeDiff) : Vue.i18n.translate('error');
   },
-  updateUpdateChannel: (state, updateChannel) => state.updateChannel = updateChannel,
-  updateSteamOwnerID: (state, steamOwnerID) => state.steamOwnerID = steamOwnerID,
+  updateUpdateChannel: (state, updateChannel) => (state.updateChannel = updateChannel),
+  updateSteamOwnerID: (state, steamOwnerID) => (state.steamOwnerID = steamOwnerID),
 };
 
 export const actions = {
@@ -69,7 +69,9 @@ export const actions = {
       commit('calculateUptime');
       commit('updateUpdateChannel', response.GlobalConfig.UpdateChannel);
       commit('updateSteamOwnerID', response.GlobalConfig.s_SteamOwnerID);
-    } catch (err) {}
+    } catch (err) {
+      console.warn(err.message);
+    }
   },
   getSteamOwnerID: async ({ dispatch, getters }) => {
     await dispatch('update');

@@ -10,15 +10,16 @@
     name: 'navigation-link',
     props: {
       name: {
-        type: String,
         required: true,
+        type: String,
       },
       to: {
         required: true,
+        type: Object,
       },
       icon: {
-        type: String,
         required: true,
+        type: String,
       },
     },
   };

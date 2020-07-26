@@ -27,14 +27,14 @@
         element.style.visibility = null;
         element.style.height = 0;
 
-        setTimeout(() => element.style.height = height, 0);
+        setTimeout(() => (element.style.height = height), 0);
       },
       afterEnter(element) {
         element.style.height = 'auto';
       },
       leave(element) {
         element.style.height = getComputedStyle(element).height;
-        setTimeout(() => element.style.height = 0, 0);
+        setTimeout(() => (element.style.height = 0), 0);
       },
     },
   };

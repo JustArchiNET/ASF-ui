@@ -13,15 +13,16 @@
     name: 'navigation-statistic',
     props: {
       name: {
-        type: String,
         required: true,
+        type: String,
       },
       value: {
         required: true,
+        type: String,
       },
       icon: {
-        type: String,
         required: true,
+        type: String,
       },
     },
   };

@@ -103,7 +103,9 @@
             version: release.Version,
             publishedAt,
           };
-        } catch (err) {}
+        } catch (err) {
+          console.warn(err.message);
+        }
       },
     },
   };

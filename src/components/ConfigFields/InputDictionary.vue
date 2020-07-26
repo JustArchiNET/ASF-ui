@@ -74,7 +74,7 @@
         return Object.keys(this.schema.value.values).find(key => this.schema.value.values[key] === value);
       },
       addElement() {
-        if (!this.elementValue && this.elementValue !== 0 || !this.elementKey && this.elementKey !== 0) return;
+        if ((!this.elementValue && this.elementValue !== 0) || (!this.elementKey && this.elementKey !== 0)) return;
 
         this.$set(this.value, this.elementKey, this.elementValue);
         this.elementValue = this.getDefaultValue();

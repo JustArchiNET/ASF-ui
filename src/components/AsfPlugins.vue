@@ -37,8 +37,8 @@
       try {
         this.plugins = await this.$http.get('Plugins');
         this.plugins.forEach((plugin, i) => {
-          if (!plugin.hasOwnProperty('Name')) plugin.Name = this.$t('plugin-unknown-name', { number: i });
-          if (!plugin.hasOwnProperty('Version')) plugin.Version = this.$t('plugin-unknown-version');
+          if (!Object.prototype.hasOwnProperty.call(plugin, 'Name')) plugin.Name = this.$t('plugin-unknown-name', { number: i });
+          if (!Object.prototype.hasOwnProperty.call(plugin, 'Version')) plugin.Version = this.$t('plugin-unknown-version');
         });
         this.loading = false;
       } catch (err) {

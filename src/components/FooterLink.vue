@@ -12,19 +12,20 @@
     name: 'footer-link',
     props: {
       name: {
-        type: String,
         required: true,
+        type: String,
       },
       to: {
         required: true,
+        type: String,
       },
       prefix: {
         type: String,
         default: 'fas',
       },
       icon: {
-        type: String,
         required: true,
+        type: String,
       },
     },
   };
