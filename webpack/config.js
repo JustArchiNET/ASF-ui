@@ -5,8 +5,8 @@ const { VueLoaderPlugin } = require('vue-loader');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const WebpackBeforeBuildPlugin = require('before-build-webpack');
 
-const generateFlags = require('./scripts/generateFlags');
-const getCommitHash = require('./scripts/getCommitHash');
+const generateFlags = require('../scripts/generateFlags');
+const getCommitHash = require('../scripts/getCommitHash');
 
 module.exports = {
   mode: 'development',
@@ -17,7 +17,7 @@ module.exports = {
   output: {
     filename: 'scripts/[name].bundle.js',
     chunkFilename: 'scripts/[id].[chunkhash:7].chunk.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, '../dist'),
     publicPath: '/'
   },
   module: {

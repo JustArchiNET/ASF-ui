@@ -3,12 +3,12 @@
   "version": "0.0.0",
   "description": "Standalone web interface for ASF",
   "scripts": {
-    "start": "webpack-dev-server --hot --open",
+    "start": "webpack-dev-server --config webpack/config.js --hot --open",
     "lint": "eslint --ext .vue,.js src scripts",
     "lint-fix": "eslint --ext .vue,.js src scripts --fix",
-    "build": "webpack --config webpack.config.prod.js",
-    "build:analyze": "webpack --config webpack.config.analyze.js",
-    "deploy": "webpack --config webpack.config.deploy.js"
+    "build": "webpack --config webpack/config.prod.js",
+    "build:analyze": "webpack --config webpack/config.analyze.js",
+    "deploy": "webpack --config webpack/config.deploy.js"
   },
   "private": true,
   "devDependencies": {

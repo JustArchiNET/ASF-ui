@@ -1,4 +1,4 @@
-const config = require('./webpack.config.prod');
+const config = require('./config.prod');
 
 config.devtool = '(none)';
 config.stats = 'minimal';
