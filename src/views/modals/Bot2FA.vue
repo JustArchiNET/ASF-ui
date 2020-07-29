@@ -7,7 +7,9 @@
       {{ bot.name }}
     </h2>
 
-    <div class="form-item">
+    <span v-if="!has2FA" v-html="$t('2fa-not-found')" />
+
+    <div v-else class="form-item">
       <div class="form-item__token">
         <input class="form-item__input form-item__input-token" type="text" :value="token" readonly>
         <div class="form-item__buttons form-item__buttons--column">
@@ -47,6 +49,7 @@
         canceling: false,
         refreshing: false,
         token: '-----',
+        has2FA: true,
       };
     },
     computed: {
@@ -64,6 +67,11 @@
     },
     async created() {
       if (!this.bot) this.$router.replace({ name: 'bots' });
+
+      if (!this.bot.has2FA) {
+        this.has2FA = false;
+        return;
+      }
 
       this.refreshing = true;
 
@@ -180,4 +188,8 @@
 	.button--helper {
 		max-width: 2em;
 	}
+
+  a {
+    color: var(--color-theme);
+  }
 </style>

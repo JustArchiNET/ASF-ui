@@ -19,6 +19,7 @@ export class Bot {
     this.bgrCount = data.GamesToRedeemInBackgroundCount;
     this.walletBalance = data.WalletBalance;
     this.walletCurrency = data.WalletCurrency;
+    this.has2FA = data.HasMobileAuthenticator;
 
     this.active = data.KeepRunning;
     this.config = data.BotConfig;
