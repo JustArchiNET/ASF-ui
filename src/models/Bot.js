@@ -20,6 +20,7 @@ export class Bot {
     this.walletBalance = data.WalletBalance;
     this.walletCurrency = data.WalletCurrency;
     this.has2FA = data.HasMobileAuthenticator;
+    this.requiredInput = data.RequiredInput;
 
     this.active = data.KeepRunning;
     this.config = data.BotConfig;

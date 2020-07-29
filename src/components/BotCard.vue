@@ -27,6 +27,7 @@
 
 <script>
   import { mapGetters } from 'vuex';
+  import getUserInputType from '../utils/getUserInputType';
 
   const quickActionButtons = [
     { name: '2fa', icon: 'lock' },
@@ -44,6 +45,7 @@
       ...mapGetters({
         nicknames: 'settings/nicknames',
         favButtons: 'settings/favButtons',
+        headless: 'asf/headless',
       }),
       isPauseButtonSelected() {
         return this.selectedButtons.filter(e => e.name === 'pause').length > 0;
@@ -76,6 +78,14 @@
       },
       async start() {
         try {
+          const inputType = getUserInputType(this.bot.requiredInput);
+
+          // todo: check for other input types
+          if (headless && inputType === 'TwoFactorAuthentication') {
+            this.$router.push({ name: 'bot-input', params: { bot: this.bot.name } });
+            return;
+          }
+
           await this.$http.botAction(this.bot.name, 'start');
           await this.$store.dispatch('bots/updateBot', { name: this.bot.name, active: true });
         } catch (err) {
