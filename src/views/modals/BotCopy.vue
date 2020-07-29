@@ -1,13 +1,9 @@
 <template>
   <main v-if="bot" class="main-container main-container--bot-copy">
-    <h2 class="title">
-      {{ $t('bot-new') }}
-    </h2>
+    <h2 class="title">{{ $t('bot-new') }}</h2>
 
     <div class="container">
-      <p class="container-description">
-        {{ $t('bot-new-copy', {name: bot.name}) }}
-      </p>
+      <p class="container-description">{{ $t('bot-new-copy', {name: bot.name}) }}</p>
 
       <config-editor v-if="displayCategories" :fields="fields" :model="model" :categories="categories"></config-editor>
       <config-editor v-else :fields="fields" :model="model"></config-editor>

@@ -1,11 +1,7 @@
 <template>
   <main v-if="bot" class="main-container main-container--bot-profile">
-    <h2 v-if="bot.nickname && nicknames" class="title">
-      {{ $t('bot-delete', { name: bot.nickname }) }}
-    </h2>
-    <h2 v-else class="title">
-      {{ $t('bot-delete', { name: bot.name }) }}
-    </h2>
+    <h2 v-if="bot.nickname && nicknames" class="title">{{ $t('bot-delete', { name: bot.nickname }) }}</h2>
+    <h2 v-else class="title">{{ $t('bot-delete', { name: bot.name }) }}</h2>
 
     <div class="form-item">
       <div class="form-item__buttons form-item__buttons--center">

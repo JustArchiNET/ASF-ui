@@ -1,11 +1,7 @@
 <template>
   <main v-if="bot" class="main-container main-container--bot-configuration">
-    <h2 v-if="bot.nickname && nicknames" class="title">
-      {{ bot.nickname }}
-    </h2>
-    <h2 v-else class="title">
-      {{ bot.name }}
-    </h2>
+    <h2 v-if="bot.nickname && nicknames" class="title">{{ bot.nickname }}</h2>
+    <h2 v-else class="title">{{ bot.name }}</h2>
 
     <h3 v-if="loading" class="subtitle">
       <font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>

@@ -1,8 +1,6 @@
 <template>
   <main class="main-container main-container--bot-create">
-    <h2 class="title">
-      {{ $t('bot-new') }}
-    </h2>
+    <h2 class="title">{{ $t('bot-new') }}</h2>
 
     <h3 v-if="loading" class="subtitle">
       <font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
