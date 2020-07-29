@@ -137,12 +137,13 @@
         this.token = '-----';
 
         try {
-          const response = await this.$http.get(`bot/${this.bot.name}/twoFactorAuthentication/token`);
+          const bot = this.bot.name;
+          const response = await this.$http.get(`bot/${bot}/twoFactorAuthentication/token`);
 
-          if (response[this.bot.name].Result && response[this.bot.name].Success) {
-            this.token = response[this.bot.name].Result;
+          if (response[bot].Result && response[bot].Success) {
+            this.token = response[bot].Result;
           } else {
-            this.$error(response[this.bot.name].Message);
+            this.$error(response[bot].Message);
           }
         } catch (err) {
           this.$error(err.message);
