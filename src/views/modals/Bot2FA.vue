@@ -1,11 +1,7 @@
 <template>
   <main v-if="bot" class="main-container">
-    <h2 v-if="bot.nickname && nicknames" class="title">
-      {{ bot.nickname }}
-    </h2>
-    <h2 v-else class="title">
-      {{ bot.name }}
-    </h2>
+    <h2 v-if="bot.nickname && nicknames" class="title">{{ bot.nickname }}</h2>
+    <h2 v-else class="title">{{ bot.name }}</h2>
 
     <span v-if="!has2FA" v-html="$t('2fa-not-found')" />
 
@@ -76,12 +72,13 @@
       this.refreshing = true;
 
       try {
-        const response = await this.$http.get(`bot/${this.bot.name}/twoFactorAuthentication/token`);
+        const bot = this.bot.name;
+        const response = await this.$http.get(`bot/${bot}/twoFactorAuthentication/token`);
 
-        if (response[this.bot.name].Result && response[this.bot.name].Success) {
-          this.token = response[this.bot.name].Result;
+        if (response[bot].Result && response[bot].Success) {
+          this.token = response[bot].Result;
         } else {
-          this.$error(response[this.bot.name].Message);
+          this.$error(response[bot].Message);
         }
       } catch (err) {
         this.$error(err.message);
