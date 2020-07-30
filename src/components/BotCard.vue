@@ -80,12 +80,11 @@
         try {
           const inputType = getUserInputType(this.bot.requiredInput);
 
-          // todo: check for other input types
-          if (headless && inputType === 'TwoFactorAuthentication') {
-            this.$router.push({ name: 'bot-input', params: { bot: this.bot.name } });
+          if (this.headless && inputType !== 'None') {
+            this.$router.push({ name: 'bot-input', params: { bot: this.bot.name, type: inputType } });
             return;
           }
-
+          
           await this.$http.botAction(this.bot.name, 'start');
           await this.$store.dispatch('bots/updateBot', { name: this.bot.name, active: true });
         } catch (err) {

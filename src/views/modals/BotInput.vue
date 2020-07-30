@@ -4,10 +4,18 @@
     <h2 v-else class="title">{{ bot.name }}</h2>
 
     <div class="form-item">
-      <div class="form-item__info">{{ $t('input-info') }}</div>
+      <div class="form-item__info">{{ $t(`input-info-${inputType}`) }}</div>
       <div class="form-item__code">
-        <label for="input" class="form-item__label">{{ $t('input-label') }}</label>
-        <input id="input" class="form-item__input" type="text" v-model="code">
+        <div>
+          <label for="input" class="form-item__label">{{ $t(`input-label-${inputType}`) }}</label>
+          <input id="input" class="form-item__input" type="password" autocomplete="new-password" v-model="code" />
+        </div>
+        <div class="form-item__buttons form-item__buttons--column">
+          <button class="button button--helper" :title="$t('input-switch-visibility')" @click="switchInputType">
+            <font-awesome-icon v-if="inputHidden" icon="eye" size="lg"></font-awesome-icon>
+            <font-awesome-icon v-else icon="eye-slash" size="lg"></font-awesome-icon>
+          </button>
+        </div>
       </div>
       <div class="form-item__buttons form-item__buttons--center">
         <button class="button button--confirm" @click="submit">
@@ -28,6 +36,7 @@
       return {
         submitting: false,
         code: '',
+        inputHidden: true,
       };
     },
     computed: {
@@ -35,14 +44,24 @@
       bot() {
         return this.$store.getters['bots/bot'](this.$route.params.bot);
       },
+      inputType() {
+        return this.$route.params.type.toLowerCase();
+      },
     },
     async created() {
-      if (!this.bot) this.$router.replace({ name: 'bots' });
+      if (!this.bot || !this.$route.params.type) this.$router.replace({ name: 'bots' });
     },
     mounted() {
       document.getElementById('input').focus();
     },
     methods: {
+      switchInputType() {
+        this.inputHidden = !this.inputHidden;
+        const field = document.getElementById('input');
+
+        if (field.getAttribute('type') === 'password') field.setAttribute('type', 'text');
+        else field.setAttribute('type', 'password');
+      },
       async submit() {
         if (this.submitting) return;
 
@@ -53,8 +72,7 @@
           await this.$http.botAction(this.bot.name, 'start');
           await this.$store.dispatch('bots/updateBot', { name: this.bot.name, active: true });
 
-          // todo: redirect to bot modal or bots page depending on from where user started bot
-          this.$parent.back();
+          this.$router.back();
         } catch (err) {
           this.$error(err.message);
         } finally {
@@ -70,12 +88,19 @@
     padding-bottom: 1em;
   }
 
-	.form-item__code {
-		justify-content: center;
+  .form-item__code {
+    display: grid;
+    grid-column-gap: 0.5em;
+    grid-template-columns: 1fr auto;
+    align-items: flex-end;
     padding-bottom: 1em;
 
-		:focus {
-			outline: none;
-		}
-	}
+    :focus {
+      outline: none;
+    }
+  }
+
+  .button--helper {
+    max-width: 2em;
+  }
 </style>

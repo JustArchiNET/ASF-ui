@@ -102,7 +102,7 @@ export default [
 		meta: { modal: true }
   },
   {
-		path: '/page/bot/:bot/input',
+		path: '/page/bot/:bot/input/:type',
 		name: 'bot-input',
 		components: {
 			default: () => import('../views/Bots.vue'),
