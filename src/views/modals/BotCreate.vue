@@ -29,7 +29,6 @@
 <script>
   import { mapGetters } from 'vuex';
   import ConfigEditor from '../../components/ConfigEditor.vue';
-  import fetchConfigSchema from '../../utils/fetchConfigSchema';
   import loadParameterDescriptions from '../../utils/loadParameterDescriptions';
   import prepareModelToDownload from '../../utils/prepareModelToDownload';
   import delay from '../../utils/delay';
