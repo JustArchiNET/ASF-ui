@@ -51,6 +51,10 @@
     },
     created() {
       if (!this.bot || !this.$route.params.type) this.$router.replace({ name: 'bots' });
+      document.addEventListener('keydown', this.onEnterClick);
+    },
+    beforeDestroy() {
+      document.removeEventListener('keydown', this.onEnterClick);
     },
     mounted() {
       document.getElementById('input').focus();
@@ -62,6 +66,14 @@
 
         if (field.getAttribute('type') === 'password') field.setAttribute('type', 'text');
         else field.setAttribute('type', 'password');
+      },
+      onEnterClick(e) {
+        const charCode = (e.which) ? e.which : e.keyCode;
+
+        if (charCode === 13) {
+          this.submit();
+          return e.preventDefault();
+        }
       },
       async submit() {
         if (this.submitting) return;
