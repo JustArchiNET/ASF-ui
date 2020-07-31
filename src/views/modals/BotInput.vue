@@ -78,6 +78,11 @@
       async submit() {
         if (this.submitting) return;
 
+        if (this.code === '') {
+          this.$error(this.$t(`input-no-code-${this.inputType}`));
+          return;
+        }
+
         this.submitting = true;
 
         try {
