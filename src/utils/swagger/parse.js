@@ -4,7 +4,7 @@ import { dereference } from './dereference';
 const endpoint = 'http://localhost:8080/swagger/ASF/swagger.json';
 
 export async function getTypes() {
-  return await axios.get(endpoint)
+  return axios.get(endpoint)
     .then(response => response.data)
     .then(schema => dereference(schema))
     .then(schema => schema.components.schemas);
