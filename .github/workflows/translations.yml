@@ -2,7 +2,7 @@ name: ASF-ui-translations
 
 on:
   schedule:
-  - cron: '*/10 * * * *'
+  - cron: '0 2 * * *'
 
 jobs:
   update:
@@ -43,7 +43,7 @@ jobs:
         git add -A "src/i18n/locale"
 
         if ! git diff --cached --quiet; then
-            git commit -m "Automatic translations update | $(date -u)"
+            git commit -m "Automatic translations update"
         fi
 
     - name: Push changes
