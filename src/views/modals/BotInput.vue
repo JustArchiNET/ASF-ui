@@ -48,7 +48,7 @@
         return this.$route.params.type.toLowerCase();
       },
     },
-    async created() {
+    created() {
       if (!this.bot || !this.$route.params.type) this.$router.replace({ name: 'bots' });
     },
     mounted() {
