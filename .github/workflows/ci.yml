@@ -3,6 +3,8 @@ name: ASF-ui-CI
 on: [push, pull_request]
 
 env:
+  CROWDIN_API_KEY: ${{ secrets.ASF_CROWDIN_API_KEY }}
+  CROWDIN_PROJECT_IDENTIFIER: archisteamfarm
   NODE_JS_VERSION: 12
 
 jobs:
@@ -35,6 +37,25 @@ jobs:
 
     - name: Build ASF-ui
       run: npm run-script deploy --no-progress
+
+    - name: Upload latest strings for translation on Crowdin
+      continue-on-error: true
+      if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' && startsWith(matrix.os, 'windows-') }}
+      shell: pwsh
+      run: |
+        Set-StrictMode -Version Latest
+        $ErrorActionPreference = 'Stop'
+        $ProgressPreference = 'SilentlyContinue'
+
+        if ((Test-Path 'crowdin.yml' -PathType Leaf) -and (Test-Path 'tools\ArchiCrowdin\crowdin_identity_example.yml' -PathType Leaf) -and (Test-Path 'tools\ArchiCrowdin\archi.ps1' -PathType Leaf)) {
+            (Get-Content 'tools\ArchiCrowdin\crowdin_identity_example.yml').Replace('CROWDIN_API_KEY', "$env:CROWDIN_API_KEY").Replace('CROWDIN_PROJECT_IDENTIFIER', "$env:CROWDIN_PROJECT_IDENTIFIER") | Set-Content 'tools\ArchiCrowdin\crowdin_identity.yml'
+
+            try {
+                & tools\ArchiCrowdin\archi.ps1 -u
+            } finally {
+                Remove-Item 'tools\ArchiCrowdin\crowdin_identity.yml'
+            }
+        }
 
     - name: Upload ASF-ui
       continue-on-error: true
