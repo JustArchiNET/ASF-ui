@@ -6,9 +6,6 @@ image: Visual Studio 2019
 configuration: Release
 clone_depth: 10
 environment:
-  CROWDIN_API_KEY:
-    secure: oGuZaQo2z5/JkEYaKrD9Ing+TgwZ3qQVf+9Jdz73Fephy04z5rWPGCCtkjaMLTcY
-  CROWDIN_PROJECT_IDENTIFIER: archisteamfarm
   NODE_JS_VERSION: lts
 install:
 - pwsh: >-
@@ -66,54 +63,13 @@ after_test:
     $ProgressPreference = 'SilentlyContinue'
 
 
-    # By default use fastest compression
-
-    $compressionArgs = '-mx=1'
-
-
-    # Include extra logic for builds marked for release
-
-    if ($env:APPVEYOR_REPO_TAG -eq 'true') {
-        # If this build is going to be deployed further, prefer maximum compression
-        if ($env:APPVEYOR_BUILD_WORKER_IMAGE -eq 'Visual Studio 2019') {
-            $compressionArgs = '-mx=9', '-mpass=15', '-mfb=258'
-        }
-    }
-
-
-    7z a -bd -tzip '-mm=Deflate' $compressionArgs 'out\ASF-ui.zip' "$env:APPVEYOR_BUILD_FOLDER\dist\*"
+    7z a -bd -slp -tzip -mm=Deflate -mx=1 'out\ASF-ui.zip' "$env:APPVEYOR_BUILD_FOLDER\dist\*"
 
 
     # TODO: Change me to Push-AppveyorArtifact once https://github.com/appveyor/ci/issues/2183 is fixed
 
     appveyor PushArtifact 'out\ASF-ui.zip' -FileName 'ASF-ui.zip' -DeploymentName 'ASF-ui.zip'
-
-
-    if (!($env:APPVEYOR_PULL_REQUEST_NUMBER) -and ($env:APPVEYOR_REPO_BRANCH -eq 'master') -and ($env:APPVEYOR_REPO_TAG -eq 'false') -and (Test-Path 'crowdin.yml' -PathType Leaf) -and (Test-Path 'tools\ArchiCrowdin\crowdin_identity_example.yml' -PathType Leaf) -and (Test-Path 'tools\ArchiCrowdin\archi.ps1' -PathType Leaf)) {
-        (Get-Content 'tools\ArchiCrowdin\crowdin_identity_example.yml').Replace('CROWDIN_API_KEY', "$env:CROWDIN_API_KEY").Replace('CROWDIN_PROJECT_IDENTIFIER', "$env:CROWDIN_PROJECT_IDENTIFIER") | Set-Content 'tools\ArchiCrowdin\crowdin_identity.yml'
-
-        try {
-            & tools\ArchiCrowdin\archi.ps1 -u
-        } finally {
-            Remove-Item 'tools\ArchiCrowdin\crowdin_identity.yml'
-        }
-    }
-deploy:
-- provider: GitHub
-  tag: $(appveyor_repo_tag_name)
-  release: ASF-ui v$(appveyor_repo_tag_name)
-  description: '### Notice\n\nThis is automated AppVeyor GitHub deployment, human-readable description should be available soon. In the meantime please refer to **[GitHub commits](https://github.com/JustArchiNET/ASF-ui/commits/$(appveyor_repo_tag_name))**.'
-  auth_token:
-    secure: uYK1wf3znNdkuQqImXR6rZ94ESgzF1vJHCAcJ75Y+m+/pc/Ro6cikzy6O7DVZ39T
-  artifact: /.*/
-  draft: false
-  prerelease: true
-  force_update: false
-  on:
-    branch: master
-    configuration: Release
-    appveyor_build_worker_image: Visual Studio 2019
-    appveyor_repo_tag: true
+deploy: off
 notifications:
 - provider: Webhook
   url:
