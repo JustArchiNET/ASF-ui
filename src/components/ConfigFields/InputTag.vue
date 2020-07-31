@@ -10,14 +10,14 @@
             <font-awesome-icon class="form-item__tag-remove" icon="times"></font-awesome-icon>
           </button>
 
-          <input v-model="element" class="form-item__input form-item__input--tag" type="text" @keydown="onKeyDown" @focus="onFocus" @blur="onBlur">
+          <input v-model="element" class="form-item__input form-item__input--tag" type="text" @keydown="onKeyDown" @focus="onFocus" @blur="onBlur" />
         </div>
 
         <button class="button" @click.prevent="addElement">
           {{ $t('add') }}
         </button>
       </div>
-      
+
       <span v-if="hasErrors" class="form-item__error">{{ errorText }}</span>
     </div>
 
@@ -75,7 +75,7 @@
         this.element = '';
       },
       onKeyDown($event) {
-        const charCode = ($event.which) ? $event.which : $event.keyCode;
+        const charCode = $event.which ? $event.which : $event.keyCode;
 
         if ([9, 13, 188, 32].includes(charCode)) {
           this.addElement();
