@@ -19,7 +19,7 @@ jobs:
         submodules: recursive
 
     - name: Download latest translations from Crowdin
-      if: ${{ startsWith(matrix.os, 'ubuntu-') }}
+      if: startsWith(matrix.os, 'ubuntu-')
       uses: crowdin/github-action@1.0.9
       with:
         upload_sources: false
