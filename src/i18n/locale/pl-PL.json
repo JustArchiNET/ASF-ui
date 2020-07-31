@@ -25,7 +25,7 @@
   "bgr-used-keys-count": "{count} użytych",
   "bot-copy": "Skopiuj bota",
   "bot-create-name": "Musisz wpisać nazwę",
-  "bot-create-name-asf": "Nie możesz nazwać swojego bota ASF",
+  "bot-create-name-asf": "Nie możesz nazwać swojego bota ASF :(",
   "bot-create-name-exist": "Już istnieje bot o nazwie {name}",
   "bot-delete": "Czy na pewno chcesz usunąć {name}?",
   "bot-fav-buttons": "Przycisk szybkiej akcji",

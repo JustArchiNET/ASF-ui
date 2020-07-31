@@ -1,0 +1,50 @@
+name: ASF-ui-translations
+
+on:
+  schedule:
+  - cron: '10 * * * *'
+
+jobs:
+  update:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with:
+        submodules: recursive
+
+    - name: Download latest translations from Crowdin
+      if: ${{ startsWith(matrix.os, 'ubuntu-') }}
+      uses: crowdin/github-action@1.0.9
+      with:
+        upload_sources: false
+        download_translations: true
+        skip_untranslated_strings: true
+        push_translations: false
+        crowdin_branch_name: master
+        project_id: ${{ secrets.ASF_CROWDIN_PROJECT_ID }}
+        token: ${{ secrets.ASF_CROWDIN_API_TOKEN }}
+
+    - name: Commit the changes
+      shell: sh
+      run: |
+        set -eu
+
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+
+        git add -A "src/i18n/locale"
+
+        if ! git diff --cached --quiet; then
+            git commit -m "Automatic translations update | $(date -u)"
+        fi
+
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
