@@ -29,6 +29,7 @@
 
 <script>
   import { mapGetters } from 'vuex';
+  import getUserInputType from '../../utils/getUserInputType';
 
   export default {
     name: 'bot-input',
@@ -68,7 +69,8 @@
         this.submitting = true;
 
         try {
-          await this.$http.post(`bot/${this.bot.name}/input`, { type: this.bot.requiredInput, value: this.code });
+          const inputType = getUserInputType(this.bot.requiredInput);
+          if (inputType === this.$route.params.type) await this.$http.post(`bot/${this.bot.name}/input`, { type: this.bot.requiredInput, value: this.code });
           await this.$http.botAction(this.bot.name, 'start');
           await this.$store.dispatch('bots/updateBot', { name: this.bot.name, active: true });
 
