@@ -75,22 +75,22 @@
             paramName: 'Name',
             type: 'string',
             description: this.$t('name-description'),
-          }
-        ]
+          },
+        ];
 
         const [schema, descriptions] = await Promise.all([
-					getType('BotConfig'),
-					loadParameterDescriptions(this.version, this.$i18n.locale)
+          getType('BotConfig'),
+          loadParameterDescriptions(this.version, this.$i18n.locale),
         ]);
-        
-				this.fields = [
-					...ADDITIONAL_FIELDS,
-					...Object.keys(schema).map(name => ({
-						description: descriptions[name.replace('s_', '')],
-						...schema[name],
-						param: name.replace('s_', ''),
-						paramName: name
-          }))
+
+        this.fields = [
+          ...ADDITIONAL_FIELDS,
+          ...Object.keys(schema).map(name => ({
+            description: descriptions[name.replace('s_', '')],
+            ...schema[name],
+            param: name.replace('s_', ''),
+            paramName: name,
+          })),
         ];
 
         this.model = {};

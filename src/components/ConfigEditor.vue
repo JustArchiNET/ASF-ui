@@ -50,12 +50,12 @@
       uncategorizedFields() {
         if (!this.categories) return this.fields;
 
-        const categorizedFields = this.categories.map((category) => category.fields).reduce((categorizedFields, categoryFields) => [...categorizedFields, ...categoryFields], []);
+        const categorizedFields = this.categories.map(category => category.fields).reduce((categorizedFields, categoryFields) => [...categorizedFields, ...categoryFields], []);
 
-        return this.fields.filter((field) => !categorizedFields.includes(field.param));
+        return this.fields.filter(field => !categorizedFields.includes(field.param));
       },
       categoryFields() {
-        return (categoryName) => {
+        return categoryName => {
           if (!this.categories) return [];
           const category = this.categories.find(({ name }) => name === categoryName);
           if (!category) return [];
@@ -63,7 +63,7 @@
         };
       },
       isValid() {
-        return this.$children.every((child) => child.isValid);
+        return this.$children.every(child => child.isValid);
       },
     },
     mounted() {
@@ -99,7 +99,7 @@
         }
       },
       updateModel(value, field) {
-        const fieldSchema = this.fields.find((fieldSchema) => fieldSchema.paramName === field);
+        const fieldSchema = this.fields.find(fieldSchema => fieldSchema.paramName === field);
 
         if (fieldSchema && typeof fieldSchema.defaultValue !== 'undefined' && this.isDefault(value, fieldSchema)) {
           delete this.model[field];
@@ -122,23 +122,23 @@
           case 'boolean':
             return a === b;
           case 'hashSet':
-            return a.length === b.length && a.every((item) => b.includes(item));
+            return a.length === b.length && a.every(item => b.includes(item));
           case 'list':
             return a.length === b.length && a.every((item, index) => item === b[index]);
           case 'dictionary':
-            return Object.keys(a).length === Object.keys(b).length && Object.keys(a).every((key) => a[key] === b[key]);
+            return Object.keys(a).length === Object.keys(b).length && Object.keys(a).every(key => a[key] === b[key]);
         }
 
         return false;
       },
       getFields(names) {
-        return this.fields.filter((field) => names.includes(field.param));
+        return this.fields.filter(field => names.includes(field.param));
       },
       computeLabelWidth() {
         this.$el.style.setProperty('--label-width', 'auto');
 
         this.$nextTick(() => {
-          const labelWidth = Math.max(...Array.from(this.$el.querySelectorAll('.form-item__label')).map((el) => Math.ceil(parseFloat(getComputedStyle(el).width))));
+          const labelWidth = Math.max(...Array.from(this.$el.querySelectorAll('.form-item__label')).map(el => Math.ceil(parseFloat(getComputedStyle(el).width))));
           this.$el.style.setProperty('--label-width', `${labelWidth}px`);
         });
       },

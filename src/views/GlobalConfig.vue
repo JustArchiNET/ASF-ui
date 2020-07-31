@@ -1,13 +1,13 @@
 <template>
-	<main class="main-container main-container--fullheight">
-		<div class="container">
-			<template v-if="loading">
-				<h3 class="subtitle">
-					<font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
-				</h3>
-			</template>
-			<template v-else>
-				<config-editor :fields="fields" :model="model" :categories="displayCategories ? categories : null"></config-editor>
+  <main class="main-container main-container--fullheight">
+    <div class="container">
+      <template v-if="loading">
+        <h3 class="subtitle">
+          <font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
+        </h3>
+      </template>
+      <template v-else>
+        <config-editor :fields="fields" :model="model" :categories="displayCategories ? categories : null"></config-editor>
 
         <div class="form-item">
           <div class="form-item__buttons">
@@ -27,12 +27,12 @@
 </template>
 
 <script>
-	import { mapGetters } from 'vuex';
-	import ConfigEditor from '../components/ConfigEditor.vue';
-	import loadParameterDescriptions from '../utils/loadParameterDescriptions';
-	import prepareModelToDownload from '../utils/prepareModelToDownload';
-	import waitForRestart from '../utils/waitForRestart';
-	import { getType } from '../utils/swagger/parse';
+  import { mapGetters } from 'vuex';
+  import ConfigEditor from '../components/ConfigEditor.vue';
+  import loadParameterDescriptions from '../utils/loadParameterDescriptions';
+  import prepareModelToDownload from '../utils/prepareModelToDownload';
+  import waitForRestart from '../utils/waitForRestart';
+  import { getType } from '../utils/swagger/parse';
 
   export default {
     name: 'global-config',
@@ -70,36 +70,36 @@
     }),
     async created() {
       const [model, schema, descriptions] = await Promise.all([
-				this.getModel(),
-				getType('GlobalConfig'),
-				loadParameterDescriptions(this.version, this.$i18n.locale)
-			]);
+        this.getModel(),
+        getType('GlobalConfig'),
+        loadParameterDescriptions(this.version, this.$i18n.locale),
+      ]);
 
       Object.keys(schema).forEach(name => {
-				if (name.startsWith('s_')) {
-					const paramName = name.substr(2);
-					delete model[paramName]
-					delete schema[paramName]
-				}
-			});
+        if (name.startsWith('s_')) {
+          const paramName = name.substr(2);
+          delete model[paramName];
+          delete schema[paramName];
+        }
+      });
 
       this.fields = Object.keys(schema).map(name => ({
-				description: descriptions[name.replace('s_', '')],
-				...schema[name],
-				param: name.replace('s_', ''),
-				paramName: name
-			}));
+        description: descriptions[name.replace('s_', '')],
+        ...schema[name],
+        param: name.replace('s_', ''),
+        paramName: name,
+      }));
 
       this.model = model;
       this.loading = false;
 
-      await getType('BotConfig').then(c => console.log(c))
+      await getType('BotConfig').then(c => console.log(c));
     },
     methods: {
-      async getModel () {
-				const { GlobalConfig: model } = await this.$http.get('asf');
-				return model;
-			},
+      async getModel() {
+        const { GlobalConfig: model } = await this.$http.get('asf');
+        return model;
+      },
       async onSave() {
         if (this.saving) return;
 

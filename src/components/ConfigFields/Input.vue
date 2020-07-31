@@ -47,7 +47,7 @@
         return [];
       },
       errorText() {
-        return this.errors.map((error) => `Value is ${error}!`).join(' ');
+        return this.errors.map(error => `Value is ${error}!`).join(' ');
       },
     },
     watch: {

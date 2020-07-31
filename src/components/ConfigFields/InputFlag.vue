@@ -6,7 +6,7 @@
       <div class="input-option__field">
         <select :id="field" v-model="flagValue" class="form-item__input" :disabled="!availableFlags.length">
           <option v-for="{ label, flag } in availableFlags" :value="flag">{{ label }}</option>
-          <option :value="null" disabled v-if="!availableFlags.length">{{ $t('input-all-selected') }}</option>
+          <option v-if="!availableFlags.length" :value="null" disabled>{{ $t('input-all-selected') }}</option>
         </select>
 
         <button class="button" @click.prevent="addFlag">

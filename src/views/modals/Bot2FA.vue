@@ -3,7 +3,7 @@
     <h2 v-if="bot.nickname && nicknames" class="title">{{ bot.nickname }}</h2>
     <h2 v-else class="title">{{ bot.name }}</h2>
 
-    <span v-if="!has2FA" v-html="$t('2fa-not-found')" />
+    <span v-if="!has2FA" v-html="$t('2fa-not-found')"></span>
 
     <div v-else class="form-item">
       <div class="form-item__token">

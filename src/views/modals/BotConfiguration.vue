@@ -92,11 +92,11 @@
         ]);
 
         Object.keys(schema).forEach(name => {
-					if (name.startsWith('s_')) {
-						const paramName = name.substr(2);
-						delete model[paramName]
-						delete schema[paramName]
-					}
+          if (name.startsWith('s_')) {
+            const paramName = name.substr(2);
+            delete model[paramName];
+            delete schema[paramName];
+          }
         });
 
         const extendedFields = {
@@ -106,11 +106,11 @@
         };
 
         this.fields = Object.keys(schema).map(name => ({
-					description: descriptions[name.replace('s_', '')],
-					...schema[name],
-					...(extendedFields[name] || {}),
-					param: name.replace('s_', ''),
-					paramName: name,
+          description: descriptions[name.replace('s_', '')],
+          ...schema[name],
+          ...(extendedFields[name] || {}),
+          param: name.replace('s_', ''),
+          paramName: name,
         }));
 
         this.model = model;

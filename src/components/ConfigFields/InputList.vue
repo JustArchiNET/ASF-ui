@@ -44,7 +44,7 @@
         return Object.entries(this.schema.items['x-definition']).map(([label, value]) => ({ label, value }));
       },
       resolveValue() {
-        return (value) => {
+        return value => {
           const enumValue = this.enumValues.find(({ value: enumValue }) => value === enumValue);
           if (!enumValue) return value;
           return enumValue.label;
