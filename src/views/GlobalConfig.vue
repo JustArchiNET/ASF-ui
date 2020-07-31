@@ -92,8 +92,6 @@
 
       this.model = model;
       this.loading = false;
-
-      await getType('BotConfig').then(c => console.log(c));
     },
     methods: {
       async getModel() {
