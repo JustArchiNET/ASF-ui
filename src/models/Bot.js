@@ -45,6 +45,7 @@ export class Bot {
 
     if (this.status === 'farming' && this.currentGamesFarming.length === 1) return `${statusText} - ${this.currentGamesFarming[0].GameName}`;
     if (this.status === 'farming' && this.currentGamesFarming.length > 1) return `${statusText} - ${Vue.i18n.translate('multiple-games')}`;
+    if (this.status === 'disabled' && this.requiredInput !== 0) return Vue.i18n.translate('bot-status-input');
 
     return statusText;
   }

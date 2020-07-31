@@ -48,6 +48,7 @@
   "bot-nicknames-description": "Display steam nicknames (if available) instead of bot names.",
   "bot-status-disabled": "Disabled",
   "bot-status-farming": "Farming",
+  "bot-status-input": "Requires input",
   "bot-status-offline": "Offline",
   "bot-status-online": "Online",
   "bots": "Bots",
