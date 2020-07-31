@@ -29,6 +29,8 @@ jobs:
         crowdin_branch_name: master
         project_id: ${{ secrets.ASF_CROWDIN_PROJECT_ID }}
         token: ${{ secrets.ASF_CROWDIN_API_TOKEN }}
+      env:
+        GITHUB_TOKEN: 'not-used' # TODO: https://github.com/crowdin/github-action/pull/30
 
     - name: Commit the changes
       shell: sh
