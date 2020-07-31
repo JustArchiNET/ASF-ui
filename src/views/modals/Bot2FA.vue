@@ -1,153 +1,159 @@
 <template>
-	<main v-if="bot" class="main-container">
-		<h2 v-if="bot.nickname && nicknames" class="title">
-			{{ bot.nickname }}
-		</h2>
-		<h2 v-else class="title">
-			{{ bot.name }}
-		</h2>
+  <main v-if="bot" class="main-container">
+    <h2 v-if="bot.nickname && nicknames" class="title">{{ bot.nickname }}</h2>
+    <h2 v-else class="title">{{ bot.name }}</h2>
 
-		<div class="form-item">
-			<div class="form-item__token">
-				<input class="form-item__input form-item__input-token" type="text" :value="token" readonly>
-				<div class="form-item__buttons form-item__buttons--column">
-					<button class="button button--helper" :title="$t('2fa-token-refresh')" @click="refreshToken">
-						<font-awesome-icon v-if="refreshing" icon="spinner" size="lg" spin></font-awesome-icon>
-						<font-awesome-icon v-else icon="redo-alt" size="lg"></font-awesome-icon>
-					</button>
-					<button class="button button--helper" :title="$t('2fa-token-copy')" @click="copyToken">
-						<font-awesome-icon icon="clipboard" size="lg"></font-awesome-icon>
-					</button>
-				</div>
-			</div>
-			<div class="form-item__buttons form-item__buttons--center form-item__buttons--column">
-				<button class="button button--confirm" @click="acceptTrades">
-					<font-awesome-icon v-if="accepting" icon="spinner" spin></font-awesome-icon>
-					<span v-else>{{ $t('2fa-accept') }}</span>
-				</button>
-				<button class="button button--cancel" @click="cancelTrades">
-					<font-awesome-icon v-if="canceling" icon="spinner" spin></font-awesome-icon>
-					<span v-else>{{ $t('2fa-cancel') }}</span>
-				</button>
-			</div>
-		</div>
-	</main>
+    <span v-if="!has2FA" v-html="$t('2fa-not-found')" />
+
+    <div v-else class="form-item">
+      <div class="form-item__token">
+        <input class="form-item__input form-item__input-token" type="text" :value="token" readonly>
+        <div class="form-item__buttons form-item__buttons--column">
+          <button class="button button--helper" :title="$t('2fa-token-refresh')" @click="refreshToken">
+            <font-awesome-icon v-if="refreshing" icon="spinner" size="lg" spin></font-awesome-icon>
+            <font-awesome-icon v-else icon="redo-alt" size="lg"></font-awesome-icon>
+          </button>
+          <button class="button button--helper" :title="$t('2fa-token-copy')" @click="copyToken">
+            <font-awesome-icon icon="clipboard" size="lg"></font-awesome-icon>
+          </button>
+        </div>
+      </div>
+      <div class="form-item__buttons form-item__buttons--center form-item__buttons--column">
+        <button class="button button--confirm" @click="acceptTrades">
+          <font-awesome-icon v-if="accepting" icon="spinner" spin></font-awesome-icon>
+          <span v-else>{{ $t('2fa-accept') }}</span>
+        </button>
+        <button class="button button--cancel" @click="cancelTrades">
+          <font-awesome-icon v-if="canceling" icon="spinner" spin></font-awesome-icon>
+          <span v-else>{{ $t('2fa-cancel') }}</span>
+        </button>
+      </div>
+    </div>
+  </main>
 </template>
 
 <script>
-	import { mapGetters } from 'vuex';
-	import * as copy from 'copy-to-clipboard';
-	import delay from '../../utils/delay';
+  import { mapGetters } from 'vuex';
+  import * as copy from 'copy-to-clipboard';
+  import delay from '../../utils/delay';
 
-	export default {
-		name: 'bot-2fa',
-		data() {
-			return {
-				accepting: false,
-				canceling: false,
-				refreshing: false,
-				token: '-----'
-			};
-		},
-		computed: {
-			...mapGetters({ nicknames: 'settings/nicknames' }),
-			bot() {
-				return this.$store.getters['bots/bot'](this.$route.params.bot);
-			}
-		},
-		async created() {
-			if (!this.bot) this.$router.replace({ name: 'bots' });
+  export default {
+    name: 'bot-2fa',
+    data() {
+      return {
+        accepting: false,
+        canceling: false,
+        refreshing: false,
+        token: '-----',
+        has2FA: true,
+      };
+    },
+    computed: {
+      ...mapGetters({ nicknames: 'settings/nicknames' }),
+      bot() {
+        return this.$store.getters['bots/bot'](this.$route.params.bot);
+      },
+    },
+    watch: {
+      async token() {
+        if (this.token === '-----') return;
+        await delay(30000); // Steam 2FA token is only valid for 30 seconds
+        this.token = '-----';
+      },
+    },
+    async created() {
+      if (!this.bot) this.$router.replace({ name: 'bots' });
 
-			this.refreshing = true;
+      if (!this.bot.has2FA) {
+        this.has2FA = false;
+        return;
+      }
 
-			try {
-				const response = await this.$http.get(`bot/${this.bot.name}/twoFactorAuthentication/token`);
+      this.refreshing = true;
 
-				if (response[this.bot.name].Result && response[this.bot.name].Success) {
-					this.token = response[this.bot.name].Result;
-				} else {
-					this.$error(response[this.bot.name].Message);
-				}
-			} catch (err) {
-				this.$error(err.message);
-			} finally {
-				this.refreshing = false;
-			}
-		},
-		watch: {
-			async token() {
-				if (this.token === '-----') return;
-				await delay(30000); // Steam 2FA token is only valid for 30 seconds
-				this.token = '-----';
-			}
-		},
-		methods: {
-			async acceptTrades() {
-				if (this.accepting) return;
+      try {
+        const bot = this.bot.name;
+        const response = await this.$http.get(`bot/${bot}/twoFactorAuthentication/token`);
 
-				this.accepting = true;
+        if (response[bot].Result && response[bot].Success) {
+          this.token = response[bot].Result;
+        } else {
+          this.$error(response[bot].Message);
+        }
+      } catch (err) {
+        this.$error(err.message);
+      } finally {
+        this.refreshing = false;
+      }
+    },
+    methods: {
+      async acceptTrades() {
+        if (this.accepting) return;
 
-				try {
-					const bot = this.bot.name;
-					const response = await this.$http.post(`bot/${bot}/twoFactorAuthentication/confirmations/accept`);
-					
-					if (response[bot].Success) {
-						this.$success(this.$t('2fa-accept-success', { bot: bot }));
-					} else {
-						this.$error(response[bot].Message);
-					}
-				} catch (err) {
-					this.$error(err.message);
-				} finally {
-					this.accepting = false;
-				}
-			},
-			async cancelTrades() {
-				if (this.canceling) return;
+        this.accepting = true;
 
-				this.canceling = true;
+        try {
+          const bot = this.bot.name;
+          const response = await this.$http.post(`bot/${bot}/twoFactorAuthentication/confirmations/accept`);
 
-				try {
-					const bot = this.bot.name;
-					const response = await this.$http.post(`bot/${bot}/twoFactorAuthentication/confirmations/cancel`);
+          if (response[bot].Success) {
+            this.$success(this.$t('2fa-accept-success', { bot }));
+          } else {
+            this.$error(response[bot].Message);
+          }
+        } catch (err) {
+          this.$error(err.message);
+        } finally {
+          this.accepting = false;
+        }
+      },
+      async cancelTrades() {
+        if (this.canceling) return;
 
-					if (response[bot].Success) {
-						this.$success(this.$t('2fa-cancel-success', { bot: bot }));
-					} else {
-						this.$error(response[bot].Message);
-					}
-				} catch (err) {
-					this.$error(err.message);
-				} finally {
-					this.canceling = false;
-				}
-			},
-			async refreshToken() {
-				if (this.refreshing) return;
+        this.canceling = true;
 
-				this.refreshing = true;
-				this.token = '-----';
+        try {
+          const bot = this.bot.name;
+          const response = await this.$http.post(`bot/${bot}/twoFactorAuthentication/confirmations/cancel`);
 
-				try {
-					const response = await this.$http.get(`bot/${this.bot.name}/twoFactorAuthentication/token`);
+          if (response[bot].Success) {
+            this.$success(this.$t('2fa-cancel-success', { bot }));
+          } else {
+            this.$error(response[bot].Message);
+          }
+        } catch (err) {
+          this.$error(err.message);
+        } finally {
+          this.canceling = false;
+        }
+      },
+      async refreshToken() {
+        if (this.refreshing) return;
 
-					if (response[this.bot.name].Result && response[this.bot.name].Success) {
-						this.token = response[this.bot.name].Result;
-					} else {
-						this.$error(response[this.bot.name].Message);
-					}
-				} catch (err) {
-					this.$error(err.message);
-				} finally {
-					this.refreshing = false;
-				}
-			},
-			copyToken() {
-				copy(this.token);
-				this.$info(this.$t('2fa-token-copied'));
-			}
-		}
-	};
+        this.refreshing = true;
+        this.token = '-----';
+
+        try {
+          const bot = this.bot.name;
+          const response = await this.$http.get(`bot/${bot}/twoFactorAuthentication/token`);
+
+          if (response[bot].Result && response[bot].Success) {
+            this.token = response[bot].Result;
+          } else {
+            this.$error(response[bot].Message);
+          }
+        } catch (err) {
+          this.$error(err.message);
+        } finally {
+          this.refreshing = false;
+        }
+      },
+      copyToken() {
+        copy(this.token);
+        this.$info(this.$t('2fa-token-copied'));
+      },
+    },
+  };
 </script>
 
 <style lang="scss">
@@ -180,4 +186,8 @@
 	.button--helper {
 		max-width: 2em;
 	}
+
+  a {
+    color: var(--color-theme);
+  }
 </style>

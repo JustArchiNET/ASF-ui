@@ -1,33 +1,33 @@
 <template>
-	<div v-show="visible" class="bot-action" :class="[color ? `bot-action--${color}` : null]" @click="onClick">
-		<span v-if="name" class="bot-action__label">{{ name }}</span>
-		<font-awesome-icon v-if="icon" class="bot-action__icon" :icon="icon"></font-awesome-icon>
-	</div>
+  <div v-show="visible" class="bot-action" :class="[color ? `bot-action--${color}` : null]" @click="onClick">
+    <span v-if="name" class="bot-action__label">{{ name }}</span>
+    <font-awesome-icon v-if="icon" class="bot-action__icon" :icon="icon"></font-awesome-icon>
+  </div>
 </template>
 
 <script>
-	export default {
-		name: 'bot-action',
-		props: {
-			icon: String,
-			name: String,
-			action: Function,
-			condition: Function,
-			color: String
-		},
-		computed: {
-			visible() {
-				if (!this.condition) return true;
-				return this.condition();
-			}
-		},
-		methods: {
-			onClick() {
-				if (this.action) this.action();
-				this.$emit('click');
-			}
-		}
-	};
+  export default {
+    name: 'bot-action',
+    props: {
+      icon: String,
+      name: String,
+      action: Function,
+      condition: Function,
+      color: String,
+    },
+    computed: {
+      visible() {
+        if (!this.condition) return true;
+        return this.condition();
+      },
+    },
+    methods: {
+      onClick() {
+        if (this.action) this.action();
+        this.$emit('click');
+      },
+    },
+  };
 </script>
 
 <style lang="scss">

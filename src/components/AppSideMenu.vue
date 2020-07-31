@@ -1,40 +1,40 @@
 <template>
-	<aside class="side-menu" :class="{ 'side-menu--hidden': !sideMenu }">
-		<side-menu-switch class="side-menu__switch--boxed" :name="$t('sidebar-boxed-layout')" icon="square" :checked="boxedLayout" @click="toggleBoxed"></side-menu-switch>
-		<side-menu-switch :name="$t('sidebar-dark-mode')" icon="moon" :checked="darkMode" @click="toggleDarkMode"></side-menu-switch>
+  <aside class="side-menu" :class="{ 'side-menu--hidden': !sideMenu }">
+    <side-menu-switch class="side-menu__switch--boxed" :name="$t('sidebar-boxed-layout')" icon="square" :checked="boxedLayout" @click="toggleBoxed"></side-menu-switch>
+    <side-menu-switch :name="$t('sidebar-dark-mode')" icon="moon" :checked="darkMode" @click="toggleDarkMode"></side-menu-switch>
 
-		<div class="side-menu__category">
-			<font-awesome-icon icon="palette" fixed-width></font-awesome-icon>
-			<span>{{ $t('sidebar-theme') }}</span>
-		</div>
+    <div class="side-menu__category">
+      <font-awesome-icon icon="palette" fixed-width></font-awesome-icon>
+      <span>{{ $t('sidebar-theme') }}</span>
+    </div>
 
-		<div class="theme-switcher">
-			<div v-for="(theme, i) in availableThemes" :key="i" class="theme-switcher__theme" :class="[`theme-${theme}`]" @click="changeTheme(theme)"></div>
-		</div>
-	</aside>
+    <div class="theme-switcher">
+      <div v-for="(theme, i) in availableThemes" :key="i" class="theme-switcher__theme" :class="[`theme-${theme}`]" @click="changeTheme(theme)"></div>
+    </div>
+  </aside>
 </template>
 
 <script>
-	import { mapActions, mapGetters } from 'vuex';
-	import SideMenuSwitch from './SideMenuSwitch.vue';
+  import { mapActions, mapGetters } from 'vuex';
+  import SideMenuSwitch from './SideMenuSwitch.vue';
 
-	export default {
-		name: 'app-side-menu',
-		components: { SideMenuSwitch },
-		computed: mapGetters({
-			sideMenu: 'layout/sideMenu',
-			availableThemes: 'layout/availableThemes',
-			boxedLayout: 'layout/boxed',
-			darkMode: 'layout/darkMode'
-		}),
-		methods: {
-			...mapActions({
-				changeTheme: 'layout/changeTheme',
-				toggleBoxed: 'layout/toggleBoxed',
-				toggleDarkMode: 'layout/toggleDarkMode'
-			})
-		}
-	};
+  export default {
+    name: 'app-side-menu',
+    components: { SideMenuSwitch },
+    computed: mapGetters({
+      sideMenu: 'layout/sideMenu',
+      availableThemes: 'layout/availableThemes',
+      boxedLayout: 'layout/boxed',
+      darkMode: 'layout/darkMode',
+    }),
+    methods: {
+      ...mapActions({
+        changeTheme: 'layout/changeTheme',
+        toggleBoxed: 'layout/toggleBoxed',
+        toggleDarkMode: 'layout/toggleDarkMode',
+      }),
+    },
+  };
 </script>
 
 <style lang="scss">

@@ -1,48 +1,48 @@
 <template>
-	<transition name="modal" duration="200" appear>
-		<div v-if="isShown" class="modal">
-			<div class="modal__background" @click.self="close"></div>
-			<div class="modal__body">
-				<font-awesome-icon icon="times" class="modal__close" @click="close"></font-awesome-icon>
-				<div class="modal__main">
-					<router-view ref="modal" name="modal"></router-view>
-				</div>
-			</div>
-		</div>
-	</transition>
+  <transition name="modal" duration="200" appear>
+    <div v-if="isShown" class="modal">
+      <div class="modal__background" @click.self="close"></div>
+      <div class="modal__body">
+        <font-awesome-icon icon="times" class="modal__close" @click="close"></font-awesome-icon>
+        <div class="modal__main">
+          <router-view ref="modal" name="modal"></router-view>
+        </div>
+      </div>
+    </div>
+  </transition>
 </template>
 
 <script>
-	export default {
-		name: 'modal',
-		computed: {
-			isShown() {
-				return !!this.$route.meta.modal;
-			}
-		},
-		created() {
-			document.addEventListener('keydown', this.onEscapeClick);
-		},
-		beforeDestroy() {
-			document.removeEventListener('keydown', this.onEscapeClick);
-		},
-		methods: {
-			close() {
-				this.$router.push({ name: 'bots' });
-			},
-			back() {
-				this.$router.push(this.$route.path.slice(0, this.$route.path.lastIndexOf('/')));
-			},
-			onEscapeClick(e) {
-				const charCode = (e.which) ? e.which : e.keyCode;
+  export default {
+    name: 'modal',
+    computed: {
+      isShown() {
+        return !!this.$route.meta.modal;
+      },
+    },
+    created() {
+      document.addEventListener('keydown', this.onEscapeClick);
+    },
+    beforeDestroy() {
+      document.removeEventListener('keydown', this.onEscapeClick);
+    },
+    methods: {
+      close() {
+        this.$router.push({ name: 'bots' });
+      },
+      back() {
+        this.$router.push(this.$route.path.slice(0, this.$route.path.lastIndexOf('/')));
+      },
+      onEscapeClick(e) {
+        const charCode = (e.which) ? e.which : e.keyCode;
 
-				if (charCode === 27) {
-					this.close();
-					return e.preventDefault();
-				}
-			}
-		}
-	};
+        if (charCode === 27) {
+          this.close();
+          return e.preventDefault();
+        }
+      },
+    },
+  };
 </script>
 
 <style lang="scss">

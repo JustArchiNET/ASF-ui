@@ -1,23 +1,23 @@
 <template>
-	<main class="main-container main-container--fullheight bots-overview">
-		<asf-farming-info></asf-farming-info>
-		<asf-bots></asf-bots>
-	</main>
+  <main class="main-container main-container--fullheight bots-overview">
+    <asf-farming-info></asf-farming-info>
+    <asf-bots></asf-bots>
+  </main>
 </template>
 
 <script>
-	import AsfFarmingInfo from '../components/AsfFarmingInfo.vue';
-	import AsfBots from '../components/AsfBots.vue';
+  import AsfFarmingInfo from '../components/AsfFarmingInfo.vue';
+  import AsfBots from '../components/AsfBots.vue';
 
-	export default {
-		name: 'bots-overview',
-		metaInfo() {
-			return {
-				title: this.$t('bots')
-			};
-		},
-		components: { AsfBots, AsfFarmingInfo }
-	};
+  export default {
+    name: 'bots-overview',
+    metaInfo() {
+      return {
+        title: this.$t('bots'),
+      };
+    },
+    components: { AsfBots, AsfFarmingInfo },
+  };
 </script>
 
 <style lang="scss">

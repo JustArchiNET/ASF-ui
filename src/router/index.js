@@ -9,25 +9,25 @@ Vue.use(VueRouter);
 Vue.use(VueMeta);
 
 const router = new VueRouter({
-	routes,
-	base: window.__BASE_PATH__ ? window.__BASE_PATH__ : '/',
-	mode: 'history'
+  routes,
+  base: window.__BASE_PATH__ ? window.__BASE_PATH__ : '/',
+  mode: 'history',
 });
 
 router.beforeEach(async (routeTo, routeFrom, next) => {
-	const noPasswordRequired = routeTo.matched.every(route => route.meta.noPasswordRequired);
-	if (noPasswordRequired || await store.dispatch('auth/validate')) next();
-	else if (storage.get('first-time', true) && routeTo.name !== 'welcome') next({ name: 'welcome' });
-	else next({ name: 'setup' });
+  const noPasswordRequired = routeTo.matched.every(route => route.meta.noPasswordRequired);
+  if (noPasswordRequired || await store.dispatch('auth/validate')) next();
+  else if (storage.get('first-time', true) && routeTo.name !== 'welcome') next({ name: 'welcome' });
+  else next({ name: 'setup' });
 });
 
-router.afterEach((to, from) => {
-	storage.set('last-visited-page', { name: to.name, query: to.query, params: to.params });
+router.afterEach(to => {
+  storage.set('last-visited-page', { name: to.name, query: to.query, params: to.params });
 });
 
 router.onError(err => {
-	if (err.type === 'missing') window.location.reload(true);
-	else throw err;
+  if (err.type === 'missing') window.location.reload(true);
+  else throw err;
 });
 
 export default router;

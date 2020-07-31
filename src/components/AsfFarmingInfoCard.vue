@@ -1,28 +1,28 @@
 <template>
-	<div class="info-card">
-		<div class="info-card__icon">
-			<font-awesome-icon :icon="icon"></font-awesome-icon>
-		</div>
-		<div class="info-card__body">
-			<p class="info-card__title">
-				{{ title }}
-			</p>
-			<p class="info-card__value">
-				{{ value }}
-			</p>
-		</div>
-	</div>
+  <div class="info-card">
+    <div class="info-card__icon">
+      <font-awesome-icon :icon="icon"></font-awesome-icon>
+    </div>
+    <div class="info-card__body">
+      <p class="info-card__title">
+        {{ title }}
+      </p>
+      <p class="info-card__value">
+        {{ value }}
+      </p>
+    </div>
+  </div>
 </template>
 
 <script>
-	export default {
-		name: 'asf-farming-info-card',
-		props: {
-			icon: String,
-			value: {},
-			title: String
-		}
-	};
+  export default {
+    name: 'asf-farming-info-card',
+    props: {
+      icon: String,
+      value: {},
+      title: String,
+    },
+  };
 </script>
 
 <style lang="scss">

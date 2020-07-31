@@ -1,6 +1,6 @@
 <template>
-	<div class="form-item">
-		<input-label :label="label" :has-description="hasDescription"></input-label>
+  <div class="form-item">
+    <input-label :label="label" :has-description="hasDescription"></input-label>
 
 		<div class="form-item__value">
 			<div class="input-option__field">
@@ -9,10 +9,10 @@
 					<option v-if="!availableEnumValues.length" :value="null" disabled>{{ $t('input-all-selected') }}</option>
 				</select>
 
-				<button class="button" @click.prevent="addElement">
-					{{ $t('add') }}
-				</button>
-			</div>
+        <button class="button" @click.prevent="addElement">
+          {{ $t('add') }}
+        </button>
+      </div>
 
 			<div class="input-option__items">
 				<button v-for="(item, index) in value" class="button input-option__item" @click.prevent="removeElement(index)">
@@ -21,36 +21,36 @@
 			</div>
 		</div>
 
-		<input-description v-if="hasDescription" v-show="showDescription" :description="description"></input-description>
-	</div>
+    <input-description v-if="hasDescription" v-show="showDescription" :description="description"></input-description>
+  </div>
 </template>
 
 <script>
-	import Input from './Input.vue';
+  import Input from './Input.vue';
 
 	export default {
 		name: 'input-list',
 		mixins: [Input],
 		data() {
 			return {
-				element: null
+				element: null,
 			};
 		},
 		computed: {
 			availableEnumValues() {
-				return this.enumValues.filter(({ value }) => !this.value.includes(value))
+				return this.enumValues.filter(({ value }) => !this.value.includes(value));
 			},
 			enumValues() {
 				return Object.entries(this.schema.items['x-definition'])
-						.map(([label, value]) => ({ label, value }))
+						.map(([label, value]) => ({ label, value }));
 			},
 			resolveValue() {
 				return value => {
-					const enumValue = this.enumValues.find(({ value: enumValue }) => value === enumValue)
-					if (!enumValue) return value
-					return enumValue.label
+					const enumValue = this.enumValues.find(({ value: enumValue }) => value === enumValue);
+					if (!enumValue) return value;
+					return enumValue.label;
 				}
-			}
+			},
 		},
 		created() {
 			this.element = this.getDefaultElement();
@@ -60,7 +60,7 @@
 				return this.availableEnumValues[0] ? this.availableEnumValues[0].value : null;
 			},
 			addElement() {
-				if (!this.element && this.element !== 0) return
+				if (!this.element && this.element !== 0) return;
 				if (this.value.includes(this.element)) return;
 
 				this.value.push(this.element);
@@ -69,7 +69,7 @@
 			removeElement(index) {
 				this.value.splice(index, 1);
 				this.element = this.getDefaultElement();
-			}
+			},
 		}
 	};
 </script>

@@ -1,35 +1,35 @@
 <template>
-	<div class="config-editor">
-		<template v-if="categories">
-			<config-category v-for="category in categories" v-if="categoryFields(category.name).length" :key="category.name" :name="category.name">
-				<component :is="componentFromField(field)" v-for="field in categoryFields(category.name)" :key="field.param" class="form-item--config" :schema="field" :current-value="model[field.paramName]" @update="updateModel"></component>
-			</config-category>
+  <div class="config-editor">
+    <template v-if="categories">
+      <config-category v-for="category in categories" v-if="categoryFields(category.name).length" :key="category.name" :name="category.name">
+        <component :is="componentFromField(field)" v-for="field in categoryFields(category.name)" :key="field.param" class="form-item--config" :schema="field" :current-value="model[field.paramName]" @update="updateModel"></component>
+      </config-category>
 
-			<config-category v-if="uncategorizedFields.length" key="Other" :name="$t('other')">
-				<component :is="componentFromField(field)" v-for="field in uncategorizedFields" :key="field.param" class="form-item--config" :schema="field" :current-value="model[field.paramName]" @update="updateModel"></component>
-			</config-category>
-		</template>
+      <config-category v-if="uncategorizedFields.length" key="Other" :name="$t('other')">
+        <component :is="componentFromField(field)" v-for="field in uncategorizedFields" :key="field.param" class="form-item--config" :schema="field" :current-value="model[field.paramName]" @update="updateModel"></component>
+      </config-category>
+    </template>
 
-		<template v-if="!categories">
-			<fieldset class="config-uncategorized">
-				<component :is="componentFromField(field)" v-for="field in uncategorizedFields" :key="field.param" class="form-item--config" :schema="field" :current-value="model[field.paramName]" @update="updateModel"></component>
-			</fieldset>
-		</template>
-	</div>
+    <template v-if="!categories">
+      <fieldset class="config-uncategorized">
+        <component :is="componentFromField(field)" v-for="field in uncategorizedFields" :key="field.param" class="form-item--config" :schema="field" :current-value="model[field.paramName]" @update="updateModel"></component>
+      </fieldset>
+    </template>
+  </div>
 </template>
 
 <script>
-	import InputString from './ConfigFields/InputString.vue';
-	import InputBoolean from './ConfigFields/InputBoolean.vue';
-	import InputNumber from './ConfigFields/InputNumber.vue';
-	import InputFlag from './ConfigFields/InputFlag.vue';
-	import InputSet from './ConfigFields/InputSet.vue';
-	import InputList from './ConfigFields/InputList.vue';
-	import InputTag from './ConfigFields/InputTag.vue';
-	import InputEnum from './ConfigFields/InputEnum.vue';
-	import InputDictionary from './ConfigFields/InputDictionary.vue';
-	import InputUnknown from './ConfigFields/InputUnknown.vue';
-	import ConfigCategory from './ConfigCategory.vue';
+  import InputString from './ConfigFields/InputString.vue';
+  import InputBoolean from './ConfigFields/InputBoolean.vue';
+  import InputNumber from './ConfigFields/InputNumber.vue';
+  import InputFlag from './ConfigFields/InputFlag.vue';
+  import InputSet from './ConfigFields/InputSet.vue';
+  import InputList from './ConfigFields/InputList.vue';
+  import InputTag from './ConfigFields/InputTag.vue';
+  import InputEnum from './ConfigFields/InputEnum.vue';
+  import InputDictionary from './ConfigFields/InputDictionary.vue';
+  import InputUnknown from './ConfigFields/InputUnknown.vue';
+  import ConfigCategory from './ConfigCategory.vue';
 
 	export default {
 		name: 'config-editor',
@@ -37,14 +37,14 @@
 		props: {
 			fields: {
 				type: Array,
-				required: true
+				required: true,
 			},
 			model: {
 				type: Object,
-				required: true
+				required: true,
 			},
 			categories: Array,
-			extendedFields: Object
+			extendedFields: Object,
 		},
 		computed: {
 			uncategorizedFields() {
@@ -66,7 +66,7 @@
 			},
 			isValid() {
 				return this.$children.every(child => child.isValid);
-			}
+			},
 		},
 		mounted() {
 			window.addEventListener('resize', this.computeLabelWidth);
@@ -103,17 +103,17 @@
 			updateModel(value, field) {
 				const fieldSchema = this.fields.find(fieldSchema => fieldSchema.paramName === field);
 
-				if (fieldSchema && typeof fieldSchema.defaultValue !== 'undefined' && this.isDefault(value, fieldSchema)) {
-					delete this.model[field];
-				} else {
-					this.model[field] = value;
-				}
-			},
-			isDefault(value, fieldSchema) {
-				return this.isEqual(value, fieldSchema.defaultValue, fieldSchema.type);
-			},
-			isEqual(a, b, type) {
-				if (typeof a !== typeof b) return false;
+        if (fieldSchema && typeof fieldSchema.defaultValue !== 'undefined' && this.isDefault(value, fieldSchema)) {
+          delete this.model[field];
+        } else {
+          this.model[field] = value;
+        }
+      },
+      isDefault(value, fieldSchema) {
+        return this.isEqual(value, fieldSchema.defaultValue, fieldSchema.type);
+      },
+      isEqual(a, b, type) {
+        if (typeof a !== typeof b) return false;
 
 				switch (type) {
 					case 'uint32':
@@ -132,21 +132,21 @@
 								.every(key => a[key] === b[key]);
 				}
 
-				return false;
-			},
-			getFields(names) {
-				return this.fields.filter(field => names.includes(field.param));
-			},
-			computeLabelWidth() {
-				this.$el.style.setProperty('--label-width', 'auto');
+        return false;
+      },
+      getFields(names) {
+        return this.fields.filter(field => names.includes(field.param));
+      },
+      computeLabelWidth() {
+        this.$el.style.setProperty('--label-width', 'auto');
 
 				this.$nextTick(() => {
 					const labelWidth = Math.max(...Array.from(this.$el.querySelectorAll('.form-item__label'))
 							.map(el => Math.ceil(parseFloat(getComputedStyle(el).width))));
 					this.$el.style.setProperty('--label-width', `${labelWidth}px`);
 				});
-			}
-		}
+			},
+		},
 	};
 </script>
 
