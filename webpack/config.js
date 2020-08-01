@@ -12,19 +12,19 @@ module.exports = {
   mode: 'development',
   devtool: 'inline-source-map',
   entry: {
-    main: './src/index.js'
+    main: './src/index.js',
   },
   output: {
     filename: 'scripts/[name].bundle.js',
     chunkFilename: 'scripts/[id].[chunkhash:7].chunk.js',
     path: path.resolve(__dirname, '../dist'),
-    publicPath: '/'
+    publicPath: '/',
   },
   module: {
     rules: [
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        loader: 'vue-loader',
       },
       {
         test: /\.jsx?$/,
@@ -35,12 +35,12 @@ module.exports = {
             presets: [
               ['@babel/preset-env', {
                 targets: { browsers: ['> 1%', 'not ie <= 11'] },
-                modules: false
-              }]
+                modules: false,
+              }],
             ],
-            plugins: ['@babel/plugin-syntax-dynamic-import']
-          }
-        }
+            plugins: ['@babel/plugin-syntax-dynamic-import'],
+          },
+        },
       },
       {
         test: /\.scss$/,
@@ -50,10 +50,10 @@ module.exports = {
             loader: 'css-loader',
             options: {
               esModule: false,
-            }
+            },
           },
-          'sass-loader'
-        ]
+          'sass-loader',
+        ],
       },
       {
         test: /\.css$/,
@@ -63,9 +63,9 @@ module.exports = {
             loader: 'css-loader',
             options: {
               esModule: false,
-            }
+            },
           },
-        ]
+        ],
       },
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac|woff2?|eot|ttf|otf|png|jpe?g|gif|svg)(\?.*)?$/,
@@ -73,11 +73,11 @@ module.exports = {
           loader: 'url-loader',
           options: {
             limit: 8192,
-            name: 'media/[name].[hash:7].[ext]'
-          }
-        }
-      }
-    ]
+            name: 'media/[name].[hash:7].[ext]',
+          },
+        },
+      },
+    ],
   },
   plugins: [
     new WebpackBeforeBuildPlugin((stats, callback) => {
@@ -87,20 +87,20 @@ module.exports = {
     new CleanWebpackPlugin(),
     new VueLoaderPlugin(),
     new DefinePlugin(({
-      APP_HASH: JSON.stringify(getCommitHash())
-    }))
+      APP_HASH: JSON.stringify(getCommitHash()),
+    })),
   ],
   devServer: {
     contentBase: './src/static',
     watchOptions: {
-      ignored: /generated/
+      ignored: /generated/,
     },
     historyApiFallback: true,
     proxy: {
       '/api': {
         target: 'http://localhost:1242',
-        ws: true
-      }
-    }
-  }
+        ws: true,
+      },
+    },
+  },
 };

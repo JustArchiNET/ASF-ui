@@ -36,6 +36,15 @@ jobs:
     - name: Build ASF-ui
       run: npm run-script deploy --no-progress
 
+    - name: Upload latest strings for translation on Crowdin
+      continue-on-error: true
+      if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' && startsWith(matrix.os, 'ubuntu-') }}
+      uses: crowdin/github-action@1.0.9
+      with:
+        crowdin_branch_name: master
+        project_id: ${{ secrets.ASF_CROWDIN_PROJECT_ID }}
+        token: ${{ secrets.ASF_CROWDIN_API_TOKEN }}
+
     - name: Upload ASF-ui
       continue-on-error: true
       uses: actions/upload-artifact@v2
