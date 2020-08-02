@@ -3,7 +3,7 @@
   "2fa-accept-success": "Alle Handelsangebote für {bot} akzeptiert!",
   "2fa-cancel": "Alle Handelsangebote ablehnen",
   "2fa-cancel-success": "Alle Handelsangebote für {bot} abgelehnt!",
-  "2fa-not-found": "",
+  "2fa-not-found": "Dieser Bot hat ASF 2FA nicht aktiviert! Erfahre mehr darüber <a href='https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Two-factor-authentication-de-DE#asf-2fa' target='_blank'>hier</a>.",
   "2fa-token-copied": "Code in Zwischenablage kopiert!",
   "2fa-token-copy": "Code in Zwischenablage kopieren",
   "2fa-token-refresh": "Code aktualisieren",
