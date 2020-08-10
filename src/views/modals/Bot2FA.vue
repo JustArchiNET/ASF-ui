@@ -94,7 +94,7 @@
 
         try {
           const bot = this.bot.name;
-          const response = await this.$http.post(`bot/${bot}/twoFactorAuthentication/confirmations/accept`);
+          const response = await this.$http.post(`bot/${bot}/twoFactorAuthentication/confirmations`, { accept: true });
 
           if (response[bot].Success) {
             this.$success(this.$t('2fa-accept-success', { bot }));
@@ -114,7 +114,7 @@
 
         try {
           const bot = this.bot.name;
-          const response = await this.$http.post(`bot/${bot}/twoFactorAuthentication/confirmations/cancel`);
+          const response = await this.$http.post(`bot/${bot}/twoFactorAuthentication/confirmations`, { accept: false });
 
           if (response[bot].Success) {
             this.$success(this.$t('2fa-cancel-success', { bot }));
