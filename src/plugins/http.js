@@ -1,4 +1,5 @@
 import axios from 'axios';
+import router from '../router/index';
 
 export class NotificationError extends Error {
   constructor(message, result) {
@@ -20,6 +21,8 @@ function extractResult(response) {
 }
 
 function checkForError(response) {
+  if (response.status === 504) router.replace({ name: 'setup' });
+
   if (response.status !== 200) {
     if (response.data && response.data.Message) throw new NotificationError(response.data.Message);
     throw new NotificationError(`HTTP Error ${response.status}`, response.data);
