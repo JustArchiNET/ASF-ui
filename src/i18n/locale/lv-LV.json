@@ -3,7 +3,7 @@
   "2fa-accept-success": "Apstiprināt visus {bot} darījumus!",
   "2fa-cancel": "Atcelt visus darījumus",
   "2fa-cancel-success": "Visi {bot} darījumi atcelti!",
-  "2fa-not-found": "Šim botam nav ieslēgts ASF 2FA! Vairāk par to uzzini <a href='https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Two-factor-authentication#asf-2fa' target='_blank'>šeit</a>.",
+  "2fa-not-found": "Šim botam nav ieslēgta ASF 2FA! Vairāk par to uzzini <a href='https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Two-factor-authentication#asf-2fa' target='_blank'>šeit</a>.",
   "2fa-token-copied": "Marķieris iekopēts starpliktuvē!",
   "2fa-token-copy": "Kopēt marķieri starpliktuvē",
   "2fa-token-refresh": "Atsvaidzināt marķieri",
