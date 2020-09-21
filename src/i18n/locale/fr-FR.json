@@ -1,9 +1,6 @@
 {
   "2fa-accept": "Accepter tous les échanges",
-  "2fa-accept-success": "",
   "2fa-cancel": "Annuler tous les échanges",
-  "2fa-cancel-success": "",
-  "2fa-not-found": "",
   "2fa-token-copied": "Le jeton a été copié dans le presse-papier !",
   "2fa-token-copy": "Copier le jeton dans le presse-papier",
   "2fa-token-refresh": "Actualiser le jeton 2FA",
@@ -104,10 +101,7 @@
   "password": "Mot de passe ",
   "password-invalid": "Mot de passe invalide !",
   "performance": "Performance",
-  "plugin-unknown-name": "",
-  "plugin-unknown-version": "",
   "plugins": "Extensions",
-  "plugins-not-loaded": "",
   "pre-release": "Pré-version",
   "rate-limited": "Taux limité !",
   "refresh": "Actualiser le statut",
@@ -125,7 +119,6 @@
   "settings-saved": "Paramètres sauvegardés !",
   "setup": "Programme d’installation",
   "setup-authenticated": "Tout est configuré",
-  "setup-description": "",
   "setup-not-connected": "Impossible de se connecter au serveur IPC d'ASF. Vérifiez qu' ASF tourne!",
   "setup-rate-limited": "Il semble que vous soyez limité, redémarrez ASF ou réessayez dans un moment !",
   "shutdown": "Arrêter",
@@ -162,8 +155,5 @@
   "updates": "Mises à jour",
   "welcome": "Bienvenue",
   "welcome-message": "Bienvenue sur ASF-ui, l'interface graphique pour ASF.",
-  "welcome-message-todo": "",
-  "welcome-message-bot": "",
-  "welcome-message-id": "",
   "wiki": "Wiki"
 }
