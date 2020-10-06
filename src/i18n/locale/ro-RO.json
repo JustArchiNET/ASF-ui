@@ -3,7 +3,6 @@
   "2fa-accept-success": "Toate tranzacțiile acceptate pentru {bot}!",
   "2fa-cancel": "Anulează toate tranzacțiile",
   "2fa-cancel-success": "Toate tranzacțiile au fost anulate pentru {bot}!",
-  "2fa-not-found": "",
   "2fa-token-copied": "Token copiat în clipboard!",
   "2fa-token-copy": "Copiază token-ul în clipboard",
   "2fa-token-refresh": "Reîmprospătare token",
@@ -104,8 +103,6 @@
   "password": "Parola",
   "password-invalid": "Parolă incorectă!",
   "performance": "Performanță",
-  "plugin-unknown-name": "",
-  "plugin-unknown-version": "",
   "plugins": "Pluginuri",
   "plugins-not-loaded": "Nici un plugin încărcat",
   "pre-release": "Pre-lansare",
@@ -125,7 +122,6 @@
   "settings-saved": "Setări salvate!",
   "setup": "Configurare",
   "setup-authenticated": "Totul configurat",
-  "setup-description": "",
   "setup-not-connected": "Nu s-a putut conecta la serverul IPC ASF. Asigură-te că ASF rulează!",
   "setup-rate-limited": "Se pare că ai limitată de schimb, repornește ASF sau încearcă din nou în scurt timp!",
   "shutdown": "Oprește",
@@ -162,8 +158,5 @@
   "updates": "Actualizări",
   "welcome": "Bun venit",
   "welcome-message": "Bine ați venit la ASF-ui, interfață autonomă pentru ASF.",
-  "welcome-message-todo": "",
-  "welcome-message-bot": "",
-  "welcome-message-id": "",
   "wiki": "Wiki"
 }

@@ -66,12 +66,12 @@
 
         if (releasesCache) {
           const { timestamp, releases, version } = releasesCache;
-          const currentTimestamp = Date.now() - 24 * 60 * 60 * 1000;
+          const currentTimestamp = Date.now() - 60 * 60 * 1000;
           let isReadable = true;
 
           releases.forEach(r => {
             const cl = r.changelog;
-            if (typeof cl !== 'undefined') isReadable = !cl.startsWith('<p>This is automated');
+            if (!cl || !cl.startsWith('<p>Changes since')) isReadable = false;
           });
 
           if (version === this.version && timestamp > currentTimestamp && isReadable) return releases;

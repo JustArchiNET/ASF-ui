@@ -3,7 +3,7 @@
   "2fa-accept-success": "Alle ruilaanbiedingen voor {bot} zijn geaccepteerd!",
   "2fa-cancel": "Annuleer alle ruilaanbiedingen",
   "2fa-cancel-success": "Alle ruilaanbiedingen voor {bot} zijn geannuleerd!",
-  "2fa-not-found": "",
+  "2fa-not-found": "ASF 2FA is niet ingeschakeld op deze bot! Kijk <a href='https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Two-factor-authentication#asf-2fa' target='_blank'>hier</a> voor meer informatie.",
   "2fa-token-copied": "Code naar het klembord gekopieerd!",
   "2fa-token-copy": "Code naar het klembord kopiëren",
   "2fa-token-refresh": "Code vernieuwen",
