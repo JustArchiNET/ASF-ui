@@ -42,11 +42,8 @@
       },
       flags() {
         return Object.entries(this.schema['x-definition'])
-          .map(([label, flag]) => ({
-            label,
-            flag,
-          }))
-          .filter(({ flag }) => flag % 2 === 0 || flag === 1);
+          .map(([label, flag]) => ({ label, flag, }))
+          .filter(definition => !!Number.isInteger(Math.log2(definition.flag))); // The double bang is used to silence invalid IDE error "Type boolean is not assignable to type boolean"
       },
     },
     created() {
