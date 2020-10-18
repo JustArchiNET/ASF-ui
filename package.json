@@ -23,7 +23,7 @@
     "eslint": "^7.11.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-vue": "^7.0.1",
+    "eslint-plugin-vue": "^7.1.0",
     "file-loader": "^6.1.1",
     "sass": "^1.27.0",
     "sass-loader": "^10.0.3",
