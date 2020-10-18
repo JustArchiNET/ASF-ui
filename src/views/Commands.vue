@@ -99,6 +99,7 @@
           { command: 'r', description: this.$t('terminal-command-r') },
           { command: 'r^', description: this.$t('terminal-command-r-mode') },
           { command: 'sa', description: this.$t('terminal-command-sa') },
+          { command: 'clear', description: this.$t('terminal-command-clear') },
         ];
       },
       commandsNames() {
@@ -250,6 +251,8 @@
           case 'help':
             if (commandToExecute.split(' ')[1]) return this.commandHelp(commandToExecute.split(' ')[1]);
             return this.$t('terminal-help-text');
+          case 'clear':
+            return this.log = [];
         }
 
         return this.$http.command(commandToExecute);
