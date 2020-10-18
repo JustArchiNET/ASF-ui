@@ -246,7 +246,7 @@
       async executeCommand(commandToExecute) {
         switch (commandToExecute.split(' ')[0]) {
           case 'commands':
-            return this.$t('terminal-available-commands', { commands: this.commandsNames.join(', ') });
+            return this.$t('terminal-available-commands', { commands: this.commandsNames.sort().join(', ') });
           case 'help':
             if (commandToExecute.split(' ')[1]) return this.commandHelp(commandToExecute.split(' ')[1]);
             return this.$t('terminal-help-text');
