@@ -140,6 +140,7 @@
   "success": "成功",
   "terminal-available-commands": "可用命令：{commands}",
   "terminal-commands": "显示可用的命令。",
+  "terminal-command-clear": "清除终端内容",
   "terminal-command-oa": "'owns ASF' 的别名",
   "terminal-command-r": "'redeem' 的别名",
   "terminal-command-r-mode": "'redeem^' 的别名",
