@@ -93,7 +93,7 @@
       commands() {
         return [
           ...this.asfCommands.filter(({ command }) => command !== 'help'),
-          { command: 'oa', description: this.$t('terminal-commands-oa') },
+          { command: 'oa', description: this.$t('terminal-command-oa') },
           { command: 'r', description: this.$t('terminal-command-r') },
           { command: 'r^', description: this.$t('terminal-command-r-mode') },
           { command: 'sa', description: this.$t('terminal-command-sa') },
