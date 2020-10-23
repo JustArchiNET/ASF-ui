@@ -1,8 +1,8 @@
 {
   "2fa-accept": "Accept all confirmations",
   "2fa-accept-success": "All confirmations accepted for {bot}!",
-  "2fa-cancel": "Reject all confirmations",
-  "2fa-cancel-success": "All confirmations rejected for {bot}!",
+  "2fa-reject": "Reject all confirmations",
+  "2fa-reject-success": "All confirmations rejected for {bot}!",
   "2fa-not-found": "This bot doesn't have ASF 2FA enabled! Learn more about it <a href='https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Two-factor-authentication#asf-2fa' target='_blank'>here</a>.",
   "2fa-token-copied": "Copied token to clipboard!",
   "2fa-token-copy": "Copy token to clipboard",
