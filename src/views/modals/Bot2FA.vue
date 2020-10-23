@@ -42,7 +42,7 @@
     data() {
       return {
         accepting: false,
-		rejecting: false,
+        rejecting: false,
         refreshing: false,
         token: '-----',
         has2FA: true,
