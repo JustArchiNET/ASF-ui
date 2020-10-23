@@ -20,6 +20,7 @@ export class Bot {
     this.walletBalance = data.WalletBalance;
     this.walletCurrency = data.WalletCurrency;
     this.has2FA = data.HasMobileAuthenticator;
+    this.requiredInput = data.RequiredInput;
 
     this.active = data.KeepRunning;
     this.config = data.BotConfig;
@@ -44,6 +45,7 @@ export class Bot {
 
     if (this.status === 'farming' && this.currentGamesFarming.length === 1) return `${statusText} - ${this.currentGamesFarming[0].GameName}`;
     if (this.status === 'farming' && this.currentGamesFarming.length > 1) return `${statusText} - ${Vue.i18n.translate('multiple-games')}`;
+    if (this.status === 'disabled' && this.requiredInput !== 0) return Vue.i18n.translate('bot-status-input');
 
     return statusText;
   }
