@@ -138,7 +138,7 @@
   "statistics-memory-usage": "Memory Usage",
   "statistics-uptime": "Uptime",
   "success": "Success",
-  "terminal-available-commands": "Available commands: {commands}",
+  "terminal-available-commands": "Available ASF commands: {commands} \n\n Available ASF-ui commands: {uiCommands}",
   "terminal-commands": "Prints available commands.",
   "terminal-command-oa": "Alias for 'owns ASF'",
   "terminal-command-r": "Alias for 'redeem'",

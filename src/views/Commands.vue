@@ -93,8 +93,6 @@
       commands() {
         return [
           ...this.asfCommands.filter(({ command }) => command !== 'help'),
-          { command: 'commands', description: this.$t('terminal-commands') },
-          { command: 'help <Command>', description: this.$t('terminal-help') },
           { command: 'oa', description: this.$t('terminal-commands-oa') },
           { command: 'r', description: this.$t('terminal-command-r') },
           { command: 'r^', description: this.$t('terminal-command-r-mode') },
@@ -102,12 +100,22 @@
         ];
       },
       commandsNames() {
-        return this.commands.map(command => command.command.split(' ')[0]);
+        return this.commands.map(command => command.command.split(' ')[0]).sort();
       },
       commandsParameters() {
         return this.commands.map(({ command }) => command.split(' '))
           .map(([command, ...params]) => ({ command, params }))
           .reduce((commandParameters, { command, params }) => (commandParameters[command] = params, commandParameters), {});
+      },
+      uiCommands() {
+        return [
+          { command: 'commands', description: this.$t('terminal-commands') },
+          { command: 'help <Command>', description: this.$t('terminal-help') },
+          { command: 'clear', description: this.$t('terminal-command-clear') },
+        ];
+      },
+      uiCommandsNames() {
+        return this.uiCommands.map(uiCommand => uiCommand.command.split(' ')[0]).sort();
       },
       autocompleteSuggestion() {
         if (this.suggestedCommand) return this.command.replace(/./g, ' ') + this.suggestedCommand.substr(this.command.length);
@@ -246,7 +254,7 @@
       async executeCommand(commandToExecute) {
         switch (commandToExecute.split(' ')[0]) {
           case 'commands':
-            return this.$t('terminal-available-commands', { commands: this.commandsNames.sort().join(', ') });
+            return this.$t('terminal-available-commands', { commands: this.commandsNames.join(', '), uiCommands: this.uiCommandsNames.join(', ') });
           case 'help':
             if (commandToExecute.split(' ')[1]) return this.commandHelp(commandToExecute.split(' ')[1]);
             return this.$t('terminal-help-text');
