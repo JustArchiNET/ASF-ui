@@ -140,6 +140,7 @@
   "success": "Успешно",
   "terminal-available-commands": "Доступные команды: {commands}",
   "terminal-commands": "Выводит доступные команды.",
+  "terminal-command-clear": "Очищает терминал",
   "terminal-command-oa": "Сокращение для 'owns ASF'",
   "terminal-command-r": "Сокращение для 'redeem'",
   "terminal-command-r-mode": "Сокращение для 'redeem^'",

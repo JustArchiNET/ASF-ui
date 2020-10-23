@@ -140,6 +140,7 @@
   "success": "Éxito",
   "terminal-available-commands": "Comandos disponibles: {commands}",
   "terminal-commands": "Muestra los comandos disponibles.",
+  "terminal-command-clear": "Limpia la terminal",
   "terminal-command-oa": "Alias para 'owns ASF'",
   "terminal-command-r": "Alias para 'redeem'",
   "terminal-command-r-mode": "Alias para 'redeem^'",

@@ -2,9 +2,9 @@
   <main class="main-container main-container--fullheight commands">
     <div class="container">
       <div ref="terminal" class="terminal" @click="focusInput">
-        <div v-for="{ type, time, message } in log" class="terminal-message">
+        <div v-for="({ type, time, message }, i) in log" :key="i" class="terminal-message">
           <span v-if="timestamps" class="terminal-message__time timestamp">[{{ time }}]</span>
-          <span class="terminal-message__sign" :class="`terminal-message__sign--${type}`">{{ type === 'out' ? '>' : '<' }}</span>
+          <span class="terminal-message__sign" :class="`terminal-message__sign--${type}`" v-text="type === 'out' ? '>' : '<'" />
           <span class="terminal-message__content">{{ message }}</span>
         </div>
         <div class="terminal__input-wrapper">
@@ -97,6 +97,7 @@
           { command: 'r', description: this.$t('terminal-command-r') },
           { command: 'r^', description: this.$t('terminal-command-r-mode') },
           { command: 'sa', description: this.$t('terminal-command-sa') },
+          { command: 'clear', description: this.$t('terminal-command-clear') },
         ];
       },
       commandsNames() {
@@ -258,6 +259,8 @@
           case 'help':
             if (commandToExecute.split(' ')[1]) return this.commandHelp(commandToExecute.split(' ')[1]);
             return this.$t('terminal-help-text');
+          case 'clear':
+            return this.log = [];
         }
 
         return this.$http.command(commandToExecute);
