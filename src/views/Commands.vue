@@ -102,11 +102,6 @@
       commandsNames() {
         return this.commands.map(command => command.command.split(' ')[0]).sort();
       },
-      commandsParameters() {
-        return this.commands.map(({ command }) => command.split(' '))
-          .map(([command, ...params]) => ({ command, params }))
-          .reduce((commandParameters, { command, params }) => (commandParameters[command] = params, commandParameters), {});
-      },
       uiCommands() {
         return [
           { command: 'commands', description: this.$t('terminal-commands') },
@@ -116,6 +111,17 @@
       },
       uiCommandsNames() {
         return this.uiCommands.map(uiCommand => uiCommand.command.split(' ')[0]).sort();
+      },
+      allCommands() {
+        return this.commands.concat(this.uiCommands).sort();
+      },
+      allCommandsNames() {
+        return this.commandsNames.concat(this.uiCommandsNames).sort();
+      },
+      allCommandsParameters() {
+        return this.allCommands.map(({ command }) => command.split(' '))
+          .map(([command, ...params]) => ({ command, params }))
+          .reduce((commandParameters, { command, params }) => (commandParameters[command] = params, commandParameters), {});
       },
       autocompleteSuggestion() {
         if (this.suggestedCommand) return this.command.replace(/./g, ' ') + this.suggestedCommand.substr(this.command.length);
@@ -140,10 +146,10 @@
       },
       suggestedCommand() {
         if (!this.command) return;
-        return this.commandsNames.find(command => command.startsWith(this.command));
+        return this.allCommandsNames.find(command => command.startsWith(this.command));
       },
       suggestedParameters() {
-        if (this.selectedCommand && this.commandsParameters[this.selectedCommand]) return this.commandsParameters[this.selectedCommand];
+        if (this.selectedCommand && this.allCommandsParameters[this.selectedCommand]) return this.allCommandsParameters[this.selectedCommand];
 
         return [];
       },
@@ -183,7 +189,7 @@
             return [...this.$store.getters['bots/bots'].map(bot => bot.name), 'ASF']
               .find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
           case '<command>':
-            return this.commandsNames.find(name => name.startsWith(this.currentParameterValue));
+            return this.allCommandsNames.find(name => name.startsWith(this.currentParameterValue));
           case '<modes>':
             if (this.selectedCommand === 'transfer') {
               return ['All', 'Background', 'Booster', 'Card', 'Emoticon', 'Foil', 'Gems', 'Unknown']
@@ -210,7 +216,7 @@
       },
       selectedCommand() {
         if (!this.command) return;
-        return this.commandsNames.find(command => command === this.command.split(' ')[0]);
+        return this.allCommandsNames.find(command => command === this.command.split(' ')[0]);
       },
     },
     watch: {
@@ -268,8 +274,8 @@
         return new Date().toLocaleTimeString();
       },
       commandHelp(command) {
-        const asfCommand = this.commands.find(asfCommand => asfCommand.command.split(' ')[0] === command);
-        if (asfCommand) return asfCommand.description;
+        const foundCommand = this.allCommands.find(allCommand => allCommand.command.split(' ')[0] === command);
+        if (foundCommand) return foundCommand.description;
         return this.$t('terminal-no-help', { command });
       },
       focusInput() {
