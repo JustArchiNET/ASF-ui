@@ -146,7 +146,7 @@
   "terminal-command-r-mode": "Alias for 'redeem^'",
   "terminal-command-sa": "Alias for 'status ASF'",
   "terminal-help": "Prints help.",
-  "terminal-help-text": "Usage: help <Command>, available commands: commands",
+  "terminal-help-text": "Usage: help <Command>, for a list of available commands type: commands",
   "terminal-no-help": "There's no help text for {command} yet!",
   "timestamps": "Timestamps",
   "timestamps-description": "Show timestamps in terminal.",
