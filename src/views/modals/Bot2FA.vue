@@ -19,11 +19,11 @@
         </div>
       </div>
       <div class="form-item__buttons form-item__buttons--center form-item__buttons--column">
-        <button class="button button--confirm" @click="acceptTrades">
+        <button class="button button--confirm" @click="acceptConfirmations">
           <font-awesome-icon v-if="accepting" icon="spinner" spin></font-awesome-icon>
           <span v-else>{{ $t('2fa-accept') }}</span>
         </button>
-        <button class="button button--cancel" @click="cancelTrades">
+        <button class="button button--cancel" @click="cancelConfirmations">
           <font-awesome-icon v-if="canceling" icon="spinner" spin></font-awesome-icon>
           <span v-else>{{ $t('2fa-cancel') }}</span>
         </button>
@@ -87,7 +87,7 @@
       }
     },
     methods: {
-      async acceptTrades() {
+      async acceptConfirmations() {
         if (this.accepting) return;
 
         this.accepting = true;
@@ -107,7 +107,7 @@
           this.accepting = false;
         }
       },
-      async cancelTrades() {
+      async cancelConfirmations() {
         if (this.canceling) return;
 
         this.canceling = true;
