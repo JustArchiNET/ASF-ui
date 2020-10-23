@@ -4,7 +4,7 @@
       <div ref="terminal" class="terminal" @click="focusInput">
         <div v-for="{ type, time, message } in log" class="terminal-message">
           <span v-if="timestamps" class="terminal-message__time timestamp">[{{ time }}]</span>
-          <span class="terminal-message__sign" :class="`terminal-message__sign--${type}`">{{ type === 'out' ? '>' : '<' }}</span>
+          <span class="terminal-message__sign" :class="`terminal-message__sign--${type}`" v-text="type === 'out' ? '>' : '<'" />
           <span class="terminal-message__content">{{ message }}</span>
         </div>
         <div class="terminal__input-wrapper">
