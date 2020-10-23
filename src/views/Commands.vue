@@ -97,7 +97,6 @@
           { command: 'r', description: this.$t('terminal-command-r') },
           { command: 'r^', description: this.$t('terminal-command-r-mode') },
           { command: 'sa', description: this.$t('terminal-command-sa') },
-          { command: 'clear', description: this.$t('terminal-command-clear') },
         ];
       },
       commandsNames() {
