@@ -1,6 +1,4 @@
 {
-  "2fa-accept": "Accepter alle handler",
-  "2fa-cancel": "Annuller alle handler",
   "2fa-token-copied": "Kopieret token til udklipsholder!",
   "2fa-token-copy": "Kopier token til udklipsholderen",
   "2fa-token-refresh": "Opdater token",
@@ -129,10 +127,8 @@
   "statistics-memory-usage": "Hukommelsesforbrug",
   "statistics-uptime": "Oppetid",
   "success": "Success",
-  "terminal-available-commands": "Tilgængelige kommandoer: {commands}",
   "terminal-commands": "Vis tilgængelige kommandoer.",
   "terminal-help": "Vis hjælp.",
-  "terminal-help-text": "Brug: help <Command>, tilgængelige kommandoer: commands",
   "terminal-no-help": "Der findes endnu ikke en hjælpetekst for \"{command}\"!",
   "timestamps": "Tidsstempler",
   "timestamps-description": "Vis tidsstempler i terminal.",

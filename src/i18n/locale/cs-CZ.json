@@ -1,6 +1,4 @@
 {
-  "2fa-accept": "Přijmout všechny obchody",
-  "2fa-cancel": "Zrušit všechny obchody",
   "2fa-token-copied": "Token zkopírován do schránky!",
   "2fa-token-copy": "Zkopírovat token do schránky",
   "2fa-token-refresh": "Obnovit token",
@@ -102,10 +100,8 @@
   "statistics-memory-usage": "Využití paměti",
   "statistics-uptime": "Doba provozu",
   "success": "Úspěch",
-  "terminal-available-commands": "Dostupné příkazy: {commands}",
   "terminal-commands": "Zobrazí dostupné příkazy.",
   "terminal-help": "Zobrazí nápovědu.",
-  "terminal-help-text": "Použití: help <příkaz>, dostupné příkazy: {commands}",
   "terminal-no-help": "Pro příkaz {command} ještě neexistuje nápověda!",
   "trade": "Obchodovat",
   "ui-configuration": "Konfigurace UI",

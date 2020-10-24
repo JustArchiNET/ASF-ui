@@ -1,6 +1,4 @@
 {
-  "2fa-accept": "Aceitar todas as trocas",
-  "2fa-cancel": "Cancelar todas as trocas",
   "2fa-token-copied": "Token copiado para a área de transferência!",
   "2fa-token-copy": "Copiar token para a área de transferência",
   "2fa-token-refresh": "Atualizar token",
@@ -129,10 +127,8 @@
   "statistics-memory-usage": "Utilização de Memória",
   "statistics-uptime": "Tempo de atividade",
   "success": "Sucesso",
-  "terminal-available-commands": "Comandos disponíveis: {commands}",
   "terminal-commands": "Mostra os comandos disponíveis.",
   "terminal-help": "Mostra a ajuda.",
-  "terminal-help-text": "Uso: help <Command>, comandos disponíveis: commands",
   "terminal-no-help": "Ainda não há texto de ajuda para {command}!",
   "timestamps": "Data",
   "timestamps-description": "Mostrar data e hora no terminal.",

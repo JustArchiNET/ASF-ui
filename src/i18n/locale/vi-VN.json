@@ -1,6 +1,4 @@
 {
-  "2fa-accept": "Chấp nhận tất cả giao dịch",
-  "2fa-cancel": "Huỷ bỏ toàn bộ giao dịch",
   "2fa-token-copied": "Đã sao chép token vào clipboard!",
   "2fa-token-copy": "Sao chép token vào clipboard",
   "2fa-token-refresh": "Làm mới token",
@@ -124,10 +122,8 @@
   "statistics-memory-usage": "Bộ Nhớ Sử Dụng",
   "statistics-uptime": "Thời gian hoạt động",
   "success": "Hoàn tất",
-  "terminal-available-commands": "Lệnh khả dụng: {commands}",
   "terminal-commands": "Hiển thị các lệnh có sẵn.",
   "terminal-help": "In giúp đỡ.",
-  "terminal-help-text": "Cách sử dụng: help <Command>, các lệnh khả dụng: commands",
   "terminal-no-help": "Không có văn bản trợ giúp nào cho {command}!",
   "timestamps": "Mốc thời gian",
   "timestamps-description": "Hiển thị mốc thời gian trên cửa sổ lệnh.",

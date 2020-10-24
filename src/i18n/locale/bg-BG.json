@@ -1,6 +1,4 @@
 {
-  "2fa-accept": "Приемете всички сделки",
-  "2fa-cancel": "Отмени всички сделки",
   "2fa-token-copied": "Маркетър е копиран в клипборда!",
   "2fa-token-copy": "Копирай маркерът в клипборда",
   "2fa-token-refresh": "Обнови маркер",
@@ -126,7 +124,6 @@
   "statistics-memory-usage": "RAM използване",
   "statistics-uptime": "Продължителност на работа",
   "success": "Успешно",
-  "terminal-available-commands": "Възможни команди: {commands}",
   "terminal-commands": "Покажи наличните команди.",
   "terminal-help": "Принтира инструкциите за помощ.",
   "timestamps": "Времеви етикети",

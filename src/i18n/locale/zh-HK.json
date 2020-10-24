@@ -1,6 +1,4 @@
 {
-  "2fa-accept": "接受所有交易",
-  "2fa-cancel": "取消所有交易",
   "2fa-token-copied": "已複製代碼到剪貼簿！",
   "2fa-token-copy": "將代碼複製到剪貼簿",
   "2fa-token-refresh": "刷新代碼",
@@ -126,10 +124,8 @@
   "statistics-memory-usage": "記憶體使用量",
   "statistics-uptime": "執行時間",
   "success": "成功",
-  "terminal-available-commands": "可用命令：{commands}",
   "terminal-commands": "列印可用的命令.",
   "terminal-help": "列印説明.",
-  "terminal-help-text": "用法：説明 <Command>，可用命令：命令",
   "terminal-no-help": "對於 {command} 尚無説明文本！",
   "timestamps": "時間戳",
   "timestamps-description": "在終端中顯示時間戳。",

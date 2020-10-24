@@ -1,6 +1,4 @@
 {
-  "2fa-accept": "Minden csereajánlat elfogadása",
-  "2fa-cancel": "Minden csereajánlat törlése",
   "2fa-token-copied": "Token a vágólapra másolva!",
   "2fa-token-copy": "Token másolása a vágólapra",
   "2fa-token-refresh": "Token frissítése",
@@ -129,10 +127,8 @@
   "statistics-memory-usage": "Memóriahasználat",
   "statistics-uptime": "Üzemidő",
   "success": "Kész",
-  "terminal-available-commands": "A rendelkezésre álló parancsok: {commands}",
   "terminal-commands": "Listázza az elérhető parancsokat.",
   "terminal-help": "Listázza a segítséget.",
-  "terminal-help-text": "Használat: help <Command> Elérhető parancsok: commands",
   "terminal-no-help": "A {command} parancsra még nincs segítség!",
   "timestamps": "Időbélyegek",
   "timestamps-description": "Időbélyegek mutatása a terminálban.",

@@ -1,6 +1,4 @@
 {
-  "2fa-accept": "Hyväksy kaikki vaihdot",
-  "2fa-cancel": "Peruuta kaikki vaihdot",
   "2fa-token-copied": "Token kopioitu leikepöydälle!",
   "2fa-token-copy": "Kopioi token leikepöydälle",
   "2fa-token-refresh": "Päivitä token",

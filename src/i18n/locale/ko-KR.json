@@ -1,6 +1,4 @@
 {
-  "2fa-accept": "모든 거래 수락",
-  "2fa-cancel": "모든 거래 취소",
   "2fa-token-copied": "토큰이 클립보드에 복사되었습니다.",
   "2fa-token-copy": "토큰을 클립보드에 복사",
   "2fa-token-refresh": "토큰 갱신",
@@ -129,10 +127,8 @@
   "statistics-memory-usage": "메모리 사용량",
   "statistics-uptime": "가동시간",
   "success": "성공",
-  "terminal-available-commands": "사용 가능한 명령: {commands}",
   "terminal-commands": "사용할 수 있는 명령을 표시 합니다.",
   "terminal-help": "도움말을 표시합니다.",
-  "terminal-help-text": "사용법: help <Command>, 사용 가능한 명령: commands",
   "terminal-no-help": "{command}에 대한 도움말은 아직 없습니다.",
   "timestamps": "타임스탬프",
   "timestamps-description": "터미널에 시간을 표시합니다.",
