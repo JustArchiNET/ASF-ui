@@ -53,8 +53,11 @@
       async checkForNewRelease() {
         try {
           const newVersionAvailable = await newReleaseAvailable();
-          if (newVersionAvailable && this.notifyRelease) this.$info(this.$t('update-available'));
           this.releaseAvailable = newVersionAvailable;
+          if (newVersionAvailable && this.notifyRelease) {
+            const notification = this.$snotify.info(this.$t('update-available'), this.$t('info'));
+            notification.on('click', toast => this.$router.push({ name: 'releases' }));
+          }
         } catch (err) {
           if (err.message === 'HTTP Error 504') return;
           this.$error(err.message);
