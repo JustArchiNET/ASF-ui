@@ -78,7 +78,7 @@
         ];
 
         const [schema, descriptions] = await Promise.all([
-          getType('BotConfig'),
+          getType('ArchiSteamFarm.BotConfig'),
           loadParameterDescriptions(this.version, this.$i18n.locale),
         ]);
 
