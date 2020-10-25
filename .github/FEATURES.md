@@ -15,3 +15,5 @@
 5. You can use the shortcut `CTRL + K` to remove everything at the current line that is after the cursor.
 
 6. You can use the shortcut `CTRL + L` to clear the whole terminal.
+
+7. Pressing on the new release notification will bring you to the Releases page.
