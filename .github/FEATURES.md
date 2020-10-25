@@ -1,6 +1,6 @@
 # Global
 
-1. Pressing on the new release notification will bring you to the Releases page.
+1. Clicking on the "New release available" notification will redirect you to the "Releases" page.
 
 # Bots
 
@@ -8,9 +8,9 @@
 
 # Commands
 
-1. Single press on the Tab button will autocomplete currently typing in command or command's arguments with the match you can see in the background.
+1. Single press on the Tab button will autocomplete currently suggested command or command argument.
 
-2. Double press on the Tab button will autotype "commands" command while the input is empty. This command will list all available commands.
+2. Double press on the Tab button will type "commands" in the input if it's empty. This command will list all available commands.
 
 3. You can click on the small ">" symbol next to your command to send it.
 
