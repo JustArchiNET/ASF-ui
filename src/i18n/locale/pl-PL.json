@@ -107,7 +107,7 @@
   "last-visited-page": "Ostatnio odwiedzona strona",
   "log": "Dziennik",
   "multiple-games": "Wiele gier",
-  "name-description": "<code>string</code> bez wartości domyślnej. To pole jest wymagane żeby nazwać bota. Jest również używane wewnątrz ASF. Musi być unikalne.",
+  "name-description": "Typ <code>string</code> bez wartości domyślnej. Ta właściwość jest wymagana i definiuje nazwę bota - służy do identyfikacji tylko wewnątrz ASF. Musi być unikalna dla każdego bota.",
   "notification-position": "Pozycja powiadomienia",
   "notification-position-center-bottom": "Środkowy dół",
   "notification-position-center-top": "Środkowa góra",

@@ -18,7 +18,6 @@
   "bot-copy": "Botをコピー",
   "bot-create-name": "名前を入力してください。",
   "bot-create-name-asf": "Botの名前を ASF とはできません。",
-  "bot-create-name-exist": "{name} という名前のBotは既に存在します。",
   "bot-delete": "{name} を削除しますか？",
   "bot-fav-buttons": "クイックアクションボタン",
   "bot-fav-buttons-2fa": "ツーファクタ認証",

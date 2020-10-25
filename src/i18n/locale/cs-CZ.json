@@ -70,7 +70,6 @@
   "last-visited-page": "Posledně navštívená stránka",
   "log": "Záznamy",
   "multiple-games": "Více her",
-  "name-description": "Typ <code>string</code> bez výchozí hodnoty. Tato vlastnost je potřebná a definuje jméno bota - je použita pro identifikaci v ASF. Pro každého bota musí být hodnota jedinečná.",
   "other": "Jiné",
   "password": "Heslo",
   "password-invalid": "Neplatné heslo!",
