@@ -265,7 +265,8 @@
             if (commandToExecute.split(' ')[1]) return this.commandHelp(commandToExecute.split(' ')[1]);
             return this.$t('terminal-help-text');
           case 'clear':
-            return this.log = [];
+            this.log = [];
+            this.command = '';
         }
 
         return this.$http.command(commandToExecute);
