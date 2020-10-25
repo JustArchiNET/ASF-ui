@@ -1,3 +1,7 @@
+# Global
+
+1. Pressing on the new release notification will bring you to the Releases page.
+
 # Bots
 
 1. You can click on each of the status tiles in the navigation bar to sort your bots view. If you for example only want to see your bots that are online, click on the status tile "Online". A green glow will indicate that your view is being filtered.
@@ -15,5 +19,3 @@
 5. You can use the shortcut `CTRL + K` to remove everything at the current line that is after the cursor.
 
 6. You can use the shortcut `CTRL + L` to clear the whole terminal.
-
-7. Pressing on the new release notification will bring you to the Releases page.
