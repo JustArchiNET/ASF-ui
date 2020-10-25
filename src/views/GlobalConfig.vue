@@ -7,8 +7,7 @@
         </h3>
       </template>
       <template v-else>
-        <config-editor v-if="displayCategories" :fields="fields" :model="model" :categories="categories" :descriptions="descriptions"></config-editor>
-        <config-editor v-else :fields="fields" :model="model" :descriptions="descriptions"></config-editor>
+        <config-editor :fields="fields" :model="model" :categories="displayCategories ? categories : null"></config-editor>
 
         <div class="form-item">
           <div class="form-item__buttons">
@@ -31,9 +30,9 @@
   import { mapGetters } from 'vuex';
   import ConfigEditor from '../components/ConfigEditor.vue';
   import loadParameterDescriptions from '../utils/loadParameterDescriptions';
-  import fetchConfigSchema from '../utils/fetchConfigSchema';
   import prepareModelToDownload from '../utils/prepareModelToDownload';
   import waitForRestart from '../utils/waitForRestart';
+  import { getType } from '../utils/swagger/parse';
 
   export default {
     name: 'global-config',
@@ -70,30 +69,35 @@
       displayCategories: 'settings/displayCategories',
     }),
     async created() {
-      const [
-        { GlobalConfig: model },
-        { body: fields },
-        descriptions,
-      ] = await Promise.all([
-        this.$http.get('asf'),
-        fetchConfigSchema('ArchiSteamFarm.GlobalConfig'),
+      const [model, schema, descriptions] = await Promise.all([
+        this.getModel(),
+        getType('GlobalConfig'),
         loadParameterDescriptions(this.version, this.$i18n.locale),
       ]);
 
-      Object.keys(model).forEach(key => {
-        if (key.startsWith('s_')) delete model[key.substr(2)];
+      Object.keys(schema).forEach(name => {
+        if (name.startsWith('s_')) {
+          const paramName = name.substr(2);
+          delete model[paramName];
+          delete schema[paramName];
+        }
       });
 
-      this.model = model;
-
-      this.fields = Object.keys(fields).map(key => ({
-        description: descriptions[key],
-        ...fields[key],
+      this.fields = Object.keys(schema).map(name => ({
+        description: descriptions[name.replace('s_', '')],
+        ...schema[name],
+        param: name.replace('s_', ''),
+        paramName: name,
       }));
 
+      this.model = model;
       this.loading = false;
     },
     methods: {
+      async getModel() {
+        const { GlobalConfig: model } = await this.$http.get('asf');
+        return model;
+      },
       async onSave() {
         if (this.saving) return;
 

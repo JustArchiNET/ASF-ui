@@ -44,7 +44,6 @@
         required: true,
       },
       categories: Array,
-      descriptions: Object,
       extendedFields: Object,
     },
     computed: {
@@ -76,26 +75,24 @@
     },
     methods: {
       componentFromField(field) {
+        if (field.format === 'flags') return InputFlag;
+        if (field.enum) return InputEnum;
+
         switch (field.type) {
           case 'string':
-          case 'uint64':
             return InputString;
           case 'boolean':
             return InputBoolean;
-          case 'uint32':
-          case 'uint16':
-          case 'byte':
+          case 'integer':
             return InputNumber;
-          case 'flag':
-            return InputFlag;
-          case 'enum':
-            return InputEnum;
-          case 'hashSet':
-          case 'list':
-            if (['enum'].includes(field.values.type)) return field.type === 'list' ? InputList : InputSet;
-            if (['byte', 'uint16', 'uint32', 'uint64', 'string'].includes(field.values.type)) return InputTag;
-            return InputUnknown;
-          case 'dictionary':
+          case 'array':
+            if (field.items.enum) {
+              if (field.uniqueItems) return InputSet;
+              return InputList;
+            }
+
+            return InputTag;
+          case 'object':
             return InputDictionary;
           default:
             return InputUnknown;
@@ -150,16 +147,16 @@
 </script>
 
 <style lang="scss">
-	.config-editor {
-		margin-bottom: 1em;
+  .config-editor {
+    margin-bottom: 1em;
 
-		&:last-child {
-			margin-bottom: 0;
-		}
-	}
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 
-	.config-uncategorized {
-		border: 0 solid var(--color-border);
-		padding: 0 1em 1em;
-	}
+  .config-uncategorized {
+    border: 0 solid var(--color-border);
+    padding: 0 1em 1em;
+  }
 </style>

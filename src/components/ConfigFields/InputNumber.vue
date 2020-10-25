@@ -3,7 +3,7 @@
     <input-label :label="label" :has-description="hasDescription"></input-label>
 
     <div class="form-item__value">
-      <input :id="field" v-model.number="value" class="form-item__input" type="number" :name="field" :placeholder="placeholder" @blur="onBlur">
+      <input :id="field" v-model.number="value" class="form-item__input" type="number" :name="field" :placeholder="placeholder">
       <span v-if="hasErrors" class="form-item__error">{{ errorText }}</span>
     </div>
 
@@ -17,10 +17,5 @@
   export default {
     name: 'input-number',
     mixins: [Input],
-    methods: {
-      onBlur() {
-        if (this.value === '') this.value = this.defaultValue;
-      },
-    },
   };
 </script>

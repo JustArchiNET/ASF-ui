@@ -4,9 +4,7 @@
 
     <div class="form-item__value">
       <select :id="field" v-model="value" class="form-item__input" :name="field">
-        <option v-for="(enumValue, name) in values" v-if="!(name === 'Max' && isLastValue(enumValue))" :value="enumValue">
-          {{ name }}
-        </option>
+        <option v-for="{ label, value } in enums" :value="value">{{ label }}</option>
       </select>
     </div>
 
@@ -21,13 +19,8 @@
     name: 'input-enum',
     mixins: [Input],
     computed: {
-      values() {
-        return this.schema.values;
-      },
-    },
-    methods: {
-      isLastValue(value) {
-        return value === Math.max(...Object.values(this.values));
+      enums() {
+        return Object.entries(this.schema['x-definition']).map(([label, value]) => ({ label, value }));
       },
     },
   };
