@@ -8,9 +8,9 @@
 
 # Commands
 
-1. Single press on the Tab button will autocomplete currently suggested command or command argument.
+1. Single press on the Tab key will autocomplete currently suggested command or command argument.
 
-2. Double press on the Tab button will type "commands" in the input if it's empty. This command will list all available commands.
+2. Double press on the Tab key will type "commands" in the input if it's empty. This command will list all available commands.
 
 3. You can click on the small ">" symbol next to your command to send it.
 
