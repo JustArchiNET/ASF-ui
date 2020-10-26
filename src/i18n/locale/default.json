@@ -158,7 +158,7 @@
   "success": "Success",
   "terminal-available-commands": "Available ASF commands: {commands} \n\n Available ASF-ui commands: {uiCommands}",
   "terminal-commands": "Prints available commands.",
-  "terminal-command-clear": "Clears the terminal",
+  "terminal-command-clear": "Clears the terminal.",
   "terminal-command-oa": "Alias for 'owns ASF'",
   "terminal-command-r": "Alias for 'redeem'",
   "terminal-command-r-mode": "Alias for 'redeem^'",
