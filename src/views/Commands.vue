@@ -265,8 +265,7 @@
             if (commandToExecute.split(' ')[1]) return this.commandHelp(commandToExecute.split(' ')[1]);
             return this.$t('terminal-help-text');
           case 'clear':
-            this.log = [];
-            this.$refs['terminal-input'].value = '';
+            this.clearTerminal();
         }
 
         return this.$http.command(commandToExecute);
@@ -325,6 +324,8 @@
       },
       clearTerminal() {
         this.log = [];
+        this.command = '';
+        this.$refs['terminal-input'].value = '';
       },
       jumpToStart() {
         this.$refs['terminal-input'].setSelectionRange(0, 0);
