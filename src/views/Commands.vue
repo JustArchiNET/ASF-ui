@@ -266,7 +266,7 @@
             return this.$t('terminal-help-text');
           case 'clear':
             this.log = [];
-            this.command = '';
+            this.$refs['terminal-input'].value = '';
         }
 
         return this.$http.command(commandToExecute);
