@@ -36,6 +36,7 @@
         version: 'asf/version',
         buildVariant: 'asf/buildVariant',
         notifyRelease: 'settings/notifyRelease',
+        updatesEnabled: 'asf/updatesEnabled',
       }),
       versionString() {
         return `${this.version} - ${this.buildVariant} - ${this.uiHash}`;
@@ -47,7 +48,7 @@
     },
     async mounted() {
       await delay(3000);
-      if (this.authenticated) this.checkForNewRelease();
+      if (this.authenticated && this.updatesEnabled) this.checkForNewRelease();
     },
     methods: {
       async checkForNewRelease() {
