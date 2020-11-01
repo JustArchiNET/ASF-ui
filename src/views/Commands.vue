@@ -2,9 +2,9 @@
   <main class="main-container main-container--fullheight commands">
     <div class="container">
       <div ref="terminal" class="terminal" @click="focusInput">
-        <div v-for="{ type, time, message } in log" class="terminal-message">
+        <div v-for="({ type, time, message }, i) in log" :key="i" class="terminal-message">
           <span v-if="timestamps" class="terminal-message__time timestamp">[{{ time }}]</span>
-          <span class="terminal-message__sign" :class="`terminal-message__sign--${type}`">{{ type === 'out' ? '>' : '<' }}</span>
+          <span class="terminal-message__sign" :class="`terminal-message__sign--${type}`" v-text="type === 'out' ? '>' : '<'" />
           <span class="terminal-message__content">{{ message }}</span>
         </div>
         <div class="terminal__input-wrapper">
@@ -93,19 +93,33 @@
       commands() {
         return [
           ...this.asfCommands.filter(({ command }) => command !== 'help'),
-          { command: 'commands', description: this.$t('terminal-commands') },
-          { command: 'help <Command>', description: this.$t('terminal-help') },
-          { command: 'oa', description: this.$t('terminal-commands-oa') },
+          { command: 'oa', description: this.$t('terminal-command-oa') },
           { command: 'r', description: this.$t('terminal-command-r') },
           { command: 'r^', description: this.$t('terminal-command-r-mode') },
           { command: 'sa', description: this.$t('terminal-command-sa') },
         ];
       },
       commandsNames() {
-        return this.commands.map(command => command.command.split(' ')[0]);
+        return this.commands.map(command => command.command.split(' ')[0]).sort();
       },
-      commandsParameters() {
-        return this.commands.map(({ command }) => command.split(' '))
+      uiCommands() {
+        return [
+          { command: 'commands', description: this.$t('terminal-commands') },
+          { command: 'help <Command>', description: this.$t('terminal-help') },
+          { command: 'clear', description: this.$t('terminal-command-clear') },
+        ];
+      },
+      uiCommandsNames() {
+        return this.uiCommands.map(uiCommand => uiCommand.command.split(' ')[0]).sort();
+      },
+      allCommands() {
+        return this.commands.concat(this.uiCommands).sort();
+      },
+      allCommandsNames() {
+        return this.commandsNames.concat(this.uiCommandsNames).sort();
+      },
+      allCommandsParameters() {
+        return this.allCommands.map(({ command }) => command.split(' '))
           .map(([command, ...params]) => ({ command, params }))
           .reduce((commandParameters, { command, params }) => (commandParameters[command] = params, commandParameters), {});
       },
@@ -132,10 +146,10 @@
       },
       suggestedCommand() {
         if (!this.command) return;
-        return this.commandsNames.find(command => command.startsWith(this.command));
+        return this.allCommandsNames.find(command => command.startsWith(this.command));
       },
       suggestedParameters() {
-        if (this.selectedCommand && this.commandsParameters[this.selectedCommand]) return this.commandsParameters[this.selectedCommand];
+        if (this.selectedCommand && this.allCommandsParameters[this.selectedCommand]) return this.allCommandsParameters[this.selectedCommand];
 
         return [];
       },
@@ -175,7 +189,7 @@
             return [...this.$store.getters['bots/bots'].map(bot => bot.name), 'ASF']
               .find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
           case '<command>':
-            return this.commandsNames.find(name => name.startsWith(this.currentParameterValue));
+            return this.allCommandsNames.find(name => name.startsWith(this.currentParameterValue));
           case '<modes>':
             if (this.selectedCommand === 'transfer') {
               return ['All', 'Background', 'Booster', 'Card', 'Emoticon', 'Foil', 'Gems', 'Unknown']
@@ -202,7 +216,7 @@
       },
       selectedCommand() {
         if (!this.command) return;
-        return this.commandsNames.find(command => command === this.command.split(' ')[0]);
+        return this.allCommandsNames.find(command => command === this.command.split(' ')[0]);
       },
     },
     watch: {
@@ -246,10 +260,12 @@
       async executeCommand(commandToExecute) {
         switch (commandToExecute.split(' ')[0]) {
           case 'commands':
-            return this.$t('terminal-available-commands', { commands: this.commandsNames.join(', ') });
+            return this.$t('terminal-available-commands', { commands: this.commandsNames.join(', '), uiCommands: this.uiCommandsNames.join(', ') });
           case 'help':
             if (commandToExecute.split(' ')[1]) return this.commandHelp(commandToExecute.split(' ')[1]);
             return this.$t('terminal-help-text');
+          case 'clear':
+            return this.log = [];
         }
 
         return this.$http.command(commandToExecute);
@@ -258,8 +274,8 @@
         return new Date().toLocaleTimeString();
       },
       commandHelp(command) {
-        const asfCommand = this.commands.find(asfCommand => asfCommand.command.split(' ')[0] === command);
-        if (asfCommand) return asfCommand.description;
+        const foundCommand = this.allCommands.find(allCommand => allCommand.command.split(' ')[0] === command);
+        if (foundCommand) return foundCommand.description;
         return this.$t('terminal-no-help', { command });
       },
       focusInput() {

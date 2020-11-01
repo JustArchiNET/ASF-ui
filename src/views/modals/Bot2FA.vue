@@ -19,13 +19,13 @@
         </div>
       </div>
       <div class="form-item__buttons form-item__buttons--center form-item__buttons--column">
-        <button class="button button--confirm" @click="acceptTrades">
+        <button class="button button--confirm" @click="acceptConfirmations">
           <font-awesome-icon v-if="accepting" icon="spinner" spin></font-awesome-icon>
           <span v-else>{{ $t('2fa-accept') }}</span>
         </button>
-        <button class="button button--cancel" @click="cancelTrades">
-          <font-awesome-icon v-if="canceling" icon="spinner" spin></font-awesome-icon>
-          <span v-else>{{ $t('2fa-cancel') }}</span>
+        <button class="button button--cancel" @click="rejectConfirmations">
+          <font-awesome-icon v-if="rejecting" icon="spinner" spin></font-awesome-icon>
+          <span v-else>{{ $t('2fa-reject') }}</span>
         </button>
       </div>
     </div>
@@ -42,7 +42,7 @@
     data() {
       return {
         accepting: false,
-        canceling: false,
+        rejecting: false,
         refreshing: false,
         token: '-----',
         has2FA: true,
@@ -87,7 +87,7 @@
       }
     },
     methods: {
-      async acceptTrades() {
+      async acceptConfirmations() {
         if (this.accepting) return;
 
         this.accepting = true;
@@ -107,24 +107,24 @@
           this.accepting = false;
         }
       },
-      async cancelTrades() {
-        if (this.canceling) return;
+      async rejectConfirmations() {
+        if (this.rejecting) return;
 
-        this.canceling = true;
+        this.rejecting = true;
 
         try {
           const bot = this.bot.name;
           const response = await this.$http.post(`bot/${bot}/twoFactorAuthentication/confirmations`, { accept: false });
 
           if (response[bot].Success) {
-            this.$success(this.$t('2fa-cancel-success', { bot }));
+            this.$success(this.$t('2fa-reject-success', { bot }));
           } else {
             this.$error(response[bot].Message);
           }
         } catch (err) {
           this.$error(err.message);
         } finally {
-          this.canceling = false;
+          this.rejecting = false;
         }
       },
       async refreshToken() {

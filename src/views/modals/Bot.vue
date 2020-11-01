@@ -52,6 +52,7 @@
   import BotFarmingInfo from '../../components/BotFarmingInfo.vue';
   import BotGames from '../../components/BotGames.vue';
   import BotLink from '../../components/BotLink.vue';
+  import getUserInputType from '../../utils/getUserInputType';
 
   export default {
     name: 'bot',
@@ -59,7 +60,10 @@
       BotAction, BotFarmingInfo, BotGames, BotLink,
     },
     computed: {
-      ...mapGetters({ nicknames: 'settings/nicknames' }),
+      ...mapGetters({ 
+        nicknames: 'settings/nicknames',
+        headless: 'asf/headless',
+      }),
       bot() {
         return this.$store.getters['bots/bot'](this.$route.params.bot);
       },
@@ -100,6 +104,13 @@
         await this.update({ paused: false });
       },
       async start() {
+        const inputType = getUserInputType(this.bot.requiredInput);
+
+        if (this.headless && inputType !== 'None') {
+          this.$router.push({ name: 'bot-input', params: { bot: this.bot.name, type: inputType } });
+          return;
+        }
+
         await this.action('start');
         await this.update({ active: true });
       },

@@ -7,7 +7,7 @@
     </div>
 
     <div v-if="authenticated" class="footer__statistic">
-      <font-awesome-icon v-if="releaseAvailable" class="footer__statistic-notify" :title="$t('update-available')" icon="exclamation" size="sm"></font-awesome-icon>
+      <font-awesome-icon v-if="releaseAvailable" class="footer__statistic-notify" :title="$t('update-available')" icon="exclamation" size="sm" @click="redirectToReleases"></font-awesome-icon>
       <span class="footer__statistic-name">ASF</span>
       <span class="footer__statistic-value">{{ versionString }}</span>
     </div>
@@ -53,12 +53,18 @@
       async checkForNewRelease() {
         try {
           const newVersionAvailable = await newReleaseAvailable();
-          if (newVersionAvailable && this.notifyRelease) this.$info(this.$t('update-available'));
           this.releaseAvailable = newVersionAvailable;
+          if (newVersionAvailable && this.notifyRelease && this.$route.name !== 'releases') {
+            const notification = this.$snotify.info(this.$t('update-available'), this.$t('info'));
+            notification.on('click', toast => this.redirectToReleases());
+          }
         } catch (err) {
           if (err.message === 'HTTP Error 504') return;
           this.$error(err.message);
         }
+      },
+      redirectToReleases() {
+        if (this.$route.name !== 'releases') this.$router.push({ name: 'releases' });
       },
     },
   };
@@ -95,6 +101,7 @@
 
 	.footer__statistic-notify {
 		color: #ffa500;
-		padding-right: 0.2em;
+    padding-right: 0.2em;
+    cursor: pointer;
 	}
 </style>

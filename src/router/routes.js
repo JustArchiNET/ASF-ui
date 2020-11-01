@@ -100,6 +100,15 @@ export default [
 			modal: () => import('../views/modals/Bot2FA.vue')
 		},
 		meta: { modal: true }
+  },
+  {
+		path: '/page/bot/:bot/input/:type',
+		name: 'bot-input',
+		components: {
+			default: () => import('../views/Bots.vue'),
+			modal: () => import('../views/modals/BotInput.vue')
+		},
+		meta: { modal: true }
 	},
 	{
 		path: '/page/bot/:bot/delete',

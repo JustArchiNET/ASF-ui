@@ -7,9 +7,9 @@ Standalone web interface for ASF
 [![Build status (Travis)](https://img.shields.io/travis/com/JustArchiNET/ASF-ui/master?label=Travis&maxAge=600&logo=travis)](https://travis-ci.com/JustArchiNET/ASF-ui)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=JustArchiNET/ASF-ui)](https://dependabot.com)
 [![Github last commit date](https://img.shields.io/github/last-commit/JustArchiNET/ASF-ui?label=Updated&maxAge=600&logo=github)](https://github.com/JustArchiNET/ASF-ui/commits)
-[![License](https://img.shields.io/github/license/JustArchiNET/ASF-ui?label=License&maxAge=2592000&logo=apache)](https://github.com/JustArchiNET/ASF-ui/blob/master/LICENSE-2.0.txt)
+[![License](https://img.shields.io/github/license/JustArchiNET/ASF-ui?label=License&maxAge=2592000&logo=apache)](https://github.com/JustArchiNET/ASF-ui/blob/master/LICENSE)
 
-<img src="https://raw.githubusercontent.com/JustArchiNET/ASF-ui/master/.github/previews/bots.png">
+<img src="https://github.com/JustArchiNET/ASF-ui/blob/master/.github/previews/bots.png?raw=true">
 
 ***
 

@@ -66,7 +66,7 @@
 
         if (releasesCache) {
           const { timestamp, releases, version } = releasesCache;
-          const currentTimestamp = Date.now() - 24 * 60 * 60 * 1000;
+          const currentTimestamp = Date.now() - 60 * 60 * 1000;
           let isReadable = true;
 
           releases.forEach(r => {
