@@ -96,7 +96,7 @@
             this.$info(this.$t('restart-initiated'));
             await waitForRestart();
             this.$success(this.$t('restart-complete'));
-            window.location.reload(true);
+            window.location.reload();
           }
         } catch (err) {
           if (!err.result && !err.message.includes('≥')) throw err;
@@ -117,7 +117,7 @@
           await waitForRestart();
           this.$success(this.$t('restart-complete'));
           this.brandMenu = false;
-          window.location.reload(false);
+          window.location.reload();
         } catch (err) {
           this.$error(err.message);
         } finally {

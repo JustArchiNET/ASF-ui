@@ -26,7 +26,7 @@ router.afterEach(to => {
 });
 
 router.onError(err => {
-  if (err.type === 'missing') window.location.reload(true);
+  if (err.type === 'missing') window.location.reload();
   else throw err;
 });
 
