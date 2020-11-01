@@ -93,6 +93,7 @@
 		--color-theme-light: #{lighten($color-theme-blue, 5)};
 		--color-text: #{$color-text};
 		--color-text-dark: #{$color-text-dark};
+		--color-text-info: #{$color-text-info};
 		--color-text-secondary: #{darken($color-text, 10)};
 		--color-text-disabled: #{darken($color-text, 25)};
 		--color-border: #{darken($color-text, 25)};
@@ -175,6 +176,7 @@
 		--color-background-modal: #2d2d2d;
 		--color-text: #e0e0e0;
 		--color-text-dark: #94999b;
+		--color-text-info: #ffa500;
 		--color-border: rgba(0, 0, 0, .5);
 		--color-text-secondary: #{darken(#bfbfbf, 10)};
 		--color-text-disabled: #{darken(#bfbfbf, 20)};

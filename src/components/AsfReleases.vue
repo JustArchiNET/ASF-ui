@@ -198,7 +198,7 @@
 	}
 
   .release__badge--install {
-    color: #ffa500;
+    color: var(--color-text-info);
     cursor: pointer;
 	}
 
