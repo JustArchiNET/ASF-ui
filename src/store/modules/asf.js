@@ -91,4 +91,5 @@ export const getters = {
   updateChannel: state => state.updateChannel,
   steamOwnerID: state => state.steamOwnerID,
   headless: state => state.headless,
+  updatesEnabled: state => state.updateChannel !== 0,
 };
