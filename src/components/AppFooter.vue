@@ -101,6 +101,7 @@
 
 	.footer__statistic-notify {
 		color: #ffa500;
-		padding-right: 0.2em;
+    padding-right: 0.2em;
+    cursor: pointer;
 	}
 </style>
