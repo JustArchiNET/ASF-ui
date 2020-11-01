@@ -9,7 +9,7 @@
 
     <transition name="brand__menu">
       <div v-if="brandMenu && authenticated" class="brand__menu">
-        <div v-if="updateChannel !== 0" class="brand__menu-item" @click="update">
+        <div v-if="updatesEnabled" class="brand__menu-item" @click="update">
           <font-awesome-icon class="brand__menu-icon" icon="cloud-download-alt" fixed-width></font-awesome-icon>
           <span>{{ $t('update') }}</span>
         </div>
@@ -44,7 +44,7 @@
     computed: mapGetters({
       authenticated: 'auth/authenticated',
       version: 'asf/version',
-      updateChannel: 'asf/updateChannel',
+      updatesEnabled: 'asf/updatesEnabled',
       sideMenu: 'layout/sideMenu',
     }),
     watch: {
