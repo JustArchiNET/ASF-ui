@@ -12,6 +12,7 @@
       <div class="release__title">
         <span class="release__version">v{{ release.version }}</span>
         <span class="release__badge" :class="[release.stable ? 'release__badge--stable' : 'release__badge--prerelease']">{{ release.stable ? $t('stable') : $t('pre-release') }}</span>
+        <span v-if="updatesEnabled && isLatestForUpdateChannel(i) && isNewer(release.version)" class="release__badge release__badge--install" @click="update">{{ $t('releases-install') }}</span>
         <span class="release__time">{{ getTimeText(release.publishedAt) }}</span>
       </div>
 
@@ -28,6 +29,7 @@
   import getLocaleForHD from '../utils/getLocaleForHD';
   import * as storage from '../utils/storage';
   import compareVersion from '../utils/compareVersion';
+  import waitForRestart from '../utils/waitForRestart';
 
   export default {
     name: 'asf-releases',
@@ -40,7 +42,11 @@
       };
     },
     computed: {
-      ...mapGetters({ version: 'asf/version' }),
+      ...mapGetters({
+        version: 'asf/version',
+        updateChannel: 'asf/updateChannel',
+        updatesEnabled: 'asf/updatesEnabled',
+      }),
       statusText() {
         if (this.error) return this.error;
         if (!this.loading && !this.releases.length) return this.$t('releases-not-found');
@@ -60,6 +66,26 @@
         const releasedSeconds = new Date() - new Date(releaseDate);
         const time = humanizeDuration(releasedSeconds, { language, largest: 2 });
         return this.$t('released-ago', { time });
+      },
+      isLatestForUpdateChannel(i) {
+        if ((this.updateChannel === 2 && i === 0) || (this.updateChannel === 1 && i === 1)) return true;
+        return false;
+      },
+      isNewer(version) {
+        if (version !== this.version) return true;
+        return false;
+      },
+      async update() {
+        this.$info(this.$t('update-trying'));
+        const response = await this.$http.post('asf/update');
+
+        if (response.Success) {
+          this.$success(this.$t('update-complete'));
+          this.$info(this.$t('restart-initiated'));
+          await waitForRestart();
+          this.$success(this.$t('restart-complete'));
+          window.location.reload();
+        }
       },
       async loadReleases() {
         const releasesCache = storage.get('cache:releases');
@@ -174,6 +200,11 @@
 
 	.release__badge--stable {
 		color: #00a65a;
+	}
+
+  .release__badge--install {
+    color: var(--color-text-info);
+    cursor: pointer;
 	}
 
 	.release__changelog-link {

@@ -101,7 +101,7 @@
 	}
 
 	.footer__statistic-notify {
-		color: #ffa500;
+		color: var(--color-text-info);
     padding-right: 0.2em;
     cursor: pointer;
 	}
