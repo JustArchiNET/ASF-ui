@@ -30,6 +30,7 @@
   import * as storage from '../utils/storage';
   import compareVersion from '../utils/compareVersion';
   import waitForRestart from '../utils/waitForRestart';
+  import { UPDATECHANNEL } from '../store/modules/asf';
 
   export default {
     name: 'asf-releases',
@@ -68,7 +69,8 @@
         return this.$t('released-ago', { time });
       },
       isLatestForUpdateChannel(i) {
-        if ((this.updateChannel === 2 && i === 0) || (this.updateChannel === 1 && i === 1)) return true;
+        if (this.updateChannel === UPDATECHANNEL.EXPERIMENTAL && i === 0) return true;
+        if (this.updateChannel === UPDATECHANNEL.STABLE && i === 1) return true;
         return false;
       },
       isNewer(version) {
