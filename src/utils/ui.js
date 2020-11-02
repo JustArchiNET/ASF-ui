@@ -6,13 +6,13 @@ export const ui = { gitCommitHash: APP_HASH };
 
 async function isReleaseAvailable() {
   const updateChannel = (asf.updateChannel === UPDATECHANNEL.EXPERIMENTAL) ? 'releases' : 'releases/latest';
-  const latestReleaseRaw = await http.post('www/send', { url: `https://api.github.com/repos/JustArchiNET/ArchiSteamFarm/${updateChannel}` });
+  const response = await http.post('www/send', { url: `https://api.github.com/repos/JustArchiNET/ArchiSteamFarm/${updateChannel}` });
   set('last-checked-for-update', Date.now());
 
-  const latestReleaseVersion = JSON.parse(latestReleaseRaw);
-  if (!latestReleaseVersion) return false;
+  const latestRelease = JSON.parse(response);
+  if (!latestRelease) return false;
 
-  const latestVersion = (asf.updateChannel === UPDATECHANNEL.EXPERIMENTAL) ? latestReleaseVersion[0].tag_name : latestReleaseVersion.tag_name;
+  const latestVersion = (asf.updateChannel === UPDATECHANNEL.EXPERIMENTAL) ? latestRelease[0].tag_name : latestRelease.tag_name;
   set('latest-release', latestVersion);
 
   return (latestVersion > asf.version);
