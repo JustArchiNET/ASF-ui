@@ -7,11 +7,7 @@ export const ui = { gitCommitHash: APP_HASH };
 export async function newReleaseAvailable() {
   try {
     const lastChecked = get('last-checked-for-update');
-
-    if (lastChecked) {
-      const currentTimestamp = Date.now() - 60 * 60 * 1000;
-      if (lastChecked > currentTimestamp) return false;
-    }
+    if (lastChecked && (lastChecked > (Date.now() - 60 * 60 * 1000))) return false;
 
     const updateChannel = (asf.updateChannel === UPDATECHANNEL.EXPERIMENTAL) ? 'releases' : 'releases/latest';
     const latestReleaseRaw = await http.post('www/send', { url: `https://api.github.com/repos/JustArchiNET/ArchiSteamFarm/${updateChannel}` });
