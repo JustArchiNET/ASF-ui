@@ -1,4 +1,8 @@
 {
+  "2fa-accept": "Alle Bestätigungen akzeptieren",
+  "2fa-accept-success": "Alle Bestätigungen akzeptiert für {bot}!",
+  "2fa-reject": "Alle Bestätigungen ablehnen",
+  "2fa-reject-success": "Alle Bestätigungen für {bot} ablehnen!",
   "2fa-not-found": "Dieser Bot hat ASF 2FA nicht aktiviert! Erfahre mehr darüber <a href='https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Two-factor-authentication-de-DE#asf-2fa' target='_blank'>hier</a>.",
   "2fa-token-copied": "Code in Zwischenablage kopiert!",
   "2fa-token-copy": "Code in Zwischenablage kopieren",
