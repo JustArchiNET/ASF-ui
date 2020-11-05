@@ -131,6 +131,7 @@
   "refresh": "Actualizar estado",
   "released-ago": "Publicado hace {time}",
   "releases": "Versiones",
+  "releases-install": "Instalar esta versión",
   "releases-not-found": "¡No se encontraron versiones!",
   "remote-access": "Acceso Remoto",
   "reset": "Reiniciar",
