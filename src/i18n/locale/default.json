@@ -145,6 +145,7 @@
   "setup": "Setup",
   "setup-authenticated": "Everything configured. Redirecting...",
   "setup-description": "Please enter your IPC password",
+  "setup-gateway-timeout": "Lost connection to ASF. Trying to reconnect in {seconds} seconds.",
   "setup-not-connected": "Unable to connect to ASF IPC server. Make sure ASF is running!",
   "setup-rate-limited": "Seems like you are rate limited, restart ASF or try again in a while!",
   "shutdown": "Shutdown",

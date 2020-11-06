@@ -81,11 +81,17 @@
         this.$info(this.$t('update-trying'));
         const response = await this.$http.post('asf/update');
 
-        if (response.Success) {
+        if (!response.Success) return;
+
+        try {
           this.$success(this.$t('update-complete'));
           this.$info(this.$t('restart-initiated'));
           await waitForRestart();
           this.$success(this.$t('restart-complete'));
+        } catch (err) {
+          this.$error(err.message);
+          this.$router.push({ name: 'setup' });
+        } finally {
           window.location.reload();
         }
       },

@@ -7,6 +7,7 @@
       <p v-if="status === 'RATE_LIMITED'" class="status-text status-text--error">{{ $t('setup-rate-limited') }}</p>
       <p v-if="status === 'AUTHENTICATED'" class="status-text">{{ $t('setup-authenticated') }}</p>
       <p v-if="status === 'UNAUTHORIZED'" class="status-text">{{ $t('setup-description') }}</p>
+      <p v-if="status === 'GATEWAY_TIMEOUT'" class="status-text">{{ $t('setup-gateway-timeout', { seconds: retryInterval }) }}</p>
 
       <div v-if="status === 'UNAUTHORIZED'" class="form-item">
         <label for="password" class="form-item__label">{{ $t('password') }}</label>
@@ -28,6 +29,7 @@
 <script>
   import { mapGetters } from 'vuex';
   import { STATUS } from '../utils/getStatus';
+  import delay from '../utils/delay';
 
   export default {
     name: 'setup',
@@ -40,6 +42,7 @@
       return {
         password: this.$store.getters['auth/password'],
         processing: false,
+        retryInterval: 5,
       };
     },
     computed: {
@@ -53,6 +56,19 @@
             return this.$t('refresh');
         }
       },
+    },
+    watch: {
+      status() {
+        if (this.status === STATUS.AUTHENTICATED) this.redirect();
+      },
+    },
+    async mounted() {
+      if (this.status === STATUS.AUTHENTICATED) this.redirect();
+
+      while (this.status === STATUS.GATEWAY_TIMEOUT) {
+        await delay(this.retryInterval * 1000);
+        await this.refreshStatus();
+      }
     },
     methods: {
       async onButtonClick() {

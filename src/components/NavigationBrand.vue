@@ -99,7 +99,10 @@
             window.location.reload();
           }
         } catch (err) {
-          if (!err.result && !err.message.includes('≥')) throw err;
+          if (!err.result && !err.message.includes('≥')) {
+            this.$error(err.message);
+            this.$router.push({ name: 'setup' });
+          }
 
           const { remoteVersion, localVersion } = this.extractVersions(err);
 
@@ -117,11 +120,12 @@
           await waitForRestart();
           this.$success(this.$t('restart-complete'));
           this.brandMenu = false;
-          window.location.reload();
         } catch (err) {
           this.$error(err.message);
+          this.$router.push({ name: 'setup' });
         } finally {
           this.restarting = false;
+          window.location.reload();
         }
       },
       async shutdown() {

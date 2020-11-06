@@ -62,19 +62,15 @@ export const actions = {
   update: async ({ commit, rootGetters }) => {
     if (!rootGetters['auth/authenticated']) return;
 
-    try {
-      const response = await http.get('asf');
-      commit('updateMemoryUsage', response.MemoryUsage);
-      commit('updateStartTime', new Date(response.ProcessStartTime));
-      commit('updateVersion', response.Version);
-      commit('updateBuildVariant', response.BuildVariant);
-      commit('calculateUptime');
-      commit('updateUpdateChannel', response.GlobalConfig.UpdateChannel);
-      commit('updateSteamOwnerID', response.GlobalConfig.s_SteamOwnerID);
-      commit('updateHeadless', response.GlobalConfig.Headless);
-    } catch (err) {
-      console.warn(err.message);
-    }
+    const response = await http.get('asf');
+    commit('updateMemoryUsage', response.MemoryUsage);
+    commit('updateStartTime', new Date(response.ProcessStartTime));
+    commit('updateVersion', response.Version);
+    commit('updateBuildVariant', response.BuildVariant);
+    commit('calculateUptime');
+    commit('updateUpdateChannel', response.GlobalConfig.UpdateChannel);
+    commit('updateSteamOwnerID', response.GlobalConfig.s_SteamOwnerID);
+    commit('updateHeadless', response.GlobalConfig.Headless);
   },
   getSteamOwnerID: async ({ dispatch, getters }) => {
     await dispatch('update');
