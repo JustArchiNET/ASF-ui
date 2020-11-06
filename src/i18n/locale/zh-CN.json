@@ -83,7 +83,7 @@
   "input-info-login": "您还没有为此帐户设置用户名",
   "input-info-password": "您还没有为此帐户设置密码",
   "input-info-steamguard": "此帐户已启用 Steam 令牌",
-  "input-info-steamparentalcode": "此帐户已启用 Steam 家庭视图",
+  "input-info-steamparentalcode": "此帐户已启用 Steam 家庭监护",
   "input-info-twofactorauthentication": "此帐户已启用 Steam 手机验证器",
   "input-label-login": "Steam 用户名",
   "input-label-password": "Steam 密码",
