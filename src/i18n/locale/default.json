@@ -106,6 +106,7 @@
   "language-translation-medium": "{percent}% of selected language is translated!",
   "last-visited-page": "Last visited page",
   "log": "Log",
+  "mass-editor": "Mass editor",
   "multiple-games": "Multiple games",
   "name-description": "<code>string</code> type with no default value. This property is required and defines bot name - it's used for identification purpose inside ASF only. Must be unique for each bot.",
   "notification-position": "Notification position",

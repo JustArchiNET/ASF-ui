@@ -14,6 +14,7 @@
         <navigation-category-title :name="$t('configuration')"></navigation-category-title>
         <navigation-link :name="$t('ui-configuration')" icon="wrench" :to="{ name: 'ui-configuration' }"></navigation-link>
         <navigation-link :name="$t('global-config')" icon="edit" :to="{ name: 'global-config' }"></navigation-link>
+        <navigation-link :name="$t('mass-editor')" icon="paste" :to="{ name: 'mass-editor' }"></navigation-link>
       </div>
 
       <div class="navigation-category navigation-category--pull-bottom">
