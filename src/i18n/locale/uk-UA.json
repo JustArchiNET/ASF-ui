@@ -131,6 +131,7 @@
   "refresh": "Оновити статус",
   "released-ago": "Випущена {time} тому",
   "releases": "Версії",
+  "releases-changelog": "Наразі для цієї версії немає списку змін.",
   "releases-install": "Встановити цю версію",
   "releases-not-found": "Не знайдено жодної версії!",
   "remote-access": "Дистанційний доступ",
