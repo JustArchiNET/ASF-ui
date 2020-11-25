@@ -131,6 +131,7 @@
   "refresh": "Odśwież stan",
   "released-ago": "Wydano {time} temu",
   "releases": "Wydania",
+  "releases-changelog": "Obecnie nie ma dziennika zmian dla tej wersji.",
   "releases-install": "Zainstaluj tę wersję",
   "releases-not-found": "Nie znaleziono wydań!",
   "remote-access": "Dostęp Zdalny",

@@ -131,6 +131,7 @@
   "refresh": "Refresh status",
   "released-ago": "Released {time} ago",
   "releases": "Releases",
+  "releases-changelog": "There is currently no changelog available for this release.",
   "releases-install": "Install this version",
   "releases-not-found": "No releases found!",
   "remote-access": "Remote Access",

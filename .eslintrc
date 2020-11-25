@@ -99,10 +99,6 @@
       2,
       2
     ],
-    "vue/name-property-casing": [
-      2,
-      "kebab-case"
-    ],
     "vue/max-attributes-per-line": 0,
     "vue/html-self-closing": [
       2,

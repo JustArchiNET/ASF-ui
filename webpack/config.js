@@ -102,5 +102,6 @@ module.exports = {
         ws: true,
       },
     },
+    open: true,
   },
 };

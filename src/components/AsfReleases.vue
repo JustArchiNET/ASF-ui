@@ -130,7 +130,8 @@
         try {
           const release = await this.$http.get(`www/github/release/${version}`);
           const publishedAt = new Date(release.ReleasedAt);
-          const changelog = release.ChangelogHTML.replace(/<a href="/g, '<a target="_blank" href="');
+          let changelog = release.ChangelogHTML.replace(/<a href="/g, '<a target="_blank" href="');
+          if (!changelog) changelog = this.$t('releases-changelog');
           return {
             changelog,
             stable: release.Stable,

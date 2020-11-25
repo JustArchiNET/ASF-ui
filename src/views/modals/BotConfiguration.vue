@@ -104,7 +104,7 @@
         };
 
         this.fields = Object.keys(fields).map(key => ({
-          description: descriptions[key],
+          description: descriptions[key].replace(/<a href="/g, '<a target="_blank" href="'),
           ...fields[key],
           ...(extendedFields[key] || []),
         }));

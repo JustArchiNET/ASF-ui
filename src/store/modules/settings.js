@@ -3,7 +3,7 @@ import * as storage from '../../utils/storage';
 export const state = {
   defaultView: 'home',
   notificationPosition: 'rightBottom',
-  notifyRelease: 'false',
+  notifyRelease: true,
   nicknames: false,
   gameName: false,
   favButtons: 0,
@@ -28,7 +28,7 @@ export const actions = {
   init({ commit }) {
     commit('setDefaultView', storage.get('settings:default-view', 'home'));
     commit('setNotificationPosition', storage.get('settings:notification-position', 'rightBottom'));
-    commit('setNotifyRelease', storage.get('settings:notify-release', false));
+    commit('setNotifyRelease', storage.get('settings:notify-release', true));
     commit('setNicknames', storage.get('settings:nicknames', false));
     commit('setGameName', storage.get('settings:game-name', false));
     commit('setFavButtons', storage.get('settings:fav-buttons', 0));

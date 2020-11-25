@@ -4,7 +4,13 @@ import { set, get } from './storage';
 
 export const ui = { gitCommitHash: APP_HASH };
 
-async function isReleaseAvailable() {
+export async function isReleaseAvailable() {
+  const lastChecked = get('last-checked-for-update');
+  if (lastChecked && (lastChecked > (Date.now() - 60 * 60 * 1000))) {
+    const latestCachedVersion = get('latest-release');
+    return (latestCachedVersion > asf.version);
+  }
+
   const updateChannel = (asf.updateChannel === UPDATECHANNEL.EXPERIMENTAL) ? 'releases' : 'releases/latest';
   const response = await http.post('www/send', { url: `https://api.github.com/repos/JustArchiNET/ArchiSteamFarm/${updateChannel}` });
   set('last-checked-for-update', Date.now());
@@ -16,11 +22,4 @@ async function isReleaseAvailable() {
   set('latest-release', latestVersion);
 
   return (latestVersion > asf.version);
-}
-
-export async function newReleaseAvailable() {
-  const lastChecked = get('last-checked-for-update');
-  if (lastChecked && (lastChecked > (Date.now() - 60 * 60 * 1000))) return false;
-
-  return isReleaseAvailable();
 }

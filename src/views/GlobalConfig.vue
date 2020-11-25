@@ -48,7 +48,7 @@
         { name: this.$t('basic'), fields: ['SteamOwnerID'] },
         { name: this.$t('trade'), fields: ['MaxTradeHoldDuration'] },
         { name: this.$t('customization'), fields: ['AutoRestart', 'Blacklist', 'CommandPrefix', 'CurrentCulture', 'Statistics', 'SteamMessagePrefix'] },
-        { name: this.$t('remote-access'), fields: ['Headless', 'IPC', 'IPCPassword'] },
+        { name: this.$t('remote-access'), fields: ['Headless', 'IPC', 'IPCPassword', 'IPCPasswordFormat'] },
         { name: this.$t('connection'), fields: ['ConnectionTimeout', 'SteamProtocols', 'WebProxy', 'WebProxyPassword', 'WebProxyUsername'] },
         { name: this.$t('farming'), fields: ['FarmingDelay', 'IdleFarmingPeriod', 'MaxFarmingTime'] },
         { name: this.$t('performance'), fields: ['OptimizationMode', 'ConfirmationsLimiterDelay', 'GiftsLimiterDelay', 'InventoryLimiterDelay', 'LoginLimiterDelay', 'WebLimiterDelay'] },
@@ -87,7 +87,7 @@
       this.model = model;
 
       this.fields = Object.keys(fields).map(key => ({
-        description: descriptions[key],
+        description: descriptions[key].replace(/<a href="/g, '<a target="_blank" href="'),
         ...fields[key],
       }));
 

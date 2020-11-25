@@ -131,6 +131,7 @@
   "refresh": "Обновить статус",
   "released-ago": "Выпущена {time} назад",
   "releases": "Выпуски",
+  "releases-changelog": "Список изменений для данной версии на данный момент отсутствует.",
   "releases-install": "Установить эту версию",
   "releases-not-found": "Выпуски не найдены!",
   "remote-access": "Удалённый доступ",
