@@ -131,6 +131,7 @@
   "refresh": "Atualizar status",
   "released-ago": "Lançado há {time} atrás",
   "releases": "Versões",
+  "releases-changelog": "Não há registro atual de alterações disponíveis para esta versão.",
   "releases-install": "Instalar essa versão",
   "releases-not-found": "Nenhuma versão encontrada!",
   "remote-access": "Acesso remoto",
