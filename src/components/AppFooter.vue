@@ -7,7 +7,7 @@
     </div>
 
     <div v-if="authenticated" class="footer__statistic">
-      <font-awesome-icon v-if="releaseAvailable" class="footer__statistic-notify" :title="$t('update-available')" icon="exclamation" size="sm" @click="redirectToReleases"></font-awesome-icon>
+      <font-awesome-icon v-if="newReleaseAvailable" class="footer__statistic-notify" :title="$t('update-available')" icon="exclamation" size="sm" @click="redirectToReleases"></font-awesome-icon>
       <span class="footer__statistic-name">ASF</span>
       <span class="footer__statistic-value">{{ versionString }}</span>
     </div>
@@ -17,7 +17,7 @@
 <script>
   import { mapGetters } from 'vuex';
   import FooterLink from './FooterLink.vue';
-  import { ui, newReleaseAvailable } from '../utils/ui';
+  import { ui, isReleaseAvailable } from '../utils/ui';
   import delay from '../utils/delay';
   import { get } from '../utils/storage';
 
@@ -26,7 +26,7 @@
     components: { FooterLink },
     data() {
       return {
-        releaseAvailable: false,
+        newReleaseAvailable: false,
         uiHash: ui.gitCommitHash,
       };
     },
@@ -42,7 +42,7 @@
         return `${this.version} - ${this.buildVariant} - ${this.uiHash}`;
       },
       releaseUrl() {
-        const v = this.releaseAvailable ? get('latest-release') : this.version;
+        const v = this.newReleaseAvailable ? get('latest-release') : this.version;
         return `https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${v}`;
       },
     },
@@ -53,9 +53,8 @@
     methods: {
       async checkForNewRelease() {
         try {
-          const newVersionAvailable = await newReleaseAvailable();
-          this.releaseAvailable = newVersionAvailable;
-          if (newVersionAvailable && this.notifyRelease && this.$route.name !== 'releases') {
+          this.newReleaseAvailable = await isReleaseAvailable();
+          if (this.newReleaseAvailable && this.notifyRelease && this.$route.name !== 'releases') {
             const notification = this.$snotify.info(this.$t('update-available'), this.$t('info'));
             notification.on('click', toast => this.redirectToReleases());
           }

@@ -30,7 +30,7 @@
 
 <script>
   import { mapGetters, mapActions } from 'vuex';
-  import { newReleaseAvailable } from '../utils/ui';
+  import { isReleaseAvailable } from '../utils/ui';
   import waitForRestart from '../utils/waitForRestart';
 
   export default {
@@ -86,7 +86,7 @@
       async update() {
         try {
           this.$info(this.$t('update-check'));
-          const newVersionAvailable = await newReleaseAvailable();
+          const newVersionAvailable = await isReleaseAvailable();
           if (newVersionAvailable) this.$info(this.$t('update-trying'));
           const response = await this.$http.post('asf/update');
           this.brandMenu = false;
