@@ -107,6 +107,7 @@
   "last-visited-page": "Zuletzt besuchte Seite",
   "log": "Protokoll",
   "multiple-games": "Mehrere Spiele",
+  "name-description": "<code>String</code> Typ ohne Standardwert. Diese Eigenschaft ist erforderlich und definiert den Bot-Namen - er wird nur zur Identifizierung innerhalb von ASF verwendet. Muss für jeden Bot eindeutig sein.",
   "notification-position": "Benachrichtigungs-Position",
   "notification-position-center-bottom": "Mitte unten",
   "notification-position-center-top": "Mitte oben",
