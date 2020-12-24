@@ -67,6 +67,7 @@
   "default-page": "默认页面",
   "default-page-description": "设置一个页面为默认打开的页面。",
   "delete": "删除",
+  "description-not-found": "未找到该配置属性的描述。",
   "display-categories": "显示分类",
   "display-categories-description": "设置您是否需要按分类显示配置属性。",
   "download-raw-config": "下载原始配置文件",
