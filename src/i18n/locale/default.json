@@ -67,6 +67,7 @@
   "default-page": "Default page",
   "default-page-description": "Decide which page you want as your default.",
   "delete": "Delete",
+  "description-not-found": "No description found for this config property.",
   "display-categories": "Display categories",
   "display-categories-description": "Decide if you want config properties to be categorized.",
   "download-raw-config": "Download raw configuration file",
