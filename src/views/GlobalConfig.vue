@@ -87,7 +87,7 @@
       this.model = model;
 
       this.fields = Object.keys(fields).map(key => {
-        const description = (descriptions[key]) ? descriptions[key].replace(/<a href="/g, '<a target="_blank" href="') : this.$t('description-not-found');
+        const description = (!descriptions[key]) ? this.$t('description-not-found') : descriptions[key].replace(/<a href="/g, '<a target="_blank" href="');
         return { description, ...fields[key] };
       });
 
