@@ -12,7 +12,7 @@
       <div class="release__title">
         <span class="release__version">v{{ release.version }}</span>
         <span class="release__badge" :class="[release.stable ? 'release__badge--stable' : 'release__badge--prerelease']">{{ release.stable ? $t('stable') : $t('pre-release') }}</span>
-        <span v-if="updatesEnabled && isLatestForUpdateChannel(i) && isNewer(release.version)" class="release__badge release__badge--install" @click="update">{{ $t('releases-install') }}</span>
+        <span v-if="updatesEnabled && canUpdate && isLatestForUpdateChannel(i) && isNewer(release.version)" class="release__badge release__badge--install" @click="update">{{ $t('releases-install') }}</span>
         <span class="release__time">{{ getTimeText(release.publishedAt) }}</span>
       </div>
 
@@ -47,6 +47,7 @@
         version: 'asf/version',
         updateChannel: 'asf/updateChannel',
         updatesEnabled: 'asf/updatesEnabled',
+        canUpdate: 'asf/canUpdate',
       }),
       statusText() {
         if (this.error) return this.error;
