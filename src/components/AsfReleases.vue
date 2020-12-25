@@ -162,9 +162,10 @@
 		display: flex;
 		margin-top: 0;
 
-		@media screen and (max-width: 350px) {
+		@media screen and (max-width: 400px) {
 			align-items: flex-start;
 			flex-direction: column;
+      gap: 4px;
 		}
 	}
 
@@ -176,7 +177,7 @@
 	.release__time {
 		margin-left: auto;
 
-		@media screen and (max-width: 350px) {
+		@media screen and (max-width: 400px) {
 			margin-left: 0;
 		}
 	}
@@ -192,7 +193,7 @@
 		text-align: center;
 		vertical-align: baseline;
 
-		@media screen and (max-width: 350px) {
+		@media screen and (max-width: 400px) {
 			margin-left: 0;
 		}
 	}
