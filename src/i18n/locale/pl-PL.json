@@ -67,6 +67,7 @@
   "default-page": "Domyślna strona",
   "default-page-description": "Zdecyduj której strony chcesz używać jako domyślnej.",
   "delete": "Usuń",
+  "description-not-found": "Nie znaleziono opisu dla tej właściwości konfiguracji.",
   "display-categories": "Pokaż kategorie",
   "display-categories-description": "Zdecyduj czy chcesz skategoryzować właściwości konfiguracyjne.",
   "download-raw-config": "Pobierz plik konfiguracyjny",
