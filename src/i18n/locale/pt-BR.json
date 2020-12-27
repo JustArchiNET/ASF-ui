@@ -67,6 +67,7 @@
   "default-page": "Página padrão",
   "default-page-description": "Define a página padrão.",
   "delete": "Excluir",
+  "description-not-found": "Nenhuma descrição foi encontrada para esta propriedade de configuração.",
   "display-categories": "Exibir categorias",
   "display-categories-description": "Define se as propriedades de configuração devem ser categorizadas ou não.",
   "download-raw-config": "Baixar arquivo de configuração",
