@@ -4,6 +4,8 @@
       <div class="modal__background" @click.self="close"></div>
       <div class="modal__body">
         <font-awesome-icon icon="times" class="modal__close" @click="close"></font-awesome-icon>
+        <font-awesome-icon v-if="showArrows" icon="chevron-left" class="modal__arrow left" @click="next('left')"></font-awesome-icon>
+        <font-awesome-icon v-if="showArrows" icon="chevron-right" class="modal__arrow right" @click="next('right')"></font-awesome-icon>
         <div class="modal__main">
           <router-view ref="modal" name="modal"></router-view>
         </div>
@@ -13,11 +15,19 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex';
+
   export default {
     name: 'modal',
     computed: {
+      ...mapGetters({
+        bots: 'bots/bots',
+      }),
       isShown() {
         return !!this.$route.meta.modal;
+      },
+      showArrows() {
+        return !!this.$route.meta.arrows && this.bots.length > 1;
       },
     },
     created() {
@@ -40,6 +50,13 @@
           this.close();
           return e.preventDefault();
         }
+      },
+      next(direction) {
+        const currentIndex = this.bots.findIndex(bot => bot.name === this.$route.params.bot);
+        let targetBot;
+        if (direction === 'left') targetBot = (currentIndex === 0) ? this.bots[this.bots.length - 1] : this.bots[currentIndex - 1];
+        else if (direction === 'right') targetBot = (currentIndex === this.bots.length - 1) ? this.bots[0] : this.bots[currentIndex + 1];
+        this.$router.push({ name: this.$route.name, params: { bot: targetBot.name } });
       },
     },
   };
@@ -109,6 +126,22 @@
 		.modal__body {
 			opacity: 0;
 			transform: scale(0.75);
+		}
+	}
+
+	.modal__arrow {
+		color: var(--color-text-disabled);
+		cursor: pointer;
+		font-size: 1.5em;
+		position: absolute;
+		top: 50%;
+
+		&.left {
+			left: -1em;
+		}
+
+		&.right {
+			right: -1em;
 		}
 	}
 </style>
