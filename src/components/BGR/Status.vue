@@ -16,7 +16,7 @@
 
 <script>
   export default {
-    name: 'bgr-status',
+    name: 'BgrStatus',
     props: {
       usedKeys: Object,
       unusedKeys: Object,

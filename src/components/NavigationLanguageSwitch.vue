@@ -1,13 +1,13 @@
 <template>
   <div class="navigation__language-switch">
     <div class="navigation__button" @click="toggleLanguageMenu">
-      <font-awesome-icon class="navigation__language-icon" icon="language" fixed-width></font-awesome-icon>
+      <FontAwesomeIcon class="navigation__language-icon" icon="language" fixed-width></FontAwesomeIcon>
     </div>
 
     <transition name="navigation__language-picker">
       <div v-if="languageMenu" class="navigation__language-picker">
         <div v-for="locale in $i18n.availableLocales" :key="locale" class="navigation__language" :class="{ 'navigation__language--active': $i18n.locale === locale }" @click.prevent="changeLocale(locale)">
-          <flag :country="getFlagCountry(locale)" :title="locale"></flag>
+          <Flag :country="getFlagCountry(locale)" :title="locale"></Flag>
         </div>
       </div>
     </transition>
@@ -20,7 +20,7 @@
   import Flag from './utils/Flag.vue';
 
   export default {
-    name: 'navigation-language-switch',
+    name: 'NavigationLanguageSwitch',
     components: { Flag },
     computed: {
       ...mapGetters({

@@ -10,21 +10,21 @@
         <input class="form-item__input form-item__input-token" type="text" :value="token" readonly>
         <div class="form-item__buttons form-item__buttons--column">
           <button class="button button--helper" :title="$t('2fa-token-refresh')" @click="refreshToken">
-            <font-awesome-icon v-if="refreshing" icon="spinner" size="lg" spin></font-awesome-icon>
-            <font-awesome-icon v-else icon="redo-alt" size="lg"></font-awesome-icon>
+            <FontAwesomeIcon v-if="refreshing" icon="spinner" size="lg" spin></FontAwesomeIcon>
+            <FontAwesomeIcon v-else icon="redo-alt" size="lg"></FontAwesomeIcon>
           </button>
           <button class="button button--helper" :title="$t('2fa-token-copy')" @click="copyToken">
-            <font-awesome-icon icon="clipboard" size="lg"></font-awesome-icon>
+            <FontAwesomeIcon icon="clipboard" size="lg"></FontAwesomeIcon>
           </button>
         </div>
       </div>
       <div class="form-item__buttons form-item__buttons--center form-item__buttons--column">
         <button class="button button--confirm" @click="acceptConfirmations">
-          <font-awesome-icon v-if="accepting" icon="spinner" spin></font-awesome-icon>
+          <FontAwesomeIcon v-if="accepting" icon="spinner" spin></FontAwesomeIcon>
           <span v-else>{{ $t('2fa-accept') }}</span>
         </button>
         <button class="button button--cancel" @click="rejectConfirmations">
-          <font-awesome-icon v-if="rejecting" icon="spinner" spin></font-awesome-icon>
+          <FontAwesomeIcon v-if="rejecting" icon="spinner" spin></FontAwesomeIcon>
           <span v-else>{{ $t('2fa-reject') }}</span>
         </button>
       </div>
@@ -38,7 +38,7 @@
   import delay from '../../utils/delay';
 
   export default {
-    name: 'bot-2fa',
+    name: 'Bot2fa',
     data() {
       return {
         accepting: false,

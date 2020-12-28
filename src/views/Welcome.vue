@@ -28,7 +28,7 @@
   import { set } from '../utils/storage';
 
   export default {
-    name: 'welcome',
+    name: 'Welcome',
     metaInfo() {
       return {
         title: this.$t('welcome'),

@@ -19,7 +19,7 @@ library.add(faWrench, faBars, faLaptop, faUsers, faFileAlt, faTachometerAlt, faP
 
 export default {
   install(Vue) {
-    Vue.component('font-awesome-icon', FontAwesomeIcon);
-    Vue.component('font-awesome-layers', FontAwesomeLayers);
+    Vue.component('FontAwesomeIcon', FontAwesomeIcon);
+    Vue.component('FontAwesomeLayers', FontAwesomeLayers);
   },
 };

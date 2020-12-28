@@ -14,7 +14,7 @@
   import Input from './Input.vue';
 
   export default {
-    name: 'input-unknown',
+    name: 'InputUnknown',
     mixins: [Input],
   };
 </script>

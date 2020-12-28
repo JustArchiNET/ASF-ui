@@ -32,7 +32,7 @@
   import Input from './Input.vue';
 
   export default {
-    name: 'input-dictionary',
+    name: 'InputDictionary',
     mixins: [Input],
     data() {
       return {

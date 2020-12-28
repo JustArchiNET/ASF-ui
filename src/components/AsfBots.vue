@@ -1,10 +1,10 @@
 <template>
   <div class="bots">
-    <bot-card v-for="bot in bots" v-if="bot.isVisible(selectedBots)" :key="bot.name" :bot="bot"></bot-card>
+    <BotCard v-for="bot in bots" v-if="bot.isVisible(selectedBots)" :key="bot.name" :bot="bot"></BotCard>
 
     <router-link tag="div" :to="{ name: 'bot-create' }" class="bot-placeholder status--disabled" :class="{ 'bot-placeholder--big': selectedButtonsCount > 2 }">
       <div class="bot-placeholder__button bot-placeholder__button--add">
-        <font-awesome-icon icon="plus" class="bot-placeholder__icon"></font-awesome-icon>
+        <FontAwesomeIcon icon="plus" class="bot-placeholder__icon"></FontAwesomeIcon>
         <span class="bot-placeholder__name">{{ $t('bot-new') }}</span>
       </div>
     </router-link>
@@ -16,7 +16,7 @@
   import BotCard from './BotCard.vue';
 
   export default {
-    name: 'asf-bots',
+    name: 'AsfBots',
     components: { BotCard },
     computed: {
       ...mapGetters({

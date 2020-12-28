@@ -3,17 +3,17 @@
     <div class="container">
       <template v-if="loading">
         <h3 class="subtitle">
-          <font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
+          <FontAwesomeIcon icon="spinner" size="lg" spin></FontAwesomeIcon>
         </h3>
       </template>
       <template v-else>
-        <config-editor v-if="displayCategories" :fields="fields" :model="model" :categories="categories" :descriptions="descriptions"></config-editor>
-        <config-editor v-else :fields="fields" :model="model" :descriptions="descriptions"></config-editor>
+        <ConfigEditor v-if="displayCategories" :fields="fields" :model="model" :categories="categories" :descriptions="descriptions"></ConfigEditor>
+        <ConfigEditor v-else :fields="fields" :model="model" :descriptions="descriptions"></ConfigEditor>
 
         <div class="form-item">
           <div class="form-item__buttons">
             <button class="button button--confirm" @click="onSave">
-              <font-awesome-icon v-if="saving" icon="spinner" spin></font-awesome-icon>
+              <FontAwesomeIcon v-if="saving" icon="spinner" spin></FontAwesomeIcon>
               <span v-else>{{ $t('save') }}</span>
             </button>
 
@@ -36,7 +36,7 @@
   import waitForRestart from '../utils/waitForRestart';
 
   export default {
-    name: 'global-config',
+    name: 'GlobalConfig',
     metaInfo() {
       return {
         title: this.$t('global-config'),

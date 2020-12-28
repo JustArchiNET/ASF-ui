@@ -3,9 +3,9 @@
     <div v-if="isShown" class="modal">
       <div class="modal__background" @click.self="close"></div>
       <div class="modal__body">
-        <font-awesome-icon icon="times" class="modal__close" @click="close"></font-awesome-icon>
-        <font-awesome-icon v-if="showArrows" icon="chevron-left" class="modal__arrow left" @click="next('left')"></font-awesome-icon>
-        <font-awesome-icon v-if="showArrows" icon="chevron-right" class="modal__arrow right" @click="next('right')"></font-awesome-icon>
+        <FontAwesomeIcon icon="times" class="modal__close" @click="close"></FontAwesomeIcon>
+        <FontAwesomeIcon v-if="showArrows" icon="chevron-left" class="modal__arrow left" @click="next('left')"></FontAwesomeIcon>
+        <FontAwesomeIcon v-if="showArrows" icon="chevron-right" class="modal__arrow right" @click="next('right')"></FontAwesomeIcon>
         <div class="modal__main">
           <router-view ref="modal" name="modal"></router-view>
         </div>
@@ -18,7 +18,7 @@
   import { mapGetters } from 'vuex';
 
   export default {
-    name: 'modal',
+    name: 'Modal',
     computed: {
       ...mapGetters({
         bots: 'bots/bots',

@@ -33,7 +33,7 @@
   import Input from './Input.vue';
 
   export default {
-    name: 'input-set',
+    name: 'InputSet',
     mixins: [Input],
     data() {
       return {

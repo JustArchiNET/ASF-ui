@@ -21,7 +21,7 @@
   import Input from './Input.vue';
 
   export default {
-    name: 'input-boolean',
+    name: 'InputBoolean',
     mixins: [Input],
   };
 </script>

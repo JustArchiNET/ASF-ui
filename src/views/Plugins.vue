@@ -1,7 +1,7 @@
 <template>
   <main class="main-container main-container--fullheight">
     <div class="container">
-      <asf-plugins></asf-plugins>
+      <AsfPlugins></AsfPlugins>
     </div>
   </main>
 </template>
@@ -10,7 +10,7 @@
   import AsfPlugins from '../components/AsfPlugins.vue';
 
   export default {
-    name: 'plugins',
+    name: 'Plugins',
     metaInfo() {
       return {
         title: this.$t('plugins'),

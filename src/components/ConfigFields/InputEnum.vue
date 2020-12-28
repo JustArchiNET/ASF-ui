@@ -18,7 +18,7 @@
   import Input from './Input.vue';
 
   export default {
-    name: 'input-enum',
+    name: 'InputEnum',
     mixins: [Input],
     computed: {
       values() {
