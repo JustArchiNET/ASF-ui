@@ -31,10 +31,10 @@
       },
     },
     created() {
-      document.addEventListener('keydown', this.onEscapeClick);
+      document.addEventListener('keydown', this.onKeyPress);
     },
     beforeDestroy() {
-      document.removeEventListener('keydown', this.onEscapeClick);
+      document.removeEventListener('keydown', this.onKeyPress);
     },
     methods: {
       close() {
@@ -43,13 +43,16 @@
       back() {
         this.$router.push(this.$route.path.slice(0, this.$route.path.lastIndexOf('/')));
       },
-      onEscapeClick(e) {
+      onKeyPress(e) {
         const charCode = (e.which) ? e.which : e.keyCode;
 
         if (charCode === 27) {
           this.close();
           return e.preventDefault();
         }
+
+        if (charCode === 37) this.next('left');
+        if (charCode === 39) this.next('right');
       },
       next(direction) {
         const currentIndex = this.bots.findIndex(bot => bot.name === this.$route.params.bot);
