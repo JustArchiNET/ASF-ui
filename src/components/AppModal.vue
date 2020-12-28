@@ -31,10 +31,10 @@
       },
     },
     created() {
-      document.addEventListener('keydown', this.onKeyPress);
+      document.addEventListener('keyup', this.onKeyPress);
     },
     beforeDestroy() {
-      document.removeEventListener('keydown', this.onKeyPress);
+      document.removeEventListener('keyup', this.onKeyPress);
     },
     methods: {
       close() {
