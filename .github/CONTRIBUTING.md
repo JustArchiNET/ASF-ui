@@ -28,7 +28,7 @@ Bugs are tracked as [GitHub issues](https://guides.github.com/features/issues/).
 * **Describe the exact steps which reproduce the problem** in as many details as possible.
 * **Describe the behavior you observed after following the steps** and point out what exactly is the problem with that behavior.
 * **Explain which behavior you expected to see instead and why.**
-* **Include screenshots and animated GIFs** which show you following the described steps and clearly demonstrate the problem. You can use [this tool](https://www.cockos.com/licecap/) to record GIFs on macOS and Windows, and [this tool](https://github.com/colinkeenan/silentcast) or [this tool](https://github.com/GNOME/byzanz) on Linux. Try to avoid posting whole page screenshots. Instead, you should take a snippet of just the important part or if this is not possible, link to the screenshot with a detailed description.
+* **Include screenshots and animated GIFs** which show you following the described steps and clearly demonstrate the problem. Try to avoid posting whole page screenshots. Instead, you should take a snippet of just the important part or if this is not possible, link to the screenshot with a detailed description. You can use [this tool](https://www.cockos.com/licecap/) to record GIFs on macOS and Windows, and [this tool](https://github.com/colinkeenan/silentcast) or [this tool](https://github.com/GNOME/byzanz) on Linux.
 * **If the problem wasn't triggered by a specific action**, describe what you were doing before the problem happened and share more information using the guidelines below.
 
 Provide more context by answering these questions:
@@ -56,6 +56,6 @@ Feature requests are tracked as [GitHub issues](https://github.com/JustArchiNET/
 * **Use a clear and descriptive title** for the issue to identify the suggestion.
 * **Provide a step-by-step description of the suggested feature** in as many details as possible.
 * **Describe the current behavior** and **explain which behavior you expected to see instead** and why.
-* **Include screenshots and animated GIFs** which help you demonstrate the steps or point out the part of ASF-ui which the suggestion is related to. You can use [this tool](https://www.cockos.com/licecap/) to record GIFs on macOS and Windows, and [this tool](https://github.com/colinkeenan/silentcast) or [this tool](https://github.com/GNOME/byzanz) on Linux. Try to avoid posting whole page screenshots. Instead, you should take a snippet of just the important part or if this is not possible, link to the screenshot with a detailed description.
+* **Include screenshots and animated GIFs** which help you demonstrate the steps or point out the part of ASF-ui which the suggestion is related to. Try to avoid posting whole page screenshots. Instead, you should take a snippet of just the important part or if this is not possible, link to the screenshot with a detailed description. You can use [this tool](https://www.cockos.com/licecap/) to record GIFs on macOS and Windows, and [this tool](https://github.com/colinkeenan/silentcast) or [this tool](https://github.com/GNOME/byzanz) on Linux.
 * **Explain why this feature would be useful** to most ASF-ui users
 * **List some other interfaces or applications where this feature exists.**
