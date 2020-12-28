@@ -52,10 +52,11 @@
         }
       },
       next(direction) {
-        const currentIndex = this.bots.findIndex(bot => bot.name === this.$route.params.bot);
+        const { bots } = this;
+        const currentIndex = bots.findIndex(bot => bot.name === this.$route.params.bot);
         let targetBot;
-        if (direction === 'left') targetBot = (currentIndex === 0) ? this.bots[this.bots.length - 1] : this.bots[currentIndex - 1];
-        else if (direction === 'right') targetBot = (currentIndex === this.bots.length - 1) ? this.bots[0] : this.bots[currentIndex + 1];
+        if (direction === 'left') targetBot = (currentIndex === 0) ? bots[bots.length - 1] : bots[currentIndex - 1];
+        else if (direction === 'right') targetBot = (currentIndex === bots.length - 1) ? bots[0] : bots[currentIndex + 1];
         this.$router.push({ name: this.$route.name, params: { bot: targetBot.name } });
       },
     },
