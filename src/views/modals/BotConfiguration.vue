@@ -52,7 +52,7 @@
       ];
 
       return {
-        loading: true,
+        loading: false,
         saving: false,
         fields: [],
         model: {},
@@ -81,6 +81,10 @@
     },
     methods: {
       async loadConfig() {
+        if (this.loading) return;
+
+        this.loading = true;
+
         const [
           { body: fields },
           { [this.bot.name]: { BotConfig: model } },
