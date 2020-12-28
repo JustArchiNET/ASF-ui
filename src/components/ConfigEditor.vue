@@ -130,6 +130,7 @@
             return a.length === b.length && a.every((item, index) => item === b[index]);
           case 'dictionary':
             return Object.keys(a).length === Object.keys(b).length && Object.keys(a).every(key => a[key] === b[key]);
+            // no default
         }
 
         return false;

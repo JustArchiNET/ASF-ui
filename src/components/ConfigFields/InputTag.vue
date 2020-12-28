@@ -52,7 +52,7 @@
     },
     watch: {
       element(newValue, oldValue) {
-        if (isNaN(newValue)) this.element = oldValue;
+        if (Number.isNaN(newValue)) this.element = oldValue;
       },
     },
     methods: {

@@ -212,6 +212,7 @@
 
             return ['Private', 'FriendsOnly', 'Public']
               .find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
+          // no default
         }
       },
       selectedCommand() {
@@ -337,7 +338,6 @@
         const len = this.command.length;
 
         if (el.setSelectionRange) setTimeout(() => el.setSelectionRange(len, len), 0);
-        else this.command = this.command;
       },
       parseCommandsHTML(commandsWikiRaw) {
         const virtualDOM = createVirtualDOM(commandsWikiRaw);
