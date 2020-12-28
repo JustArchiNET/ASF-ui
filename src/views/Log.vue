@@ -1,7 +1,7 @@
 <template>
   <main class="main-container main-container--fullheight log">
     <div class="container">
-      <asf-log></asf-log>
+      <AsfLog></AsfLog>
     </div>
   </main>
 </template>
@@ -10,7 +10,7 @@
   import AsfLog from '../components/AsfLog.vue';
 
   export default {
-    name: 'log',
+    name: 'Log',
     metaInfo() {
       return {
         title: this.$t('log'),

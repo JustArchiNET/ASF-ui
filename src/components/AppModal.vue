@@ -3,7 +3,7 @@
     <div v-if="isShown" class="modal">
       <div class="modal__background" @click.self="close"></div>
       <div class="modal__body">
-        <font-awesome-icon icon="times" class="modal__close" @click="close"></font-awesome-icon>
+        <FontAwesomeIcon icon="times" class="modal__close" @click="close"></FontAwesomeIcon>
         <div class="modal__main">
           <router-view ref="modal" name="modal"></router-view>
         </div>
@@ -14,7 +14,7 @@
 
 <script>
   export default {
-    name: 'modal',
+    name: 'Modal',
     computed: {
       isShown() {
         return !!this.$route.meta.modal;

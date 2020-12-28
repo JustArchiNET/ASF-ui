@@ -19,7 +19,7 @@
   const commonDelimiters = [':', ';', '|', '-', ','];
 
   export default {
-    name: 'bgr-input',
+    name: 'BgrInput',
     data() {
       return {
         userInput: '',

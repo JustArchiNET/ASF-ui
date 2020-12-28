@@ -8,7 +8,7 @@
 	// https://github.com/robbeman/vue-fit-text
 
   export default {
-    name: 'fit-text',
+    name: 'FitText',
     props: {
       targetLineCount: {
         default: 1,

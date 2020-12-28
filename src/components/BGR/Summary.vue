@@ -5,7 +5,7 @@
     </h3>
 
     <div class="form-item">
-      <bgr-keys :keys="keys"></bgr-keys>
+      <BgrKeys :keys="keys"></BgrKeys>
     </div>
 
     <div class="form-item">
@@ -26,7 +26,7 @@
   import BgrKeys from './Keys.vue';
 
   export default {
-    name: 'bgr-summary',
+    name: 'BgrSummary',
     components: { BgrKeys },
     props: {
       keys: Object,

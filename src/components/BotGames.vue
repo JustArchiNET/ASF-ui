@@ -23,7 +23,7 @@
   import { mapGetters } from 'vuex';
 
   export default {
-    name: 'bot-games',
+    name: 'BotGames',
     props: {
       bot: Object,
     },

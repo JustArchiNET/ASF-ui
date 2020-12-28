@@ -20,27 +20,27 @@
       </div>
 
       <div class="bot-profile__actions">
-        <bot-link icon="wrench" :link="{ name: 'bot-config', params: { bot: bot.name } }" :title="$t('bot-fav-buttons-config')"></bot-link>
-        <bot-link icon="key" :link="{ name: 'bot-bgr', params: { bot: bot.name } }" :title="$t('bot-fav-buttons-bgr')"></bot-link>
-        <bot-link icon="lock" :link="{ name: 'bot-2fa', params: { bot: bot.name } }" :title="$t('bot-fav-buttons-2fa')"></bot-link>
+        <BotLink icon="wrench" :link="{ name: 'bot-config', params: { bot: bot.name } }" :title="$t('bot-fav-buttons-config')"></BotLink>
+        <BotLink icon="key" :link="{ name: 'bot-bgr', params: { bot: bot.name } }" :title="$t('bot-fav-buttons-bgr')"></BotLink>
+        <BotLink icon="lock" :link="{ name: 'bot-2fa', params: { bot: bot.name } }" :title="$t('bot-fav-buttons-2fa')"></BotLink>
 
-        <bot-action v-if="bot.paused && bot.active" icon="play" :title="$t('bot-resume-title', { bot: bot.name })" @click="resume"></bot-action>
-        <bot-action v-if="!bot.paused && bot.active" icon="pause" :title="$t('bot-pause-title', { bot: bot.name })" @click="pause"></bot-action>
+        <BotAction v-if="bot.paused && bot.active" icon="play" :title="$t('bot-resume-title', { bot: bot.name })" @click="resume"></BotAction>
+        <BotAction v-if="!bot.paused && bot.active" icon="pause" :title="$t('bot-pause-title', { bot: bot.name })" @click="pause"></BotAction>
 
-        <bot-action v-if="!bot.active" icon="power-off" :title="$t('bot-start-title', { bot: bot.name })" @click="start"></bot-action>
-        <bot-action v-if="bot.active" icon="power-off" :title="$t('bot-stop-title', { bot: bot.name })" @click="stop"></bot-action>
+        <BotAction v-if="!bot.active" icon="power-off" :title="$t('bot-start-title', { bot: bot.name })" @click="start"></BotAction>
+        <BotAction v-if="bot.active" icon="power-off" :title="$t('bot-stop-title', { bot: bot.name })" @click="stop"></BotAction>
 
-        <bot-link icon="trash" :link="{ name: 'bot-delete', params: { bot: bot.name } }" :title="$t('bot-delete-title', { bot: bot.name })" class="pull-right"></bot-link>
+        <BotLink icon="trash" :link="{ name: 'bot-delete', params: { bot: bot.name } }" :title="$t('bot-delete-title', { bot: bot.name })" class="pull-right"></BotLink>
       </div>
     </div>
 
     <div class="bot-farming-info">
-      <bot-farming-info :value="gamesRemaining" icon="gamepad"></bot-farming-info>
-      <bot-farming-info :value="timeRemaining" icon="clock"></bot-farming-info>
-      <bot-farming-info :value="cardsRemaining" icon="clone"></bot-farming-info>
+      <BotFarmingInfo :value="gamesRemaining" icon="gamepad"></BotFarmingInfo>
+      <BotFarmingInfo :value="timeRemaining" icon="clock"></BotFarmingInfo>
+      <BotFarmingInfo :value="cardsRemaining" icon="clone"></BotFarmingInfo>
     </div>
 
-    <bot-games :bot="bot"></bot-games>
+    <BotGames :bot="bot"></BotGames>
   </main>
 </template>
 
@@ -55,12 +55,12 @@
   import getUserInputType from '../../utils/getUserInputType';
 
   export default {
-    name: 'bot',
+    name: 'Bot',
     components: {
       BotAction, BotFarmingInfo, BotGames, BotLink,
     },
     computed: {
-      ...mapGetters({ 
+      ...mapGetters({
         nicknames: 'settings/nicknames',
         headless: 'asf/headless',
       }),

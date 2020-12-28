@@ -1,7 +1,7 @@
 <template>
   <div class="releases">
     <h3 v-if="loading && !statusText" class="subtitle">
-      <font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
+      <FontAwesomeIcon icon="spinner" size="lg" spin></FontAwesomeIcon>
     </h3>
 
     <h3 v-if="statusText" class="subtitle">
@@ -33,7 +33,7 @@
   import { UPDATECHANNEL } from '../store/modules/asf';
 
   export default {
-    name: 'asf-releases',
+    name: 'AsfReleases',
     data() {
       return {
         loading: true,

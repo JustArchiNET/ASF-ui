@@ -1,7 +1,7 @@
 <template>
   <main class="main-container main-container--fullheight bots-overview">
-    <asf-farming-info></asf-farming-info>
-    <asf-bots></asf-bots>
+    <AsfFarmingInfo></AsfFarmingInfo>
+    <AsfBots></AsfBots>
   </main>
 </template>
 
@@ -10,7 +10,7 @@
   import AsfBots from '../components/AsfBots.vue';
 
   export default {
-    name: 'bots-overview',
+    name: 'BotsOverview',
     metaInfo() {
       return {
         title: this.$t('bots'),

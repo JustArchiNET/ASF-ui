@@ -15,7 +15,7 @@
   import Input from './Input.vue';
 
   export default {
-    name: 'input-string',
+    name: 'InputString',
     mixins: [Input],
     methods: {
       onBlur() {

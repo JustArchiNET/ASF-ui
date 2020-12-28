@@ -1,9 +1,9 @@
 <template>
   <div class="bot-cards">
     <div v-for="(type, i) in botTypes" :key="i" class="bot-card" :class="[`status--${type}`, { 'bot-card--selected': selectedBots.includes(type) }]" @click.prevent="selectType(type)">
-      <fit-text ref="count" :max="1.2" class="bot-card__value">
+      <FitText ref="count" :max="1.2" class="bot-card__value">
         {{ count(type) }}
-      </fit-text>
+      </FitText>
       <span class="bot-card__name">{{ $t(`bot-status-${type}`) }}</span>
     </div>
   </div>
@@ -14,7 +14,7 @@
   import FitText from './utils/FitText.vue';
 
   export default {
-    name: 'navigation-bots',
+    name: 'NavigationBots',
     components: { FitText },
     data() {
       return {

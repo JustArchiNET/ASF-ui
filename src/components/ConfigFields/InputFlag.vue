@@ -29,7 +29,7 @@
   import Input from './Input.vue';
 
   export default {
-    name: 'input-flag',
+    name: 'InputFlag',
     mixins: [Input],
     data() {
       return {

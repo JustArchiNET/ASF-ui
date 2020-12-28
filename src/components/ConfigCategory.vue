@@ -9,7 +9,7 @@
 
 <script>
   export default {
-    name: 'config-category',
+    name: 'ConfigCategory',
     props: {
       name: String,
     },

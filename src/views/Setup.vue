@@ -16,7 +16,7 @@
       <div class="form-item">
         <div class="form-item__buttons form-item__buttons--center">
           <button class="button button--confirm" @click="onButtonClick">
-            <font-awesome-icon v-if="processing" icon="spinner" spin></font-awesome-icon>
+            <FontAwesomeIcon v-if="processing" icon="spinner" spin></FontAwesomeIcon>
             <span v-else>{{ buttonText }}</span>
           </button>
         </div>
@@ -30,7 +30,7 @@
   import { STATUS } from '../utils/getStatus';
 
   export default {
-    name: 'setup',
+    name: 'Setup',
     metaInfo() {
       return {
         title: this.$t('setup'),
