@@ -85,35 +85,39 @@
 
         this.loading = true;
 
-        const [
-          { body: fields },
-          { [this.bot.name]: { BotConfig: model } },
-          descriptions,
-        ] = await Promise.all([
-          fetchConfigSchema('ArchiSteamFarm.BotConfig'),
-          this.$http.get(`bot/${this.bot.name}`),
-          loadParameterDescriptions(this.version, this.$i18n.locale),
-        ]);
+        try {
+          const [
+            { body: fields },
+            { [this.bot.name]: { BotConfig: model } },
+            descriptions,
+          ] = await Promise.all([
+            fetchConfigSchema('ArchiSteamFarm.BotConfig'),
+            this.$http.get(`bot/${this.bot.name}`),
+            loadParameterDescriptions(this.version, this.$i18n.locale),
+          ]);
 
-        Object.keys(model).forEach(key => {
-          if (key.startsWith('s_')) delete model[key.substr(2)];
-        });
+          Object.keys(model).forEach(key => {
+            if (key.startsWith('s_')) delete model[key.substr(2)];
+          });
 
-        this.model = model;
+          this.model = model;
 
-        const extendedFields = {
-          SteamLogin: { placeholder: this.$t('keep-unchanged') },
-          SteamPassword: { placeholder: this.$t('keep-unchanged') },
-          SteamParentalCode: { placeholder: this.$t('keep-unchanged') },
-        };
+          const extendedFields = {
+            SteamLogin: { placeholder: this.$t('keep-unchanged') },
+            SteamPassword: { placeholder: this.$t('keep-unchanged') },
+            SteamParentalCode: { placeholder: this.$t('keep-unchanged') },
+          };
 
-        this.fields = Object.keys(fields).map(key => ({
-          description: descriptions[key].replace(/<a href="/g, '<a target="_blank" href="'),
-          ...fields[key],
-          ...(extendedFields[key] || []),
-        }));
-
-        this.loading = false;
+          this.fields = Object.keys(fields).map(key => ({
+            description: descriptions[key].replace(/<a href="/g, '<a target="_blank" href="'),
+            ...fields[key],
+            ...(extendedFields[key] || []),
+          }));
+        } catch (err) {
+          this.$error(err.message);
+        } finally {
+          this.loading = false;
+        }
       },
       async onSave() {
         if (this.saving) return;
