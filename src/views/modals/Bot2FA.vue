@@ -60,31 +60,21 @@
         await delay(30000); // Steam 2FA token is only valid for 30 seconds
         this.token = '-----';
       },
+      $route: {
+        immediate: true,
+        async handler() {
+          if (!this.bot.has2FA) {
+            this.has2FA = false;
+            return;
+          }
+
+          this.has2FA = true;
+          this.refreshToken();
+        },
+      },
     },
     async created() {
       if (!this.bot) this.$router.replace({ name: 'bots' });
-
-      if (!this.bot.has2FA) {
-        this.has2FA = false;
-        return;
-      }
-
-      this.refreshing = true;
-
-      try {
-        const bot = this.bot.name;
-        const response = await this.$http.get(`bot/${bot}/twoFactorAuthentication/token`);
-
-        if (response[bot].Result && response[bot].Success) {
-          this.token = response[bot].Result;
-        } else {
-          this.$error(response[bot].Message);
-        }
-      } catch (err) {
-        this.$error(err.message);
-      } finally {
-        this.refreshing = false;
-      }
     },
     methods: {
       async acceptConfirmations() {
