@@ -67,6 +67,7 @@
   "default-page": "Varsayılan sayfa",
   "default-page-description": "Varsayılan olmasını istediğiniz sayfaya karar ver.",
   "delete": "Sil",
+  "description-not-found": "Bu yapılandırma özelliği için açıklama yok.",
   "display-categories": "Kategorileri görüntüle",
   "display-categories-description": "Yapılandırma özelliklerini kategori haline getirmek isteyip istemediğine karar ver.",
   "download-raw-config": "Ham yapılandırma dosyasını indir",
