@@ -9,7 +9,7 @@
 
     <transition name="brand__menu">
       <div v-if="brandMenu && authenticated" class="brand__menu">
-        <div v-if="updatesEnabled" class="brand__menu-item" @click="update">
+        <div v-if="updatesEnabled && canUpdate" class="brand__menu-item" @click="update">
           <font-awesome-icon class="brand__menu-icon" icon="cloud-download-alt" fixed-width></font-awesome-icon>
           <span>{{ $t('update') }}</span>
         </div>
@@ -46,6 +46,7 @@
       version: 'asf/version',
       updatesEnabled: 'asf/updatesEnabled',
       sideMenu: 'layout/sideMenu',
+      canUpdate: 'asf/canUpdate',
     }),
     watch: {
       brandMenu(value) {
