@@ -16,7 +16,7 @@
   import { mapGetters } from 'vuex';
 
   export default {
-    name: 'asf-log',
+    name: 'AsfLog',
     data() {
       return {
         log: [],

@@ -67,6 +67,7 @@
   "default-page": "Página predeterminada",
   "default-page-description": "Decide qué página quieres establecer como predeterminada.",
   "delete": "Eliminar",
+  "description-not-found": "No se ha encontrado ninguna descripción para esta propiedad de configuración.",
   "display-categories": "Mostrar categorías",
   "display-categories-description": "Decide si quieres que las propiedades de configuración sean categorizadas.",
   "download-raw-config": "Descargar archivo de configuración en limpio",

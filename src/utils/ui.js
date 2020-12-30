@@ -2,6 +2,7 @@ import * as http from '../plugins/http';
 import { state as asf, UPDATECHANNEL } from '../store/modules/asf';
 import { set, get } from './storage';
 
+// eslint-disable-next-line no-undef
 export const ui = { gitCommitHash: APP_HASH };
 
 export async function isReleaseAvailable() {

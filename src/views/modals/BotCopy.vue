@@ -5,13 +5,13 @@
     <div class="container">
       <p class="container-description">{{ $t('bot-new-copy', {name: bot.name}) }}</p>
 
-      <config-editor v-if="displayCategories" :fields="fields" :model="model" :categories="categories"></config-editor>
-      <config-editor v-else :fields="fields" :model="model"></config-editor>
+      <ConfigEditor v-if="displayCategories" :fields="fields" :model="model" :categories="categories"></ConfigEditor>
+      <ConfigEditor v-else :fields="fields" :model="model"></ConfigEditor>
 
       <div class="form-item">
         <div class="form-item__buttons">
           <button class="button button--confirm" @click="onCreate">
-            <font-awesome-icon v-if="creating" icon="spinner" spin></font-awesome-icon>
+            <FontAwesomeIcon v-if="creating" icon="spinner" spin></FontAwesomeIcon>
             <span v-else>{{ $t('create') }}</span>
           </button>
 
@@ -32,7 +32,7 @@
   import { get } from '../../utils/storage';
 
   export default {
-    name: 'bot-copy',
+    name: 'BotCopy',
     components: { ConfigEditor },
     data() {
       const categories = [

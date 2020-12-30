@@ -13,14 +13,14 @@
 
     <div class="bot__actions">
       <router-link v-for="button in selectedButtons" v-if="button.name !== 'pause'" :key="button.name" :to="{ name: `bot-${button.name}`, params: { bot: bot.name } }">
-        <span class="bot__action"><font-awesome-icon :icon="button.icon"></font-awesome-icon></span>
+        <span class="bot__action"><FontAwesomeIcon :icon="button.icon"></FontAwesomeIcon></span>
       </router-link>
 
-      <span v-if="bot.paused && bot.active && isPauseButtonSelected" class="bot__action" @click="resume"><font-awesome-icon icon="play"></font-awesome-icon></span>
-      <span v-if="!bot.paused && bot.active && isPauseButtonSelected" class="bot__action" @click="pause"><font-awesome-icon icon="pause"></font-awesome-icon></span>
+      <span v-if="bot.paused && bot.active && isPauseButtonSelected" class="bot__action" @click="resume"><FontAwesomeIcon icon="play"></FontAwesomeIcon></span>
+      <span v-if="!bot.paused && bot.active && isPauseButtonSelected" class="bot__action" @click="pause"><FontAwesomeIcon icon="pause"></FontAwesomeIcon></span>
 
-      <span v-if="!bot.active" class="bot__action" @click="start"><font-awesome-icon icon="power-off"></font-awesome-icon></span>
-      <span v-if="bot.active" class="bot__action" @click="stop"><font-awesome-icon icon="power-off"></font-awesome-icon></span>
+      <span v-if="!bot.active" class="bot__action" @click="start"><FontAwesomeIcon icon="power-off"></FontAwesomeIcon></span>
+      <span v-if="bot.active" class="bot__action" @click="stop"><FontAwesomeIcon icon="power-off"></FontAwesomeIcon></span>
     </div>
   </div>
 </template>
@@ -37,7 +37,7 @@
   ];
 
   export default {
-    name: 'bot-card',
+    name: 'BotCard',
     props: {
       bot: Object,
     },
@@ -84,7 +84,7 @@
             this.$router.push({ name: 'bot-input', params: { bot: this.bot.name, type: inputType } });
             return;
           }
-          
+
           await this.$http.botAction(this.bot.name, 'start');
           await this.$store.dispatch('bots/updateBot', { name: this.bot.name, active: true });
         } catch (err) {

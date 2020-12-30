@@ -17,7 +17,7 @@
 
 <script>
   export default {
-    name: 'bgr-keys',
+    name: 'BgrKeys',
     props: { keys: Object },
     computed: {
       noKeys() {

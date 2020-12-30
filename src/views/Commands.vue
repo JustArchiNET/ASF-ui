@@ -4,7 +4,7 @@
       <div ref="terminal" class="terminal" @click="focusInput">
         <div v-for="({ type, time, message }, i) in log" :key="i" class="terminal-message">
           <span v-if="timestamps" class="terminal-message__time timestamp">[{{ time }}]</span>
-          <span class="terminal-message__sign" :class="`terminal-message__sign--${type}`" v-text="type === 'out' ? '>' : '<'" />
+          <span class="terminal-message__sign" :class="`terminal-message__sign--${type}`" v-text="type === 'out' ? '>' : '<'"></span>
           <span class="terminal-message__content">{{ message }}</span>
         </div>
         <div class="terminal__input-wrapper">
@@ -69,7 +69,7 @@
   }
 
   export default {
-    name: 'commands',
+    name: 'Commands',
     metaInfo() {
       return {
         title: this.$t('commands'),
@@ -212,6 +212,7 @@
 
             return ['Private', 'FriendsOnly', 'Public']
               .find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
+          // no default
         }
       },
       selectedCommand() {
@@ -337,7 +338,6 @@
         const len = this.command.length;
 
         if (el.setSelectionRange) setTimeout(() => el.setSelectionRange(len, len), 0);
-        else this.command = this.command;
       },
       parseCommandsHTML(commandsWikiRaw) {
         const virtualDOM = createVirtualDOM(commandsWikiRaw);

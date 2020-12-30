@@ -7,7 +7,7 @@
         <div class="form-item__input form-item__input--tag-wrapper" :class="{ 'form-item__input--focus': focus }">
           <button v-for="(item, index) in value" class="form-item__tag" @click.prevent="removeElement(index)">
             <span class="form-item__tag-value">{{ item }}</span>
-            <font-awesome-icon class="form-item__tag-remove" icon="times"></font-awesome-icon>
+            <FontAwesomeIcon class="form-item__tag-remove" icon="times"></FontAwesomeIcon>
           </button>
           <input v-model="element" class="form-item__input form-item__input--tag" type="text" @keydown="onKeyDown" @focus="onFocus" @blur="onBlur">
         </div>
@@ -27,7 +27,7 @@
   import validator from '../../utils/validator';
 
   export default {
-    name: 'input-tag',
+    name: 'InputTag',
     mixins: [Input],
     data() {
       return {
@@ -52,7 +52,7 @@
     },
     watch: {
       element(newValue, oldValue) {
-        if (isNaN(newValue)) this.element = oldValue;
+        if (Number.isNaN(newValue)) this.element = oldValue;
       },
     },
     methods: {

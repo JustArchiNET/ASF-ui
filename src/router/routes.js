@@ -72,7 +72,7 @@ export default [
 			default: () => import('../views/Bots.vue'),
 			modal: () => import('../views/modals/Bot.vue')
 		},
-		meta: { modal: true }
+		meta: { modal: true, arrows: true }
 	},
 	{
 		path: '/page/bot/:bot/config',
@@ -81,7 +81,7 @@ export default [
 			default: () => import('../views/Bots.vue'),
 			modal: () => import('../views/modals/BotConfiguration.vue')
 		},
-		meta: { modal: true }
+		meta: { modal: true, arrows: true }
 	},
 	{
 		path: '/page/bot/:bot/bgr',
@@ -90,7 +90,7 @@ export default [
 			default: () => import('../views/Bots.vue'),
 			modal: () => import('../views/modals/BotBGR.vue')
 		},
-		meta: { modal: true }
+		meta: { modal: true, arrows: true }
 	},
 	{
 		path: '/page/bot/:bot/2fa',
@@ -99,7 +99,7 @@ export default [
 			default: () => import('../views/Bots.vue'),
 			modal: () => import('../views/modals/Bot2FA.vue')
 		},
-		meta: { modal: true }
+		meta: { modal: true, arrows: true }
   },
   {
 		path: '/page/bot/:bot/input/:type',

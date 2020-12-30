@@ -33,7 +33,7 @@
   import Input from './Input.vue';
 
   export default {
-    name: 'input-list',
+    name: 'InputList',
     mixins: [Input],
     data() {
       return {

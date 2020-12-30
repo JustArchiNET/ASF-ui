@@ -23,9 +23,9 @@
     "eslint": "^7.16.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-vue": "^7.3.0",
+    "eslint-plugin-vue": "^7.4.0",
     "file-loader": "^6.2.0",
-    "sass": "^1.30.0",
+    "sass": "^1.32.0",
     "sass-loader": "^10.1.0",
     "url-loader": "^4.1.1",
     "vue-loader": "^15.9.6",
@@ -33,7 +33,7 @@
     "webpack": "^4.44.2",
     "webpack-bundle-analyzer": "^4.3.0",
     "webpack-cli": "^4.3.0",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.1"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",

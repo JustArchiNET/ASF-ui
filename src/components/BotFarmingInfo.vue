@@ -1,7 +1,7 @@
 <template>
   <div class="farming-info">
     <div class="farming-info__icon">
-      <font-awesome-icon :icon="icon"></font-awesome-icon>
+      <FontAwesomeIcon :icon="icon"></FontAwesomeIcon>
     </div>
 
     <p class="farming-info__value">
@@ -12,7 +12,7 @@
 
 <script>
   export default {
-    name: 'bot-farming-info',
+    name: 'BotFarmingInfo',
     props: {
       icon: String,
       value: {},

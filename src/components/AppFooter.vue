@@ -1,13 +1,13 @@
 <template>
   <footer class="footer">
     <div class="footer__links">
-      <footer-link name="GitHub" prefix="fab" icon="github" to="https://github.com/JustArchiNET"></footer-link>
-      <footer-link :name="$t('wiki')" icon="book-open" to="https://github.com/JustArchiNET/ArchiSteamFarm/wiki"></footer-link>
-      <footer-link v-if="authenticated" :name="$t('changelog')" icon="calendar-check" :to="releaseUrl"></footer-link>
+      <FooterLink name="GitHub" prefix="fab" icon="github" to="https://github.com/JustArchiNET"></FooterLink>
+      <FooterLink :name="$t('wiki')" icon="book-open" to="https://github.com/JustArchiNET/ArchiSteamFarm/wiki"></FooterLink>
+      <FooterLink v-if="authenticated" :name="$t('changelog')" icon="calendar-check" :to="releaseUrl"></FooterLink>
     </div>
 
     <div v-if="authenticated" class="footer__statistic">
-      <font-awesome-icon v-if="newReleaseAvailable" class="footer__statistic-notify" :title="$t('update-available')" icon="exclamation" size="sm" @click="redirectToReleases"></font-awesome-icon>
+      <FontAwesomeIcon v-if="newReleaseAvailable" class="footer__statistic-notify" :title="$t('update-available')" icon="exclamation" size="sm" @click="redirectToReleases"></FontAwesomeIcon>
       <span class="footer__statistic-name">ASF</span>
       <span class="footer__statistic-value">{{ versionString }}</span>
     </div>
@@ -22,7 +22,7 @@
   import { get } from '../utils/storage';
 
   export default {
-    name: 'app-footer',
+    name: 'AppFooter',
     components: { FooterLink },
     data() {
       return {

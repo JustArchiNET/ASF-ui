@@ -4,17 +4,17 @@
     <h2 v-else class="title">{{ bot.name }}</h2>
 
     <h3 v-if="loading" class="subtitle">
-      <font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
+      <FontAwesomeIcon icon="spinner" size="lg" spin></FontAwesomeIcon>
     </h3>
 
     <div v-else class="container">
-      <config-editor v-if="displayCategories" :fields="fields" :model="model" :categories="categories"></config-editor>
-      <config-editor v-else :fields="fields" :model="model"></config-editor>
+      <ConfigEditor v-if="displayCategories" :fields="fields" :model="model" :categories="categories"></ConfigEditor>
+      <ConfigEditor v-else :fields="fields" :model="model"></ConfigEditor>
 
       <div class="form-item">
         <div class="form-item__buttons">
           <button class="button button--confirm" @click="onSave">
-            <font-awesome-icon v-if="saving" icon="spinner" spin></font-awesome-icon>
+            <FontAwesomeIcon v-if="saving" icon="spinner" spin></FontAwesomeIcon>
             <span v-else>{{ $t('save') }}</span>
           </button>
           <router-link tag="button" class="button button--confirm" :to="{ name: 'bot-copy', params: { bot: bot.name } }">
@@ -38,7 +38,7 @@
   import prepareModelToDownload from '../../utils/prepareModelToDownload';
 
   export default {
-    name: 'bot-config',
+    name: 'BotConfig',
     components: { ConfigEditor },
     data() {
       const categories = [
@@ -52,7 +52,7 @@
       ];
 
       return {
-        loading: true,
+        loading: false,
         saving: false,
         fields: [],
         model: {},
@@ -81,35 +81,43 @@
     },
     methods: {
       async loadConfig() {
-        const [
-          { body: fields },
-          { [this.bot.name]: { BotConfig: model } },
-          descriptions,
-        ] = await Promise.all([
-          fetchConfigSchema('ArchiSteamFarm.BotConfig'),
-          this.$http.get(`bot/${this.bot.name}`),
-          loadParameterDescriptions(this.version, this.$i18n.locale),
-        ]);
+        if (this.loading) return;
 
-        Object.keys(model).forEach(key => {
-          if (key.startsWith('s_')) delete model[key.substr(2)];
-        });
+        this.loading = true;
 
-        this.model = model;
+        try {
+          const [
+            { body: fields },
+            { [this.bot.name]: { BotConfig: model } },
+            descriptions,
+          ] = await Promise.all([
+            fetchConfigSchema('ArchiSteamFarm.BotConfig'),
+            this.$http.get(`bot/${this.bot.name}`),
+            loadParameterDescriptions(this.version, this.$i18n.locale),
+          ]);
 
-        const extendedFields = {
-          SteamLogin: { placeholder: this.$t('keep-unchanged') },
-          SteamPassword: { placeholder: this.$t('keep-unchanged') },
-          SteamParentalCode: { placeholder: this.$t('keep-unchanged') },
-        };
+          Object.keys(model).forEach(key => {
+            if (key.startsWith('s_')) delete model[key.substr(2)];
+          });
 
-        this.fields = Object.keys(fields).map(key => ({
-          description: descriptions[key].replace(/<a href="/g, '<a target="_blank" href="'),
-          ...fields[key],
-          ...(extendedFields[key] || []),
-        }));
+          this.model = model;
 
-        this.loading = false;
+          const extendedFields = {
+            SteamLogin: { placeholder: this.$t('keep-unchanged') },
+            SteamPassword: { placeholder: this.$t('keep-unchanged') },
+            SteamParentalCode: { placeholder: this.$t('keep-unchanged') },
+          };
+
+          this.fields = Object.keys(fields).map(key => ({
+            description: descriptions[key].replace(/<a href="/g, '<a target="_blank" href="'),
+            ...fields[key],
+            ...(extendedFields[key] || []),
+          }));
+        } catch (err) {
+          this.$error(err.message);
+        } finally {
+          this.loading = false;
+        }
       },
       async onSave() {
         if (this.saving) return;
