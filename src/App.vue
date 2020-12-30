@@ -57,6 +57,12 @@
         immediate: true,
         handler: value => {
           document.body.style.overflowY = value.meta.modal ? 'hidden' : 'auto';
+
+          const app = document.getElementsByClassName('app')[0];
+          if (!app) return;
+
+          if (value.meta.modal) app.classList.add('app--modal');
+          else app.classList.remove('app--modal');
         },
       },
     },

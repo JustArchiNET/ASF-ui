@@ -229,6 +229,10 @@
 	display: flex;
 	flex-flow: row wrap;
 	margin-left: -0.5em;
+
+	.app--modal & {
+		max-width: 450px;
+	}
 }
 
 .button.input-option__item {
