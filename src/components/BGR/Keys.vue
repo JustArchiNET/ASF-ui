@@ -7,7 +7,7 @@
         <th>Game</th>
         <th>Key</th>
       </tr>
-      <tr v-for="(name, key) in keys" class="key">
+      <tr v-for="(name, key) in keys" :key="key" class="key">
         <td>{{ name }}</td>
         <td>{{ key }}</td>
       </tr>

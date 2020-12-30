@@ -5,7 +5,7 @@
     <div class="form-item__value">
       <div class="input-option__field">
         <div class="form-item__input form-item__input--tag-wrapper" :class="{ 'form-item__input--focus': focus }">
-          <button v-for="(item, index) in value" class="form-item__tag" @click.prevent="removeElement(index)">
+          <button v-for="(item, index) in value" :key="index" class="form-item__tag" @click.prevent="removeElement(index)">
             <span class="form-item__tag-value">{{ item }}</span>
             <FontAwesomeIcon class="form-item__tag-remove" icon="times"></FontAwesomeIcon>
           </button>

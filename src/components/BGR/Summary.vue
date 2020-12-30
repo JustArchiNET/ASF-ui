@@ -41,11 +41,11 @@
       copyKeys() {
         let keys = '';
 
-        for (const key in this.keys) {
+        this.keys.forEach(key => {
           if (Object.prototype.hasOwnProperty.call(this.keys, key)) {
             keys += `${this.keys[key]}\t${key}\n`;
           }
-        }
+        });
 
         copy(keys);
         this.$info(this.$t('keys-copied'));

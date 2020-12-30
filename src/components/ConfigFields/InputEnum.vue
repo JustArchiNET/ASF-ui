@@ -4,7 +4,7 @@
 
     <div class="form-item__value">
       <select :id="field" v-model="value" class="form-item__input" :name="field">
-        <option v-for="(enumValue, name) in values" v-if="!(name === 'Max' && isLastValue(enumValue))" :value="enumValue">
+        <option v-for="(enumValue, name) in values" v-if="!(name === 'Max' && isLastValue(enumValue))" :key="name" :value="enumValue">
           {{ name }}
         </option>
       </select>

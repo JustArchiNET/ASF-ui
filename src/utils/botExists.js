@@ -1,7 +1,5 @@
 export default function botExists(bots, name) {
-  for (const bot of bots) {
-    if (bot.name === name) return true;
-  }
-
+  const targetBot = bots.filter(bot => bot.name === name);
+  if (targetBot.length > 0) return true;
   return false;
 }

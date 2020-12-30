@@ -5,7 +5,7 @@
     <div class="form-item__value">
       <div class="input-option__field">
         <select :id="field" v-model="element" class="form-item__input" :disabled="!availableEnumValues.length">
-          <option v-for="(enumValue, name) in enumValues" v-show="!value.includes(enumValue)" :value="enumValue">
+          <option v-for="(enumValue, name) in enumValues" v-show="!value.includes(enumValue)" :key="name" :value="enumValue">
             {{ name }}
           </option>
           <option v-if="!availableEnumValues.length" :value="undefined" disabled>
@@ -19,7 +19,7 @@
       </div>
 
       <div class="input-option__items">
-        <button v-for="(item, index) in value" class="button input-option__item" @click.prevent="removeElement(index)">
+        <button v-for="(item, index) in value" :key="index" class="button input-option__item" @click.prevent="removeElement(index)">
           {{ resolveOption(item) }}
         </button>
       </div>
@@ -44,10 +44,10 @@
       availableEnumValues() {
         const availableEnumValues = [];
 
-        for (const key of Object.keys(this.enumValues)) {
-          if (this.value.includes(this.enumValues[key])) continue;
+        Object.keys(this.enumValues).forEach(key => {
+          if (this.value.includes(this.enumValues[key])) return;
           availableEnumValues.push(this.enumValues[key]);
-        }
+        });
 
         return availableEnumValues;
       },

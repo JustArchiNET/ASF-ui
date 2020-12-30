@@ -69,7 +69,8 @@ async function unwindObject(type, typeDefinition) {
     Promise.all(Object.keys(typeDefinition.Body).map(async param => ({ param, type: await resolveType(typeDefinition.Body[param]) }))),
   ]);
 
-  for (const { param, type } of resolvedTypes) {
+  resolvedTypes.forEach(resolvedType => {
+    const { param, type } = resolvedType;
     const paramName = typeDefinition.Body[param] !== 'System.UInt64' ? param : `s_${param}`;
 
     resolvedStructure.body[param] = {
@@ -78,7 +79,7 @@ async function unwindObject(type, typeDefinition) {
       param,
       ...type,
     };
-  }
+  });
 
   return resolvedStructure;
 }
@@ -86,9 +87,9 @@ async function unwindObject(type, typeDefinition) {
 function parseEnumValues(rawValues) {
   const enumValues = {};
 
-  for (const key of Object.keys(rawValues)) {
+  Object.keys(rawValues).forEach(key => {
     enumValues[key] = parseInt(rawValues[key], 10);
-  }
+  });
 
   return enumValues;
 }

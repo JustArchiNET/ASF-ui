@@ -1,6 +1,6 @@
 <template>
   <div ref="terminal" class="terminal">
-    <div v-for="{ type, message } in log" class="terminal-message terminal-message--truncated">
+    <div v-for="{ type, message, index } in log" :key="index" class="terminal-message terminal-message--truncated">
       <span class="terminal-message__content">
         <span class="terminal-message__time">[{{ message.time.toLocaleTimeString() }}]</span>
         <span class="terminal-message__level" :class="`terminal-message__level--${message.level.toLowerCase()}`">{{ message.level }}</span>
