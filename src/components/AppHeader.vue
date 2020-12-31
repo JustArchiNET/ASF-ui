@@ -55,7 +55,8 @@
       },
       onWindowClick($e) {
         const path = $e.path || $e.composedPath();
-        if (path.includes(this.$el)) return;
+        const sideMenu = document.getElementById('side-menu');
+        if (path.includes(this.$el) || path.includes(sideMenu)) return;
         this.toggleSideMenu();
       },
     },

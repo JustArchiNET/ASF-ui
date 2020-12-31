@@ -1,5 +1,5 @@
 <template>
-  <aside class="side-menu" :class="{ 'side-menu--hidden': !sideMenu }">
+  <aside id="side-menu" class="side-menu" :class="{ 'side-menu--hidden': !sideMenu }">
     <SideMenuSwitch class="side-menu__switch--boxed" :name="$t('sidebar-boxed-layout')" icon="square" :checked="boxedLayout" @click="toggleBoxed"></SideMenuSwitch>
     <SideMenuSwitch :name="$t('sidebar-dark-mode')" icon="moon" :checked="darkMode" @click="toggleDarkMode"></SideMenuSwitch>
 
