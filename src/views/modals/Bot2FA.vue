@@ -87,7 +87,9 @@
           const response = await this.$http.post(`bot/${bot}/twoFactorAuthentication/confirmations`, { accept: true });
 
           if (response[bot].Success) {
-            this.$success(this.$t('2fa-accept-success', { bot }));
+            const count = response[bot].Message.match(/\d+/)[0];
+            if (count === '0') this.$info(this.$t('2fa-accept-not-found'));
+            else this.$success(this.$t('2fa-accept-success', { bot, n: count }));
           } else {
             this.$error(response[bot].Message);
           }
@@ -107,7 +109,9 @@
           const response = await this.$http.post(`bot/${bot}/twoFactorAuthentication/confirmations`, { accept: false });
 
           if (response[bot].Success) {
-            this.$success(this.$t('2fa-reject-success', { bot }));
+            const count = response[bot].Message.match(/\d+/)[0];
+            if (count === '0') this.$info(this.$t('2fa-reject-not-found'));
+            else this.$success(this.$t('2fa-reject-success', { bot, n: count }));
           } else {
             this.$error(response[bot].Message);
           }
