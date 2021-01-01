@@ -1,8 +1,6 @@
 {
   "2fa-accept": "Tüm onaylamaları kabul et",
-  "2fa-accept-success": "{bot} için tüm onaylamalar kabul edildi!",
   "2fa-reject": "Tüm onaylamaları reddet",
-  "2fa-reject-success": "{bot} için tüm onaylamalar reddedildi!",
   "2fa-not-found": "Bu botta ASF 2FA etkin değil! <a href='https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Two-factor-authentication#asf-2fa' target='_blank'>Buradan</a> daha fazlasını öğrenin.",
   "2fa-token-copied": "Belirteç panoya kopyalandı!",
   "2fa-token-copy": "Belirteci panoya kopyala",

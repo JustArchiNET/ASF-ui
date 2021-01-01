@@ -1,8 +1,10 @@
 {
   "2fa-accept": "接受所有确认",
-  "2fa-accept-success": "已接受 {bot} 的所有确认！",
+  "2fa-accept-not-found": "没有可接受的确认！",
+  "2fa-accept-success": "已为 {bot} 接受 {n} 项确认！",
   "2fa-reject": "拒绝所有确认",
-  "2fa-reject-success": "已拒绝 {bot} 的所有确认！",
+  "2fa-reject-not-found": "没有可拒绝的确认！",
+  "2fa-reject-success": "已为 {bot} 拒绝 {n} 项确认！",
   "2fa-not-found": "此机器人未启用 ASF 2FA！点击<a href='https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Two-factor-authentication-zh-CN#asf-两步验证' target='_blank'>此处</a>了解更多。",
   "2fa-token-copied": "已将令牌复制到剪贴板！",
   "2fa-token-copy": "复制令牌到剪贴板",

@@ -1,4 +1,8 @@
 {
+  "2fa-accept-not-found": "Il n'y a pas de confirmation à accepter !",
+  "2fa-accept-success": "{PLURAL:n|{n} confirmation a été acceptée|{n} confirmations ont été acceptées} pour {bot} !",
+  "2fa-reject-not-found": "Il n'y a pas de confirmation à rejeter !",
+  "2fa-reject-success": "{PLURAL:n|{n} confirmation a été rejetée|{n} confirmations ont été rejetées} pour {bot} !",
   "2fa-token-copied": "Le jeton a été copié dans le presse-papier !",
   "2fa-token-copy": "Copier le jeton dans le presse-papier",
   "2fa-token-refresh": "Actualiser le jeton 2FA",

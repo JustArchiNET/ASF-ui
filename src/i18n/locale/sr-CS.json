@@ -1,8 +1,6 @@
 {
   "2fa-accept": "Prihvati sve potvrde",
-  "2fa-accept-success": "Sve potvrde prihvaćene za {bot}!",
   "2fa-reject": "Odbij sve potvrde",
-  "2fa-reject-success": "Sve potvrde odbijene za {bot}!",
   "2fa-not-found": "Ovaj bot nema omogućen ASF 2FA! Vidite više o tome <a href='https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Two-factor-authentication#asf-2fa' target='_blank'>ovdje</a>.",
   "2fa-token-copied": "Token je kopiran!",
   "2fa-token-copy": "Kopiraj token",

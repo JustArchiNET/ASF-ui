@@ -1,8 +1,6 @@
 {
   "2fa-accept": "Priimkite visus patvirtinimus",
-  "2fa-accept-success": "Visi patvirtinimai priimti robotui {bot}!",
   "2fa-reject": "Atmeskite visus patvirtinimus",
-  "2fa-reject-success": "Visi patvirtinimai atmesti robotui {bot}!",
   "2fa-not-found": "Šis robotas neturi ASF 2FA įjungtos autentifikacijos! Daugiau galite paskaityti <a href='https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Two-factor-authentication#asf-2fa' target='_blank'>čia</a>.",
   "2fa-token-copied": "Ženklas nukopijuotas į iškarpinę!",
   "2fa-token-copy": "Nukopijuokite ženklą į iškarpinę",

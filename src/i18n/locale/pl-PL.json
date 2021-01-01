@@ -1,8 +1,10 @@
 {
   "2fa-accept": "Zaakceptuj wszystkie potwierdzenia",
-  "2fa-accept-success": "Wszystkie potwierdzenia zaakceptowane dla {bot}!",
+  "2fa-accept-not-found": "Brak potwierdzeń do zaakceptowania!",
+  "2fa-accept-success": "{PLURAL:n|{n} potwierdzenie zostało|{n} potwierdzenia zostały} zaakceptowane dla {bot}!",
   "2fa-reject": "Odrzuć wszystkie potwierdzenia",
-  "2fa-reject-success": "Wszystkie potwierdzenia odrzucone dla {bot}!",
+  "2fa-reject-not-found": "Brak potwierdzeń do odrzucenia!",
+  "2fa-reject-success": "{PLURAL:n|{n} potwierdzenie zostało|{n} potwierdzenia zostały} odrzucone dla {bot}!",
   "2fa-not-found": "Ten bot nie ma włączonego ASF 2FA! Dowiedz się o tym więcej <a href='https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Two-factor-authentication#asf-2fa' target='_blank'>tutaj</a>.",
   "2fa-token-copied": "Skopiowano token do schowka!",
   "2fa-token-copy": "Skopiuj token do schowka",

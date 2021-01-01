@@ -1,6 +1,5 @@
 {
   "2fa-accept": "Prijmite všetky potvrdenia",
-  "2fa-accept-success": "Všetky potvrdenia prijaté pre {bot}!",
   "2fa-reject": "Odmietnuť všetky potvrdenia",
   "2fa-not-found": "Tento bot nemá povolené ASF 2FA! Získajte viac informácií <a href='https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Two-factor-authentication#asf-2fa' target='_blank'>tu</a>.",
   "2fa-token-copied": "\nSkopírovaný token do schránky!",

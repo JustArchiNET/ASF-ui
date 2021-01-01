@@ -1,8 +1,6 @@
 {
   "2fa-accept": "Acceptă toate confirmările",
-  "2fa-accept-success": "Toate tranzacțiile acceptate pentru {bot}!",
   "2fa-reject": "Respinge toate confirmările",
-  "2fa-reject-success": "Toate confirmările au fost respinse pentru {bot}!",
   "2fa-not-found": "Acest bot nu are ASF 2FA activat! Află mai multe despre el <a href='https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Two-factor-authentication#asf-2fa' target='_blank'>aici</a>.",
   "2fa-token-copied": "Token copiat în clipboard!",
   "2fa-token-copy": "Copiază token-ul în clipboard",
