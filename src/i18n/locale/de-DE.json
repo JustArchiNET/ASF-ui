@@ -1,6 +1,10 @@
 {
   "2fa-accept": "Alle Bestätigungen akzeptieren",
+  "2fa-accept-not-found": "Es gibt keine Bestätigungen zu akzeptieren!",
+  "2fa-accept-success": "{PLURAL:n|{n} Bestätigung wurde|{n} Bestätigungen wurden} für {bot} akzeptiert!",
   "2fa-reject": "Alle Bestätigungen ablehnen",
+  "2fa-reject-not-found": "Es gibt keine Bestätigungen zum Ablehnen!",
+  "2fa-reject-success": "{PLURAL:n|{n} Bestätigung wurde|{n} Bestätigungen wurden} für {bot} abgelehnt!",
   "2fa-not-found": "Dieser Bot hat ASF 2FA nicht aktiviert! Erfahre mehr darüber <a href='https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Two-factor-authentication-de-DE#asf-2fa' target='_blank'>hier</a>.",
   "2fa-token-copied": "Code in Zwischenablage kopiert!",
   "2fa-token-copy": "Code in Zwischenablage kopieren",
@@ -65,6 +69,7 @@
   "default-page": "Standard-Seite",
   "default-page-description": "Entscheide, welche Seite du als Standard verwenden möchtest.",
   "delete": "Löschen",
+  "description-not-found": "Keine Beschreibung für diese Konfig-Eigenschaft gefunden.",
   "display-categories": "Kategorien anzeigen",
   "display-categories-description": "Entscheide, ob Konfigurationseigenschaften kategorisiert werden sollen.",
   "download-raw-config": "Unbearbeitete Konfigurationsdatei herunterladen",

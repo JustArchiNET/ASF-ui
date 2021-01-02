@@ -1,6 +1,10 @@
 {
   "2fa-accept": "Aceitar todas as confirmações",
+  "2fa-accept-not-found": "Não há confirmações para aceitar!",
+  "2fa-accept-success": "{PLURAL:n|{n} confirmação foi aceita|{n} confirmações foram aceitas} para o {bot}!",
   "2fa-reject": "Rejeitar todas as confirmações",
+  "2fa-reject-not-found": "Não há confirmações para rejeitar!",
+  "2fa-reject-success": "{PLURAL:n|{n} confirmação foi rejeitada|{n} confirmações foram rejeitadas} para o {bot}!",
   "2fa-not-found": "Esse bot não tem o ASF 2FA habilitado! Saiba mais em <a href='https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Two-factor-authentication-pt-BR#asf-2fa' target='_blank'>aqui</a>.",
   "2fa-token-copied": "Código copiado para a área de transferência!",
   "2fa-token-copy": "Copiar código para a área de transferência",
