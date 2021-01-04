@@ -134,7 +134,7 @@
   "refresh": "Status osvežavanja",
   "released-ago": "Izdato prije {time}",
   "releases": "Izdanja",
-  "releases-changelog": "Trenutno ne postoji lista promjena za ovo izdanje.",
+  "releases-changelog": "<p>Trenutno ne postoji lista promjena za ovo izdanje.</p>",
   "releases-install": "Instaliraj ovu verziju",
   "releases-not-found": "Nijedno izdanje nije pronađeno!",
   "remote-access": "Daljinski pristup",
