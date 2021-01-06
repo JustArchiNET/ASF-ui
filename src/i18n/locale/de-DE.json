@@ -134,6 +134,7 @@
   "refresh": "Status aktualisieren",
   "released-ago": "Vor {time} veröffentlicht",
   "releases": "Veröffentlichungen",
+  "releases-changelog": "<p>Für diese Version ist derzeit kein Änderungsprotokoll verfügbar.</p>",
   "releases-install": "Diese Version installieren",
   "releases-not-found": "Keine Versionen gefunden!",
   "remote-access": "Fernzugriff",
