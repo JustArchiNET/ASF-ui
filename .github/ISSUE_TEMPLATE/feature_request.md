@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an idea to improve ASF-ui
+about: Suggest an idea to improve ASF-ui.
 labels: Evaluation, Enhancement
 
 ---
