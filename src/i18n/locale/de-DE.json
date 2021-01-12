@@ -150,7 +150,7 @@
   "setup-authenticated": "Alles konfiguriert",
   "setup-description": "Bitte geben Sie ihr IPC-Passwort ein",
   "setup-not-connected": "Die Verbindung zum IPC-Server von ASF kann nicht hergestellt werden. Stellen Sie sicher, dass ASF läuft!",
-  "setup-rate-limited": "Scheint so, als hättest du ein Anfragen-Limit erreicht, starte ASF neu oder versuche es in einer Weile noch einmal!",
+  "setup-rate-limited": "Scheint so, als hätten Sie ein Anfragen-Limit erreicht. Starten Sie ASF neu oder versuchen Sie es in einer später erneut!",
   "shutdown": "Herunterfahren",
   "shutdown-message": "Fahre herunter, auf wiedersehen!",
   "sidebar-boxed-layout": "Kompakte Ansicht",
