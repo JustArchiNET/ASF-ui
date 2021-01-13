@@ -1,6 +1,10 @@
 {
   "2fa-accept": "Tüm onaylamaları kabul et",
+  "2fa-accept-not-found": "Onaylanması gereken bir şey yok!",
+  "2fa-accept-success": "{PLURAL:n|{n} bildirim|{n} bildirim} {bot} için kabul edildi!",
   "2fa-reject": "Tüm onaylamaları reddet",
+  "2fa-reject-not-found": "Reddedilmesi gereken bir şey yok!",
+  "2fa-reject-success": "{PLURAL:n|{n} bildirim|{n} bildirim} {bot} için reddedildi!",
   "2fa-not-found": "Bu botta ASF 2FA etkin değil! <a href='https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Two-factor-authentication#asf-2fa' target='_blank'>Buradan</a> daha fazlasını öğrenin.",
   "2fa-token-copied": "Belirteç panoya kopyalandı!",
   "2fa-token-copy": "Belirteci panoya kopyala",
@@ -130,6 +134,7 @@
   "refresh": "Durumu yenile",
   "released-ago": "{time} önce yayınlandı",
   "releases": "Sürümler",
+  "releases-changelog": "<p>Şu anda bu sürüm için mevcut bir değişiklik günlüğü yok.</p>",
   "releases-install": "Bu sürümü yükle",
   "releases-not-found": "Sürüm bulunamadı!",
   "remote-access": "Uzaktan Erişim",
