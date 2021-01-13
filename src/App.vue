@@ -135,13 +135,13 @@
 	}
 
 	::-webkit-scrollbar {
-		background-color: #333;
+		background-color: var(--color-background-dark);
 		height: 10px;
 		width: 10px;
 	}
 
 	::-webkit-scrollbar-thumb {
-		background: var(--color-background-dark);
+		background: #333;
 		border-radius: 2px;
 	}
 
