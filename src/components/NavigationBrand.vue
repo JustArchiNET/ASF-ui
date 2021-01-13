@@ -88,7 +88,12 @@
         try {
           this.$info(this.$t('update-check'));
           const newVersionAvailable = await isReleaseAvailable();
-          if (newVersionAvailable) this.$info(this.$t('update-trying'));
+
+          if (newVersionAvailable) {
+            const notification = this.$snotify.info(this.$t('update-trying'), this.$t('info'));
+            notification.on('click', toast => this.redirectToLog());
+          }
+
           const response = await this.$http.post('asf/update');
           this.brandMenu = false;
 
@@ -138,6 +143,9 @@
         const path = $e.path || $e.composedPath();
         if (path.includes(this.$el)) return;
         this.brandMenu = false;
+      },
+      redirectToLog() {
+        if (this.$route.name !== 'log') this.$router.push({ name: 'log' });
       },
     },
   };
