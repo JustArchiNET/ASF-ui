@@ -79,7 +79,9 @@
         return false;
       },
       async update() {
-        this.$info(this.$t('update-trying'));
+        const notification = this.$snotify.info(this.$t('update-trying'), this.$t('info'));
+        notification.on('click', toast => this.$router.push({ name: 'log' }));
+
         const response = await this.$http.post('asf/update');
 
         if (response.Success) {
