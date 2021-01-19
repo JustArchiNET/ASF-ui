@@ -1,6 +1,10 @@
 {
   "2fa-accept": "Priimkite visus patvirtinimus",
+  "2fa-accept-not-found": "Nėra jokių priimamų patvirtinimų!",
+  "2fa-accept-success": "{PLURAL:n|{n} patvirtinimas buvo{n} patvirtinimai buvo} priimti robotui {bot}!",
   "2fa-reject": "Atmeskite visus patvirtinimus",
+  "2fa-reject-not-found": "Nėra jokių atmetamų patvirtinimų!",
+  "2fa-reject-success": "{PLURAL:n|{n} patvirtinimas buvo{n} patvirtinimai buvo} atmesti robotui {bot}!",
   "2fa-not-found": "Šis robotas neturi ASF 2FA įjungtos autentifikacijos! Daugiau galite paskaityti <a href='https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Two-factor-authentication#asf-2fa' target='_blank'>čia</a>.",
   "2fa-token-copied": "Ženklas nukopijuotas į iškarpinę!",
   "2fa-token-copy": "Nukopijuokite ženklą į iškarpinę",
@@ -130,6 +134,7 @@
   "refresh": "Atnaujinti būseną",
   "released-ago": "Išleista prieš {time}",
   "releases": "Išleidimai",
+  "releases-changelog": "<p>Šiuo metu nėra jokio keitimų žurnalo šiai versijai</p>",
   "releases-install": "Įrašyti šią versiją",
   "releases-not-found": "Nerasta jokių išleidimų!",
   "remote-access": "Nuotolinė prieiga",
