@@ -38,10 +38,10 @@ jobs:
 
     - name: Upload latest strings for translation on Crowdin
       continue-on-error: true
-      if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' && startsWith(matrix.os, 'ubuntu-') }}
+      if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && startsWith(matrix.os, 'ubuntu-') }}
       uses: crowdin/github-action@1.0.9
       with:
-        crowdin_branch_name: master
+        crowdin_branch_name: main
         project_id: ${{ secrets.ASF_CROWDIN_PROJECT_ID }}
         token: ${{ secrets.ASF_CROWDIN_API_TOKEN }}
 
