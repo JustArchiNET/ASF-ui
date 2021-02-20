@@ -75,7 +75,7 @@
         return false;
       },
       isNewer(version) {
-        if (version !== this.version) return true;
+        if (version > this.version) return true;
         return false;
       },
       async update() {
