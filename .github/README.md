@@ -4,7 +4,6 @@ Standalone web interface for ASF
 
 [![Build status (GitHub)](https://img.shields.io/github/workflow/status/JustArchiNET/ASF-ui/ASF-ui-CI/main?label=GitHub&maxAge=600&logo=github)](https://github.com/JustArchiNET/ASF-ui/actions?query=branch%3Amain)
 [![Build status (AppVeyor)](https://img.shields.io/appveyor/ci/JustArchi/ASF-ui/main?label=AppVeyor&maxAge=600&logo=appveyor)](https://ci.appveyor.com/project/JustArchi/ASF-ui)
-[![Build status (Travis)](https://img.shields.io/travis/com/JustArchiNET/ASF-ui/main?label=Travis&maxAge=600&logo=travis)](https://travis-ci.com/JustArchiNET/ASF-ui)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=JustArchiNET/ASF-ui)](https://dependabot.com)
 [![Github last commit date](https://img.shields.io/github/last-commit/JustArchiNET/ASF-ui?label=Updated&maxAge=600&logo=github)](https://github.com/JustArchiNET/ASF-ui/commits)
 [![License](https://img.shields.io/github/license/JustArchiNET/ASF-ui?label=License&maxAge=2592000&logo=apache)](https://github.com/JustArchiNET/ASF-ui/blob/main/LICENSE)
