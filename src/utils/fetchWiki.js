@@ -1,5 +1,4 @@
 import * as http from '../plugins/http';
-import compareVersion from './compareVersion';
 import getLocaleForWiki from './getLocaleForWiki';
 import createVirtualDOM from './createVirtualDOM';
 
@@ -9,20 +8,15 @@ async function getURL(page, version, locale) {
 
   if (!version) return defaultURL;
 
-  const releasesRaw = await http.post('www/send', { url: 'https://api.github.com/repos/JustArchiNET/ArchiSteamFarm/releases?per_page=20' });
-  const releases = JSON.parse(releasesRaw);
+  const currentRelease = await http.get('www/github/release');
+  let nextRelease = currentRelease.ReleasedAt;
 
-  const currentReleaseIndex = releases.findIndex(release => compareVersion(version, release.tag_name) > -1);
-
-  if (currentReleaseIndex === -1) {
-    const latestTag = releases[0].tag_name;
-    if (compareVersion(version, latestTag) === 1) return defaultURL;
-    return defaultURL;
+  if (version < currentRelease.Version) {
+    const oldRelease = await http.get(`www/github/release/${version}`);
+    nextRelease = oldRelease.ReleasedAt;
   }
 
-  if (currentReleaseIndex === 0) return defaultURL;
-
-  const nextReleaseTime = new Date(releases[currentReleaseIndex - 1].published_at);
+  const nextReleaseTime = new Date(nextRelease);
   const wikiRevisionsRaw = await http.post('www/send', { url: `https://github.com/JustArchiNET/ArchiSteamFarm/wiki/${page}${wikiLocale}/_history` });
 
   const virtualDOM = createVirtualDOM(wikiRevisionsRaw);
