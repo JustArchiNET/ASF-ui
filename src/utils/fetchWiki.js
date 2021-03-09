@@ -3,9 +3,9 @@ import compareVersion from './compareVersion';
 import getLocaleForWiki from './getLocaleForWiki';
 import createVirtualDOM from './createVirtualDOM';
 
-async function getURL(file, version, locale) {
+async function getURL(page, version, locale) {
   const wikiLocale = getLocaleForWiki(locale);
-  const defaultURL = `https://github.com/JustArchiNET/ArchiSteamFarm/wiki/${file}${wikiLocale}`;
+  const defaultURL = `https://github.com/JustArchiNET/ArchiSteamFarm/wiki/${page}${wikiLocale}`;
 
   if (!version) return defaultURL;
 
@@ -23,7 +23,7 @@ async function getURL(file, version, locale) {
   if (currentReleaseIndex === 0) return defaultURL;
 
   const nextReleaseTime = new Date(releases[currentReleaseIndex - 1].published_at);
-  const wikiRevisionsRaw = await http.post('www/send', { url: `https://github.com/JustArchiNET/ArchiSteamFarm/wiki/${file}${wikiLocale}/_history` });
+  const wikiRevisionsRaw = await http.post('www/send', { url: `https://github.com/JustArchiNET/ArchiSteamFarm/wiki/${page}${wikiLocale}/_history` });
 
   const virtualDOM = createVirtualDOM(wikiRevisionsRaw);
 
@@ -33,10 +33,10 @@ async function getURL(file, version, locale) {
   }));
 
   const latestWikiRevision = wikiRevisions.find(({ releaseTime }) => releaseTime < nextReleaseTime);
-  return latestWikiRevision ? `https://github.com/JustArchiNET/ArchiSteamFarm/wiki/${file}${wikiLocale}/${latestWikiRevision.version}` : defaultURL;
+  return latestWikiRevision ? `https://github.com/JustArchiNET/ArchiSteamFarm/wiki/${page}${wikiLocale}/${latestWikiRevision.version}` : defaultURL;
 }
 
-export default async function fetchWiki(file, version, locale) {
-  const url = await getURL(file, version, locale);
+export default async function fetchWiki(page, version, locale) {
+  const url = await getURL(page, version, locale);
   return http.post('www/send', { url });
 }
