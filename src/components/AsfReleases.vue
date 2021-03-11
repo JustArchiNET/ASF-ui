@@ -229,6 +229,13 @@
 			text-decoration: none;
 		}
 
+    code {
+      padding: 0.1em 0.3em;
+      font-size: 85%;
+      background-color: var(--color-background-dark);
+      border-radius: 3px;
+    }
+
 		ul {
 			@media screen and (max-width: 450px) {
 				margin-inline-end: 0.2em;
