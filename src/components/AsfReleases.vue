@@ -26,6 +26,7 @@
 <script>
   import { mapGetters } from 'vuex';
   import humanizeDuration from 'humanize-duration';
+  import linkifyHtml from 'linkifyjs/html';
   import getLocaleForHD from '../utils/getLocaleForHD';
   import * as storage from '../utils/storage';
   import compareVersion from '../utils/compareVersion';
@@ -127,7 +128,7 @@
         try {
           const release = await this.$http.get(`www/github/release/${version}`);
           const publishedAt = new Date(release.ReleasedAt);
-          let changelog = release.ChangelogHTML.replace(/<a href="/g, '<a target="_blank" href="');
+          let changelog = linkifyHtml(release.ChangelogHTML).replace(/<a href="/g, '<a target="_blank" href="');
           if (!changelog) changelog = this.$t('releases-changelog');
           return {
             changelog,
