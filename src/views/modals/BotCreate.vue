@@ -64,7 +64,8 @@
     }),
     async created() {
       await this.loadConfig();
-      document.getElementById('Name').focus();
+      const botNameField = document.getElementById('Name');
+      if (botNameField) botNameField.focus();
     },
     methods: {
       async loadConfig() {
