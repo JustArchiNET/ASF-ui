@@ -14,8 +14,10 @@
 
       <div class="form-item">
         <div class="form-item__buttons form-item__buttons--center">
-          <router-link tag="button" :to="{ name: 'home' }" class="button button--confirm">
-            {{ $t('continue') }}
+          <router-link v-slot="{ navigate }" custom :to="{ name: 'home' }">
+            <button class="button button--confirm" @click="navigate">
+              {{ $t('continue') }}
+            </button>
           </router-link>
         </div>
       </div>

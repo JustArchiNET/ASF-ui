@@ -17,8 +17,8 @@
             <FontAwesomeIcon v-if="saving" icon="spinner" spin></FontAwesomeIcon>
             <span v-else>{{ $t('save') }}</span>
           </button>
-          <router-link tag="button" class="button button--confirm" :to="{ name: 'bot-copy', params: { bot: bot.name } }">
-            {{ $t('bot-copy') }}
+          <router-link v-slot="{ navigate }" custom :to="{ name: 'bot-copy', params: { bot: bot.name } }">
+            <button class="button button--confirm" @click="navigate">{{ $t('bot-copy') }}</button>
           </router-link>
 
           <button class="button button--link pull-right" @click="onDownload">

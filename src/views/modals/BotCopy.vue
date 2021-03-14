@@ -15,8 +15,8 @@
             <span v-else>{{ $t('create') }}</span>
           </button>
 
-          <router-link tag="button" class="button button--cancel pull-right" :to="{ name: 'bot-config', params: { bot: bot.name } }">
-            {{ $t('cancel') }}
+          <router-link v-slot="{ navigate }" custom :to="{ name: 'bot-config', params: { bot: bot.name } }">
+            <button class="button button--cancel pull-right" @click="navigate">{{ $t('cancel') }}</button>
           </router-link>
         </div>
       </div>

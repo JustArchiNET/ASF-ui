@@ -1,7 +1,9 @@
 <template>
-  <router-link v-show="visible" tag="div" class="bot-action" :to="link">
-    <span v-if="name" class="bot-action__label">{{ name }}</span>
-    <FontAwesomeIcon v-if="icon" class="bot-action__icon" :icon="icon"></FontAwesomeIcon>
+  <router-link v-show="visible" v-slot="{ navigate }" custom :to="link">
+    <div class="bot-action" @click="navigate">
+      <span v-if="name" class="bot-action__label">{{ name }}</span>
+      <FontAwesomeIcon v-if="icon" class="bot-action__icon" :icon="icon"></FontAwesomeIcon>
+    </div>
   </router-link>
 </template>
 

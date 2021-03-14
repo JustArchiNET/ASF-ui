@@ -2,10 +2,12 @@
   <div class="bots">
     <BotCard v-for="bot in bots" v-if="bot.isVisible(selectedBots)" :key="bot.name" :bot="bot"></BotCard>
 
-    <router-link tag="div" :to="{ name: 'bot-create' }" class="bot-placeholder status--disabled" :class="{ 'bot-placeholder--big': selectedButtonsCount > 2 }">
-      <div class="bot-placeholder__button bot-placeholder__button--add">
-        <FontAwesomeIcon icon="plus" class="bot-placeholder__icon"></FontAwesomeIcon>
-        <span class="bot-placeholder__name">{{ $t('bot-new') }}</span>
+    <router-link v-slot="{ navigate }" custom :to="{ name: 'bot-create' }">
+      <div class="bot-placeholder status--disabled" :class="{ 'bot-placeholder--big': selectedButtonsCount > 2 }" @click="navigate">
+        <div class="bot-placeholder__button bot-placeholder__button--add">
+          <FontAwesomeIcon icon="plus" class="bot-placeholder__icon"></FontAwesomeIcon>
+          <span class="bot-placeholder__name">{{ $t('bot-new') }}</span>
+        </div>
       </div>
     </router-link>
   </div>
