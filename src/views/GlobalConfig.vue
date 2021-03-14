@@ -34,6 +34,7 @@
   import fetchConfigSchema from '../utils/fetchConfigSchema';
   import prepareModelToDownload from '../utils/prepareModelToDownload';
   import waitForRestart from '../utils/waitForRestart';
+  import delay from '../utils/delay';
 
   export default {
     name: 'GlobalConfig',
@@ -96,7 +97,6 @@
     methods: {
       async onSave() {
         if (this.saving) return;
-
         this.saving = true;
 
         try {
@@ -104,6 +104,8 @@
           this.$info(this.$t('restart-initiated'));
           await waitForRestart();
           this.$success(this.$t('restart-complete'));
+          await delay(3000);
+          window.location.reload();
         } catch (err) {
           this.$error(err.message);
         } finally {

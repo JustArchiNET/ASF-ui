@@ -29,6 +29,7 @@
   import linkifyHtml from 'linkifyjs/html';
   import getLocaleForHD from '../utils/getLocaleForHD';
   import * as storage from '../utils/storage';
+  import delay from '../utils/delay';
   import compareVersion from '../utils/compareVersion';
   import waitForRestart from '../utils/waitForRestart';
   import { UPDATECHANNEL } from '../store/modules/asf';
@@ -41,6 +42,7 @@
         error: null,
         releases: [],
         releaseCount: 5,
+        updating: false,
       };
     },
     computed: {
@@ -80,17 +82,31 @@
         return false;
       },
       async update() {
+        if (this.updating) return;
+        this.updating = true;
+
         const notification = this.$snotify.info(this.$t('update-trying'), this.$t('info'));
         notification.on('click', toast => this.$router.push({ name: 'log' }));
 
-        const response = await this.$http.post('asf/update');
-
-        if (response.Success) {
-          this.$success(this.$t('update-complete'));
-          this.$info(this.$t('restart-initiated'));
+        try {
+          await this.$http.post('asf/update');
           await waitForRestart();
-          this.$success(this.$t('restart-complete'));
+          this.$success(this.$t('update-complete'));
+          await delay(3000);
           window.location.reload();
+        } catch (err) {
+          if (err.message === 'HTTP Error 504') {
+            await waitForRestart();
+            this.$success(this.$t('update-complete'));
+            await delay(3000);
+            window.location.reload();
+          }
+          if (!err.result && !err.message.includes('≥')) throw err;
+          const { remoteVersion, localVersion } = this.extractVersions(err);
+          if (localVersion === remoteVersion) this.$info(this.$t('update-is-up-to-date'));
+          else this.$info(this.$t('update-is-newest'));
+        } finally {
+          this.updating = false;
         }
       },
       async loadReleases() {
