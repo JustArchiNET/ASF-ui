@@ -112,10 +112,9 @@
           window.location.reload();
         } catch (err) {
           this.$error(err.message);
-          this.$router.push({ name: 'setup' });
+          // this.$router.push({ name: 'setup' });
         } finally {
           this.saving = false;
-          window.location.reload();
         }
       },
       async onDownload() {

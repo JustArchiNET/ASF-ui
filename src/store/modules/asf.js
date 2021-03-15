@@ -76,8 +76,6 @@ export const actions = {
       commit('updateHeadless', response.GlobalConfig.Headless);
       commit('updateCanUpdate', response.CanUpdate);
     } catch (err) {
-      console.log('mein fehler' + err);
-      console.log('mein fehler2' + err.message);
       console.warn(err.message);
     }
   },
