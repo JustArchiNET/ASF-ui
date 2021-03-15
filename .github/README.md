@@ -1,6 +1,6 @@
 # ASF-ui
 
-Standalone web interface for ASF
+The official web interface for [ASF](https://github.com/JustArchiNET/ArchiSteamFarm)
 
 [![Build status (GitHub)](https://img.shields.io/github/workflow/status/JustArchiNET/ASF-ui/ASF-ui-CI/main?label=GitHub&maxAge=600&logo=github)](https://github.com/JustArchiNET/ASF-ui/actions?query=branch%3Amain)
 [![Build status (AppVeyor)](https://img.shields.io/appveyor/ci/JustArchi/ASF-ui/main?label=AppVeyor&maxAge=600&logo=appveyor)](https://ci.appveyor.com/project/JustArchi/ASF-ui)
