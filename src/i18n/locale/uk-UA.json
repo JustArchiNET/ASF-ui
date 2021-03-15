@@ -41,7 +41,6 @@
   "bot-game-name": "Тільки назви ігор",
   "bot-game-name-description": "Відображати лише назви ігор (приховати банер гри).",
   "bot-new": "Створити нового бота",
-  "bot-new-copy": "Конфігурація бота на базі: {name}",
   "bot-nicknames": "Псевдоніми",
   "bot-nicknames-description": "Відображати псевдоніми steam (якщо вони доступні) замість імен ботів.",
   "bot-status-disabled": "Вимкнений",

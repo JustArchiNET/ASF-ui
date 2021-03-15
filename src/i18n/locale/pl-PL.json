@@ -45,7 +45,7 @@
   "bot-game-name": "Tylko nazwy gier",
   "bot-game-name-description": "Pokazuj tylko nazwy gier (ukryj baner gry).",
   "bot-new": "Utwórz nowego bota",
-  "bot-new-copy": "Konfiguracja bota oparta na: {name}",
+  "bot-new-copy": "Konfiguracja oparta na bocie: {name}",
   "bot-nicknames": "Pseudonimy",
   "bot-nicknames-description": "Pokazuj pseudonimy steam (jeśli są dostępne) zamiast nazw botów.",
   "bot-status-disabled": "Wyłączono",

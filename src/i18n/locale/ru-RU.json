@@ -41,7 +41,6 @@
   "bot-game-name": "Только названия игр",
   "bot-game-name-description": "Показывать только названия игр (скрыть баннер игры).",
   "bot-new": "Добавить нового бота",
-  "bot-new-copy": "Конфигурация бота на основе: {name}",
   "bot-nicknames": "Псевдонимы",
   "bot-nicknames-description": "Отображать псевдонимы steam (если доступны) вместо имён ботов.",
   "bot-status-disabled": "Отключён",

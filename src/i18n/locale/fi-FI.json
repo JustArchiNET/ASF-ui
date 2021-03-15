@@ -36,7 +36,6 @@
   "bot-game-name": "Vain pelien nimet",
   "bot-game-name-description": "Näytä vain pelien nimet (piilota bannerit).",
   "bot-new": "Luo uusi botti",
-  "bot-new-copy": "Botin asetukset löytyvät: {name}",
   "bot-nicknames": "Kutsumanimet",
   "bot-nicknames-description": "Näytä Steam-pelinimet (jos mahdollista) bottien nimien sijaan.",
   "bot-status-disabled": "Poistettu käytöstä",

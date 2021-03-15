@@ -45,7 +45,6 @@
   "bot-game-name": "Sadece oyun adları",
   "bot-game-name-description": "Sadece oyun adlarını göster (oyun resmini gizle).",
   "bot-new": "Yeni bot oluştur",
-  "bot-new-copy": "Temal alınan bot yapılandırması: {name}",
   "bot-nicknames": "Takma ad",
   "bot-nicknames-description": "Bot isimleri yerine (mümkünse) Steam isimlerini görüntüle.",
   "bot-status-disabled": "Devre dışı",

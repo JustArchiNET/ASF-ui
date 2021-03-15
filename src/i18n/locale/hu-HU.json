@@ -37,7 +37,6 @@
   "bot-game-name": "Csak játék nevek",
   "bot-game-name-description": "Csak játék neveket mutass (játék bannerek eltüntetése).",
   "bot-new": "Új bot létrehozása",
-  "bot-new-copy": "Bot konfiguráció ez alapján: {name}",
   "bot-nicknames": "Becenevek",
   "bot-nicknames-description": "Steam becenevek mutatása (ha elérhető) a bot neve helyett.",
   "bot-status-disabled": "Kikapcsolva",

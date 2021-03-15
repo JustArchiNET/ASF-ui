@@ -41,7 +41,6 @@
   "bot-game-name": "ゲーム名のみ",
   "bot-game-name-description": "ゲーム名のみ表示 (ゲームバナーを非表示)",
   "bot-new": "bot を新規作成",
-  "bot-new-copy": "bot の設定はこれを元に: {name}",
   "bot-nicknames": "ニックネーム",
   "bot-nicknames-description": "Botの名前ではなく、Steam のニックネームを表示します（可能ならば）。",
   "bot-status-disabled": "停止中",

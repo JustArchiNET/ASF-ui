@@ -45,7 +45,6 @@
   "bot-game-name": "Samo imena igrica",
   "bot-game-name-description": "Samo prikaži ime igrice (sakrij pozadinsku sliku).",
   "bot-new": "Napravi novog bota",
-  "bot-new-copy": "Konfiguracija bota je bazirana na: {name}",
   "bot-nicknames": "Nadimci",
   "bot-nicknames-description": "Prikaži Steam nadimke (ako postoje) umjesto imena botova.",
   "bot-status-disabled": "Onemogućemo",

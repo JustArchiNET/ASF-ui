@@ -37,7 +37,6 @@
   "bot-game-name": "게임 이름만",
   "bot-game-name-description": "게임 이름만 표시합니다.(배너를 숨깁니다)",
   "bot-new": "새로운 봇 생성",
-  "bot-new-copy": "환경설정 기초로 할 봇: {name}",
   "bot-nicknames": "별명",
   "bot-nicknames-description": "가능한 경우 봇 이름 대신 Steam 별명을 표시합니다.",
   "bot-status-disabled": "비활성",
