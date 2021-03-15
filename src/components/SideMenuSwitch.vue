@@ -1,18 +1,18 @@
 <template>
   <div class="side-menu__switch" @click="$emit('click')">
     <span class="side-menu__switch-left-side">
-      <font-awesome-icon :icon="icon" fixed-width></font-awesome-icon>
+      <FontAwesomeIcon :icon="icon" fixed-width></FontAwesomeIcon>
       <span>{{ name }}</span>
     </span>
 
-    <font-awesome-icon v-if="checked" icon="check-circle"></font-awesome-icon>
-    <font-awesome-icon v-else icon="times-circle"></font-awesome-icon>
+    <FontAwesomeIcon v-if="checked" icon="check-circle"></FontAwesomeIcon>
+    <FontAwesomeIcon v-else icon="times-circle"></FontAwesomeIcon>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'side-menu-switch',
+    name: 'SideMenuSwitch',
     props: {
       name: {
         type: String,

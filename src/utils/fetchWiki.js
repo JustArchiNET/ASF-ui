@@ -1,42 +1,31 @@
 import * as http from '../plugins/http';
-import compareVersion from './compareVersion';
 import getLocaleForWiki from './getLocaleForWiki';
-import createVirtualDOM from './createVirtualDOM';
 
-async function getURL(file, version, locale) {
+async function getEndpoint(page, version, locale) {
   const wikiLocale = getLocaleForWiki(locale);
-  const defaultURL = `https://github.com/JustArchiNET/ArchiSteamFarm/wiki/${file}${wikiLocale}`;
+  const defaultEndpoint = `www/github/wiki/page/${page}${wikiLocale}`;
 
-  if (!version) return defaultURL;
+  if (!version) return defaultEndpoint;
 
-  const releasesRaw = await http.post('www/send', { url: 'https://api.github.com/repos/JustArchiNET/ArchiSteamFarm/releases?per_page=20' });
-  const releases = JSON.parse(releasesRaw);
+  const currentRelease = await http.get('www/github/release');
+  if (version >= currentRelease.Version) return defaultEndpoint;
 
-  const currentReleaseIndex = releases.findIndex(release => compareVersion(version, release.tag_name) > -1);
+  const oldRelease = await http.get(`www/github/release/${version}`);
+  const nextReleaseTime = new Date(oldRelease.ReleasedAt);
+  const wikiHistory = await http.get(`www/github/wiki/history/${page}${wikiLocale}`);
 
-  if (currentReleaseIndex === -1) {
-    const latestTag = releases[0].tag_name;
-    if (compareVersion(version, latestTag) === 1) return defaultURL;
-    return defaultURL;
-  }
-
-  if (currentReleaseIndex === 0) return defaultURL;
-
-  const nextReleaseTime = new Date(releases[currentReleaseIndex - 1].published_at);
-  const wikiRevisionsRaw = await http.post('www/send', { url: `https://github.com/JustArchiNET/ArchiSteamFarm/wiki/${file}${wikiLocale}/_history` });
-
-  const virtualDOM = createVirtualDOM(wikiRevisionsRaw);
-
-  const wikiRevisions = Array.from(virtualDOM.querySelectorAll('.js-wiki-history-revision')).map(revisionHTML => ({
-    releaseTime: new Date(revisionHTML.querySelector('relative-time').getAttribute('datetime')),
-    version: revisionHTML.querySelector('.js-wiki-history-checkbox').value,
+  const wikiRevisions = Object.entries(wikiHistory).map(revision => ({
+    id: revision[0],
+    releaseTime: new Date(revision[1]),
   }));
 
+  wikiRevisions.sort((a, b) => new Date(b.releaseTime) - new Date(a.releaseTime));
+
   const latestWikiRevision = wikiRevisions.find(({ releaseTime }) => releaseTime < nextReleaseTime);
-  return latestWikiRevision ? `https://github.com/JustArchiNET/ArchiSteamFarm/wiki/${file}${wikiLocale}/${latestWikiRevision.version}` : defaultURL;
+  return latestWikiRevision ? `${defaultEndpoint}?revision=${latestWikiRevision.id}` : defaultEndpoint;
 }
 
-export default async function fetchWiki(file, version, locale) {
-  const url = await getURL(file, version, locale);
-  return http.post('www/send', { url });
+export default async function fetchWiki(page, version, locale) {
+  const endpoint = await getEndpoint(page, version, locale);
+  return http.get(endpoint);
 }

@@ -5,7 +5,7 @@
     <div class="form-item__value">
       <div class="input-option__field">
         <select :id="field" v-model="flagValue" class="form-item__input">
-          <option v-for="(flagValue, name) in flags" v-show="flagValue === 0 || !((value & flagValue) === flagValue)" :value="flagValue">
+          <option v-for="(flagValue, name) in flags" v-show="flagValue === 0 || !((value & flagValue) === flagValue)" :key="name" :value="flagValue">
             {{ name }}
           </option>
         </select>
@@ -15,7 +15,7 @@
       </div>
 
       <div class="input-option__items">
-        <button v-for="i in 32" v-if="value & (1 << i)" class="button input-option__item" @click.prevent="removeFlag(1 << i)">
+        <button v-for="i in 32" v-if="value & (1 << i)" :key="i" class="button input-option__item" @click.prevent="removeFlag(1 << i)">
           {{ resolveFlagName(1 << i) }}
         </button>
       </div>
@@ -29,7 +29,7 @@
   import Input from './Input.vue';
 
   export default {
-    name: 'input-flag',
+    name: 'InputFlag',
     mixins: [Input],
     data() {
       return {

@@ -38,6 +38,7 @@ export const actions = {
 
     const darkMode = storage.get('layout:dark-mode');
     if (typeof darkMode === 'boolean') commit('setDarkMode', darkMode);
+    else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) commit('setDarkMode', true);
   },
   toggleNavigation: ({ commit, getters }) => {
     commit('toggleNavigation');

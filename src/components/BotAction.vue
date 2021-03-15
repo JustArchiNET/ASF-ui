@@ -1,13 +1,13 @@
 <template>
   <div v-show="visible" class="bot-action" :class="[color ? `bot-action--${color}` : null]" @click="onClick">
     <span v-if="name" class="bot-action__label">{{ name }}</span>
-    <font-awesome-icon v-if="icon" class="bot-action__icon" :icon="icon"></font-awesome-icon>
+    <FontAwesomeIcon v-if="icon" class="bot-action__icon" :icon="icon"></FontAwesomeIcon>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'bot-action',
+    name: 'BotAction',
     props: {
       icon: String,
       name: String,

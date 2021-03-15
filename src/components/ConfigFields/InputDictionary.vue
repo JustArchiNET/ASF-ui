@@ -7,7 +7,7 @@
         <input v-if="keyIsString" :id="`${field}-key`" v-model="elementKey" class="form-item__input" type="text" @keydown.enter="addElement">
 
         <select v-if="valueIsEnum" :id="`${field}-value`" v-model="elementValue" class="form-item__input">
-          <option v-for="(enumValue, name) in schema.value.values" :value="enumValue">
+          <option v-for="(enumValue, name) in schema.value.values" :key="name" :value="enumValue">
             {{ name }}
           </option>
         </select>
@@ -18,7 +18,7 @@
       </div>
 
       <div class="input-option__items">
-        <button v-for="(keyValue, key) in value" class="button input-option__item" @click.prevent="removeElement(key)">
+        <button v-for="(keyValue, key) in value" :key="key" class="button input-option__item" @click.prevent="removeElement(key)">
           {{ key }} => {{ resolveValue(keyValue) }}
         </button>
       </div>
@@ -32,7 +32,7 @@
   import Input from './Input.vue';
 
   export default {
-    name: 'input-dictionary',
+    name: 'InputDictionary',
     mixins: [Input],
     data() {
       return {
@@ -50,9 +50,9 @@
       valueAvailableEnumValues() {
         const availableEnumValues = [];
 
-        for (const key of Object.keys(this.schema.value.values)) {
+        Object.keys(this.schema.value.values).forEach(key => {
           availableEnumValues.push(this.schema.value.values[key]);
-        }
+        });
 
         return availableEnumValues;
       },

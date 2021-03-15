@@ -1,10 +1,10 @@
 <template>
-  <aside class="side-menu" :class="{ 'side-menu--hidden': !sideMenu }">
-    <side-menu-switch class="side-menu__switch--boxed" :name="$t('sidebar-boxed-layout')" icon="square" :checked="boxedLayout" @click="toggleBoxed"></side-menu-switch>
-    <side-menu-switch :name="$t('sidebar-dark-mode')" icon="moon" :checked="darkMode" @click="toggleDarkMode"></side-menu-switch>
+  <aside id="side-menu" class="side-menu" :class="{ 'side-menu--hidden': !sideMenu }">
+    <SideMenuSwitch class="side-menu__switch--boxed" :name="$t('sidebar-boxed-layout')" icon="square" :checked="boxedLayout" @click="toggleBoxed"></SideMenuSwitch>
+    <SideMenuSwitch :name="$t('sidebar-dark-mode')" icon="moon" :checked="darkMode" @click="toggleDarkMode"></SideMenuSwitch>
 
     <div class="side-menu__category">
-      <font-awesome-icon icon="palette" fixed-width></font-awesome-icon>
+      <FontAwesomeIcon icon="palette" fixed-width></FontAwesomeIcon>
       <span>{{ $t('sidebar-theme') }}</span>
     </div>
 
@@ -19,7 +19,7 @@
   import SideMenuSwitch from './SideMenuSwitch.vue';
 
   export default {
-    name: 'app-side-menu',
+    name: 'AppSideMenu',
     components: { SideMenuSwitch },
     computed: mapGetters({
       sideMenu: 'layout/sideMenu',

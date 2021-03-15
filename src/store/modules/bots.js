@@ -10,9 +10,9 @@ export const mutations = {
   setBot: (state, bot) => (state.bots[bot.name] = bot),
   updateBot: (state, { name, ...changes }) => {
     if (!state.bots[name]) return;
-    for (const key of Object.keys(changes)) {
+    Object.keys(changes).forEach(key => {
       state.bots[name][key] = changes[key];
-    }
+    });
   },
 };
 

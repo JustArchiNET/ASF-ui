@@ -3,7 +3,9 @@
     <div v-if="isShown" class="modal">
       <div class="modal__background" @click.self="close"></div>
       <div class="modal__body">
-        <font-awesome-icon icon="times" class="modal__close" @click="close"></font-awesome-icon>
+        <FontAwesomeIcon icon="times" class="modal__close" @click="close"></FontAwesomeIcon>
+        <FontAwesomeIcon v-if="showArrows" icon="chevron-left" class="modal__arrow left" @click="next('left')"></FontAwesomeIcon>
+        <FontAwesomeIcon v-if="showArrows" icon="chevron-right" class="modal__arrow right" @click="next('right')"></FontAwesomeIcon>
         <div class="modal__main">
           <router-view ref="modal" name="modal"></router-view>
         </div>
@@ -13,18 +15,26 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex';
+
   export default {
-    name: 'modal',
+    name: 'Modal',
     computed: {
+      ...mapGetters({
+        bots: 'bots/bots',
+      }),
       isShown() {
         return !!this.$route.meta.modal;
       },
+      showArrows() {
+        return !!this.$route.meta.arrows && this.bots.length > 1;
+      },
     },
     created() {
-      document.addEventListener('keydown', this.onEscapeClick);
+      document.addEventListener('keyup', this.onKeyPress);
     },
     beforeDestroy() {
-      document.removeEventListener('keydown', this.onEscapeClick);
+      document.removeEventListener('keyup', this.onKeyPress);
     },
     methods: {
       close() {
@@ -33,13 +43,25 @@
       back() {
         this.$router.push(this.$route.path.slice(0, this.$route.path.lastIndexOf('/')));
       },
-      onEscapeClick(e) {
+      onKeyPress(e) {
         const charCode = (e.which) ? e.which : e.keyCode;
 
         if (charCode === 27) {
           this.close();
           return e.preventDefault();
         }
+
+        if (charCode === 37) this.next('left');
+        if (charCode === 39) this.next('right');
+      },
+      next(direction) {
+        const currentIndex = this.bots.findIndex(bot => bot.name === this.$route.params.bot);
+        let targetIndex = currentIndex + (direction === 'left' ? -1 : 1);
+
+        if (targetIndex > this.bots.length - 1) targetIndex = 0;
+        else if (targetIndex < 0) targetIndex = this.bots.length - 1;
+
+        this.$router.push({ name: this.$route.name, params: { bot: this.bots[targetIndex].name } });
       },
     },
   };
@@ -109,6 +131,22 @@
 		.modal__body {
 			opacity: 0;
 			transform: scale(0.75);
+		}
+	}
+
+	.modal__arrow {
+		color: var(--color-text-disabled);
+		cursor: pointer;
+		font-size: 1.5em;
+		position: absolute;
+		top: 50%;
+
+		&.left {
+			left: -1em;
+		}
+
+		&.right {
+			right: -1em;
 		}
 	}
 </style>

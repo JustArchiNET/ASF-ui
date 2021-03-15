@@ -1,15 +1,15 @@
 <template>
   <div class="app" :class="[{ 'app--not-authorized': !authenticated, 'app--small-navigation': smallNavigation, 'app--boxed-layout': boxedLayout, 'app--dark-mode': darkMode }, themeClass]">
-    <app-header></app-header>
-    <app-navigation></app-navigation>
-    <app-side-menu></app-side-menu>
+    <AppHeader></AppHeader>
+    <AppNavigation></AppNavigation>
+    <AppSideMenu></AppSideMenu>
 
     <section class="content">
       <router-view></router-view>
-      <app-footer @click="smallNavigation = !smallNavigation"></app-footer>
+      <AppFooter @click="smallNavigation = !smallNavigation"></AppFooter>
     </section>
 
-    <app-modal></app-modal>
+    <AppModal></AppModal>
     <vue-snotify></vue-snotify>
   </div>
 </template>
@@ -23,7 +23,7 @@
   import AppModal from './components/AppModal.vue';
 
   export default {
-    name: 'app',
+    name: 'App',
     metaInfo: {
       title: 'ArchiSteamFarm',
       titleTemplate: 'ASF | %s',
@@ -49,13 +49,13 @@
     watch: {
       darkMode: {
         immediate: true,
-        handler: value => {
+        handler(value) {
           document.documentElement.style.setProperty('--color-background-dark', value ? '#0c0c0c' : '#a7a7a7');
         },
       },
       $route: {
         immediate: true,
-        handler: value => {
+        handler(value) {
           document.body.style.overflowY = value.meta.modal ? 'hidden' : 'auto';
         },
       },
@@ -135,13 +135,13 @@
 	}
 
 	::-webkit-scrollbar {
-		background-color: #333;
+		background-color: var(--color-background-dark);
 		height: 10px;
 		width: 10px;
 	}
 
 	::-webkit-scrollbar-thumb {
-		background: var(--color-background-dark);
+		background: #333;
 		border-radius: 2px;
 	}
 

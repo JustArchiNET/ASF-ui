@@ -1,8 +1,8 @@
 <template>
   <main class="main-container main-container--fullheight">
     <div class="container">
-      <config-editor v-if="displayCategories" :fields="fields" :categories="categories" :model="model"></config-editor>
-      <config-editor v-else :fields="fields" :model="model"></config-editor>
+      <ConfigEditor v-if="displayCategories" :fields="fields" :categories="categories" :model="model"></ConfigEditor>
+      <ConfigEditor v-else :fields="fields" :model="model"></ConfigEditor>
 
       <div class="form-item">
         <button class="button button--confirm" @click="save">{{ $t('save') }}</button>
@@ -16,7 +16,7 @@
   import ConfigEditor from '../components/ConfigEditor.vue';
 
   export default {
-    name: 'ui-configuration',
+    name: 'UiConfiguration',
     metaInfo() {
       return {
         title: this.$t('ui-configuration'),

@@ -3,7 +3,7 @@ name: ASF-ui-CI
 on: [push, pull_request]
 
 env:
-  NODE_JS_VERSION: 12
+  NODE_JS_VERSION: 14 # Periodically bumped to follow latest LTS | https://github.com/actions/setup-node/issues/26
 
 jobs:
   build:
@@ -20,8 +20,9 @@ jobs:
         submodules: recursive
 
     - name: Setup Node.js with npm
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v2
       with:
+        check-latest: true
         node-version: ${{ env.NODE_JS_VERSION }}
 
     - name: Verify Node.js
@@ -38,10 +39,10 @@ jobs:
 
     - name: Upload latest strings for translation on Crowdin
       continue-on-error: true
-      if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' && startsWith(matrix.os, 'ubuntu-') }}
-      uses: crowdin/github-action@1.0.9
+      if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && startsWith(matrix.os, 'ubuntu-') }}
+      uses: crowdin/github-action@1.0.19
       with:
-        crowdin_branch_name: master
+        crowdin_branch_name: main
         project_id: ${{ secrets.ASF_CROWDIN_PROJECT_ID }}
         token: ${{ secrets.ASF_CROWDIN_API_TOKEN }}
 

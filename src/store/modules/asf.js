@@ -32,6 +32,7 @@ export const state = {
   updateChannel: 1,
   steamOwnerID: '0',
   headless: false,
+  canUpdate: false,
 };
 
 export const mutations = {
@@ -49,6 +50,7 @@ export const mutations = {
   updateUpdateChannel: (state, updateChannel) => (state.updateChannel = updateChannel),
   updateSteamOwnerID: (state, steamOwnerID) => (state.steamOwnerID = steamOwnerID),
   updateHeadless: (state, headless) => (state.headless = headless),
+  updateCanUpdate: (state, canUpdate) => (state.canUpdate = canUpdate),
 };
 
 export const actions = {
@@ -62,15 +64,22 @@ export const actions = {
   update: async ({ commit, rootGetters }) => {
     if (!rootGetters['auth/authenticated']) return;
 
-    const response = await http.get('asf');
-    commit('updateMemoryUsage', response.MemoryUsage);
-    commit('updateStartTime', new Date(response.ProcessStartTime));
-    commit('updateVersion', response.Version);
-    commit('updateBuildVariant', response.BuildVariant);
-    commit('calculateUptime');
-    commit('updateUpdateChannel', response.GlobalConfig.UpdateChannel);
-    commit('updateSteamOwnerID', response.GlobalConfig.s_SteamOwnerID);
-    commit('updateHeadless', response.GlobalConfig.Headless);
+    try {
+      const response = await http.get('asf');
+      commit('updateMemoryUsage', response.MemoryUsage);
+      commit('updateStartTime', new Date(response.ProcessStartTime));
+      commit('updateVersion', response.Version);
+      commit('updateBuildVariant', response.BuildVariant);
+      commit('calculateUptime');
+      commit('updateUpdateChannel', response.GlobalConfig.UpdateChannel);
+      commit('updateSteamOwnerID', response.GlobalConfig.s_SteamOwnerID);
+      commit('updateHeadless', response.GlobalConfig.Headless);
+      commit('updateCanUpdate', response.CanUpdate);
+    } catch (err) {
+      console.log('mein fehler' + err);
+      console.log('mein fehler2' + err.message);
+      console.warn(err.message);
+    }
   },
   getSteamOwnerID: async ({ dispatch, getters }) => {
     await dispatch('update');
@@ -88,4 +97,5 @@ export const getters = {
   steamOwnerID: state => state.steamOwnerID,
   headless: state => state.headless,
   updatesEnabled: state => state.updateChannel !== 0,
+  canUpdate: state => state.canUpdate,
 };

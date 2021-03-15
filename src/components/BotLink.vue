@@ -1,13 +1,15 @@
 <template>
-  <router-link v-show="visible" tag="div" class="bot-action" :to="link">
-    <span v-if="name" class="bot-action__label">{{ name }}</span>
-    <font-awesome-icon v-if="icon" class="bot-action__icon" :icon="icon"></font-awesome-icon>
+  <router-link v-show="visible" v-slot="{ navigate }" custom :to="link">
+    <div class="bot-action" @click="navigate">
+      <span v-if="name" class="bot-action__label">{{ name }}</span>
+      <FontAwesomeIcon v-if="icon" class="bot-action__icon" :icon="icon"></FontAwesomeIcon>
+    </div>
   </router-link>
 </template>
 
 <script>
   export default {
-    name: 'bot-link',
+    name: 'BotLink',
     props: {
       icon: String,
       name: String,

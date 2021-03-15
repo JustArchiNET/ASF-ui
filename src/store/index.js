@@ -12,19 +12,19 @@ const store = new Vuex.Store({
 
 // Automatically run the `init` action for every module,
 // if one exists.
-for (const moduleName of Object.keys(modules)) {
+Object.keys(modules).forEach(moduleName => {
   if (modules[moduleName].actions && modules[moduleName].actions.init) {
     store.dispatch(`${moduleName}/init`);
   }
-}
+});
 
 store.watch((state, getters) => getters['auth/authenticated'], authenticated => {
   if (authenticated) {
-    for (const moduleName of Object.keys(modules)) {
+    Object.keys(modules).forEach(moduleName => {
       if (modules[moduleName].actions && modules[moduleName].actions.onAuth) {
         store.dispatch(`${moduleName}/onAuth`);
       }
-    }
+    });
   }
 });
 

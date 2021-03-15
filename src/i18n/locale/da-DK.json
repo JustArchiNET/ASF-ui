@@ -37,7 +37,6 @@
   "bot-game-name": "Kun spille navne",
   "bot-game-name-description": "Vis kun spilnavne (skjul spilbanner).",
   "bot-new": "Opret ny bot",
-  "bot-new-copy": "Botkonfiguration baseret på {name}",
   "bot-nicknames": "Brugernavn",
   "bot-nicknames-description": "Vis Steamkaldenavne (hvis tilgænglig) i stedet for botnavne.",
   "bot-status-disabled": "Deaktiveret",
