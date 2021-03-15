@@ -108,8 +108,8 @@
           this.$info(this.$t('restart-initiated'));
           await waitForRestart();
           this.$success(this.$t('restart-complete'));
-          await delay(3000);
-          window.location.reload();
+          // await delay(3000);
+          // window.location.reload();
         } catch (err) {
           this.$error(err.message);
         } finally {
