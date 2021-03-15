@@ -8,13 +8,7 @@ Clicking on each of the status tiles in the navigation bar will sort your bots v
 
 # Commands page
 
-1. `clear`: clears the entire terminal output.
-
-2. `commands`: lists all available commands.
-
-3. `help <command>`: displays a short description of the command.
-
-## Shortcuts
+### Shortcuts
 
 1. `CTRL + A`: moves the cursor to the start of the curent line.
 
@@ -22,7 +16,15 @@ Clicking on each of the status tiles in the navigation bar will sort your bots v
 
 3. `CTRL + L`: clears the entire terminal output.
 
-## Miscellaneous
+### Commands
+
+1. `clear`: clears the entire terminal output.
+
+2. `commands`: lists all available commands.
+
+3. `help <command>`: displays a short description of the command.
+
+### Miscellaneous
 
 1. Single press on the Tab key autocompletes currently suggested command or command argument.
 
