@@ -14,10 +14,10 @@ export async function isReleaseAvailable() {
   }
 
   const endpoint = (asf.updateChannel === UPDATECHANNEL.EXPERIMENTAL) ? 'www/github/release' : 'www/github/release/latest';
-  const response = await http.get(endpoint);
+  const release = await http.get(endpoint);
 
-  set('latest-release', response.Version);
+  set('latest-release', release.Version);
   set('last-checked-for-update', Date.now());
 
-  return (response.Version > asf.version);
+  return (release.Version > asf.version);
 }
