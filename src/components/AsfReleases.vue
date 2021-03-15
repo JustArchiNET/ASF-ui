@@ -67,7 +67,11 @@
       getTimeText(releaseDate) {
         const language = getLocaleForHD();
         const releasedSeconds = new Date() - new Date(releaseDate);
-        const time = humanizeDuration(releasedSeconds, { language, largest: 2 });
+        const time = humanizeDuration(releasedSeconds, {
+          language,
+          largest: 2,
+          conjunction: this.$t('released-ago-conjunction'),
+        });
         return this.$t('released-ago', { time });
       },
       isLatestForUpdateChannel(i) {

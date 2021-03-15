@@ -133,6 +133,7 @@
   "rate-limited": "Rate limited!",
   "refresh": "Refresh status",
   "released-ago": "Released {time} ago",
+  "released-ago-conjunction": " and ",
   "releases": "Releases",
   "releases-changelog": "<p>There is currently no changelog available for this release.</p>",
   "releases-install": "Install this version",
