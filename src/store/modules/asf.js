@@ -61,7 +61,7 @@ export const actions = {
   onAuth: async ({ dispatch }) => {
     await dispatch('update');
   },
-  update: async ({ commit, rootGetters }) => {
+  update: async ({ dispatch, commit, rootGetters }) => {
     if (!rootGetters['auth/authenticated']) return;
 
     try {
@@ -76,6 +76,7 @@ export const actions = {
       commit('updateHeadless', response.GlobalConfig.Headless);
       commit('updateCanUpdate', response.CanUpdate);
     } catch (err) {
+      dispatch('auth/updateStatus', '', { root: true });
       console.warn(err.message);
     }
   },
