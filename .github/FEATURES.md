@@ -1,21 +1,31 @@
 # Global
 
-1. Clicking on the "New release available" notification will redirect you to the "Releases" page.
+Clicking on the "New release available" notification will redirect you to the "Releases" page.
 
-# Bots
+# Bots page
 
-1. You can click on each of the status tiles in the navigation bar to sort your bots view. If you for example only want to see your bots that are online, click on the status tile "Online". A green glow will indicate that your view is being filtered.
+Clicking on each of the status tiles in the navigation bar will sort your bots view. If you, for example, only want to see bots that are online, click on the status tile "Online". A green glow will indicate that your view is being filtered.
 
-# Commands
+# Commands page
 
-1. Single press on the Tab key will autocomplete currently suggested command or command argument.
+1. `clear`: Clears the entire terminal output.
 
-2. Double press on the Tab key will type "commands" in the input if it's empty. This command will list all available commands.
+2. `commands`: Lists all available commands.
 
-3. You can click on the small ">" symbol next to your command to send it.
+3. `help <command>`: Displays a short description of the command.
 
-4. You can use the shortcut `CTRL + A` to jump to the beginning of the line you are currently typing in.
+## Shortcuts
 
-5. You can use the shortcut `CTRL + K` to remove everything at the current line that is after the cursor.
+1. `CTRL + A`: Moves the cursor to the start of the curent line.
 
-6. You can use the shortcut `CTRL + L` to clear the whole output.
+2. `CTRL + K`: Removes the part after the cursor position to the end of the line.
+
+3. `CTRL + L`: Clears the entire terminal output.
+
+## Miscellaneous
+
+1. Single press on the Tab key autocompletes currently suggested command or command argument.
+
+2. Double press on the Tab key writes "commands" in the input, if it's empty.
+
+3. Clicking on the ">" symbol next to your command executes it.
