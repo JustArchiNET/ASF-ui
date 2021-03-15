@@ -31,6 +31,7 @@
 <script>
   import { mapGetters, mapActions } from 'vuex';
   import { isReleaseAvailable } from '../utils/ui';
+  import delay from '../utils/delay';
   import waitForRestart from '../utils/waitForRestart';
 
   export default {
@@ -39,6 +40,7 @@
       return {
         brandMenu: false,
         restarting: false,
+        updating: false,
       };
     },
     computed: mapGetters({
@@ -85,32 +87,37 @@
         return {};
       },
       async update() {
+        if (this.updating) return;
+        this.updating = true;
+
+        this.$info(this.$t('update-check'));
+        const newVersionAvailable = await isReleaseAvailable();
+
+        if (newVersionAvailable) {
+          const notification = this.$snotify.info(this.$t('update-trying'), this.$t('info'));
+          notification.on('click', toast => this.redirectToLog());
+        }
+
         try {
-          this.$info(this.$t('update-check'));
-          const newVersionAvailable = await isReleaseAvailable();
-
-          if (newVersionAvailable) {
-            const notification = this.$snotify.info(this.$t('update-trying'), this.$t('info'));
-            notification.on('click', toast => this.redirectToLog());
-          }
-
-          const response = await this.$http.post('asf/update');
+          await this.$http.post('asf/update');
           this.brandMenu = false;
-
-          if (response.Success) {
-            this.$success(this.$t('update-complete'));
-            this.$info(this.$t('restart-initiated'));
+          await waitForRestart();
+          this.$success(this.$t('update-complete'));
+          await delay(3000);
+          window.location.reload();
+        } catch (err) {
+          if (err.message === 'HTTP Error 504' || err.message === 'Network Error') {
             await waitForRestart();
-            this.$success(this.$t('restart-complete'));
+            this.$success(this.$t('update-complete'));
+            await delay(3000);
             window.location.reload();
           }
-        } catch (err) {
           if (!err.result && !err.message.includes('≥')) throw err;
-
           const { remoteVersion, localVersion } = this.extractVersions(err);
-
           if (localVersion === remoteVersion) this.$info(this.$t('update-is-up-to-date'));
           else this.$info(this.$t('update-is-newest'));
+        } finally {
+          this.updating = false;
         }
       },
       async restart() {
@@ -120,9 +127,10 @@
         try {
           await this.$http.post('asf/restart');
           this.$info(this.$t('restart-initiated'));
+          this.brandMenu = false;
           await waitForRestart();
           this.$success(this.$t('restart-complete'));
-          this.brandMenu = false;
+          await delay(3000);
           window.location.reload();
         } catch (err) {
           this.$error(err.message);
