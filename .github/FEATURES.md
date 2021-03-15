@@ -18,7 +18,7 @@ Clicking on each of the status tiles in the navigation bar will sort your bots v
 
 1. `CTRL + A`: Moves the cursor to the start of the curent line.
 
-2. `CTRL + K`: Removes the part after the cursor position to the end of the line.
+2. `CTRL + K`: Removes all characters after the cursor position to the end of the line.
 
 3. `CTRL + L`: Clears the entire terminal output.
 
