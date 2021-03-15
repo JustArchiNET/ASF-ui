@@ -70,6 +70,7 @@
         const time = humanizeDuration(releasedSeconds, {
           language,
           largest: 2,
+          maxDecimalPoints: 0,
           conjunction: this.$t('released-ago-conjunction'),
         });
         return this.$t('released-ago', { time });
