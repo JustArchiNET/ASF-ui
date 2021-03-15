@@ -45,7 +45,7 @@
   "bot-game-name": "Sólo nombres de juegos",
   "bot-game-name-description": "Solo mostrar el nombre de los juegos (ocultar imagen del juego).",
   "bot-new": "Crear nuevo bot",
-  "bot-new-copy": "Configuración del bot basada en: {name}",
+  "bot-new-copy": "Configuración basada en el bot: {name}",
   "bot-nicknames": "Apodos",
   "bot-nicknames-description": "Mostrar apodos de steam (si está disponible) en lugar del nombre del bot.",
   "bot-status-disabled": "Deshabilitado",

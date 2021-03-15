@@ -41,7 +41,6 @@
   "bot-game-name": "Tikai spēļu nosaukumi",
   "bot-game-name-description": "Rādīt tikai spēļu nosaukumus (tiek paslēpts spēļu reklāmkarogs).",
   "bot-new": "Izveidot jaunu botu",
-  "bot-new-copy": "Bota konfigurācija balstīta uz: {name}",
   "bot-nicknames": "Segvārds",
   "bot-nicknames-description": "Rādīt Steam segvārdus (ja pieejami) botu nosaukumu vietā.",
   "bot-status-disabled": "Izslēgts",

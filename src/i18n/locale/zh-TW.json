@@ -41,7 +41,6 @@
   "bot-game-name": "僅遊戲名稱",
   "bot-game-name-description": "僅顯示遊戲名稱（隱藏遊戲橫幅）。",
   "bot-new": "新建 BOT",
-  "bot-new-copy": "BOT 設定檔基於：{name}",
   "bot-nicknames": "暱稱",
   "bot-nicknames-description": "顯示 Steam 暱稱（如有）而非 BOT 名稱。",
   "bot-status-disabled": "已停用",

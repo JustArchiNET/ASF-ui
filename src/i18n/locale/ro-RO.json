@@ -45,7 +45,6 @@
   "bot-game-name": "Doar nume de joc",
   "bot-game-name-description": "Arată doar numele jocului (ascunde banner-ul jocului).",
   "bot-new": "Creează un bot nou",
-  "bot-new-copy": "Configurația botului bazată pe: {name}",
   "bot-nicknames": "Poreclă",
   "bot-nicknames-description": "Afișează poreclele Steam(dacă sunt disponibile) în loc de numele boților.",
   "bot-status-disabled": "Dezactivat",

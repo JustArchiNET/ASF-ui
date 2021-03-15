@@ -38,7 +38,6 @@
   "bot-game-name": "Alleen de spelnamen",
   "bot-game-name-description": "Toon alleen de spelnamen (banner van het spel verbergen).",
   "bot-new": "Nieuwe bot aanmaken",
-  "bot-new-copy": "Bot-configuratie gebaseerd op: {name}",
   "bot-nicknames": "Bijnamen",
   "bot-nicknames-description": "Toon de Steam-bijnamen (indien beschikbaar) in plaats van de botnamen.",
   "bot-status-disabled": "Uitgeschakeld",

@@ -41,7 +41,6 @@
   "bot-game-name": "Nom des parties seulement",
   "bot-game-name-description": "Afficher uniquement le nom des parties (masquer la bannière de partie).",
   "bot-new": "Créer un nouveau bot",
-  "bot-new-copy": "Configuration du bot basée sur : {name}",
   "bot-nicknames": "Pseudos",
   "bot-nicknames-description": "Afficher les surnoms Steam (si disponible) plutôt que les noms des bots.",
   "bot-status-disabled": "Desactivé",

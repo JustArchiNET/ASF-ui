@@ -45,7 +45,6 @@
   "bot-game-name": "Tik žaidimų pavadinimai",
   "bot-game-name-description": "Rodyti tik žaidimų pavadinimus (paslėpti žaidimų reklamjuostę).",
   "bot-new": "Sukurti naują robotą",
-  "bot-new-copy": "Roboto konfiguracija pagrįsta: {name}",
   "bot-nicknames": "Slapyvardžiai",
   "bot-nicknames-description": "Išjungti steam slapyvardžius (jeigu toks yra) vietoj roboto vardų.",
   "bot-status-disabled": "Išjungtas",

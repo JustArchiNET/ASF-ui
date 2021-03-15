@@ -45,7 +45,7 @@
   "bot-game-name": "仅游戏名称",
   "bot-game-name-description": "仅显示游戏名称（隐藏游戏横幅图片）。",
   "bot-new": "新建机器人",
-  "bot-new-copy": "机器人配置基于：{name}",
+  "bot-new-copy": "配置基于机器人：{name}",
   "bot-nicknames": "昵称",
   "bot-nicknames-description": "如果可用，显示机器人的 Steam 昵称而不是机器人名称。",
   "bot-status-disabled": "禁用",
