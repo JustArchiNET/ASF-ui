@@ -101,7 +101,6 @@
           window.location.reload();
         } catch (err) {
           if (err.message === 'HTTP Error 504' || err.message === 'Network Error') {
-            // this.$router.push({ name: 'setup' });
             await waitForRestart();
             this.$success(this.$t('update-complete'));
             await delay(3000);

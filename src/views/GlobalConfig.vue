@@ -112,7 +112,6 @@
           window.location.reload();
         } catch (err) {
           this.$error(err.message);
-          // this.$router.push({ name: 'setup' });
         } finally {
           this.saving = false;
         }
