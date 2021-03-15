@@ -1,6 +1,8 @@
 # Global
 
-Clicking on the "New release available" notification will redirect you to the "Releases" page.
+1. Clicking on the "There's a new release available" notification will redirect you to the "Releases" page.
+
+2. Clicking on the "New release available! Trying to update..." notification will redirect you to the "Log" page.
 
 # Bots page
 
