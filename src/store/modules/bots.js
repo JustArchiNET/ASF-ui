@@ -31,7 +31,6 @@ export const actions = {
       commit('setBots', Object.values(response).map(data => new Bot(data)).reduce((bots, bot) => ((bots[bot.name] = bot), bots), {}));
     } catch (err) {
       dispatch('auth/updateStatus', '', { root: true });
-      console.warn(err.message);
     }
   },
   async updateBot({ commit }, bot) {

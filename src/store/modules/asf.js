@@ -77,7 +77,6 @@ export const actions = {
       commit('updateCanUpdate', response.CanUpdate);
     } catch (err) {
       dispatch('auth/updateStatus', '', { root: true });
-      console.warn(err.message);
     }
   },
   getSteamOwnerID: async ({ dispatch, getters }) => {
