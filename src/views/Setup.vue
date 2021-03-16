@@ -65,7 +65,7 @@
     async mounted() {
       if (this.status === STATUS.AUTHENTICATED) this.redirect();
 
-      while (this.status === STATUS.GATEWAY_TIMEOUT) {
+      while (this.status === STATUS.GATEWAY_TIMEOUT || this.status === STATUS.NETWORK_ERROR) {
         await delay(this.retryInterval * 1000);
         await this.refreshStatus();
       }

@@ -68,7 +68,8 @@
             case STATUS.GATEWAY_TIMEOUT:
             case STATUS.RATE_LIMITED:
             case STATUS.UNAUTHORIZED:
-              this.$router.push({ name: 'setup' });
+            case STATUS.NETWORK_ERROR:
+              this.$router.replace({ name: 'setup' });
               break;
           }
         },
