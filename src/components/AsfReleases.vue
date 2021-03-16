@@ -29,7 +29,6 @@
   import linkifyHtml from 'linkifyjs/html';
   import getLocaleForHD from '../utils/getLocaleForHD';
   import * as storage from '../utils/storage';
-  import delay from '../utils/delay';
   import compareVersion from '../utils/compareVersion';
   import waitForRestart from '../utils/waitForRestart';
   import { UPDATECHANNEL } from '../store/modules/asf';
@@ -97,15 +96,7 @@
           await this.$http.post('asf/update');
           await waitForRestart();
           this.$success(this.$t('update-complete'));
-          // await delay(3000);
-          // window.location.reload();
         } catch (err) {
-          // if (err.message === 'HTTP Error 504' || err.message === 'Network Error') {
-          //   await waitForRestart();
-          //   this.$success(this.$t('update-complete'));
-          //   await delay(3000);
-          //   window.location.reload();
-          // }
           if (!err.result && !err.message.includes('≥')) throw err;
           const { remoteVersion, localVersion } = this.extractVersions(err);
           if (localVersion === remoteVersion) this.$info(this.$t('update-is-up-to-date'));
