@@ -1,20 +1,20 @@
 <template>
   <header class="upper-navigation">
-    <navigation-brand></navigation-brand>
+    <NavigationBrand></NavigationBrand>
 
     <div class="navigation__button" @click="toggleNavigation">
-      <font-awesome-icon icon="bars" fixed-width></font-awesome-icon>
+      <FontAwesomeIcon icon="bars" fixed-width></FontAwesomeIcon>
     </div>
 
     <div class="navigation__menu">
       <div v-if="status === 'AUTHENTICATED' && password" class="navigation__button" @click="logout">
-        <font-awesome-icon icon="sign-out-alt" fixed-width></font-awesome-icon>
+        <FontAwesomeIcon icon="sign-out-alt" fixed-width></FontAwesomeIcon>
       </div>
 
-      <navigation-language-switch></navigation-language-switch>
+      <NavigationLanguageSwitch></NavigationLanguageSwitch>
 
       <div class="navigation__button" @click="toggleSideMenu">
-        <font-awesome-icon icon="cogs" fixed-width></font-awesome-icon>
+        <FontAwesomeIcon icon="cogs" fixed-width></FontAwesomeIcon>
       </div>
     </div>
   </header>
@@ -26,7 +26,7 @@
   import NavigationLanguageSwitch from './NavigationLanguageSwitch.vue';
 
   export default {
-    name: 'app-header',
+    name: 'AppHeader',
     components: { NavigationBrand, NavigationLanguageSwitch },
     computed: {
       ...mapGetters({
@@ -55,7 +55,8 @@
       },
       onWindowClick($e) {
         const path = $e.path || $e.composedPath();
-        if (path.includes(this.$el)) return;
+        const sideMenu = document.getElementById('side-menu');
+        if (path.includes(this.$el) || path.includes(sideMenu)) return;
         this.toggleSideMenu();
       },
     },

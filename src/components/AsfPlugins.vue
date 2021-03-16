@@ -1,7 +1,7 @@
 <template>
   <div class="plugins">
     <h3 v-if="loading" class="subtitle">
-      <font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
+      <FontAwesomeIcon icon="spinner" size="lg" spin></FontAwesomeIcon>
     </h3>
 
     <h3 v-if="statusText" class="subtitle">
@@ -19,7 +19,7 @@
 
 <script>
   export default {
-    name: 'asf-plugins',
+    name: 'AsfPlugins',
     data() {
       return {
         loading: true,

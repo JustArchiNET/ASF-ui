@@ -16,7 +16,7 @@ export default async function loadParameterDescriptions(version, locale) {
   const virtualDOM = createVirtualDOM(configWiki);
   const parametersHTML = Array.from(virtualDOM.querySelectorAll('h3 > code'));
 
-  for (const parameterHTML of parametersHTML) {
+  parametersHTML.forEach(parameterHTML => {
     const parameterName = parameterHTML.innerText;
 
     const parameterDescription = [];
@@ -31,7 +31,7 @@ export default async function loadParameterDescriptions(version, locale) {
     }
 
     descriptions[parameterName] = parameterDescription.join(' ');
-  }
+  });
 
   storage.set(`cache:parameter-descriptions:${locale}`, { timestamp: Date.now(), descriptions });
 
@@ -39,10 +39,10 @@ export default async function loadParameterDescriptions(version, locale) {
 }
 
 export function fixWikiLinks(links, page, locale) {
-  for (const link of links) {
-    if (link) {
-      link.setAttribute('href', `https://github.com/JustArchiNET/ArchiSteamFarm/wiki/${page}${locale}${link.hash}`);
-      link.setAttribute('target', '_blank');
-    }
-  }
+  links.forEach(link => {
+    if (!link) return;
+
+    link.setAttribute('href', `https://github.com/JustArchiNET/ArchiSteamFarm/wiki/${page}${locale}${link.hash}`);
+    link.setAttribute('target', '_blank');
+  });
 }

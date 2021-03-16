@@ -1,7 +1,7 @@
 <template>
   <main class="main-container main-container--fullheight">
     <div class="container">
-      <asf-releases></asf-releases>
+      <AsfReleases></AsfReleases>
     </div>
   </main>
 </template>
@@ -10,7 +10,7 @@
   import AsfReleases from '../components/AsfReleases.vue';
 
   export default {
-    name: 'releases',
+    name: 'Releases',
     metaInfo() {
       return {
         title: this.$t('releases'),

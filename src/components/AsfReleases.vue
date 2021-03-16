@@ -1,7 +1,7 @@
 <template>
   <div class="releases">
     <h3 v-if="loading && !statusText" class="subtitle">
-      <font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
+      <FontAwesomeIcon icon="spinner" size="lg" spin></FontAwesomeIcon>
     </h3>
 
     <h3 v-if="statusText" class="subtitle">
@@ -12,7 +12,7 @@
       <div class="release__title">
         <span class="release__version">v{{ release.version }}</span>
         <span class="release__badge" :class="[release.stable ? 'release__badge--stable' : 'release__badge--prerelease']">{{ release.stable ? $t('stable') : $t('pre-release') }}</span>
-        <span v-if="updatesEnabled && isLatestForUpdateChannel(i) && isNewer(release.version)" class="release__badge release__badge--install" @click="update">{{ $t('releases-install') }}</span>
+        <span v-if="updatesEnabled && canUpdate && isLatestForUpdateChannel(i) && isNewer(release.version)" class="release__badge release__badge--install" @click="update">{{ $t('releases-install') }}</span>
         <span class="release__time">{{ getTimeText(release.publishedAt) }}</span>
       </div>
 
@@ -26,20 +26,23 @@
 <script>
   import { mapGetters } from 'vuex';
   import humanizeDuration from 'humanize-duration';
+  import linkifyHtml from 'linkifyjs/html';
   import getLocaleForHD from '../utils/getLocaleForHD';
   import * as storage from '../utils/storage';
+  import delay from '../utils/delay';
   import compareVersion from '../utils/compareVersion';
   import waitForRestart from '../utils/waitForRestart';
   import { UPDATECHANNEL } from '../store/modules/asf';
 
   export default {
-    name: 'asf-releases',
+    name: 'AsfReleases',
     data() {
       return {
         loading: true,
         error: null,
         releases: [],
         releaseCount: 5,
+        updating: false,
       };
     },
     computed: {
@@ -47,6 +50,7 @@
         version: 'asf/version',
         updateChannel: 'asf/updateChannel',
         updatesEnabled: 'asf/updatesEnabled',
+        canUpdate: 'asf/canUpdate',
       }),
       statusText() {
         if (this.error) return this.error;
@@ -65,7 +69,12 @@
       getTimeText(releaseDate) {
         const language = getLocaleForHD();
         const releasedSeconds = new Date() - new Date(releaseDate);
-        const time = humanizeDuration(releasedSeconds, { language, largest: 2 });
+        const time = humanizeDuration(releasedSeconds, {
+          language,
+          largest: 2,
+          maxDecimalPoints: 0,
+          conjunction: this.$t('released-ago-conjunction'),
+        });
         return this.$t('released-ago', { time });
       },
       isLatestForUpdateChannel(i) {
@@ -74,19 +83,35 @@
         return false;
       },
       isNewer(version) {
-        if (version !== this.version) return true;
+        if (version > this.version) return true;
         return false;
       },
       async update() {
-        this.$info(this.$t('update-trying'));
-        const response = await this.$http.post('asf/update');
+        if (this.updating) return;
+        this.updating = true;
 
-        if (response.Success) {
-          this.$success(this.$t('update-complete'));
-          this.$info(this.$t('restart-initiated'));
+        const notification = this.$snotify.info(this.$t('update-trying'), this.$t('info'));
+        notification.on('click', toast => this.$router.push({ name: 'log' }));
+
+        try {
+          await this.$http.post('asf/update');
           await waitForRestart();
-          this.$success(this.$t('restart-complete'));
+          this.$success(this.$t('update-complete'));
+          await delay(3000);
           window.location.reload();
+        } catch (err) {
+          if (err.message === 'HTTP Error 504' || err.message === 'Network Error') {
+            await waitForRestart();
+            this.$success(this.$t('update-complete'));
+            await delay(3000);
+            window.location.reload();
+          }
+          if (!err.result && !err.message.includes('≥')) throw err;
+          const { remoteVersion, localVersion } = this.extractVersions(err);
+          if (localVersion === remoteVersion) this.$info(this.$t('update-is-up-to-date'));
+          else this.$info(this.$t('update-is-newest'));
+        } finally {
+          this.updating = false;
         }
       },
       async loadReleases() {
@@ -124,7 +149,8 @@
         try {
           const release = await this.$http.get(`www/github/release/${version}`);
           const publishedAt = new Date(release.ReleasedAt);
-          const changelog = release.ChangelogHTML.replace(/<a href="/g, '<a target="_blank" href="');
+          let changelog = linkifyHtml(release.ChangelogHTML).replace(/<a href="/g, '<a target="_blank" href="');
+          if (!changelog) changelog = this.$t('releases-changelog');
           return {
             changelog,
             stable: release.Stable,
@@ -161,9 +187,10 @@
 		display: flex;
 		margin-top: 0;
 
-		@media screen and (max-width: 350px) {
+		@media screen and (max-width: 400px) {
 			align-items: flex-start;
 			flex-direction: column;
+      gap: 4px;
 		}
 	}
 
@@ -175,7 +202,7 @@
 	.release__time {
 		margin-left: auto;
 
-		@media screen and (max-width: 350px) {
+		@media screen and (max-width: 400px) {
 			margin-left: 0;
 		}
 	}
@@ -191,7 +218,7 @@
 		text-align: center;
 		vertical-align: baseline;
 
-		@media screen and (max-width: 350px) {
+		@media screen and (max-width: 400px) {
 			margin-left: 0;
 		}
 	}
@@ -222,6 +249,13 @@
 			color: var(--color-theme);
 			text-decoration: none;
 		}
+
+    code {
+      padding: 0.1em 0.3em;
+      font-size: 85%;
+      background-color: var(--color-background-dark);
+      border-radius: 3px;
+    }
 
 		ul {
 			@media screen and (max-width: 450px) {

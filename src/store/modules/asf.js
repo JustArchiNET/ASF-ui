@@ -32,6 +32,7 @@ export const state = {
   updateChannel: 1,
   steamOwnerID: '0',
   headless: false,
+  canUpdate: false,
 };
 
 export const mutations = {
@@ -49,6 +50,7 @@ export const mutations = {
   updateUpdateChannel: (state, updateChannel) => (state.updateChannel = updateChannel),
   updateSteamOwnerID: (state, steamOwnerID) => (state.steamOwnerID = steamOwnerID),
   updateHeadless: (state, headless) => (state.headless = headless),
+  updateCanUpdate: (state, canUpdate) => (state.canUpdate = canUpdate),
 };
 
 export const actions = {
@@ -72,6 +74,7 @@ export const actions = {
       commit('updateUpdateChannel', response.GlobalConfig.UpdateChannel);
       commit('updateSteamOwnerID', response.GlobalConfig.s_SteamOwnerID);
       commit('updateHeadless', response.GlobalConfig.Headless);
+      commit('updateCanUpdate', response.CanUpdate);
     } catch (err) {
       console.warn(err.message);
     }
@@ -92,4 +95,5 @@ export const getters = {
   steamOwnerID: state => state.steamOwnerID,
   headless: state => state.headless,
   updatesEnabled: state => state.updateChannel !== 0,
+  canUpdate: state => state.canUpdate,
 };

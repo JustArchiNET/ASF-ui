@@ -10,21 +10,21 @@
         <input class="form-item__input form-item__input-token" type="text" :value="token" readonly>
         <div class="form-item__buttons form-item__buttons--column">
           <button class="button button--helper" :title="$t('2fa-token-refresh')" @click="refreshToken">
-            <font-awesome-icon v-if="refreshing" icon="spinner" size="lg" spin></font-awesome-icon>
-            <font-awesome-icon v-else icon="redo-alt" size="lg"></font-awesome-icon>
+            <FontAwesomeIcon v-if="refreshing" icon="spinner" size="lg" spin></FontAwesomeIcon>
+            <FontAwesomeIcon v-else icon="redo-alt" size="lg"></FontAwesomeIcon>
           </button>
           <button class="button button--helper" :title="$t('2fa-token-copy')" @click="copyToken">
-            <font-awesome-icon icon="clipboard" size="lg"></font-awesome-icon>
+            <FontAwesomeIcon icon="clipboard" size="lg"></FontAwesomeIcon>
           </button>
         </div>
       </div>
       <div class="form-item__buttons form-item__buttons--center form-item__buttons--column">
         <button class="button button--confirm" @click="acceptConfirmations">
-          <font-awesome-icon v-if="accepting" icon="spinner" spin></font-awesome-icon>
+          <FontAwesomeIcon v-if="accepting" icon="spinner" spin></FontAwesomeIcon>
           <span v-else>{{ $t('2fa-accept') }}</span>
         </button>
         <button class="button button--cancel" @click="rejectConfirmations">
-          <font-awesome-icon v-if="rejecting" icon="spinner" spin></font-awesome-icon>
+          <FontAwesomeIcon v-if="rejecting" icon="spinner" spin></FontAwesomeIcon>
           <span v-else>{{ $t('2fa-reject') }}</span>
         </button>
       </div>
@@ -38,7 +38,7 @@
   import delay from '../../utils/delay';
 
   export default {
-    name: 'bot-2fa',
+    name: 'Bot2fa',
     data() {
       return {
         accepting: false,
@@ -60,31 +60,21 @@
         await delay(30000); // Steam 2FA token is only valid for 30 seconds
         this.token = '-----';
       },
+      $route: {
+        immediate: true,
+        async handler() {
+          if (!this.bot.has2FA) {
+            this.has2FA = false;
+            return;
+          }
+
+          this.has2FA = true;
+          this.refreshToken();
+        },
+      },
     },
     async created() {
       if (!this.bot) this.$router.replace({ name: 'bots' });
-
-      if (!this.bot.has2FA) {
-        this.has2FA = false;
-        return;
-      }
-
-      this.refreshing = true;
-
-      try {
-        const bot = this.bot.name;
-        const response = await this.$http.get(`bot/${bot}/twoFactorAuthentication/token`);
-
-        if (response[bot].Result && response[bot].Success) {
-          this.token = response[bot].Result;
-        } else {
-          this.$error(response[bot].Message);
-        }
-      } catch (err) {
-        this.$error(err.message);
-      } finally {
-        this.refreshing = false;
-      }
     },
     methods: {
       async acceptConfirmations() {
@@ -97,7 +87,9 @@
           const response = await this.$http.post(`bot/${bot}/twoFactorAuthentication/confirmations`, { accept: true });
 
           if (response[bot].Success) {
-            this.$success(this.$t('2fa-accept-success', { bot }));
+            const count = response[bot].Message.match(/\d+/)[0];
+            if (count === '0') this.$info(this.$t('2fa-accept-not-found'));
+            else this.$success(this.$t('2fa-accept-success', { bot, n: count }));
           } else {
             this.$error(response[bot].Message);
           }
@@ -117,7 +109,9 @@
           const response = await this.$http.post(`bot/${bot}/twoFactorAuthentication/confirmations`, { accept: false });
 
           if (response[bot].Success) {
-            this.$success(this.$t('2fa-reject-success', { bot }));
+            const count = response[bot].Message.match(/\d+/)[0];
+            if (count === '0') this.$info(this.$t('2fa-reject-not-found'));
+            else this.$success(this.$t('2fa-reject-success', { bot, n: count }));
           } else {
             this.$error(response[bot].Message);
           }

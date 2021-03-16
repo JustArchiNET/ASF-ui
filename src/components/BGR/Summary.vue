@@ -5,7 +5,7 @@
     </h3>
 
     <div class="form-item">
-      <bgr-keys :keys="keys"></bgr-keys>
+      <BgrKeys :keys="keys"></BgrKeys>
     </div>
 
     <div class="form-item">
@@ -26,7 +26,7 @@
   import BgrKeys from './Keys.vue';
 
   export default {
-    name: 'bgr-summary',
+    name: 'BgrSummary',
     components: { BgrKeys },
     props: {
       keys: Object,
@@ -41,11 +41,11 @@
       copyKeys() {
         let keys = '';
 
-        for (const key in this.keys) {
+        this.keys.forEach(key => {
           if (Object.prototype.hasOwnProperty.call(this.keys, key)) {
             keys += `${this.keys[key]}\t${key}\n`;
           }
-        }
+        });
 
         copy(keys);
         this.$info(this.$t('keys-copied'));

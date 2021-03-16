@@ -8,7 +8,7 @@
 
 <script>
   export default {
-    name: 'input-description',
+    name: 'InputDescription',
     props: {
       description: String,
       shown: Boolean,

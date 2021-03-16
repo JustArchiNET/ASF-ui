@@ -1,12 +1,12 @@
 <template>
   <label class="form-item__label">{{ label }}
-    <font-awesome-icon v-if="hasDescription" class="form-item__description-icon" icon="question" @click="$parent.toggleDescription"></font-awesome-icon>
+    <FontAwesomeIcon v-if="hasDescription" class="form-item__description-icon" icon="question" @click="$parent.toggleDescription"></FontAwesomeIcon>
   </label>
 </template>
 
 <script>
   export default {
-    name: 'input-label',
+    name: 'InputLabel',
     props: {
       label: String,
       field: String,

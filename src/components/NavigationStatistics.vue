@@ -1,8 +1,8 @@
 <template>
   <div class="navigation-statistics">
-    <navigation-statistic v-if="botsFarmingCount !== 0" :title="$t('farming-info-cards')" :name="$t('farming-info-cards')" icon="clone" :value="cardsRemaining"></navigation-statistic>
-    <navigation-statistic :title="$t('statistics-memory-usage')" :name="$t('statistics-memory-usage')" icon="tachometer-alt" :value="memory"></navigation-statistic>
-    <navigation-statistic :title="$t('statistics-uptime')" :name="$t('statistics-uptime')" icon="clock" :value="uptime"></navigation-statistic>
+    <NavigationStatistic v-if="botsFarmingCount !== 0" :title="$t('farming-info-cards')" :name="$t('farming-info-cards')" icon="clone" :value="cardsRemaining"></NavigationStatistic>
+    <NavigationStatistic :title="$t('statistics-memory-usage')" :name="$t('statistics-memory-usage')" icon="tachometer-alt" :value="memory"></NavigationStatistic>
+    <NavigationStatistic :title="$t('statistics-uptime')" :name="$t('statistics-uptime')" icon="clock" :value="uptime"></NavigationStatistic>
   </div>
 </template>
 
@@ -11,7 +11,7 @@
   import NavigationStatistic from './NavigationStatistic.vue';
 
   export default {
-    name: 'navigation-statistics',
+    name: 'NavigationStatistics',
     components: { NavigationStatistic },
     computed: mapGetters({
       memory: 'asf/memory',

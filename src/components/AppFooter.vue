@@ -1,13 +1,13 @@
 <template>
   <footer class="footer">
     <div class="footer__links">
-      <footer-link name="GitHub" prefix="fab" icon="github" to="https://github.com/JustArchiNET"></footer-link>
-      <footer-link :name="$t('wiki')" icon="book-open" to="https://github.com/JustArchiNET/ArchiSteamFarm/wiki"></footer-link>
-      <footer-link v-if="authenticated" :name="$t('changelog')" icon="calendar-check" :to="releaseUrl"></footer-link>
+      <FooterLink name="GitHub" prefix="fab" icon="github" to="https://github.com/JustArchiNET"></FooterLink>
+      <FooterLink :name="$t('wiki')" icon="book-open" to="https://github.com/JustArchiNET/ArchiSteamFarm/wiki"></FooterLink>
+      <FooterLink v-if="authenticated" :name="$t('changelog')" icon="calendar-check" :to="releaseUrl"></FooterLink>
     </div>
 
     <div v-if="authenticated" class="footer__statistic">
-      <font-awesome-icon v-if="releaseAvailable" class="footer__statistic-notify" :title="$t('update-available')" icon="exclamation" size="sm" @click="redirectToReleases"></font-awesome-icon>
+      <FontAwesomeIcon v-if="newReleaseAvailable" class="footer__statistic-notify" :title="$t('update-available')" icon="exclamation" size="sm" @click="redirectToReleases"></FontAwesomeIcon>
       <span class="footer__statistic-name">ASF</span>
       <span class="footer__statistic-value">{{ versionString }}</span>
     </div>
@@ -17,16 +17,16 @@
 <script>
   import { mapGetters } from 'vuex';
   import FooterLink from './FooterLink.vue';
-  import { ui, newReleaseAvailable } from '../utils/ui';
+  import { ui, isReleaseAvailable } from '../utils/ui';
   import delay from '../utils/delay';
   import { get } from '../utils/storage';
 
   export default {
-    name: 'app-footer',
+    name: 'AppFooter',
     components: { FooterLink },
     data() {
       return {
-        releaseAvailable: false,
+        newReleaseAvailable: false,
         uiHash: ui.gitCommitHash,
       };
     },
@@ -37,25 +37,25 @@
         buildVariant: 'asf/buildVariant',
         notifyRelease: 'settings/notifyRelease',
         updatesEnabled: 'asf/updatesEnabled',
+        canUpdate: 'asf/canUpdate',
       }),
       versionString() {
         return `${this.version} - ${this.buildVariant} - ${this.uiHash}`;
       },
       releaseUrl() {
-        const v = this.releaseAvailable ? get('latest-release') : this.version;
+        const v = this.newReleaseAvailable ? get('latest-release') : this.version;
         return `https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${v}`;
       },
     },
     async mounted() {
       await delay(3000);
-      if (this.authenticated && this.updatesEnabled) this.checkForNewRelease();
+      if (this.authenticated && this.updatesEnabled && this.canUpdate) this.checkForNewRelease();
     },
     methods: {
       async checkForNewRelease() {
         try {
-          const newVersionAvailable = await newReleaseAvailable();
-          this.releaseAvailable = newVersionAvailable;
-          if (newVersionAvailable && this.notifyRelease && this.$route.name !== 'releases') {
+          this.newReleaseAvailable = await isReleaseAvailable();
+          if (this.newReleaseAvailable && this.notifyRelease && this.$route.name !== 'releases') {
             const notification = this.$snotify.info(this.$t('update-available'), this.$t('info'));
             notification.on('click', toast => this.redirectToReleases());
           }

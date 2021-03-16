@@ -3,17 +3,17 @@
     <div class="container">
       <template v-if="loading">
         <h3 class="subtitle">
-          <font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
+          <FontAwesomeIcon icon="spinner" size="lg" spin></FontAwesomeIcon>
         </h3>
       </template>
       <template v-else>
-        <config-editor v-if="displayCategories" :fields="fields" :model="model" :categories="categories" :descriptions="descriptions"></config-editor>
-        <config-editor v-else :fields="fields" :model="model" :descriptions="descriptions"></config-editor>
+        <ConfigEditor v-if="displayCategories" :fields="fields" :model="model" :categories="categories" :descriptions="descriptions"></ConfigEditor>
+        <ConfigEditor v-else :fields="fields" :model="model" :descriptions="descriptions"></ConfigEditor>
 
         <div class="form-item">
           <div class="form-item__buttons">
             <button class="button button--confirm" @click="onSave">
-              <font-awesome-icon v-if="saving" icon="spinner" spin></font-awesome-icon>
+              <FontAwesomeIcon v-if="saving" icon="spinner" spin></FontAwesomeIcon>
               <span v-else>{{ $t('save') }}</span>
             </button>
 
@@ -34,9 +34,10 @@
   import fetchConfigSchema from '../utils/fetchConfigSchema';
   import prepareModelToDownload from '../utils/prepareModelToDownload';
   import waitForRestart from '../utils/waitForRestart';
+  import delay from '../utils/delay';
 
   export default {
-    name: 'global-config',
+    name: 'GlobalConfig',
     metaInfo() {
       return {
         title: this.$t('global-config'),
@@ -48,7 +49,7 @@
         { name: this.$t('basic'), fields: ['SteamOwnerID'] },
         { name: this.$t('trade'), fields: ['MaxTradeHoldDuration'] },
         { name: this.$t('customization'), fields: ['AutoRestart', 'Blacklist', 'CommandPrefix', 'CurrentCulture', 'Statistics', 'SteamMessagePrefix'] },
-        { name: this.$t('remote-access'), fields: ['Headless', 'IPC', 'IPCPassword'] },
+        { name: this.$t('remote-access'), fields: ['Headless', 'IPC', 'IPCPassword', 'IPCPasswordFormat'] },
         { name: this.$t('connection'), fields: ['ConnectionTimeout', 'SteamProtocols', 'WebProxy', 'WebProxyPassword', 'WebProxyUsername'] },
         { name: this.$t('farming'), fields: ['FarmingDelay', 'IdleFarmingPeriod', 'MaxFarmingTime'] },
         { name: this.$t('performance'), fields: ['OptimizationMode', 'ConfirmationsLimiterDelay', 'GiftsLimiterDelay', 'InventoryLimiterDelay', 'LoginLimiterDelay', 'WebLimiterDelay'] },
@@ -86,17 +87,20 @@
 
       this.model = model;
 
-      this.fields = Object.keys(fields).map(key => ({
-        description: descriptions[key],
-        ...fields[key],
-      }));
+      const extendedFields = {
+        IPCPassword: { placeholder: this.$t('keep-unchanged') },
+      };
+
+      this.fields = Object.keys(fields).map(key => {
+        const description = (!descriptions[key]) ? this.$t('description-not-found') : descriptions[key].replace(/<a href="/g, '<a target="_blank" href="');
+        return { description, ...fields[key], ...(extendedFields[key] || []) };
+      });
 
       this.loading = false;
     },
     methods: {
       async onSave() {
         if (this.saving) return;
-
         this.saving = true;
 
         try {
@@ -104,6 +108,8 @@
           this.$info(this.$t('restart-initiated'));
           await waitForRestart();
           this.$success(this.$t('restart-complete'));
+          await delay(3000);
+          window.location.reload();
         } catch (err) {
           this.$error(err.message);
         } finally {

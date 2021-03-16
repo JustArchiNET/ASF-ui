@@ -3,17 +3,17 @@
     <h2 class="title">{{ $t('bot-new') }}</h2>
 
     <h3 v-if="loading" class="subtitle">
-      <font-awesome-icon icon="spinner" size="lg" spin></font-awesome-icon>
+      <FontAwesomeIcon icon="spinner" size="lg" spin></FontAwesomeIcon>
     </h3>
 
     <div v-else class="container">
-      <config-editor v-if="displayCategories" :fields="fields" :model="model" :categories="categories"></config-editor>
-      <config-editor v-else :fields="fields" :model="model"></config-editor>
+      <ConfigEditor v-if="displayCategories" :fields="fields" :model="model" :categories="categories"></ConfigEditor>
+      <ConfigEditor v-else :fields="fields" :model="model"></ConfigEditor>
 
       <div class="form-item">
         <div class="form-item__buttons">
           <button class="button button--confirm" @click="onCreate">
-            <font-awesome-icon v-if="creating" icon="spinner" spin></font-awesome-icon>
+            <FontAwesomeIcon v-if="creating" icon="spinner" spin></FontAwesomeIcon>
             <span v-else>{{ $t('create') }}</span>
           </button>
 
@@ -36,7 +36,7 @@
   import botExists from '../../utils/botExists';
 
   export default {
-    name: 'bot-create',
+    name: 'BotCreate',
     components: { ConfigEditor },
     data() {
       const categories = [
@@ -64,7 +64,8 @@
     }),
     async created() {
       await this.loadConfig();
-      document.getElementById('Name').focus();
+      const botNameField = document.getElementById('Name');
+      if (botNameField) botNameField.focus();
     },
     methods: {
       async loadConfig() {

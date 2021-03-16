@@ -1,13 +1,13 @@
 <template>
   <div class="config-editor">
     <template v-if="categories">
-      <config-category v-for="category in categories" v-if="categoryFields(category.name).length" :key="category.name" :name="category.name">
+      <ConfigCategory v-for="category in categories" v-if="categoryFields(category.name).length" :key="category.name" :name="category.name">
         <component :is="componentFromField(field)" v-for="field in categoryFields(category.name)" :key="field.param" class="form-item--config" :schema="field" :current-value="model[field.paramName]" @update="updateModel"></component>
-      </config-category>
+      </ConfigCategory>
 
-      <config-category v-if="uncategorizedFields.length" key="Other" :name="$t('other')">
+      <ConfigCategory v-if="uncategorizedFields.length" key="Other" :name="$t('other')">
         <component :is="componentFromField(field)" v-for="field in uncategorizedFields" :key="field.param" class="form-item--config" :schema="field" :current-value="model[field.paramName]" @update="updateModel"></component>
-      </config-category>
+      </ConfigCategory>
     </template>
 
     <template v-if="!categories">
@@ -32,7 +32,7 @@
   import ConfigCategory from './ConfigCategory.vue';
 
   export default {
-    name: 'config-editor',
+    name: 'ConfigEditor',
     components: { ConfigCategory },
     props: {
       fields: {
@@ -130,6 +130,7 @@
             return a.length === b.length && a.every((item, index) => item === b[index]);
           case 'dictionary':
             return Object.keys(a).length === Object.keys(b).length && Object.keys(a).every(key => a[key] === b[key]);
+            // no default
         }
 
         return false;

@@ -2,32 +2,32 @@
   <nav class="side-navigation" @transitionend="onTransitionEnd">
     <template v-if="authenticated">
       <div class="navigation-category">
-        <navigation-category-title :name="$t('control')"></navigation-category-title>
-        <navigation-link :name="$t('bots')" icon="users" :to="{ name: 'bots' }"></navigation-link>
-        <navigation-link :name="$t('commands')" icon="laptop" :to="{ name: 'commands' }"></navigation-link>
-        <navigation-link :name="$t('log')" icon="file-alt" :to="{ name: 'log' }"></navigation-link>
-        <navigation-link :name="$t('releases')" icon="code-branch" :to="{ name: 'releases' }"></navigation-link>
-        <navigation-link :name="$t('plugins')" icon="puzzle-piece" :to="{ name: 'plugins' }"></navigation-link>
+        <NavigationCategoryTitle :name="$t('control')"></NavigationCategoryTitle>
+        <NavigationLink :name="$t('bots')" icon="users" :to="{ name: 'bots' }"></NavigationLink>
+        <NavigationLink :name="$t('commands')" icon="laptop" :to="{ name: 'commands' }"></NavigationLink>
+        <NavigationLink :name="$t('log')" icon="file-alt" :to="{ name: 'log' }"></NavigationLink>
+        <NavigationLink :name="$t('releases')" icon="code-branch" :to="{ name: 'releases' }"></NavigationLink>
+        <NavigationLink :name="$t('plugins')" icon="puzzle-piece" :to="{ name: 'plugins' }"></NavigationLink>
       </div>
 
       <div class="navigation-category">
-        <navigation-category-title :name="$t('configuration')"></navigation-category-title>
-        <navigation-link :name="$t('ui-configuration')" icon="wrench" :to="{ name: 'ui-configuration' }"></navigation-link>
-        <navigation-link :name="$t('global-config')" icon="edit" :to="{ name: 'global-config' }"></navigation-link>
-        <navigation-link :name="$t('mass-editor')" icon="paste" :to="{ name: 'mass-editor' }"></navigation-link>
+        <NavigationCategoryTitle :name="$t('configuration')"></NavigationCategoryTitle>
+        <NavigationLink :name="$t('ui-configuration')" icon="wrench" :to="{ name: 'ui-configuration' }"></NavigationLink>
+        <NavigationLink :name="$t('global-config')" icon="edit" :to="{ name: 'global-config' }"></NavigationLink>
+        <NavigationLink :name="$t('mass-editor')" icon="paste" :to="{ name: 'mass-editor' }"></NavigationLink>
       </div>
 
       <div class="navigation-category navigation-category--pull-bottom">
-        <navigation-category-title :name="$t('statistics')"></navigation-category-title>
-        <navigation-bots ref="bots"></navigation-bots>
-        <navigation-statistics></navigation-statistics>
+        <NavigationCategoryTitle :name="$t('statistics')"></NavigationCategoryTitle>
+        <NavigationBots ref="bots"></NavigationBots>
+        <NavigationStatistics></NavigationStatistics>
       </div>
     </template>
 
     <template v-else>
       <div class="navigation-category">
-        <navigation-category-title :name="$t('configuration')"></navigation-category-title>
-        <navigation-link :name="$t('setup')" icon="wrench" :to="{ name: 'setup' }"></navigation-link>
+        <NavigationCategoryTitle :name="$t('configuration')"></NavigationCategoryTitle>
+        <NavigationLink :name="$t('setup')" icon="wrench" :to="{ name: 'setup' }"></NavigationLink>
       </div>
     </template>
   </nav>
@@ -41,7 +41,7 @@
   import NavigationStatistics from './NavigationStatistics.vue';
 
   export default {
-    name: 'app-navigation',
+    name: 'AppNavigation',
     components: {
       NavigationLink, NavigationCategoryTitle, NavigationStatistics, NavigationBots,
     },

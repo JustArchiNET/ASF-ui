@@ -3,24 +3,24 @@
     <span class="brand__name brand__name--small"><b>A</b>SF</span>
     <span class="brand__name brand__name--big"><b>Archi</b>SteamFarm</span>
     <div v-if="authenticated" class="brand__icon">
-      <font-awesome-icon v-if="brandMenu" icon="times"></font-awesome-icon>
-      <font-awesome-icon v-else icon="angle-down"></font-awesome-icon>
+      <FontAwesomeIcon v-if="brandMenu" icon="times"></FontAwesomeIcon>
+      <FontAwesomeIcon v-else icon="angle-down"></FontAwesomeIcon>
     </div>
 
     <transition name="brand__menu">
       <div v-if="brandMenu && authenticated" class="brand__menu">
-        <div v-if="updatesEnabled" class="brand__menu-item" @click="update">
-          <font-awesome-icon class="brand__menu-icon" icon="cloud-download-alt" fixed-width></font-awesome-icon>
+        <div v-if="updatesEnabled && canUpdate" class="brand__menu-item" @click="update">
+          <FontAwesomeIcon class="brand__menu-icon" icon="cloud-download-alt" fixed-width></FontAwesomeIcon>
           <span>{{ $t('update') }}</span>
         </div>
 
         <div class="brand__menu-item" @click="restart">
-          <font-awesome-icon class="brand__menu-icon" icon="undo-alt" fixed-width></font-awesome-icon>
+          <FontAwesomeIcon class="brand__menu-icon" icon="undo-alt" fixed-width></FontAwesomeIcon>
           <span>{{ $t('restart') }}</span>
         </div>
 
         <div class="brand__menu-item" @click="shutdown">
-          <font-awesome-icon class="brand__menu-icon" icon="power-off" fixed-width></font-awesome-icon>
+          <FontAwesomeIcon class="brand__menu-icon" icon="power-off" fixed-width></FontAwesomeIcon>
           <span>{{ $t('shutdown') }}</span>
         </div>
       </div>
@@ -30,15 +30,17 @@
 
 <script>
   import { mapGetters, mapActions } from 'vuex';
-  import { newReleaseAvailable } from '../utils/ui';
+  import { isReleaseAvailable } from '../utils/ui';
+  import delay from '../utils/delay';
   import waitForRestart from '../utils/waitForRestart';
 
   export default {
-    name: 'navigation-brand',
+    name: 'NavigationBrand',
     data() {
       return {
         brandMenu: false,
         restarting: false,
+        updating: false,
       };
     },
     computed: mapGetters({
@@ -46,6 +48,7 @@
       version: 'asf/version',
       updatesEnabled: 'asf/updatesEnabled',
       sideMenu: 'layout/sideMenu',
+      canUpdate: 'asf/canUpdate',
     }),
     watch: {
       brandMenu(value) {
@@ -84,27 +87,37 @@
         return {};
       },
       async update() {
-        try {
-          this.$info(this.$t('update-check'));
-          const newVersionAvailable = await newReleaseAvailable();
-          if (newVersionAvailable) this.$info(this.$t('update-trying'));
-          const response = await this.$http.post('asf/update');
-          this.brandMenu = false;
+        if (this.updating) return;
+        this.updating = true;
 
-          if (response.Success) {
-            this.$success(this.$t('update-complete'));
-            this.$info(this.$t('restart-initiated'));
+        this.$info(this.$t('update-check'));
+        const newVersionAvailable = await isReleaseAvailable();
+
+        if (newVersionAvailable) {
+          const notification = this.$snotify.info(this.$t('update-trying'), this.$t('info'));
+          notification.on('click', toast => this.redirectToLog());
+        }
+
+        try {
+          await this.$http.post('asf/update');
+          this.brandMenu = false;
+          await waitForRestart();
+          this.$success(this.$t('update-complete'));
+          await delay(3000);
+          window.location.reload();
+        } catch (err) {
+          if (err.message === 'HTTP Error 504' || err.message === 'Network Error') {
             await waitForRestart();
-            this.$success(this.$t('restart-complete'));
+            this.$success(this.$t('update-complete'));
+            await delay(3000);
             window.location.reload();
           }
-        } catch (err) {
           if (!err.result && !err.message.includes('≥')) throw err;
-
           const { remoteVersion, localVersion } = this.extractVersions(err);
-
           if (localVersion === remoteVersion) this.$info(this.$t('update-is-up-to-date'));
           else this.$info(this.$t('update-is-newest'));
+        } finally {
+          this.updating = false;
         }
       },
       async restart() {
@@ -114,9 +127,10 @@
         try {
           await this.$http.post('asf/restart');
           this.$info(this.$t('restart-initiated'));
+          this.brandMenu = false;
           await waitForRestart();
           this.$success(this.$t('restart-complete'));
-          this.brandMenu = false;
+          await delay(3000);
           window.location.reload();
         } catch (err) {
           this.$error(err.message);
@@ -137,6 +151,9 @@
         const path = $e.path || $e.composedPath();
         if (path.includes(this.$el)) return;
         this.brandMenu = false;
+      },
+      redirectToLog() {
+        if (this.$route.name !== 'log') this.$router.push({ name: 'log' });
       },
     },
   };
