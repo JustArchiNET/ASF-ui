@@ -7,7 +7,8 @@
       <p v-if="status === 'RATE_LIMITED'" class="status-text status-text--error">{{ $t('setup-rate-limited') }}</p>
       <p v-if="status === 'AUTHENTICATED'" class="status-text">{{ $t('setup-authenticated') }}</p>
       <p v-if="status === 'UNAUTHORIZED'" class="status-text">{{ $t('setup-description') }}</p>
-      <p v-if="status === 'GATEWAY_TIMEOUT'" class="status-text">{{ $t('setup-gateway-timeout', { seconds: retryInterval }) }}</p>
+      <p v-if="status === 'GATEWAY_TIMEOUT'" class="status-text">{{ $t('setup-gateway-timeout', { seconds: countdown }) }}</p>
+      <p v-if="status === 'NETWORK_ERROR'" class="status-text">{{ $t('setup-network-error', { seconds: countdown }) }}</p>
 
       <div v-if="status === 'UNAUTHORIZED'" class="form-item">
         <label for="password" class="form-item__label">{{ $t('password') }}</label>
@@ -42,7 +43,7 @@
       return {
         password: this.$store.getters['auth/password'],
         processing: false,
-        retryInterval: 5,
+        countdown: 5,
       };
     },
     computed: {
@@ -61,13 +62,20 @@
       status() {
         if (this.status === STATUS.AUTHENTICATED) this.redirect();
       },
+      countdown: {
+        handler(value) {
+          if (value > 0) setTimeout(() => this.countdown--, 1000);
+        },
+        immediate: true,
+      },
     },
     async mounted() {
       if (this.status === STATUS.AUTHENTICATED) this.redirect();
 
       while (this.status === STATUS.GATEWAY_TIMEOUT || this.status === STATUS.NETWORK_ERROR) {
-        await delay(this.retryInterval * 1000);
+        await delay(5000);
         await this.refreshStatus();
+        this.countdown = 5;
       }
     },
     methods: {
