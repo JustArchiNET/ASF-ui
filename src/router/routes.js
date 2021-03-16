@@ -20,8 +20,11 @@ export default [
 			else if (from.name === 'welcome' && steamOwnerID === '0') return next({ name: 'global-config' });
 			else if (from.name === 'welcome' && !botsDetected) return next({ name: 'bot-create' });
 			else if (steamOwnerID !== '0' || botsDetected) {
-				storage.set('setup-complete', true);
-				next({ name: 'bots' });
+        storage.set('setup-complete', true);
+        let defaultView = store.getters['settings/defaultView'];
+        if (defaultView === '_last-visited-page') defaultView = storage.get('last-visited-page', { name: 'home' });
+        const page = (typeof defaultView === 'string') ? { name: defaultView } : defaultView;
+        next(page);
 			} else next({ name: 'bots' });
 		}
 	},
