@@ -13,7 +13,7 @@
       <div class="navigation-category">
         <NavigationCategoryTitle :name="$t('config')"></NavigationCategoryTitle>
         <NavigationLink :name="$t('ui-config')" icon="wrench" :to="{ name: 'ui-config' }"></NavigationLink>
-        <NavigationLink :name="$t('global-config')" icon="edit" :to="{ name: 'global-config' }"></NavigationLink>
+        <NavigationLink :name="$t('asf-config')" icon="edit" :to="{ name: 'asf-config' }"></NavigationLink>
       </div>
 
       <div class="navigation-category navigation-category--pull-bottom">
