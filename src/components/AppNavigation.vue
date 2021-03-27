@@ -5,15 +5,15 @@
         <NavigationCategoryTitle :name="$t('control')"></NavigationCategoryTitle>
         <NavigationLink :name="$t('bots')" icon="users" :to="{ name: 'bots' }"></NavigationLink>
         <NavigationLink :name="$t('commands')" icon="laptop" :to="{ name: 'commands' }"></NavigationLink>
-        <NavigationLink :name="$t('log')" icon="file-alt" :to="{ name: 'log' }"></NavigationLink>
         <NavigationLink :name="$t('releases')" icon="code-branch" :to="{ name: 'releases' }"></NavigationLink>
         <NavigationLink :name="$t('plugins')" icon="puzzle-piece" :to="{ name: 'plugins' }"></NavigationLink>
+        <NavigationLink :name="$t('log')" icon="file-alt" :to="{ name: 'log' }"></NavigationLink>
       </div>
 
       <div class="navigation-category">
         <NavigationCategoryTitle :name="$t('config')"></NavigationCategoryTitle>
-        <NavigationLink :name="$t('ui-config')" icon="wrench" :to="{ name: 'ui-config' }"></NavigationLink>
         <NavigationLink :name="$t('asf-config')" icon="edit" :to="{ name: 'asf-config' }"></NavigationLink>
+        <NavigationLink :name="$t('ui-config')" icon="wrench" :to="{ name: 'ui-config' }"></NavigationLink>
       </div>
 
       <div class="navigation-category navigation-category--pull-bottom">
