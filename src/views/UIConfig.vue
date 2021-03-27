@@ -16,10 +16,10 @@
   import ConfigEditor from '../components/ConfigEditor.vue';
 
   export default {
-    name: 'UiConfiguration',
+    name: 'UiConfig',
     metaInfo() {
       return {
-        title: this.$t('ui-configuration'),
+        title: this.$t('ui-config'),
       };
     },
     components: { ConfigEditor },

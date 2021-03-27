@@ -11,8 +11,8 @@
       </div>
 
       <div class="navigation-category">
-        <NavigationCategoryTitle :name="$t('configuration')"></NavigationCategoryTitle>
-        <NavigationLink :name="$t('ui-configuration')" icon="wrench" :to="{ name: 'ui-configuration' }"></NavigationLink>
+        <NavigationCategoryTitle :name="$t('config')"></NavigationCategoryTitle>
+        <NavigationLink :name="$t('ui-config')" icon="wrench" :to="{ name: 'ui-config' }"></NavigationLink>
         <NavigationLink :name="$t('global-config')" icon="edit" :to="{ name: 'global-config' }"></NavigationLink>
       </div>
 
@@ -25,7 +25,7 @@
 
     <template v-else>
       <div class="navigation-category">
-        <NavigationCategoryTitle :name="$t('configuration')"></NavigationCategoryTitle>
+        <NavigationCategoryTitle :name="$t('config')"></NavigationCategoryTitle>
         <NavigationLink :name="$t('setup')" icon="wrench" :to="{ name: 'setup' }"></NavigationLink>
       </div>
     </template>

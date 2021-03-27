@@ -32,9 +32,9 @@ export default [
 		meta: { noPasswordRequired: true }
 	},
 	{
-		path: '/page/ui-configuration',
-		name: 'ui-configuration',
-		component: () => import('../views/UIConfiguration.vue')
+		path: '/page/ui-config',
+		name: 'ui-config',
+		component: () => import('../views/UIConfig.vue')
 	},
 	{
 		path: '/page/welcome',
@@ -79,7 +79,7 @@ export default [
 		name: 'bot-config',
 		components: {
 			default: () => import('../views/Bots.vue'),
-			modal: () => import('../views/modals/BotConfiguration.vue')
+			modal: () => import('../views/modals/BotConfig.vue')
 		},
 		meta: { modal: true, arrows: true }
 	},
