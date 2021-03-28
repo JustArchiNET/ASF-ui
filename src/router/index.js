@@ -22,6 +22,7 @@ router.beforeEach(async (routeTo, routeFrom, next) => {
 });
 
 router.afterEach(to => {
+  if (to.name === 'setup') return;
   storage.set('last-visited-page', { name: to.name, query: to.query, params: to.params });
 });
 

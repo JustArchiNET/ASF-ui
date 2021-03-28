@@ -23,14 +23,14 @@ export const actions = {
   onAuth: async ({ dispatch }) => {
     dispatch('updateBots');
   },
-  updateBots: async ({ commit, rootGetters }) => {
+  updateBots: async ({ dispatch, commit, rootGetters }) => {
     if (!rootGetters['auth/authenticated']) return;
 
     try {
       const response = await http.get('bot/asf');
       commit('setBots', Object.values(response).map(data => new Bot(data)).reduce((bots, bot) => ((bots[bot.name] = bot), bots), {}));
     } catch (err) {
-      console.warn(err.message);
+      dispatch('auth/updateStatus', '', { root: true });
     }
   },
   async updateBot({ commit }, bot) {

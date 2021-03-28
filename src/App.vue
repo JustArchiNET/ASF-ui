@@ -21,6 +21,7 @@
   import AppFooter from './components/AppFooter.vue';
   import AppSideMenu from './components/AppSideMenu.vue';
   import AppModal from './components/AppModal.vue';
+  import { STATUS } from './utils/getStatus';
 
   export default {
     name: 'App',
@@ -41,6 +42,7 @@
         darkMode: 'layout/darkMode',
         version: 'asf/version',
         buildVariant: 'asf/buildVariant',
+        status: 'auth/status',
       }),
       themeClass() {
         return `theme-${this.theme}`;
@@ -57,6 +59,19 @@
         immediate: true,
         handler(value) {
           document.body.style.overflowY = value.meta.modal ? 'hidden' : 'auto';
+        },
+      },
+      status: {
+        immediate: true,
+        handler(value) {
+          switch (value) {
+            case STATUS.GATEWAY_TIMEOUT:
+            case STATUS.RATE_LIMITED:
+            case STATUS.UNAUTHORIZED:
+            case STATUS.NETWORK_ERROR:
+              this.$router.replace({ name: 'setup' });
+              break;
+          }
         },
       },
     },
