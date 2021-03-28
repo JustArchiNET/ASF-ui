@@ -7,8 +7,8 @@
       <p v-if="status === 'RATE_LIMITED'" class="status-text status-text--error">{{ $t('setup-rate-limited') }}</p>
       <p v-if="status === 'AUTHENTICATED'" class="status-text">{{ $t('setup-authenticated') }}</p>
       <p v-if="status === 'UNAUTHORIZED'" class="status-text">{{ $t('setup-description') }}</p>
-      <p v-if="status === 'GATEWAY_TIMEOUT'" class="status-text">{{ $t('setup-gateway-timeout', { seconds: countdown }) }}</p>
-      <p v-if="status === 'NETWORK_ERROR'" class="status-text">{{ $t('setup-network-error', { seconds: countdown }) }}</p>
+      <p v-if="status === 'GATEWAY_TIMEOUT'" class="status-text">{{ $t('setup-gateway-timeout', { n: countdown }) }}</p>
+      <p v-if="status === 'NETWORK_ERROR'" class="status-text">{{ $t('setup-network-error', { n: countdown }) }}</p>
 
       <div v-if="status === 'UNAUTHORIZED'" class="form-item">
         <label for="password" class="form-item__label">{{ $t('password') }}</label>
