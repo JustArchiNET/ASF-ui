@@ -1,5 +1,5 @@
 <template>
-  <main v-if="bot" class="main-container main-container--bot-configuration">
+  <main v-if="bot" class="main-container main-container--bot-config">
     <h2 v-if="bot.nickname && nicknames" class="title">{{ bot.nickname }}</h2>
     <h2 v-else class="title">{{ bot.name }}</h2>
 
@@ -152,7 +152,7 @@
 </script>
 
 <style lang="scss">
-	.main-container--bot-configuration {
+	.main-container--bot-config {
 		max-width: 1000px;
 	}
 </style>

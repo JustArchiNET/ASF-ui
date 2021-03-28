@@ -17,7 +17,7 @@ export default [
 			const steamOwnerID = await store.dispatch('asf/getSteamOwnerID');
 			const botsDetected = await store.dispatch('bots/detectBots');
 			if (!setupComplete && from.name !== 'welcome' && (steamOwnerID === '0' || !botsDetected)) return next({ name: 'welcome' });
-			else if (from.name === 'welcome' && steamOwnerID === '0') return next({ name: 'global-config' });
+			else if (from.name === 'welcome' && steamOwnerID === '0') return next({ name: 'asf-config' });
 			else if (from.name === 'welcome' && !botsDetected) return next({ name: 'bot-create' });
 			else if (steamOwnerID !== '0' || botsDetected) {
         storage.set('setup-complete', true);
@@ -35,9 +35,9 @@ export default [
 		meta: { noPasswordRequired: true }
 	},
 	{
-		path: '/page/ui-configuration',
-		name: 'ui-configuration',
-		component: () => import('../views/UIConfiguration.vue')
+		path: '/page/ui-config',
+		name: 'ui-config',
+		component: () => import('../views/UIConfig.vue')
 	},
 	{
 		path: '/page/welcome',
@@ -82,7 +82,7 @@ export default [
 		name: 'bot-config',
 		components: {
 			default: () => import('../views/Bots.vue'),
-			modal: () => import('../views/modals/BotConfiguration.vue')
+			modal: () => import('../views/modals/BotConfig.vue')
 		},
 		meta: { modal: true, arrows: true }
 	},
@@ -146,9 +146,9 @@ export default [
 		component: () => import('../views/Log.vue')
 	},
 	{
-		path: '/page/config',
-		name: 'global-config',
-		component: () => import('../views/GlobalConfig.vue')
+		path: '/page/asf-config',
+		name: 'asf-config',
+		component: () => import('../views/ASFConfig.vue')
 	},
 	{
 		path: '*',

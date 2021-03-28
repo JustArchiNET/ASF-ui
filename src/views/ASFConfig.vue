@@ -36,10 +36,10 @@
   import waitForRestart from '../utils/waitForRestart';
 
   export default {
-    name: 'GlobalConfig',
+    name: 'ASFConfig',
     metaInfo() {
       return {
-        title: this.$t('global-config'),
+        title: this.$t('asf-config'),
       };
     },
     components: { ConfigEditor },
