@@ -11,7 +11,7 @@ const availableLocales = requireLocale.keys().map(fileName => {
 }).filter(Boolean);
 
 function getUserLocale(availableLocales, fallbackLocale) {
-  if (isAprilFoolsDay && availableLocales.includes('en-LOL')) return 'en-LOL';
+  if (isAprilFoolsDay && availableLocales.includes('lol-US')) return 'lol-US';
 
   const selectedLocale = storage.get('locale');
   if (selectedLocale && availableLocales.includes(selectedLocale)) return selectedLocale;

@@ -6,7 +6,7 @@ module.exports = function generateFlags() {
   const countries = files
     .filter(fileName => fileName.endsWith('.json'))
     .map(fileName => (fileName === 'default.json' ? 'en-US' : fileName.replace('.json', '')))
-    .map(locale => (locale === 'en-LOL' ? 'eu-EU' : locale))
+    .map(locale => (locale === 'lol-US' ? 'eu-EU' : locale))
     .map(locale => (locale === 'sr-CS' ? 'rs' : locale.split('-')[1].toLowerCase()));
 
   const fileContent = countries
