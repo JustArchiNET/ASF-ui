@@ -42,6 +42,7 @@
       }),
       getFlagCountry(locale) {
         if (locale === 'sr-CS') return 'rs';
+        if (locale === 'en-LOL') return 'eu';
         return locale.split('-')[1].toLowerCase();
       },
       displayTranslationStatus() {
