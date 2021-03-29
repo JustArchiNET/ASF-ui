@@ -22,10 +22,12 @@ export default [
 			else if (steamOwnerID !== '0' || botsDetected) {
         storage.set('setup-complete', true);
         let defaultView = store.getters['settings/defaultView'];
-        if (defaultView === '_last-visited-page') defaultView = storage.get('last-visited-page', { name: 'home' });
+        if (defaultView === '_last-visited-page') defaultView = storage.get('last-visited-page', { name: 'bots' });
         const page = (typeof defaultView === 'string') ? { name: defaultView } : defaultView;
         next(page);
-			} else next({ name: 'bots' });
+			}
+			
+			next({ name: 'bots' });
 		}
 	},
 	{
