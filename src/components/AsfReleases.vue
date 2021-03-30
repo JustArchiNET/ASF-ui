@@ -255,5 +255,9 @@
 				padding-inline-start: 1.2em;
 			}
 		}
+
+    details {
+      margin-bottom: 1em;
+    }
 	}
 </style>
