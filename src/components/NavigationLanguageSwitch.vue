@@ -17,6 +17,7 @@
 <script>
   import { mapActions, mapGetters } from 'vuex';
   import * as storage from '../utils/storage';
+  import isAprilFoolsDay from '../utils/isAprilFoolsDay';
   import Flag from './utils/Flag.vue';
 
   export default {
@@ -54,6 +55,8 @@
         return this.$info(this.$t('language-translation-bad', { percent: translationPercent.toFixed(2), locale: this.$i18n.locale }));
       },
       async changeLocale(locale) {
+        if (isAprilFoolsDay) storage.set('fooled', true);
+
         await this.$i18n.load(locale);
         await this.$i18n.set(locale);
         storage.set('locale', locale);
