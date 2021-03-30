@@ -12,7 +12,7 @@ const availableLocales = requireLocale.keys().map(fileName => {
 
 function getUserLocale(availableLocales, fallbackLocale) {
   const fooled = storage.get('fooled', false);
-  if (isAprilFoolsDay && !fooled && availableLocales.includes('lol-US')) return 'lol-US';
+  if (isAprilFoolsDay() && !fooled && availableLocales.includes('lol-US')) return 'lol-US';
 
   const selectedLocale = storage.get('locale');
   if (selectedLocale && availableLocales.includes(selectedLocale)) return selectedLocale;
