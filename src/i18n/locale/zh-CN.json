@@ -120,7 +120,6 @@
   "notification-position-right-bottom": "右侧底部",
   "notification-position-right-top": "右侧顶部",
   "notify-release": "新版本通知",
-  "notify-release-description": "当有新版本可用时通知我（受全局配置属性 <code>UpdateChannel</code> 影响）。",
   "other": "其他",
   "password": "密码",
   "password-invalid": "密码错误！",

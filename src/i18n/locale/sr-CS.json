@@ -115,7 +115,6 @@
   "notification-position-right-bottom": "Dolje desno",
   "notification-position-right-top": "Gore desno",
   "notify-release": "Obavještenje za nove verzije",
-  "notify-release-description": "Prikaži mi obavještenje kada nova verzija bude dostupna (u zavisnosti od postavljenog <code>UpdateChannel</code> iz Opšte konfiguracije).",
   "other": "Ostalo",
   "password": "Lozinka",
   "password-invalid": "Netačna lozinka!",

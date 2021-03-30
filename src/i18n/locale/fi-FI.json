@@ -86,7 +86,6 @@
   "notification-position-right-bottom": "Oikealla alhaalla",
   "notification-position-right-top": "Oikealla ylhäällä",
   "notify-release": "Uusi julkaisuilmoitus",
-  "notify-release-description": "Ilmoita minulle, kun uusi julkaisu on saatavilla (riippuu asetustiedoston kohdasta <code>UpdateChannel</code>).",
   "other": "Muu",
   "password": "Salasana",
   "password-invalid": "Virheellinen salasana!",

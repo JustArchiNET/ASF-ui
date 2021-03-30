@@ -116,7 +116,6 @@
   "notification-position-right-bottom": "Canto inferior direito",
   "notification-position-right-top": "Canto superior direito",
   "notify-release": "Notificação de atualizações",
-  "notify-release-description": "Notifique-me quando uma nova versão estiver disponível (de acordo com a propriedade <code>UpdateChannel</code> na configuração global).",
   "other": "Outros",
   "password": "Senha",
   "password-invalid": "Senha inválida!",

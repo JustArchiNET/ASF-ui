@@ -89,7 +89,6 @@
   "notification-position-right-bottom": "Долу в дясно",
   "notification-position-right-top": "Отгоре в дясно",
   "notify-release": "Известие за нова версия",
-  "notify-release-description": "Уведоми не когато е налична нова версия (зависи от настройките <code>UpdateChannel</code> в Global Config).",
   "other": "Други",
   "password": "Парола",
   "password-invalid": "Невалидна парола!",

@@ -87,7 +87,6 @@
   "notification-position-right-bottom": "우측 하단",
   "notification-position-right-top": "우측 상단",
   "notify-release": "새로운 릴리스 알림",
-  "notify-release-description": "새로운 릴리스가 있는 경우 알림(일반 환경설정의 <code>UpdateChannel</code> 속성값에 따름)",
   "other": "기타",
   "password": "비밀번호",
   "password-invalid": "비밀 번호가 잘못되었습니다.",

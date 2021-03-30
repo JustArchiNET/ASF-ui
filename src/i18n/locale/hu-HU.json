@@ -87,7 +87,6 @@
   "notification-position-right-bottom": "Jobb alul",
   "notification-position-right-top": "Jobb felül",
   "notify-release": "Értesítés új verzióról",
-  "notify-release-description": "Értesíts, amikor új verzió válik elérhetővé (a <code>UpdateChannel</code> konfigurációs tulajdonságtól függ a globális konfigurációban).",
   "other": "Egyéb",
   "password": "Jelszó",
   "password-invalid": "Érvénytelen jelszó!",

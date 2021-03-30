@@ -87,7 +87,6 @@
   "notification-position-right-bottom": "Inferior direito",
   "notification-position-right-top": "Direita Superior",
   "notify-release": "Nova versão",
-  "notify-release-description": "Notificar-me quando uma nova versão estiver disponível (dependendo da propriedade da configuração <code>UpdateChannel</code> na Configuração Global).",
   "other": "Outros",
   "password": "Palavra-passe",
   "password-invalid": "Senha inválida!",

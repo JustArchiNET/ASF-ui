@@ -110,7 +110,6 @@
   "notification-position-right-bottom": "Праворуч знизу",
   "notification-position-right-top": "Праворуч зверху",
   "notify-release": "Повідомлення про нові версії",
-  "notify-release-description": "Повідомляти мене, коли доступні нові випуски (залежить від вашого параметру <code>UpdateChannel</code> у глобальній конфігурації).",
   "other": "Інше",
   "password": "Пароль",
   "password-invalid": "Невірний пароль!",

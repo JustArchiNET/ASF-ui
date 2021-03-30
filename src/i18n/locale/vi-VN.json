@@ -83,7 +83,6 @@
   "notification-position-right-bottom": "Phải dưới",
   "notification-position-right-top": "Phải trên",
   "notify-release": "Thông báo phiênn bản mới",
-  "notify-release-description": "Thông báo cho tôi khi có bản phát hành mới (tùy thuộc vào thuộc tính cấu hình <code>UpdateChannel</code> trong Cấu hình chung).",
   "other": "Khác",
   "password": "Mật khẩu",
   "password-invalid": "Mật khẩu không hợp lệ!",

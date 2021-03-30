@@ -85,7 +85,6 @@
   "notification-position-right-bottom": "底部居右",
   "notification-position-right-top": "頂部居右",
   "notify-release": "新版本通知",
-  "notify-release-description": "當新版本可用時通知我（具體取決於全域配置中的屬性 <code>UpdateChannel</code>配置）。",
   "other": "其他",
   "password": "Password",
   "password-invalid": "密碼錯誤！",

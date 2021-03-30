@@ -87,7 +87,6 @@
   "notification-position-right-bottom": "Højre bund",
   "notification-position-right-top": "Højre top",
   "notify-release": "Notifikation for ny version",
-  "notify-release-description": "Send mig en notifikation når en ny version er tilgængelig (afhænger af konfigurationsværdien for <code>UpdateChannel</code> i Global Config).",
   "other": "Andre",
   "password": "Kodeorder",
   "password-invalid": "Ugyldig adgangskode!",

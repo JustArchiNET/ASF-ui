@@ -115,7 +115,6 @@
   "notification-position-right-bottom": "Dešinėje apačioje",
   "notification-position-right-top": "Dešinės pusės viršuje",
   "notify-release": "Naujos versijos pranešimas",
-  "notify-release-description": "Praneškite man, kai nauja versija yra galima (priklauso nuo konfiguracijos ypatybės <code>AtnaujinimųKanalas</code> Pasaulinėje Konfigūracijoje).",
   "other": "Kita",
   "password": "Slaptažodis",
   "password-invalid": "Neteisingas slaptažodis!",

@@ -91,7 +91,6 @@
   "notification-position-right-bottom": "Inférieur droit",
   "notification-position-right-top": "Supérieur droit",
   "notify-release": "Notification de nouvelle version",
-  "notify-release-description": "Avertissez-moi quand une nouvelle version est disponible (selon la propriété de configuration <code>Mise à jour</code> dans la configuration globale).",
   "other": "Autres",
   "password": "Mot de passe ",
   "password-invalid": "Mot de passe invalide !",

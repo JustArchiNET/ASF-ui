@@ -110,7 +110,6 @@
   "notification-position-right-bottom": "右・下",
   "notification-position-right-top": "右・上",
   "notify-release": "新規リリースのお知らせ",
-  "notify-release-description": "新しいリリースが利用可能になったときに通知して下さい（グローバル設定の <code>UpdateChannel</code> プロパティに依存）。",
   "other": "その他",
   "password": "パスワード",
   "password-invalid": "パスワードが無効です。",

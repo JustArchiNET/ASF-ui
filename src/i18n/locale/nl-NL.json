@@ -88,7 +88,6 @@
   "notification-position-right-bottom": "Rechtsonder",
   "notification-position-right-top": "Rechtsboven",
   "notify-release": "Nieuwe versie notificatie",
-  "notify-release-description": "Informeer mij wanneer er een nieuw versie beschikbaar is (afhankelijk van de configuratie-eigenschap <code>UpdateChannel</code>).",
   "other": "Overige",
   "password": "Wachtwoord",
   "password-invalid": "Ongeldig wachtwoord!",

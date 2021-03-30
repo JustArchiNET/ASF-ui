@@ -110,7 +110,6 @@
   "notification-position-right-bottom": "Apakšējā labajā stūrī",
   "notification-position-right-top": "Augšējā labajā stūrī",
   "notify-release": "Jaunās versijas paziņojums",
-  "notify-release-description": "Ziņot, kad jauna versija ir pieejama (atkarībā no konfigurācijas iestatījuma <code>UpdateChanngel</code> Globālajā konfigurācijā).",
   "other": "Cits",
   "password": "Parole",
   "password-invalid": "Nepareiza parole!",

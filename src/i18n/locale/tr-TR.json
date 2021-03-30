@@ -116,7 +116,6 @@
   "notification-position-right-bottom": "Sağ alt",
   "notification-position-right-top": "Sağ üst",
   "notify-release": "Yeni sürüm bildirimi",
-  "notify-release-description": "Yeni sürüm geldiğinde beni haberdar et (Genel Yapılandırmadaki <code>UpdateChannel</code> yapılandırma özelliğine göre değişir).",
   "other": "Diğer",
   "password": "Parola",
   "password-invalid": "Geçersiz parola!",
