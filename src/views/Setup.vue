@@ -30,7 +30,6 @@
 <script>
   import { mapGetters } from 'vuex';
   import { STATUS } from '../utils/getStatus';
-  import delay from '../utils/delay';
 
   export default {
     name: 'Setup',
@@ -44,6 +43,7 @@
         password: this.$store.getters['auth/password'],
         processing: false,
         countdown: 5,
+        timer: null,
       };
     },
     computed: {
@@ -65,18 +65,17 @@
       countdown: {
         handler(value) {
           if (value > 0) setTimeout(() => this.countdown--, 1000);
+          if (value === 0) this.countdown = 5;
         },
         immediate: true,
       },
     },
     async mounted() {
       if (this.status === STATUS.AUTHENTICATED) this.redirect();
-
-      while (this.status === STATUS.GATEWAY_TIMEOUT || this.status === STATUS.NETWORK_ERROR) {
-        await delay(5000);
-        await this.refreshStatus();
-        this.countdown = 5;
-      }
+      this.timer = setInterval(this.refreshStatus, this.countdown * 1000);
+    },
+    beforeDestroy() {
+      this.cancelAutoUpdate();
     },
     methods: {
       async onButtonClick() {
@@ -100,7 +99,7 @@
           await this.$store.dispatch('auth/setPassword', this.password);
 
           const validPassword = await this.$store.dispatch('auth/validate');
-          if (validPassword) this.$router.replace({ name: 'home' });
+          if (validPassword) this.redirect();
           else this.$error(this.$t('password-invalid'));
         } catch (err) {
           this.$error(err.message);
@@ -121,6 +120,9 @@
       },
       redirect() {
         this.$router.replace({ name: 'home' });
+      },
+      cancelAutoUpdate() {
+        clearInterval(this.timer);
       },
     },
   };
