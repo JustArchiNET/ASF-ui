@@ -1,5 +1,5 @@
 <template>
-  <main v-if="bot" class="main-container main-container--bot-configuration">
+  <main v-if="bot" class="main-container main-container--bot-config">
     <h2 v-if="bot.nickname && nicknames" class="title">{{ bot.nickname }}</h2>
     <h2 v-else class="title">{{ bot.name }}</h2>
 
@@ -47,7 +47,7 @@
         { name: this.$t('access'), fields: ['SteamUserPermissions', 'SteamParentalCode'] },
         { name: this.$t('trade'), fields: ['SteamTradeToken', 'AcceptGifts', 'SendTradePeriod', 'SendOnFarmingFinished', 'CompleteTypesToSend', 'TradingPreferences', 'LootableTypes', 'TransferableTypes', 'MatchableTypes'] },
         { name: this.$t('farming'), fields: ['FarmingOrders', 'AutoSteamSaleEvent', 'IdlePriorityQueueOnly', 'IdleRefundableGames', 'FarmOffline', 'ShutdownOnFarmingFinished'] },
-        { name: this.$t('customization'), fields: ['SteamMasterClanID', 'RedeemingPreferences', 'GamesPlayedWhileIdle', 'CustomGamePlayedWhileFarming', 'CustomGamePlayedWhileIdle'] },
+        { name: this.$t('customization'), fields: ['SteamMasterClanID', 'UserInterfaceMode', 'RedeemingPreferences', 'GamesPlayedWhileIdle', 'CustomGamePlayedWhileFarming', 'CustomGamePlayedWhileIdle'] },
         { name: this.$t('performance'), fields: ['HoursUntilCardDrops'] },
       ];
 
@@ -73,7 +73,10 @@
     watch: {
       $route: {
         immediate: true,
-        handler: 'loadConfig',
+        async handler() {
+          if (!this.bot) return;
+          await this.loadConfig();
+        },
       },
     },
     created() {
@@ -108,11 +111,10 @@
             SteamParentalCode: { placeholder: this.$t('keep-unchanged') },
           };
 
-          this.fields = Object.keys(fields).map(key => ({
-            description: descriptions[key].replace(/<a href="/g, '<a target="_blank" href="'),
-            ...fields[key],
-            ...(extendedFields[key] || []),
-          }));
+          this.fields = Object.keys(fields).map(key => {
+            const description = (!descriptions[key]) ? this.$t('description-not-found') : descriptions[key].replace(/<a href="/g, '<a target="_blank" href="');
+            return { description, ...fields[key], ...(extendedFields[key] || []) };
+          });
         } catch (err) {
           this.$error(err.message);
         } finally {
@@ -152,7 +154,7 @@
 </script>
 
 <style lang="scss">
-	.main-container--bot-configuration {
+	.main-container--bot-config {
 		max-width: 1000px;
 	}
 </style>

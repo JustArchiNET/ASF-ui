@@ -80,9 +80,17 @@
         return this.$store.getters['bots/bot'](this.$route.params.bot);
       },
     },
+    watch: {
+      $route: {
+        immediate: true,
+        async handler() {
+          if (!this.bot) return;
+          this.model = this.bot.config;
+        },
+      },
+    },
     created() {
       if (!this.bot) this.$router.replace({ name: 'bots' });
-      this.model = this.bot.config;
     },
     methods: {
       async onCreate() {

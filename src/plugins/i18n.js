@@ -1,5 +1,6 @@
 import * as storage from '../utils/storage';
 import i18n from '../i18n/lib';
+import isAprilFoolsDay from '../utils/isAprilFoolsDay';
 
 // https://webpack.js.org/guides/dependency-management/#require-context
 const requireLocale = require.context('../i18n/locale', false, /.json$/, 'lazy');
@@ -10,6 +11,10 @@ const availableLocales = requireLocale.keys().map(fileName => {
 }).filter(Boolean);
 
 function getUserLocale(availableLocales, fallbackLocale) {
+  const year = new Date().getFullYear();
+  const fooled = storage.get(`fooled-${year}`, false);
+  if (isAprilFoolsDay() && !fooled && availableLocales.includes('lol-US')) return 'lol-US';
+
   const selectedLocale = storage.get('locale');
   if (selectedLocale && availableLocales.includes(selectedLocale)) return selectedLocale;
 

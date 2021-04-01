@@ -31,7 +31,6 @@
 <script>
   import { mapGetters, mapActions } from 'vuex';
   import { isReleaseAvailable } from '../utils/ui';
-  import delay from '../utils/delay';
   import waitForRestart from '../utils/waitForRestart';
 
   export default {
@@ -103,15 +102,7 @@
           this.brandMenu = false;
           await waitForRestart();
           this.$success(this.$t('update-complete'));
-          await delay(3000);
-          window.location.reload();
         } catch (err) {
-          if (err.message === 'HTTP Error 504' || err.message === 'Network Error') {
-            await waitForRestart();
-            this.$success(this.$t('update-complete'));
-            await delay(3000);
-            window.location.reload();
-          }
           if (!err.result && !err.message.includes('≥')) throw err;
           const { remoteVersion, localVersion } = this.extractVersions(err);
           if (localVersion === remoteVersion) this.$info(this.$t('update-is-up-to-date'));
@@ -130,8 +121,6 @@
           this.brandMenu = false;
           await waitForRestart();
           this.$success(this.$t('restart-complete'));
-          await delay(3000);
-          window.location.reload();
         } catch (err) {
           this.$error(err.message);
         } finally {

@@ -77,6 +77,7 @@
       $route: {
         immediate: true,
         async handler() {
+          if (!this.bot) return;
           this.loading = true;
           const { UnusedKeys, UsedKeys } = await this.loadBGR();
           this.unusedKeys = UnusedKeys;

@@ -17,6 +17,7 @@
 <script>
   import { mapActions, mapGetters } from 'vuex';
   import * as storage from '../utils/storage';
+  import isAprilFoolsDay from '../utils/isAprilFoolsDay';
   import Flag from './utils/Flag.vue';
 
   export default {
@@ -42,6 +43,7 @@
       }),
       getFlagCountry(locale) {
         if (locale === 'sr-CS') return 'rs';
+        if (locale === 'lol-US') return 'eu';
         return locale.split('-')[1].toLowerCase();
       },
       displayTranslationStatus() {
@@ -53,6 +55,9 @@
         return this.$info(this.$t('language-translation-bad', { percent: translationPercent.toFixed(2), locale: this.$i18n.locale }));
       },
       async changeLocale(locale) {
+        const year = new Date().getFullYear();
+        if (isAprilFoolsDay()) storage.set(`fooled-${year}`, true);
+
         await this.$i18n.load(locale);
         await this.$i18n.set(locale);
         storage.set('locale', locale);

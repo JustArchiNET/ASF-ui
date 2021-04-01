@@ -34,13 +34,12 @@
   import fetchConfigSchema from '../utils/fetchConfigSchema';
   import prepareModelToDownload from '../utils/prepareModelToDownload';
   import waitForRestart from '../utils/waitForRestart';
-  import delay from '../utils/delay';
 
   export default {
-    name: 'GlobalConfig',
+    name: 'ASFConfig',
     metaInfo() {
       return {
-        title: this.$t('global-config'),
+        title: this.$t('asf-config'),
       };
     },
     components: { ConfigEditor },
@@ -108,8 +107,6 @@
           this.$info(this.$t('restart-initiated'));
           await waitForRestart();
           this.$success(this.$t('restart-complete'));
-          await delay(3000);
-          window.location.reload();
         } catch (err) {
           this.$error(err.message);
         } finally {

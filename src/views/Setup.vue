@@ -7,6 +7,8 @@
       <p v-if="status === 'RATE_LIMITED'" class="status-text status-text--error">{{ $t('setup-rate-limited') }}</p>
       <p v-if="status === 'AUTHENTICATED'" class="status-text">{{ $t('setup-authenticated') }}</p>
       <p v-if="status === 'UNAUTHORIZED'" class="status-text">{{ $t('setup-description') }}</p>
+      <p v-if="status === 'GATEWAY_TIMEOUT'" class="status-text">{{ $t('setup-gateway-timeout', { n: countdown }) }}</p>
+      <p v-if="status === 'NETWORK_ERROR'" class="status-text">{{ $t('setup-network-error', { n: countdown }) }}</p>
 
       <div v-if="status === 'UNAUTHORIZED'" class="form-item">
         <label for="password" class="form-item__label">{{ $t('password') }}</label>
@@ -40,6 +42,8 @@
       return {
         password: this.$store.getters['auth/password'],
         processing: false,
+        countdown: 5,
+        timer: null,
       };
     },
     computed: {
@@ -53,6 +57,25 @@
             return this.$t('refresh');
         }
       },
+    },
+    watch: {
+      status() {
+        if (this.status === STATUS.AUTHENTICATED) this.redirect();
+      },
+      countdown: {
+        handler(value) {
+          if (value > 0) setTimeout(() => this.countdown--, 1000);
+          if (value === 0) this.countdown = 5;
+        },
+        immediate: true,
+      },
+    },
+    async mounted() {
+      if (this.status === STATUS.AUTHENTICATED) this.redirect();
+      this.timer = setInterval(this.refreshStatus, this.countdown * 1000);
+    },
+    beforeDestroy() {
+      this.cancelAutoUpdate();
     },
     methods: {
       async onButtonClick() {
@@ -76,7 +99,7 @@
           await this.$store.dispatch('auth/setPassword', this.password);
 
           const validPassword = await this.$store.dispatch('auth/validate');
-          if (validPassword) this.$router.replace({ name: 'home' });
+          if (validPassword) this.redirect();
           else this.$error(this.$t('password-invalid'));
         } catch (err) {
           this.$error(err.message);
@@ -97,6 +120,9 @@
       },
       redirect() {
         this.$router.replace({ name: 'home' });
+      },
+      cancelAutoUpdate() {
+        clearInterval(this.timer);
       },
     },
   };

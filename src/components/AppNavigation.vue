@@ -5,15 +5,15 @@
         <NavigationCategoryTitle :name="$t('control')"></NavigationCategoryTitle>
         <NavigationLink :name="$t('bots')" icon="users" :to="{ name: 'bots' }"></NavigationLink>
         <NavigationLink :name="$t('commands')" icon="laptop" :to="{ name: 'commands' }"></NavigationLink>
-        <NavigationLink :name="$t('log')" icon="file-alt" :to="{ name: 'log' }"></NavigationLink>
         <NavigationLink :name="$t('releases')" icon="code-branch" :to="{ name: 'releases' }"></NavigationLink>
         <NavigationLink :name="$t('plugins')" icon="puzzle-piece" :to="{ name: 'plugins' }"></NavigationLink>
+        <NavigationLink :name="$t('log')" icon="file-alt" :to="{ name: 'log' }"></NavigationLink>
       </div>
 
       <div class="navigation-category">
-        <NavigationCategoryTitle :name="$t('configuration')"></NavigationCategoryTitle>
-        <NavigationLink :name="$t('ui-configuration')" icon="wrench" :to="{ name: 'ui-configuration' }"></NavigationLink>
-        <NavigationLink :name="$t('global-config')" icon="edit" :to="{ name: 'global-config' }"></NavigationLink>
+        <NavigationCategoryTitle :name="$t('config')"></NavigationCategoryTitle>
+        <NavigationLink :name="$t('asf-config')" icon="edit" :to="{ name: 'asf-config' }"></NavigationLink>
+        <NavigationLink :name="$t('ui-config')" icon="wrench" :to="{ name: 'ui-config' }"></NavigationLink>
         <NavigationLink :name="$t('mass-editor')" icon="paste" :to="{ name: 'mass-editor' }"></NavigationLink>
       </div>
 
@@ -26,7 +26,7 @@
 
     <template v-else>
       <div class="navigation-category">
-        <NavigationCategoryTitle :name="$t('configuration')"></NavigationCategoryTitle>
+        <NavigationCategoryTitle :name="$t('config')"></NavigationCategoryTitle>
         <NavigationLink :name="$t('setup')" icon="wrench" :to="{ name: 'setup' }"></NavigationLink>
       </div>
     </template>
