@@ -108,11 +108,10 @@
             SteamParentalCode: { placeholder: this.$t('keep-unchanged') },
           };
 
-          this.fields = Object.keys(fields).map(key => ({
-            description: descriptions[key].replace(/<a href="/g, '<a target="_blank" href="'),
-            ...fields[key],
-            ...(extendedFields[key] || []),
-          }));
+          this.fields = Object.keys(fields).map(key => {
+            const description = (!descriptions[key]) ? this.$t('description-not-found') : descriptions[key].replace(/<a href="/g, '<a target="_blank" href="');
+            return { description, ...fields[key], ...(extendedFields[key] || []) };
+          });
         } catch (err) {
           this.$error(err.message);
         } finally {
