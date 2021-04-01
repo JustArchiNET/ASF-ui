@@ -73,7 +73,10 @@
     watch: {
       $route: {
         immediate: true,
-        handler: 'loadConfig',
+        async handler() {
+          if (!this.bot) return;
+          await this.loadConfig();
+        },
       },
     },
     created() {

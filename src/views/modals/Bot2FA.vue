@@ -63,7 +63,7 @@
       $route: {
         immediate: true,
         async handler() {
-          if (!this.bot.has2FA) {
+          if (!this.bot || !this.bot.has2FA) {
             this.has2FA = false;
             return;
           }
