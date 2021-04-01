@@ -44,6 +44,8 @@
         this.$router.push(this.$route.path.slice(0, this.$route.path.lastIndexOf('/')));
       },
       onKeyPress(e) {
+        if (document.activeElement.tagName === 'TEXTAREA') return;
+        if (document.activeElement.tagName === 'INPUT') return;
         const charCode = (e.which) ? e.which : e.keyCode;
 
         if (charCode === 27) {
