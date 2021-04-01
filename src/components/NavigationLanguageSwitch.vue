@@ -55,7 +55,8 @@
         return this.$info(this.$t('language-translation-bad', { percent: translationPercent.toFixed(2), locale: this.$i18n.locale }));
       },
       async changeLocale(locale) {
-        if (isAprilFoolsDay) storage.set('fooled', true);
+        const year = new Date().getFullYear();
+        if (isAprilFoolsDay) storage.set(`fooled-${year}`, true);
 
         await this.$i18n.load(locale);
         await this.$i18n.set(locale);
