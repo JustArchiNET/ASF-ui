@@ -56,7 +56,7 @@
       },
       async changeLocale(locale) {
         const year = new Date().getFullYear();
-        if (isAprilFoolsDay) storage.set(`fooled-${year}`, true);
+        if (isAprilFoolsDay()) storage.set(`fooled-${year}`, true);
 
         await this.$i18n.load(locale);
         await this.$i18n.set(locale);
