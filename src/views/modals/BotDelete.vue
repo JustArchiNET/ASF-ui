@@ -1,7 +1,8 @@
 <template>
   <main v-if="bot" class="main-container main-container--bot-profile">
-    <h2 v-if="bot.nickname && nicknames" class="title">{{ $t('bot-delete', { name: bot.nickname }) }}</h2>
-    <h2 v-else class="title">{{ $t('bot-delete', { name: bot.name }) }}</h2>
+    <h2 class="title">{{ $t('bot-delete', { name }) }}</h2>
+
+    <p class="info">{{ $t('bot-delete-info', { name }) }}</p>
 
     <div class="form-item">
       <div class="form-item__buttons form-item__buttons--center">
@@ -34,6 +35,9 @@
       bot() {
         return this.$store.getters['bots/bot'](this.$route.params.bot);
       },
+      name() {
+        return (this.bot.nickname && this.nicknames) ? this.bot.nickname : this.bot.name;
+      },
     },
     created() {
       if (!this.bot) this.$router.replace({ name: 'bots' });
@@ -54,3 +58,10 @@
     },
   };
 </script>
+
+<style lang="scss">
+	.info {
+		text-align: center;
+		margin: 2em 0;
+	}
+</style>
