@@ -11,6 +11,10 @@
     <div class="theme-switcher">
       <div v-for="(theme, i) in availableThemes" :key="i" class="theme-switcher__theme" :class="[`theme-${theme}`]" @click="changeTheme(theme)"></div>
     </div>
+
+    <div class="info">
+      <span v-html="$t('sidebar-info')"></span>
+    </div>
   </aside>
 </template>
 
@@ -96,4 +100,16 @@
 			display: none;
 		}
 	}
+
+  .info {
+    bottom: 0;
+    padding: 0.5em;
+    position: absolute;
+    text-align: center;
+    margin-bottom: 1em;
+
+    a {
+      color: var(--color-theme);
+    }
+  }
 </style>

@@ -159,6 +159,7 @@
   "shutdown-message": "Shutting down, good bye!",
   "sidebar-boxed-layout": "Boxed layout",
   "sidebar-dark-mode": "Dark mode",
+  "sidebar-info": "<a href='https://github.com/JustArchiNET/ASF-ui/issues' target='_blank'>Found any bugs or want to suggest a feature for ASF-ui?</a>",
   "sidebar-theme": "Theme",
   "stable": "Stable",
   "statistics": "Statistics",
