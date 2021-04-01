@@ -59,9 +59,10 @@
   };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.info {
-		text-align: center;
-		margin: 2em 0;
+    text-align: center;
+    margin: 1em;
+    position: relative;
 	}
 </style>
