@@ -103,10 +103,10 @@
 
   .info {
     bottom: 0;
-    padding: 0.5em;
+    padding: 1em;
     position: absolute;
     text-align: center;
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
 
     a {
       color: var(--color-theme);
