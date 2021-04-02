@@ -23,7 +23,7 @@
   "bot-create-name": "你必須輸入一個名字",
   "bot-create-name-asf": "你不可以把 BOT 命名為 ASF",
   "bot-create-name-exist": "已經存在名為 {name} 的BOT",
-  "bot-delete": "你確定要刪除 {name}？",
+  "bot-delete": "刪除{name}?",
   "bot-fav-buttons": "「快速操作」按鈕",
   "bot-fav-buttons-2fa": "兩步驟驗證",
   "bot-fav-buttons-bgr": "背景序號啟動器",

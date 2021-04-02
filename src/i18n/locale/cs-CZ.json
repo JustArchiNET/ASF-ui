@@ -15,7 +15,6 @@
   "bgr-summary-success": "Následující {PLURAL:n|klíč byl|{n} klíče byly} úspěšně přidány do BGR",
   "bgr-unused-keys": "Nepoužité klíče",
   "bgr-used-keys": "Použité klíče",
-  "bot-delete": "Přejete si odstranit bota {name}?",
   "bot-fav-buttons": "Akční tlačítko",
   "bot-fav-buttons-2fa": "2FA",
   "bot-fav-buttons-bgr": "BGR",

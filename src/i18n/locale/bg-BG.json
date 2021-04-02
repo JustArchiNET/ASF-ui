@@ -21,7 +21,7 @@
   "bot-copy": "Копирай бота",
   "bot-create-name": "Трябва да въведете име",
   "bot-create-name-asf": "Не можете да наречете бота си ASF",
-  "bot-delete": "Искате ли да изтриете {name}?",
+  "bot-delete": "Изтрий {name}?",
   "bot-fav-buttons": "Бутон за бързо действие",
   "bot-fav-buttons-2fa": "Форма за двустепенна верификация",
   "bot-fav-buttons-bgr": "лева",

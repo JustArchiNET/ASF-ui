@@ -23,7 +23,7 @@
   "bot-create-name": "Вам потрібно ввести ім'я",
   "bot-create-name-asf": "Ви не можете назвати вашого бота ASF",
   "bot-create-name-exist": "Ви вже маєте бота з ім'ям {name}",
-  "bot-delete": "Ви впевнені, що бажаєте видалити {name}?",
+  "bot-delete": "Видалити {name}?",
   "bot-fav-buttons": "Кнопка швидкої дії",
   "bot-fav-buttons-2fa": "2ФА",
   "bot-fav-buttons-bgr": "Фонова активація ключів",

@@ -30,7 +30,7 @@
   "bot-create-name": "Sie müssen einen Namen angeben",
   "bot-create-name-asf": "Sie können ihren Bot nicht ASF nennen",
   "bot-create-name-exist": "Ein Bot namens {name} existiert bereits",
-  "bot-delete": "Möchten Sie {name} löschen?",
+  "bot-delete": "{name} löschen?",
   "bot-fav-buttons": "Schnell-Aktions-Schaltfläche",
   "bot-fav-buttons-2fa": "2FA",
   "bot-fav-buttons-bgr": "BGR",

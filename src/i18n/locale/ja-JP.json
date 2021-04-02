@@ -23,7 +23,7 @@
   "bot-create-name": "名前を入力してください。",
   "bot-create-name-asf": "bot の名前を ASF とはできません。",
   "bot-create-name-exist": "{name} という bot はすでに作成されています。",
-  "bot-delete": "{name} を削除しますか？",
+  "bot-delete": "{name} を削除?",
   "bot-fav-buttons": "クイック・アクション・ボタン",
   "bot-fav-buttons-2fa": "２ファクタ認証",
   "bot-fav-buttons-bgr": "BGR（バックグラウンド・ゲーム有効化・プログラム？）",

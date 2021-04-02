@@ -10,7 +10,7 @@
   "bgr-used-keys": "Χρησιμοποιημένα κλειδιά",
   "bot-create-name": "Πρέπει να εισάγετε ένα όνομα",
   "bot-create-name-asf": "Δεν μπορείτε να ονομάσετε το bot σας ASF",
-  "bot-delete": "Θέλετε να διαγράψετε {name};",
+  "bot-delete": "Διέγραψε {name}?",
   "bot-fav-buttons": "Πλήκτρο συντόμευσης",
   "bot-fav-buttons-config": "Ρυθμίσεις",
   "bot-fav-buttons-pause": "Παύση/Συνέχιση",

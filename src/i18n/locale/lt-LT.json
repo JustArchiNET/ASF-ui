@@ -27,7 +27,7 @@
   "bot-create-name": "Jūs turite įvesti slapyvardį",
   "bot-create-name-asf": "Jūs negalite pavadinti savo ASF roboto",
   "bot-create-name-exist": "Jau yra robotas vardu {name}",
-  "bot-delete": "Ar norite pašalinti {name}?",
+  "bot-delete": "Ištrinti {name}?",
   "bot-fav-buttons": "Spačiosiojo veiksmo mygtukas",
   "bot-fav-buttons-2fa": "2FA",
   "bot-fav-buttons-bgr": "BGR",

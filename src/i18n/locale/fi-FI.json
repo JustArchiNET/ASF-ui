@@ -18,7 +18,7 @@
   "bot-copy": "Kopioi botti",
   "bot-create-name": "Sinun täytyy lisätä nimi",
   "bot-create-name-asf": "Et voi antaa botillesi nimeä \"ASF\"",
-  "bot-delete": "Haluatko poistaa {name}?",
+  "bot-delete": "Poista {name}?",
   "bot-fav-buttons": "Nopean toiminnan nappi",
   "bot-fav-buttons-2fa": "2FA",
   "bot-fav-buttons-bgr": "Tausta",

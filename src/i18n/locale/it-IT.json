@@ -20,7 +20,7 @@
   "bot-copy": "Copia bot",
   "bot-create-name": "È necessario immettere un nome",
   "bot-create-name-asf": "Non puoi chiamare il tuo bot ASF",
-  "bot-delete": "Vuoi cancellare {name}?",
+  "bot-delete": "Elimina {name}?",
   "bot-fav-buttons": "Pulsante rapido",
   "bot-fav-buttons-2fa": "2FA",
   "bot-fav-buttons-bgr": "BGR",

@@ -27,7 +27,7 @@
   "bot-create-name": "Morate navesti ime",
   "bot-create-name-asf": "Ne možete nazvati vašeg bota imenom ASF",
   "bot-create-name-exist": "Već postoji bot sa imenom {name}",
-  "bot-delete": "Da li želite da izbrišеtе {name}?",
+  "bot-delete": "Obriši {name}?",
   "bot-fav-buttons": "Dugme za brze akcije",
   "bot-fav-buttons-2fa": "2FA",
   "bot-fav-buttons-bgr": "BGR",

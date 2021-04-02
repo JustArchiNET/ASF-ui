@@ -16,7 +16,7 @@
   "bot-copy": "Sao chép bot",
   "bot-create-name": "Bạn phải nhập tên",
   "bot-create-name-asf": "Bạn không thể đặt tên bot của bạn ASF",
-  "bot-delete": "Bạn có muốn xóa {name} không?",
+  "bot-delete": "Xoá {name}?",
   "bot-fav-buttons": "Nút hành động nhanh",
   "bot-fav-buttons-2fa": "2FA",
   "bot-fav-buttons-bgr": "BGR",
