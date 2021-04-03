@@ -11,8 +11,7 @@
       <div class="bot-profile__meta">
         <div class="bot-profile__info">
           <div class="bot-profile__name">
-            <h3 v-if="bot.nickname && nicknames" class="bot-profile__name" :title="bot.name">{{ bot.nickname }}</h3>
-            <h3 v-else class="bot-profile__name">{{ bot.name }}</h3>
+            <h3 :title="bot.name" class="bot-profile__name">{{ bot.viewableName }}</h3>
           </div>
           <div v-if="bot.walletInfo" class="bot-profile__wallet pull-right">{{ bot.walletInfo }}</div>
         </div>
@@ -61,7 +60,6 @@
     },
     computed: {
       ...mapGetters({
-        nicknames: 'settings/nicknames',
         headless: 'asf/headless',
       }),
       bot() {

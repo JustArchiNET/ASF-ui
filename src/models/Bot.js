@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import store from '../store';
 import getCountryCode from '../utils/getCountryCode';
 
 const timeSpanRegex = /(?:(\d+).)?(\d{2}):(\d{2}):(\d{2})(?:.?(\d{7}))?/;
@@ -99,5 +100,10 @@ export class Bot {
     const currencyCode = getCountryCode(this.walletCurrency);
     if (typeof currencyCode === 'undefined') return null;
     return currency.toLocaleString(Vue.i18n.locale, { style: 'currency', currency: currencyCode });
+  }
+
+  get viewableName() {
+    if (store.getters['settings/nicknames'] && this.nickname) return this.nickname;
+    return this.name;
   }
 }

@@ -1,7 +1,6 @@
 <template>
   <main v-if="bot" class="main-container main-container--bot-config">
-    <h2 v-if="bot.nickname && nicknames" class="title">{{ bot.nickname }}</h2>
-    <h2 v-else class="title">{{ bot.name }}</h2>
+    <h2 :title="bot.name" class="title">{{ bot.viewableName }}</h2>
 
     <h3 v-if="loading" class="subtitle">
       <FontAwesomeIcon icon="spinner" size="lg" spin></FontAwesomeIcon>
@@ -62,7 +61,6 @@
     computed: {
       ...mapGetters({
         version: 'asf/version',
-        nicknames: 'settings/nicknames',
         displayCategories: 'settings/displayCategories',
         bots: 'bots/bots',
       }),
