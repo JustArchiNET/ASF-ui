@@ -71,7 +71,7 @@ async function unwindObject(type, typeDefinition) {
 
   resolvedTypes.forEach(resolvedType => {
     const { param, type } = resolvedType;
-    const paramName = typeDefinition.Body[param] !== 'System.UInt64' ? param : `s_${param}`;
+    const paramName = (typeDefinition.Body[param] !== 'System.UInt64') ? param : `s_${param}`;
 
     resolvedStructure.body[param] = {
       defaultValue: structureDefinition[param],
@@ -103,7 +103,7 @@ async function unwindType(type) {
       return unwindObject(type, typeDefinition);
     case 'System.Enum':
       return {
-        type: (typeDefinition.Properties.CustomAttributes || []).includes('System.FlagsAttribute') ? 'flag' : 'enum',
+        type: ((typeDefinition.Properties.CustomAttributes || []).includes('System.FlagsAttribute')) ? 'flag' : 'enum',
         values: parseEnumValues(typeDefinition.Body),
       };
     default: {

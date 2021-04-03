@@ -62,7 +62,7 @@
       addElement() {
         if (this.hasErrors) return;
 
-        const element = this.isNumber ? parseInt(this.element, 10) : this.element;
+        const element = (this.isNumber) ? parseInt(this.element, 10) : this.element;
 
         if (!element && element !== 0) return;
         if (this.value.includes(element)) return;

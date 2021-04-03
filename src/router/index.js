@@ -10,7 +10,7 @@ Vue.use(VueMeta);
 
 const router = new VueRouter({
   routes,
-  base: window.__BASE_PATH__ ? window.__BASE_PATH__ : '/',
+  base: (window.__BASE_PATH__) ? window.__BASE_PATH__ : '/',
   mode: 'history',
 });
 

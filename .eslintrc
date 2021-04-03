@@ -15,7 +15,10 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["vue"],
+  "plugins": [
+    "vue",
+    "@spothero/eslint-plugin-spothero"
+  ],
   "rules": {
     "indent": ["error", 2, {
       "SwitchCase": 1
@@ -75,7 +78,9 @@
       }
     }],
     "vue/singleline-html-element-content-newline": "off",
-    "vue/comma-dangle": "error"
+    "vue/comma-dangle": "error",
+    "vue/no-v-html": "off",
+    "@spothero/spothero/ternary-parentheses": "error"
   },
   "overrides": [{
     "files": ["*.vue"],

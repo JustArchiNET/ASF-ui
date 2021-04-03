@@ -47,7 +47,7 @@ export default {
         if (typeof fallbackString !== 'string') values = fallbackString;
 
         const translationLocale = store.getters['i18n/translationLocale'](key);
-        const translationString = translationLocale ? store.getters['i18n/translation'](translationLocale, key) : (fallbackString || key);
+        const translationString = (translationLocale) ? store.getters['i18n/translation'](translationLocale, key) : (fallbackString || key);
         return formatter.interpolate(translationString, values, translationLocale);
       },
     };

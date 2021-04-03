@@ -35,7 +35,7 @@
       },
     },
     created() {
-      const websocketURL = `${window.__BASE_URL__.replace(/^http/, 'ws')}api/nlog${this.password ? `?password=${encodeURIComponent(this.password)}` : ''}`;
+      const websocketURL = `${window.__BASE_URL__.replace(/^http/, 'ws')}api/nlog${(this.password) ? `?password=${encodeURIComponent(this.password)}` : ''}`;
 
       this.ws = new WebSocket(websocketURL);
       this.ws.onopen = this.onOpen.bind(this);

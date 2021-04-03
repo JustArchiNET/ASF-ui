@@ -58,7 +58,7 @@
       },
       next(direction) {
         const currentIndex = this.bots.findIndex(bot => bot.name === this.$route.params.bot);
-        let targetIndex = currentIndex + (direction === 'left' ? -1 : 1);
+        let targetIndex = currentIndex + ((direction === 'left') ? -1 : 1);
 
         if (targetIndex > this.bots.length - 1) targetIndex = 0;
         else if (targetIndex < 0) targetIndex = this.bots.length - 1;

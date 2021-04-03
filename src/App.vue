@@ -52,13 +52,13 @@
       darkMode: {
         immediate: true,
         handler(value) {
-          document.documentElement.style.setProperty('--color-background-dark', value ? '#0c0c0c' : '#a7a7a7');
+          document.documentElement.style.setProperty('--color-background-dark', (value) ? '#0c0c0c' : '#a7a7a7');
         },
       },
       $route: {
         immediate: true,
         handler(value) {
-          document.body.style.overflowY = value.meta.modal ? 'hidden' : 'auto';
+          document.body.style.overflowY = (value.meta.modal) ? 'hidden' : 'auto';
         },
       },
       status: {

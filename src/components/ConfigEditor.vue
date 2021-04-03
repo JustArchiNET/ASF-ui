@@ -92,7 +92,7 @@
             return InputEnum;
           case 'hashSet':
           case 'list':
-            if (['enum'].includes(field.values.type)) return field.type === 'list' ? InputList : InputSet;
+            if (['enum'].includes(field.values.type)) return (field.type === 'list') ? InputList : InputSet;
             if (['byte', 'uint16', 'uint32', 'uint64', 'string'].includes(field.values.type)) return InputTag;
             return InputUnknown;
           case 'dictionary':

@@ -136,11 +136,11 @@
             ].join(' ');
           }
 
-          const remainingParameters = this.suggestedParameters.slice(this.currentParameterValue.length ? this.currentParameterIndex : this.currentParameterIndex - 1);
+          const remainingParameters = this.suggestedParameters.slice((this.currentParameterValue.length) ? this.currentParameterIndex : this.currentParameterIndex - 1);
           if (!remainingParameters.length && this.currentParameter) remainingParameters.push(this.currentParameter);
 
           return this.command.replace(/./g, ' ')
-            + (this.currentParameterValue.length ? ' ' : '')
+            + ((this.currentParameterValue.length) ? ' ' : '')
             + remainingParameters.join(' ');
         }
       },

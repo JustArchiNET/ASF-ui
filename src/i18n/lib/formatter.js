@@ -86,7 +86,7 @@ export default class Formatter {
   }
 
   interpolate(message, values, locale = 'en-US') {
-    const tokens = this._caches.has(message) ? this._caches.get(message) : Formatter.parse(message);
+    const tokens = (this._caches.has(message)) ? this._caches.get(message) : Formatter.parse(message);
     if (!this._caches.has(message)) this._caches.set(message, tokens);
     return this.compile(tokens, values, locale);
   }

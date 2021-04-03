@@ -43,7 +43,7 @@
         return `${this.version} - ${this.buildVariant} - ${this.uiHash}`;
       },
       releaseUrl() {
-        const v = this.newReleaseAvailable ? get('latest-release') : this.version;
+        const v = (this.newReleaseAvailable) ? get('latest-release') : this.version;
         return `https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${v}`;
       },
       wikiLink() {
