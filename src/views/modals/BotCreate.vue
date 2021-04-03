@@ -74,8 +74,6 @@
           loadParameterDescriptions(this.version, this.$i18n.locale),
         ]);
 
-        this.model = {};
-
         this.fields = [
           {
             defaultValue: '',
@@ -90,6 +88,7 @@
           })),
         ];
 
+        this.model = {};
         this.loading = false;
       },
       async onCreate() {

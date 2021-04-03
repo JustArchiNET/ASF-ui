@@ -9,12 +9,15 @@
             <span class="form-item__tag-value">{{ item }}</span>
             <FontAwesomeIcon class="form-item__tag-remove" icon="times"></FontAwesomeIcon>
           </button>
+
           <input v-model="element" class="form-item__input form-item__input--tag" type="text" @keydown="onKeyDown" @focus="onFocus" @blur="onBlur">
         </div>
+
         <button class="button" @click.prevent="addElement">
           {{ $t('add') }}
         </button>
       </div>
+
       <span v-if="hasErrors" class="form-item__error">{{ errorText }}</span>
     </div>
 
