@@ -93,31 +93,29 @@
       async onCreate() {
         if (this.creating) return;
 
-        // Remove name property from config - Ugly but works
-        const config = JSON.parse(JSON.stringify(this.model));
-        delete config.Name;
+        const { Name: name, ...config } = JSON.parse(JSON.stringify(this.model));
 
-        if (!this.model.Name) {
+        if (!name) {
           this.$error(this.$t('bot-create-name'));
           return;
         }
 
-        if (this.model.Name === 'ASF') {
+        if (name === 'ASF') {
           this.$error(this.$t('bot-create-name-asf'));
           return;
         }
 
-        if (botExists(this.bots, this.model.Name)) {
-          this.$error(this.$t('bot-create-name-exist', { name: this.model.Name }));
+        if (botExists(this.bots, name)) {
+          this.$error(this.$t('bot-create-name-exist', { name }));
           return;
         }
 
         this.creating = true;
 
         try {
-          await this.$http.post(`bot/${this.model.Name}`, { botConfig: config });
+          await this.$http.post(`bot/${name}`, { botConfig: config });
           await delay(1000);
-          await this.$store.dispatch('bots/updateBot', { name: this.model.Name });
+          await this.$store.dispatch('bots/updateBot', { name });
           this.$parent.close();
         } catch (err) {
           this.$error(err.message);
@@ -126,13 +124,11 @@
         }
       },
       async onDownload() {
-        // Remove name property from config - Ugly but works
-        const config = JSON.parse(JSON.stringify(this.model));
-        delete config.Name;
+        const { Name: name, ...config } = JSON.parse(JSON.stringify(this.model));
 
         const element = document.createElement('a');
         element.setAttribute('href', `data:text/plain;charset=utf-8,${encodeURIComponent(prepareModelToDownload(config))}`);
-        element.setAttribute('download', `${this.model.Name}.json`);
+        element.setAttribute('download', `${name}.json`);
         element.style.display = 'none';
         document.body.appendChild(element);
         element.click();
