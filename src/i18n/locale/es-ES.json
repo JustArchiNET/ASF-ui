@@ -21,7 +21,7 @@
   "bgr-keys-insert-example": "Ejemplo:\nAAAAA-BBBBB-CCCC0\nAAAAA-BBBBB-CCCC1\n\nPuedes marcar las claves con los nombres de los juegos:\nAAAAA-BBBBB-CCCC2\tTurbo Pug\nAAAAA-BBBBB-CCCC3\tBad Rats",
   "bgr-no-keys-detected": "No se detectó ninguna clave de juegos",
   "bgr-reset": "¿Deseas restablecer tus archivos de claves?",
-  "bgr-summary-success": "{PLURAL:n|La siguiente clave fue añadida|{n} Las siguientes claves fueron añadidas} con éxito al activador de juegos en segundo plano",
+  "bgr-summary-success": "{PLURAL:n|La siguiente clave fue añadida|Las siguientes {n} claves fueron añadidas} con éxito al activador de juegos en segundo plano",
   "bgr-unused-keys": "Claves no usadas",
   "bgr-unused-keys-count": "{PLURAL:n|{n} no usada|{n} no usadas}",
   "bgr-used-keys": "Claves usadas",
