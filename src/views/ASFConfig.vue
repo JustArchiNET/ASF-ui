@@ -7,8 +7,7 @@
         </h3>
       </template>
       <template v-else>
-        <ConfigEditor v-if="displayCategories" :fields="fields" :model="model" :categories="categories" :descriptions="descriptions"></ConfigEditor>
-        <ConfigEditor v-else :fields="fields" :model="model" :descriptions="descriptions"></ConfigEditor>
+        <ConfigEditor :fields="fields" :model="model" :categories="displayCategories ? categories : null" :descriptions="descriptions"></ConfigEditor>
 
         <div class="form-item">
           <div class="form-item__buttons">
