@@ -151,16 +151,16 @@
 </script>
 
 <style lang="scss">
-	.config-editor {
-		margin-bottom: 1em;
+  .config-editor {
+    margin-bottom: 1em;
 
-		&:last-child {
-			margin-bottom: 0;
-		}
-	}
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 
-	.config-uncategorized {
-		border: 0 solid var(--color-border);
-		padding: 0 1em 1em;
-	}
+  .config-uncategorized {
+    border: 0 solid var(--color-border);
+    padding: 0 1em 1em;
+  }
 </style>
