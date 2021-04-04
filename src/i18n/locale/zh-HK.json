@@ -122,7 +122,6 @@
   "timestamps": "時間戳",
   "timestamps-description": "在終端中顯示時間戳。",
   "trade": "交易",
-  "ui": "UI",
   "update": "更新",
   "update-complete": "更新完畢！",
   "update-is-newest": "本地版本高於所選更新通道",
