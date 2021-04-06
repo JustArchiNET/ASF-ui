@@ -30,7 +30,7 @@
   import ConfigEditor from '../../components/ConfigEditor.vue';
   import fetchConfigSchema from '../../utils/fetchConfigSchema';
   import loadParameterDescriptions from '../../utils/loadParameterDescriptions';
-  import prepareModelToDownload from '../../utils/prepareModelToDownload';
+  import downloadConfig from '../../utils/downloadConfig';
   import delay from '../../utils/delay';
   import botExists from '../../utils/botExists';
 
@@ -125,14 +125,7 @@
       },
       async onDownload() {
         const { Name: name, ...config } = JSON.parse(JSON.stringify(this.model));
-
-        const element = document.createElement('a');
-        element.setAttribute('href', `data:text/plain;charset=utf-8,${encodeURIComponent(prepareModelToDownload(config))}`);
-        element.setAttribute('download', `${name}.json`);
-        element.style.display = 'none';
-        document.body.appendChild(element);
-        element.click();
-        document.body.removeChild(element);
+        downloadConfig(config, name);
       },
     },
   };

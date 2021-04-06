@@ -31,7 +31,7 @@
   import ConfigEditor from '../components/ConfigEditor.vue';
   import loadParameterDescriptions from '../utils/loadParameterDescriptions';
   import fetchConfigSchema from '../utils/fetchConfigSchema';
-  import prepareModelToDownload from '../utils/prepareModelToDownload';
+  import downloadConfig from '../utils/downloadConfig';
   import waitForRestart from '../utils/waitForRestart';
 
   export default {
@@ -113,13 +113,8 @@
         }
       },
       async onDownload() {
-        const element = document.createElement('a');
-        element.setAttribute('href', `data:text/plain;charset=utf-8,${encodeURIComponent(prepareModelToDownload(this.model))}`);
-        element.setAttribute('download', 'ASF.json');
-        element.style.display = 'none';
-        document.body.appendChild(element);
-        element.click();
-        document.body.removeChild(element);
+        console.log(this.model);
+        downloadConfig(this.model, 'ASF');
       },
     },
   };

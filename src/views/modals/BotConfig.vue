@@ -34,7 +34,7 @@
   import ConfigEditor from '../../components/ConfigEditor.vue';
   import fetchConfigSchema from '../../utils/fetchConfigSchema';
   import loadParameterDescriptions from '../../utils/loadParameterDescriptions';
-  import prepareModelToDownload from '../../utils/prepareModelToDownload';
+  import downloadConfig from '../../utils/downloadConfig';
 
   export default {
     name: 'BotConfig',
@@ -139,13 +139,7 @@
         }
       },
       async onDownload() {
-        const element = document.createElement('a');
-        element.setAttribute('href', `data:text/plain;charset=utf-8,${encodeURIComponent(prepareModelToDownload(this.model))}`);
-        element.setAttribute('download', `${this.bot.name}.json`);
-        element.style.display = 'none';
-        document.body.appendChild(element);
-        element.click();
-        document.body.removeChild(element);
+        downloadConfig(this.model, this.bot.name);
       },
     },
   };
