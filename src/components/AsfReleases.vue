@@ -18,7 +18,7 @@
 
       <div class="release__changes" v-html="release.changelog"></div>
 
-      <a class="release__changelog-link" :href="`https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${release.version}`" target="_blank">{{ $t('changelog-full') }}</a>
+      <a class="release__changelog-link" target="_blank" rel="noreferrer noopener" :href="`https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${release.version}`">{{ $t('changelog-full') }}</a>
     </div>
   </div>
 </template>
@@ -140,7 +140,7 @@
         try {
           const release = await this.$http.get(`www/github/release/${version}`);
           const publishedAt = new Date(release.ReleasedAt);
-          let changelog = linkifyHtml(release.ChangelogHTML).replace(/<a href="/g, '<a target="_blank" href="');
+          let changelog = linkifyHtml(release.ChangelogHTML).replace(/<a href="/g, '<a target="_blank" rel="noreferrer noopener" href="');
           if (!changelog) changelog = this.$t('releases-changelog');
           return {
             changelog,

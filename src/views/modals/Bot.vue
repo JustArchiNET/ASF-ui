@@ -2,7 +2,7 @@
   <main v-if="bot" class="main-container main-container--bot-profile">
     <div class="bot-profile" :class="[`status--${bot.status}`]">
       <div class="bot-profile__avatar-wrapper">
-        <a v-if="bot.steamid !== '0'" target="_blank" :href="bot.profileURL">
+        <a v-if="bot.steamid !== '0'" target="_blank" rel="noreferrer noopener" :href="bot.profileURL">
           <img class="bot-profile__avatar" :src="bot.avatarURL">
         </a>
         <img v-else class="bot-profile__avatar" :src="bot.avatarURL">

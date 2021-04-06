@@ -1,6 +1,6 @@
 <template>
   <div class="bot" :class="[`status--${bot.status}`, { 'bot--big': selectedButtons.length > 2 }]">
-    <a v-if="bot.steamid !== '0'" target="_blank" :href="bot.profileURL">
+    <a v-if="bot.steamid !== '0'" target="_blank" rel="noreferrer noopener" :href="bot.profileURL">
       <img class="bot__avatar" :src="bot.avatarURL" :alt="bot.name">
     </a>
     <router-link v-else v-slot="{ navigate }" custom :to="{ name: 'bot', params: { bot: bot.name } }">
