@@ -113,7 +113,6 @@
         }
       },
       async onDownload() {
-        console.log(this.model);
         downloadConfig(this.model, 'ASF');
       },
     },
