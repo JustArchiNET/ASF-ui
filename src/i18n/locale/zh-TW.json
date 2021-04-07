@@ -1,7 +1,6 @@
 {
   "2fa-accept": "接受所有交易",
   "2fa-reject": "拒絕所有確認",
-  "2fa-not-found": "此 BOT 未启用 ASF 2FA！點擊<a href='https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Two-factor-authentication-zh-TW#%E5%85%A9%E6%AD%A5%E9%A9%9F%E9%A9%97%E8%AD%89' target='_blank'>此處</a>了解更多。",
   "2fa-token-copied": "已複製Token到剪貼簿！",
   "2fa-token-copy": "將Token複製到剪貼簿",
   "2fa-token-refresh": "重新整理Token",

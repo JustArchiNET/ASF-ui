@@ -5,7 +5,7 @@
   "2fa-reject": "Respinge toate confirmările",
   "2fa-reject-not-found": "Nu există nici o confirmare de respins!",
   "2fa-reject-success": "{PLURAL:n|{n} confirmare a fost respinsă|{n} confirmări au fost respinse} pentru {bot}!",
-  "2fa-not-found": "Acest bot nu are ASF 2FA activat! Află mai multe despre el <a href='https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Two-factor-authentication#asf-2fa' target='_blank'>aici</a>.",
+  "2fa-not-found": "Acest bot nu are ASF 2FA activat! Află mai multe despre el <a target='_blank' rel='noreferrer noopener' href='https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Two-factor-authentication#asf-2fa'>aici</a>.",
   "2fa-token-copied": "Token copiat în clipboard!",
   "2fa-token-copy": "Copiază token-ul în clipboard",
   "2fa-token-refresh": "Reîmprospătare token",

@@ -1,7 +1,7 @@
 {
   "2fa-accept": "Прийняти всі підтвердження",
   "2fa-reject": "Відхилити всі підтвердження",
-  "2fa-not-found": "У цього бота не ввімкнено 2ФА ASF! Дізнатися про це більше можна <a href='https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Two-factor-authentication#asf-2fa' target='_blank'>тут</a>.",
+  "2fa-not-found": "У цього бота не ввімкнено 2ФА ASF! Дізнатися про це більше можна <a target='_blank' rel='noreferrer noopener' href='https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Two-factor-authentication#asf-2fa'>тут</a>.",
   "2fa-token-copied": "Токен скопійовано до буфера обміну!",
   "2fa-token-copy": "Скопіювати токен в буфер обміну",
   "2fa-token-refresh": "Оновити токен",

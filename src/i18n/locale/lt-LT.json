@@ -5,7 +5,7 @@
   "2fa-reject": "Atmeskite visus patvirtinimus",
   "2fa-reject-not-found": "Nėra jokių atmetamų patvirtinimų!",
   "2fa-reject-success": "{PLURAL:n|{n} patvirtinimas buvo{n} patvirtinimai buvo} atmesti robotui {bot}!",
-  "2fa-not-found": "Šis robotas neturi ASF 2FA įjungtos autentifikacijos! Daugiau galite paskaityti <a href='https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Two-factor-authentication#asf-2fa' target='_blank'>čia</a>.",
+  "2fa-not-found": "Šis robotas neturi ASF 2FA įjungtos autentifikacijos! Daugiau galite paskaityti <a target='_blank' rel='noreferrer noopener' href='https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Two-factor-authentication#asf-2fa'>čia</a>.",
   "2fa-token-copied": "Ženklas nukopijuotas į iškarpinę!",
   "2fa-token-copy": "Nukopijuokite ženklą į iškarpinę",
   "2fa-token-refresh": "Atnaujinkite ženklą",
