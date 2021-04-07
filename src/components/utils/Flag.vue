@@ -18,6 +18,7 @@
 		async created() {
 			// Auto generated pre build
 			const flags = await import('../../../generated/flags');
+      flags.lol = '/lol-US.png';
 			this.flagImage = flags[this.country];
 		}
 	};
