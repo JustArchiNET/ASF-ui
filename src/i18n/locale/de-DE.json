@@ -5,6 +5,7 @@
   "2fa-reject": "Alle Bestätigungen ablehnen",
   "2fa-reject-not-found": "Es gibt keine Bestätigungen zum Ablehnen!",
   "2fa-reject-success": "{PLURAL:n|{n} Bestätigung wurde|{n} Bestätigungen wurden} für {bot} abgelehnt!",
+  "2fa-not-found": "Dieser Bot hat ASF 2FA nicht aktiviert! Erfahren Sie mehr darüber <a target='_blank' rel='noreferrer noopener' href='https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Two-factor-authentication-de-DE#asf-2fa'>hier</a>.",
   "2fa-token-copied": "Code in Zwischenablage kopiert!",
   "2fa-token-copy": "Code in Zwischenablage kopieren",
   "2fa-token-refresh": "Code aktualisieren",
