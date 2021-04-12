@@ -159,7 +159,7 @@
   "shutdown-message": "Fahre herunter, auf wiedersehen!",
   "sidebar-boxed-layout": "Kompakte Ansicht",
   "sidebar-dark-mode": "Dunkelmodus",
-  "sidebar-info": "<a target='_blank' rel='noreferrer noopener' href='https://github.com/JustArchiNET/ASF-ui/issues'>Sie haben einen Fehler gefunden oder möchten eine Funktion für ASF-ui vorschlagen?</a>",
+  "sidebar-info": "<a target='_blank' rel='noreferrer noopener' href='https://github.com/JustArchiNET/ASF-ui/issues/new/choose'>Sie haben einen Fehler gefunden oder möchten eine Funktion für ASF-ui vorschlagen?</a>",
   "sidebar-theme": "Design",
   "stable": "Stabil",
   "statistics": "Statistiken",

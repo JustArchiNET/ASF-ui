@@ -159,7 +159,7 @@
   "shutdown-message": "正在退出，再见！",
   "sidebar-boxed-layout": "紧凑布局",
   "sidebar-dark-mode": "暗色模式",
-  "sidebar-info": "<a target='_blank' rel='noreferrer noopener' href='https://github.com/JustArchiNET/ASF-ui/issues'>想要报告漏洞或者给 ASF-ui 提建议吗？</a>",
+  "sidebar-info": "<a target='_blank' rel='noreferrer noopener' href='https://github.com/JustArchiNET/ASF-ui/issues/new/choose'>想要报告漏洞或者给 ASF-ui 提建议吗？</a>",
   "sidebar-theme": "主题",
   "stable": "稳定版",
   "statistics": "统计",

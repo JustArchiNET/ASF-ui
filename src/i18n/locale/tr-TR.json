@@ -158,7 +158,7 @@
   "shutdown-message": "Kapatılıyor, hoşçakalın!",
   "sidebar-boxed-layout": "Kutu düzeni",
   "sidebar-dark-mode": "Karanlık mod",
-  "sidebar-info": "<a target='_blank' rel='noreferrer noopener' href='https://github.com/JustArchiNET/ASF-ui/issues'>ASF Arayüzünde bir açık mı buldunuz ya da yeni bir özellik mi önermek istiyorsunuz?</a>",
+  "sidebar-info": "<a target='_blank' rel='noreferrer noopener' href='https://github.com/JustArchiNET/ASF-ui/issues/new/choose'>ASF Arayüzünde bir açık mı buldunuz ya da yeni bir özellik mi önermek istiyorsunuz?</a>",
   "sidebar-theme": "Tema",
   "stable": "Kararlı",
   "statistics": "İstatistikler",

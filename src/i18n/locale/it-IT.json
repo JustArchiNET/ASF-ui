@@ -159,7 +159,7 @@
   "shutdown-message": "Arresto in corso, arrivederci!",
   "sidebar-boxed-layout": "Layout Inscatolato",
   "sidebar-dark-mode": "Dark mode",
-  "sidebar-info": "<a target='_blank' rel='noreferrer noopener' href='https://github.com/JustArchiNET/ASF-ui/issues'>Hai trovato un bug o vuoi suggerire una funzionalità per ASF-ui?</a>",
+  "sidebar-info": "<a target='_blank' rel='noreferrer noopener' href='https://github.com/JustArchiNET/ASF-ui/issues/new/choose'>Hai trovato un bug o vuoi suggerire una funzionalità per ASF-ui?</a>",
   "sidebar-theme": "Tema",
   "stable": "Stabile",
   "statistics": "Statistiche",
