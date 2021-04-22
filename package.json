@@ -45,7 +45,7 @@
     "axios": "^0.21.1",
     "copy-to-clipboard": "^3.3.1",
     "flat": "^5.0.2",
-    "humanize-duration": "^3.25.1",
+    "humanize-duration": "^3.25.2",
     "linkifyjs": "^3.0.0-beta.3",
     "lodash-es": "^4.17.21",
     "plurals-cldr": "^1.0.4",
