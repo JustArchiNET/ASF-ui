@@ -1,0 +1,10 @@
+{
+  "extends": [
+    "config:base",
+    ":assignee(MrBurrBurr)",
+    ":automergeDigest",
+    ":automergeMinor",
+    ":disableRateLimiting",
+    ":label(Automatic)"
+  ]
+}
