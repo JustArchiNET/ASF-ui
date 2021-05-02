@@ -2,6 +2,7 @@
   "extends": [
     "config:base",
     ":assignee(MrBurrBurr)",
+    ":automergeBranch",
     ":automergeDigest",
     ":automergeMinor",
     ":disableRateLimiting",
