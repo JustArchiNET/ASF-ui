@@ -92,7 +92,7 @@
             { [this.bot.name]: { BotConfig: model } },
             descriptions,
           ] = await Promise.all([
-            fetchConfigSchema('ArchiSteamFarm.BotConfig'),
+            fetchConfigSchema('ArchiSteamFarm.Steam.Storage.BotConfig'),
             this.$http.get(`bot/${this.bot.name}`),
             loadParameterDescriptions(this.version, this.$i18n.locale),
           ]);

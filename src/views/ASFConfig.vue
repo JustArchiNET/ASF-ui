@@ -75,7 +75,7 @@
         descriptions,
       ] = await Promise.all([
         this.$http.get('asf'),
-        fetchConfigSchema('ArchiSteamFarm.GlobalConfig'),
+        fetchConfigSchema('ArchiSteamFarm.Storage.GlobalConfig'),
         loadParameterDescriptions(this.version, this.$i18n.locale),
       ]);
 
