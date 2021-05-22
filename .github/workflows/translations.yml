@@ -26,13 +26,17 @@ jobs:
         project_id: ${{ secrets.ASF_CROWDIN_PROJECT_ID }}
         token: ${{ secrets.ASF_CROWDIN_API_TOKEN }}
 
+    - name: Import GPG key
+      uses: crazy-max/ghaction-import-gpg@v3
+      with:
+        gpg-private-key: ${{ secrets.ARCHIBOT_GPG_PRIVATE_KEY }}
+        git-user-signingkey: true
+        git-commit-gpgsign: true
+
     - name: Commit the changes
       shell: sh
       run: |
         set -eu
-
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
 
         git add -A "src/i18n/locale"
 
