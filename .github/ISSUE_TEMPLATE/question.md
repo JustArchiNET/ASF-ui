@@ -1,7 +1,7 @@
 ---
-name: General question
+name: ❓ Question
 about: Got a question related to ASF-ui?
-label: Question
+label: ❓ Question
 
 ---
 

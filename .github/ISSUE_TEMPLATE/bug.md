@@ -1,7 +1,7 @@
 ---
-name: Bug report
+name: 🐛 Bug
 about: Report a bug to help us improve ASF-ui
-labels: Evaluation, Bug
+labels: 🧐 Evaluation, 🐛 Bug
 
 ---
 
