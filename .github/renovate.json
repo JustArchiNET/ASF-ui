@@ -6,6 +6,6 @@
     ":automergeDigest",
     ":automergeMinor",
     ":disableRateLimiting",
-    ":label(Automatic)"
+    ":label(🤖 Automatic)"
   ]
 }
