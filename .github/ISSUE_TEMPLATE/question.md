@@ -1,6 +1,6 @@
 ---
 name: ❓ Question
-about: Got a question related to ASF-ui?
+about: Feel free to ask a question related to ASF-ui
 label: ❓ Question
 
 ---

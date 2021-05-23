@@ -1,6 +1,6 @@
 ---
-name: ✨ Enhancement
-about: Suggest an idea to improve ASF-ui.
+name: ✨ Enhancement idea
+about: Suggest an idea to improve ASF-ui
 labels: 🧐 Evaluation, ✨ Enhancement
 
 ---
