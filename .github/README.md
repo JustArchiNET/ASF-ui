@@ -9,18 +9,16 @@ The official web interface for [ASF](https://github.com/JustArchiNET/ArchiSteamF
 
 <img src="https://github.com/JustArchiNET/ASF-ui/blob/main/.github/previews/bots.png?raw=true">
 
-***
-
-### How to use
+## How to use
 
 You don't have to install or download anything. ASF already comes with ASF-ui included!
 
 If you are unsure about how to setup ASF-ui you can read more about it on [ASF's wiki](https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Setting-up#using-asf-ui).
 
-### Hidden features
+## Hidden features
 
 There are some 'hidden' features you can read more about [here](https://github.com/JustArchiNET/ASF-ui/blob/main/.github/FEATURES.md).
 
-### Development
+## Development
 
 If you are more than the average user you can read more [here](https://github.com/JustArchiNET/ASF-ui/blob/main/.github/DEVELOPMENT.md).
