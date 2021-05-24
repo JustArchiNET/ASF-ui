@@ -9,7 +9,7 @@ ASF-ui and all of its contributors are obligated to uphold the [Code of Conduct]
 ## Security
 
 If you think you have found a security issue, please do not mention it in this repository.
-Instead, please follow our [security policy](SECURITY.md).
+Instead, please review our [security policy](SECURITY.md) for more details.
 
 ## Reporting Bugs
 
