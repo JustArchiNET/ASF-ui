@@ -6,3 +6,6 @@ contact_links:
   - name: 🌐 Localization improvement
     url: https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Localization
     about: Please use our crowdin platform
+  - name: 🔓 Security issue
+    url: https://github.com/JustArchiNET/ASF-ui/blob/main/.github/SECURITY.md
+    about: Please follow our security policy
