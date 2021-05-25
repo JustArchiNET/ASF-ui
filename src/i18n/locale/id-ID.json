@@ -11,7 +11,6 @@
   "bgr-keys-insert-example": "Contoh:\nAAAAA-BBBBB-CCCC0\nAAAAA-BBBBB-CCCC1\n\nKamu bisa tambahkan nama pada key:\nAAAAA-BBBBB-CCCC2\tTurbo Pug\nAAAAA-BBBBB-CCCC3\tBad Rats",
   "bgr-no-keys-detected": "Tidak ada game key yang terdeteksi",
   "bgr-reset": "Apa kamu mau ulang file key mu?",
-  "bgr-unused-keys": "Key yang tidak terpakai",
   "bgr-used-keys": "Key terpakai",
   "bot-copy": "Salin bot",
   "bot-create-name": "Kamu harus masukkan nama",
@@ -31,10 +30,9 @@
   "continue": "Lanjut",
   "customization": "Kustomisasi",
   "farming": "Pertanian",
-  "password": "Kata sandi",
   "performance": "Performa",
   "restart-initiated": "Memulai ulang...",
   "security": "Keamanan",
   "success": "Sukses",
-  "updates": "Update"
+  "updates": "Pembaruan"
 }
