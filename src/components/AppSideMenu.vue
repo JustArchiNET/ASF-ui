@@ -12,7 +12,7 @@
       <div v-for="(theme, i) in availableThemes" :key="i" class="theme-switcher__theme" :class="[`theme-${theme}`]" @click="changeTheme(theme)"></div>
     </div>
 
-    <div class="side-menu___info">
+    <div class="side-menu__info">
       <span v-html="$t('sidebar-info')"></span>
     </div>
   </aside>
