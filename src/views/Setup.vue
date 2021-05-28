@@ -64,11 +64,11 @@
         this.checkCountdown();
       },
       countdown: {
+        immediate: true,
         handler(value) {
           if (value > 0) setTimeout(() => this.countdown--, 1000);
           if (value === 0) this.countdown = 5;
         },
-        immediate: true,
       },
     },
     async mounted() {
