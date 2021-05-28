@@ -259,5 +259,9 @@
     details {
       margin-bottom: 1em;
     }
+
+    summary {
+      cursor: pointer;
+    }
 	}
 </style>
