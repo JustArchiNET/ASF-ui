@@ -242,9 +242,9 @@
 		}
 
     code {
-      padding: 0.1em 0.3em;
+      padding: 0.05em 0.3em;
       font-size: 85%;
-      background-color: var(--color-background-dark);
+      background-color: rgb(205 217 229 / 15%);
       border-radius: 3px;
     }
 
@@ -262,6 +262,18 @@
 
     summary {
       cursor: pointer;
+    }
+
+    pre {
+      white-space: pre-wrap;
+      padding: 0.5em 1em;
+      font-size: 90%;
+      background-color: #2d333b;
+      border-radius: 3px;
+
+      > code {
+        background-color: inherit;
+      }
     }
 	}
 </style>
