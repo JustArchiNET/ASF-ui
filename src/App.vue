@@ -123,6 +123,9 @@
 		--color-button-cancel: #{$color-theme-red};
 		--color-button-cancel-active: #{lighten($color-theme-red, 5)};
 		--color-button-default: #222d32;
+
+    --color-releases-pre: var(--color-text-secondary);
+    --color-releases-code: rgb(27 31 35 / 5%);
 	}
 
 	html {
@@ -196,6 +199,8 @@
 		--color-text-secondary: #{darken(#bfbfbf, 10)};
 		--color-text-disabled: #{darken(#bfbfbf, 20)};
 		--color-button-default: #4f5454;
+    --color-releases-pre: var(--color-text-dark);
+    --color-releases-code: rgb(205 217 229 / 15%);
 	}
 
 	.theme-blue {
