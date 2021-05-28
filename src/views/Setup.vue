@@ -60,7 +60,8 @@
     },
     watch: {
       status() {
-        if (this.status === STATUS.AUTHENTICATED) this.redirect();
+        this.cancelAutoUpdate();
+        this.checkCountdown();
       },
       countdown: {
         handler(value) {
@@ -71,9 +72,7 @@
       },
     },
     async mounted() {
-      if (this.status === STATUS.AUTHENTICATED) this.redirect();
-      if (this.status === STATUS.RATE_LIMITED) this.countdown = 3610; // ASF will keep us banned if we do not wait
-      if (this.status !== STATUS.UNAUTHORIZED) this.timer = setInterval(this.refreshStatus, this.countdown * 1000);
+      this.checkCountdown();
     },
     beforeDestroy() {
       this.cancelAutoUpdate();
@@ -124,6 +123,11 @@
       },
       cancelAutoUpdate() {
         clearInterval(this.timer);
+      },
+      checkCountdown() {
+        if (this.status === STATUS.AUTHENTICATED) this.redirect();
+        if (this.status === STATUS.RATE_LIMITED) this.countdown = 3610; // ASF will keep us banned if we do not wait
+        if (this.status !== STATUS.UNAUTHORIZED) this.timer = setInterval(this.refreshStatus, this.countdown * 1000);
       },
     },
   };
