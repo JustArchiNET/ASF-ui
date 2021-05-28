@@ -103,7 +103,7 @@
 
   .side-menu__info {
     bottom: 0;
-    padding: 1em;
+    padding: 1em 0.5em;
     position: absolute;
     text-align: center;
     margin-bottom: 0.5em;
