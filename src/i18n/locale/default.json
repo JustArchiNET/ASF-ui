@@ -153,7 +153,7 @@
   "setup-gateway-timeout": "Gateway timeout. Trying to reconnect in {PLURAL:n|{n} second|{n} seconds}...",
   "setup-network-error": "Lost connection to ASF. Trying to reconnect in {PLURAL:n|{n} second|{n} seconds}...",
   "setup-not-connected": "Unable to connect to ASF IPC server. Make sure ASF is running!",
-  "setup-rate-limited": "Seems like you are rate limited, restart ASF or try again in a while!",
+  "setup-rate-limited": "Rate limited. Trying to reconnect in {PLURAL:n|{n} second|{n} seconds}...",
   "shutdown": "Shutdown",
   "shutdown-message": "Shutting down, good bye!",
   "sidebar-boxed-layout": "Boxed layout",
