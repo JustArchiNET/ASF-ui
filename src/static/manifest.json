@@ -1,7 +1,7 @@
 {
   "name": "ASF-ui",
   "short_name": "ASF-ui",
-  "description": "Standalone web interface for ASF",
+  "description": "The official web interface for ASF",
   "icons": [
     {
       "src": "logo.png",

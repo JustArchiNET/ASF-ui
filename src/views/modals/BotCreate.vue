@@ -7,8 +7,7 @@
     </h3>
 
     <div v-else class="container">
-      <ConfigEditor v-if="displayCategories" :fields="fields" :model="model" :categories="categories"></ConfigEditor>
-      <ConfigEditor v-else :fields="fields" :model="model"></ConfigEditor>
+      <ConfigEditor :fields="fields" :model="model" :categories="displayCategories ? categories : null"></ConfigEditor>
 
       <div class="form-item">
         <div class="form-item__buttons">
@@ -31,7 +30,7 @@
   import ConfigEditor from '../../components/ConfigEditor.vue';
   import fetchConfigSchema from '../../utils/fetchConfigSchema';
   import loadParameterDescriptions from '../../utils/loadParameterDescriptions';
-  import prepareModelToDownload from '../../utils/prepareModelToDownload';
+  import downloadConfig from '../../utils/downloadConfig';
   import delay from '../../utils/delay';
   import botExists from '../../utils/botExists';
 
@@ -44,7 +43,7 @@
         { name: this.$t('security'), fields: ['PasswordFormat', 'UseLoginKeys'] },
         { name: this.$t('access'), fields: ['SteamUserPermissions', 'SteamParentalCode'] },
         { name: this.$t('trade'), fields: ['SteamTradeToken', 'AcceptGifts', 'SendTradePeriod', 'SendOnFarmingFinished', 'TradingPreferences', 'LootableTypes', 'TransferableTypes', 'MatchableTypes'] },
-        { name: this.$t('farming'), fields: ['FarmingOrders', 'AutoSteamSaleEvent', 'IdlePriorityQueueOnly', 'IdleRefundableGames', 'FarmOffline', 'ShutdownOnFarmingFinished'] },
+        { name: this.$t('farming'), fields: ['FarmingOrders', 'AutoSteamSaleEvent', 'FarmPriorityQueueOnly', 'FarmNonRefundableGamesOnly', 'FarmOffline', 'ShutdownOnFarmingFinished'] },
         { name: this.$t('customization'), fields: ['SteamMasterClanID', 'RedeemingPreferences', 'GamesPlayedWhileIdle', 'CustomGamePlayedWhileFarming', 'CustomGamePlayedWhileIdle'] },
         { name: this.$t('performance'), fields: ['HoursUntilCardDrops'] },
       ];
@@ -70,11 +69,9 @@
     methods: {
       async loadConfig() {
         const [{ body: fields }, descriptions] = await Promise.all([
-          fetchConfigSchema('ArchiSteamFarm.BotConfig'),
+          fetchConfigSchema('ArchiSteamFarm.Steam.Storage.BotConfig'),
           loadParameterDescriptions(this.version, this.$i18n.locale),
         ]);
-
-        this.model = {};
 
         this.fields = [
           {
@@ -90,36 +87,35 @@
           })),
         ];
 
+        this.model = {};
         this.loading = false;
       },
       async onCreate() {
         if (this.creating) return;
 
-        // Remove name property from config - Ugly but works
-        const config = JSON.parse(JSON.stringify(this.model));
-        delete config.Name;
+        const { Name: name, ...config } = JSON.parse(JSON.stringify(this.model));
 
-        if (!this.model.Name) {
+        if (!name) {
           this.$error(this.$t('bot-create-name'));
           return;
         }
 
-        if (this.model.Name === 'ASF') {
+        if (name === 'ASF') {
           this.$error(this.$t('bot-create-name-asf'));
           return;
         }
 
-        if (botExists(this.bots, this.model.Name)) {
-          this.$error(this.$t('bot-create-name-exist', { name: this.model.Name }));
+        if (botExists(this.bots, name)) {
+          this.$error(this.$t('bot-create-name-exist', { name }));
           return;
         }
 
         this.creating = true;
 
         try {
-          await this.$http.post(`bot/${this.model.Name}`, { botConfig: config });
+          await this.$http.post(`bot/${name}`, { botConfig: config });
           await delay(1000);
-          await this.$store.dispatch('bots/updateBot', { name: this.model.Name });
+          await this.$store.dispatch('bots/updateBot', { name });
           this.$parent.close();
         } catch (err) {
           this.$error(err.message);
@@ -128,17 +124,8 @@
         }
       },
       async onDownload() {
-        // Remove name property from config - Ugly but works
-        const config = JSON.parse(JSON.stringify(this.model));
-        delete config.Name;
-
-        const element = document.createElement('a');
-        element.setAttribute('href', `data:text/plain;charset=utf-8,${encodeURIComponent(prepareModelToDownload(config))}`);
-        element.setAttribute('download', `${this.model.Name}.json`);
-        element.style.display = 'none';
-        document.body.appendChild(element);
-        element.click();
-        document.body.removeChild(element);
+        const { Name: name, ...config } = JSON.parse(JSON.stringify(this.model));
+        downloadConfig(config, name);
       },
     },
   };

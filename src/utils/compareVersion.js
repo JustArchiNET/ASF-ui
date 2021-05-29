@@ -9,7 +9,7 @@ export default function compareVersion(a, b) {
     const bValue = bValues[i] || 0;
 
     if (aValue === bValue) continue;
-    return aValue > bValue ? 1 : -1;
+    return (aValue > bValue) ? 1 : -1;
   }
 
   return 0;

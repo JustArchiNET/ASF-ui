@@ -24,7 +24,7 @@
       onKeyPress($event) {
         if (this.schema.type !== 'uint64') return true;
 
-        const charCode = $event.which ? $event.which : $event.keyCode;
+        const charCode = ($event.which) ? $event.which : $event.keyCode;
         if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) return $event.preventDefault();
         return true;
       },

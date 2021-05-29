@@ -6,7 +6,7 @@
 
     <template v-else>
       <div v-for="(game, i) in bot.games" :key="i" class="bot-game" :title="game.GameName" :class="[game.farming ? 'status--farming' : 'status--disabled']">
-        <a target="_blank" :href="`https://store.steampowered.com/app/${game.AppID}/`">
+        <a target="_blank" rel="noreferrer noopener" :href="`https://store.steampowered.com/app/${game.AppID}/`">
           <div class="bot-game__info">
             <span class="bot-game__name">{{ game.GameName }}</span>
           </div>
@@ -36,7 +36,7 @@
         let html = '';
 
         this.bot.games.forEach(game => {
-          const aTag = `<a class="text-dark" target="_blank" href="https://store.steampowered.com/app/${game.AppID}/">${game.GameName}</a>`;
+          const aTag = `<a class="text-dark" target="_blank" rel="noreferrer noopener" href="https://store.steampowered.com/app/${game.AppID}/">${game.GameName}</a>`;
           html = `${html + aTag}, `;
         });
 

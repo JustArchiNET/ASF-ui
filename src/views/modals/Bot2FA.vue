@@ -1,7 +1,6 @@
 <template>
   <main v-if="bot" class="main-container">
-    <h2 v-if="bot.nickname && nicknames" class="title">{{ bot.nickname }}</h2>
-    <h2 v-else class="title">{{ bot.name }}</h2>
+    <h2 :title="bot.name" class="title">{{ bot.viewableName }}</h2>
 
     <span v-if="!has2FA" v-html="$t('2fa-not-found')"></span>
 
@@ -33,7 +32,6 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
   import * as copy from 'copy-to-clipboard';
   import delay from '../../utils/delay';
 
@@ -49,7 +47,6 @@
       };
     },
     computed: {
-      ...mapGetters({ nicknames: 'settings/nicknames' }),
       bot() {
         return this.$store.getters['bots/bot'](this.$route.params.bot);
       },

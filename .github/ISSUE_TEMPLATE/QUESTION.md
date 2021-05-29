@@ -1,7 +1,7 @@
 ---
-name: General question
-about: Got a question related to ASF-ui?
-label: Question
+name: ❓ Question
+about: Feel free to ask a question related to ASF-ui
+label: ❓ Question
 
 ---
 

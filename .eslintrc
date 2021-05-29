@@ -15,7 +15,10 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["vue"],
+  "plugins": [
+    "vue",
+    "@spothero/eslint-plugin-spothero"
+  ],
   "rules": {
     "indent": ["error", 2, {
       "SwitchCase": 1
@@ -28,9 +31,7 @@
     "prefer-template": "warn",
     "arrow-parens": ["error", "as-needed"],
     "max-len": "off",
-    "consistent-return": ["error", {
-      "treatUndefinedAsUnspecified": true
-    }],
+    "consistent-return": "off",
     "no-param-reassign": ["error", {
       "props": false
     }],
@@ -75,7 +76,13 @@
       }
     }],
     "vue/singleline-html-element-content-newline": "off",
-    "vue/comma-dangle": "error"
+    "vue/comma-dangle": "error",
+    "vue/no-v-html": "off",
+    "vue/require-default-prop": "off",
+    "vue/require-prop-types": "off",
+    "vue/return-in-computed-property": "off",
+    "vue/no-use-v-if-with-v-for": "off",
+    "@spothero/spothero/ternary-parentheses": "error"
   },
   "overrides": [{
     "files": ["*.vue"],

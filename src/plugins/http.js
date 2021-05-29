@@ -12,7 +12,7 @@ export class NotificationError extends Error {
 }
 
 const http = axios.create({
-  baseURL: window.__BASE_PATH__ ? `${window.__BASE_PATH__}api` : '/api',
+  baseURL: (window.__BASE_PATH__) ? `${window.__BASE_PATH__}api` : '/api',
 });
 
 function extractResult(response) {
@@ -62,7 +62,7 @@ export function command(...args) {
 }
 
 export function botAction(bots, action, params) {
-  const botsString = Array.isArray(bots) ? bots.join(',') : bots;
+  const botsString = (Array.isArray(bots)) ? bots.join(',') : bots;
   return http.post(`bot/${botsString}/${action}`, params).then(response => {
     if (!response.data.Success) throw response.data.Message;
     return response.data.Message;

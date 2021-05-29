@@ -6,6 +6,11 @@ The following is a set of guidelines for contributing to ASF-ui. These are mostl
 
 ASF-ui and all of its contributors are obligated to uphold the [Code of Conduct](CODE_OF_CONDUCT.md).
 
+## Security
+
+If you think you have found a security issue, please do not mention it in this repository.
+Instead, please review our [security policy](SECURITY.md) for more details.
+
 ## Reporting Bugs
 
 This section guides you through submitting a bug report for ASF-ui. Following these guidelines helps maintainers and the community understand your report, reproduce the behavior, and find related reports.

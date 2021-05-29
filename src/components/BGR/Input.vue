@@ -49,12 +49,12 @@
         const name = line.replace(key, '').trim();
 
         if (this.userDelimiter) {
-          const delimiterIndex = keyIndex === 0 ? name.indexOf(this.userDelimiter) : name.lastIndexOf(this.userDelimiter);
+          const delimiterIndex = (keyIndex === 0) ? name.indexOf(this.userDelimiter) : name.lastIndexOf(this.userDelimiter);
           return { key, name: name.slice(delimiterIndex, this.userDelimiter.length).trim() };
         }
 
-        const possibleDelimiter = name.charAt(keyIndex === 0 ? 0 : name.length - 1);
-        if (commonDelimiters.includes(possibleDelimiter)) return { key, name: name.slice(keyIndex === 0 ? 1 : 0, name.length - (keyIndex === 0 ? 0 : 1)).trim() }; // Covers both ':<name>' and ': <name>' (':\t\t\s\s\t\t<name>' too)
+        const possibleDelimiter = name.charAt((keyIndex === 0) ? 0 : name.length - 1);
+        if (commonDelimiters.includes(possibleDelimiter)) return { key, name: name.slice((keyIndex === 0) ? 1 : 0, name.length - ((keyIndex === 0) ? 0 : 1)).trim() }; // Covers both ':<name>' and ': <name>' (':\t\t\s\s\t\t<name>' too)
 
         return { key, name };
       },

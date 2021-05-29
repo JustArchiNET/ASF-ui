@@ -69,6 +69,7 @@
 
         this.value.push(this.element);
         this.value.sort();
+
         this.element = this.getDefaultElement();
       },
       removeElement(index) {

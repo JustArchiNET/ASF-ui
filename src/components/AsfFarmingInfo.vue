@@ -40,7 +40,7 @@
 		grid-gap: 1em;
 		grid-template-columns: repeat(3, 1fr);
 
-		@media screen and (max-width: 650px) {
+		@media screen and (max-width: 600px) {
 			grid-template-columns: 1fr;
 		}
 	}

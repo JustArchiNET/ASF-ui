@@ -46,7 +46,7 @@
       selectType(type) {
         if (this.$route.name !== 'bots') this.$router.push({ name: 'bots' });
 
-        let selectedBots = this.selectedBots.includes(type)
+        let selectedBots = (this.selectedBots.includes(type))
           ? this.selectedBots.filter(botType => botType !== type)
           : [...this.selectedBots, type];
 

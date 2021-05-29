@@ -18,7 +18,7 @@
 
       <div class="release__changes" v-html="release.changelog"></div>
 
-      <a class="release__changelog-link" :href="`https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${release.version}`" target="_blank">{{ $t('changelog-full') }}</a>
+      <a class="release__changelog-link" target="_blank" rel="noreferrer noopener" :href="`https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${release.version}`">{{ $t('changelog-full') }}</a>
     </div>
   </div>
 </template>
@@ -140,7 +140,8 @@
         try {
           const release = await this.$http.get(`www/github/release/${version}`);
           const publishedAt = new Date(release.ReleasedAt);
-          let changelog = linkifyHtml(release.ChangelogHTML).replace(/<a href="/g, '<a target="_blank" href="');
+          const linkifyOptions = { ignoreTags: ['code'] };
+          let changelog = linkifyHtml(release.ChangelogHTML, linkifyOptions).replace(/<a href="/g, '<a target="_blank" rel="noreferrer noopener" href="');
           if (!changelog) changelog = this.$t('releases-changelog');
           return {
             changelog,
@@ -242,9 +243,9 @@
 		}
 
     code {
-      padding: 0.1em 0.3em;
+      padding: 0.05em 0.3em;
       font-size: 85%;
-      background-color: var(--color-background-dark);
+      background-color: var(--color-releases-code);
       border-radius: 3px;
     }
 
@@ -258,6 +259,23 @@
 
     details {
       margin-bottom: 1em;
+    }
+
+    summary {
+      cursor: pointer;
+    }
+
+    pre {
+      white-space: pre-wrap;
+      padding: 0.5em 1em;
+      font-size: 90%;
+      background-color: #2d333b;
+      border-radius: 3px;
+      color: var(--color-releases-pre);
+
+      > code {
+        background-color: inherit;
+      }
     }
 	}
 </style>

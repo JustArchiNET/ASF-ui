@@ -3,7 +3,6 @@
     <div class="footer__links">
       <FooterLink name="GitHub" prefix="fab" icon="github" to="https://github.com/JustArchiNET"></FooterLink>
       <FooterLink :name="$t('wiki')" icon="book-open" :to="wikiLink"></FooterLink>
-      <FooterLink v-if="authenticated" :name="$t('changelog')" icon="calendar-check" :to="releaseUrl"></FooterLink>
     </div>
 
     <div v-if="authenticated" class="footer__statistic">
@@ -19,7 +18,6 @@
   import FooterLink from './FooterLink.vue';
   import { ui, isReleaseAvailable } from '../utils/ui';
   import delay from '../utils/delay';
-  import { get } from '../utils/storage';
 
   export default {
     name: 'AppFooter',
@@ -41,10 +39,6 @@
       }),
       versionString() {
         return `${this.version} - ${this.buildVariant} - ${this.uiHash}`;
-      },
-      releaseUrl() {
-        const v = this.newReleaseAvailable ? get('latest-release') : this.version;
-        return `https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${v}`;
       },
       wikiLink() {
         const locale = (this.$i18n.locale !== 'en-US') ? `/Home-${this.$i18n.locale}` : '';

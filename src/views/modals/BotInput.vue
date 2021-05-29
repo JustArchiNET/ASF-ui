@@ -1,7 +1,6 @@
 <template>
   <main v-if="bot" class="main-container">
-    <h2 v-if="bot.nickname && nicknames" class="title">{{ bot.nickname }}</h2>
-    <h2 v-else class="title">{{ bot.name }}</h2>
+    <h2 :title="bot.name" class="title">{{ bot.viewableName }}</h2>
 
     <div class="form-item">
       <div class="form-item__info">{{ $t(`input-info-${inputType}`) }}</div>
@@ -28,7 +27,6 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
   import getUserInputType from '../../utils/getUserInputType';
 
   export default {
@@ -41,7 +39,6 @@
       };
     },
     computed: {
-      ...mapGetters({ nicknames: 'settings/nicknames' }),
       bot() {
         return this.$store.getters['bots/bot'](this.$route.params.bot);
       },

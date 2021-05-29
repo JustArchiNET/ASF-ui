@@ -44,6 +44,8 @@
         this.$router.push(this.$route.path.slice(0, this.$route.path.lastIndexOf('/')));
       },
       onKeyPress(e) {
+        if (document.activeElement.tagName === 'TEXTAREA') return;
+        if (document.activeElement.tagName === 'INPUT') return;
         const charCode = (e.which) ? e.which : e.keyCode;
 
         if (charCode === 27) {
@@ -56,7 +58,7 @@
       },
       next(direction) {
         const currentIndex = this.bots.findIndex(bot => bot.name === this.$route.params.bot);
-        let targetIndex = currentIndex + (direction === 'left' ? -1 : 1);
+        let targetIndex = currentIndex + ((direction === 'left') ? -1 : 1);
 
         if (targetIndex > this.bots.length - 1) targetIndex = 0;
         else if (targetIndex < 0) targetIndex = this.bots.length - 1;

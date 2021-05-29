@@ -1,7 +1,6 @@
 <template>
   <main v-if="bot" class="main-container main-container--bot-config">
-    <h2 v-if="bot.nickname && nicknames" class="title">{{ bot.nickname }}</h2>
-    <h2 v-else class="title">{{ bot.name }}</h2>
+    <h2 :title="bot.name" class="title">{{ bot.viewableName }}</h2>
 
     <h3 v-if="loading" class="subtitle">
       <FontAwesomeIcon icon="spinner" size="lg" spin></FontAwesomeIcon>
@@ -35,7 +34,7 @@
   import ConfigEditor from '../../components/ConfigEditor.vue';
   import fetchConfigSchema from '../../utils/fetchConfigSchema';
   import loadParameterDescriptions from '../../utils/loadParameterDescriptions';
-  import prepareModelToDownload from '../../utils/prepareModelToDownload';
+  import downloadConfig from '../../utils/downloadConfig';
 
   export default {
     name: 'BotConfig',
@@ -46,7 +45,7 @@
         { name: this.$t('security'), fields: ['PasswordFormat', 'UseLoginKeys'] },
         { name: this.$t('access'), fields: ['SteamUserPermissions', 'SteamParentalCode'] },
         { name: this.$t('trade'), fields: ['SteamTradeToken', 'AcceptGifts', 'SendTradePeriod', 'SendOnFarmingFinished', 'CompleteTypesToSend', 'TradingPreferences', 'LootableTypes', 'TransferableTypes', 'MatchableTypes'] },
-        { name: this.$t('farming'), fields: ['FarmingOrders', 'AutoSteamSaleEvent', 'IdlePriorityQueueOnly', 'IdleRefundableGames', 'FarmOffline', 'ShutdownOnFarmingFinished'] },
+        { name: this.$t('farming'), fields: ['FarmingOrders', 'AutoSteamSaleEvent', 'FarmPriorityQueueOnly', 'FarmNonRefundableGamesOnly', 'FarmOffline', 'ShutdownOnFarmingFinished'] },
         { name: this.$t('customization'), fields: ['SteamMasterClanID', 'UserInterfaceMode', 'RedeemingPreferences', 'GamesPlayedWhileIdle', 'CustomGamePlayedWhileFarming', 'CustomGamePlayedWhileIdle'] },
         { name: this.$t('performance'), fields: ['HoursUntilCardDrops'] },
       ];
@@ -62,7 +61,6 @@
     computed: {
       ...mapGetters({
         version: 'asf/version',
-        nicknames: 'settings/nicknames',
         displayCategories: 'settings/displayCategories',
         bots: 'bots/bots',
       }),
@@ -94,7 +92,7 @@
             { [this.bot.name]: { BotConfig: model } },
             descriptions,
           ] = await Promise.all([
-            fetchConfigSchema('ArchiSteamFarm.BotConfig'),
+            fetchConfigSchema('ArchiSteamFarm.Steam.Storage.BotConfig'),
             this.$http.get(`bot/${this.bot.name}`),
             loadParameterDescriptions(this.version, this.$i18n.locale),
           ]);
@@ -112,7 +110,7 @@
           };
 
           this.fields = Object.keys(fields).map(key => {
-            const description = (!descriptions[key]) ? this.$t('description-not-found') : descriptions[key].replace(/<a href="/g, '<a target="_blank" href="');
+            const description = (!descriptions[key]) ? this.$t('description-not-found') : descriptions[key].replace(/<a href="/g, '<a target="_blank" rel="noreferrer noopener" href="');
             return { description, ...fields[key], ...(extendedFields[key] || []) };
           });
         } catch (err) {
@@ -141,13 +139,7 @@
         }
       },
       async onDownload() {
-        const element = document.createElement('a');
-        element.setAttribute('href', `data:text/plain;charset=utf-8,${encodeURIComponent(prepareModelToDownload(this.model))}`);
-        element.setAttribute('download', `${this.bot.name}.json`);
-        element.style.display = 'none';
-        document.body.appendChild(element);
-        element.click();
-        document.body.removeChild(element);
+        downloadConfig(this.model, this.bot.name);
       },
     },
   };

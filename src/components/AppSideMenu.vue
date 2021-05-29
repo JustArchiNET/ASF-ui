@@ -12,7 +12,7 @@
       <div v-for="(theme, i) in availableThemes" :key="i" class="theme-switcher__theme" :class="[`theme-${theme}`]" @click="changeTheme(theme)"></div>
     </div>
 
-    <div class="info">
+    <div class="side-menu__info">
       <span v-html="$t('sidebar-info')"></span>
     </div>
   </aside>
@@ -101,9 +101,9 @@
 		}
 	}
 
-  .info {
+  .side-menu__info {
     bottom: 0;
-    padding: 1em;
+    padding: 1em 0.5em;
     position: absolute;
     text-align: center;
     margin-bottom: 0.5em;

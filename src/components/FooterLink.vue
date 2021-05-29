@@ -1,5 +1,5 @@
 <template>
-  <a class="footer__link" target="_blank" :href="to">
+  <a class="footer__link" target="_blank" rel="noreferrer noopener" :href="to">
     <span class="footer__link-icon">
       <FontAwesomeIcon :icon="[prefix, icon]" size="lg" :title="name" fixed-width></FontAwesomeIcon>
     </span>

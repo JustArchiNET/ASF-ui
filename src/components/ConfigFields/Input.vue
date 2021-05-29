@@ -13,10 +13,10 @@
       currentValue: true,
     },
     data() {
-      const initialValue = typeof this.currentValue !== 'undefined' ? this.currentValue : this.schema.defaultValue;
+      const initialValue = (typeof this.currentValue !== 'undefined') ? this.currentValue : this.schema.defaultValue;
 
       return {
-        value: typeof initialValue === 'object' ? JSON.parse(JSON.stringify(initialValue)) : initialValue,
+        value: (typeof initialValue === 'object') ? JSON.parse(JSON.stringify(initialValue)) : initialValue,
         showDescription: false,
       };
     },
@@ -61,7 +61,7 @@
     },
     methods: {
       update() {
-        const value = typeof this.value === 'object' ? JSON.parse(JSON.stringify(this.value)) : this.value;
+        const value = (typeof this.value === 'object') ? JSON.parse(JSON.stringify(this.value)) : this.value;
         this.$emit('update', value, this.field);
       },
       toggleDescription() {

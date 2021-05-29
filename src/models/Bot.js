@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import store from '../store';
 import getCountryCode from '../utils/getCountryCode';
 
 const timeSpanRegex = /(?:(\d+).)?(\d{2}):(\d{2}):(\d{2})(?:.?(\d{7}))?/;
@@ -15,7 +16,7 @@ export class Bot {
     this.name = data.BotName;
     this.nickname = data.Nickname;
     this.steamid = data.s_SteamID;
-    this.avatarHash = data.AvatarHash || '0b46945851b3d26da93a6ddba3ac961206cc191d';
+    this.avatarHash = data.AvatarHash;
     this.bgrCount = data.GamesToRedeemInBackgroundCount;
     this.walletBalance = data.WalletBalance;
     this.walletCurrency = data.WalletCurrency;
@@ -51,6 +52,7 @@ export class Bot {
   }
 
   get avatarURL() {
+    if (!this.avatarHash) return (window.__BASE_PATH__) ? `${window.__BASE_PATH__}defaultAvatar.jpg` : '/defaultAvatar.jpg';
     return `https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/${this.avatarHash.substr(0, 2)}/${this.avatarHash}_full.jpg`;
   }
 
@@ -99,5 +101,10 @@ export class Bot {
     const currencyCode = getCountryCode(this.walletCurrency);
     if (typeof currencyCode === 'undefined') return null;
     return currency.toLocaleString(Vue.i18n.locale, { style: 'currency', currency: currencyCode });
+  }
+
+  get viewableName() {
+    if (store.getters['settings/nicknames'] && this.nickname) return this.nickname;
+    return this.name;
   }
 }

@@ -4,7 +4,7 @@
       <h2 class="title">{{ $t('setup') }}</h2>
 
       <p v-if="status === 'NOT_CONNECTED'" class="status-text status-text--error">{{ $t('setup-not-connected') }}</p>
-      <p v-if="status === 'RATE_LIMITED'" class="status-text status-text--error">{{ $t('setup-rate-limited') }}</p>
+      <p v-if="status === 'RATE_LIMITED'" class="status-text status-text--error">{{ $t('setup-rate-limited', { n: countdown }) }}</p>
       <p v-if="status === 'AUTHENTICATED'" class="status-text">{{ $t('setup-authenticated') }}</p>
       <p v-if="status === 'UNAUTHORIZED'" class="status-text">{{ $t('setup-description') }}</p>
       <p v-if="status === 'GATEWAY_TIMEOUT'" class="status-text">{{ $t('setup-gateway-timeout', { n: countdown }) }}</p>
@@ -60,19 +60,19 @@
     },
     watch: {
       status() {
-        if (this.status === STATUS.AUTHENTICATED) this.redirect();
+        this.cancelAutoUpdate();
+        this.checkCountdown();
       },
       countdown: {
+        immediate: true,
         handler(value) {
           if (value > 0) setTimeout(() => this.countdown--, 1000);
           if (value === 0) this.countdown = 5;
         },
-        immediate: true,
       },
     },
     async mounted() {
-      if (this.status === STATUS.AUTHENTICATED) this.redirect();
-      this.timer = setInterval(this.refreshStatus, this.countdown * 1000);
+      this.checkCountdown();
     },
     beforeDestroy() {
       this.cancelAutoUpdate();
@@ -123,6 +123,11 @@
       },
       cancelAutoUpdate() {
         clearInterval(this.timer);
+      },
+      checkCountdown() {
+        if (this.status === STATUS.AUTHENTICATED) this.redirect();
+        if (this.status === STATUS.RATE_LIMITED) this.countdown = 3610; // ASF will keep us banned if we do not wait
+        if (this.status !== STATUS.UNAUTHORIZED) this.timer = setInterval(this.refreshStatus, this.countdown * 1000);
       },
     },
   };

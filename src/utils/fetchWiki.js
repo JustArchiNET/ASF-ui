@@ -22,7 +22,7 @@ async function getEndpoint(page, version, locale) {
   wikiRevisions.sort((a, b) => new Date(b.releaseTime) - new Date(a.releaseTime));
 
   const latestWikiRevision = wikiRevisions.find(({ releaseTime }) => releaseTime < nextReleaseTime);
-  return latestWikiRevision ? `${defaultEndpoint}?revision=${latestWikiRevision.id}` : defaultEndpoint;
+  return (latestWikiRevision) ? `${defaultEndpoint}?revision=${latestWikiRevision.id}` : defaultEndpoint;
 }
 
 export default async function fetchWiki(page, version, locale) {

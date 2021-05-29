@@ -1,8 +1,8 @@
 <template>
   <main v-if="bot" class="main-container main-container--bot-profile">
-    <h2 class="title">{{ $t('bot-delete', { name }) }}</h2>
+    <h2 :title="bot.name" class="title">{{ $t('bot-delete', { name: bot.viewableName }) }}</h2>
 
-    <p class="info">{{ $t('bot-delete-info', { name }) }}</p>
+    <p class="info">{{ $t('bot-delete-info', { name: bot.viewableName }) }}</p>
 
     <div class="form-item">
       <div class="form-item__buttons form-item__buttons--center">
@@ -20,7 +20,6 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
   import delay from '../../utils/delay';
 
   export default {
@@ -31,12 +30,8 @@
       };
     },
     computed: {
-      ...mapGetters({ nicknames: 'settings/nicknames' }),
       bot() {
         return this.$store.getters['bots/bot'](this.$route.params.bot);
-      },
-      name() {
-        return (this.bot.nickname && this.nicknames) ? this.bot.nickname : this.bot.name;
       },
     },
     created() {

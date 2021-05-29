@@ -1,8 +1,7 @@
 <template>
   <main class="main-container main-container--fullheight">
     <div class="container">
-      <ConfigEditor v-if="displayCategories" :fields="fields" :categories="categories" :model="model"></ConfigEditor>
-      <ConfigEditor v-else :fields="fields" :model="model"></ConfigEditor>
+      <ConfigEditor :fields="fields" :categories="displayCategories ? categories : null" :model="model"></ConfigEditor>
 
       <div class="form-item">
         <button class="button button--confirm" @click="save">{{ $t('save') }}</button>

@@ -7,8 +7,7 @@
         </h3>
       </template>
       <template v-else>
-        <ConfigEditor v-if="displayCategories" :fields="fields" :model="model" :categories="categories" :descriptions="descriptions"></ConfigEditor>
-        <ConfigEditor v-else :fields="fields" :model="model" :descriptions="descriptions"></ConfigEditor>
+        <ConfigEditor :fields="fields" :model="model" :categories="displayCategories ? categories : null" :descriptions="descriptions"></ConfigEditor>
 
         <div class="form-item">
           <div class="form-item__buttons">
@@ -32,7 +31,7 @@
   import ConfigEditor from '../components/ConfigEditor.vue';
   import loadParameterDescriptions from '../utils/loadParameterDescriptions';
   import fetchConfigSchema from '../utils/fetchConfigSchema';
-  import prepareModelToDownload from '../utils/prepareModelToDownload';
+  import downloadConfig from '../utils/downloadConfig';
   import waitForRestart from '../utils/waitForRestart';
 
   export default {
@@ -76,7 +75,7 @@
         descriptions,
       ] = await Promise.all([
         this.$http.get('asf'),
-        fetchConfigSchema('ArchiSteamFarm.GlobalConfig'),
+        fetchConfigSchema('ArchiSteamFarm.Storage.GlobalConfig'),
         loadParameterDescriptions(this.version, this.$i18n.locale),
       ]);
 
@@ -91,7 +90,7 @@
       };
 
       this.fields = Object.keys(fields).map(key => {
-        const description = (!descriptions[key]) ? this.$t('description-not-found') : descriptions[key].replace(/<a href="/g, '<a target="_blank" href="');
+        const description = (!descriptions[key]) ? this.$t('description-not-found') : descriptions[key].replace(/<a href="/g, '<a target="_blank" rel="noreferrer noopener" href="');
         return { description, ...fields[key], ...(extendedFields[key] || []) };
       });
 
@@ -114,13 +113,7 @@
         }
       },
       async onDownload() {
-        const element = document.createElement('a');
-        element.setAttribute('href', `data:text/plain;charset=utf-8,${encodeURIComponent(prepareModelToDownload(this.model))}`);
-        element.setAttribute('download', 'ASF.json');
-        element.style.display = 'none';
-        document.body.appendChild(element);
-        element.click();
-        document.body.removeChild(element);
+        downloadConfig(this.model, 'ASF');
       },
     },
   };
