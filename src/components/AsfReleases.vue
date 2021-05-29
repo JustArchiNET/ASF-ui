@@ -140,7 +140,8 @@
         try {
           const release = await this.$http.get(`www/github/release/${version}`);
           const publishedAt = new Date(release.ReleasedAt);
-          let changelog = linkifyHtml(release.ChangelogHTML).replace(/<a href="/g, '<a target="_blank" rel="noreferrer noopener" href="');
+          const linkifyOptions = { ignoreTags: ['code'] };
+          let changelog = linkifyHtml(release.ChangelogHTML, linkifyOptions).replace(/<a href="/g, '<a target="_blank" rel="noreferrer noopener" href="');
           if (!changelog) changelog = this.$t('releases-changelog');
           return {
             changelog,
