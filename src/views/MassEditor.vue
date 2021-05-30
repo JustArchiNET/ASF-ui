@@ -7,27 +7,46 @@
         </h3>
       </template>
       <template v-else>
-        <div class="form-item">
-          <InputLabel :label="$t('select config property to change')" :has-description="true"></InputLabel>
-
-          <div class="form-item__value">
-            <select v-model="selectedConfigValues" class="form-item__input multiple" multiple @change="loadConfigEditor">
-              <option v-for="field in fields" :key="field.param">
-                {{ field.param }}
-              </option>
-            </select>
-          </div>
-
-          <InputDescription v-show="showDescription" :description="$t('this is the description')"></InputDescription>
+        <button class="accordion" @click="toggleAccordion($event)">
+          Select the bots
+          <button class="navigation button" @click="">Next</button>
+        </button>
+        <div class="panel">
+          <EditorBots></EditorBots>
         </div>
 
-        <ConfigEditor :fields="selectedConfigProperties" :categories="displayCategories ? categories : null" :model="newConfigModel"></ConfigEditor>
+        <button class="accordion" @click="toggleAccordion($event)">
+          Select the config properties
+          <button class="navigation button" @click="">Next</button>
+          <button class="navigation button" @click="">Back</button>
+        </button>
+        <div class="panel">
+          <div class="form-item">
+            <div class="form-item__value">
+              <select v-model="selectedConfigValues" class="form-item__input multiple" multiple @change="loadConfigEditor">
+                <option v-for="field in fields" :key="field.param">
+                  {{ field.param }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
 
-        <div class="form-item">
-          <button class="button button--confirm" @click="onSave">
-            <FontAwesomeIcon v-if="saving" icon="spinner" spin></FontAwesomeIcon>
-            <span v-else>{{ $t('save') }}</span>
-          </button>
+        <button class="accordion" @click="toggleAccordion($event)">
+          Define the new config values
+          <button class="navigation button" @click="">Next</button>
+          <button class="navigation button" @click="">Back</button>
+        </button>
+        <div class="panel">
+          <ConfigEditor :fields="selectedConfigProperties" :categories="displayCategories ? categories : null" :model="newConfigModel"></ConfigEditor>
+        </div>
+
+        <button class="accordion" @click="toggleAccordion($event)">
+          Check and save
+          <button class="navigation button" @click="">Back</button>
+        </button>
+        <div class="panel">
+          <EditorOverview :saving="saving" @save="onSave"></EditorOverview>
         </div>
       </template>
     </div>
@@ -37,8 +56,8 @@
 <script>
   import { mapGetters } from 'vuex';
   import ConfigEditor from '../components/ConfigEditor.vue';
-  import InputLabel from '../components/ConfigFields/InputLabel.vue';
-  import InputDescription from '../components/ConfigFields/InputDescription.vue';
+  import EditorBots from '../components/EditorBots.vue';
+  import EditorOverview from '../components/EditorOverview.vue';
   import fetchConfigSchema from '../utils/fetchConfigSchema';
   import loadParameterDescriptions from '../utils/loadParameterDescriptions';
 
@@ -51,8 +70,8 @@
     },
     components: {
       ConfigEditor,
-      InputLabel,
-      InputDescription,
+      EditorBots,
+      EditorOverview,
     },
     data() {
       const categories = [
@@ -73,7 +92,6 @@
         descriptions: {},
         categories,
         selectedConfigValues: [],
-        showDescription: false,
         selectedConfigProperties: [],
         newConfigModel: {},
       };
@@ -89,8 +107,6 @@
       },
     },
     async created() {
-      // if (!this.bots.length) return;
-
       const [
         { [this.bots[0].name]: { BotConfig: model } },
         { body: fields },
@@ -125,8 +141,19 @@
         this.newConfigModel = {};
         this.selectedConfigProperties = this.fields.filter(field => this.selectedConfigValues.includes(field.param)) || [];
       },
-      toggleDescription() {
-        this.showDescription = !this.showDescription;
+      toggleAccordion(event) {
+        if (event.target.classList.contains('active')) return;
+
+        const accordions = document.getElementsByClassName('accordion');
+        for (let i = 0; i < accordions.length; i++) {
+          const accordion = accordions[i];
+          if (accordion.classList.contains('active')) accordion.classList.toggle('active');
+          accordion.nextElementSibling.style.display = 'none';
+        }
+
+        event.target.classList.toggle('active');
+        const panel = event.target.nextElementSibling;
+        panel.style.display = 'block';
       },
       async onSave() {
         // Loop through all selected bots and update the bot-config
@@ -166,5 +193,36 @@
 <style lang="scss">
   .multiple {
     height: 230px;
+  }
+
+  .accordion {
+    background: rgba(0, 0, 0, 0.4);
+    color: var(--color-text-disabled);
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: ease-in-out width 0.3s;
+  }
+
+  .navigation {
+    float: right;
+    min-height: 0;
+    padding: 0.25em 0.5em;
+    margin-left: 0.5em;
+  }
+
+  .active, .accordion:hover {
+    background: var(--color-theme);
+    color: var(--color-text);
+  }
+
+  .panel {
+    padding: 1em;
+    background: var(--color-background-modal);
+    display: none;
+    overflow: hidden;
   }
 </style>
