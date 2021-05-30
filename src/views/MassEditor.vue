@@ -136,11 +136,12 @@
         this.saving = true;
 
         // for now we loop through all bots, bot-selecting will come later
-        this.bots.forEach(bot => {
+        // eslint-disable-next-line no-restricted-syntax
+        for (const bot of this.bots) {
           console.log('updating config for bot:', bot.name);
-          this.saveBotConfig(bot, this.newConfigModel);
+          await this.saveBotConfig(bot, this.newConfigModel);
           console.log('finished updating config for bot:', bot.name);
-        });
+        }
 
         this.saving = false;
       },
