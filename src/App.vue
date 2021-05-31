@@ -167,6 +167,13 @@
 		text-decoration: none;
 	}
 
+  code {
+    padding: .05em .3em;
+    font-size: 85%;
+    background-color: var(--color-releases-code);
+    border-radius: 3px;
+  }
+
 	.app {
 		background: var(--color-background);
 		color: var(--color-text-dark);

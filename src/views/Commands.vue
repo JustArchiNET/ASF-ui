@@ -362,7 +362,7 @@
 
         if (commandsCache) {
           const { timestamp, commands } = commandsCache;
-          if (timestamp > Date.now() - 24 * 60 * 60 * 1000) return commands;
+          if (timestamp > Date.now() - 6 * 60 * 60 * 1000) return commands;
         }
 
         return this.fetchCommands();
