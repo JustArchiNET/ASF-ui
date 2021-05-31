@@ -206,7 +206,6 @@
   .accordion {
     background: rgba(0, 0, 0, 0.4);
     color: var(--color-text-disabled);
-    cursor: pointer;
     padding: 18px;
     text-align: left;
     border: none;
