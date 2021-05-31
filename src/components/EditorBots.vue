@@ -1,12 +1,12 @@
 <template>
   <div class="bots">
-    <div v-for="bot in bots" :key="bot.name" class="bot" :class="[`status--${bot.status}`]">
+    <div v-for="bot in bots" :key="bot.name" class="bot" :class="[`status--${bot.status}`, selectedBots.includes(bot.name) ? 'selected' : null]">
       <a v-if="bot.steamid !== '0'" target="_blank" rel="noreferrer noopener" :href="bot.profileURL">
         <img class="bot__avatar" :src="bot.avatarURL" :alt="bot.name">
       </a>
       <img class="bot__avatar" :src="bot.avatarURL">
 
-      <div class="bot__status">
+      <div class="bot__status" @click="updateSelectedBots(bot.name)">
         <span :title="bot.name" class="bot__status-property bot__status-property--name">{{ bot.viewableName }}</span>
         <span class="bot__status-property bot__status-property--text">{{ bot.statusText }}</span>
       </div>
@@ -19,10 +19,23 @@
 
   export default {
     name: 'EditorBots',
+    data() {
+      return {
+        selectedBots: [],
+      };
+    },
     computed: {
       ...mapGetters({
         bots: 'bots/bots',
       }),
+    },
+    methods: {
+      updateSelectedBots(botName) {
+        if (!this.selectedBots.includes(botName)) this.selectedBots.push(botName);
+        else this.selectedBots = this.selectedBots.filter(name => name !== botName);
+
+        this.$emit('update', this.selectedBots);
+      },
     },
   };
 </script>
@@ -31,7 +44,7 @@
 	.bots {
 		display: grid;
 		grid-gap: 1em;
-		grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 		min-height: 0;
 
 		@media screen and (max-width: 400px) {
@@ -49,6 +62,10 @@
 		padding: 0.5em;
 		transition: border .3s;
 	}
+
+  .selected {
+    color: green;
+  }
 
 	.bot__avatar {
 		cursor: pointer;

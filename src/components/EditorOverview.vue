@@ -1,8 +1,8 @@
 <template>
   <div class="overview">
-    <p>Selected bots:</p>
+    <p>{{ selectedBots }}</p>
 
-    <p>Config values that will be changed:</p>
+    <p>{{ selectedConfigValues }}</p>
 
     <div class="form-item">
       <button class="button button--confirm" @click="$emit('save')">
@@ -18,6 +18,20 @@
     name: 'EditorOverview',
     props: {
       saving: { type: Boolean, default: false },
+      bots: { type: Array },
+      config: { type: String },
+    },
+    computed: {
+      selectedBots() {
+        return `Selected bots: ${this.bots.join(', ')}`;
+      },
+      selectedConfigValues() {
+        return `Config values that will be changed: ${this.config}`;
+      },
+    },
+    mounted() {
+      const test = JSON.stringify(this.config, null, 4);
+      console.log(test);
     },
   };
 </script>

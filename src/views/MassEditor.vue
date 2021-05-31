@@ -7,20 +7,20 @@
         </h3>
       </template>
       <template v-else>
-        <button class="accordion" @click="toggleAccordion($event)">
-          Select the bots
-          <button class="navigation button" @click="">Next</button>
-        </button>
-        <div class="panel">
-          <EditorBots></EditorBots>
+        <div class="accordion" :class="[status === 'BOTS' ? 'active' : null]">
+          Select the bots you want to change config values for
+          <button v-if="status === 'BOTS'" class="navigation button" :disabled="selectedBots.length === 0" @click="setStatus('PROPERTIES')">Next</button>
+        </div>
+        <div class="panel" :class="[status === 'BOTS' ? 'visible' : null]">
+          <EditorBots @update="updateSelectedBots"></EditorBots>
         </div>
 
-        <button class="accordion" @click="toggleAccordion($event)">
-          Select the config properties
-          <button class="navigation button" @click="">Next</button>
-          <button class="navigation button" @click="">Back</button>
-        </button>
-        <div class="panel">
+        <div class="accordion" :class="[status === 'PROPERTIES' ? 'active' : null]">
+          Select the config properties you want to change
+          <button v-if="status === 'PROPERTIES'" class="navigation button" :disabled="selectedConfigProperties.length === 0" @click="setStatus('VALUES')">Next</button>
+          <button v-if="status === 'PROPERTIES'" class="navigation button" @click="setStatus('BOTS')">Back</button>
+        </div>
+        <div class="panel" :class="[status === 'PROPERTIES' ? 'visible' : null]">
           <div class="form-item">
             <div class="form-item__value">
               <select v-model="selectedConfigValues" class="form-item__input multiple" multiple @change="loadConfigEditor">
@@ -32,21 +32,21 @@
           </div>
         </div>
 
-        <button class="accordion" @click="toggleAccordion($event)">
-          Define the new config values
-          <button class="navigation button" @click="">Next</button>
-          <button class="navigation button" @click="">Back</button>
-        </button>
-        <div class="panel">
+        <div class="accordion" :class="[status === 'VALUES' ? 'active' : null]">
+          Define the new config values for the config properties that you selected
+          <button v-if="status === 'VALUES'" class="navigation button" :disabled="selectedConfigValues.length === 0" @click="setStatus('CHECK')">Next</button>
+          <button v-if="status === 'VALUES'" class="navigation button" @click="setStatus('PROPERTIES')">Back</button>
+        </div>
+        <div class="panel" :class="[status === 'VALUES' ? 'visible' : null]">
           <ConfigEditor :fields="selectedConfigProperties" :categories="displayCategories ? categories : null" :model="newConfigModel"></ConfigEditor>
         </div>
 
-        <button class="accordion" @click="toggleAccordion($event)">
-          Check and save
-          <button class="navigation button" @click="">Back</button>
-        </button>
-        <div class="panel">
-          <EditorOverview :saving="saving" @save="onSave"></EditorOverview>
+        <div class="accordion" :class="[status === 'CHECK' ? 'active' : null]">
+          Check the selected bots and the config values that will be saved
+          <button v-if="status === 'CHECK'" class="navigation button" @click="setStatus('VALUES')">Back</button>
+        </div>
+        <div class="panel" :class="[status === 'CHECK' ? 'visible' : null]">
+          <EditorOverview :saving="saving" :bots="selectedBots" :config="JSON.stringify(newConfigModel)" @save="onSave"></EditorOverview>
         </div>
       </template>
     </div>
@@ -94,6 +94,8 @@
         selectedConfigValues: [],
         selectedConfigProperties: [],
         newConfigModel: {},
+        status: 'BOTS',
+        selectedBots: [],
       };
     },
     computed: {
@@ -137,6 +139,12 @@
       this.loading = false;
     },
     methods: {
+      updateSelectedBots(selectedBots) {
+        this.selectedBots = selectedBots;
+      },
+      setStatus(status) {
+        this.status = status;
+      },
       loadConfigEditor() {
         this.newConfigModel = {};
         this.selectedConfigProperties = this.fields.filter(field => this.selectedConfigValues.includes(field.param)) || [];
@@ -200,7 +208,6 @@
     color: var(--color-text-disabled);
     cursor: pointer;
     padding: 18px;
-    width: 100%;
     text-align: left;
     border: none;
     outline: none;
@@ -214,9 +221,8 @@
     margin-left: 0.5em;
   }
 
-  .active, .accordion:hover {
-    background: var(--color-theme);
-    color: var(--color-text);
+  .active {
+    color: var(--color-theme);
   }
 
   .panel {
@@ -224,5 +230,9 @@
     background: var(--color-background-modal);
     display: none;
     overflow: hidden;
+
+    &.visible {
+      display: block;
+    }
   }
 </style>
