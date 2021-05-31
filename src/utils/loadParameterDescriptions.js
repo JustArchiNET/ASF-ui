@@ -7,7 +7,7 @@ export default async function loadParameterDescriptions(version, locale) {
   const descriptionsCache = storage.get(`cache:parameter-descriptions:${locale}`);
   if (descriptionsCache) {
     const { timestamp, descriptions } = descriptionsCache;
-    if (timestamp > Date.now() - 24 * 60 * 60 * 1000) return descriptions;
+    if (timestamp > Date.now() - 6 * 60 * 60 * 1000) return descriptions;
   }
 
   const descriptions = {};
