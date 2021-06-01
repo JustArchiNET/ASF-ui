@@ -43,7 +43,7 @@
 
         <div class="accordion" :class="[status === 'CHECK' ? 'active' : null]">
           Check the selected bots and the config values that will be saved
-          <button v-if="status === 'CHECK'" class="navigation button" @click="setStatus('VALUES')">Back</button>
+          <button v-if="status === 'CHECK' && !saving" class="navigation button" @click="setStatus('VALUES')">Back</button>
         </div>
         <div class="panel" :class="[status === 'CHECK' ? 'visible' : null]">
           <EditorOverview :saving="saving" :bots="selectedBots" :config="JSON.stringify(newConfigModel)" @save="onSave"></EditorOverview>
