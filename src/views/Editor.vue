@@ -7,46 +7,66 @@
         </h3>
       </template>
       <template v-else>
-        <div class="accordion" :class="[status === 'BOTS' ? 'active' : null]">
-          Select the bots you want to change config values for
-          <button v-if="status === 'BOTS'" class="navigation button" :disabled="selectedBots.length === 0" @click="setStatus('PROPERTIES')">Next</button>
-        </div>
-        <div class="panel" :class="[status === 'BOTS' ? 'visible' : null]">
-          <EditorBots @update="updateSelectedBots"></EditorBots>
+        <div v-if="status === 'bots'">
+          <div class="accordion" :class="{active: status === 'bots'}">
+            {{ $t('editor-bots') }}
+            <button class="navigation button" :disabled="selectedBots.length === 0" @click="setStatus('properties')">
+              {{ $t('next') }}
+            </button>
+          </div>
+          <div class="panel" :class="{visible: status === 'bots'}">
+            <EditorBots :selected-bots="selectedBots" @update="updateSelectedBots"></EditorBots>
+          </div>
         </div>
 
-        <div class="accordion" :class="[status === 'PROPERTIES' ? 'active' : null]">
-          Select the config properties you want to change
-          <button v-if="status === 'PROPERTIES'" class="navigation button" :disabled="selectedConfigProperties.length === 0" @click="setStatus('VALUES')">Next</button>
-          <button v-if="status === 'PROPERTIES'" class="navigation button" @click="setStatus('BOTS')">Back</button>
-        </div>
-        <div class="panel" :class="[status === 'PROPERTIES' ? 'visible' : null]">
-          <div class="form-item">
-            <div class="form-item__value">
-              <select v-model="selectedConfigValues" class="form-item__input multiple" multiple @change="loadConfigEditor">
-                <option v-for="field in fields" :key="field.param">
-                  {{ field.param }}
-                </option>
-              </select>
+        <div v-if="status === 'properties'">
+          <div class="accordion" :class="{active: status === 'properties'}">
+            {{ $t('editor-properties') }}
+            <button class="navigation button" :disabled="selectedConfigProperties.length === 0" @click="setStatus('values')">
+              {{ $t('next') }}
+            </button>
+            <button class="navigation button" @click="setStatus('bots')">
+              {{ $t('back') }}
+            </button>
+          </div>
+          <div class="panel" :class="{visible: status === 'properties'}">
+            <div class="form-item">
+              <div class="form-item__value">
+                <select v-model="selectedConfigValues" class="form-item__input multiple" multiple @change="loadConfigEditor">
+                  <option v-for="field in fields" :key="field.param">
+                    {{ field.param }}
+                  </option>
+                </select>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="accordion" :class="[status === 'VALUES' ? 'active' : null]">
-          Define the new config values for the config properties that you selected
-          <button v-if="status === 'VALUES'" class="navigation button" :disabled="selectedConfigValues.length === 0" @click="setStatus('CHECK')">Next</button>
-          <button v-if="status === 'VALUES'" class="navigation button" @click="setStatus('PROPERTIES')">Back</button>
-        </div>
-        <div class="panel" :class="[status === 'VALUES' ? 'visible' : null]">
-          <ConfigEditor :fields="selectedConfigProperties" :categories="displayCategories ? categories : null" :model="newConfigModel"></ConfigEditor>
+        <div v-if="status === 'values'">
+          <div class="accordion" :class="{active: status === 'values'}">
+            {{ $t('editor-values') }}
+            <button class="navigation button" :disabled="selectedConfigValues.length === 0" @click="setStatus('check')">
+              {{ $t('next') }}
+            </button>
+            <button class="navigation button" @click="setStatus('properties')">
+              {{ $t('back') }}
+            </button>
+          </div>
+          <div class="panel" :class="{visible: status === 'values'}">
+            <ConfigEditor :fields="selectedConfigProperties" :categories="displayCategories ? categories : null" :model="newConfigModel"></ConfigEditor>
+          </div>
         </div>
 
-        <div class="accordion" :class="[status === 'CHECK' ? 'active' : null]">
-          Check the selected bots and the config values that will be saved
-          <button v-if="status === 'CHECK' && !saving" class="navigation button" @click="setStatus('VALUES')">Back</button>
-        </div>
-        <div class="panel" :class="[status === 'CHECK' ? 'visible' : null]">
-          <EditorOverview :saving="saving" :bots="selectedBots" :config="JSON.stringify(newConfigModel)" @save="onSave"></EditorOverview>
+        <div v-if="status === 'check'">
+          <div class="accordion" :class="{active: status === 'check'}">
+            {{ $t('editor-check') }}
+            <button v-if="!saving" class="navigation button" @click="setStatus('values')">
+              {{ $t('back') }}
+            </button>
+          </div>
+          <div class="panel" :class="{visible: status === 'check'}">
+            <EditorCheck :saving="saving" :bots="selectedBots" :config="JSON.stringify(newConfigModel)" @save="onSave"></EditorCheck>
+          </div>
         </div>
       </template>
     </div>
@@ -56,22 +76,22 @@
 <script>
   import { mapGetters } from 'vuex';
   import ConfigEditor from '../components/ConfigEditor.vue';
-  import EditorBots from '../components/EditorBots.vue';
-  import EditorOverview from '../components/EditorOverview.vue';
+  import EditorBots from '../components/Editor/Bots.vue';
+  import EditorCheck from '../components/Editor/Check.vue';
   import fetchConfigSchema from '../utils/fetchConfigSchema';
   import loadParameterDescriptions from '../utils/loadParameterDescriptions';
 
   export default {
-    name: 'MassEditor',
+    name: 'Editor',
     metaInfo() {
       return {
-        title: this.$t('mass-editor'),
+        title: this.$t('editor'),
       };
     },
     components: {
       ConfigEditor,
       EditorBots,
-      EditorOverview,
+      EditorCheck,
     },
     data() {
       const categories = [
@@ -94,7 +114,7 @@
         selectedConfigValues: [],
         selectedConfigProperties: [],
         newConfigModel: {},
-        status: 'BOTS',
+        status: 'bots',
         selectedBots: [],
       };
     },
@@ -139,8 +159,9 @@
       this.loading = false;
     },
     methods: {
-      updateSelectedBots(selectedBots) {
-        this.selectedBots = selectedBots;
+      updateSelectedBots(botName) {
+        if (!this.selectedBots.includes(botName)) this.selectedBots.push(botName);
+        else this.selectedBots = this.selectedBots.filter(name => name !== botName);
       },
       setStatus(status) {
         this.status = status;

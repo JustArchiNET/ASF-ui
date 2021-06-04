@@ -6,7 +6,7 @@
       </a>
       <img class="bot__avatar" :src="bot.avatarURL">
 
-      <div class="bot__status" @click="updateSelectedBots(bot.name)">
+      <div class="bot__status" @click="$emit('update', bot.name)">
         <span :title="bot.name" class="bot__status-property bot__status-property--name">{{ bot.viewableName }}</span>
         <span class="bot__status-property bot__status-property--text">{{ bot.statusText }}</span>
       </div>
@@ -19,23 +19,13 @@
 
   export default {
     name: 'EditorBots',
-    data() {
-      return {
-        selectedBots: [],
-      };
+    props: {
+      selectedBots: { type: Array },
     },
     computed: {
       ...mapGetters({
         bots: 'bots/bots',
       }),
-    },
-    methods: {
-      updateSelectedBots(botName) {
-        if (!this.selectedBots.includes(botName)) this.selectedBots.push(botName);
-        else this.selectedBots = this.selectedBots.filter(name => name !== botName);
-
-        this.$emit('update', this.selectedBots);
-      },
     },
   };
 </script>
