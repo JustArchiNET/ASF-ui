@@ -18,12 +18,12 @@
     name: 'EditorOverview',
     props: {
       saving: { type: Boolean, default: false },
-      bots: { type: Array },
+      selectedBotNames: { type: Array },
       config: { type: String },
     },
     computed: {
       selectedBots() {
-        return `Selected bots: ${this.bots.join(', ')}`;
+        return `Selected bots: ${this.selectedBotNames.join(', ')}`;
       },
       selectedConfigValues() {
         return `Config values that will be changed: ${this.config}`;

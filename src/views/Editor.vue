@@ -15,7 +15,7 @@
             </button>
           </div>
           <div class="panel" :class="{visible: status === 'bots'}">
-            <EditorBots :selected-bots="selectedBots" @update="updateSelectedBots"></EditorBots>
+            <EditorBots :selected-bot-names="selectedBotNames" @update="updateSelectedBots"></EditorBots>
           </div>
         </div>
 
@@ -65,7 +65,7 @@
             </button>
           </div>
           <div class="panel" :class="{visible: status === 'check'}">
-            <EditorCheck :saving="saving" :bots="selectedBots" :config="JSON.stringify(newConfigModel)" @save="onSave"></EditorCheck>
+            <EditorCheck :saving="saving" :selected-bot-names="selectedBotNames" :config="JSON.stringify(newConfigModel)" @save="onSave"></EditorCheck>
           </div>
         </div>
       </template>
@@ -127,6 +127,11 @@
       configProperties() {
         return this.fields.filter(field => field.param);
       },
+      selectedBotNames() {
+        const names = [];
+        this.selectedBots.forEach(bot => names.push(bot.name));
+        return names;
+      },
     },
     async created() {
       const [
@@ -159,9 +164,9 @@
       this.loading = false;
     },
     methods: {
-      updateSelectedBots(botName) {
-        if (!this.selectedBots.includes(botName)) this.selectedBots.push(botName);
-        else this.selectedBots = this.selectedBots.filter(name => name !== botName);
+      updateSelectedBots(bot) {
+        if (!this.selectedBots.includes(bot)) this.selectedBots.push(bot);
+        else this.selectedBots = this.selectedBots.filter(selectedBot => selectedBot.name !== bot.name);
       },
       setStatus(status) {
         this.status = status;
@@ -185,8 +190,6 @@
         panel.style.display = 'block';
       },
       async onSave() {
-        // Loop through all selected bots and update the bot-config
-        // Add some kind of loading bar or info for the user "Updating config for bot 1 (4x bots remaining)..."
         if (this.saving) return;
 
         this.saving = true;
