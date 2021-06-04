@@ -55,6 +55,7 @@
 
   .selected {
     color: green;
+    box-shadow: 0 0 0.5em green;
   }
 
 	.bot__avatar {
