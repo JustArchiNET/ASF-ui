@@ -66,7 +66,7 @@
     watch: {
       status() {
         this.cancelAutoUpdate();
-        this.checkCountdown();
+        this.checkStatus();
       },
       countdown: {
         immediate: true,
@@ -80,7 +80,7 @@
         async handler() {
           if (this.$route.params.restart) await this.handleWaiting('restart');
           else if (this.$route.params.update) await this.handleWaiting('update');
-          else this.checkCountdown();
+          else this.checkStatus();
         },
       },
     },
@@ -94,6 +94,7 @@
         if (mode === 'restart') this.$success(this.$t('restart-complete'));
         else if (mode === 'update') this.$success(this.$t('update-complete'));
         this.processing = false;
+        this.checkStatus();
       },
       async onButtonClick() {
         if (this.processing) return;
@@ -141,7 +142,7 @@
       cancelAutoUpdate() {
         clearInterval(this.timer);
       },
-      checkCountdown() {
+      checkStatus() {
         if (this.status === STATUS.AUTHENTICATED) this.redirect();
         if (this.status === STATUS.RATE_LIMITED) this.countdown = 3610; // ASF will keep us banned if we do not wait
         if (this.status !== STATUS.UNAUTHORIZED) this.timer = setInterval(this.refreshStatus, this.countdown * 1000);
