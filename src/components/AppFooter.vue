@@ -3,6 +3,7 @@
     <div class="footer__links">
       <FooterLink name="GitHub" prefix="fab" icon="github" to="https://github.com/JustArchiNET"></FooterLink>
       <FooterLink :name="$t('wiki')" icon="book-open" :to="wikiLink"></FooterLink>
+      <FooterLink :name="$t('features')" icon="info-circle" to="https://github.com/JustArchiNET/ASF-ui/blob/main/.github/FEATURES.md"></FooterLink>
     </div>
 
     <div v-if="authenticated" class="footer__statistic">
