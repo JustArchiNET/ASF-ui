@@ -78,16 +78,9 @@
       $route: {
         immediate: true,
         async handler() {
-          if (this.$route.params.restart) {
-            this.processing = true;
-            await this.handleWaiting('restart');
-          } else if (this.$route.params.update) {
-            this.processing = true;
-            await this.handleWaiting('update');
-          } else {
-            this.processing = false;
-            this.checkCountdown();
-          }
+          if (this.$route.params.restart) await this.handleWaiting('restart');
+          else if (this.$route.params.update) await this.handleWaiting('update');
+          else this.checkCountdown();
         },
       },
     },
@@ -96,6 +89,7 @@
     },
     methods: {
       async handleWaiting(mode = 'restart') {
+        this.processing = true;
         await waitForRestart();
         if (mode === 'restart') this.$success(this.$t('restart-complete'));
         else if (mode === 'update') this.$success(this.$t('update-complete'));
