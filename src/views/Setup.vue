@@ -3,9 +3,13 @@
     <div class="container container--small">
       <h2 class="title">{{ $t('setup') }}</h2>
 
+      <div v-if="status === 'AUTHENTICATED'">
+        <p v-if="$route.params.restart" class="status-text">{{ $t('setup-restart') }}</p>
+        <p v-else-if="$route.params.update" class="status-text">{{ $t('setup-update') }}</p>
+        <p v-else class="status-text">{{ $t('setup-authenticated') }}</p>
+      </div>
       <p v-if="status === 'NOT_CONNECTED'" class="status-text status-text--error">{{ $t('setup-not-connected') }}</p>
       <p v-if="status === 'RATE_LIMITED'" class="status-text status-text--error">{{ $t('setup-rate-limited', { n: countdown }) }}</p>
-      <p v-if="status === 'AUTHENTICATED'" class="status-text">{{ $t('setup-authenticated') }}</p>
       <p v-if="status === 'UNAUTHORIZED'" class="status-text">{{ $t('setup-description') }}</p>
       <p v-if="status === 'GATEWAY_TIMEOUT'" class="status-text">{{ $t('setup-gateway-timeout', { n: countdown }) }}</p>
       <p v-if="status === 'NETWORK_ERROR'" class="status-text">{{ $t('setup-network-error', { n: countdown }) }}</p>
@@ -30,6 +34,7 @@
 <script>
   import { mapGetters } from 'vuex';
   import { STATUS } from '../utils/getStatus';
+  import waitForRestart from '../utils/waitForRestart';
 
   export default {
     name: 'Setup',
@@ -61,7 +66,7 @@
     watch: {
       status() {
         this.cancelAutoUpdate();
-        this.checkCountdown();
+        this.checkStatus();
       },
       countdown: {
         immediate: true,
@@ -70,14 +75,27 @@
           if (value === 0) this.countdown = 5;
         },
       },
-    },
-    async mounted() {
-      this.checkCountdown();
+      $route: {
+        immediate: true,
+        async handler() {
+          if (this.$route.params.restart) await this.handleWaiting('restart');
+          else if (this.$route.params.update) await this.handleWaiting('update');
+          else this.checkStatus();
+        },
+      },
     },
     beforeDestroy() {
       this.cancelAutoUpdate();
     },
     methods: {
+      async handleWaiting(mode = 'restart') {
+        this.processing = true;
+        await waitForRestart();
+        if (mode === 'restart') this.$success(this.$t('restart-complete'));
+        else if (mode === 'update') this.$success(this.$t('update-complete'));
+        this.processing = false;
+        this.checkStatus();
+      },
       async onButtonClick() {
         if (this.processing) return;
 
@@ -124,7 +142,7 @@
       cancelAutoUpdate() {
         clearInterval(this.timer);
       },
-      checkCountdown() {
+      checkStatus() {
         if (this.status === STATUS.AUTHENTICATED) this.redirect();
         if (this.status === STATUS.RATE_LIMITED) this.countdown = 3610; // ASF will keep us banned if we do not wait
         if (this.status !== STATUS.UNAUTHORIZED) this.timer = setInterval(this.refreshStatus, this.countdown * 1000);

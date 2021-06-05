@@ -31,7 +31,6 @@
 <script>
   import { mapGetters, mapActions } from 'vuex';
   import { isReleaseAvailable } from '../utils/ui';
-  import waitForRestart from '../utils/waitForRestart';
 
   export default {
     name: 'NavigationBrand',
@@ -100,8 +99,7 @@
         try {
           await this.$http.post('asf/update');
           this.brandMenu = false;
-          await waitForRestart();
-          this.$success(this.$t('update-complete'));
+          this.$router.push({ name: 'setup', params: { update: true } });
         } catch (err) {
           if (!err.result && !err.message.includes('≥')) throw err;
           const { remoteVersion, localVersion } = this.extractVersions(err);
@@ -119,8 +117,7 @@
           await this.$http.post('asf/restart');
           this.$info(this.$t('restart-initiated'));
           this.brandMenu = false;
-          await waitForRestart();
-          this.$success(this.$t('restart-complete'));
+          this.$router.push({ name: 'setup', params: { restart: true } });
         } catch (err) {
           this.$error(err.message);
         } finally {

@@ -34,7 +34,11 @@ export default [
 		path: '/page/setup',
 		name: 'setup',
 		component: () => import('../views/Setup.vue'),
-		meta: { noPasswordRequired: true }
+		meta: { noPasswordRequired: true },
+    params: { 
+      restart: false,
+      update: false,
+    }
 	},
 	{
 		path: '/page/ui-config',
