@@ -2,6 +2,7 @@
   <footer class="footer">
     <div class="footer__links">
       <FooterLink name="GitHub" prefix="fab" icon="github" to="https://github.com/JustArchiNET"></FooterLink>
+      <FooterLink :name="$t('discussions')" icon="comments" to="https://github.com/JustArchiNET/ArchiSteamFarm/discussions"></FooterLink>
       <FooterLink :name="$t('wiki')" icon="book-open" :to="wikiLink"></FooterLink>
     </div>
 
