@@ -1,6 +1,6 @@
 <template>
   <div class="bots">
-    <BotCard v-for="bot in bots" v-if="bot.isVisible(selectedBots)" :key="bot.name" :bot="bot"></BotCard>
+    <BotCard v-for="bot in visibleBots" :key="bot.name" :bot="bot"></BotCard>
 
     <router-link v-slot="{ navigate }" custom :to="{ name: 'bot-create' }">
       <div class="bot-placeholder status--disabled" :class="{ 'bot-placeholder--big': selectedButtonsCount > 2 }" @click="navigate">
@@ -28,6 +28,9 @@
       }),
       selectedButtonsCount() {
         return Array.from(this.favButtons.toString(2)).length;
+      },
+      visibleBots() {
+        return this.bots.filter(bot => bot.isVisible(this.selectedBots));
       },
     },
   };

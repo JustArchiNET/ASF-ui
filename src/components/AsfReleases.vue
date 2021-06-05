@@ -30,7 +30,6 @@
   import getLocaleForHD from '../utils/getLocaleForHD';
   import * as storage from '../utils/storage';
   import compareVersion from '../utils/compareVersion';
-  import waitForRestart from '../utils/waitForRestart';
   import { UPDATECHANNEL } from '../store/modules/asf';
 
   export default {
@@ -94,8 +93,7 @@
 
         try {
           await this.$http.post('asf/update');
-          await waitForRestart();
-          this.$success(this.$t('update-complete'));
+          this.$router.push({ name: 'setup', params: { update: true } });
         } catch (err) {
           if (!err.result && !err.message.includes('≥')) throw err;
           const { remoteVersion, localVersion } = this.extractVersions(err);

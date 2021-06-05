@@ -32,7 +32,6 @@
   import loadParameterDescriptions from '../utils/loadParameterDescriptions';
   import fetchConfigSchema from '../utils/fetchConfigSchema';
   import downloadConfig from '../utils/downloadConfig';
-  import waitForRestart from '../utils/waitForRestart';
 
   export default {
     name: 'ASFConfig',
@@ -104,8 +103,7 @@
         try {
           await this.$http.post('asf', { globalConfig: this.model });
           this.$info(this.$t('restart-initiated'));
-          await waitForRestart();
-          this.$success(this.$t('restart-complete'));
+          this.$router.push({ name: 'setup', params: { restart: true } });
         } catch (err) {
           this.$error(err.message);
         } finally {
