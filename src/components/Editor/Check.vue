@@ -1,8 +1,10 @@
 <template>
   <div class="overview">
-    <p>{{ selectedBots }}</p>
+    <span>{{ selectedBots }}</span>
 
-    <p>{{ selectedConfigValues }}</p>
+    <p>Config values that will be changed:</p>
+
+    <pre><code>{{ prettyConfig }}</code></pre>
 
     <div class="form-item">
       <button class="button button--confirm" @click="$emit('save')">
@@ -25,13 +27,9 @@
       selectedBots() {
         return `Selected bots: ${this.selectedBotNames.join(', ')}`;
       },
-      selectedConfigValues() {
-        return `Config values that will be changed: ${this.config}`;
+      prettyConfig() {
+        return JSON.stringify(JSON.parse(this.config), null, 2);
       },
-    },
-    mounted() {
-      const test = JSON.stringify(this.config, null, 4);
-      console.log(test);
     },
   };
 </script>

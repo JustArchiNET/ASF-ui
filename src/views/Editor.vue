@@ -43,6 +43,7 @@
               trackBy="param"
               :multiple="true"
               :options="fields"
+              :closeOnSelect="false"
               :placeholder="$t('editor-properties')"
               :deselectLabel="$t('editor-properties-deselect')"
               :selectLabel="$t('editor-properties-select')"
