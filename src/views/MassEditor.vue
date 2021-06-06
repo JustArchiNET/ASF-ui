@@ -23,7 +23,7 @@
       <div v-if="status === 'properties'">
         <div class="accordion">
           {{ $t('mass-editor-properties') }}
-          <button class="navigation button" :disabled="selectedConfigProperties.length === 0" :title="[selectedConfigProperties.length === 0 ? 'test' : null]" @click="status = 'values'">
+          <button class="navigation button" :disabled="selectedConfigProperties.length === 0" :title="[selectedConfigProperties.length === 0 ? $t('mass-editor-properties-disabled') : null]" @click="status = 'values'">
             {{ $t('next') }}
           </button>
           <button class="navigation button" @click="status = 'bots'">
@@ -45,7 +45,7 @@
             :selectedLabel="$t('mass-editor-properties-selected')"
             @select="selectProperty"
             @open="placeholder = $t('mass-editor-search')"
-            @close="placeholder = $t('mass-editor-properties')"
+            @close="placeholder = $t('mass-editor-properties-placeholder')"
           >
             <span slot="noResult">
               {{ $t('mass-editor-search-not-found') }}
@@ -138,7 +138,7 @@
         status: 'bots',
         selectedBots: [],
         selectedConfigProperties: [],
-        placeholder: this.$t('mass-editor-properties'),
+        placeholder: this.$t('mass-editor-properties-placeholder'),
       };
     },
     computed: {
@@ -214,7 +214,7 @@
           console.log('finished updating config for bot:', bot.name);
         }
 
-        this.$success(this.$t('mass-editor-check-confirmation'));
+        this.$success(this.$t('mass-editor-check-saved'));
         this.saving = false;
       },
       async saveConfigForBot(config, bot) {
