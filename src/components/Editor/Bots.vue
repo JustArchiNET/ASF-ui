@@ -54,8 +54,8 @@
 	}
 
   .selected {
-    color: green;
-    box-shadow: 0 0 0.5em green;
+    color: var(--color-theme);
+    box-shadow: 0 0 0.5em var(--color-theme);
   }
 
 	.bot__avatar {
