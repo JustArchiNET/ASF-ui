@@ -2,7 +2,7 @@
   <div class="overview">
     <span>{{ selectedBots }}</span>
 
-    <p>Config values that will be changed:</p>
+    <p>{{ $t('editor-check-values') }}</p>
 
     <pre><code>{{ prettyConfig }}</code></pre>
 
@@ -25,7 +25,7 @@
     },
     computed: {
       selectedBots() {
-        return `Selected bots: ${this.selectedBotNames.join(', ')}`;
+        return `${this.$t('editor-check-bots')} ${this.selectedBotNames.join(', ')}`;
       },
       prettyConfig() {
         return JSON.stringify(JSON.parse(this.config), null, 2);
