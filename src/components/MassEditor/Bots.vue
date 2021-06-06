@@ -1,9 +1,9 @@
 <template>
   <div class="bots">
     <div v-for="bot in bots" :key="bot.name" class="bot" :class="[`status--${bot.status}`, { selected: botIsSelected(bot) }]" @click="select(bot)">
-      <img class="bot__avatar" :src="bot.avatarURL">
+      <img class="bot__avatar" :class="{ selectable }" :src="bot.avatarURL">
 
-      <div class="bot__status">
+      <div class="bot__status" :class="{ selectable }">
         <span :title="bot.name" class="bot__status-property bot__status-property--name">{{ bot.viewableName }}</span>
         <span class="bot__status-property bot__status-property--text">{{ bot.statusText }}</span>
       </div>
@@ -60,8 +60,11 @@
     border-top: 3px solid var(--color-status);
   }
 
+  .selectable {
+    cursor: pointer;
+  }
+
 	.bot__avatar {
-		cursor: pointer;
 		display: block;
 		height: 2.25em;
 		padding-right: 0.5em;
@@ -69,7 +72,6 @@
 	}
 
 	.bot__status {
-		cursor: pointer;
 		display: flex;
 		flex-direction: column;
 		overflow: hidden;
