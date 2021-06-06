@@ -1,6 +1,6 @@
 <template>
   <div class="bots">
-    <div v-for="bot in bots" :key="bot.name" class="bot" :class="[`status--${bot.status}`, { selected: selectedBotNames.includes(bot.name) }]" @click="$emit('update', bot)">
+    <div v-for="bot in bots" :key="bot.name" class="bot" :class="[`status--${bot.status}`, { selected: botIsSelected(bot) }]" @click="select(bot)">
       <img class="bot__avatar" :src="bot.avatarURL">
 
       <div class="bot__status">
@@ -12,17 +12,21 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
-
   export default {
     name: 'MassEditorBots',
     props: {
       selectedBotNames: { type: Array },
+      selectable: { type: Boolean, default: true },
+      bots: { type: Array },
     },
-    computed: {
-      ...mapGetters({
-        bots: 'bots/bots',
-      }),
+    methods: {
+      select(bot) {
+        if (this.selectable) this.$emit('update', bot);
+      },
+      botIsSelected(bot) {
+        if (this.selectable) return this.selectedBotNames.includes(bot.name);
+        return false;
+      },
     },
   };
 </script>
@@ -52,7 +56,8 @@
 
   .selected {
     color: var(--color-theme);
-    box-shadow: 0 0 0.5em var(--color-theme);
+    border: 1px solid var(--color-theme);
+    border-top: 3px solid var(--color-status);
   }
 
 	.bot__avatar {

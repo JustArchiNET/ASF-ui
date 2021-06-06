@@ -15,7 +15,7 @@
             </button>
           </div>
           <div class="panel">
-            <MassEditorBots :selectedBotNames="selectedBotNames" @update="updateSelectedBots"></MassEditorBots>
+            <MassEditorBots :bots="bots" :selectedBotNames="selectedBotNames" @update="updateSelectedBots"></MassEditorBots>
 
             <div class="form-item">
               <button class="button" @click="toggleSelectedBots">
@@ -83,8 +83,8 @@
           <div class="panel">
             <MassEditorCheck
               :saving="saving"
-              :selectedBotNames="selectedBotNames"
               :config="JSON.stringify(config)"
+              :selectedBots="selectedBots"
               @save="onSave"
             ></MassEditorCheck>
           </div>

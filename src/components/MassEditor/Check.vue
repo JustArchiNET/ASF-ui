@@ -1,6 +1,8 @@
 <template>
   <div class="overview">
-    <span>{{ selectedBots }}</span>
+    <p>{{ $t('mass-editor-check-bots') }}</p>
+
+    <MassEditorBots :bots="selectedBots" :selectable="false"></MassEditorBots>
 
     <p>{{ $t('mass-editor-check-values') }}</p>
 
@@ -16,17 +18,19 @@
 </template>
 
 <script>
+  import MassEditorBots from './Bots.vue';
+
   export default {
     name: 'MassEditorCheck',
+    components: {
+      MassEditorBots,
+    },
     props: {
       saving: { type: Boolean, default: false },
-      selectedBotNames: { type: Array },
       config: { type: String },
+      selectedBots: { type: Array },
     },
     computed: {
-      selectedBots() {
-        return `${this.$t('mass-editor-check-bots')} ${this.selectedBotNames.join(', ')}`;
-      },
       prettyConfig() {
         return JSON.stringify(JSON.parse(this.config), null, 2);
       },
@@ -35,4 +39,7 @@
 </script>
 
 <style lang="scss">
+  p:first-of-type {
+    margin-top: 0;
+  }
 </style>
