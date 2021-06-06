@@ -174,6 +174,19 @@
     border-radius: 3px;
   }
 
+  pre {
+    white-space: pre-wrap;
+    padding: 0.5em 1em;
+    font-size: 90%;
+    background-color: #2d333b;
+    border-radius: 3px;
+    color: var(--color-releases-pre);
+
+    > code {
+      background-color: inherit;
+    }
+  }
+
 	.app {
 		background: var(--color-background);
 		color: var(--color-text-dark);
