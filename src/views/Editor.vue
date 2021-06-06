@@ -8,64 +8,84 @@
       </template>
       <template v-else>
         <div v-if="status === 'bots'">
-          <div class="accordion" :class="{active: status === 'bots'}">
+          <div class="accordion">
             {{ $t('editor-bots') }}
-            <button class="navigation button" :disabled="selectedBots.length === 0" @click="setStatus('properties')">
+            <button class="navigation button" :disabled="selectedBots.length === 0" @click="status = 'properties'">
               {{ $t('next') }}
             </button>
           </div>
-          <div class="panel" :class="{visible: status === 'bots'}">
-            <EditorBots :selected-bot-names="selectedBotNames" @update="updateSelectedBots"></EditorBots>
-          </div>
-        </div>
+          <div class="panel">
+            <EditorBots :selectedBotNames="selectedBotNames" @update="updateSelectedBots"></EditorBots>
 
-        <div v-if="status === 'properties'">
-          <div class="accordion" :class="{active: status === 'properties'}">
-            {{ $t('editor-properties') }}
-            <button class="navigation button" :disabled="selectedConfigProperties.length === 0" @click="setStatus('values')">
-              {{ $t('next') }}
-            </button>
-            <button class="navigation button" @click="setStatus('bots')">
-              {{ $t('back') }}
-            </button>
-          </div>
-          <div class="panel" :class="{visible: status === 'properties'}">
             <div class="form-item">
-              <div class="form-item__value">
-                <select v-model="selectedConfigValues" class="form-item__input multiple" multiple @change="loadConfigEditor">
-                  <option v-for="field in fields" :key="field.param">
-                    {{ field.param }}
-                  </option>
-                </select>
-              </div>
+              <button class="button" @click="toggleSelectedBots">
+                <span v-if="selectedBots.length === bots.length">{{ $t('editor-deselect-bots') }}</span>
+                <span v-else>{{ $t('editor-select-bots') }}</span>
+              </button>
             </div>
           </div>
         </div>
 
-        <div v-if="status === 'values'">
-          <div class="accordion" :class="{active: status === 'values'}">
-            {{ $t('editor-values') }}
-            <button class="navigation button" :disabled="selectedConfigValues.length === 0" @click="setStatus('check')">
+        <div v-if="status === 'properties'">
+          <div class="accordion">
+            {{ $t('editor-properties') }}
+            <button class="navigation button" :disabled="selectedConfigProperties.length === 0" @click="status = 'values'">
               {{ $t('next') }}
             </button>
-            <button class="navigation button" @click="setStatus('properties')">
+            <button class="navigation button" @click="status = 'bots'">
               {{ $t('back') }}
             </button>
           </div>
-          <div class="panel" :class="{visible: status === 'values'}">
-            <ConfigEditor :fields="selectedConfigProperties" :categories="displayCategories ? categories : null" :model="newConfigModel"></ConfigEditor>
+          <div class="panel">
+            <Multiselect
+              v-model="selectedConfigProperties"
+              label="paramName"
+              trackBy="param"
+              :multiple="true"
+              :options="fields"
+              :placeholder="$t('editor-properties')"
+              :deselectLabel="$t('editor-properties-deselect')"
+              :selectLabel="$t('editor-properties-select')"
+              :selectedLabel="$t('editor-properties-selected')"
+              @select="selectProperty"
+            ></Multiselect>
+          </div>
+        </div>
+
+        <div v-if="status === 'values'">
+          <div class="accordion">
+            {{ $t('editor-values') }}
+            <button class="navigation button" :disabled="selectedConfigProperties.length === 0" @click="status = 'check'">
+              {{ $t('next') }}
+            </button>
+            <button class="navigation button" @click="status = 'properties'">
+              {{ $t('back') }}
+            </button>
+          </div>
+          <div class="panel">
+            <ConfigEditor
+              :fields="selectedConfigProperties"
+              :categories="displayCategories ? categories : null"
+              :model="config"
+              :deleteDefaultValues="false"
+            ></ConfigEditor>
           </div>
         </div>
 
         <div v-if="status === 'check'">
-          <div class="accordion" :class="{active: status === 'check'}">
+          <div class="accordion">
             {{ $t('editor-check') }}
-            <button v-if="!saving" class="navigation button" @click="setStatus('values')">
+            <button v-if="!saving" class="navigation button" @click="status = 'values'">
               {{ $t('back') }}
             </button>
           </div>
-          <div class="panel" :class="{visible: status === 'check'}">
-            <EditorCheck :saving="saving" :selected-bot-names="selectedBotNames" :config="JSON.stringify(newConfigModel)" @save="onSave"></EditorCheck>
+          <div class="panel">
+            <EditorCheck
+              :saving="saving"
+              :selectedBotNames="selectedBotNames"
+              :config="JSON.stringify(config)"
+              @save="onSave"
+            ></EditorCheck>
           </div>
         </div>
       </template>
@@ -75,6 +95,7 @@
 
 <script>
   import { mapGetters } from 'vuex';
+  import Multiselect from 'vue-multiselect';
   import ConfigEditor from '../components/ConfigEditor.vue';
   import EditorBots from '../components/Editor/Bots.vue';
   import EditorCheck from '../components/Editor/Check.vue';
@@ -92,6 +113,7 @@
       ConfigEditor,
       EditorBots,
       EditorCheck,
+      Multiselect,
     },
     data() {
       const categories = [
@@ -111,11 +133,10 @@
         model: {},
         descriptions: {},
         categories,
-        selectedConfigValues: [],
-        selectedConfigProperties: [],
-        newConfigModel: {},
+        config: {},
         status: 'bots',
         selectedBots: [],
+        selectedConfigProperties: [],
       };
     },
     computed: {
@@ -127,10 +148,11 @@
       configProperties() {
         return this.fields.filter(field => field.param);
       },
+      configOptions() {
+        return this.fields.map(field => field.param);
+      },
       selectedBotNames() {
-        const names = [];
-        this.selectedBots.forEach(bot => names.push(bot.name));
-        return names;
+        return this.selectedBots.map(bot => bot.name);
       },
     },
     async created() {
@@ -165,15 +187,15 @@
     },
     methods: {
       updateSelectedBots(bot) {
-        if (!this.selectedBots.includes(bot)) this.selectedBots.push(bot);
-        else this.selectedBots = this.selectedBots.filter(selectedBot => selectedBot.name !== bot.name);
+        if (this.selectedBotNames.includes(bot.name)) {
+          this.selectedBots = this.selectedBots.filter(selectedBot => selectedBot.name !== bot.name);
+        } else {
+          this.selectedBots.push(bot);
+        }
       },
-      setStatus(status) {
-        this.status = status;
-      },
-      loadConfigEditor() {
-        this.newConfigModel = {};
-        this.selectedConfigProperties = this.fields.filter(field => this.selectedConfigValues.includes(field.param)) || [];
+      selectProperty(property) {
+        // initialize config property with default value
+        this.config[property.param] = property.defaultValue;
       },
       toggleAccordion(event) {
         if (event.target.classList.contains('active')) return;
@@ -197,29 +219,34 @@
         // eslint-disable-next-line no-restricted-syntax
         for (const bot of this.selectedBots) {
           console.log('updating config for bot:', bot.name);
-          await this.saveBotConfig(bot, this.newConfigModel);
+          await this.saveConfigForBot(this.config, bot);
           console.log('finished updating config for bot:', bot.name);
         }
 
         this.saving = false;
       },
-      async saveBotConfig(bot, newConfig) {
+      async saveConfigForBot(config, bot) {
         try {
           // fetch current bot config
           const { [bot.name]: { BotConfig: oldConfig } } = await this.$http.get(`bot/${bot.name}`);
 
           // overwrite current bot config with new one
-          const botConfig = { ...oldConfig, ...newConfig };
+          const botConfig = { ...oldConfig, ...config };
 
-          // save config
           await this.$http.post(`bot/${bot.name}`, { botConfig });
         } catch (err) {
           this.$error(err.message);
         }
       },
+      toggleSelectedBots() {
+        if (this.selectedBots.length === this.bots.length) this.selectedBots = [];
+        else this.selectedBots = this.bots;
+      },
     },
   };
 </script>
+
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 
 <style lang="scss">
   .multiple {
@@ -243,18 +270,13 @@
     margin-left: 0.5em;
   }
 
-  .active {
-    color: var(--color-theme);
-  }
-
   .panel {
     padding: 1em;
     background: var(--color-background-modal);
-    display: none;
-    overflow: hidden;
+    display: block;
+  }
 
-    &.visible {
-      display: block;
-    }
+  .form-item {
+    margin-top: 1em;
   }
 </style>

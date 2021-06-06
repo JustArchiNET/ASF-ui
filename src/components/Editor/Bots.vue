@@ -1,12 +1,9 @@
 <template>
   <div class="bots">
-    <div v-for="bot in bots" :key="bot.name" class="bot" :class="[`status--${bot.status}`, selectedBotNames.includes(bot.name) ? 'selected' : null]">
-      <a v-if="bot.steamid !== '0'" target="_blank" rel="noreferrer noopener" :href="bot.profileURL">
-        <img class="bot__avatar" :src="bot.avatarURL" :alt="bot.name">
-      </a>
+    <div v-for="bot in bots" :key="bot.name" class="bot" :class="[`status--${bot.status}`, { selected: selectedBotNames.includes(bot.name) }]" @click="$emit('update', bot)">
       <img class="bot__avatar" :src="bot.avatarURL">
 
-      <div class="bot__status" @click="$emit('update', bot)">
+      <div class="bot__status">
         <span :title="bot.name" class="bot__status-property bot__status-property--name">{{ bot.viewableName }}</span>
         <span class="bot__status-property bot__status-property--text">{{ bot.statusText }}</span>
       </div>
