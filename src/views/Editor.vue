@@ -223,6 +223,8 @@
           console.log('finished updating config for bot:', bot.name);
         }
 
+        this.$success(this.$t('editor-check-confirmation'));
+
         this.saving = false;
       },
       async saveConfigForBot(config, bot) {

@@ -27,7 +27,7 @@
   };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.bots {
 		display: grid;
 		grid-gap: 1em;

@@ -78,6 +78,7 @@
   "editor": "Editor",
   "editor-bots": "Select the bots you want to change config values for",
   "editor-check": "Check the selected bots and the config values that will be saved",
+  "editor-check-confirmation": "All configs for all bots saved!",
   "editor-deselect-bots": "Deselect all bots",
   "editor-properties": "Select the config properties you want to change",
   "editor-properties-deselect": "Press enter to remove",
