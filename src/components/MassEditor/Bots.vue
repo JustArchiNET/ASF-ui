@@ -15,7 +15,7 @@
   import { mapGetters } from 'vuex';
 
   export default {
-    name: 'EditorBots',
+    name: 'MassEditorBots',
     props: {
       selectedBotNames: { type: Array },
     },

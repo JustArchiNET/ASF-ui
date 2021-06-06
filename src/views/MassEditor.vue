@@ -9,18 +9,18 @@
       <template v-else>
         <div v-if="status === 'bots'">
           <div class="accordion">
-            {{ $t('editor-bots') }}
+            {{ $t('mass-editor-bots') }}
             <button class="navigation button" :disabled="selectedBots.length === 0" @click="status = 'properties'">
               {{ $t('next') }}
             </button>
           </div>
           <div class="panel">
-            <EditorBots :selectedBotNames="selectedBotNames" @update="updateSelectedBots"></EditorBots>
+            <MassEditorBots :selectedBotNames="selectedBotNames" @update="updateSelectedBots"></MassEditorBots>
 
             <div class="form-item">
               <button class="button" @click="toggleSelectedBots">
-                <span v-if="selectedBots.length === bots.length">{{ $t('editor-deselect-bots') }}</span>
-                <span v-else>{{ $t('editor-select-bots') }}</span>
+                <span v-if="selectedBots.length === bots.length">{{ $t('mass-editor-deselect-bots') }}</span>
+                <span v-else>{{ $t('mass-editor-select-bots') }}</span>
               </button>
             </div>
           </div>
@@ -28,7 +28,7 @@
 
         <div v-if="status === 'properties'">
           <div class="accordion">
-            {{ $t('editor-properties') }}
+            {{ $t('mass-editor-properties') }}
             <button class="navigation button" :disabled="selectedConfigProperties.length === 0" @click="status = 'values'">
               {{ $t('next') }}
             </button>
@@ -44,10 +44,10 @@
               :multiple="true"
               :options="fields"
               :closeOnSelect="false"
-              :placeholder="$t('editor-properties')"
-              :deselectLabel="$t('editor-properties-deselect')"
-              :selectLabel="$t('editor-properties-select')"
-              :selectedLabel="$t('editor-properties-selected')"
+              :placeholder="$t('mass-editor-properties')"
+              :deselectLabel="$t('mass-editor-properties-deselect')"
+              :selectLabel="$t('mass-editor-properties-select')"
+              :selectedLabel="$t('mass-editor-properties-selected')"
               @select="selectProperty"
             ></Multiselect>
           </div>
@@ -55,7 +55,7 @@
 
         <div v-if="status === 'values'">
           <div class="accordion">
-            {{ $t('editor-values') }}
+            {{ $t('mass-editor-values') }}
             <button class="navigation button" :disabled="selectedConfigProperties.length === 0" @click="status = 'check'">
               {{ $t('next') }}
             </button>
@@ -75,18 +75,18 @@
 
         <div v-if="status === 'check'">
           <div class="accordion">
-            {{ $t('editor-check') }}
+            {{ $t('mass-editor-check') }}
             <button v-if="!saving" class="navigation button" @click="status = 'values'">
               {{ $t('back') }}
             </button>
           </div>
           <div class="panel">
-            <EditorCheck
+            <MassEditorCheck
               :saving="saving"
               :selectedBotNames="selectedBotNames"
               :config="JSON.stringify(config)"
               @save="onSave"
-            ></EditorCheck>
+            ></MassEditorCheck>
           </div>
         </div>
       </template>
@@ -98,22 +98,22 @@
   import { mapGetters } from 'vuex';
   import Multiselect from 'vue-multiselect';
   import ConfigEditor from '../components/ConfigEditor.vue';
-  import EditorBots from '../components/Editor/Bots.vue';
-  import EditorCheck from '../components/Editor/Check.vue';
+  import MassEditorBots from '../components/MassEditor/Bots.vue';
+  import MassEditorCheck from '../components/MassEditor/Check.vue';
   import fetchConfigSchema from '../utils/fetchConfigSchema';
   import loadParameterDescriptions from '../utils/loadParameterDescriptions';
 
   export default {
-    name: 'Editor',
+    name: 'MassEditor',
     metaInfo() {
       return {
-        title: this.$t('editor'),
+        title: this.$t('mass-editor'),
       };
     },
     components: {
       ConfigEditor,
-      EditorBots,
-      EditorCheck,
+      MassEditorBots,
+      MassEditorCheck,
       Multiselect,
     },
     data() {
@@ -210,7 +210,7 @@
           console.log('finished updating config for bot:', bot.name);
         }
 
-        this.$success(this.$t('editor-check-confirmation'));
+        this.$success(this.$t('mass-editor-check-confirmation'));
         this.saving = false;
       },
       async saveConfigForBot(config, bot) {

@@ -2,7 +2,7 @@
   <div class="overview">
     <span>{{ selectedBots }}</span>
 
-    <p>{{ $t('editor-check-values') }}</p>
+    <p>{{ $t('mass-editor-check-values') }}</p>
 
     <pre><code>{{ prettyConfig }}</code></pre>
 
@@ -17,7 +17,7 @@
 
 <script>
   export default {
-    name: 'EditorOverview',
+    name: 'MassEditorCheck',
     props: {
       saving: { type: Boolean, default: false },
       selectedBotNames: { type: Array },
@@ -25,7 +25,7 @@
     },
     computed: {
       selectedBots() {
-        return `${this.$t('editor-check-bots')} ${this.selectedBotNames.join(', ')}`;
+        return `${this.$t('mass-editor-check-bots')} ${this.selectedBotNames.join(', ')}`;
       },
       prettyConfig() {
         return JSON.stringify(JSON.parse(this.config), null, 2);
