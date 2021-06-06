@@ -198,20 +198,6 @@
         // initialize config property with default value
         this.config[property.param] = property.defaultValue;
       },
-      toggleAccordion(event) {
-        if (event.target.classList.contains('active')) return;
-
-        const accordions = document.getElementsByClassName('accordion');
-        for (let i = 0; i < accordions.length; i++) {
-          const accordion = accordions[i];
-          if (accordion.classList.contains('active')) accordion.classList.toggle('active');
-          accordion.nextElementSibling.style.display = 'none';
-        }
-
-        event.target.classList.toggle('active');
-        const panel = event.target.nextElementSibling;
-        panel.style.display = 'block';
-      },
       async onSave() {
         if (this.saving) return;
 
@@ -225,7 +211,6 @@
         }
 
         this.$success(this.$t('editor-check-confirmation'));
-
         this.saving = false;
       },
       async saveConfigForBot(config, bot) {
