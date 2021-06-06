@@ -4,7 +4,7 @@
       <div v-if="status === 'bots'">
         <div class="accordion">
           {{ $t('mass-editor-bots') }}
-          <button class="navigation button" :disabled="selectedBots.length === 0" @click="status = 'properties'">
+          <button class="navigation button" :disabled="selectedBots.length === 0" :title="[selectedBots.length === 0 ? $t('mass-editor-bots-disabled') : null]" @click="status = 'properties'">
             {{ $t('next') }}
           </button>
         </div>
@@ -13,8 +13,8 @@
 
           <div class="form-item">
             <button class="button" @click="toggleSelectedBots">
-              <span v-if="selectedBots.length === bots.length">{{ $t('mass-editor-deselect-bots') }}</span>
-              <span v-else>{{ $t('mass-editor-select-bots') }}</span>
+              <span v-if="selectedBots.length === bots.length">{{ $t('mass-editor-bots-deselect') }}</span>
+              <span v-else>{{ $t('mass-editor-bots-select') }}</span>
             </button>
           </div>
         </div>
@@ -23,7 +23,7 @@
       <div v-if="status === 'properties'">
         <div class="accordion">
           {{ $t('mass-editor-properties') }}
-          <button class="navigation button" :disabled="selectedConfigProperties.length === 0" @click="status = 'values'">
+          <button class="navigation button" :disabled="selectedConfigProperties.length === 0" :title="[selectedConfigProperties.length === 0 ? 'test' : null]" @click="status = 'values'">
             {{ $t('next') }}
           </button>
           <button class="navigation button" @click="status = 'bots'">
@@ -57,7 +57,7 @@
       <div v-if="status === 'values'">
         <div class="accordion">
           {{ $t('mass-editor-values') }}
-          <button class="navigation button" :disabled="selectedConfigProperties.length === 0" @click="status = 'check'">
+          <button class="navigation button" @click="status = 'check'">
             {{ $t('next') }}
           </button>
           <button class="navigation button" @click="status = 'properties'">
