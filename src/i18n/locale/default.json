@@ -123,6 +123,7 @@
   "mass-editor-properties-select": "Click or press enter to select",
   "mass-editor-properties-selected": "Selected",
   "mass-editor-search": "Type to search...",
+  "mass-editor-search-not-found": "No config property found - Consider changing the search query",
   "mass-editor-select-bots": "Select all bots",
   "mass-editor-values": "Define the new config values for the config properties that you selected",
   "multiple-games": "Multiple games",

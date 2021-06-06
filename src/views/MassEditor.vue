@@ -48,7 +48,7 @@
             @close="placeholder = $t('mass-editor-properties')"
           >
             <span slot="noResult">
-              test
+              {{ $t('mass-editor-search-not-found') }}
             </span>
           </Multiselect>
         </div>
