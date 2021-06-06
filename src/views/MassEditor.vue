@@ -1,95 +1,95 @@
 <template>
   <main class="main-container main-container--fullheight">
     <div class="container">
-      <template v-if="loading">
-        <h3 class="subtitle">
-          <FontAwesomeIcon icon="spinner" size="lg" spin></FontAwesomeIcon>
-        </h3>
-      </template>
-      <template v-else>
-        <div v-if="status === 'bots'">
-          <div class="accordion">
-            {{ $t('mass-editor-bots') }}
-            <button class="navigation button" :disabled="selectedBots.length === 0" @click="status = 'properties'">
-              {{ $t('next') }}
-            </button>
-          </div>
-          <div class="panel">
-            <MassEditorBots :bots="bots" :selectedBotNames="selectedBotNames" @update="updateSelectedBots"></MassEditorBots>
+      <div v-if="status === 'bots'">
+        <div class="accordion">
+          {{ $t('mass-editor-bots') }}
+          <button class="navigation button" :disabled="selectedBots.length === 0" @click="status = 'properties'">
+            {{ $t('next') }}
+          </button>
+        </div>
+        <div class="panel">
+          <MassEditorBots :bots="bots" :selectedBotNames="selectedBotNames" @update="updateSelectedBots"></MassEditorBots>
 
-            <div class="form-item">
-              <button class="button" @click="toggleSelectedBots">
-                <span v-if="selectedBots.length === bots.length">{{ $t('mass-editor-deselect-bots') }}</span>
-                <span v-else>{{ $t('mass-editor-select-bots') }}</span>
-              </button>
-            </div>
+          <div class="form-item">
+            <button class="button" @click="toggleSelectedBots">
+              <span v-if="selectedBots.length === bots.length">{{ $t('mass-editor-deselect-bots') }}</span>
+              <span v-else>{{ $t('mass-editor-select-bots') }}</span>
+            </button>
           </div>
         </div>
+      </div>
 
-        <div v-if="status === 'properties'">
-          <div class="accordion">
-            {{ $t('mass-editor-properties') }}
-            <button class="navigation button" :disabled="selectedConfigProperties.length === 0" @click="status = 'values'">
-              {{ $t('next') }}
-            </button>
-            <button class="navigation button" @click="status = 'bots'">
-              {{ $t('back') }}
-            </button>
-          </div>
-          <div class="panel">
-            <Multiselect
-              v-model="selectedConfigProperties"
-              label="paramName"
-              trackBy="param"
-              :multiple="true"
-              :options="fields"
-              :closeOnSelect="false"
-              :placeholder="$t('mass-editor-properties')"
-              :deselectLabel="$t('mass-editor-properties-deselect')"
-              :selectLabel="$t('mass-editor-properties-select')"
-              :selectedLabel="$t('mass-editor-properties-selected')"
-              @select="selectProperty"
-            ></Multiselect>
-          </div>
+      <div v-if="status === 'properties'">
+        <div class="accordion">
+          {{ $t('mass-editor-properties') }}
+          <button class="navigation button" :disabled="selectedConfigProperties.length === 0" @click="status = 'values'">
+            {{ $t('next') }}
+          </button>
+          <button class="navigation button" @click="status = 'bots'">
+            {{ $t('back') }}
+          </button>
         </div>
+        <div class="panel">
+          <Multiselect
+            v-model="selectedConfigProperties"
+            label="paramName"
+            trackBy="param"
+            :loading="loading"
+            :multiple="true"
+            :options="fields"
+            :closeOnSelect="false"
+            :placeholder="placeholder"
+            :deselectLabel="$t('mass-editor-properties-deselect')"
+            :selectLabel="$t('mass-editor-properties-select')"
+            :selectedLabel="$t('mass-editor-properties-selected')"
+            @select="selectProperty"
+            @open="placeholder = $t('mass-editor-search')"
+            @close="placeholder = $t('mass-editor-properties')"
+          >
+            <span slot="noResult">
+              test
+            </span>
+          </Multiselect>
+        </div>
+      </div>
 
-        <div v-if="status === 'values'">
-          <div class="accordion">
-            {{ $t('mass-editor-values') }}
-            <button class="navigation button" :disabled="selectedConfigProperties.length === 0" @click="status = 'check'">
-              {{ $t('next') }}
-            </button>
-            <button class="navigation button" @click="status = 'properties'">
-              {{ $t('back') }}
-            </button>
-          </div>
-          <div class="panel">
-            <ConfigEditor
-              :fields="selectedConfigProperties"
-              :categories="displayCategories ? categories : null"
-              :model="config"
-              :deleteDefaultValues="false"
-            ></ConfigEditor>
-          </div>
+      <div v-if="status === 'values'">
+        <div class="accordion">
+          {{ $t('mass-editor-values') }}
+          <button class="navigation button" :disabled="selectedConfigProperties.length === 0" @click="status = 'check'">
+            {{ $t('next') }}
+          </button>
+          <button class="navigation button" @click="status = 'properties'">
+            {{ $t('back') }}
+          </button>
         </div>
+        <div class="panel">
+          <ConfigEditor
+            :fields="selectedConfigProperties"
+            :categories="displayCategories ? categories : null"
+            :model="config"
+            :deleteDefaultValues="false"
+          ></ConfigEditor>
+        </div>
+      </div>
 
-        <div v-if="status === 'check'">
-          <div class="accordion">
-            {{ $t('mass-editor-check') }}
-            <button v-if="!saving" class="navigation button" @click="status = 'values'">
-              {{ $t('back') }}
-            </button>
-          </div>
-          <div class="panel">
-            <MassEditorCheck
-              :saving="saving"
-              :config="JSON.stringify(config)"
-              :selectedBots="selectedBots"
-              @save="onSave"
-            ></MassEditorCheck>
-          </div>
+      <div v-if="status === 'check'">
+        <div class="accordion">
+          {{ $t('mass-editor-check') }}
+          <button v-if="!saving" class="navigation button" @click="status = 'values'">
+            {{ $t('back') }}
+          </button>
         </div>
-      </template>
+        <div class="panel">
+          <MassEditorCheck
+            :saving="saving"
+            :config="JSON.stringify(config)"
+            :selectedBots="selectedBots"
+            @save="onSave"
+          ></MassEditorCheck>
+        </div>
+      </div>
     </div>
   </main>
 </template>
@@ -138,6 +138,7 @@
         status: 'bots',
         selectedBots: [],
         selectedConfigProperties: [],
+        placeholder: this.$t('mass-editor-properties'),
       };
     },
     computed: {
@@ -156,37 +157,40 @@
         return this.selectedBots.map(bot => bot.name);
       },
     },
-    async created() {
-      const [
-        { [this.bots[0].name]: { BotConfig: model } },
-        { body: fields },
-        descriptions,
-      ] = await Promise.all([
-        this.$http.get(`bot/${this.bots[0].name}`),
-        fetchConfigSchema('ArchiSteamFarm.Steam.Storage.BotConfig'),
-        loadParameterDescriptions(this.version, this.$i18n.locale),
-      ]);
-
-      Object.keys(model).forEach(key => {
-        if (key.startsWith('s_')) delete model[key.substr(2)];
-      });
-
-      this.model = model;
-
-      const extendedFields = {
-        SteamLogin: { placeholder: this.$t('keep-unchanged') },
-        SteamPassword: { placeholder: this.$t('keep-unchanged') },
-        SteamParentalCode: { placeholder: this.$t('keep-unchanged') },
-      };
-
-      this.fields = Object.keys(fields).map(key => {
-        const description = (!descriptions[key]) ? this.$t('description-not-found') : descriptions[key].replace(/<a href="/g, '<a target="_blank" rel="noreferrer noopener" href="');
-        return { description, ...fields[key], ...(extendedFields[key] || []) };
-      });
-
-      this.loading = false;
+    async mounted() {
+      await this.loadBotConfig();
     },
     methods: {
+      async loadBotConfig() {
+        const [
+          { [this.bots[0].name]: { BotConfig: model } },
+          { body: fields },
+          descriptions,
+        ] = await Promise.all([
+          this.$http.get(`bot/${this.bots[0].name}`),
+          fetchConfigSchema('ArchiSteamFarm.Steam.Storage.BotConfig'),
+          loadParameterDescriptions(this.version, this.$i18n.locale),
+        ]);
+
+        Object.keys(model).forEach(key => {
+          if (key.startsWith('s_')) delete model[key.substr(2)];
+        });
+
+        this.model = model;
+
+        const extendedFields = {
+          SteamLogin: { placeholder: this.$t('keep-unchanged') },
+          SteamPassword: { placeholder: this.$t('keep-unchanged') },
+          SteamParentalCode: { placeholder: this.$t('keep-unchanged') },
+        };
+
+        this.fields = Object.keys(fields).map(key => {
+          const description = (!descriptions[key]) ? this.$t('description-not-found') : descriptions[key].replace(/<a href="/g, '<a target="_blank" rel="noreferrer noopener" href="');
+          return { description, ...fields[key], ...(extendedFields[key] || []) };
+        });
+
+        this.loading = false;
+      },
       updateSelectedBots(bot) {
         if (this.selectedBotNames.includes(bot.name)) {
           this.selectedBots = this.selectedBots.filter(selectedBot => selectedBot.name !== bot.name);
@@ -234,16 +238,17 @@
   };
 </script>
 
-<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
-
 <style lang="scss">
+  @import "vue-multiselect/dist/vue-multiselect.min.css";
+  @import "../style/multiselect";
+
   .multiple {
     height: 230px;
   }
 
   .accordion {
     background: rgba(0, 0, 0, 0.4);
-    color: var(--color-text-disabled);
+    color: var(--color-text-dark);
     padding: 18px;
     text-align: left;
     border: none;

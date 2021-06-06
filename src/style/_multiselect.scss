@@ -1,0 +1,80 @@
+.multiselect,
+.multiselect__input,
+.multiselect__single {
+  font-size: inherit;
+  background: var(--color-background);
+}
+
+.multiselect {
+  color: var(--color-text-dark);
+}
+
+.multiselect__tags,
+.multiselect__content-wrapper,
+.multiselect__spinner {
+  background: var(--color-background);
+  border-color: var(--color-border);
+}
+
+.multiselect__input::placeholder {
+  color: var(--color-text-dark);
+}
+
+.multiselect--active .multiselect__placeholder {
+  display: none;
+}
+
+.multiselect__tags {
+  > input {
+    color: var(--color-text-dark);
+    margin-left: -5px;
+    margin-top: 0.7px;
+  }
+}
+
+.multiselect__content-wrapper,
+.multiselect__placeholder {
+  color: var(--color-text-dark);
+}
+
+.multiselect__option--highlight:after {
+  color: var(--color-theme);
+  background: var(--color-background-light);
+}
+
+.multiselect__option--highlight {
+  background: var(--color-background-light);
+  color: var(--color-theme);
+}
+
+.multiselect__tag,
+.multiselect__tag-icon:focus,
+.multiselect__tag-icon:hover {
+  background: var(--color-theme);
+}
+
+.multiselect__option--selected {
+  color: var(--color-theme);
+  background: var(--color-background);
+}
+
+.multiselect__spinner:after,
+.multiselect__spinner:before {
+  border-top-color: var(--color-theme);
+}
+
+.multiselect__option--selected.multiselect__option--highlight {
+  color: var(--color-text-dark);
+}
+
+.multiselect__option--selected.multiselect__option--highlight,
+.multiselect__option--selected.multiselect__option--highlight:after {
+  color: var(--color-theme);
+  background: var(--color-background-light);
+  font-weight: normal;
+}
+
+.multiselect__option--selected.multiselect__option--highlight:after {
+  color: red;
+  // font-weight: normal;
+}

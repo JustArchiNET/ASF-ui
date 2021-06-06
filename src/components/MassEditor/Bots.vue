@@ -56,7 +56,7 @@
 
   .selected {
     color: var(--color-theme);
-    border: 1px solid var(--color-theme);
+    border: 3px solid var(--color-theme);
     border-top: 3px solid var(--color-status);
   }
 
