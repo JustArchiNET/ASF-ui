@@ -4,9 +4,16 @@
       <div v-if="status === 'bots'">
         <div class="accordion">
           {{ $t('mass-editor-bots') }}
-          <button class="navigation button" :disabled="selectedBots.length === 0" :title="[selectedBots.length === 0 ? $t('mass-editor-bots-disabled') : null]" @click="status = 'properties'">
-            {{ $t('next') }}
-          </button>
+          <div class="navigation pull-right">
+            <button
+              class="button"
+              :disabled="selectedBots.length === 0"
+              :title="[selectedBots.length === 0 ? $t('mass-editor-bots-disabled') : null]"
+              @click="status = 'properties'"
+            >
+              {{ $t('next') }}
+            </button>
+          </div>
         </div>
         <div class="panel">
           <MassEditorBots :bots="bots" :selectedBotNames="selectedBotNames" @update="updateSelectedBots"></MassEditorBots>
@@ -23,17 +30,24 @@
       <div v-if="status === 'properties'">
         <div class="accordion">
           {{ $t('mass-editor-properties') }}
-          <button class="navigation button" :disabled="selectedConfigProperties.length === 0" :title="[selectedConfigProperties.length === 0 ? $t('mass-editor-properties-disabled') : null]" @click="status = 'values'">
-            {{ $t('next') }}
-          </button>
-          <button class="navigation button" @click="status = 'bots'">
-            {{ $t('back') }}
-          </button>
+          <div class="navigation pull-right">
+            <button class="button" @click="status = 'bots'">
+              {{ $t('back') }}
+            </button>
+            <button
+              class="button"
+              :disabled="selectedConfigProperties.length === 0"
+              :title="[selectedConfigProperties.length === 0 ? $t('mass-editor-properties-disabled') : null]"
+              @click="status = 'values'"
+            >
+              {{ $t('next') }}
+            </button>
+          </div>
         </div>
         <div class="panel">
           <Multiselect
             v-model="selectedConfigProperties"
-            label="paramName"
+            label="param"
             trackBy="param"
             :loading="loading"
             :multiple="true"
@@ -57,12 +71,14 @@
       <div v-if="status === 'values'">
         <div class="accordion">
           {{ $t('mass-editor-values') }}
-          <button class="navigation button" @click="status = 'check'">
-            {{ $t('next') }}
-          </button>
-          <button class="navigation button" @click="status = 'properties'">
-            {{ $t('back') }}
-          </button>
+          <div class="navigation pull-right">
+            <button class="button" @click="status = 'properties'">
+              {{ $t('back') }}
+            </button>
+            <button class="button" @click="status = 'check'">
+              {{ $t('next') }}
+            </button>
+          </div>
         </div>
         <div class="panel">
           <ConfigEditor
@@ -77,9 +93,11 @@
       <div v-if="status === 'check'">
         <div class="accordion">
           {{ $t('mass-editor-check') }}
-          <button v-if="!saving" class="navigation button" @click="status = 'values'">
-            {{ $t('back') }}
-          </button>
+          <div class="navigation pull-right">
+            <button v-if="!saving" class="button" @click="status = 'values'">
+              {{ $t('back') }}
+            </button>
+          </div>
         </div>
         <div class="panel">
           <MassEditorCheck
@@ -242,25 +260,18 @@
   @import "vue-multiselect/dist/vue-multiselect.min.css";
   @import "../style/multiselect";
 
-  .multiple {
-    height: 230px;
-  }
-
   .accordion {
-    background: rgba(0, 0, 0, 0.4);
+    background: var(--color-background);
     color: var(--color-text-dark);
-    padding: 18px;
-    text-align: left;
-    border: none;
-    outline: none;
-    transition: ease-in-out width 0.3s;
+    padding: 1em;
+    display: flex;
+    align-items: center;
   }
 
   .navigation {
-    float: right;
-    min-height: 0;
-    padding: 0.25em 0.5em;
-    margin-left: 0.5em;
+    display: flex;
+    padding-left: 0.7em;
+    gap: 0.5em;
   }
 
   .panel {
