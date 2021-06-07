@@ -1,3 +1,5 @@
+@import '~vue-multiselect/dist/vue-multiselect.min.css';
+
 .multiselect,
 .multiselect__input,
 .multiselect__single {
@@ -5,7 +7,11 @@
   background: var(--color-background);
 }
 
-.multiselect {
+.multiselect,
+.multiselect__input::placeholder,
+.multiselect__content-wrapper,
+.multiselect__placeholder,
+.multiselect__option--selected.multiselect__option--highlight {
   color: var(--color-text-dark);
 }
 
@@ -16,25 +22,12 @@
   border-color: var(--color-border);
 }
 
-.multiselect__input::placeholder {
-  color: var(--color-text-dark);
-}
-
-.multiselect--active .multiselect__placeholder {
-  display: none;
-}
-
 .multiselect__tags {
   > input {
     color: var(--color-text-dark);
     margin-left: -5px;
     margin-top: 0.7px;
   }
-}
-
-.multiselect__content-wrapper,
-.multiselect__placeholder {
-  color: var(--color-text-dark);
 }
 
 .multiselect__option--highlight:after {
@@ -63,10 +56,6 @@
   border-top-color: var(--color-theme);
 }
 
-.multiselect__option--selected.multiselect__option--highlight {
-  color: var(--color-text-dark);
-}
-
 .multiselect__option--selected.multiselect__option--highlight,
 .multiselect__option--selected.multiselect__option--highlight:after {
   color: var(--color-theme);
@@ -75,6 +64,5 @@
 }
 
 .multiselect__option--selected.multiselect__option--highlight:after {
-  color: red;
-  // font-weight: normal;
+  color: #f44336;
 }
