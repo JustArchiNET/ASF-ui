@@ -17,21 +17,12 @@
     <div class="mass-editor__content">
       <Multiselect
         v-model="selection"
-        label="param"
-        trackBy="param"
-        :loading="loading"
-        :multiple="true"
-        :options="options"
-        :closeOnSelect="false"
-        :placeholder="placeholder"
-        :deselectLabel="$t('mass-editor-properties-deselect')"
-        :selectLabel="$t('mass-editor-properties-select')"
-        :selectedLabel="$t('mass-editor-properties-selected')"
+        v-bind="multiselectConfig"
         @select="selectOption"
         @remove="removeOption"
         @input="updateModel"
-        @open="placeholder = $t('mass-editor-search')"
-        @close="placeholder = $t('mass-editor-properties-placeholder')"
+        @open="openSelection"
+        @close="closeSelection"
       >
         <span slot="noResult">
           {{ $t('mass-editor-search-not-found') }}
@@ -57,7 +48,18 @@
     data() {
       return {
         selection: this.selectedProperties,
-        placeholder: this.$t('mass-editor-properties-placeholder'),
+        multiselectConfig: {
+          label: 'param',
+          trackBy: 'param',
+          loading: this.loading,
+          multiple: true,
+          options: this.options,
+          closeOnSelect: false,
+          placeholder: this.$t('mass-editor-properties-placeholder'),
+          deselectLabel: this.$t('mass-editor-properties-deselect'),
+          selectLabel: this.$t('mass-editor-properties-select'),
+          selectedLabel: this.$t('mass-editor-properties-selected'),
+        },
       };
     },
     computed: {
@@ -77,6 +79,12 @@
       },
       updateModel(model) {
         this.$emit('update', model);
+      },
+      openSelection() {
+        this.multiselectConfig.placeholder = this.$t('mass-editor-search');
+      },
+      closeSelection() {
+        this.multiselectConfig.placeholder = this.$t('mass-editor-properties-placeholder');
       },
     },
   };
