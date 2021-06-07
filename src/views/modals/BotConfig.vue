@@ -34,7 +34,7 @@
   import fetchConfigSchema from '../../utils/fetchConfigSchema';
   import loadParameterDescriptions from '../../utils/loadParameterDescriptions';
   import downloadConfig from '../../utils/downloadConfig';
-  import botCategories from '../../utils/botCategories';
+  import { botCategories } from '../../utils/categories';
 
   export default {
     name: 'BotConfig',

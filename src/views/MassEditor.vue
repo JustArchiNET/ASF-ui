@@ -51,7 +51,7 @@
   import MassEditorSelect from '../components/MassEditor/Select.vue';
   import fetchConfigSchema from '../utils/fetchConfigSchema';
   import loadParameterDescriptions from '../utils/loadParameterDescriptions';
-  import botCategories from '../utils/botCategories';
+  import { botCategories } from '../utils/categories';
 
   export default {
     name: 'MassEditor',

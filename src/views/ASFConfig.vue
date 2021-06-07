@@ -32,7 +32,7 @@
   import loadParameterDescriptions from '../utils/loadParameterDescriptions';
   import fetchConfigSchema from '../utils/fetchConfigSchema';
   import downloadConfig from '../utils/downloadConfig';
-  import asfCategories from '../utils/asfCategories';
+  import { asfCategories } from '../utils/categories';
 
   export default {
     name: 'ASFConfig',

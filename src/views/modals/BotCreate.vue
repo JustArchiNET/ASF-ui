@@ -33,7 +33,7 @@
   import downloadConfig from '../../utils/downloadConfig';
   import delay from '../../utils/delay';
   import botExists from '../../utils/botExists';
-  import botCategories from '../../utils/botCategories';
+  import { botCategories } from '../../utils/categories';
 
   export default {
     name: 'BotCreate',
