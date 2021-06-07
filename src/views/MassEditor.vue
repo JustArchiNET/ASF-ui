@@ -34,11 +34,9 @@
 
       <MassEditorCheck
         v-if="status === 'check'"
-        :saving="saving"
         :config="config"
         :selectedBots="selectedBots"
         :selectedConfigProperties="selectedConfigProperties"
-        @save="onSave"
         @back="status = 'values'"
       ></MassEditorCheck>
     </div>
@@ -80,7 +78,6 @@
 
       return {
         loading: true,
-        saving: false,
         fields: [],
         model: {},
         descriptions: {},
@@ -159,49 +156,9 @@
       updateModel(model) {
         this.selectedConfigProperties = model;
       },
-      async onSave() {
-        if (this.saving) return;
-
-        this.saving = true;
-
-        // eslint-disable-next-line no-restricted-syntax
-        for (const bot of this.selectedBots) {
-          await this.saveConfigForBot(this.config, bot);
-        }
-
-        this.$success(this.$t('mass-editor-check-saved'));
-        this.saving = false;
-      },
-      async saveConfigForBot(config, bot) {
-        try {
-          // fetch current bot config
-          const { [bot.name]: { BotConfig: oldConfig } } = await this.$http.get(`bot/${bot.name}`);
-
-          // we do not want to save identical config
-          if (this.isSameConfig(config, oldConfig)) return;
-
-          // overwrite current bot config with new one
-          const botConfig = { ...oldConfig, ...config };
-
-          await this.$http.post(`bot/${bot.name}`, { botConfig });
-        } catch (err) {
-          this.$error(err.message);
-        }
-      },
       toggleSelectedBots() {
         if (this.selectedBots.length === this.bots.length) this.selectedBots = [];
         else this.selectedBots = this.bots;
-      },
-      isSameConfig(newConfig, oldConfig) {
-        // eslint-disable-next-line no-restricted-syntax
-        for (const [newProperty, newValue] of Object.entries(newConfig)) {
-          const found = Object.entries(oldConfig)
-            .find(([oldProperty, oldValue]) => oldProperty === newProperty && oldValue === newValue);
-
-          if (found) return true;
-        }
-
-        return false;
       },
     },
   };

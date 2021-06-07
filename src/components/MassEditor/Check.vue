@@ -24,7 +24,7 @@
       <pre><code>{{ prettyConfig }}</code></pre>
 
       <div class="form-item">
-        <button class="button button--confirm" @click="$emit('save')">
+        <button class="button button--confirm" @click="onSave">
           <FontAwesomeIcon v-if="saving" icon="spinner" spin></FontAwesomeIcon>
           <span v-else>{{ $t('save') }}</span>
         </button>
@@ -42,14 +42,58 @@
       BotsView,
     },
     props: {
-      saving: { type: Boolean, default: false },
       config: { type: Object },
       selectedBots: { type: Array },
       selectedConfigProperties: { type: Array },
     },
+    data() {
+      return {
+        saving: false,
+      };
+    },
     computed: {
       prettyConfig() {
         return JSON.stringify(this.config, null, 2);
+      },
+    },
+    methods: {
+      async onSave() {
+        if (this.saving) return;
+
+        this.saving = true;
+
+        // eslint-disable-next-line no-restricted-syntax
+        for (const bot of this.selectedBots) {
+          await this.saveConfigForBot(this.config, bot);
+        }
+
+        this.$success(this.$t('mass-editor-check-saved'));
+        this.saving = false;
+      },
+      async saveConfigForBot(config, bot) {
+        try {
+          // fetch current bot config
+          const { [bot.name]: { BotConfig: oldConfig } } = await this.$http.get(`bot/${bot.name}`);
+
+          // we do not want to save identical config
+          if (this.isSameConfig(config, oldConfig)) return;
+
+          // overwrite current bot config with new one
+          const botConfig = { ...oldConfig, ...config };
+
+          await this.$http.post(`bot/${bot.name}`, { botConfig });
+        } catch (err) {
+          this.$error(err.message);
+        }
+      },
+      isSameConfig(newConfig, oldConfig) {
+        // eslint-disable-next-line no-restricted-syntax
+        for (const [property] of Object.entries(newConfig)) {
+          const found = oldConfig[property] === newConfig[property];
+          if (found) return true;
+        }
+
+        return false;
       },
     },
   };
