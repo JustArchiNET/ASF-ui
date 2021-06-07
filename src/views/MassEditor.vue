@@ -51,6 +51,7 @@
   import MassEditorSelect from '../components/MassEditor/Select.vue';
   import fetchConfigSchema from '../utils/fetchConfigSchema';
   import loadParameterDescriptions from '../utils/loadParameterDescriptions';
+  import botCategories from '../utils/botCategories';
 
   export default {
     name: 'MassEditor',
@@ -66,22 +67,12 @@
       MassEditorValue,
     },
     data() {
-      const categories = [
-        { name: this.$t('basic'), fields: ['Name', 'SteamLogin', 'SteamPassword', 'Enabled', 'Paused', 'OnlineStatus', 'BotBehaviour'] },
-        { name: this.$t('security'), fields: ['PasswordFormat', 'UseLoginKeys'] },
-        { name: this.$t('access'), fields: ['SteamUserPermissions', 'SteamParentalCode'] },
-        { name: this.$t('trade'), fields: ['SteamTradeToken', 'AcceptGifts', 'SendTradePeriod', 'SendOnFarmingFinished', 'CompleteTypesToSend', 'TradingPreferences', 'LootableTypes', 'TransferableTypes', 'MatchableTypes'] },
-        { name: this.$t('farming'), fields: ['FarmingOrders', 'AutoSteamSaleEvent', 'FarmPriorityQueueOnly', 'FarmNonRefundableGamesOnly', 'FarmOffline', 'ShutdownOnFarmingFinished'] },
-        { name: this.$t('customization'), fields: ['SteamMasterClanID', 'UserInterfaceMode', 'RedeemingPreferences', 'GamesPlayedWhileIdle', 'CustomGamePlayedWhileFarming', 'CustomGamePlayedWhileIdle'] },
-        { name: this.$t('performance'), fields: ['HoursUntilCardDrops'] },
-      ];
-
       return {
         loading: true,
         fields: [],
         model: {},
         descriptions: {},
-        categories,
+        categories: botCategories,
         config: {},
         status: 'bots',
         selectedBots: [],
