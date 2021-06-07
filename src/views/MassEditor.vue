@@ -262,7 +262,7 @@
 </script>
 
 <style lang="scss">
-  @import "../style/multiselect";
+  @import "../style/partials/multiselect";
 
   .accordion {
     background: var(--color-background);
