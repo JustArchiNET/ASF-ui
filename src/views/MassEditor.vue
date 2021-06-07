@@ -157,6 +157,7 @@
         selectedBots: [],
         selectedConfigProperties: [],
         placeholder: this.$t('mass-editor-properties-placeholder'),
+        watcherActive: true,
       };
     },
     computed: {
@@ -175,8 +176,14 @@
         return this.selectedBots.map(bot => bot.name);
       },
     },
-    async mounted() {
-      await this.loadBotConfig();
+    watch: {
+      async bots() {
+        // Needed because 'this.bots[0].name' is sometimes undefined
+        // Would probably be fixed if I would refactor it to its own component
+        if (!this.watcherActive) return;
+        await this.loadBotConfig();
+        this.watcherActive = false;
+      },
     },
     methods: {
       async loadBotConfig() {
