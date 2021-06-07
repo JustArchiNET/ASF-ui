@@ -77,7 +77,6 @@
         status: 'bots',
         selectedBots: [],
         selectedProperties: [],
-        watcherActive: true,
       };
     },
     computed: {
@@ -86,14 +85,8 @@
         bots: 'bots/bots',
       }),
     },
-    watch: {
-      async bots() {
-        // Needed because 'this.bots[0].name' is sometimes undefined
-        // Would probably be fixed if I would refactor it to its own component
-        if (!this.watcherActive) return;
-        await this.loadBotConfig();
-        this.watcherActive = false;
-      },
+    async created() {
+      await this.loadBotConfig();
     },
     methods: {
       async loadBotConfig() {
