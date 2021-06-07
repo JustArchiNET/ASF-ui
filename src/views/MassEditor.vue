@@ -1,122 +1,56 @@
 <template>
   <main class="main-container main-container--fullheight">
     <div class="container">
-      <div v-if="status === 'bots'">
-        <div class="accordion">
-          {{ $t('mass-editor-bots') }}
-          <div class="navigation pull-right">
-            <button
-              class="button"
-              :disabled="selectedBots.length === 0"
-              :title="[selectedBots.length === 0 ? $t('mass-editor-bots-disabled') : null]"
-              @click="status = 'properties'"
-            >
-              {{ $t('next') }}
-            </button>
-          </div>
-        </div>
-        <div class="panel">
-          <MassEditorBots :bots="bots" :selectedBotNames="selectedBotNames" @update="updateSelectedBots"></MassEditorBots>
+      <MassEditorBots
+        v-if="status === 'bots'"
+        :bots="bots"
+        :selectedBots="selectedBots"
+        @toggle="toggleSelectedBots"
+        @update="updateSelectedBots"
+        @next="status = 'properties'"
+      ></MassEditorBots>
 
-          <button class="button mt" @click="toggleSelectedBots">
-            <span v-if="selectedBots.length === bots.length">{{ $t('mass-editor-bots-deselect') }}</span>
-            <span v-else>{{ $t('mass-editor-bots-select') }}</span>
-          </button>
-        </div>
-      </div>
+      <MassEditorSelect
+        v-if="status === 'properties'"
+        :loading="loading"
+        :status="status"
+        :selectedConfigProperties="selectedConfigProperties"
+        :options="fields"
+        @select="selectProperty"
+        @remove="removeProperty"
+        @update="updateModel"
+        @next="status = 'values'"
+        @back="status = 'bots'"
+      ></MassEditorSelect>
 
-      <div v-if="status === 'properties'">
-        <div class="accordion">
-          {{ $t('mass-editor-properties') }}
-          <div class="navigation pull-right">
-            <button class="button" @click="status = 'bots'">
-              {{ $t('back') }}
-            </button>
-            <button
-              class="button"
-              :disabled="selectedConfigProperties.length === 0"
-              :title="[selectedConfigProperties.length === 0 ? $t('mass-editor-properties-disabled') : null]"
-              @click="status = 'values'"
-            >
-              {{ $t('next') }}
-            </button>
-          </div>
-        </div>
-        <div class="panel">
-          <Multiselect
-            v-model="selectedConfigProperties"
-            label="param"
-            trackBy="param"
-            :loading="loading"
-            :multiple="true"
-            :options="fields"
-            :closeOnSelect="false"
-            :placeholder="placeholder"
-            :deselectLabel="$t('mass-editor-properties-deselect')"
-            :selectLabel="$t('mass-editor-properties-select')"
-            :selectedLabel="$t('mass-editor-properties-selected')"
-            @select="selectProperty"
-            @remove="removeProperty"
-            @open="placeholder = $t('mass-editor-search')"
-            @close="placeholder = $t('mass-editor-properties-placeholder')"
-          >
-            <span slot="noResult">
-              {{ $t('mass-editor-search-not-found') }}
-            </span>
-          </Multiselect>
-        </div>
-      </div>
+      <MassEditorValue
+        v-if="status === 'values'"
+        :selectedConfigProperties="selectedConfigProperties"
+        :categories="categories"
+        :config="config"
+        @next="status = 'check'"
+        @back="status = 'properties'"
+      ></MassEditorValue>
 
-      <div v-if="status === 'values'">
-        <div class="accordion">
-          {{ $t('mass-editor-values', { n: selectedConfigProperties.length }) }}
-          <div class="navigation pull-right">
-            <button class="button" @click="status = 'properties'">
-              {{ $t('back') }}
-            </button>
-            <button class="button" @click="status = 'check'">
-              {{ $t('next') }}
-            </button>
-          </div>
-        </div>
-        <div class="panel">
-          <ConfigEditor
-            :fields="selectedConfigProperties"
-            :categories="displayCategories ? categories : null"
-            :model="config"
-            :deleteDefaultValues="false"
-          ></ConfigEditor>
-        </div>
-      </div>
-
-      <div v-if="status === 'check'">
-        <div class="accordion">
-          {{ $t('mass-editor-check', { n: selectedBots.length, nn: selectedConfigProperties.length }) }}
-          <div class="navigation pull-right">
-            <button v-if="!saving" class="button" @click="status = 'values'">
-              {{ $t('back') }}
-            </button>
-          </div>
-        </div>
-        <div class="panel">
-          <MassEditorCheck
-            :saving="saving"
-            :config="config"
-            :selectedBots="selectedBots"
-            @save="onSave"
-          ></MassEditorCheck>
-        </div>
-      </div>
+      <MassEditorCheck
+        v-if="status === 'check'"
+        :saving="saving"
+        :config="config"
+        :selectedBots="selectedBots"
+        :selectedConfigProperties="selectedConfigProperties"
+        @save="onSave"
+        @back="status = 'values'"
+      ></MassEditorCheck>
     </div>
   </main>
 </template>
 
 <script>
   import { mapGetters } from 'vuex';
-  import Multiselect from 'vue-multiselect';
-  import ConfigEditor from '../components/ConfigEditor.vue';
   import MassEditorBots from '../components/MassEditor/Bots.vue';
+  import MassEditorValue from '../components/MassEditor/Value.vue';
   import MassEditorCheck from '../components/MassEditor/Check.vue';
+  import MassEditorSelect from '../components/MassEditor/Select.vue';
   import fetchConfigSchema from '../utils/fetchConfigSchema';
   import loadParameterDescriptions from '../utils/loadParameterDescriptions';
 
@@ -128,10 +62,10 @@
       };
     },
     components: {
-      ConfigEditor,
       MassEditorBots,
       MassEditorCheck,
-      Multiselect,
+      MassEditorSelect,
+      MassEditorValue,
     },
     data() {
       const categories = [
@@ -155,25 +89,14 @@
         status: 'bots',
         selectedBots: [],
         selectedConfigProperties: [],
-        placeholder: this.$t('mass-editor-properties-placeholder'),
         watcherActive: true,
       };
     },
     computed: {
       ...mapGetters({
         version: 'asf/version',
-        displayCategories: 'settings/displayCategories',
         bots: 'bots/bots',
       }),
-      configProperties() {
-        return this.fields.filter(field => field.param);
-      },
-      configOptions() {
-        return this.fields.map(field => field.param);
-      },
-      selectedBotNames() {
-        return this.selectedBots.map(bot => bot.name);
-      },
     },
     watch: {
       async bots() {
@@ -219,7 +142,8 @@
         this.loading = false;
       },
       updateSelectedBots(bot) {
-        if (this.selectedBotNames.includes(bot.name)) {
+        const selectedBotNames = this.selectedBots.map(bot => bot.name);
+        if (selectedBotNames.includes(bot.name)) {
           this.selectedBots = this.selectedBots.filter(selectedBot => selectedBot.name !== bot.name);
         } else {
           this.selectedBots.push(bot);
@@ -232,6 +156,9 @@
       removeProperty(property) {
         delete this.config[property.param];
       },
+      updateModel(model) {
+        this.selectedConfigProperties = model;
+      },
       async onSave() {
         if (this.saving) return;
 
@@ -239,9 +166,7 @@
 
         // eslint-disable-next-line no-restricted-syntax
         for (const bot of this.selectedBots) {
-          console.log('updating config for bot:', bot.name);
           await this.saveConfigForBot(this.config, bot);
-          console.log('finished updating config for bot:', bot.name);
         }
 
         this.$success(this.$t('mass-editor-check-saved'));
@@ -252,6 +177,7 @@
           // fetch current bot config
           const { [bot.name]: { BotConfig: oldConfig } } = await this.$http.get(`bot/${bot.name}`);
 
+          // we do not want to save identical config
           if (this.isSameConfig(config, oldConfig)) return;
 
           // overwrite current bot config with new one
@@ -282,9 +208,7 @@
 </script>
 
 <style lang="scss">
-  @import "../style/partials/multiselect";
-
-  .accordion {
+  .mass-editor__title {
     background: var(--color-background);
     color: var(--color-text-dark);
     padding: 1em;
@@ -293,19 +217,15 @@
     border-bottom: 1px solid var(--color-text-dark);
   }
 
-  .navigation {
+  .mass-editor__navigation {
     display: flex;
     padding-left: 0.7em;
     gap: 0.5em;
   }
 
-  .panel {
+  .mass-editor__content {
     padding: 1em;
     background: var(--color-background-modal);
     display: block;
-  }
-
-  .mt {
-    margin-top: 1em;
   }
 </style>

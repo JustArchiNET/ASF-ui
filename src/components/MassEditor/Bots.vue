@@ -1,96 +1,64 @@
 <template>
-  <div class="bots">
-    <div v-for="bot in bots" :key="bot.name" class="bot" :class="[`status--${bot.status}`, { selected: botIsSelected(bot), selectable }]" @click="select(bot)">
-      <img class="bot__avatar" :src="bot.avatarURL">
+  <div class="mass-editor">
+    <div class="mass-editor__title">
+      {{ $t('mass-editor-bots') }}
 
-      <div class="bot__status">
-        <span :title="bot.name" class="bot__status-property bot__status-property--name">{{ bot.viewableName }}</span>
-        <span class="bot__status-property bot__status-property--text">{{ bot.statusText }}</span>
+      <div class="mass-editor__navigation pull-right">
+        <button
+          class="button"
+          :disabled="selectedBots.length === 0"
+          :title="[selectedBots.length === 0 ? $t('mass-editor-bots-disabled') : null]"
+          @click="$emit('next')"
+        >
+          {{ $t('next') }}
+        </button>
       </div>
+    </div>
+
+    <div class="mass-editor__content">
+      <BotsView
+        :selectedBotNames="selectedBotNames"
+        :selectable="selectable"
+        :bots="bots"
+        @update="update"
+      ></BotsView>
+
+      <button class="button mt" @click="$emit('toggle')">
+        <span v-if="selectedBots.length === bots.length">{{ $t('mass-editor-bots-deselect') }}</span>
+        <span v-else>{{ $t('mass-editor-bots-select') }}</span>
+      </button>
     </div>
   </div>
 </template>
 
 <script>
+  import BotsView from './partials/BotsView.vue';
+
   export default {
     name: 'MassEditorBots',
+    components: {
+      BotsView,
+    },
     props: {
-      selectedBotNames: { type: Array },
+      selectedBots: { type: Array },
       selectable: { type: Boolean, default: true },
       bots: { type: Array },
     },
-    methods: {
-      select(bot) {
-        if (this.selectable) this.$emit('update', bot);
+    computed: {
+      selectedBotNames() {
+        return this.selectedBots.map(bot => bot.name);
       },
-      botIsSelected(bot) {
-        if (this.selectable) return this.selectedBotNames.includes(bot.name);
-        return false;
+    },
+    methods: {
+      update(bot) {
+        this.$emit('update', bot);
       },
     },
   };
 </script>
 
-<style lang="scss" scoped>
-	.bots {
-		display: grid;
-		grid-gap: 1em;
-		grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-		min-height: 0;
-
-		@media screen and (max-width: 400px) {
-			grid-template-columns: 1fr;
-		}
-	}
-
-	.bot {
-		background: var(--color-background-light);
-		border-radius: 0 0 4px 4px;
-    border: 2px solid var(--color-background-light);
-		border-top: 3px solid var(--color-status);
-		display: grid;
-		grid-template-areas: 'avatar meta buttons';
-		grid-template-columns: min-content 1fr auto;
-		padding: 0.5em;
-		transition: border .3s ease;
-	}
-
-  .selected {
-    color: var(--color-theme);
-    border: 2px solid var(--color-theme);
-    border-top: 3px solid var(--color-status);
-  }
-
-  .selectable {
-    cursor: pointer;
-  }
-
-	.bot__avatar {
-		display: block;
-		height: 2.25em;
-		padding-right: 0.5em;
-		width: 2.25em;
-	}
-
-	.bot__status {
-		display: flex;
-		flex-direction: column;
-		overflow: hidden;
-	}
-
-	.bot__status-property {
-		display: inline-block;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-	}
-
-	.bot__status-property--name {
-		font-weight: 600;
-	}
-
-	.bot__status-property--text {
-		font-size: 0.8em;
-		font-style: italic;
-	}
+<style lang="scss">
+  .mt {
+      margin-top: 1em;
+    }
 </style>
