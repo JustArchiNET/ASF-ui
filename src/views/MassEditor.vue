@@ -56,6 +56,7 @@
             :selectLabel="$t('mass-editor-properties-select')"
             :selectedLabel="$t('mass-editor-properties-selected')"
             @select="selectProperty"
+            @remove="removeProperty"
             @open="placeholder = $t('mass-editor-search')"
             @close="placeholder = $t('mass-editor-properties-placeholder')"
           >
@@ -68,7 +69,7 @@
 
       <div v-if="status === 'values'">
         <div class="accordion">
-          {{ $t('mass-editor-values') }}
+          {{ $t('mass-editor-values', { n: selectedConfigProperties.length }) }}
           <div class="navigation pull-right">
             <button class="button" @click="status = 'properties'">
               {{ $t('back') }}
@@ -90,7 +91,7 @@
 
       <div v-if="status === 'check'">
         <div class="accordion">
-          {{ $t('mass-editor-check') }}
+          {{ $t('mass-editor-check', { n: selectedBots.length, nn: selectedConfigProperties.length }) }}
           <div class="navigation pull-right">
             <button v-if="!saving" class="button" @click="status = 'values'">
               {{ $t('back') }}
@@ -100,7 +101,7 @@
         <div class="panel">
           <MassEditorCheck
             :saving="saving"
-            :config="JSON.stringify(config)"
+            :config="config"
             :selectedBots="selectedBots"
             @save="onSave"
           ></MassEditorCheck>
@@ -227,6 +228,9 @@
       selectProperty(property) {
         // initialize config property with default value
         this.config[property.param] = property.defaultValue;
+      },
+      removeProperty(property) {
+        delete this.config[property.param];
       },
       async onSave() {
         if (this.saving) return;

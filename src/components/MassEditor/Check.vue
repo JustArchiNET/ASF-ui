@@ -1,10 +1,10 @@
 <template>
   <div class="overview">
-    <p>{{ $t('mass-editor-check-bots') }}</p>
+    <p>{{ $t('mass-editor-check-bots', { n: selectedBots.length }) }}</p>
 
     <MassEditorBots :bots="selectedBots" :selectable="false"></MassEditorBots>
 
-    <p>{{ $t('mass-editor-check-values') }}</p>
+    <p>{{ $t('mass-editor-check-values', { n: Object.keys(config).length }) }}</p>
 
     <pre><code>{{ prettyConfig }}</code></pre>
 
@@ -27,12 +27,12 @@
     },
     props: {
       saving: { type: Boolean, default: false },
-      config: { type: String },
+      config: { type: Object },
       selectedBots: { type: Array },
     },
     computed: {
       prettyConfig() {
-        return JSON.stringify(JSON.parse(this.config), null, 2);
+        return JSON.stringify(this.config, null, 2);
       },
     },
   };
