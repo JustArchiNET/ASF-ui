@@ -127,7 +127,7 @@
   "mass-editor-properties-select": "Click or press enter to select",
   "mass-editor-properties-selected": "Selected",
   "mass-editor-search": "Type to search...",
-  "mass-editor-search-not-found": "No config property found - Consider changing the search query",
+  "mass-editor-search-not-found": "No config property found, consider changing the search query",
   "mass-editor-values": "Edit the config {PLURAL:n|property|properties} you selected",
   "multiple-games": "Multiple games",
   "name-description": "<code>string</code> type with no default value. This property is required and defines bot name - it's used for identification purpose inside ASF only. Must be unique for each bot.",
