@@ -38,9 +38,12 @@
           values: {
             [this.$t('bots')]: 'home',
             [this.$t('commands')]: 'commands',
-            [this.$t('log')]: 'log',
             [this.$t('releases')]: 'releases',
+            [this.$t('log')]: 'log',
             [this.$t('plugins')]: 'plugins',
+            [this.$t('asf-config')]: 'asf-config',
+            [this.$t('ui-config')]: 'ui-config',
+            [this.$t('mass-editor')]: 'mass-editor',
             [this.$t('last-visited-page')]: '_last-visited-page',
           },
           description: this.$t('default-page-description'),
