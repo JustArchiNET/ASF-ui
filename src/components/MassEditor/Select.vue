@@ -8,12 +8,7 @@
           {{ $t('back') }}
         </button>
 
-        <button
-          class="button"
-          :disabled="selectedProperties.length === 0"
-          :title="[selectedProperties.length === 0 ? $t('mass-editor-properties-disabled') : null]"
-          @click="$emit('next')"
-        >
+        <button class="button" :disabled="isNextDisabled" :title="nextTitle" @click="$emit('next')">
           {{ $t('next') }}
         </button>
       </div>
@@ -64,6 +59,14 @@
         selection: this.selectedProperties,
         placeholder: this.$t('mass-editor-properties-placeholder'),
       };
+    },
+    computed: {
+      nextTitle() {
+        return (this.selectedProperties.length === 0) ? this.$t('mass-editor-properties-disabled') : null;
+      },
+      isNextDisabled() {
+        return this.selectedProperties.length === 0;
+      },
     },
     methods: {
       selectOption(option) {

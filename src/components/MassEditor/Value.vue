@@ -1,7 +1,7 @@
 <template>
   <div class="mass-editor">
     <div class="mass-editor__title">
-      {{ $t('mass-editor-values', { n: selectedProperties.length }) }}
+      {{ title }}
 
       <div class="mass-editor__navigation pull-right">
         <button class="button" @click="$emit('back')">
@@ -43,6 +43,9 @@
       ...mapGetters({
         displayCategories: 'settings/displayCategories',
       }),
+      title() {
+        return this.$t('mass-editor-values', { n: this.selectedProperties.length });
+      },
     },
   };
 </script>

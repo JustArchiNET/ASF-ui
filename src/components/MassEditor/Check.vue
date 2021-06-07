@@ -1,7 +1,7 @@
 <template>
   <div class="mass-editor">
     <div class="mass-editor__title">
-      {{ $t('mass-editor-check', { n: selectedBots.length, nn: selectedProperties.length }) }}
+      {{ title }}
 
       <div class="mass-editor__navigation pull-right">
         <button v-if="!saving" class="button" @click="$emit('back')">
@@ -11,16 +11,10 @@
     </div>
 
     <div class="mass-editor__content">
-      <p>{{ $t('mass-editor-check-bots', { n: selectedBots.length }) }}</p>
+      <p>{{ selectedBotsText }}</p>
+      <BotsView :selectedBots="selectedBots" :selectable="false" :bots="selectedBots"></BotsView>
 
-      <BotsView
-        :selectedBots="selectedBots"
-        :selectable="false"
-        :bots="selectedBots"
-      ></BotsView>
-
-      <p>{{ $t('mass-editor-check-values', { n: Object.keys(config).length }) }}</p>
-
+      <p>{{ selectedPropertiesText }}</p>
       <pre><code>{{ prettyConfig }}</code></pre>
 
       <div class="form-item">
@@ -52,6 +46,15 @@
       };
     },
     computed: {
+      title() {
+        return this.$t('mass-editor-check', { n: this.selectedBots.length, nn: this.selectedProperties.length });
+      },
+      selectedBotsText() {
+        this.$t('mass-editor-check-bots', { n: this.selectedBots.length });
+      },
+      selectedPropertiesText() {
+        return this.$t('mass-editor-check-values', { n: Object.keys(this.config).length });
+      },
       prettyConfig() {
         return JSON.stringify(this.config, null, 2);
       },

@@ -4,12 +4,7 @@
       {{ $t('mass-editor-bots') }}
 
       <div class="mass-editor__navigation pull-right">
-        <button
-          class="button"
-          :disabled="selectedBots.length === 0"
-          :title="[selectedBots.length === 0 ? $t('mass-editor-bots-disabled') : null]"
-          @click="$emit('next')"
-        >
+        <button class="button" :disabled="isNextDisabled" :title="nextTitle" @click="$emit('next')">
           {{ $t('next') }}
         </button>
       </div>
@@ -24,8 +19,7 @@
       ></BotsView>
 
       <button class="button mt" @click="$emit('toggle')">
-        <span v-if="selectedBots.length === bots.length">{{ $t('mass-editor-bots-deselect') }}</span>
-        <span v-else>{{ $t('mass-editor-bots-select') }}</span>
+        <span>{{ toggleBotsText }}</span>
       </button>
     </div>
   </div>
@@ -47,6 +41,16 @@
     computed: {
       selectedBotNames() {
         return this.selectedBots.map(bot => bot.name);
+      },
+      nextTitle() {
+        return (this.selectedBots.length === 0) ? this.$t('mass-editor-bots-disabled') : null;
+      },
+      isNextDisabled() {
+        return this.selectedBots.length === 0;
+      },
+      toggleBotsText() {
+        if (this.selectedBots.length === this.bots.length) return this.$t('mass-editor-bots-deselect');
+        return this.$t('mass-editor-bots-select');
       },
     },
     methods: {
