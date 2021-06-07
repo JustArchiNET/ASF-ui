@@ -71,6 +71,7 @@
   "default-page-description": "Решите, какую страницу вы хотите видеть по умолчанию.",
   "delete": "Удалить",
   "description-not-found": "Описание для этой конфигурации не найдено.",
+  "discussions": "Обсуждения",
   "display-categories": "Показать категории",
   "display-categories-description": "Выберите, хотите ли вы чтобы параметры конфигурации были распределены по категориям.",
   "download-raw-config": "Скачать конфигурационный файл",
@@ -188,8 +189,9 @@
   "update-trying": "Новый релиз доступен! Попытка обновления...",
   "updates": "Обновления",
   "welcome": "Добро пожаловать",
+  "welcome-message": "Добро пожаловать в ASF-ui, официальный веб-интерфейс для ASF.",
   "welcome-message-todo": "Необходимо сделать следующее:",
   "welcome-message-bot": "Создать бота",
   "welcome-message-id": "Установить SteamOwnerID",
-  "wiki": "Вики"
+  "wiki": "Wiki"
 }
