@@ -18,12 +18,10 @@
         <div class="panel">
           <MassEditorBots :bots="bots" :selectedBotNames="selectedBotNames" @update="updateSelectedBots"></MassEditorBots>
 
-          <div class="form-item">
-            <button class="button" @click="toggleSelectedBots">
-              <span v-if="selectedBots.length === bots.length">{{ $t('mass-editor-bots-deselect') }}</span>
-              <span v-else>{{ $t('mass-editor-bots-select') }}</span>
-            </button>
-          </div>
+          <button class="button mt" @click="toggleSelectedBots">
+            <span v-if="selectedBots.length === bots.length">{{ $t('mass-editor-bots-deselect') }}</span>
+            <span v-else>{{ $t('mass-editor-bots-select') }}</span>
+          </button>
         </div>
       </div>
 
@@ -273,6 +271,7 @@
     padding: 1em;
     display: flex;
     align-items: center;
+    border-bottom: 1px solid var(--color-text-dark);
   }
 
   .navigation {
@@ -287,7 +286,7 @@
     display: block;
   }
 
-  .form-item {
+  .mt {
     margin-top: 1em;
   }
 </style>
