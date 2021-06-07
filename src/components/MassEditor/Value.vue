@@ -1,7 +1,7 @@
 <template>
   <div class="mass-editor">
     <div class="mass-editor__title">
-      {{ $t('mass-editor-values', { n: selectedConfigProperties.length }) }}
+      {{ $t('mass-editor-values', { n: selectedProperties.length }) }}
 
       <div class="mass-editor__navigation pull-right">
         <button class="button" @click="$emit('back')">
@@ -16,7 +16,7 @@
 
     <div class="mass-editor__content">
       <ConfigEditor
-        :fields="selectedConfigProperties"
+        :fields="selectedProperties"
         :categories="displayCategories ? categories : null"
         :model="config"
         :deleteDefaultValues="false"
@@ -37,7 +37,7 @@
     props: {
       config: { type: Object },
       categories: { type: Array },
-      selectedConfigProperties: { type: Array },
+      selectedProperties: { type: Array },
     },
     computed: {
       ...mapGetters({

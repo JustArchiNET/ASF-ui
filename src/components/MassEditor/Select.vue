@@ -10,8 +10,8 @@
 
         <button
           class="button"
-          :disabled="selectedConfigProperties.length === 0"
-          :title="[selectedConfigProperties.length === 0 ? $t('mass-editor-properties-disabled') : null]"
+          :disabled="selectedProperties.length === 0"
+          :title="[selectedProperties.length === 0 ? $t('mass-editor-properties-disabled') : null]"
           @click="$emit('next')"
         >
           {{ $t('next') }}
@@ -57,11 +57,11 @@
     props: {
       loading: { type: Boolean },
       options: { type: Array },
-      selectedConfigProperties: { type: Array },
+      selectedProperties: { type: Array },
     },
     data() {
       return {
-        selection: this.selectedConfigProperties,
+        selection: this.selectedProperties,
         placeholder: this.$t('mass-editor-properties-placeholder'),
       };
     },

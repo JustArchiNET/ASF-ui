@@ -14,7 +14,7 @@
         v-if="status === 'properties'"
         :loading="loading"
         :status="status"
-        :selectedConfigProperties="selectedConfigProperties"
+        :selectedProperties="selectedProperties"
         :options="fields"
         @select="selectProperty"
         @remove="removeProperty"
@@ -25,7 +25,7 @@
 
       <MassEditorValue
         v-if="status === 'values'"
-        :selectedConfigProperties="selectedConfigProperties"
+        :selectedProperties="selectedProperties"
         :categories="categories"
         :config="config"
         @next="status = 'check'"
@@ -36,7 +36,7 @@
         v-if="status === 'check'"
         :config="config"
         :selectedBots="selectedBots"
-        :selectedConfigProperties="selectedConfigProperties"
+        :selectedProperties="selectedProperties"
         @back="status = 'values'"
       ></MassEditorCheck>
     </div>
@@ -85,7 +85,7 @@
         config: {},
         status: 'bots',
         selectedBots: [],
-        selectedConfigProperties: [],
+        selectedProperties: [],
         watcherActive: true,
       };
     },
@@ -154,7 +154,7 @@
         delete this.config[property.param];
       },
       updateModel(model) {
-        this.selectedConfigProperties = model;
+        this.selectedProperties = model;
       },
       toggleSelectedBots() {
         if (this.selectedBots.length === this.bots.length) this.selectedBots = [];

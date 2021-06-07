@@ -1,7 +1,7 @@
 <template>
   <div class="mass-editor">
     <div class="mass-editor__title">
-      {{ $t('mass-editor-check', { n: selectedBots.length, nn: selectedConfigProperties.length }) }}
+      {{ $t('mass-editor-check', { n: selectedBots.length, nn: selectedProperties.length }) }}
 
       <div class="mass-editor__navigation pull-right">
         <button v-if="!saving" class="button" @click="$emit('back')">
@@ -44,7 +44,7 @@
     props: {
       config: { type: Object },
       selectedBots: { type: Array },
-      selectedConfigProperties: { type: Array },
+      selectedProperties: { type: Array },
     },
     data() {
       return {
