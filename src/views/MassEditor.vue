@@ -208,7 +208,10 @@
         };
 
         this.fields = Object.keys(fields).map(key => {
-          const description = (!descriptions[key]) ? this.$t('description-not-found') : descriptions[key].replace(/<a href="/g, '<a target="_blank" rel="noreferrer noopener" href="');
+          const description = (!descriptions[key])
+            ? this.$t('description-not-found')
+            : descriptions[key].replace(/<a href="/g, '<a target="_blank" rel="noreferrer noopener" href="');
+
           return { description, ...fields[key], ...(extendedFields[key] || []) };
         });
 
@@ -245,6 +248,8 @@
           // fetch current bot config
           const { [bot.name]: { BotConfig: oldConfig } } = await this.$http.get(`bot/${bot.name}`);
 
+          if (this.isSameConfig(config, oldConfig)) return;
+
           // overwrite current bot config with new one
           const botConfig = { ...oldConfig, ...config };
 
@@ -256,6 +261,17 @@
       toggleSelectedBots() {
         if (this.selectedBots.length === this.bots.length) this.selectedBots = [];
         else this.selectedBots = this.bots;
+      },
+      isSameConfig(newConfig, oldConfig) {
+        // eslint-disable-next-line no-restricted-syntax
+        for (const [newProperty, newValue] of Object.entries(newConfig)) {
+          const found = Object.entries(oldConfig)
+            .find(([oldProperty, oldValue]) => oldProperty === newProperty && oldValue === newValue);
+
+          if (found) return true;
+        }
+
+        return false;
       },
     },
   };

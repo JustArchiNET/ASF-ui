@@ -110,7 +110,10 @@
           };
 
           this.fields = Object.keys(fields).map(key => {
-            const description = (!descriptions[key]) ? this.$t('description-not-found') : descriptions[key].replace(/<a href="/g, '<a target="_blank" rel="noreferrer noopener" href="');
+            const description = (!descriptions[key])
+              ? this.$t('description-not-found')
+              : descriptions[key].replace(/<a href="/g, '<a target="_blank" rel="noreferrer noopener" href="');
+
             return { description, ...fields[key], ...(extendedFields[key] || []) };
           });
         } catch (err) {

@@ -46,17 +46,18 @@
 	.bot {
 		background: var(--color-background-light);
 		border-radius: 0 0 4px 4px;
+    border: 2px solid var(--color-background-light);
 		border-top: 3px solid var(--color-status);
 		display: grid;
 		grid-template-areas: 'avatar meta buttons';
 		grid-template-columns: min-content 1fr auto;
 		padding: 0.5em;
-		transition: border .3s;
+		transition: border .3s ease;
 	}
 
   .selected {
     color: var(--color-theme);
-    border: 3px solid var(--color-theme);
+    border: 2px solid var(--color-theme);
     border-top: 3px solid var(--color-status);
   }
 
