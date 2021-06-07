@@ -118,7 +118,7 @@
   "mass-editor-bots-select": "Select all bots",
   "mass-editor-check": "Check the selected {PLURAL:n|bot|bots} and config {PLURAL:nn|property|properties}",
   "mass-editor-check-bots": "Selected {PLURAL:n|bot|bots}:",
-  "mass-editor-check-saved": "All configs for the selected bots have been saved",
+  "mass-editor-check-saved": "{PLURAL:n|Config|Configs} for selected {PLURAL:n|bot has|bots have} been saved!",
   "mass-editor-check-values": "The following config {PLURAL:n|property|properties} will be saved:",
   "mass-editor-properties": "Select the config properties you want to edit",
   "mass-editor-properties-deselect": "Click or press enter to remove",

@@ -70,7 +70,7 @@
           await this.saveConfigForBot(this.config, bot);
         }
 
-        this.$success(this.$t('mass-editor-check-saved'));
+        this.$success(this.$t('mass-editor-check-saved', { n: this.selectedBots.length }));
         this.saving = false;
       },
       async saveConfigForBot(config, bot) {
