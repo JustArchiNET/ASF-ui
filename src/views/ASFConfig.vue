@@ -32,6 +32,7 @@
   import loadParameterDescriptions from '../utils/loadParameterDescriptions';
   import fetchConfigSchema from '../utils/fetchConfigSchema';
   import downloadConfig from '../utils/downloadConfig';
+  import { asfCategories } from '../utils/categories';
 
   export default {
     name: 'ASFConfig',
@@ -42,25 +43,13 @@
     },
     components: { ConfigEditor },
     data() {
-      const categories = [
-        { name: this.$t('basic'), fields: ['SteamOwnerID'] },
-        { name: this.$t('trade'), fields: ['MaxTradeHoldDuration'] },
-        { name: this.$t('customization'), fields: ['AutoRestart', 'Blacklist', 'CommandPrefix', 'CurrentCulture', 'Statistics', 'SteamMessagePrefix'] },
-        { name: this.$t('remote-access'), fields: ['Headless', 'IPC', 'IPCPassword', 'IPCPasswordFormat'] },
-        { name: this.$t('connection'), fields: ['ConnectionTimeout', 'SteamProtocols', 'WebProxy', 'WebProxyPassword', 'WebProxyUsername'] },
-        { name: this.$t('farming'), fields: ['FarmingDelay', 'IdleFarmingPeriod', 'MaxFarmingTime'] },
-        { name: this.$t('performance'), fields: ['OptimizationMode', 'ConfirmationsLimiterDelay', 'GiftsLimiterDelay', 'InventoryLimiterDelay', 'LoginLimiterDelay', 'WebLimiterDelay'] },
-        { name: this.$t('updates'), fields: ['UpdateChannel', 'UpdatePeriod'] },
-        { name: this.$t('advanced'), fields: ['Debug'] },
-      ];
-
       return {
         loading: true,
         saving: false,
         fields: [],
         model: {},
         descriptions: {},
-        categories,
+        categories: asfCategories,
       };
     },
     computed: mapGetters({
@@ -89,7 +78,10 @@
       };
 
       this.fields = Object.keys(fields).map(key => {
-        const description = (!descriptions[key]) ? this.$t('description-not-found') : descriptions[key].replace(/<a href="/g, '<a target="_blank" rel="noreferrer noopener" href="');
+        const description = (!descriptions[key])
+          ? this.$t('description-not-found')
+          : descriptions[key].replace(/<a href="/g, '<a target="_blank" rel="noreferrer noopener" href="');
+
         return { description, ...fields[key], ...(extendedFields[key] || []) };
       });
 

@@ -262,6 +262,15 @@
 	}
 }
 
+.button:disabled {
+  cursor: not-allowed;
+  background: var(--color-button-default);
+
+  &:hover {
+    background: var(--color-text-disabled);
+  }
+}
+
 .button--small {
 	min-height: 1.2em;
 	padding: 0.25em 0.5em;

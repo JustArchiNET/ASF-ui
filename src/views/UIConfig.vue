@@ -13,6 +13,7 @@
 <script>
   import { mapGetters } from 'vuex';
   import ConfigEditor from '../components/ConfigEditor.vue';
+  import { uiCategories } from '../utils/categories';
 
   export default {
     name: 'UiConfig',
@@ -23,12 +24,6 @@
     },
     components: { ConfigEditor },
     data() {
-      const categories = [
-        { name: this.$t('general'), fields: [this.$t('default-page'), this.$t('notification-position'), this.$t('notify-release'), this.$t('display-categories')] },
-        { name: this.$t('commands'), fields: [this.$t('timestamps')] },
-        { name: this.$t('bots'), fields: [this.$t('bot-nicknames'), this.$t('bot-game-name'), this.$t('bot-fav-buttons')] },
-      ];
-
       const fields = [
         {
           param: this.$t('default-page'),
@@ -38,9 +33,12 @@
           values: {
             [this.$t('bots')]: 'home',
             [this.$t('commands')]: 'commands',
-            [this.$t('log')]: 'log',
             [this.$t('releases')]: 'releases',
             [this.$t('plugins')]: 'plugins',
+            [this.$t('log')]: 'log',
+            [this.$t('asf-config')]: 'asf-config',
+            [this.$t('ui-config')]: 'ui-config',
+            [this.$t('mass-editor')]: 'mass-editor',
             [this.$t('last-visited-page')]: '_last-visited-page',
           },
           description: this.$t('default-page-description'),
@@ -108,7 +106,7 @@
 
       return {
         fields,
-        categories,
+        categories: uiCategories,
         model: {
           defaultView: this.$store.getters['settings/defaultView'],
           notificationPosition: this.$store.getters['settings/notificationPosition'],

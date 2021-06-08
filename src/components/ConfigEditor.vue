@@ -46,6 +46,11 @@
       categories: Array,
       descriptions: Object,
       extendedFields: Object,
+      deleteDefaultValues: {
+        type: Boolean,
+        required: false,
+        default: true,
+      },
     },
     computed: {
       uncategorizedFields() {
@@ -104,7 +109,7 @@
       updateModel(value, field) {
         const fieldSchema = this.fields.find(fieldSchema => fieldSchema.paramName === field);
 
-        if (fieldSchema && typeof fieldSchema.defaultValue !== 'undefined' && this.isDefault(value, fieldSchema)) {
+        if (this.deleteDefaultValues && fieldSchema && typeof fieldSchema.defaultValue !== 'undefined' && this.isDefault(value, fieldSchema)) {
           delete this.model[field];
         } else {
           this.model[field] = value;

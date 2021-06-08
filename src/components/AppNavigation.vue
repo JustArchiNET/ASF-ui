@@ -14,6 +14,7 @@
         <NavigationCategoryTitle :name="$t('config')"></NavigationCategoryTitle>
         <NavigationLink :name="$t('asf-config')" icon="edit" :to="{ name: 'asf-config' }"></NavigationLink>
         <NavigationLink :name="$t('ui-config')" icon="wrench" :to="{ name: 'ui-config' }"></NavigationLink>
+        <NavigationLink :name="$t('mass-editor')" icon="paste" :to="{ name: 'mass-editor' }"></NavigationLink>
       </div>
 
       <div class="navigation-category navigation-category--pull-bottom">
