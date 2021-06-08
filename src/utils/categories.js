@@ -22,7 +22,19 @@ const botCategories = [
   { name: Vue.i18n.translate('performance'), fields: ['HoursUntilCardDrops'] },
 ];
 
+const newBotCategories = [
+  { name: Vue.i18n.translate('basic'), fields: ['Name', 'SteamLogin', 'SteamPassword'] },
+];
+
+const uiCategories = [
+  { name: Vue.i18n.translate('general'), fields: [Vue.i18n.translate('default-page'), Vue.i18n.translate('notification-position'), Vue.i18n.translate('notify-release'), Vue.i18n.translate('display-categories')] },
+  { name: Vue.i18n.translate('commands'), fields: [Vue.i18n.translate('timestamps')] },
+  { name: Vue.i18n.translate('bots'), fields: [Vue.i18n.translate('bot-nicknames'), Vue.i18n.translate('bot-game-name'), Vue.i18n.translate('bot-fav-buttons')] },
+];
+
 export {
   asfCategories,
   botCategories,
+  newBotCategories,
+  uiCategories,
 };
