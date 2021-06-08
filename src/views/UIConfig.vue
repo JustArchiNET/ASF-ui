@@ -38,6 +38,7 @@
             [this.$t('log')]: 'log',
             [this.$t('asf-config')]: 'asf-config',
             [this.$t('ui-config')]: 'ui-config',
+            [this.$t('mass-editor')]: 'mass-editor',
             [this.$t('last-visited-page')]: '_last-visited-page',
           },
           description: this.$t('default-page-description'),

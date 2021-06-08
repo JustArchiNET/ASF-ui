@@ -157,6 +157,11 @@ export default [
 		component: () => import('../views/ASFConfig.vue')
 	},
 	{
+		path: '/page/mass-editor',
+		name: 'mass-editor',
+		component: () => import('../views/MassEditor.vue')
+	},
+	{
 		path: '*',
 		name: '404',
 		redirect: { name: 'home' }
