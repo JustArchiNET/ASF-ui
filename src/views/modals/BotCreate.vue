@@ -33,27 +33,18 @@
   import downloadConfig from '../../utils/downloadConfig';
   import delay from '../../utils/delay';
   import botExists from '../../utils/botExists';
+  import { botCategories } from '../../utils/categories';
 
   export default {
     name: 'BotCreate',
     components: { ConfigEditor },
     data() {
-      const categories = [
-        { name: this.$t('basic'), fields: ['Name', 'SteamLogin', 'SteamPassword', 'Enabled', 'Paused', 'OnlineStatus', 'BotBehaviour'] },
-        { name: this.$t('security'), fields: ['PasswordFormat', 'UseLoginKeys'] },
-        { name: this.$t('access'), fields: ['SteamUserPermissions', 'SteamParentalCode'] },
-        { name: this.$t('trade'), fields: ['SteamTradeToken', 'AcceptGifts', 'SendTradePeriod', 'SendOnFarmingFinished', 'TradingPreferences', 'LootableTypes', 'TransferableTypes', 'MatchableTypes'] },
-        { name: this.$t('farming'), fields: ['FarmingOrders', 'AutoSteamSaleEvent', 'FarmPriorityQueueOnly', 'FarmNonRefundableGamesOnly', 'FarmOffline', 'ShutdownOnFarmingFinished'] },
-        { name: this.$t('customization'), fields: ['SteamMasterClanID', 'RedeemingPreferences', 'GamesPlayedWhileIdle', 'CustomGamePlayedWhileFarming', 'CustomGamePlayedWhileIdle'] },
-        { name: this.$t('performance'), fields: ['HoursUntilCardDrops'] },
-      ];
-
       return {
         loading: true,
         creating: false,
         fields: [],
         model: {},
-        categories,
+        categories: botCategories,
       };
     },
     computed: mapGetters({

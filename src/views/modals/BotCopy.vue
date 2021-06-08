@@ -30,15 +30,12 @@
   import delay from '../../utils/delay';
   import botExists from '../../utils/botExists';
   import { get } from '../../utils/storage';
+  import { newBotCategories } from '../../utils/categories';
 
   export default {
     name: 'BotCopy',
     components: { ConfigEditor },
     data() {
-      const categories = [
-        { name: this.$t('basic'), fields: ['Name', 'SteamLogin', 'SteamPassword'] },
-      ];
-
       const fields = [
         {
           defaultValue: '',
@@ -66,7 +63,7 @@
 
       return {
         creating: false,
-        categories,
+        categories: newBotCategories,
         fields,
         model: {},
       };
