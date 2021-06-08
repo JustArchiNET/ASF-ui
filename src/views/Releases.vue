@@ -7,7 +7,7 @@
 </template>
 
 <script>
-  import AsfReleases from '../components/AsfReleases.vue';
+  import AsfReleases from '../components/ASF/Releases.vue';
 
   export default {
     name: 'Releases',

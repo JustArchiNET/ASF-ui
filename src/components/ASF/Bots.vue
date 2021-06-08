@@ -15,7 +15,7 @@
 
 <script>
   import { mapGetters } from 'vuex';
-  import BotCard from './BotCard.vue';
+  import BotCard from '../Bot/Card.vue';
 
   export default {
     name: 'AsfBots',

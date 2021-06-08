@@ -27,10 +27,10 @@
   import { mapGetters } from 'vuex';
   import humanizeDuration from 'humanize-duration';
   import linkifyHtml from 'linkifyjs/html';
-  import getLocaleForHD from '../utils/getLocaleForHD';
-  import * as storage from '../utils/storage';
-  import compareVersion from '../utils/compareVersion';
-  import { UPDATECHANNEL } from '../store/modules/asf';
+  import getLocaleForHD from '../../utils/getLocaleForHD';
+  import * as storage from '../../utils/storage';
+  import compareVersion from '../../utils/compareVersion';
+  import { UPDATECHANNEL } from '../../store/modules/asf';
 
   export default {
     name: 'AsfReleases',

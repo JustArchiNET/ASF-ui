@@ -22,8 +22,8 @@
 
 <script>
   import { mapActions, mapGetters } from 'vuex';
-  import NavigationBrand from './NavigationBrand.vue';
-  import NavigationLanguageSwitch from './NavigationLanguageSwitch.vue';
+  import NavigationBrand from '../Navigation/Brand.vue';
+  import NavigationLanguageSwitch from '../Navigation/LanguageSwitch.vue';
 
   export default {
     name: 'AppHeader',

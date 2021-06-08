@@ -7,7 +7,7 @@
 </template>
 
 <script>
-  import AsfLog from '../components/AsfLog.vue';
+  import AsfLog from '../components/ASF/Log.vue';
 
   export default {
     name: 'Log',

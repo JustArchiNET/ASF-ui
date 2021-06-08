@@ -47,10 +47,10 @@
   import { mapGetters } from 'vuex';
   import humanizeDuration from 'humanize-duration';
   import getLocaleForHD from '../../utils/getLocaleForHD';
-  import BotAction from '../../components/BotAction.vue';
-  import BotFarmingInfo from '../../components/BotFarmingInfo.vue';
-  import BotGames from '../../components/BotGames.vue';
-  import BotLink from '../../components/BotLink.vue';
+  import BotAction from '../../components/Bot/Action.vue';
+  import BotFarmingInfo from '../../components/Bot/FarmingInfo.vue';
+  import BotGames from '../../components/Bot/Games.vue';
+  import BotLink from '../../components/Bot/Link.vue';
   import getUserInputType from '../../utils/getUserInputType';
 
   export default {

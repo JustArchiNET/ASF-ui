@@ -35,10 +35,10 @@
 
 <script>
   import { mapGetters } from 'vuex';
-  import NavigationLink from './NavigationLink.vue';
-  import NavigationCategoryTitle from './NavigationCategoryTitle.vue';
-  import NavigationBots from './NavigationBots.vue';
-  import NavigationStatistics from './NavigationStatistics.vue';
+  import NavigationLink from '../Navigation/Link.vue';
+  import NavigationCategoryTitle from '../Navigation/CategoryTitle.vue';
+  import NavigationBots from '../Navigation/Bots.vue';
+  import NavigationStatistics from '../Navigation/Statistics.vue';
 
   export default {
     name: 'AppNavigation',

@@ -16,11 +16,11 @@
 
 <script>
   import { mapGetters, mapActions } from 'vuex';
-  import AppHeader from './components/AppHeader.vue';
-  import AppNavigation from './components/AppNavigation.vue';
-  import AppFooter from './components/AppFooter.vue';
-  import AppSideMenu from './components/AppSideMenu.vue';
-  import AppModal from './components/AppModal.vue';
+  import AppHeader from './components/App/Header.vue';
+  import AppNavigation from './components/App/Navigation.vue';
+  import AppFooter from './components/App/Footer.vue';
+  import AppSideMenu from './components/App/SideMenu.vue';
+  import AppModal from './components/App/Modal.vue';
   import { STATUS } from './utils/getStatus';
 
   export default {

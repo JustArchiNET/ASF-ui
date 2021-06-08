@@ -6,8 +6,8 @@
 </template>
 
 <script>
-  import AsfFarmingInfo from '../components/AsfFarmingInfo.vue';
-  import AsfBots from '../components/AsfBots.vue';
+  import AsfFarmingInfo from '../components/ASF/FarmingInfo.vue';
+  import AsfBots from '../components/ASF/Bots.vue';
 
   export default {
     name: 'BotsOverview',

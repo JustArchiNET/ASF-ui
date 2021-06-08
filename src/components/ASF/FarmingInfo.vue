@@ -9,8 +9,8 @@
 <script>
   import { mapGetters } from 'vuex';
   import humanizeDuration from 'humanize-duration';
-  import getLocaleForHD from '../utils/getLocaleForHD';
-  import AsfFarmingInfoCard from './AsfFarmingInfoCard.vue';
+  import getLocaleForHD from '../../utils/getLocaleForHD';
+  import AsfFarmingInfoCard from './FarmingInfoCard.vue';
 
   export default {
     name: 'AsfFarmingInfo',

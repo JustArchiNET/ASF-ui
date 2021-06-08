@@ -11,7 +11,7 @@
 
 <script>
   import { mapGetters } from 'vuex';
-  import FitText from './utils/FitText.vue';
+  import FitText from '../utils/FitText.vue';
 
   export default {
     name: 'NavigationBots',

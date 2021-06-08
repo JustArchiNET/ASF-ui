@@ -8,7 +8,7 @@
 
 <script>
   import { mapGetters } from 'vuex';
-  import NavigationStatistic from './NavigationStatistic.vue';
+  import NavigationStatistic from './Statistic.vue';
 
   export default {
     name: 'NavigationStatistics',

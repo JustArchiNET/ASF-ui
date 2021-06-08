@@ -7,7 +7,7 @@
 </template>
 
 <script>
-  import AsfPlugins from '../components/AsfPlugins.vue';
+  import AsfPlugins from '../components/ASF/Plugins.vue';
 
   export default {
     name: 'Plugins',
