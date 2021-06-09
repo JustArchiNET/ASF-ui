@@ -1,6 +1,6 @@
 # User input
 
-When running ASF in non-interactive environment, most likely with [Headless](https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Configuration#headless) global config property set to `true`, ASF-ui can be used for providing required account credentials for ASF to operate.
+When running ASF in the non-interactive environment, most likely with [Headless](https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Configuration#headless) global config property set to `true`, ASF-ui can be used for providing required account credentials for ASF to operate.
 
 You can achieve that in two different ways:
 1. Pressing Start button on bot's card with "Requires input" status will open window with input field, if you didn't input missing data before starting the bot for the first time, like in `"Enabled": true` case.
