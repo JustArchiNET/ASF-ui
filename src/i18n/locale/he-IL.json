@@ -1,24 +1,8 @@
 {
-  "access": "גישה",
-  "add": "הוסף",
-  "advanced": "מתקדם",
-  "basic": "בסיסי",
   "bot-fav-buttons-config": "הגדרות",
-  "bot-status-farming": "חקלאות",
   "bots": "בוטים",
-  "commands": "פקודות",
-  "config": "הגדרות",
-  "connection": "חיבור",
-  "customization": "התאמה אישית",
-  "farming": "חקלאות",
   "log": "יומן",
-  "performance": "ביצועים",
-  "restart-initiated": "מפעיל מחדש...",
   "save": "שמירה",
-  "security": "אבטחה",
-  "statistics": "סטטיסטיקה",
   "statistics-uptime": "זמן פעולה תקינה",
-  "success": "הצלחה",
-  "updates": "עדכונים",
-  "wiki": "Wiki"
+  "success": "הצלחה"
 }
