@@ -90,12 +90,13 @@
     },
     methods: {
       async loadBotConfig() {
+        const firstBot = this.bots[Object.keys(this.bots)[0]];
         const [
-          { [this.bots[0].name]: { BotConfig: model } },
+          { [firstBot.name]: { BotConfig: model } },
           { body: fields },
           descriptions,
         ] = await Promise.all([
-          this.$http.get(`bot/${this.bots[0].name}`),
+          this.$http.get(`bot/${firstBot.name}`),
           fetchConfigSchema('ArchiSteamFarm.Steam.Storage.BotConfig'),
           loadParameterDescriptions(this.version, this.$i18n.locale),
         ]);
