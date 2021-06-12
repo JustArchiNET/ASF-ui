@@ -1,44 +1,61 @@
 <template>
   <main class="main-container main-container--fullheight">
     <div class="container">
-      <MassEditorBots
-        v-if="status === 'bots'"
-        :bots="bots"
-        :selectedBots="selectedBots"
-        @toggle="toggleSelectedBots"
-        @update="updateSelectedBots"
-        @next="status = 'properties'"
-      ></MassEditorBots>
+      <template v-if="loading || noBotsFound">
+        <h3 v-if="loading" class="subtitle">
+          <FontAwesomeIcon icon="spinner" size="lg" spin></FontAwesomeIcon>
+        </h3>
 
-      <MassEditorSelect
-        v-if="status === 'properties'"
-        :loading="loading"
-        :status="status"
-        :selectedProperties="selectedProperties"
-        :options="fields"
-        @select="selectProperty"
-        @remove="removeProperty"
-        @update="updateModel"
-        @next="status = 'values'"
-        @back="status = 'bots'"
-      ></MassEditorSelect>
+        <template v-if="noBotsFound">
+          <h3 class="subtitle">
+            {{ $t('mass-editor-no-bots') }}
+          </h3>
+          <div class="mass-editor__info">
+            <a @click="$router.push({ name: 'bot-create' })">{{ $t('mass-editor-create-bot') }}</a>
+          </div>
+        </template>
+      </template>
 
-      <MassEditorValue
-        v-if="status === 'values'"
-        :selectedProperties="selectedProperties"
-        :categories="categories"
-        :config="config"
-        @next="status = 'check'"
-        @back="status = 'properties'"
-      ></MassEditorValue>
+      <template v-else>
+        <MassEditorBots
+          v-if="status === 'bots'"
+          :bots="bots"
+          :selectedBots="selectedBots"
+          @toggle="toggleSelectedBots"
+          @update="updateSelectedBots"
+          @next="status = 'properties'"
+        ></MassEditorBots>
 
-      <MassEditorCheck
-        v-if="status === 'check'"
-        :config="config"
-        :selectedBots="selectedBots"
-        :selectedProperties="selectedProperties"
-        @back="status = 'values'"
-      ></MassEditorCheck>
+        <MassEditorSelect
+          v-if="status === 'properties'"
+          :loading="loading"
+          :status="status"
+          :selectedProperties="selectedProperties"
+          :options="fields"
+          @select="selectProperty"
+          @remove="removeProperty"
+          @update="updateModel"
+          @next="status = 'values'"
+          @back="status = 'bots'"
+        ></MassEditorSelect>
+
+        <MassEditorValue
+          v-if="status === 'values'"
+          :selectedProperties="selectedProperties"
+          :categories="categories"
+          :config="config"
+          @next="status = 'check'"
+          @back="status = 'properties'"
+        ></MassEditorValue>
+
+        <MassEditorCheck
+          v-if="status === 'check'"
+          :config="config"
+          :selectedBots="selectedBots"
+          :selectedProperties="selectedProperties"
+          @back="status = 'values'"
+        ></MassEditorCheck>
+      </template>
     </div>
   </main>
 </template>
@@ -77,6 +94,7 @@
         status: 'bots',
         selectedBots: [],
         selectedProperties: [],
+        noBotsFound: false,
       };
     },
     computed: {
@@ -91,6 +109,12 @@
     methods: {
       async loadBotConfig() {
         const firstBot = this.bots[Object.keys(this.bots)[0]];
+        if (!firstBot) {
+          this.noBotsFound = true;
+          this.loading = false;
+          return;
+        }
+
         const [
           { [firstBot.name]: { BotConfig: model } },
           { body: fields },
@@ -121,6 +145,7 @@
           return { description, ...fields[key], ...(extendedFields[key] || []) };
         });
 
+        this.noBotsFound = false;
         this.loading = false;
       },
       updateSelectedBots(bot) {
@@ -169,5 +194,11 @@
     padding: 1em;
     background: var(--color-background-modal);
     display: block;
+  }
+
+  .mass-editor__info {
+    cursor: pointer;
+    color: var(--color-theme);
+    text-align: center;
   }
 </style>
