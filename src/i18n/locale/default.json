@@ -61,6 +61,7 @@
   "check": "Check",
   "commands": "Commands",
   "config": "Config",
+  "config-no-changes": "You did not make any changes!",
   "confirm": "Confirm",
   "connection": "Connection",
   "continue": "Continue",

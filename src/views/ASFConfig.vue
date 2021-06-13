@@ -33,6 +33,7 @@
   import fetchConfigSchema from '../utils/fetchConfigSchema';
   import downloadConfig from '../utils/downloadConfig';
   import { asfCategories } from '../utils/categories';
+  import isSameConfig from '../utils/isSameConfig';
 
   export default {
     name: 'ASFConfig',
@@ -93,6 +94,15 @@
         this.saving = true;
 
         try {
+          // fetch current ASF config
+          const { GlobalConfig: oldConfig } = await this.$http.get('asf');
+
+          // we do not want to save identical config
+          if (isSameConfig(this.model, oldConfig)) {
+            this.$info(this.$t('config-no-changes'));
+            return;
+          }
+
           await this.$http.post('asf', { globalConfig: this.model });
           this.$info(this.$t('restart-initiated'));
           this.$router.push({ name: 'setup', params: { restart: true } });
