@@ -5,6 +5,14 @@ labels: 🧐 Evaluation, 🐛 Bug
 
 ---
 
+<!--
+I fully read and understood contributing guidelines of ASF-ui available under https://github.com/JustArchiNET/ASF-ui/blob/main/.github/CONTRIBUTING.md and I believe that my issue is valid.
+
+I UNDERSTAND THAT IF MY ISSUE IS NOT MEETING CONTRIBUTING GUIDELINES SPECIFIED ABOVE IT WILL BE CLOSED AND LEFT UNANSWERED.
+
+Feel free to remove this notice and fill the template below with your details.
+-->
+
 ## Description
 <!-- A clear and concise description of what the bug is. -->
 
