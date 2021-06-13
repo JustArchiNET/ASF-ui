@@ -62,7 +62,6 @@
     methods: {
       async onSave() {
         if (this.saving) return;
-
         this.saving = true;
 
         // eslint-disable-next-line no-restricted-syntax
