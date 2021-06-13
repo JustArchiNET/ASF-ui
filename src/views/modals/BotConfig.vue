@@ -7,7 +7,12 @@
     </h3>
 
     <div v-else class="container">
-      <ConfigEditor :fields="fields" :model="model" :categories="displayCategories ? categories : null"></ConfigEditor>
+      <ConfigEditor
+        :fields="fields"
+        :model="model"
+        :categories="displayCategories ? categories : null"
+        :deleteDefaultValues="false"
+      ></ConfigEditor>
 
       <div class="form-item">
         <div class="form-item__buttons">
