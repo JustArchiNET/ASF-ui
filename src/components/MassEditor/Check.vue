@@ -29,6 +29,7 @@
 
 <script>
   import BotsView from './partials/BotsView.vue';
+  import isSameConfig from '../../utils/isSameConfig';
 
   export default {
     name: 'MassEditorCheck',
@@ -78,7 +79,7 @@
           const { [bot.name]: { BotConfig: oldConfig } } = await this.$http.get(`bot/${bot.name}`);
 
           // we do not want to save identical config
-          if (this.isSameConfig(config, oldConfig)) return;
+          if (isSameConfig(config, oldConfig)) return;
 
           // overwrite current bot config with new one
           const botConfig = { ...oldConfig, ...config };
@@ -87,15 +88,6 @@
         } catch (err) {
           this.$error(err.message);
         }
-      },
-      isSameConfig(newConfig, oldConfig) {
-        // eslint-disable-next-line no-restricted-syntax
-        for (const [property] of Object.entries(newConfig)) {
-          const found = oldConfig[property] === newConfig[property];
-          if (found) return true;
-        }
-
-        return false;
       },
     },
   };
