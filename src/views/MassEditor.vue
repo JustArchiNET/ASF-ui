@@ -103,17 +103,22 @@
         bots: 'bots/bots',
       }),
     },
-    async created() {
-      await this.loadBotConfig();
-    },
-    methods: {
-      async loadBotConfig() {
+    watch: {
+      async bots() {
+        // I have no idea why but in the created/mounted hook,
+        // 'this.bots' is sometimes empty after reload.
         const firstBot = this.bots[Object.keys(this.bots)[0]];
         if (!firstBot) {
           this.noBotsFound = true;
           this.loading = false;
-          return;
+        } else if (this.loading) {
+          await this.loadBotConfig();
         }
+      },
+    },
+    methods: {
+      async loadBotConfig() {
+        const firstBot = this.bots[Object.keys(this.bots)[0]];
 
         const [
           { [firstBot.name]: { BotConfig: model } },
