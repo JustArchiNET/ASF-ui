@@ -35,6 +35,7 @@
   import loadParameterDescriptions from '../../utils/loadParameterDescriptions';
   import downloadConfig from '../../utils/downloadConfig';
   import { botCategories } from '../../utils/categories';
+  import isSameConfig from '../../utils/isSameConfig';
 
   export default {
     name: 'BotConfig',
@@ -123,6 +124,15 @@
         this.saving = true;
 
         try {
+          // fetch current ASF config
+          const { [this.bot.name]: { BotConfig: oldConfig } } = await this.$http.get(`bot/${this.bot.name}`);
+
+          // we do not want to save identical config
+          if (isSameConfig(this.model, oldConfig)) {
+            this.$info(this.$t('config-no-changes'));
+            return;
+          }
+
           await this.$http.post(`bot/${this.bot.name}`, { botConfig: this.model });
           this.$parent.back();
         } catch (err) {
