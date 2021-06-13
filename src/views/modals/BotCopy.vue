@@ -5,8 +5,7 @@
     <div class="container">
       <p class="container-description">{{ $t('bot-new-copy', {name: bot.name}) }}</p>
 
-      <ConfigEditor v-if="displayCategories" :fields="fields" :model="model" :categories="categories"></ConfigEditor>
-      <ConfigEditor v-else :fields="fields" :model="model"></ConfigEditor>
+      <ConfigEditor :fields="fields" :model="model" :categories="displayCategories ? categories : null"></ConfigEditor>
 
       <div class="form-item">
         <div class="form-item__buttons">
