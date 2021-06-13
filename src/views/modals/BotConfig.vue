@@ -124,7 +124,7 @@
         this.saving = true;
 
         try {
-          // fetch current ASF config
+          // fetch current bot config
           const { [this.bot.name]: { BotConfig: oldConfig } } = await this.$http.get(`bot/${this.bot.name}`);
 
           // we do not want to save identical config
