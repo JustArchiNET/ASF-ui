@@ -120,6 +120,8 @@
   "mass-editor-check-bots": "{PLURAL:n|Bot seleccionado|Bots seleccionados}",
   "mass-editor-check-saved": "¡{PLURAL:n|La configuración ha sido guardada|Las configuraciones han sido guardadas} para {PLURAL:n|el bot seleccionado|los bots seleccionados}!",
   "mass-editor-check-values": "{PLURAL:n|La siguiente propiedad de configuración será guardada|Las siguientes propiedades de configuración serán guardadas}:",
+  "mass-editor-create-bot": "¿Deseas crear un nuevo bot?",
+  "mass-editor-no-bots": "No se encontraron bots",
   "mass-editor-properties": "Selecciona las propiedades de configuración que deseas editar",
   "mass-editor-properties-deselect": "Haz clic o presiona Enter para eliminar",
   "mass-editor-properties-disabled": "¡Selecciona al menos una propiedad de configuración para continuar!",
