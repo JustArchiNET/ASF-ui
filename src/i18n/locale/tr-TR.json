@@ -61,6 +61,7 @@
   "check": "Kontrol et",
   "commands": "Komutlar",
   "config": "Yapılandırma",
+  "config-no-changes": "Herhangi bir değişiklik yapmadınız!",
   "confirm": "Onayla",
   "connection": "Bağlantı",
   "continue": "Devam",
