@@ -118,6 +118,7 @@
   "mass-editor-check-bots": "SELECTD {PLURAL:n|BOT|BOTS}:",
   "mass-editor-check-saved": "{PLURAL:n|CONFIG|CONFIGS} 4 SELECTD {PLURAL:n|BOT HAS|BOTS HAS} BEEN SAVD!",
   "mass-editor-check-values": "TEH FOLLOWIN CONFIG {PLURAL:n|PROPERTY|PROPERTIEZ} WILL BE SAVD:",
+  "mass-editor-no-bots": "NO BOTZ FAUND",
   "mass-editor-properties-deselect": "CLICK OR PRES ENTR 2 REMOOV",
   "mass-editor-properties-disabled": "SELECT AT LEAST WAN CONFIG PROPERTY 2 CONTINUE!",
   "mass-editor-properties-placeholder": "SELECT AT LEAST WAN CONFIG PROPERTY",
