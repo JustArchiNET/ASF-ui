@@ -19,7 +19,10 @@
 
       <div class="form-item">
         <button class="button button--confirm" @click="onSave">
-          <FontAwesomeIcon v-if="saving" icon="spinner" spin></FontAwesomeIcon>
+          <div v-if="saving">
+            <FontAwesomeIcon icon="spinner" spin></FontAwesomeIcon>
+            <span>{{ savingText }}</span>
+          </div>
           <span v-else>{{ $t('save') }}</span>
         </button>
       </div>
@@ -44,6 +47,7 @@
     data() {
       return {
         saving: false,
+        savingCount: 0,
       };
     },
     computed: {
@@ -59,6 +63,9 @@
       prettyConfig() {
         return JSON.stringify(this.config, null, 2);
       },
+      savingText() {
+        return this.$t('mass-editor-check-saving', { current: this.savingCount, all: this.selectedBots.length });
+      },
     },
     methods: {
       async onSave() {
@@ -67,11 +74,13 @@
 
         // eslint-disable-next-line no-restricted-syntax
         for (const bot of this.selectedBots) {
+          this.savingCount += 1;
           await this.saveConfigForBot(this.config, bot);
         }
 
         this.$success(this.$t('mass-editor-check-saved', { n: this.selectedBots.length }));
         this.saving = false;
+        this.savingCount = 0;
       },
       async saveConfigForBot(config, bot) {
         try {
