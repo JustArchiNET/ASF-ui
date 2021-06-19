@@ -51,7 +51,7 @@
         return this.$t('mass-editor-check', { n: this.selectedBots.length, nn: this.selectedProperties.length });
       },
       selectedBotsText() {
-        this.$t('mass-editor-check-bots', { n: this.selectedBots.length });
+        return this.$t('mass-editor-check-bots', { n: this.selectedBots.length });
       },
       selectedPropertiesText() {
         return this.$t('mass-editor-check-values', { n: Object.keys(this.config).length });
