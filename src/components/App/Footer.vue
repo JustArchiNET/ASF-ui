@@ -43,8 +43,10 @@
         return `${this.version} - ${this.buildVariant} - ${this.uiHash}`;
       },
       wikiLink() {
-        const locale = (this.$i18n.locale !== 'en-US') ? `/Home-${this.$i18n.locale}` : '';
-        return `https://github.com/JustArchiNET/ArchiSteamFarm/wiki${locale}`;
+        // Keep this for the future. ASF-ui will also be translated at some point.
+        // const locale = (this.$i18n.locale !== 'en-US') ? `/Home-${this.$i18n.locale}` : '';
+        // return `https://github.com/JustArchiNET/ASF-ui/wiki${locale}`;
+        return 'https://github.com/JustArchiNET/ASF-ui/wiki';
       },
     },
     async mounted() {
