@@ -112,7 +112,10 @@
         if (this.deleteDefaultValues && fieldSchema && typeof fieldSchema.defaultValue !== 'undefined' && this.isDefault(value, fieldSchema)) {
           delete this.model[field];
         } else {
-          this.model[field] = value;
+          // eslint-disable-next-line vue/no-mutating-props
+          this.model[field] = (typeof this.model[field] === 'object')
+            ? Object.fromEntries(Object.entries(value).sort(([, a], [, b]) => a - b))
+            : value;
         }
       },
       isDefault(value, fieldSchema) {
