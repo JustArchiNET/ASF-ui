@@ -119,6 +119,7 @@
   "mass-editor-check": "Sprawdź {PLURAL:n|wybranego bota|wybrane boty} i {PLURAL:nn|właściwość|właściwości} konfiguracji",
   "mass-editor-check-bots": "{PLURAL:n|Wybrany bot|Wybrane boty}:",
   "mass-editor-check-saved": "{PLURAL:n|Konfiguracja|Konfiguracje} {PLURAL:n|wybranego bota|wybranych botów} zapisano!",
+  "mass-editor-check-saving": "Zapisywanie {current}/{all}...",
   "mass-editor-check-values": "{PLURAL:n|Następująca właściwość konfiguracji zostanie zapisana|Następujące właściwości konfiguracji zostaną zapisane}:",
   "mass-editor-create-bot": "Czy chcesz utworzyć nowego bota?",
   "mass-editor-no-bots": "Nie znaleziono botów",

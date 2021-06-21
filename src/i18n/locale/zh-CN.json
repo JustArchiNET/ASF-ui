@@ -119,6 +119,7 @@
   "mass-editor-check": "查看已选机器人与配置属性",
   "mass-editor-check-bots": "已选机器人：",
   "mass-editor-check-saved": "已选机器人的配置已保存！",
+  "mass-editor-check-saving": "正在保存 {current}/{all}...",
   "mass-editor-check-values": "以下属性将会被保存：",
   "mass-editor-create-bot": "您想要添加新机器人么？",
   "mass-editor-no-bots": "未找到机器人",

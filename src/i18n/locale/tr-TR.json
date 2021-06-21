@@ -119,6 +119,7 @@
   "mass-editor-check": "Seçilen {PLURAL:n|bot|bots} ve {PLURAL:nn|property|properties} yapılandırmayı kontrol edin",
   "mass-editor-check-bots": "Seçilen {PLURAL:n|bot|bots}:",
   "mass-editor-check-saved": "{PLURAL:n|Config|Configs} seçilen {PLURAL:n|bot has|bots have} için kaydedildi!",
+  "mass-editor-check-saving": "{current}/{all} kaydediliyor...",
   "mass-editor-check-values": "Şu yapılandırma {PLURAL:n|property|properties} kaydedilecek:",
   "mass-editor-create-bot": "Yeni bir bot oluşturmak ıstıyor musunuz?",
   "mass-editor-no-bots": "Bot bulunamadi",
