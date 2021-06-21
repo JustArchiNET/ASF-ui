@@ -128,7 +128,8 @@
 
         releases.push(await this.fetchRelease()); // Fetch latest release
         if (!releases[0] || !releases[0].stable) releases.push(await this.fetchRelease('latest')); // If the latest releases is not stable, fetch latest stable release
-        if (!releases.some(release => release.version === this.version)) releases.push(await this.fetchRelease(this.version)); // If current version is neither latest nor latest stable, fetch it
+        if (!releases.some(release => release.version === this.version)
+          && this.version <= releases[0].version) releases.push(await this.fetchRelease(this.version)); // If current version is neither latest nor latest stable but not newer than latest, fetch it
 
         return releases
           .filter((value, index) => !!value && releases.findIndex(release => release.version === value.version) === index) // Clean the list in case any of the fetches failed, remove any duplicates
