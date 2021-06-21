@@ -18,7 +18,7 @@
 		async created() {
 			// Auto generated pre build
 			const flags = await import('../../../generated/flags');
-			flags.lol = `{window.__BASE_PATH__}images/lol-US.png`;
+			flags.lol = `${window.__BASE_PATH__}images/lol-US.png`;
 			this.flagImage = flags[this.country];
 		}
 	};
