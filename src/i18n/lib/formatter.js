@@ -78,6 +78,10 @@ export default class Formatter {
     const [plural, ...forms] = token.value.split('|');
     const [_, value] = plural.split(':');
 
+    // CLDR table does not recognize lol-US as a valid locale
+    // eslint-disable-next-line no-param-reassign
+    if (locale === 'lol-US') locale = 'en-US';
+
     const pluralizationValue = this.compileToken({ type: getTokenType(value), value }, values, locale);
     const pluralizationIndex = pluralIndexOf(locale, parseInt(pluralizationValue, 10));
 
