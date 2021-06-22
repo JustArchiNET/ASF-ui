@@ -4,6 +4,7 @@ const { DefinePlugin } = require('webpack');
 const { VueLoaderPlugin } = require('vue-loader');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const WebpackBeforeBuildPlugin = require('before-build-webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const generateFlags = require('../scripts/generateFlags');
 const getCommitHash = require('../scripts/getCommitHash');
@@ -15,7 +16,7 @@ module.exports = {
     main: './src/index.js',
   },
   output: {
-    filename: 'scripts/[name].bundle.js',
+    filename: 'scripts/[name].[chunkhash:7].bundle.js',
     chunkFilename: 'scripts/[id].[chunkhash:7].chunk.js',
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/',
@@ -89,6 +90,9 @@ module.exports = {
     new DefinePlugin(({
       APP_HASH: JSON.stringify(getCommitHash()),
     })),
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+    }),
   ],
   devServer: {
     contentBase: './src/static',
