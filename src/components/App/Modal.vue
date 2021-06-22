@@ -38,23 +38,34 @@
     },
     methods: {
       close() {
-        this.$router.push({ name: 'bots' });
+        if (this.$route.name.startsWith('bot')) {
+          this.$router.push({ name: 'bots' });
+        } else {
+          // We could use router metadata or try to guess base page URL somehow...
+        }
       },
       back() {
         this.$router.push(this.$route.path.slice(0, this.$route.path.lastIndexOf('/')));
       },
-      onKeyPress(e) {
+      onKeyPress(event) {
+        // Ignore key presses when the modal is not visible
+        if (!this.isShown) return;
+
+        // Ignore key presses inside inputs
         if (document.activeElement.tagName === 'TEXTAREA') return;
         if (document.activeElement.tagName === 'INPUT') return;
-        const charCode = (e.which) ? e.which : e.keyCode;
 
-        if (charCode === 27) {
-          this.close();
-          return e.preventDefault();
+        switch (event.key) {
+          case 'Escape':
+            this.close();
+            break;
+          case 'ArrowRight':
+            this.next('right');
+            break;
+          case 'ArrowLeft':
+            this.next('left');
+            break;
         }
-
-        if (charCode === 37) this.next('left');
-        if (charCode === 39) this.next('right');
       },
       next(direction) {
         const currentIndex = this.bots.findIndex(bot => bot.name === this.$route.params.bot);
