@@ -41,9 +41,9 @@
       Multiselect,
     },
     props: {
-      loading: { type: Boolean },
-      options: { type: Array },
-      selectedProperties: { type: Array },
+      loading: { type: Boolean, required: true },
+      options: { type: Array, required: true },
+      selectedProperties: { type: Array, required: true },
     },
     data() {
       return {

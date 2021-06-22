@@ -35,9 +35,9 @@
       ConfigEditor,
     },
     props: {
-      config: { type: Object },
-      categories: { type: Array },
-      selectedProperties: { type: Array },
+      config: { type: Object, required: true },
+      categories: { type: Array, required: true },
+      selectedProperties: { type: Array, required: true },
     },
     computed: {
       ...mapGetters({

@@ -40,9 +40,9 @@
       BotsView,
     },
     props: {
-      config: { type: Object },
-      selectedBots: { type: Array },
-      selectedProperties: { type: Array },
+      config: { type: Object, required: true },
+      selectedBots: { type: Array, required: true },
+      selectedProperties: { type: Array, required: true },
     },
     data() {
       return {

@@ -34,9 +34,9 @@
       BotsView,
     },
     props: {
-      selectedBots: { type: Array },
+      selectedBots: { type: Array, required: true },
       selectable: { type: Boolean, default: true },
-      bots: { type: Array },
+      bots: { type: Array, required: true },
     },
     computed: {
       selectedBotNames() {
