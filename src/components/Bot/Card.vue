@@ -1,5 +1,5 @@
 <template>
-  <div class="bot" :class="[`status--${bot.status}`, { 'bot--big': selectedButtons.length > 2 }]">
+  <div class="bot" :class="[`status--${bot.status}`]">
     <a v-if="bot.steamid !== '0'" target="_blank" rel="noreferrer noopener" :href="bot.profileURL">
       <img class="bot__avatar" :src="bot.avatarURL" :alt="bot.name">
     </a>
@@ -115,21 +115,6 @@
 		grid-template-columns: min-content 1fr auto;
 		padding: 0.5em;
 		transition: border .3s;
-
-		&--big {
-			grid-template-areas: 'avatar meta' 'buttons buttons';
-			grid-template-columns: min-content 1fr;
-			grid-template-rows: auto min-content;
-
-			.bot__actions {
-				margin-top: 0.5rem;
-			}
-
-			.bot__action {
-				font-size: 1.25rem;
-				padding: 0 0.5rem;
-			}
-		}
 	}
 
 	.bot__avatar {
