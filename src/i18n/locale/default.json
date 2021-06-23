@@ -118,6 +118,7 @@
   "mass-editor-bots-select": "Select all bots",
   "mass-editor-check": "Check selected {PLURAL:n|bot|bots} and config {PLURAL:nn|property|properties}",
   "mass-editor-check-bots": "Selected {PLURAL:n|bot|bots}:",
+  "mass-editor-check-not-saved": "Config {PLURAL:n|property|properties} {PLURAL:n|is|are} already of the same {PLURAL:n|value|values} for selected {PLURAL:m|bot|bots}!",
   "mass-editor-check-saved": "{PLURAL:n|Config|Configs} for selected {PLURAL:n|bot has|bots have} been saved!",
   "mass-editor-check-saving": "Saving {current}/{all}...",
   "mass-editor-check-values": "The following config {PLURAL:n|property|properties} will be saved:",

@@ -48,6 +48,7 @@
       return {
         saving: false,
         savingCount: 0,
+        savedConfig: false,
       };
     },
     computed: {
@@ -78,9 +79,12 @@
           await this.saveConfigForBot(this.config, bot);
         }
 
-        this.$success(this.$t('mass-editor-check-saved', { n: this.selectedBots.length }));
+        if (this.savedConfig) this.$success(this.$t('mass-editor-check-saved', { n: this.selectedBots.length }));
+        else this.$info(this.$t('mass-editor-check-not-saved', { n: this.selectedProperties.length, m: this.selectedBots.length }));
+
         this.saving = false;
         this.savingCount = 0;
+        this.savedConfig = false;
       },
       async saveConfigForBot(config, bot) {
         try {
@@ -94,6 +98,8 @@
           const botConfig = { ...oldConfig, ...config };
 
           await this.$http.post(`bot/${bot.name}`, { botConfig });
+
+          this.savedConfig = true;
         } catch (err) {
           this.$error(err.message);
         }
