@@ -65,6 +65,10 @@
     > .bot {
       cursor: pointer;
     }
+
+    > .bot__status {
+      cursor: pointer;
+    }
   }
 
   .bot__avatar {
