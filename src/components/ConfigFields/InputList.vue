@@ -1,25 +1,21 @@
 <template>
   <div class="form-item">
-    <input-label :label="label" :has-description="hasDescription"></input-label>
+    <input-label :label="label" :hasDescription="hasDescription"></input-label>
 
     <div class="form-item__value">
-      <div class="input-option__field">
-        <select :id="field" v-model="element" class="form-item__input" :disabled="!availableEnumValues.length">
-          <option v-for="(enumValue, name) in enumValues" v-show="!value.includes(enumValue)" :key="name" :value="enumValue">
-            {{ name }}
-          </option>
-          <option v-if="!availableEnumValues.length" :value="undefined" disabled>
-            {{ $t('input-all-selected') }}
-          </option>
-        </select>
-
-        <button class="button" @click.prevent="addElement">
-          {{ $t('add') }}
-        </button>
-      </div>
+      <select :id="field" v-model="selectedElement" class="form-item__input" :disabled="!availableEnumValues.length" @change="addElement($event.target.value)">
+        <!-- TODO - add that text to localization instead of hardcoding it -->
+        <option :value="null" disabled selected hidden>Select Option</option>
+        <option v-for="(enumValue, name) in enumValues" v-show="!value.includes(enumValue)" :key="name" :value="enumValue">
+          {{ name }}
+        </option>
+        <option v-if="!availableEnumValues.length" :value="undefined" disabled>
+          {{ $t('input-all-selected') }}
+        </option>
+      </select>
 
       <div class="input-option__items">
-        <button v-for="(item, index) in value" :key="index" class="button input-option__item" @click.prevent="removeElement(index)">
+        <button v-for="(item, index) in value" :key="index" class="button input-option__item" @click.prevent="removeElementAtIndex(index)">
           {{ resolveOption(item) }}
         </button>
       </div>
@@ -37,7 +33,7 @@
     mixins: [Input],
     data() {
       return {
-        element: null,
+        selectedElement: null,
       };
     },
     computed: {
@@ -55,23 +51,22 @@
         return this.schema.values.values;
       },
     },
-    created() {
-      this.element = this.getDefaultElement();
-    },
     methods: {
       getDefaultElement() {
         return this.availableEnumValues[0];
       },
-      addElement() {
-        if (!this.element && this.element !== 0) return;
-        if (this.value.includes(this.element)) return;
+      addElement(input) {
+        if (typeof (input) !== (typeof (0))) {
+          input = parseInt(input, 10);
+        }
 
-        this.value.push(this.element);
-        this.element = this.getDefaultElement();
+        if (this.value.includes(input)) return;
+
+        this.value.push(input);
+        this.selectedElement = null;
       },
-      removeElement(index) {
+      removeElementAtIndex(index) {
         this.value.splice(index, 1);
-        this.element = this.getDefaultElement();
       },
       resolveOption(value) {
         return Object.keys(this.enumValues).find(key => this.enumValues[key] === value);

@@ -1,18 +1,18 @@
 <template>
   <div class="config-editor">
-    <template v-if="categories">
-      <ConfigCategory v-for="category in categories" v-if="categoryFields(category.name).length" :key="category.name" :name="category.name">
-        <component :is="componentFromField(field)" v-for="field in categoryFields(category.name)" :key="field.param" class="form-item--config" :schema="field" :current-value="model[field.paramName]" @update="updateModel"></component>
+    <template v-if="nonEmptyCategories">
+      <ConfigCategory v-for="category in nonEmptyCategories" :key="category.name" :name="category.name">
+        <component :is="componentFromField(field)" v-for="field in categoryFields(category.name)" :key="field.param" class="form-item--config" :schema="field" :currentValue="model[field.paramName]" @update="updateModel"></component>
       </ConfigCategory>
 
       <ConfigCategory v-if="uncategorizedFields.length" key="Other" :name="$t('other')">
-        <component :is="componentFromField(field)" v-for="field in uncategorizedFields" :key="field.param" class="form-item--config" :schema="field" :current-value="model[field.paramName]" @update="updateModel"></component>
+        <component :is="componentFromField(field)" v-for="field in uncategorizedFields" :key="field.param" class="form-item--config" :schema="field" :currentValue="model[field.paramName]" @update="updateModel"></component>
       </ConfigCategory>
     </template>
 
-    <template v-if="!categories">
+    <template v-if="!nonEmptyCategories">
       <fieldset class="config-uncategorized">
-        <component :is="componentFromField(field)" v-for="field in uncategorizedFields" :key="field.param" class="form-item--config" :schema="field" :current-value="model[field.paramName]" @update="updateModel"></component>
+        <component :is="componentFromField(field)" v-for="field in uncategorizedFields" :key="field.param" class="form-item--config" :schema="field" :currentValue="model[field.paramName]" @update="updateModel"></component>
       </fieldset>
     </template>
   </div>
@@ -53,6 +53,11 @@
       },
     },
     computed: {
+      nonEmptyCategories() {
+        if (!this.categories) return this.categories;
+
+        return this.categories.filter(category => this.categoryFields(category.name).length);
+      },
       uncategorizedFields() {
         if (!this.categories) return this.fields;
 
