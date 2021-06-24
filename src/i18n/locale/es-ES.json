@@ -118,6 +118,7 @@
   "mass-editor-bots-select": "Seleccionar todos los bots",
   "mass-editor-check": "Comprueba {PLURAL:n|el bot seleccionado|los bots seleccionados}  y {PLURAL:nn|la propiedad|las propiedades} de configuración",
   "mass-editor-check-bots": "{PLURAL:n|Bot seleccionado|Bots seleccionados}",
+  "mass-editor-check-not-saved": "¡{PLURAL:n|La propiedad|Las propiedades} de configuración ya {PLURAL:n|tiene|tienen} {PLURAL:n|el mismo valor|los mismos valores} para {PLURAL:m|el bot seleccionado|los bots seleccionados}!",
   "mass-editor-check-saved": "¡{PLURAL:n|La configuración ha sido guardada|Las configuraciones han sido guardadas} para {PLURAL:n|el bot seleccionado|los bots seleccionados}!",
   "mass-editor-check-saving": "Guardando {current}/{all}...",
   "mass-editor-check-values": "{PLURAL:n|La siguiente propiedad de configuración será guardada|Las siguientes propiedades de configuración serán guardadas}:",
