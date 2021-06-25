@@ -109,6 +109,7 @@
   "language-translation-medium": "{percent}% do idioma selecionado está traduzido!",
   "last-visited-page": "Última página visitada",
   "log": "Histórico",
+  "mass-editor-check-not-saved": "{PLURAL:n|A propriedade|As propriedades} de configuração ainda {PLURAL:n|está|estãp} com {PLURAL:n|o mesmo valor|os mesmos valores} para {PLURAL:m|o bot selecionado|os bots selecionados}!",
   "multiple-games": "Vários jogos",
   "name-description": "Tipo <code>string</code> sem valor padrão. Esta propriedade é obrigatória pois define o nome do bot; ela é usada para identificar o bot dentro do ASF. Ela deve ser exclusiva para cada bot.",
   "notification-position": "Posição da notificação",
