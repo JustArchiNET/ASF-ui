@@ -99,6 +99,7 @@
             [this.$t('bot-fav-buttons-bgr')]: 1 << 1,
             [this.$t('bot-fav-buttons-config')]: 1 << 2,
             [this.$t('bot-fav-buttons-pause')]: 1 << 3,
+            [this.$t('all')]: 15,
           },
           description: this.$t('bot-fav-buttons-description'),
         },
