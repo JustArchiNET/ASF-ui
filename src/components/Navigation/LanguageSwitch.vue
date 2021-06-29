@@ -1,7 +1,7 @@
 <template>
   <div class="navigation__language-switch">
     <div class="navigation__button" @click="toggleLanguageMenu">
-      <FontAwesomeIcon class="navigation__language-icon" icon="language" fixed-width></FontAwesomeIcon>
+      <FontAwesomeIcon class="navigation__language-icon" icon="language" fixedWidth></FontAwesomeIcon>
     </div>
 
     <transition name="navigation__language-picker">

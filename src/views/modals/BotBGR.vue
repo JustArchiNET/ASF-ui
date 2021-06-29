@@ -6,7 +6,7 @@
       <FontAwesomeIcon icon="spinner" size="lg" spin></FontAwesomeIcon>
     </h3>
 
-    <BgrStatus v-if="!loading && state === 'input'" :used-keys="usedKeys" :unused-keys="unusedKeys" @reset="showReset" @show-unused="state = 'unusedKeys'" @show-used="state = 'usedKeys'"></BgrStatus>
+    <BgrStatus v-if="!loading && state === 'input'" :usedKeys="usedKeys" :unusedKeys="unusedKeys" @reset="showReset" @show-unused="state = 'unusedKeys'" @show-used="state = 'usedKeys'"></BgrStatus>
 
     <div v-if="!loading && state === 'input' && bot.bgrCount !== 0" class="bgr__info">
       <div v-if="bot.isConnected" class="bgr__info-icon">

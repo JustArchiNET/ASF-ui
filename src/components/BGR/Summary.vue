@@ -41,7 +41,8 @@
       copyKeys() {
         let keysToCopy = '';
 
-        for (let [key, value] of Object.entries(this.keys)) {
+        // eslint-disable-next-line no-restricted-syntax
+        for (const [key, value] of Object.entries(this.keys)) {
           keysToCopy += `${key}\t${value}\n`;
         }
 

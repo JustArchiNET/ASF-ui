@@ -10,17 +10,17 @@
     <transition name="brand__menu">
       <div v-if="brandMenu && authenticated" class="brand__menu">
         <div v-if="updatesEnabled && canUpdate" class="brand__menu-item" @click="update">
-          <FontAwesomeIcon class="brand__menu-icon" icon="cloud-download-alt" fixed-width></FontAwesomeIcon>
+          <FontAwesomeIcon class="brand__menu-icon" icon="cloud-download-alt" fixedWidth></FontAwesomeIcon>
           <span>{{ $t('update') }}</span>
         </div>
 
         <div class="brand__menu-item" @click="restart">
-          <FontAwesomeIcon class="brand__menu-icon" icon="undo-alt" fixed-width></FontAwesomeIcon>
+          <FontAwesomeIcon class="brand__menu-icon" icon="undo-alt" fixedWidth></FontAwesomeIcon>
           <span>{{ $t('restart') }}</span>
         </div>
 
         <div class="brand__menu-item" @click="shutdown">
-          <FontAwesomeIcon class="brand__menu-icon" icon="power-off" fixed-width></FontAwesomeIcon>
+          <FontAwesomeIcon class="brand__menu-icon" icon="power-off" fixedWidth></FontAwesomeIcon>
           <span>{{ $t('shutdown') }}</span>
         </div>
       </div>

@@ -1,6 +1,6 @@
 <template>
   <div class="form-item">
-    <input-label :label="label" :has-description="hasDescription"></input-label>
+    <input-label :label="label" :hasDescription="hasDescription"></input-label>
 
     <div class="form-item__value">
       <input :id="field" v-model.number="value" class="form-item__input" type="number" :name="field" :placeholder="placeholder" @blur="onBlur">

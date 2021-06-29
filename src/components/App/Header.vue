@@ -3,18 +3,18 @@
     <NavigationBrand></NavigationBrand>
 
     <div class="navigation__button" @click="toggleNavigation">
-      <FontAwesomeIcon icon="bars" fixed-width></FontAwesomeIcon>
+      <FontAwesomeIcon icon="bars" fixedWidth></FontAwesomeIcon>
     </div>
 
     <div class="navigation__menu">
       <div v-if="status === 'AUTHENTICATED' && password" class="navigation__button" @click="logout">
-        <FontAwesomeIcon icon="sign-out-alt" fixed-width></FontAwesomeIcon>
+        <FontAwesomeIcon icon="sign-out-alt" fixedWidth></FontAwesomeIcon>
       </div>
 
       <NavigationLanguageSwitch></NavigationLanguageSwitch>
 
       <div class="navigation__button" @click="toggleSideMenu">
-        <FontAwesomeIcon icon="cogs" fixed-width></FontAwesomeIcon>
+        <FontAwesomeIcon icon="cogs" fixedWidth></FontAwesomeIcon>
       </div>
     </div>
   </header>

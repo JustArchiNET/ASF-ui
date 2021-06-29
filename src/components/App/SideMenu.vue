@@ -4,7 +4,7 @@
     <SideMenuSwitch :name="$t('sidebar-dark-mode')" icon="moon" :checked="darkMode" @click="toggleDarkMode"></SideMenuSwitch>
 
     <div class="side-menu__category">
-      <FontAwesomeIcon icon="palette" fixed-width></FontAwesomeIcon>
+      <FontAwesomeIcon icon="palette" fixedWidth></FontAwesomeIcon>
       <span>{{ $t('sidebar-theme') }}</span>
     </div>
 

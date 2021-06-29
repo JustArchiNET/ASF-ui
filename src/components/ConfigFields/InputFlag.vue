@@ -42,7 +42,7 @@
         return [...Array(32).keys()].map(i => 1 << i).filter(val => this.value & val);
       },
       addFlag(input) {
-        const parsedInput = typeof (input) !== (typeof (0)) ? parseInt(input, 10) : input;
+        const parsedInput = (typeof (input) !== (typeof (0))) ? parseInt(input, 10) : input;
 
         if (!parsedInput && parsedInput !== 0) return;
 

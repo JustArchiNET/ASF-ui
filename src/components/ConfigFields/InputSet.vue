@@ -55,7 +55,7 @@
     },
     methods: {
       addElement(input) {
-        const parsedInput = typeof (input) !== (typeof (0)) ? parseInt(input, 10) : input;
+        const parsedInput = (typeof (input) !== (typeof (0))) ? parseInt(input, 10) : input;
 
         if (this.value.includes(parsedInput)) return;
 

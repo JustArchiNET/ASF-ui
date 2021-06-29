@@ -1,7 +1,7 @@
 <template>
   <div class="side-menu__switch" @click="$emit('click')">
     <span class="side-menu__switch-left-side">
-      <FontAwesomeIcon :icon="icon" fixed-width></FontAwesomeIcon>
+      <FontAwesomeIcon :icon="icon" fixedWidth></FontAwesomeIcon>
       <span>{{ name }}</span>
     </span>
 
