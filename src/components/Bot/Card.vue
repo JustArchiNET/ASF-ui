@@ -105,7 +105,7 @@
   };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.bot {
 		background: var(--color-background-light);
 		border-radius: 0 0 4px 4px;
