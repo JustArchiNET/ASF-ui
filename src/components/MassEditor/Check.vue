@@ -12,7 +12,7 @@
 
     <div class="mass-editor__content">
       <p>{{ selectedBotsText }}</p>
-      <BotsView :selectedBots="selectedBots" :selectable="false" :bots="selectedBots"></BotsView>
+      <BotsView :selectedBots="selectedBots" :selectable="false" :bots="sortedBots"></BotsView>
 
       <p>{{ selectedPropertiesText }}</p>
       <pre><code>{{ prettyConfig }}</code></pre>
@@ -31,6 +31,7 @@
 </template>
 
 <script>
+  import { sortBy } from 'lodash-es';
   import BotsView from './partials/BotsView.vue';
   import isSameConfig from '../../utils/isSameConfig';
 
@@ -66,6 +67,9 @@
       },
       savingText() {
         return this.$t('mass-editor-check-saving', { current: this.savingCount, all: this.selectedBots.length });
+      },
+      sortedBots() {
+        return sortBy(this.selectedBots, [bot => bot.name]);
       },
     },
     methods: {
