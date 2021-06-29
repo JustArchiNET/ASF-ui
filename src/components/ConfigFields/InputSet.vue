@@ -55,13 +55,11 @@
     },
     methods: {
       addElement(input) {
-        if (typeof (input) !== (typeof (0))) {
-          input = parseInt(input, 10);
-        }
+        const parsedInput = typeof (input) !== (typeof (0)) ? parseInt(input, 10) : input;
 
-        if (this.value.includes(input)) return;
+        if (this.value.includes(parsedInput)) return;
 
-        this.value.push(input);
+        this.value.push(parsedInput);
         this.value.sort();
 
         this.selectedElement = null;

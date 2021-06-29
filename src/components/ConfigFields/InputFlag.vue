@@ -42,16 +42,14 @@
         return [...Array(32).keys()].map(i => 1 << i).filter(val => this.value & val);
       },
       addFlag(input) {
-        if (typeof (input) !== typeof (0)) {
-          input = parseInt(input, 10);
-        }
+        const parsedInput = typeof (input) !== (typeof (0)) ? parseInt(input, 10) : input;
 
-        if (!input && input !== 0) return;
+        if (!parsedInput && parsedInput !== 0) return;
 
-        if (input === 0) {
+        if (parsedInput === 0) {
           this.value = 0;
         } else {
-          this.value |= input;
+          this.value |= parsedInput;
         }
 
         this.selectedElement = null;
