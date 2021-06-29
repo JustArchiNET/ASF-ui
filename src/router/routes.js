@@ -14,20 +14,25 @@ export default [
 		name: 'home',
 		async beforeEnter(to, from, next) {
 			const setupComplete = storage.get('setup-complete', false);
+
 			const steamOwnerID = await store.dispatch('asf/getSteamOwnerID');
 			const botsDetected = await store.dispatch('bots/detectBots');
-			if (!setupComplete && from.name !== 'welcome' && (steamOwnerID === '0' || !botsDetected)) return next({ name: 'welcome' });
-			else if (from.name === 'welcome' && steamOwnerID === '0') return next({ name: 'asf-config' });
-			else if (from.name === 'welcome' && !botsDetected) return next({ name: 'bot-create' });
-			else if (steamOwnerID !== '0' || botsDetected) {
+
+      if (!setupComplete && from.name !== 'welcome' && (steamOwnerID === '0' || !botsDetected)) {
+        return next({ name: 'welcome' });
+      } else if (from.name === 'welcome' && steamOwnerID === '0') {
+        return next({ name: 'asf-config' });
+      } else if (from.name === 'welcome' && !botsDetected) {
+        return next({ name: 'bot-create' });
+      } else if (steamOwnerID !== '0' || botsDetected) {
         storage.set('setup-complete', true);
         let defaultView = store.getters['settings/defaultView'];
         if (defaultView === '_last-visited-page') defaultView = storage.get('last-visited-page', { name: 'bots' });
         const page = (typeof defaultView === 'string') ? { name: defaultView } : defaultView;
-        next(page);
-			}
-			
-			next({ name: 'bots' });
+        return next(page);
+      }
+
+      return next({ name: 'bots' });
 		}
 	},
 	{
@@ -35,7 +40,7 @@ export default [
 		name: 'setup',
 		component: () => import('../views/Setup.vue'),
 		meta: { noPasswordRequired: true },
-    params: { 
+    params: {
       restart: false,
       update: false,
     }

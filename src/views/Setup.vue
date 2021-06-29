@@ -137,7 +137,9 @@
         }
       },
       redirect() {
-        this.$router.replace({ name: 'home' });
+        // Add empty onAbort callback, since we are expecting navigation abort and redirect via beforeEnter guard
+        // https://router.vuejs.org/guide/advanced/navigation-failures.html#navigation-failures
+        this.$router.replace({ name: 'home' }, () => {}, () => {});
       },
       cancelAutoUpdate() {
         clearInterval(this.timer);

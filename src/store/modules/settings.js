@@ -1,7 +1,7 @@
 import * as storage from '../../utils/storage';
 
 export const state = {
-  defaultView: 'home',
+  defaultView: 'bots',
   notificationPosition: 'rightBottom',
   notifyRelease: true,
   nicknames: false,
