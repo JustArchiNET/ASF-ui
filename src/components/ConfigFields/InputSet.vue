@@ -65,11 +65,8 @@
         this.selectedElement = null;
       },
       removeElement(input) {
-        if (typeof (input) !== (typeof (0))) {
-          input = parseInt(input);
-        }
-
-        this.value = this.value.filter(item => item !== input);
+        const parsedInput = (typeof (input) !== (typeof (0))) ? parseInt(input, 10) : input;
+        this.value = this.value.filter(item => item !== parsedInput);
       },
       resolveOption(value) {
         return Object.keys(this.enumValues).find(key => this.enumValues[key] === value);
