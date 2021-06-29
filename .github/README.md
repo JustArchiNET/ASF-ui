@@ -8,13 +8,3 @@ The official web interface for [ASF](https://github.com/JustArchiNET/ArchiSteamF
 [![License](https://img.shields.io/github/license/JustArchiNET/ASF-ui?label=License&cacheSeconds=2592000&logo=apache)](https://github.com/JustArchiNET/ASF-ui/blob/main/LICENSE)
 
 <img src="https://github.com/JustArchiNET/ASF-ui/blob/main/.github/previews/bots.png?raw=true">
-
-## How to use
-
-You don't have to install or download anything. ASF already comes with ASF-ui included!
-
-If you are unsure about how to setup ASF-ui you can read more about it on [ASF's wiki](https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Setting-up#using-asf-ui).
-
-## Development
-
-If you are more than the average user you can read more [here](https://github.com/JustArchiNET/ASF-ui/blob/main/.github/DEVELOPMENT.md).
