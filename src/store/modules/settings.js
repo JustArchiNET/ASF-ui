@@ -26,7 +26,7 @@ export const mutations = {
 
 export const actions = {
   init({ commit }) {
-    commit('setDefaultView', storage.get('settings:default-view', 'home'));
+    commit('setDefaultView', storage.get('settings:default-view', 'bots'));
     commit('setNotificationPosition', storage.get('settings:notification-position', 'rightBottom'));
     commit('setNotifyRelease', storage.get('settings:notify-release', true));
     commit('setNicknames', storage.get('settings:nicknames', false));
