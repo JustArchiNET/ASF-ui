@@ -32,7 +32,7 @@ export default [
         return next(page);
       }
 
-      next({ name: 'bots' });
+      return next({ name: 'bots' });
 		}
 	},
 	{
