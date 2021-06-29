@@ -51,9 +51,6 @@
       },
     },
     methods: {
-      getDefaultElement() {
-        return this.availableEnumValues[0];
-      },
       addElement(input) {
         if (typeof (input) !== (typeof (0))) {
           input = parseInt(input, 10);
