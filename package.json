@@ -30,7 +30,7 @@
     "sass": "1.35.1",
     "sass-loader": "12.1.0",
     "url-loader": "4.1.1",
-    "vue-loader": "15.9.7",
+    "vue-loader": "16.3.0",
     "vue-template-compiler": "2.6.14",
     "webpack": "5.41.1",
     "webpack-bundle-analyzer": "4.4.2",
