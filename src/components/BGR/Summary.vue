@@ -39,15 +39,13 @@
     },
     methods: {
       copyKeys() {
-        let keys = '';
+        let keysToCopy = '';
 
-        this.keys.forEach(key => {
-          if (Object.prototype.hasOwnProperty.call(this.keys, key)) {
-            keys += `${this.keys[key]}\t${key}\n`;
-          }
-        });
+        for (let [key, value] of Object.entries(this.keys)) {
+          keysToCopy += `${key}\t${value}\n`;
+        }
 
-        copy(keys);
+        copy(keysToCopy);
         this.$info(this.$t('keys-copied'));
       },
     },
