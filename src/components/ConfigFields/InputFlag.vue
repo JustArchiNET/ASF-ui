@@ -4,7 +4,6 @@
 
     <div class="form-item__value">
       <select :id="field" v-model="selectedElement" class="form-item__input" @change="addFlag($event.target.value)">
-        <!-- TODO - add that text to localization instead of hardcoding it -->
         <option :value="null" disabled selected hidden>{{ $t('input-select-enum-value') }}</option>
         <option v-for="(enumValue, name) in flags" v-show="enumValue === 0 || !((value & enumValue) === enumValue)" :key="name" :value="enumValue">
           {{ name }}
