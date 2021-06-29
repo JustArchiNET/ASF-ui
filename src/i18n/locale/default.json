@@ -95,6 +95,7 @@
   "input-label-steamguard": "Steam Guard code",
   "input-label-steamparentalcode": "Steam Parental code",
   "input-label-twofactorauthentication": "2FA code",
+  "input-select-enum-value": "Select option",
   "input-no-code-login": "You have to enter a Steam login name",
   "input-no-code-password": "You have to enter a Steam password",
   "input-no-code-steamguard": "You have to enter a Steam Guard code",

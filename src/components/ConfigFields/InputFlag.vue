@@ -1,22 +1,18 @@
 <template>
   <div class="form-item input-option">
-    <input-label :label="label" :has-description="hasDescription"></input-label>
+    <input-label :label="label" :hasDescription="hasDescription"></input-label>
 
     <div class="form-item__value">
-      <div class="input-option__field">
-        <select :id="field" v-model="flagValue" class="form-item__input">
-          <option v-for="(flagValue, name) in flags" v-show="flagValue === 0 || !((value & flagValue) === flagValue)" :key="name" :value="flagValue">
-            {{ name }}
-          </option>
-        </select>
-        <button class="button" @click.prevent="addFlag">
-          {{ $t('add') }}
-        </button>
-      </div>
+      <select :id="field" v-model="selectedElement" class="form-item__input" @change="addFlag($event.target.value)">
+        <option :value="null" disabled selected hidden>{{ $t('input-select-enum-value') }}</option>
+        <option v-for="(enumValue, name) in flags" v-show="enumValue === 0 || !((value & enumValue) === enumValue)" :key="name" :value="enumValue">
+          {{ name }}
+        </option>
+      </select>
 
       <div class="input-option__items">
-        <button v-for="i in 32" v-if="value & (1 << i)" :key="i" class="button input-option__item" @click.prevent="removeFlag(1 << i)">
-          {{ resolveFlagName(1 << i) }}
+        <button v-for="enumValue in getSelectedFlagValues()" :key="enumValue" class="button input-option__item" @click.prevent="removeFlag(enumValue)">
+          {{ resolveFlagName(enumValue) }}
         </button>
       </div>
     </div>
@@ -33,7 +29,7 @@
     mixins: [Input],
     data() {
       return {
-        flagValue: this.schema.defaultValue,
+        selectedElement: null,
       };
     },
     computed: {
@@ -42,12 +38,21 @@
       },
     },
     methods: {
-      addFlag() {
-        if (!this.flagValue && this.flagValue !== 0) return;
+      getSelectedFlagValues() {
+        return [...Array(32).keys()].map(i => 1 << i).filter(val => this.value & val);
+      },
+      addFlag(input) {
+        const parsedInput = typeof (input) !== (typeof (0)) ? parseInt(input, 10) : input;
 
-        if (this.flagValue === 0) this.value = 0;
-        this.value |= this.flagValue;
-        this.flagValue = this.schema.defaultValue;
+        if (!parsedInput && parsedInput !== 0) return;
+
+        if (parsedInput === 0) {
+          this.value = 0;
+        } else {
+          this.value |= parsedInput;
+        }
+
+        this.selectedElement = null;
       },
       removeFlag(value) {
         this.value &= ~value;
