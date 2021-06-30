@@ -16,12 +16,12 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v2.3.4
       with:
         submodules: recursive
 
     - name: Setup Node.js with npm
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v2.2.0
       with:
         check-latest: true
         node-version: ${{ env.NODE_JS_VERSION }}
@@ -50,7 +50,7 @@ jobs:
 
     - name: Upload ASF-ui
       continue-on-error: true
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v2.2.4
       with:
         name: ${{ matrix.os }}_ASF-ui
         path: dist

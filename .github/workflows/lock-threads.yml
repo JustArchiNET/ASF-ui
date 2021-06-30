@@ -1,4 +1,4 @@
-name: 'ASF-ui-lock-threads'
+name: ASF-ui-lock-threads
 
 on:
   schedule:
@@ -9,8 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Lock inactive threads
-        uses: dessant/lock-threads@v2
+        uses: dessant/lock-threads@v2.0.3
         with:
-          github-token: ${{ github.token }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           issue-lock-inactive-days: 30
           pr-lock-inactive-days: 30
