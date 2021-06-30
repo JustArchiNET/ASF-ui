@@ -3,7 +3,7 @@ name: ASF-ui-CI
 on: [push, pull_request]
 
 env:
-  NODE_JS_VERSION: 14 # Periodically bumped to follow latest LTS | https://github.com/actions/setup-node/issues/26
+  NODE_JS_VERSION: 'lts/*'
 
 jobs:
   build:
