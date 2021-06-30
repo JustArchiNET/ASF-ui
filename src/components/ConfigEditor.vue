@@ -116,8 +116,8 @@
         const defaultCheck = this.deleteDefaultValues && fieldSchema && typeof fieldSchema.defaultValue !== 'undefined' && this.isDefault(value, fieldSchema);
 
         if (defaultCheck) delete this.model[field];
-        else if (this.model[field].constructor === Array) this.model[field] = value.sort((a, b) => a - b);
-        else if (this.model[field].constructor === Object) this.model[field] = Object.keys(value).sort((a, b) => value[a] - value[b]);
+        else if (this.model[field] && this.model[field].constructor === Array) this.model[field] = value.sort((a, b) => a - b);
+        else if (this.model[field] && this.model[field].constructor === Object) this.model[field] = Object.keys(value).sort((a, b) => value[a] - value[b]);
         else this.model[field] = value;
       },
       isDefault(value, fieldSchema) {
