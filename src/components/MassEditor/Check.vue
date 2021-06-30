@@ -112,7 +112,7 @@
   };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   p:first-of-type {
     margin-top: 0;
   }
