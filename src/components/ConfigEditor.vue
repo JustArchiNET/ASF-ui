@@ -115,10 +115,18 @@
         const fieldSchema = this.fields.find(fieldSchema => fieldSchema.paramName === field);
         const defaultCheck = this.deleteDefaultValues && fieldSchema && typeof fieldSchema.defaultValue !== 'undefined' && this.isDefault(value, fieldSchema);
 
-        if (defaultCheck) delete this.model[field];
-        else if (this.model[field] && this.model[field].constructor === Array) this.model[field] = value.sort((a, b) => a - b);
-        else if (this.model[field] && this.model[field].constructor === Object) this.model[field] = Object.keys(value).sort((a, b) => value[a] - value[b]);
-        else this.model[field] = value;
+        if (defaultCheck) {
+          delete this.model[field];
+        } else if (this.model[field] && this.model[field].constructor === Array && fieldSchema.type !== 'dictionary') {
+          // eslint-disable-next-line vue/no-mutating-props
+          this.model[field] = value.sort((a, b) => a - b);
+        } else if (this.model[field] && this.model[field].constructor === Object && fieldSchema.type !== 'dictionary') {
+          // eslint-disable-next-line vue/no-mutating-props
+          this.model[field] = Object.keys(value).sort((a, b) => value[a] - value[b]);
+        } else {
+          // eslint-disable-next-line vue/no-mutating-props
+          this.model[field] = value;
+        }
       },
       isDefault(value, fieldSchema) {
         return this.isEqual(value, fieldSchema.defaultValue, fieldSchema.type);
