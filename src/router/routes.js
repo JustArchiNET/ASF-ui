@@ -10,7 +10,7 @@ export default [
 		redirect: typeof defaultView === 'string' ? { name: defaultView } : defaultView
 	},
 	{
-		path: '/page/home',
+		path: '/home',
 		name: 'home',
 		async beforeEnter(to, from, next) {
 			const setupComplete = storage.get('setup-complete', false);
@@ -36,7 +36,7 @@ export default [
 		}
 	},
 	{
-		path: '/page/setup',
+		path: '/setup',
 		name: 'setup',
 		component: () => import('../views/Setup.vue'),
 		meta: { noPasswordRequired: true },
@@ -46,32 +46,32 @@ export default [
     }
 	},
 	{
-		path: '/page/ui-config',
+		path: '/ui-config',
 		name: 'ui-config',
 		component: () => import('../views/UIConfig.vue')
 	},
 	{
-		path: '/page/welcome',
+		path: '/welcome',
 		name: 'welcome',
 		component: () => import('../views/Welcome.vue')
 	},
 	{
-		path: '/page/bots',
+		path: '/bots',
 		name: 'bots',
 		component: () => import('../views/Bots.vue')
 	},
 	{
-		path: '/page/releases',
+		path: '/releases',
 		name: 'releases',
 		component: () => import('../views/Releases.vue')
 	},
 	{
-		path: '/page/plugins',
+		path: '/plugins',
 		name: 'plugins',
 		component: () => import('../views/Plugins.vue')
 	},
 	{
-		path: '/page/bot/new',
+		path: '/bot/new',
 		name: 'bot-create',
 		components: {
 			default: () => import('../views/Bots.vue'),
@@ -80,7 +80,7 @@ export default [
 		meta: { modal: true }
 	},
 	{
-		path: '/page/bot/:bot',
+		path: '/bot/:bot',
 		name: 'bot',
 		components: {
 			default: () => import('../views/Bots.vue'),
@@ -89,7 +89,7 @@ export default [
 		meta: { modal: true, arrows: true }
 	},
 	{
-		path: '/page/bot/:bot/config',
+		path: '/bot/:bot/config',
 		name: 'bot-config',
 		components: {
 			default: () => import('../views/Bots.vue'),
@@ -98,7 +98,7 @@ export default [
 		meta: { modal: true, arrows: true }
 	},
 	{
-		path: '/page/bot/:bot/bgr',
+		path: '/bot/:bot/bgr',
 		name: 'bot-bgr',
 		components: {
 			default: () => import('../views/Bots.vue'),
@@ -107,7 +107,7 @@ export default [
 		meta: { modal: true, arrows: true }
 	},
 	{
-		path: '/page/bot/:bot/2fa',
+		path: '/bot/:bot/2fa',
 		name: 'bot-2fa',
 		components: {
 			default: () => import('../views/Bots.vue'),
@@ -116,7 +116,7 @@ export default [
 		meta: { modal: true, arrows: true }
   },
   {
-		path: '/page/bot/:bot/input/:type',
+		path: '/bot/:bot/input/:type',
 		name: 'bot-input',
 		components: {
 			default: () => import('../views/Bots.vue'),
@@ -125,7 +125,7 @@ export default [
 		meta: { modal: true }
 	},
 	{
-		path: '/page/bot/:bot/delete',
+		path: '/bot/:bot/delete',
 		name: 'bot-delete',
 		components: {
 			default: () => import('../views/Bots.vue'),
@@ -134,7 +134,7 @@ export default [
 		meta: { modal: true }
 	},
 	{
-		path: '/page/bot/:bot/copy',
+		path: '/bot/:bot/copy',
 		name: 'bot-copy',
 		components: {
 			default: () => import('../views/Bots.vue'),
@@ -143,26 +143,26 @@ export default [
 		meta: { modal: true }
 	},
 	{
-		path: '/page/bot',
+		path: '/bot',
 		redirect: { name: 'bots' }
 	},
 	{
-		path: '/page/commands',
+		path: '/commands',
 		name: 'commands',
 		component: () => import('../views/Commands.vue')
 	},
 	{
-		path: '/page/log',
+		path: '/log',
 		name: 'log',
 		component: () => import('../views/Log.vue')
 	},
 	{
-		path: '/page/asf-config',
+		path: '/asf-config',
 		name: 'asf-config',
 		component: () => import('../views/ASFConfig.vue')
 	},
 	{
-		path: '/page/mass-editor',
+		path: '/mass-editor',
 		name: 'mass-editor',
 		component: () => import('../views/MassEditor.vue')
 	},

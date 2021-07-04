@@ -1,43 +1,89 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>ASF</title>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600">
-	<link rel="manifest" href="/manifest.json">
-	<link rel="shortcut icon" href="/images/logo.png">
-</head>
-<body>
+  <head>
+    <title>ASF</title>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600" rel="stylesheet">
+    <link href="/manifest.json" rel="manifest">
+    <link href="/images/logo.png" rel="shortcut icon">
+  </head>
+  <body>
 
-<div id="app"></div>
+    <div id="app"></div>
 
-<script>
-	function normalizeUrl(url) {
-		return url.endsWith('/') ? url : url + '/';
-	}
+    <script>
+      const mainScript = document.querySelector('script[src^="/scripts/main"]');
+      mainScript.onerror = createErrorHandler(window.location.pathname, mainScript.getAttribute('src'));
+      mainScript.onload = createLoadHandler(mainScript.onerror);
 
-	function onError() {
-		if (!window.location.pathname.includes('/page')) window.location.pathname = `/page${window.location.pathname}`;
+      function addScript(path) {
+        const scriptElement = document.createElement('script');
+        scriptElement.src = path;
+        scriptElement.async = true;
 
-		const p = document.createElement('p');
-		p.innerText = '404 - Not Found';
-		document.body.appendChild(p);
-	}
+        document.head.appendChild(scriptElement);
+        return scriptElement;
+      }
 
-	const lastPageIndex = window.location.href.lastIndexOf('/page/');
+      function stripLastPart(path) {
+        const lastIndexOfSlash = path.lastIndexOf('/');
+        return path.slice(0, lastIndexOfSlash);
+      }
 
-	window.__BASE_URL__ = normalizeUrl(lastPageIndex >= 0 ? window.location.href.slice(0, lastPageIndex) : window.location.href);
-	window.__BASE_PATH__ = new URL(window.__BASE_URL__).pathname;
+      function createLoadHandler(onError) {
+        return function() {
+          // onLoad is fired when script is loaded. We do not want to be fooled by server returning index.html
+          // Check if the script is indeed working can be achieved by testing __ASF_UI_LOADED__ property set in index.js
+          if (!window.__ASF_UI_LOADED__) return onError();
 
-	const mainScript = document.querySelector('script[src^="/scripts/main"]');
-	const scriptPath = `${__BASE_PATH__}${mainScript.getAttribute('src')}`.replace('//', '/');
-	mainScript.setAttribute('src', scriptPath);
-	mainScript.onerror = onError;
+          // It is possible we loaded main script on first attempt
+          if (!window.__BASE_PATH__) {
+            // Other parts of the app use __BASE_PATH__ and __BASE_URL__, set it anyway
+            window.__BASE_URL__ = window.location.origin + '/';
+            window.__BASE_PATH__ = '/';
 
-	document.querySelector('link[rel="shortcut icon"]').setAttribute('href', `${__BASE_PATH__}images/logo.png`);
-	document.querySelector('link[rel="manifest"]').setAttribute('href', `${__BASE_PATH__}manifest.json`);
-</script>
-</body>
+            // We do not need to update resources, as the default path is already good
+            return;
+          }
+
+          document.querySelector('link[rel="shortcut icon"]').setAttribute('href', `${__BASE_PATH__}images/logo.png`);
+          document.querySelector('link[rel="manifest"]').setAttribute('href', `${__BASE_PATH__}manifest.json`);
+        };
+      }
+
+      function createErrorHandler(path, scriptPath) {
+        return function() {
+          // We are likely working with /<prefix>. Possible <browser path>:
+          // a) We are on /<prefix>
+          // b) We are on nested page /<prefix>/<page>
+          // c) We are on deeply nested page /<prefix>/<page A>/<page B>
+          // Either way, we need to load script from /<prefix>/<script path>
+
+          // We start from <browser path> and work recursively by striping
+          // parts after last "/" character:
+          // 1. /<prefix>/<page A>/<page B>
+          // 2. /<prefix>/<page A>
+          // 3. /<prefix>
+
+          const normalizedPath = path.endsWith('/') ? path.slice(0, -1) : path;
+          if (!normalizedPath.length) return; // Give up
+
+          // These properties needs to be set properly prior to script execution
+          // Otherwise we will be downloading script chunks from base (incorrect) path
+          window.__BASE_URL__ = window.location.href.replace(window.location.pathname, normalizedPath + '/');
+          window.__BASE_PATH__ = normalizedPath + '/';
+
+          // Add new script tag using new path
+          const newScriptPath = normalizedPath + scriptPath;
+          const newScript = addScript(newScriptPath);
+
+          // We found the path! Replace other resources
+          newScript.onerror = createErrorHandler(stripLastPart(normalizedPath), scriptPath);
+          newScript.onload = createLoadHandler(newScript.onerror);
+        };
+      }
+    </script>
+  </body>
 </html>
