@@ -20,6 +20,7 @@ module.exports = {
     chunkFilename: 'scripts/[id].[chunkhash:7].chunk.js',
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/',
+    crossOriginLoading: 'anonymous',
   },
   module: {
     rules: [

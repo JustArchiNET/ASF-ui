@@ -1,3 +1,4 @@
+const { SubresourceIntegrityPlugin } = require('webpack-subresource-integrity');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const config = require('./config');
 
@@ -11,6 +12,10 @@ config.plugins.push(new CopyWebpackPlugin({
     from: './src/static',
     to: './',
   }],
+}));
+
+config.plugins.push(new SubresourceIntegrityPlugin({
+  hashFuncNames: ['sha256', 'sha384'],
 }));
 
 config.performance = {
