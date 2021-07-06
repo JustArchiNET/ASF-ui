@@ -47,5 +47,5 @@ jobs:
     - name: Push changes
       uses: ad-m/github-push-action@v0.6.0
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.ARCHIBOT_GITHUB_TOKEN }}
         branch: ${{ github.ref }}
