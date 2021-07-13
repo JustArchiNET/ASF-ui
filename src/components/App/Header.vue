@@ -2,18 +2,18 @@
   <header class="upper-navigation">
     <NavigationBrand></NavigationBrand>
 
-    <div class="navigation__button" @click="toggleNavigation">
+    <div class="navigation__button" :title="$t('sidenav-toggle')" @click="toggleNavigation">
       <FontAwesomeIcon icon="bars" fixedWidth></FontAwesomeIcon>
     </div>
 
     <div class="navigation__menu">
       <NavigationLanguageSwitch></NavigationLanguageSwitch>
 
-      <div class="navigation__button" @click="toggleSideMenu">
+      <div class="navigation__button" :title="$t('sidebar-toggle')" @click="toggleSideMenu">
         <FontAwesomeIcon icon="cogs" fixedWidth></FontAwesomeIcon>
       </div>
 
-      <div v-if="status === 'AUTHENTICATED' && password" class="navigation__button" @click="logout">
+      <div v-if="status === 'AUTHENTICATED' && password" :title="$t('logout-title')" class="navigation__button" @click="logout">
         <FontAwesomeIcon icon="sign-out-alt" fixedWidth></FontAwesomeIcon>
       </div>
     </div>

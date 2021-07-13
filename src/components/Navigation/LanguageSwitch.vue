@@ -1,6 +1,6 @@
 <template>
   <div class="navigation__language-switch">
-    <div class="navigation__button" @click="toggleLanguageMenu">
+    <div class="navigation__button" :title="$t('language-title')" @click="toggleLanguageMenu">
       <FontAwesomeIcon class="navigation__language-icon" icon="language" fixedWidth></FontAwesomeIcon>
     </div>
 
