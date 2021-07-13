@@ -14,13 +14,18 @@
 
     <script>
       const mainScript = document.querySelector('script[src^="/scripts/main"]');
-      mainScript.onerror = createErrorHandler(window.location.pathname, mainScript.getAttribute('src'));
+      mainScript.onerror = createErrorHandler(window.location.pathname, mainScript.getAttribute('src'), mainScript.getAttribute('integrity'));
       mainScript.onload = createLoadHandler(mainScript.onerror);
 
-      function addScript(path) {
+      function addScript(path, integrity) {
         const scriptElement = document.createElement('script');
         scriptElement.src = path;
         scriptElement.async = true;
+
+        if (integrity) {
+          scriptElement.integrity = integrity;
+          scriptElement.crossOrigin = 'anonymous';
+        }
 
         document.head.appendChild(scriptElement);
         return scriptElement;
@@ -52,7 +57,7 @@
         };
       }
 
-      function createErrorHandler(path, scriptPath) {
+      function createErrorHandler(path, scriptPath, integrity) {
         return function() {
           // We are likely working with /<prefix>. Possible <browser path>:
           // a) We are on /<prefix>
@@ -76,10 +81,10 @@
 
           // Add new script tag using new path
           const newScriptPath = normalizedPath + scriptPath;
-          const newScript = addScript(newScriptPath);
+          const newScript = addScript(newScriptPath, integrity);
 
           // We found the path! Replace other resources
-          newScript.onerror = createErrorHandler(stripLastPart(normalizedPath), scriptPath);
+          newScript.onerror = createErrorHandler(stripLastPart(normalizedPath), scriptPath, integrity);
           newScript.onload = createLoadHandler(newScript.onerror);
         };
       }

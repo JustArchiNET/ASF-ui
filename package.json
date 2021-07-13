@@ -35,7 +35,8 @@
     "webpack": "5.44.0",
     "webpack-bundle-analyzer": "4.4.2",
     "webpack-cli": "4.7.2",
-    "webpack-dev-server": "3.11.2"
+    "webpack-dev-server": "3.11.2",
+    "webpack-subresource-integrity": "^5.0.0-alpha.5"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "1.2.35",
