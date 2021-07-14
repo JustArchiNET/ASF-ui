@@ -90,6 +90,7 @@
   "keep-unchanged": "<保持不變>",
   "keys-copied": "已複製序號到剪貼簿！",
   "keys-copy": "將序號複製到剪貼簿",
+  "language-title": "變更語言",
   "language-translation-bad": "所選語言僅翻譯 {percent}%！",
   "language-translation-good": "所選語言 {locale} 已翻譯 {percent}%，快要完成了！",
   "language-translation-medium": "所選語言已翻譯 {percent}%！",

@@ -107,6 +107,7 @@
   "keep-unchanged": "<Não modificar>",
   "keys-copied": "Chaves copiadas para a área de transferência!",
   "keys-copy": "Copiar chaves para a área de transferência",
+  "language-title": "Alterar idioma",
   "language-translation-bad": "Apenas {percent}% do idioma selecionado está traduzido!",
   "language-translation-good": "Idioma selecionado: {locale}. O idioma está {percent}% traduzido!",
   "language-translation-medium": "{percent}% do idioma selecionado está traduzido!",

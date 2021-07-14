@@ -97,6 +97,7 @@
   "keep-unchanged": "<hagyd változatlanul>",
   "keys-copied": "Vágólapra másolva.",
   "keys-copy": "Kulcsok másolása a vágólapra",
+  "language-title": "Nyelv változtatása",
   "language-translation-bad": "Egyenlőre a kiválasztott nyelv {percent}%-a van lefordítva.",
   "language-translation-good": "A kiválasztott nyelv, {locale} {percent}%-ban van lefordítva!",
   "language-translation-medium": "A kiválasztott nyelv {percent}%-a van lefordítva.",

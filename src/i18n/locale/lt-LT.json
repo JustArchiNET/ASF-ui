@@ -95,6 +95,7 @@
   "keep-unchanged": "<palikti nepakeistą>",
   "keys-copied": "Raktai nukopijuoti į iškarpinę!",
   "keys-copy": "Nukopijuoti raktus į iškarpinę",
+  "language-title": "Pakeisti kalbą",
   "language-translation-bad": "Tik {percent}% iš pasirinktų kalbų yra išverstos!",
   "language-translation-good": "Pasirinkta kalba, {locale}, yra beveik pilnai išversta {percent}%!",
   "language-translation-medium": "Tik {percent}% pasirinktos kalbos yra išversta!",

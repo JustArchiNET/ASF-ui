@@ -6,6 +6,7 @@
   "commands": "Kommandon",
   "config": "Konfig",
   "error": "Fel",
+  "language-title": "Ändra språk",
   "performance": "Prestanda",
   "restart-initiated": "Startar om...",
   "save": "Spara",

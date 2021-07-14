@@ -107,6 +107,7 @@
   "keep-unchanged": "<keep unchanged>",
   "keys-copied": "Anahtarlar panoya kopyalandı!",
   "keys-copy": "Anahtarları panoya kopyala",
+  "language-title": "Dili değiştir",
   "language-translation-bad": "Seçili dilin sadece %{percent} kısmı tercüme edilmiş!",
   "language-translation-good": "Seçili yerel {locale}, neredeyse %{percent} oranla tamamen tercüme edilmiş!",
   "language-translation-medium": "Seçili dilin %{percent} kısmı tercüme edilmiş!",

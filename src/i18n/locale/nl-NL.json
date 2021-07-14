@@ -71,6 +71,7 @@
   "keep-unchanged": "<ongewijzigd laten>",
   "keys-copied": "Productcodes zijn naar het klembord gekopieerd!",
   "keys-copy": "Productcodes naar het klembord kopiëren",
+  "language-title": "Taal wijzigen",
   "language-translation-bad": "{percent}% van de geselecteerde taal is vertaald!",
   "language-translation-good": "De geselecteerde taal, {locale}, is voor {percent}% vertaald en daarmee bijna compleet!",
   "language-translation-medium": "{percent}% van de geselecteerde taal is vertaald!",

@@ -55,6 +55,7 @@
   "input-unknown-type": "Neznámý typ pole",
   "keys-copied": "Klíče zkopírovány do schránky!",
   "keys-copy": "Zkopírovat klíče do schránky",
+  "language-title": "Změnit jazyk",
   "language-translation-bad": "Pouze {percent} % z vybraného jazyka je přeloženo!",
   "language-translation-good": "Zvolený jazyk, {locale}, je skoro zcela přeložen (z {percent} %)!",
   "language-translation-medium": "Ze zvoleného jazyka je přeloženo {percent} %!",

@@ -83,6 +83,7 @@
   "keep-unchanged": "<keep unchanged>",
   "keys-copied": "키가 클립보드에 복사되었습니다.",
   "keys-copy": "키를 클립보드에 복사",
+  "language-title": "언어 바꾸기",
   "language-translation-bad": "선택한 언어의 {percent}% 만큼이 번역되었습니다.",
   "language-translation-good": "선택한 {locale} 언어는 {percent}% 만큼 거의 다 번역되었습니다!",
   "language-translation-medium": "선택한 언어의 {percent}% 만큼이 번역되었습니다.",

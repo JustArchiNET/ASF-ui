@@ -91,6 +91,7 @@
   "keep-unchanged": "<не змінювати>",
   "keys-copied": "Ключі скопійовано до буфера обміну!",
   "keys-copy": "Скопіювати ключі в буфер обміну",
+  "language-title": "Змінити мову",
   "language-translation-bad": "На обрану мову перекладено лише {percent}%!",
   "language-translation-good": "Переклад на обрану мова, {locale}, майже закінчений на {percent}%!",
   "language-translation-medium": "На обрану мову перекладено {percent}%!",

@@ -102,6 +102,7 @@
   "keep-unchanged": "<keep unchanged>",
   "keys-copied": "Clés copiées dans le presse-papier !",
   "keys-copy": "Copier les clés dans le presse-papier",
+  "language-title": "Changer la langue",
   "language-translation-bad": "Seulement {percent}% de la langue sélectionnée est traduit !",
   "language-translation-good": "Paramètres régionaux sélectionné, {locale}, est presque entièrement traduit à {percent} % !",
   "language-translation-medium": "{percent}% de la langue sélectionnée est traduit !",

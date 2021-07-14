@@ -101,6 +101,7 @@
   "keep-unchanged": "<mantieni invariato>",
   "keys-copied": "Chiavi copiate negli appunti!",
   "keys-copy": "Copia chiavi negli appunti",
+  "language-title": "Cambia lingua",
   "language-translation-bad": "Solamente il {percent}% della lingua selezionata è stato tradotto!",
   "language-translation-good": "Locale selezionato, {locale}, è quasi totalmente tradotto all'{percent}%!",
   "language-translation-medium": "{percent}% della lingua selezionata è tradotto!",

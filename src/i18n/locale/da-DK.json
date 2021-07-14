@@ -76,6 +76,7 @@
   "keep-unchanged": "<behold uændret>",
   "keys-copied": "Kopieret nøgler til udklipsholder!",
   "keys-copy": "Kopier nøgler til udklipsholder",
+  "language-title": "Skift sprog",
   "language-translation-bad": "Kun {percent}% af det valgte sprog er oversat!",
   "language-translation-good": "Det valgte sprog, {locale}, er næsten fuldt oversat med {percent}%!",
   "language-translation-medium": "{percent}% af det valgte sprog er oversat!",

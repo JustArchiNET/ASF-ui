@@ -95,6 +95,7 @@
   "keep-unchanged": "<păstrează nemodificat>",
   "keys-copied": "Cheile sunt copiate!",
   "keys-copy": "Copiaza cheile",
+  "language-title": "Schimbă limba",
   "language-translation-bad": "Doar {percent}% din limba selectată este tradusă!",
   "language-translation-good": "Locul selectat, {locale}, este aproape complet tradus la {percent}%!",
   "language-translation-medium": "Doar {percent}% din limba selectată este tradusă!",
