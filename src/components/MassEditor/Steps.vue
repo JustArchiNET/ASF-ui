@@ -36,11 +36,15 @@
     padding: 0;
     margin: 1em;
     margin-top: 0.5em;
+
+    @media screen and (max-width: 460px) {
+      margin: 0.5em 0 1em 0;
+    }
   }
 
   .wizard__step {
-    flex-grow: 1;
-    list-style-type: none;
+    flex: 1;
+    list-style: none;
     position: relative;
     text-align: center;
     z-index: 10;
@@ -68,6 +72,14 @@
       display: block;
       text-align: center;
       margin: 0 auto 10px auto;
+      font-size: 18px;
+
+      @media screen and (max-width: 460px) {
+        width: 24px;
+        height: 24px;
+        line-height: 24px;
+        font-size: 16px;
+      }
     }
 
     &::after {
@@ -77,8 +89,12 @@
       position: absolute;
       background-color: var(--color-background-modal);
       top: 18px;
-      left: -50%;
+      left: -45%;
       z-index: -1;
+
+      @media screen and (max-width: 460px) {
+        top: 14px;
+      }
     }
   }
 
