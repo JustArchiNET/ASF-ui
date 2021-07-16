@@ -50,7 +50,7 @@
     z-index: 10;
 
     &:first-child {
-      &::after {
+      &:after {
         display: none;
       }
     }
@@ -60,7 +60,7 @@
       color: var(--color-theme);
     }
 
-    &::before {
+    &:before {
       background: var(--color-background-modal);
       border-radius: 50%;
       counter-increment: stepNo;
@@ -82,7 +82,7 @@
       }
     }
 
-    &::after {
+    &:after {
       width: 100%;
       height: 2px;
       content: "";
