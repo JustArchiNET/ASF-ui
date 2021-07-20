@@ -19,7 +19,8 @@ export async function getStatus() {
       if (err.message === 'Network Error') return STATUS.NETWORK_ERROR;
 
       if (err.message === 'HTTP Error 403') {
-        if (err.result && err.result.Result.Permanent) {
+        const result = err.result.Result;
+        if (result && result.Permanent) {
           // assume lack of IPCPassword since Result.Permanent is true
           return STATUS.NO_IPC_PASSWORD;
         }
