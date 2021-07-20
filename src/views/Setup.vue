@@ -132,8 +132,13 @@
           await this.$store.dispatch('auth/setPassword', this.password);
 
           const validPassword = await this.$store.dispatch('auth/validate');
-          if (validPassword) this.redirect();
-          else this.$error(this.$t('password-invalid'));
+          if (validPassword) {
+            this.redirect();
+          } else {
+            // if the password is invalid we can remove it from cache
+            await this.$store.dispatch('auth/setPassword');
+            this.$error(this.$t('password-invalid'));
+          }
         } catch (err) {
           this.$error(err.message);
         } finally {
