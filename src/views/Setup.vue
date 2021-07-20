@@ -8,11 +8,13 @@
         <p v-else-if="$route.params.update" class="status-text">{{ $t('setup-update') }}</p>
         <p v-else class="status-text">{{ $t('setup-authenticated') }}</p>
       </div>
-      <p v-if="status === 'NOT_CONNECTED'" class="status-text status-text--error">{{ $t('setup-not-connected') }}</p>
-      <p v-if="status === 'RATE_LIMITED'" class="status-text status-text--error">{{ $t('setup-rate-limited', { n: countdown }) }}</p>
+
       <p v-if="status === 'UNAUTHORIZED'" class="status-text">{{ $t('setup-description') }}</p>
+      <p v-if="status === 'NOT_CONNECTED'" class="status-text">{{ $t('setup-not-connected') }}</p>
       <p v-if="status === 'GATEWAY_TIMEOUT'" class="status-text">{{ $t('setup-gateway-timeout', { n: countdown }) }}</p>
       <p v-if="status === 'NETWORK_ERROR'" class="status-text">{{ $t('setup-network-error', { n: countdown }) }}</p>
+      <p v-if="status === 'NO_IPC_PASSWORD'" class="status-text" v-html="$t('setup-no-ipc-password')"></p>
+      <p v-if="status === 'RATE_LIMITED'" class="status-text" v-html="$t('setup-rate-limited')"></p>
 
       <div v-if="status === 'UNAUTHORIZED'" class="form-item">
         <label for="password" class="form-item__label">{{ $t('password') }}</label>
@@ -145,9 +147,18 @@
         clearInterval(this.timer);
       },
       checkStatus() {
-        if (this.status === STATUS.AUTHENTICATED) this.redirect();
-        if (this.status === STATUS.RATE_LIMITED) this.countdown = 3610; // ASF will keep us banned if we do not wait
-        if (this.status !== STATUS.UNAUTHORIZED) this.timer = setInterval(this.refreshStatus, this.countdown * 1000);
+        switch (this.status) {
+          case STATUS.AUTHENTICATED:
+            this.redirect();
+            break;
+          case STATUS.NO_IPC_PASSWORD:
+          case STATUS.RATE_LIMITED:
+          case STATUS.UNAUTHORIZED:
+            this.cancelAutoUpdate();
+            break;
+          default:
+            this.timer = setInterval(this.refreshStatus, this.countdown * 1000);
+        }
       },
     },
   };
@@ -156,9 +167,9 @@
 <style lang="scss">
 	.status-text {
 		text-align: center;
-	}
 
-	.status-text--error {
-		color: var(--color-button-cancel);
+    a {
+      color: var(--color-theme);
+    }
 	}
 </style>
