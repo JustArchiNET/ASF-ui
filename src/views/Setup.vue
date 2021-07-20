@@ -9,12 +9,7 @@
         <p v-else class="status-text">{{ $t('setup-authenticated') }}</p>
       </div>
 
-      <p v-if="status === 'UNAUTHORIZED'" class="status-text">{{ $t('setup-description') }}</p>
-      <p v-if="status === 'NOT_CONNECTED'" class="status-text">{{ $t('setup-not-connected') }}</p>
-      <p v-if="status === 'GATEWAY_TIMEOUT'" class="status-text">{{ $t('setup-gateway-timeout', { n: countdown }) }}</p>
-      <p v-if="status === 'NETWORK_ERROR'" class="status-text">{{ $t('setup-network-error', { n: countdown }) }}</p>
-      <p v-if="status === 'NO_IPC_PASSWORD'" class="status-text" v-html="$t('setup-no-ipc-password')"></p>
-      <p v-if="status === 'RATE_LIMITED'" class="status-text" v-html="$t('setup-rate-limited')"></p>
+      <p v-if="statusText" class="status-text" v-html="statusText"></p>
 
       <div v-if="status === 'UNAUTHORIZED'" class="form-item">
         <label for="password" class="form-item__label">{{ $t('password') }}</label>
@@ -62,6 +57,24 @@
             return this.$t('continue');
           default:
             return this.$t('refresh');
+        }
+      },
+      statusText() {
+        switch (this.status) {
+          case STATUS.UNAUTHORIZED:
+            return this.$t('setup-description');
+          case STATUS.NOT_CONNECTED:
+            return this.$t('setup-not-connected');
+          case STATUS.GATEWAY_TIMEOUT:
+            return this.$t('setup-gateway-timeout', { n: this.countdown });
+          case STATUS.NETWORK_ERROR:
+            return this.$t('setup-network-error', { n: this.countdown });
+          case STATUS.NO_IPC_PASSWORD:
+            return this.$t('setup-no-ipc-password');
+          case STATUS.RATE_LIMITED:
+            return this.$t('setup-rate-limited');
+          default:
+            return null;
         }
       },
     },
