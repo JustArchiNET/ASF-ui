@@ -55,7 +55,6 @@
       }
     }
 
-    &:hover,
     &.active {
       color: var(--color-theme);
     }
@@ -101,10 +100,15 @@
   .wizard__step-name {
     text-transform: uppercase;
     cursor: pointer;
-    padding: 1em;
+    padding: 0.5em;
+    padding-top: 4em;
 
     &.disabled {
       cursor: not-allowed;
+    }
+
+    &:hover {
+      color: var(--color-theme);
     }
   }
 </style>
