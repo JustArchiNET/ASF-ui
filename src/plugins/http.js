@@ -21,6 +21,7 @@ function extractResult(response) {
 
 function checkForError(response) {
   if (response.status !== 200) {
+    if (response.status === 400 && response.data && response.data.Message) throw new NotificationError(response.data.Message);
     throw new NotificationError(`HTTP Error ${response.status}`, response.data);
   }
 
