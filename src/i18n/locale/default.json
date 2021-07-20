@@ -113,7 +113,7 @@
   "language-translation-medium": "{percent}% of selected language is translated!",
   "last-visited-page": "Last visited page",
   "log": "Log",
-  "logout-title": "Logs you out of ASF-ui",
+  "logout-title": "Log out of ASF-ui",
   "mass-editor": "Mass Editor",
   "mass-editor-bots": "Select bots you want to edit config properties for",
   "mass-editor-bots-deselect": "Deselect all bots",
