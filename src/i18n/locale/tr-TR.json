@@ -180,7 +180,6 @@
   "setup-gateway-timeout": "Geçit zaman aşımı. {PLURAL:n|{n} saniye|{n} saniye} içinde yeniden bağlanma deneniyor...",
   "setup-network-error": "ASF ile bağlantı kaybedildi. {PLURAL:n|{n} saniye|{n} saniye} içinde yeniden bağlanma deneniyor...",
   "setup-not-connected": "ASF, IPC sunucusuna bağlanamıyor. ASF'nin çalıştığından emin olun!",
-  "setup-rate-limited": "Sınırlı oran. {PLURAL:n|{n} saniye|{n} saniye} içinde tekrar denenecek...",
   "setup-restart": "Yeniden yükleme devam ediyor, lütfen bekleyin...",
   "setup-update": "Güncelleme devam ediyor, lütfen bekleyin...",
   "shutdown": "Kapat",
