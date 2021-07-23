@@ -51,7 +51,6 @@
       }),
       async logout() {
         await this.$store.dispatch('auth/setPassword');
-        this.$router.replace({ name: 'setup' });
       },
       onWindowClick($e) {
         const path = $e.path || $e.composedPath();
