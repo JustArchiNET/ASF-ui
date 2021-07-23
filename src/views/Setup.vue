@@ -31,6 +31,7 @@
 <script>
   import { mapGetters } from 'vuex';
   import { STATUS } from '../utils/getStatus';
+  import * as storage from '../utils/storage';
   import waitForRestart from '../utils/waitForRestart';
 
   export default {
@@ -127,6 +128,8 @@
       },
       async updatePassword() {
         this.processing = true;
+
+        storage.remove('authentication-required');
 
         try {
           await this.$store.dispatch('auth/setPassword', this.password);

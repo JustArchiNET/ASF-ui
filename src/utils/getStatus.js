@@ -1,4 +1,5 @@
 import * as http from '../plugins/http';
+import * as storage from './storage';
 
 export const STATUS = {
   NOT_CONNECTED: 'NOT_CONNECTED',
@@ -11,12 +12,19 @@ export const STATUS = {
 };
 
 export async function getStatus() {
+  const authenticationRequired = storage.get('authentication-required');
+  if (authenticationRequired) return STATUS.UNAUTHORIZED;
+
   return http.get('asf')
-    .then(response => STATUS.AUTHENTICATED)
+    .then(response => {
+      storage.remove('authentication-required');
+      return STATUS.AUTHENTICATED;
+    })
     .catch(err => {
-      if (err.message === 'HTTP Error 401') return STATUS.UNAUTHORIZED;
-      if (err.message === 'HTTP Error 504') return STATUS.GATEWAY_TIMEOUT;
-      if (err.message === 'Network Error') return STATUS.NETWORK_ERROR;
+      if (err.message === 'HTTP Error 401') {
+        storage.set('authentication-required', true);
+        return STATUS.UNAUTHORIZED;
+      }
 
       if (err.message === 'HTTP Error 403') {
         const result = err.result.Result;
@@ -28,6 +36,8 @@ export async function getStatus() {
         return STATUS.RATE_LIMITED;
       }
 
+      if (err.message === 'HTTP Error 504') return STATUS.GATEWAY_TIMEOUT;
+      if (err.message === 'Network Error') return STATUS.NETWORK_ERROR;
       return STATUS.NOT_CONNECTED;
     });
 }
