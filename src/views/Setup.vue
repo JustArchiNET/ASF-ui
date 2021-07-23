@@ -164,15 +164,19 @@
       cancelAutoUpdate() {
         clearInterval(this.timer);
       },
-      checkStatus() {
+      async checkStatus() {
         switch (this.status) {
           case STATUS.AUTHENTICATED:
             this.redirect();
             break;
           case STATUS.NO_IPC_PASSWORD:
           case STATUS.RATE_LIMITED:
+            this.cancelAutoUpdate();
+            break;
           case STATUS.UNAUTHORIZED:
             this.cancelAutoUpdate();
+            this.password = null; // we are unauthorized so we can clear the ipc-password
+            await this.$store.dispatch('auth/setPassword', this.password);
             break;
           default:
             this.timer = setInterval(this.refreshStatus, this.countdown * 1000);
