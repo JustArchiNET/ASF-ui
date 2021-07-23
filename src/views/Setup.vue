@@ -135,8 +135,7 @@
           if (validPassword) {
             this.redirect();
           } else {
-            // if the password is invalid we can remove it from cache
-            await this.$store.dispatch('auth/setPassword');
+            await this.resetPassword();
             this.$error(this.$t('password-invalid'));
           }
         } catch (err) {
@@ -175,12 +174,15 @@
             break;
           case STATUS.UNAUTHORIZED:
             this.cancelAutoUpdate();
-            this.password = null; // we are unauthorized so we can clear the ipc-password
-            await this.$store.dispatch('auth/setPassword', this.password);
+            await this.resetPassword();
             break;
           default:
             this.timer = setInterval(this.refreshStatus, this.countdown * 1000);
         }
+      },
+      async resetPassword() {
+        this.password = null;
+        await this.$store.dispatch('auth/setPassword', this.password);
       },
     },
   };
