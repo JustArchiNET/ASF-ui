@@ -8,11 +8,11 @@
       <div class="form-item__token">
         <input class="form-item__input form-item__input-token" type="text" :value="token" readonly>
         <div class="form-item__buttons form-item__buttons--column">
-          <button class="button button--helper" v-tooltip.left="$t('2fa-token-refresh')" @click="refreshToken">
+          <button v-tooltip.left="$t('2fa-token-refresh')" class="button button--helper" @click="refreshToken">
             <FontAwesomeIcon v-if="refreshing" icon="spinner" size="lg" spin></FontAwesomeIcon>
             <FontAwesomeIcon v-else icon="redo-alt" size="lg"></FontAwesomeIcon>
           </button>
-          <button class="button button--helper" v-tooltip.left="$t('2fa-token-copy')" @click="copyToken">
+          <button v-tooltip.left="$t('2fa-token-copy')" class="button button--helper" @click="copyToken">
             <FontAwesomeIcon icon="clipboard" size="lg"></FontAwesomeIcon>
           </button>
         </div>
