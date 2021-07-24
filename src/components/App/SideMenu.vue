@@ -20,7 +20,7 @@
 
 <script>
   import { mapActions, mapGetters } from 'vuex';
-  import SideMenuSwitch from '../SideMenuSwitch.vue';
+  import SideMenuSwitch from './partials/SideMenuSwitch.vue';
 
   export default {
     name: 'AppSideMenu',

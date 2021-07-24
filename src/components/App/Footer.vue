@@ -16,7 +16,7 @@
 
 <script>
   import { mapGetters } from 'vuex';
-  import FooterLink from '../FooterLink.vue';
+  import FooterLink from './partials/FooterLink.vue';
   import { ui, isReleaseAvailable } from '../../utils/ui';
   import delay from '../../utils/delay';
 
