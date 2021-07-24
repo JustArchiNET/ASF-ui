@@ -27,7 +27,7 @@
 
 <script>
   import { mapGetters } from 'vuex';
-  import ConfigEditor from '../ConfigEditor.vue';
+  import ConfigEditor from '../Config/Editor.vue';
 
   export default {
     name: 'MassEditorSelect',

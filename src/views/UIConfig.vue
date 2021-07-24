@@ -12,7 +12,7 @@
 
 <script>
   import { mapGetters } from 'vuex';
-  import ConfigEditor from '../components/ConfigEditor.vue';
+  import ConfigEditor from '../components/Config/Editor.vue';
   import { uiCategories } from '../utils/configCategories';
 
   export default {
