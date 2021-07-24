@@ -1,6 +1,6 @@
 <template>
   <main v-if="bot" class="main-container">
-    <h2 :title="bot.name" class="title">{{ bot.viewableName }}</h2>
+    <h2 v-tooltip="bot.name" class="title">{{ bot.viewableName }}</h2>
 
     <div class="form-item">
       <div class="form-item__info">{{ $t(`input-info-${inputType}`) }}</div>
@@ -10,7 +10,7 @@
           <input id="input" v-model="code" class="form-item__input" type="password" autocomplete="new-password">
         </div>
         <div class="form-item__buttons form-item__buttons--column">
-          <button class="button button--helper" :title="$t('input-switch-visibility')" @click="switchInputType">
+          <button v-tooltip="$t('input-switch-visibility')" class="button button--helper" @click="switchInputType">
             <FontAwesomeIcon v-if="inputHidden" icon="eye" size="lg"></FontAwesomeIcon>
             <FontAwesomeIcon v-else icon="eye-slash" size="lg"></FontAwesomeIcon>
           </button>

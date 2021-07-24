@@ -4,7 +4,7 @@
       <img class="bot__avatar" :src="bot.avatarURL">
 
       <div class="bot__status">
-        <span :title="bot.name" class="bot__status-property bot__status-property--name">{{ bot.viewableName }}</span>
+        <span v-tooltip="bot.name" class="bot__status-property bot__status-property--name">{{ bot.viewableName }}</span>
         <span class="bot__status-property bot__status-property--text">{{ bot.statusText }}</span>
       </div>
     </div>
