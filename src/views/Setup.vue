@@ -171,11 +171,11 @@
           case STATUS.AUTHENTICATED:
             this.redirect();
             break;
-          case STATUS.NO_IPC_PASSWORD:
           case STATUS.RATE_LIMITED:
             this.cancelAutoUpdate();
             break;
           case STATUS.UNAUTHORIZED:
+          case STATUS.NO_IPC_PASSWORD:
             this.cancelAutoUpdate();
             await this.resetPassword();
             break;
