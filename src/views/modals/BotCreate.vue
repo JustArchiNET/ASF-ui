@@ -28,12 +28,13 @@
 <script>
   import { mapGetters } from 'vuex';
   import ConfigEditor from '../../components/ConfigEditor.vue';
-  import fetchConfigSchema from '../../utils/fetchConfigSchema';
   import loadParameterDescriptions from '../../utils/loadParameterDescriptions';
   import downloadConfig from '../../utils/downloadConfig';
   import delay from '../../utils/delay';
   import botExists from '../../utils/botExists';
   import { botCategories } from '../../utils/categories';
+  // eslint-disable-next-line import/named
+  import { getType } from '../../utils/swagger/parse';
 
   export default {
     name: 'BotCreate',
@@ -59,22 +60,27 @@
     },
     methods: {
       async loadConfig() {
-        const [{ body: fields }, descriptions] = await Promise.all([
-          fetchConfigSchema('ArchiSteamFarm.Steam.Storage.BotConfig'),
-          loadParameterDescriptions(this.version, this.$i18n.locale),
-        ]);
-
-        this.fields = [
+        const ADDITIONAL_FIELDS = [
           {
-            defaultValue: '',
             param: 'Name',
             paramName: 'Name',
             type: 'string',
             description: this.$t('name-description'),
           },
-          ...Object.keys(fields).map(key => ({
-            description: descriptions[key],
-            ...fields[key],
+        ];
+
+        const [schema, descriptions] = await Promise.all([
+          getType('ArchiSteamFarm.Steam.Storage.BotConfig'),
+          loadParameterDescriptions(this.version, this.$i18n.locale),
+        ]);
+
+        this.fields = [
+          ...ADDITIONAL_FIELDS,
+          ...Object.keys(schema).map(name => ({
+            description: descriptions[name.replace('s_', '')],
+            ...schema[name],
+            param: name.replace('s_', ''),
+            paramName: name,
           })),
         ];
 
@@ -124,6 +130,7 @@
 
 <style lang="scss">
 	.main-container--bot-create {
-		max-width: 1000px;
+		max-width: 800px;
+		width: 60vw;
 	}
 </style>

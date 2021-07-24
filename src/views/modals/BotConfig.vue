@@ -36,11 +36,11 @@
 <script>
   import { mapGetters } from 'vuex';
   import ConfigEditor from '../../components/ConfigEditor.vue';
-  import fetchConfigSchema from '../../utils/fetchConfigSchema';
   import loadParameterDescriptions from '../../utils/loadParameterDescriptions';
   import downloadConfig from '../../utils/downloadConfig';
   import { botCategories } from '../../utils/categories';
   import isSameConfig from '../../utils/isSameConfig';
+  import { getType } from '../../utils/swagger/parse';
 
   export default {
     name: 'BotConfig',
@@ -84,20 +84,22 @@
 
         try {
           const [
-            { body: fields },
+            schema,
             { [this.bot.name]: { BotConfig: model } },
             descriptions,
           ] = await Promise.all([
-            fetchConfigSchema('ArchiSteamFarm.Steam.Storage.BotConfig'),
+            getType('ArchiSteamFarm.Steam.Storage.BotConfig'),
             this.$http.get(`bot/${this.bot.name}`),
             loadParameterDescriptions(this.version, this.$i18n.locale),
           ]);
 
-          Object.keys(model).forEach(key => {
-            if (key.startsWith('s_')) delete model[key.substr(2)];
+          Object.keys(schema).forEach(name => {
+            if (name.startsWith('s_')) {
+              const paramName = name.substr(2);
+              delete model[paramName];
+              delete schema[paramName];
+            }
           });
-
-          this.model = model;
 
           const extendedFields = {
             SteamLogin: { placeholder: this.$t('keep-unchanged') },
@@ -105,13 +107,23 @@
             SteamParentalCode: { placeholder: this.$t('keep-unchanged') },
           };
 
-          this.fields = Object.keys(fields).map(key => {
-            const description = (!descriptions[key])
-              ? this.$t('description-not-found')
-              : descriptions[key].replace(/<a href="/g, '<a target="_blank" rel="noreferrer noopener" href="');
+          // this.fields = Object.keys(fields).map(key => {
+          //   const description = (!descriptions[key])
+          //     ? this.$t('description-not-found')
+          //     : descriptions[key].replace(/<a href="/g, '<a target="_blank" rel="noreferrer noopener" href="');
 
-            return { description, ...fields[key], ...(extendedFields[key] || []) };
-          });
+          //   return { description, ...fields[key], ...(extendedFields[key] || []) };
+          // });
+
+          this.fields = Object.keys(schema).map(name => ({
+            description: descriptions[name.replace('s_', '')],
+            ...schema[name],
+            ...(extendedFields[name] || {}),
+            param: name.replace('s_', ''),
+            paramName: name,
+          }));
+
+          this.model = model;
         } catch (err) {
           this.$error(err.message);
         } finally {
@@ -155,6 +167,7 @@
 
 <style lang="scss">
 	.main-container--bot-config {
-		max-width: 1000px;
+		max-width: 800px;
+    width: 60vw;
 	}
 </style>

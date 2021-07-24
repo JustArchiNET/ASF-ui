@@ -44,7 +44,6 @@
         required: true,
       },
       categories: Array,
-      descriptions: Object,
       extendedFields: Object,
       deleteDefaultValues: {
         type: Boolean,
@@ -86,26 +85,23 @@
     },
     methods: {
       componentFromField(field) {
+        if (field.format === 'flags') return InputFlag;
+        if (field.enum) return InputEnum;
+
         switch (field.type) {
           case 'string':
-          case 'uint64':
             return InputString;
           case 'boolean':
             return InputBoolean;
-          case 'uint32':
-          case 'uint16':
-          case 'byte':
+          case 'integer':
             return InputNumber;
-          case 'flag':
-            return InputFlag;
-          case 'enum':
-            return InputEnum;
-          case 'hashSet':
-          case 'list':
-            if (['enum'].includes(field.values.type)) return (field.type === 'list') ? InputList : InputSet;
-            if (['byte', 'uint16', 'uint32', 'uint64', 'string'].includes(field.values.type)) return InputTag;
-            return InputUnknown;
-          case 'dictionary':
+          case 'array':
+            if (field.items && field.items.enum) {
+              if (field.uniqueItems) return InputSet;
+              return InputList;
+            }
+            return InputTag;
+          case 'object':
             return InputDictionary;
           default:
             return InputUnknown;

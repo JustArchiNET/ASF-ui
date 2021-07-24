@@ -15,7 +15,7 @@
       },
     },
     data() {
-      const initialValue = (typeof this.currentValue !== 'undefined') ? this.currentValue : this.schema.defaultValue;
+      const initialValue = (typeof this.currentValue !== 'undefined') ? this.currentValue : null;
 
       return {
         value: (typeof initialValue === 'object') ? JSON.parse(JSON.stringify(initialValue)) : initialValue,
@@ -23,9 +23,6 @@
       };
     },
     computed: {
-      defaultValue() {
-        return this.schema.defaultValue;
-      },
       label() {
         return this.schema.label || this.schema.param || this.schema.paramName;
       },
@@ -33,7 +30,7 @@
         return this.schema.paramName;
       },
       placeholder() {
-        return this.schema.placeholder || this.schema.defaultValue;
+        return this.schema.placeholder;
       },
       description() {
         return this.schema.description;

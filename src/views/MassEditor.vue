@@ -75,9 +75,9 @@
   import MassEditorValue from '../components/MassEditor/Value.vue';
   import MassEditorCheck from '../components/MassEditor/Check.vue';
   import MassEditorSelect from '../components/MassEditor/Select.vue';
-  import fetchConfigSchema from '../utils/fetchConfigSchema';
   import loadParameterDescriptions from '../utils/loadParameterDescriptions';
   import { botCategories } from '../utils/categories';
+  import { getType } from '../utils/swagger/parse';
 
   export default {
     name: 'MassEditor',
@@ -131,38 +131,54 @@
       async loadBotConfig() {
         const firstBot = this.bots[Object.keys(this.bots)[0]];
 
-        const [
-          { [firstBot.name]: { BotConfig: model } },
-          { body: fields },
-          descriptions,
-        ] = await Promise.all([
-          this.$http.get(`bot/${firstBot.name}`),
-          fetchConfigSchema('ArchiSteamFarm.Steam.Storage.BotConfig'),
-          loadParameterDescriptions(this.version, this.$i18n.locale),
-        ]);
+        try {
+          const [
+            schema,
+            { [firstBot.name]: { BotConfig: model } },
+            descriptions,
+          ] = await Promise.all([
+            getType('ArchiSteamFarm.Steam.Storage.BotConfig'),
+            this.$http.get(`bot/${firstBot.name}`),
+            loadParameterDescriptions(this.version, this.$i18n.locale),
+          ]);
 
-        Object.keys(model).forEach(key => {
-          if (key.startsWith('s_')) delete model[key.substr(2)];
-        });
+          Object.keys(schema).forEach(name => {
+            if (name.startsWith('s_')) {
+              const paramName = name.substr(2);
+              delete model[paramName];
+              delete schema[paramName];
+            }
+          });
 
-        this.model = model;
+          const extendedFields = {
+            SteamLogin: { placeholder: this.$t('keep-unchanged') },
+            SteamPassword: { placeholder: this.$t('keep-unchanged') },
+            SteamParentalCode: { placeholder: this.$t('keep-unchanged') },
+          };
 
-        const extendedFields = {
-          SteamLogin: { placeholder: this.$t('keep-unchanged') },
-          SteamPassword: { placeholder: this.$t('keep-unchanged') },
-          SteamParentalCode: { placeholder: this.$t('keep-unchanged') },
-        };
+          // this.fields = Object.keys(fields).map(key => {
+          //   const description = (!descriptions[key])
+          //     ? this.$t('description-not-found')
+          //     : descriptions[key].replace(/<a href="/g, '<a target="_blank" rel="noreferrer noopener" href="');
 
-        this.fields = Object.keys(fields).map(key => {
-          const description = (!descriptions[key])
-            ? this.$t('description-not-found')
-            : descriptions[key].replace(/<a href="/g, '<a target="_blank" rel="noreferrer noopener" href="');
+          //   return { description, ...fields[key], ...(extendedFields[key] || []) };
+          // });
 
-          return { description, ...fields[key], ...(extendedFields[key] || []) };
-        });
+          this.fields = Object.keys(schema).map(name => ({
+            description: descriptions[name.replace('s_', '')],
+            ...schema[name],
+            ...(extendedFields[name] || {}),
+            param: name.replace('s_', ''),
+            paramName: name,
+          }));
 
-        this.noBotsFound = false;
-        this.loading = false;
+          this.model = model;
+          this.noBotsFound = false;
+        } catch (err) {
+          this.$error(err.message);
+        } finally {
+          this.loading = false;
+        }
       },
       updateSelectedBots(bot) {
         const selectedBotNames = this.selectedBots.map(bot => bot.name);

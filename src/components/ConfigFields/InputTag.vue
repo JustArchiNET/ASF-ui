@@ -40,13 +40,15 @@
     },
     computed: {
       isString() {
-        return ['string', 'uint64'].includes(this.schema.values.type);
+        return ['string'].includes(this.schema.items.type);
       },
       isNumber() {
-        return ['uint32', 'uint16'].includes(this.schema.values.type);
+        return ['integer'].includes(this.schema.items.type);
       },
       errors() {
-        if (Object.prototype.hasOwnProperty.call(validator, this.schema.values.type)) return validator[this.schema.values.type](this.element);
+        // if (Object.prototype.hasOwnProperty.call(validator, this.schema.items.type)) return validator[this.schema.items.type](this.element);
+        // eslint-disable-next-line no-prototype-builtins
+        if (validator.hasOwnProperty(this.schema.items.type)) return validator[this.schema.items.type](this.element);
         return [];
       },
       isValid() {

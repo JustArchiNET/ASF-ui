@@ -4,17 +4,13 @@
 
     <div class="form-item__value">
       <div class="input-option__field input-option__field--three">
-        <input v-if="keyIsString" :id="`${field}-key`" v-model="elementKey" class="form-item__input" type="text" @keydown.enter="addElement">
+        <input :id="`${field}-key`" v-model="elementKey" class="form-item__input" type="text" @keydown.enter="addElement">
 
-        <select v-if="valueIsEnum" :id="`${field}-value`" v-model="elementValue" class="form-item__input">
-          <option v-for="(enumValue, name) in schema.value.values" :key="name" :value="enumValue">
-            {{ name }}
-          </option>
+        <select :id="`${field}-value`" v-model="elementValue" class="form-item__input">
+          <option v-for="{ label, value } in availableEnumValues" :key="label" :value="value">{{ label }}</option>
         </select>
 
-        <button class="button" @click.prevent="addElement">
-          {{ $t('add') }}
-        </button>
+        <button class="button" @click.prevent="addElement">{{ $t('add') }}</button>
       </div>
 
       <div class="input-option__items">
@@ -41,20 +37,18 @@
       };
     },
     computed: {
-      keyIsString() {
-        return ['string', 'uint64'].includes(this.schema.key.type);
+      availableEnumValues() {
+        return this.enumValues;
       },
-      valueIsEnum() {
-        return this.schema.value.type === 'enum';
+      enumValues() {
+        return Object.entries(this.schema.additionalProperties['x-definition']).map(([label, value]) => ({ label, value }));
       },
-      valueAvailableEnumValues() {
-        const availableEnumValues = [];
-
-        Object.keys(this.schema.value.values).forEach(key => {
-          availableEnumValues.push(this.schema.value.values[key]);
-        });
-
-        return availableEnumValues;
+      resolveValue() {
+        return value => {
+          const enumValue = this.enumValues.find(({ value: enumValue }) => value === enumValue);
+          if (!enumValue) return value;
+          return enumValue.label;
+        };
       },
     },
     created() {
@@ -66,12 +60,7 @@
         return null;
       },
       getDefaultValue() {
-        if (this.valueIsEnum) return this.valueAvailableEnumValues[0];
-        return null;
-      },
-      resolveValue(value) {
-        if (!this.valueIsEnum) return value;
-        return Object.keys(this.schema.value.values).find(key => this.schema.value.values[key] === value);
+        return this.availableEnumValues[0].value;
       },
       addElement() {
         if ((!this.elementValue && this.elementValue !== 0) || (!this.elementKey && this.elementKey !== 0)) return;
