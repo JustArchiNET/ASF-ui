@@ -27,7 +27,7 @@
 
 <script>
   import Input from './Input.vue';
-  import validator from '../../utils/validator';
+  import validator from '../../../utils/validator';
 
   export default {
     name: 'InputTag',

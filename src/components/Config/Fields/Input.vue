@@ -1,7 +1,7 @@
 <script>
   import InputDescription from './InputDescription.vue';
   import InputLabel from './InputLabel.vue';
-  import validator from '../../utils/validator';
+  import validator from '../../../utils/validator';
 
   export default {
     components: { InputLabel, InputDescription },

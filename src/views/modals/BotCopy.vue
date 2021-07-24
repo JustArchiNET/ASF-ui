@@ -25,7 +25,7 @@
 
 <script>
   import { mapGetters } from 'vuex';
-  import ConfigEditor from '../../components/ConfigEditor.vue';
+  import ConfigEditor from '../../components/Config/Editor.vue';
   import delay from '../../utils/delay';
   import botExists from '../../utils/botExists';
   import { get } from '../../utils/storage';

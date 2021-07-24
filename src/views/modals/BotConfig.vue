@@ -35,7 +35,7 @@
 
 <script>
   import { mapGetters } from 'vuex';
-  import ConfigEditor from '../../components/ConfigEditor.vue';
+  import ConfigEditor from '../../components/Config/Editor.vue';
   import loadParameterDescriptions from '../../utils/loadParameterDescriptions';
   import downloadConfig from '../../utils/downloadConfig';
   import { botCategories } from '../../utils/configCategories';
