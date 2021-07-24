@@ -16,7 +16,7 @@
         <input id="password" v-model="password" class="form-item__input" type="password" @keydown.enter="updatePassword">
       </div>
 
-      <div class="form-item">
+      <div v-if="status !== 'AUTHENTICATED'" class="form-item">
         <div class="form-item__buttons form-item__buttons--center">
           <button class="button button--confirm" @click="onButtonClick">
             <FontAwesomeIcon v-if="processing" icon="spinner" spin></FontAwesomeIcon>
