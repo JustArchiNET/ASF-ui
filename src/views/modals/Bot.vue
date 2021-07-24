@@ -11,7 +11,7 @@
       <div class="bot-profile__meta">
         <div class="bot-profile__info">
           <div class="bot-profile__name">
-            <h3 :title="bot.name" class="bot-profile__name">{{ bot.viewableName }}</h3>
+            <h3 v-tooltip.bottom-start="{ content: bot.name, delay: { show: 700 } }" class="bot-profile__name">{{ bot.viewableName }}</h3>
           </div>
           <div v-if="bot.walletInfo" class="bot-profile__wallet pull-right">{{ bot.walletInfo }}</div>
         </div>
@@ -19,17 +19,17 @@
       </div>
 
       <div class="bot-profile__actions">
-        <BotLink icon="wrench" :link="{ name: 'bot-config', params: { bot: bot.name } }" :title="$t('bot-fav-buttons-config')"></BotLink>
-        <BotLink icon="key" :link="{ name: 'bot-bgr', params: { bot: bot.name } }" :title="$t('bot-fav-buttons-bgr')"></BotLink>
-        <BotLink icon="lock" :link="{ name: 'bot-2fa', params: { bot: bot.name } }" :title="$t('bot-fav-buttons-2fa')"></BotLink>
+        <BotLink v-tooltip="$t('bot-fav-buttons-config')" icon="wrench" :link="{ name: 'bot-config', params: { bot: bot.name } }"></BotLink>
+        <BotLink v-tooltip="$t('bot-fav-buttons-bgr')" icon="key" :link="{ name: 'bot-bgr', params: { bot: bot.name } }"></BotLink>
+        <BotLink v-tooltip="$t('bot-fav-buttons-2fa')" icon="lock" :link="{ name: 'bot-2fa', params: { bot: bot.name } }"></BotLink>
 
-        <BotAction v-if="bot.paused && bot.active" icon="play" :title="$t('bot-title-resume', { bot: bot.name })" @click="resume"></BotAction>
-        <BotAction v-if="!bot.paused && bot.active" icon="pause" :title="$t('bot-title-pause', { bot: bot.name })" @click="pause"></BotAction>
+        <BotAction v-if="bot.paused && bot.active" v-tooltip="$t('bot-title-resume', { bot: bot.name })" icon="play" @click="resume"></BotAction>
+        <BotAction v-if="!bot.paused && bot.active" v-tooltip="$t('bot-title-pause', { bot: bot.name })" icon="pause" @click="pause"></BotAction>
 
-        <BotAction v-if="!bot.active" icon="power-off" :title="$t('bot-title-start', { bot: bot.name })" @click="start"></BotAction>
-        <BotAction v-if="bot.active" icon="power-off" :title="$t('bot-title-stop', { bot: bot.name })" @click="stop"></BotAction>
+        <BotAction v-if="!bot.active" v-tooltip="$t('bot-title-start', { bot: bot.name })" icon="power-off" @click="start"></BotAction>
+        <BotAction v-if="bot.active" v-tooltip="$t('bot-title-stop', { bot: bot.name })" icon="power-off" @click="stop"></BotAction>
 
-        <BotLink icon="trash" :link="{ name: 'bot-delete', params: { bot: bot.name } }" :title="$t('bot-title-delete', { bot: bot.name })" class="pull-right"></BotLink>
+        <BotLink v-tooltip="$t('bot-title-delete', { bot: bot.name })" icon="trash" :link="{ name: 'bot-delete', params: { bot: bot.name } }" class="pull-right"></BotLink>
       </div>
     </div>
 
