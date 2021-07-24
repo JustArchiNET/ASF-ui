@@ -27,13 +27,13 @@
 
 <script>
   import { mapGetters } from 'vuex';
-  import ConfigEditor from '../../components/ConfigEditor.vue';
+  import ConfigEditor from '../../components/Config/Editor.vue';
   import fetchConfigSchema from '../../utils/fetchConfigSchema';
   import loadParameterDescriptions from '../../utils/loadParameterDescriptions';
   import downloadConfig from '../../utils/downloadConfig';
   import delay from '../../utils/delay';
   import botExists from '../../utils/botExists';
-  import { botCategories } from '../../utils/categories';
+  import { botCategories } from '../../utils/configCategories';
 
   export default {
     name: 'BotCreate',

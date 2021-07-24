@@ -8,9 +8,12 @@
           {{ $t('back') }}
         </button>
 
-        <button class="button" :disabled="isNextDisabled" :title="nextTitle" @click="$emit('next')">
-          {{ $t('next') }}
-        </button>
+        <div v-tooltip.left="nextTitle">
+          <!-- https://stackoverflow.com/questions/53748739/v-tooltip-stops-working-when-element-is-disabled -->
+          <button class="button" :disabled="isNextDisabled" @click="$emit('next')">
+            {{ $t('next') }}
+          </button>
+        </div>
       </div>
     </div>
 

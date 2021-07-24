@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import VTooltip from 'v-tooltip';
 
 import App from './App.vue';
 import router from './router';
@@ -10,6 +11,7 @@ import Icons from './plugins/icons';
 import http, { NotificationError } from './plugins/http';
 
 Vue.use(Notifications);
+Vue.use(VTooltip);
 Vue.use(Icons);
 Vue.use(i18n, store);
 Vue.use(http);

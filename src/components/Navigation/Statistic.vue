@@ -1,7 +1,7 @@
 <template>
   <div class="navigation-statistic">
     <span class="navigation-statistic__left-side">
-      <span v-if="icon" class="navigation-statistic__icon"><FontAwesomeIcon :icon="icon" fixedWidth :title="name"></FontAwesomeIcon></span>
+      <span v-if="icon" class="navigation-statistic__icon"><FontAwesomeIcon v-tooltip="name" :icon="icon" fixedWidth></FontAwesomeIcon></span>
       <span class="navigation-statistic__name">{{ name }}</span>
     </span>
     <span class="navigation-statistic__value">{{ value }}</span>

@@ -1,6 +1,6 @@
 <template>
   <main v-if="bot" class="main-container">
-    <h2 :title="bot.name" class="title">{{ bot.viewableName }}</h2>
+    <h2 v-tooltip="bot.name" class="title">{{ bot.viewableName }}</h2>
 
     <span v-if="!has2FA" v-html="$t('2fa-not-found')"></span>
 
@@ -8,11 +8,11 @@
       <div class="form-item__token">
         <input class="form-item__input form-item__input-token" type="text" :value="token" readonly>
         <div class="form-item__buttons form-item__buttons--column">
-          <button class="button button--helper" :title="$t('2fa-token-refresh')" @click="refreshToken">
+          <button v-tooltip.left="$t('2fa-token-refresh')" class="button button--helper" @click="refreshToken">
             <FontAwesomeIcon v-if="refreshing" icon="spinner" size="lg" spin></FontAwesomeIcon>
             <FontAwesomeIcon v-else icon="redo-alt" size="lg"></FontAwesomeIcon>
           </button>
-          <button class="button button--helper" :title="$t('2fa-token-copy')" @click="copyToken">
+          <button v-tooltip.left="$t('2fa-token-copy')" class="button button--helper" @click="copyToken">
             <FontAwesomeIcon icon="clipboard" size="lg"></FontAwesomeIcon>
           </button>
         </div>

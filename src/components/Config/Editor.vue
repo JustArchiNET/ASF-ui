@@ -19,17 +19,17 @@
 </template>
 
 <script>
-  import InputString from './ConfigFields/InputString.vue';
-  import InputBoolean from './ConfigFields/InputBoolean.vue';
-  import InputNumber from './ConfigFields/InputNumber.vue';
-  import InputFlag from './ConfigFields/InputFlag.vue';
-  import InputSet from './ConfigFields/InputSet.vue';
-  import InputList from './ConfigFields/InputList.vue';
-  import InputTag from './ConfigFields/InputTag.vue';
-  import InputEnum from './ConfigFields/InputEnum.vue';
-  import InputDictionary from './ConfigFields/InputDictionary.vue';
-  import InputUnknown from './ConfigFields/InputUnknown.vue';
-  import ConfigCategory from './ConfigCategory.vue';
+  import InputString from './Fields/InputString.vue';
+  import InputBoolean from './Fields/InputBoolean.vue';
+  import InputNumber from './Fields/InputNumber.vue';
+  import InputFlag from './Fields/InputFlag.vue';
+  import InputSet from './Fields/InputSet.vue';
+  import InputList from './Fields/InputList.vue';
+  import InputTag from './Fields/InputTag.vue';
+  import InputEnum from './Fields/InputEnum.vue';
+  import InputDictionary from './Fields/InputDictionary.vue';
+  import InputUnknown from './Fields/InputUnknown.vue';
+  import ConfigCategory from './Category.vue';
 
   export default {
     name: 'ConfigEditor',

@@ -7,7 +7,7 @@
     </div>
 
     <div v-if="authenticated" class="footer__statistic">
-      <FontAwesomeIcon v-if="newReleaseAvailable" class="footer__statistic-notify" :title="$t('update-available')" icon="exclamation" size="sm" @click="redirectToReleases"></FontAwesomeIcon>
+      <FontAwesomeIcon v-if="newReleaseAvailable" v-tooltip="$t('update-available')" class="footer__statistic-notify" icon="exclamation" size="sm" @click="redirectToReleases"></FontAwesomeIcon>
       <span class="footer__statistic-name">ASF</span>
       <span class="footer__statistic-value">{{ versionString }}</span>
     </div>
