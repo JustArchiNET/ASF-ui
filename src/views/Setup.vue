@@ -129,7 +129,7 @@
       async updatePassword() {
         this.processing = true;
 
-        storage.remove('authentication-required');
+        storage.remove('cache:authentication-required');
 
         try {
           await this.$store.dispatch('auth/setPassword', this.password);

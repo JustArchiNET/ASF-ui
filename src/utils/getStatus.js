@@ -12,17 +12,17 @@ export const STATUS = {
 };
 
 export async function getStatus() {
-  const authenticationRequired = storage.get('authentication-required');
+  const authenticationRequired = storage.get('cache:authentication-required');
   if (authenticationRequired) return STATUS.UNAUTHORIZED;
 
   return http.get('asf')
     .then(response => {
-      storage.remove('authentication-required');
+      storage.remove('cache:authentication-required');
       return STATUS.AUTHENTICATED;
     })
     .catch(err => {
       if (err.message === 'HTTP Error 401') {
-        storage.set('authentication-required', true);
+        storage.set('cache:authentication-required', true);
         return STATUS.UNAUTHORIZED;
       }
 
