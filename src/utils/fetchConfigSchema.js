@@ -95,7 +95,7 @@ function parseEnumValues(rawValues) {
 }
 
 async function unwindType(type) {
-  if (type === 'ArchiSteamFarm.BotConfig') getStructureDefinition(type); // Dirty trick, but 30% is 30%
+  if (type === 'ArchiSteamFarm.Steam.Storage.BotConfig') getStructureDefinition(type); // Dirty trick, but 30% is 30%
   const typeDefinition = await getTypeDefinition(type);
 
   switch (typeDefinition.Properties.BaseType) {
