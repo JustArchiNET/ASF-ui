@@ -32,7 +32,7 @@
   import downloadConfig from '../../utils/downloadConfig';
   import delay from '../../utils/delay';
   import botExists from '../../utils/botExists';
-  import { botCategories } from '../../utils/categories';
+  import { botCategories } from '../../utils/configCategories';
   // eslint-disable-next-line import/named
   import { getType } from '../../utils/swagger/parse';
 

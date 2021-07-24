@@ -76,7 +76,7 @@
   import MassEditorCheck from '../components/MassEditor/Check.vue';
   import MassEditorSelect from '../components/MassEditor/Select.vue';
   import loadParameterDescriptions from '../utils/loadParameterDescriptions';
-  import { botCategories } from '../utils/categories';
+  import { botCategories } from '../utils/configCategories';
   import { getType } from '../utils/swagger/parse';
 
   export default {

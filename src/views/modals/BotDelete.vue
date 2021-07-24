@@ -1,6 +1,6 @@
 <template>
   <main v-if="bot" class="main-container main-container--bot-profile">
-    <h2 :title="bot.name" class="title">{{ $t('bot-delete', { name: bot.viewableName }) }}</h2>
+    <h2 v-tooltip="bot.name" class="title">{{ $t('bot-delete', { name: bot.viewableName }) }}</h2>
 
     <p class="info">{{ $t('bot-delete-info', { name: bot.viewableName }) }}</p>
 

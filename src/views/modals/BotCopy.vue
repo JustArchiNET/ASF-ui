@@ -29,7 +29,7 @@
   import delay from '../../utils/delay';
   import botExists from '../../utils/botExists';
   import { get } from '../../utils/storage';
-  import { newBotCategories } from '../../utils/categories';
+  import { newBotCategories } from '../../utils/configCategories';
 
   export default {
     name: 'BotCopy',

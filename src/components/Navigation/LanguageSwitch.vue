@@ -1,13 +1,13 @@
 <template>
   <div class="navigation__language-switch">
-    <div class="navigation__button" :title="$t('language-title')" @click="toggleLanguageMenu">
+    <div v-tooltip="$t('language-title')" class="navigation__button" @click="toggleLanguageMenu">
       <FontAwesomeIcon class="navigation__language-icon" icon="language" fixedWidth></FontAwesomeIcon>
     </div>
 
     <transition name="navigation__language-picker">
       <div v-if="languageMenu" class="navigation__language-picker">
         <div v-for="locale in $i18n.availableLocales" :key="locale" class="navigation__language" :class="{ 'navigation__language--active': $i18n.locale === locale }" @click.prevent="changeLocale(locale)">
-          <Flag :country="getFlagCountry(locale)" :title="locale"></Flag>
+          <Flag v-tooltip="locale" :country="getFlagCountry(locale)"></Flag>
         </div>
       </div>
     </transition>

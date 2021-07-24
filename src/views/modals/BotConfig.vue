@@ -1,6 +1,6 @@
 <template>
   <main v-if="bot" class="main-container main-container--bot-config">
-    <h2 :title="bot.name" class="title">{{ bot.viewableName }}</h2>
+    <h2 v-tooltip="bot.name" class="title">{{ bot.viewableName }}</h2>
 
     <h3 v-if="loading" class="subtitle">
       <FontAwesomeIcon icon="spinner" size="lg" spin></FontAwesomeIcon>
@@ -38,7 +38,7 @@
   import ConfigEditor from '../../components/ConfigEditor.vue';
   import loadParameterDescriptions from '../../utils/loadParameterDescriptions';
   import downloadConfig from '../../utils/downloadConfig';
-  import { botCategories } from '../../utils/categories';
+  import { botCategories } from '../../utils/configCategories';
   import isSameConfig from '../../utils/isSameConfig';
   import { getType } from '../../utils/swagger/parse';
 

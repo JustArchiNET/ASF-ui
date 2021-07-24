@@ -37,7 +37,7 @@
   import ConfigEditor from '../components/ConfigEditor.vue';
   import loadParameterDescriptions from '../utils/loadParameterDescriptions';
   import downloadConfig from '../utils/downloadConfig';
-  import { asfCategories } from '../utils/categories';
+  import { asfCategories } from '../utils/configCategories';
   import isSameConfig from '../utils/isSameConfig';
   import { getType } from '../utils/swagger/parse';
 

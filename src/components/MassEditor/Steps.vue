@@ -1,7 +1,7 @@
 <template>
   <ul class="wizard">
     <li v-for="(step, i) in steps" :key="step" :class="{ active: currentStep === step }" class="wizard__step">
-      <div class="wizard__step-wrapper" :class="{ disabled: isStepDisabled(step) }" :title="getDisabledTitle(step)" @click="setStep(step)">
+      <div v-tooltip.bottom="getDisabledTitle(step)" class="wizard__step-wrapper" :class="{ disabled: isStepDisabled(step) }" @click="setStep(step)">
         <div class="wizard__step-number">{{ i+1 }}</div>
         <span class="wizard__step-name">{{ step }}</span>
       </div>
