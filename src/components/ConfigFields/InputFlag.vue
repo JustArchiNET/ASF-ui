@@ -39,6 +39,7 @@
     },
     methods: {
       getSelectedFlagValues() {
+        // eslint-disable-next-line no-bitwise
         return [...Array(32).keys()].map(i => 1 << i).filter(val => this.value & val);
       },
       addFlag(input) {

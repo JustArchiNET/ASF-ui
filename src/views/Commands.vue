@@ -121,6 +121,7 @@
       allCommandsParameters() {
         return this.allCommands.map(({ command }) => command.split(' '))
           .map(([command, ...params]) => ({ command, params }))
+          // eslint-disable-next-line no-return-assign, no-sequences
           .reduce((commandParameters, { command, params }) => (commandParameters[command] = params, commandParameters), {});
       },
       autocompleteSuggestion() {
@@ -181,6 +182,7 @@
           case '[bot]':
           case '[bots]':
           case '<targetbot>':
+            // eslint-disable-next-line no-case-declarations
             const suggestedBot = [...this.$store.getters['bots/bots'].map(bot => bot.name), 'ASF']
               .find(name => name.startsWith(this.currentParameterValue));
 
@@ -266,6 +268,7 @@
             if (commandToExecute.split(' ')[1]) return this.commandHelp(commandToExecute.split(' ')[1]);
             return this.$t('terminal-help-text');
           case 'clear':
+            // eslint-disable-next-line no-return-assign
             return this.log = [];
         }
 

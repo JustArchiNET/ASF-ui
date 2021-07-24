@@ -1,5 +1,6 @@
 <template>
   <div ref="terminal" class="terminal">
+    <!-- eslint-disable-next-line vue/no-unused-vars -->
     <div v-for="{ type, message, index } in log" :key="index" class="terminal-message terminal-message--truncated">
       <span class="terminal-message__content">
         <span class="terminal-message__time">[{{ message.time.toLocaleTimeString() }}]</span>
