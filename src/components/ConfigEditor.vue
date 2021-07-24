@@ -85,8 +85,8 @@
     },
     methods: {
       componentFromField(field) {
-        if (field.format === 'flags') return InputFlag;
         if (field.enum) return InputEnum;
+        if (field.format === 'flags') return InputFlag;
 
         switch (field.type) {
           case 'string':
