@@ -39,7 +39,7 @@
   import fetchConfigSchema from '../../utils/fetchConfigSchema';
   import loadParameterDescriptions from '../../utils/loadParameterDescriptions';
   import downloadConfig from '../../utils/downloadConfig';
-  import { botCategories } from '../../utils/categories';
+  import { botCategories } from '../../utils/configCategories';
   import isSameConfig from '../../utils/isSameConfig';
 
   export default {

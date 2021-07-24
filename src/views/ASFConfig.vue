@@ -38,7 +38,7 @@
   import loadParameterDescriptions from '../utils/loadParameterDescriptions';
   import fetchConfigSchema from '../utils/fetchConfigSchema';
   import downloadConfig from '../utils/downloadConfig';
-  import { asfCategories } from '../utils/categories';
+  import { asfCategories } from '../utils/configCategories';
   import isSameConfig from '../utils/isSameConfig';
 
   export default {
