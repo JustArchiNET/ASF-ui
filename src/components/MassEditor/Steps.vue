@@ -1,7 +1,11 @@
 <template>
   <ul class="wizard">
-    <li v-for="step in steps" :key="step" :class="{ active: currentStep === step }" class="wizard__step">
-      <span class="wizard__step-name" :class="{ disabled: isStepDisabled(step) }" :title="getDisabledTitle(step)" @click="setStep(step)">{{ step }}</span>
+    <li v-for="(step, i) in steps" :key="step" :class="{ active: currentStep === step }" class="wizard__step">
+      <div class="wizard__step-wrapper" :class="{ disabled: isStepDisabled(step) }" :title="getDisabledTitle(step)" @click="setStep(step)">
+        <div class="wizard__step-number">{{ i+1 }}</div>
+        <span class="wizard__step-name">{{ step }}</span>
+      </div>
+      <div v-if="i !== 0" class="wizard__step-line"></div>
     </li>
   </ul>
 </template>
@@ -31,7 +35,6 @@
 
 <style lang="scss">
   .wizard {
-    counter-reset: stepNo;
     display: flex;
     padding: 0;
     margin: 1em;
@@ -49,66 +52,65 @@
     text-align: center;
     z-index: 10;
 
-    &:first-child {
-      &:after {
-        display: none;
-      }
-    }
-
     &.active {
       color: var(--color-theme);
     }
+  }
 
-    &:before {
-      background: var(--color-background-modal);
-      border-radius: 50%;
-      counter-increment: stepNo;
-      content: counter(stepNo);
-      width: 32px;
-      height: 32px;
-      line-height: 32px;
-      border: 2px solid var(--color-background-modal);
-      display: block;
-      text-align: center;
-      margin: 0 auto 10px auto;
-      font-size: 18px;
+  .wizard__step-wrapper {
+    width: 50%;
+    margin: 0 auto;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
 
-      @media screen and (max-width: 460px) {
-        width: 24px;
-        height: 24px;
-        line-height: 24px;
-        font-size: 16px;
-      }
+    &.disabled {
+      cursor: not-allowed !important;
     }
 
-    &:after {
-      width: 100%;
-      height: 2px;
-      content: "";
-      position: absolute;
-      background-color: var(--color-background-modal);
-      top: 18px;
-      left: -45%;
-      z-index: -1;
+    &:hover {
+      color: var(--color-theme);
+    }
+  }
 
-      @media screen and (max-width: 460px) {
-        top: 14px;
-      }
+  .wizard__step-number {
+    background: var(--color-background-modal);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    border: 2px solid var(--color-background-modal);
+    display: block;
+    text-align: center;
+    margin: 0 auto 0.75em auto;
+    font-size: 18px;
+
+    @media screen and (max-width: 460px) {
+      width: 24px;
+      height: 24px;
+      line-height: 24px;
+      font-size: 16px;
     }
   }
 
   .wizard__step-name {
     text-transform: uppercase;
-    cursor: pointer;
-    padding: 0.5em;
-    padding-top: 4em;
+  }
 
-    &.disabled {
-      cursor: not-allowed;
-    }
+  .wizard__step-line {
+    width: 100%;
+    height: 2px;
+    content: "";
+    position: absolute;
+    background-color: var(--color-background-modal);
+    top: 18px;
+    left: -45%;
+    z-index: -1;
 
-    &:hover {
-      color: var(--color-theme);
+    @media screen and (max-width: 460px) {
+      top: 14px;
     }
   }
 </style>
