@@ -31,6 +31,7 @@
 <script>
   import { mapGetters } from 'vuex';
   import { STATUS } from '../utils/getStatus';
+  import * as storage from '../utils/storage';
   import waitForRestart from '../utils/waitForRestart';
 
   export default {
@@ -128,6 +129,8 @@
       async updatePassword() {
         this.processing = true;
 
+        storage.remove('cache:authentication-required');
+
         try {
           await this.$store.dispatch('auth/setPassword', this.password);
 
@@ -168,11 +171,11 @@
           case STATUS.AUTHENTICATED:
             this.redirect();
             break;
-          case STATUS.NO_IPC_PASSWORD:
           case STATUS.RATE_LIMITED:
             this.cancelAutoUpdate();
             break;
           case STATUS.UNAUTHORIZED:
+          case STATUS.NO_IPC_PASSWORD:
             this.cancelAutoUpdate();
             await this.resetPassword();
             break;

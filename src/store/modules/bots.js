@@ -28,6 +28,7 @@ export const actions = {
 
     try {
       const response = await http.get('bot/asf');
+      // eslint-disable-next-line no-sequences
       commit('setBots', Object.values(response).map(data => new Bot(data)).reduce((bots, bot) => ((bots[bot.name] = bot), bots), {}));
     } catch (err) {
       dispatch('auth/updateStatus', '', { root: true });

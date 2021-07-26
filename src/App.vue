@@ -69,7 +69,7 @@
             case STATUS.RATE_LIMITED:
             case STATUS.UNAUTHORIZED:
             case STATUS.NETWORK_ERROR:
-              if (this.$route.name !== 'setup') this.$router.replace({ name: 'setup' });
+              if (this.$route.name && this.$route.name !== 'setup') this.$router.replace({ name: 'setup' });
               break;
           }
         },

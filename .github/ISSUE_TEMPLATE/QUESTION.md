@@ -1,7 +1,7 @@
 ---
 name: ❓ Question
 about: Feel free to ask a question related to ASF-ui
-label: ❓ Question
+labels: ❓ Question
 
 ---
 
