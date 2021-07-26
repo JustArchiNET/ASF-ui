@@ -76,6 +76,7 @@ export default class Formatter {
     // token = { type: 'plural', value: 'PLURAL:<name>|<singular>|<plural1>|<plural2>' }
 
     const [plural, ...forms] = token.value.split('|');
+    // eslint-disable-next-line no-unused-vars
     const [_, value] = plural.split(':');
 
     // CLDR table does not recognize lol-US as a valid locale

@@ -44,6 +44,7 @@ export default {
         store.dispatch('i18n/addLocale', { locale: name, translation: await this._requireLocale(locale.fileName) });
       },
       translate(key, fallbackString, values) {
+        // eslint-disable-next-line no-param-reassign
         if (typeof fallbackString !== 'string') values = fallbackString;
 
         const translationLocale = store.getters['i18n/translationLocale'](key);

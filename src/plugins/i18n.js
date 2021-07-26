@@ -25,6 +25,7 @@ function getUserLocale(availableLocales, fallbackLocale) {
 
   // Remove regional code, if present
   if (locale.includes('-')) {
+    // eslint-disable-next-line prefer-destructuring
     locale = locale.split('-')[0];
     if (availableLocales.includes(locale)) return locale;
   }
@@ -33,7 +34,7 @@ function getUserLocale(availableLocales, fallbackLocale) {
   if (availableLocales.includes(`${locale}-${locale.toUpperCase()}`)) return `${locale}-${locale.toUpperCase()}`;
 
   // Find locale with any regional code
-  const localeRegex = new RegExp(`${locale}\-\\\S\\\S`);
+  const localeRegex = new RegExp(`${locale}-\\S\\S`);
   const matchedLocale = availableLocales.find(locale => localeRegex.test(locale));
   if (matchedLocale) return matchedLocale;
 
