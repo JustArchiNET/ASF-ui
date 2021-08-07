@@ -10,5 +10,5 @@ const types = {
 };
 
 export default function getUserInputType(id) {
-  return Object.keys(types)[id];
+  return Object.keys(types).find(value => types[value] === id);
 }

@@ -44,5 +44,5 @@ const codes = {
 };
 
 export default function getCountryCode(id) {
-  return Object.keys(codes)[id];
+  return Object.keys(codes).find(value => codes[value] === id);
 }
