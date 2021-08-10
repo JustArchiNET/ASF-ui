@@ -43,7 +43,7 @@
 
         // eslint-disable-next-line no-restricted-syntax
         for (const [key, value] of Object.entries(this.keys)) {
-          keysToCopy += `${key}\t${value}\n`;
+          keysToCopy += `${value}\t${key}\n`;
         }
 
         copy(keysToCopy);
