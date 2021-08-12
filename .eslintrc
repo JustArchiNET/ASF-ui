@@ -17,8 +17,7 @@
     "sourceType": "module"
   },
   "plugins": [
-    "vue",
-    "@spothero/eslint-plugin-spothero"
+    "vue"
   ],
   "rules": {
     "indent": ["error", 2, {
@@ -83,8 +82,7 @@
     "vue/require-prop-types": "off",
     "vue/return-in-computed-property": "off",
     "vue/no-use-v-if-with-v-for": "off",
-    "vue/attribute-hyphenation": ["error", "never"],
-    "@spothero/spothero/ternary-parentheses": "error"
+    "vue/attribute-hyphenation": ["error", "never"]
   },
   "overrides": [{
     "files": ["*.vue"],
