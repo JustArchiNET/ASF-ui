@@ -5,8 +5,7 @@
   "scripts": {
     "serve": "webpack serve --config webpack/config.js",
     "start": "webpack serve --config webpack/config.js",
-    "lint": "eslint --ext .vue,.js src scripts webpack",
-    "lint:fix": "eslint --ext .vue,.js src scripts webpack --fix",
+    "lint": "eslint src scripts webpack --fix",
     "build": "webpack --config webpack/config.prod.js",
     "build:analyze": "webpack --config webpack/config.analyze.js",
     "deploy": "webpack --config webpack/config.deploy.js"
