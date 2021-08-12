@@ -3,7 +3,6 @@ import VueRouter from 'vue-router';
 import VueMeta from 'vue-meta';
 import store from '../store';
 import * as storage from '../utils/storage';
-// eslint-disable-next-line import/no-named-as-default, import/no-named-as-default-member
 import routes from './routes';
 
 Vue.use(VueRouter);
