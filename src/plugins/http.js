@@ -42,9 +42,7 @@ function catchError(err) {
 }
 
 export function authenticate(password) {
-  if(password !== null) {
-    http.defaults.headers.common.Authentication = password;
-  }
+  if (password) http.defaults.headers.common.Authentication = password;
 }
 
 export function get(endpoint, params = {}, options = {}) {
