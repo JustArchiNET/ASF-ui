@@ -1,0 +1,13 @@
+{
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"extends": [
+		"config:base",
+		":assignee(MrBurrBurr)",
+		":automergeBranch",
+		":automergeDigest",
+		":automergeMinor",
+		":disableDependencyDashboard",
+		":disableRateLimiting",
+		":label(🤖 Automatic)"
+	]
+}
