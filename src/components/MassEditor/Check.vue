@@ -54,7 +54,7 @@
     },
     computed: {
       title() {
-        return this.$t('mass-editor-check', { n: this.selectedBots.length, nn: this.selectedProperties.length });
+        return this.$t('mass-editor-check', { n: this.selectedBots.length, m: this.selectedProperties.length });
       },
       selectedBotsText() {
         return this.$t('mass-editor-check-bots', { n: this.selectedBots.length });
