@@ -103,6 +103,17 @@
           },
           description: this.$t('bot-fav-buttons-description'),
         },
+        {
+          param: this.$t('tooltip-delay'),
+          paramName: 'tooltipDelay',
+          type: 'enum',
+          defaultValue: '1000',
+          values: {
+            [this.$t('tooltip-delayed')]: '1000',
+            [this.$t('tooltip-instant')]: '100',
+          },
+          description: this.$t('tooltip-delay-description'),
+        },
       ];
 
       return {
@@ -117,6 +128,7 @@
           nicknames: this.$store.getters['settings/nicknames'],
           gameName: this.$store.getters['settings/gameName'],
           favButtons: this.$store.getters['settings/favButtons'],
+          tooltipDelay: this.$store.getters['settings/tooltipDelay'],
         },
       };
     },
@@ -135,6 +147,7 @@
         this.$store.dispatch('settings/setNicknames', this.model.nicknames);
         this.$store.dispatch('settings/setGameName', this.model.gameName);
         this.$store.dispatch('settings/setFavButtons', this.model.favButtons);
+        this.$store.dispatch('settings/setTooltipDelay', this.model.tooltipDelay);
 
         this.$snotify.setDefaults({
           toast: {
