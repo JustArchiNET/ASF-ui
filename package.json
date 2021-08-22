@@ -4,6 +4,7 @@
   "description": "The official web interface for ASF",
   "scripts": {
     "serve": "webpack serve --config webpack/config.js",
+    "serve:test": "webpack serve --config webpack/config.test.js",
     "start": "webpack serve --config webpack/config.js",
     "lint": "eslint src scripts webpack --fix",
     "build": "webpack --config webpack/config.prod.js",

@@ -37,6 +37,9 @@ jobs:
 
     - name: Build ASF-ui
       run: npm run-script deploy --no-progress
+    
+    - name: Run ASF-ui dev environment
+      run: npm run-script serve:test --no-progress
 
     - name: Upload latest strings for translation on Crowdin
       continue-on-error: true

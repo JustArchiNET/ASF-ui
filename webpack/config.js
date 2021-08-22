@@ -96,11 +96,8 @@ module.exports = {
     }),
   ],
   devServer: {
-    contentBase: './src/static',
-    watchOptions: {
-      ignored: /generated/,
-    },
     historyApiFallback: true,
+    open: true,
     proxy: {
       '/api': {
         target: 'http://localhost:1242',
@@ -110,6 +107,11 @@ module.exports = {
         target: 'http://localhost:1242',
       },
     },
-    open: true,
+    static: {
+      directory: './src/static',
+      watch: {
+        ignored: /generated/,
+      },
+    },
   },
 };
