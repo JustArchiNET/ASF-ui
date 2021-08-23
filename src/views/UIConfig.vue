@@ -14,6 +14,7 @@
   import { mapGetters } from 'vuex';
   import ConfigEditor from '../components/Config/Editor.vue';
   import { uiCategories } from '../utils/configCategories';
+  import delay from '../utils/delay';
 
   export default {
     name: 'UiConfig',
@@ -109,8 +110,8 @@
           type: 'enum',
           defaultValue: '1000',
           values: {
-            [this.$t('tooltip-delayed')]: '1000',
-            [this.$t('tooltip-instant')]: '100',
+            [this.$t('tooltip-delayed')]: 800,
+            [this.$t('tooltip-instant')]: 0,
           },
           description: this.$t('tooltip-delay-description'),
         },
@@ -138,7 +139,7 @@
       }),
     },
     methods: {
-      save() {
+      async save() {
         this.$store.dispatch('settings/setDefaultView', this.model.defaultView);
         this.$store.dispatch('settings/setNotificationPosition', this.model.notificationPosition);
         this.$store.dispatch('settings/setNotifyRelease', this.model.notifyRelease);
@@ -156,6 +157,17 @@
         });
 
         this.$success(this.$t('settings-saved'));
+
+        // It's currently not possible to change tooltip-options in runtime
+        // Open issue: https://github.com/Akryum/v-tooltip/pull/773
+        //
+        // this.$VTooltip.options.defaultDelay = {
+        //   show: this.model.tooltipDelay,
+        // };
+        //
+        // So we have to do it the ugly way:
+        await delay(1000);
+        window.location.reload();
       },
     },
   };

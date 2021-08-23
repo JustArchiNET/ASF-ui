@@ -11,7 +11,7 @@
       <div class="bot-profile__meta">
         <div class="bot-profile__info">
           <div class="bot-profile__name">
-            <h3 v-tooltip.bottom-start="{ content: bot.name, delay: { show: 700 } }" class="bot-profile__name">{{ bot.viewableName }}</h3>
+            <h3 v-tooltip.bottom-start="{ content: bot.name }" class="bot-profile__name">{{ bot.viewableName }}</h3>
           </div>
           <div v-if="bot.walletInfo" class="bot-profile__wallet pull-right">{{ bot.walletInfo }}</div>
         </div>

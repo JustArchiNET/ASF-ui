@@ -10,6 +10,7 @@ export const state = {
   displayCategories: true,
   selectedBots: [],
   timestamps: false,
+  tooltipDelay: 0,
 };
 
 export const mutations = {
@@ -22,6 +23,7 @@ export const mutations = {
   setDisplayCategories: (state, displayCategories) => (state.displayCategories = displayCategories),
   setSelectedBots: (state, selectedBots) => (state.selectedBots = selectedBots),
   setTimestamps: (state, timestamps) => (state.timestamps = timestamps),
+  setTooltipDelay: (state, delay) => (state.tooltipDelay = delay),
 };
 
 export const actions = {
@@ -35,6 +37,7 @@ export const actions = {
     commit('setDisplayCategories', storage.get('settings:display-categories', true));
     commit('setSelectedBots', storage.get('settings:selected-bots', []));
     commit('setTimestamps', storage.get('settings:timestamps', false));
+    commit('setTooltipDelay', storage.get('settings:tooltip-delay', 0));
   },
   setDefaultView({ commit }, value) {
     storage.set('settings:default-view', value);
@@ -72,6 +75,10 @@ export const actions = {
     storage.set('settings:timestamps', value);
     commit('setTimestamps', value);
   },
+  setTooltipDelay({ commit }, value) {
+    storage.set('settings:tooltip-delay', value);
+    commit('setTooltipDelay', value);
+  },
 };
 
 export const getters = {
@@ -84,4 +91,5 @@ export const getters = {
   displayCategories: state => state.displayCategories,
   selectedBots: state => state.selectedBots,
   timestamps: state => state.timestamps,
+  tooltipDelay: state => state.tooltipDelay,
 };
