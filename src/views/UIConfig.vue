@@ -110,8 +110,9 @@
           type: 'enum',
           defaultValue: '1000',
           values: {
-            [this.$t('tooltip-delayed')]: 800,
             [this.$t('tooltip-instant')]: 0,
+            [this.$t('tooltip-delayed')]: 800,
+            [this.$t('tooltip-hide')]: 600_000,
           },
           description: this.$t('tooltip-delay-description'),
         },

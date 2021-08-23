@@ -215,6 +215,7 @@
   "tooltip-delay-description": "Select how fast you want tooltips to be shown.",
   "tooltip-delayed": "Delayed (800ms)",
   "tooltip-instant": "Instant",
+  "tooltip-hide": "Hide tooltips",
   "trade": "Trade",
   "ui-config": "UI Config",
   "update": "Update",
