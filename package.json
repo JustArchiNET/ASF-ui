@@ -9,8 +9,7 @@
     "lint": "eslint src scripts webpack --fix",
     "build": "webpack --config webpack/config.prod.js",
     "build:analyze": "webpack --config webpack/config.analyze.js",
-    "deploy": "webpack --config webpack/config.deploy.js",
-    "generate:flags": "node ./scripts/generateFlags.js"
+    "deploy": "webpack --config webpack/config.deploy.js"
   },
   "private": true,
   "devDependencies": {
