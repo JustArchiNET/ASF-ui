@@ -109,9 +109,9 @@ module.exports = {
     },
     static: {
       directory: './src/static',
-      watch: {
-        ignored: /generated/,
-      },
     },
+  },
+  watchOptions: {
+    ignored: /generated/,
   },
 };
