@@ -1,0 +1,35 @@
+name: ❓ Question
+description: Feel free to ask a question related to ASF-ui
+labels: ["❓ Question"]
+body:
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Ensure that our wiki suggestion form is appropriate for you.
+      options:
+        - label: I read and understood ASF-ui's **[Contributing Guidelines](https://github.com/JustArchiNET/ASF-ui/blob/main/.github/CONTRIBUTING.md)**
+          required: true
+        - label: I also read **[FAQ](https://github.com/JustArchiNET/ASF-ui/wiki/FAQ)**
+          required: true
+        - label: This is not **[ASF question](https://github.com/JustArchiNET/ArchiSteamFarm/issues/new/choose)**
+          required: true
+  - type: textarea
+    id: question
+    attributes:
+      label: The question
+      description: Please specify your question in regards to ASF-ui.
+      placeholder: |
+        How do I change language for ASF-ui? 
+    validations:
+      required: true
+  - type: textarea
+    id: additional-info
+    attributes:
+      label: Additional info
+      description: Everything else you consider worthy that we didn't ask for.
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        #### Thank you for taking the time to fill out this question form.

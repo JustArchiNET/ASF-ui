@@ -61,6 +61,7 @@
   "changelog-full": "Full changelog",
   "check": "Check",
   "commands": "Commands",
+  "commands-send": "Click here to send your command",
   "config": "Config",
   "config-no-changes": "You did not make any changes!",
   "confirm": "Confirm",
