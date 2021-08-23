@@ -14,6 +14,7 @@
   import { mapGetters } from 'vuex';
   import ConfigEditor from '../components/Config/Editor.vue';
   import { uiCategories } from '../utils/configCategories';
+  import delay from '../utils/delay';
 
   export default {
     name: 'UiConfig',
@@ -103,6 +104,18 @@
           },
           description: this.$t('bot-fav-buttons-description'),
         },
+        {
+          param: this.$t('tooltip-delay'),
+          paramName: 'tooltipDelay',
+          type: 'enum',
+          defaultValue: '1000',
+          values: {
+            [this.$t('tooltip-instant')]: 0,
+            [this.$t('tooltip-delayed')]: 800,
+            [this.$t('tooltip-hide')]: 600_000,
+          },
+          description: this.$t('tooltip-delay-description'),
+        },
       ];
 
       return {
@@ -117,6 +130,7 @@
           nicknames: this.$store.getters['settings/nicknames'],
           gameName: this.$store.getters['settings/gameName'],
           favButtons: this.$store.getters['settings/favButtons'],
+          tooltipDelay: this.$store.getters['settings/tooltipDelay'],
         },
       };
     },
@@ -126,7 +140,7 @@
       }),
     },
     methods: {
-      save() {
+      async save() {
         this.$store.dispatch('settings/setDefaultView', this.model.defaultView);
         this.$store.dispatch('settings/setNotificationPosition', this.model.notificationPosition);
         this.$store.dispatch('settings/setNotifyRelease', this.model.notifyRelease);
@@ -135,6 +149,7 @@
         this.$store.dispatch('settings/setNicknames', this.model.nicknames);
         this.$store.dispatch('settings/setGameName', this.model.gameName);
         this.$store.dispatch('settings/setFavButtons', this.model.favButtons);
+        this.$store.dispatch('settings/setTooltipDelay', this.model.tooltipDelay);
 
         this.$snotify.setDefaults({
           toast: {
@@ -143,6 +158,17 @@
         });
 
         this.$success(this.$t('settings-saved'));
+
+        // It's currently not possible to change tooltip-options in runtime
+        // Open issue: https://github.com/Akryum/v-tooltip/pull/773
+        //
+        // this.$VTooltip.options.defaultDelay = {
+        //   show: this.model.tooltipDelay,
+        // };
+        //
+        // So we have to do it the ugly way:
+        await delay(1000);
+        window.location.reload();
       },
     },
   };

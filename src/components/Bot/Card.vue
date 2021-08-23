@@ -9,7 +9,7 @@
 
     <router-link v-slot="{ navigate }" custom :to="{ name: 'bot', params: { bot: bot.name } }">
       <div class="bot__status" @click="navigate">
-        <span v-tooltip.bottom-start="{ content: bot.name, delay: { show: 700 } }" class="bot__status-property bot__status-property--name">{{ bot.viewableName }}</span>
+        <span v-tooltip.bottom-start="bot.name" class="bot__status-property bot__status-property--name">{{ bot.viewableName }}</span>
         <span class="bot__status-property bot__status-property--text">{{ bot.statusText }}</span>
       </div>
     </router-link>
