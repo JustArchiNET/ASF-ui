@@ -3,10 +3,8 @@ const path = require('path');
 const { DefinePlugin } = require('webpack');
 const { VueLoaderPlugin } = require('vue-loader');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const WebpackBeforeBuildPlugin = require('before-build-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const generateFlags = require('../scripts/generateFlags');
 const getCommitHash = require('../scripts/getCommitHash');
 
 module.exports = {
@@ -82,10 +80,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new WebpackBeforeBuildPlugin((stats, callback) => {
-      generateFlags();
-      callback();
-    }),
     new CleanWebpackPlugin(),
     new VueLoaderPlugin(),
     new DefinePlugin(({
