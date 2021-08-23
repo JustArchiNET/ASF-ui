@@ -16,8 +16,8 @@ module.exports = {
     main: './src/index.js',
   },
   output: {
-    filename: 'scripts/[name].[chunkhash:7].bundle.js',
-    chunkFilename: 'scripts/[id].[chunkhash:7].chunk.js',
+    filename: 'scripts/[name].[contenthash:7].bundle.js',
+    chunkFilename: 'scripts/[id].[contenthash:7].chunk.js',
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/',
     crossOriginLoading: 'anonymous',

@@ -8,7 +8,7 @@
           <span class="terminal-message__content">{{ message }}</span>
         </div>
         <div class="terminal__input-wrapper">
-          <span class="terminal-message__sign sign-input" @click="sendCommand">></span>
+          <span v-tooltip="$t('commands-send')" class="terminal-message__sign sign-input" @click="sendCommand">></span>
           <input ref="terminal-input" type="text" spellcheck="false" :value="command" class="terminal__input"
                  @input="command = $event.target.value"
                  @keydown.enter="sendCommand"
