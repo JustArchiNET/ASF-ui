@@ -15,15 +15,15 @@
     </router-link>
 
     <div class="bot__actions">
-      <router-link v-for="button in selectedButtons" v-if="button.name !== 'pause'" :key="button.name" :to="{ name: `bot-${button.name}`, params: { bot: bot.name } }">
+      <router-link v-for="button in selectedButtons" v-if="button.name !== 'pause'" :key="button.name" v-tooltip="$t(`bot-fav-buttons-${button.name}`)" :to="{ name: `bot-${button.name}`, params: { bot: bot.name } }">
         <span class="bot__action"><FontAwesomeIcon :icon="button.icon"></FontAwesomeIcon></span>
       </router-link>
 
-      <span v-if="bot.paused && bot.active && isPauseButtonSelected" class="bot__action" @click="resume"><FontAwesomeIcon icon="play"></FontAwesomeIcon></span>
-      <span v-if="!bot.paused && bot.active && isPauseButtonSelected" class="bot__action" @click="pause"><FontAwesomeIcon icon="pause"></FontAwesomeIcon></span>
+      <span v-if="bot.paused && bot.active && isPauseButtonSelected" v-tooltip="$t('bot-title-resume', { bot: bot.name })" class="bot__action" @click="resume"><FontAwesomeIcon icon="play"></FontAwesomeIcon></span>
+      <span v-if="!bot.paused && bot.active && isPauseButtonSelected" v-tooltip="$t('bot-title-pause', { bot: bot.name })" class="bot__action" @click="pause"><FontAwesomeIcon icon="pause"></FontAwesomeIcon></span>
 
-      <span v-if="!bot.active" class="bot__action" @click="start"><FontAwesomeIcon icon="power-off"></FontAwesomeIcon></span>
-      <span v-if="bot.active" class="bot__action" @click="stop"><FontAwesomeIcon icon="power-off"></FontAwesomeIcon></span>
+      <span v-if="!bot.active" v-tooltip="$t('bot-title-start', { bot: bot.name })" class="bot__action" @click="start"><FontAwesomeIcon icon="power-off"></FontAwesomeIcon></span>
+      <span v-if="bot.active" v-tooltip="$t('bot-title-stop', { bot: bot.name })" class="bot__action" @click="stop"><FontAwesomeIcon icon="power-off"></FontAwesomeIcon></span>
     </div>
   </div>
 </template>
