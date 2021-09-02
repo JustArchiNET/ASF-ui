@@ -66,6 +66,11 @@
       if (commandHistory && Array.isArray(commandHistory)) this._cache = commandHistory;
       this.trim();
     }
+
+    clear() {
+      this._cache = [];
+      storage.remove('command-history');
+    }
   }
 
   export default {
@@ -107,6 +112,7 @@
           { command: 'commands', description: this.$t('terminal-commands') },
           { command: 'help <Command>', description: this.$t('terminal-help') },
           { command: 'clear', description: this.$t('terminal-command-clear') },
+          { command: 'clearhistory', description: this.$t('terminal-command-clear-history') },
         ];
       },
       uiCommandsNames() {
@@ -270,6 +276,9 @@
           case 'clear':
             // eslint-disable-next-line no-return-assign
             return this.log = [];
+          case 'clearhistory':
+            this.commandHistory.clear();
+            return this.$t('terminal-command-cleared');
         }
 
         return this.$http.command(commandToExecute);
