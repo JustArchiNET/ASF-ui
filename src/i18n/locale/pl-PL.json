@@ -201,6 +201,8 @@
   "success": "Sukces",
   "terminal-available-commands": "Dostępne komendy ASF: {commands} \n\n Dostępne komendy ASF-ui: {uiCommands}",
   "terminal-command-clear": "Czyści wszystkie dane wyjściowe terminala",
+  "terminal-command-cleared": "Historia terminalu została wyczyszczona.",
+  "terminal-command-clear-history": "Czyści całą historię terminalu",
   "terminal-command-oa": "Alias dla 'owns ASF'",
   "terminal-command-r": "Alias dla 'redeem'",
   "terminal-command-r-mode": "Alias dla 'redeem^'",

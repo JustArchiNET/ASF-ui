@@ -201,6 +201,8 @@
   "success": "成功",
   "terminal-available-commands": "可用 ASF 命令：{commands} \n\n 可用 ASF-ui 命令：{uiCommands}",
   "terminal-command-clear": "清除终端全部内容",
+  "terminal-command-cleared": "已清除控制台历史记录。",
+  "terminal-command-clear-history": "清除控制台所有历史记录",
   "terminal-command-oa": "'owns ASF' 的别名",
   "terminal-command-r": "'redeem' 的别名",
   "terminal-command-r-mode": "'redeem^' 的别名",
