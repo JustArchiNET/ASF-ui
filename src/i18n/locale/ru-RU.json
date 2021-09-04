@@ -201,6 +201,8 @@
   "success": "Успешно",
   "terminal-available-commands": "Доступные команды ASF: {commands} \n\n Доступные команды ASF-ui: {uiCommands}",
   "terminal-command-clear": "Очищает терминал",
+  "terminal-command-cleared": "История терминала очищена.",
+  "terminal-command-clear-history": "Очищает всю историю терминала",
   "terminal-command-oa": "Сокращение для 'owns ASF'",
   "terminal-command-r": "Сокращение для 'redeem'",
   "terminal-command-r-mode": "Сокращение для 'redeem^'",
