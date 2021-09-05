@@ -9,5 +9,11 @@
 		":disableDependencyDashboard",
 		":disableRateLimiting",
 		":label(🤖 Automatic)"
+	],
+	"packageRules": [
+		{
+			"assignees": [ "JustArchi" ],
+			"matchManagers": [ "github-actions" ]
+		}
 	]
 }
