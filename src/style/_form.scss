@@ -65,6 +65,18 @@
 	}
 }
 
+.form-item__code {
+  display: grid;
+  grid-column-gap: 0.5em;
+  grid-template-columns: 1fr auto;
+  align-items: flex-end;
+  padding-bottom: 1em;
+
+  :focus {
+    outline: none;
+  }
+}
+
 .form-item__input {
 	background-color: var(--color-background);
 	border: 1px solid rgba($color-text-dark, 0.1);

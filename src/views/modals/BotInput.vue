@@ -104,18 +104,6 @@
     padding-bottom: 1em;
   }
 
-  .form-item__code {
-    display: grid;
-    grid-column-gap: 0.5em;
-    grid-template-columns: 1fr auto;
-    align-items: flex-end;
-    padding-bottom: 1em;
-
-    :focus {
-      outline: none;
-    }
-  }
-
   .button--helper {
     max-width: 2em;
   }
