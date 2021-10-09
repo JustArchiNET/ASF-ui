@@ -28,7 +28,7 @@ body:
         - Latest pre-release
     validations:
       required: true
-  - type: textarea
+  - type: input
     id: asf-ui-version
     attributes:
       label: ASF-ui version
