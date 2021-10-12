@@ -26,7 +26,7 @@
 <script>
   import { mapGetters } from 'vuex';
   import humanizeDuration from 'humanize-duration';
-  import linkifyHtml from 'linkifyjs/html';
+  import linkifyHtml from 'linkify-html';
   import getLocaleForHD from '../../utils/getLocaleForHD';
   import * as storage from '../../utils/storage';
   import compareVersion from '../../utils/compareVersion';

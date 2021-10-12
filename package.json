@@ -49,6 +49,7 @@
     "flat": "5.0.2",
     "html-webpack-plugin": "5.3.2",
     "humanize-duration": "3.27.0",
+    "linkify-html": "^3.0.2",
     "linkifyjs": "3.0.2",
     "lodash-es": "4.17.21",
     "plurals-cldr": "1.0.4",
