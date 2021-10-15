@@ -31,6 +31,8 @@
   import compareVersion from '../../utils/compareVersion';
   import { UPDATECHANNEL } from '../../store/modules/asf';
 
+  // We are using require here because linkify devs are mad. They are exporting a submodule
+  // already included in the base module with base module as peer dependency. True madness.
   const linkifyHtml = require('linkifyjs/lib/linkify-html');
 
   export default {
