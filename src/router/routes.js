@@ -116,6 +116,15 @@ export default [
     meta: { modal: true, arrows: true },
   },
   {
+    path: '/bot/:bot/2fa/delete',
+    name: 'bot-2fa-delete',
+    components: {
+      default: () => import('../views/Bots.vue'),
+      modal: () => import('../views/modals/Bot2FADelete.vue'),
+    },
+    meta: { modal: true, arrows: true },
+  },
+  {
     path: '/bot/:bot/input/:type',
     name: 'bot-input',
     components: {
