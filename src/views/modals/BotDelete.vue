@@ -5,8 +5,13 @@
     <p class="info">{{ $t('bot-delete-info', { name: bot.viewableName }) }}</p>
 
     <div class="form-item">
+      <div class="form-item__confirmation">
+        <label for="input" class="form-item__label" v-html="$t('bot-delete-confirmation', { name: bot.viewableName })"></label>
+        <input id="input" v-model="confirmationText" class="form-item__input" type="text" autocomplete="off">
+      </div>
+
       <div class="form-item__buttons form-item__buttons--center">
-        <button class="button button--cancel" @click="onDelete">
+        <button class="button button--cancel" :disabled="!confirmed" @click="onDelete">
           <FontAwesomeIcon v-if="deleting" icon="spinner" spin></FontAwesomeIcon>
           <span v-else>{{ $t('delete') }}</span>
         </button>
@@ -27,11 +32,16 @@
     data() {
       return {
         deleting: false,
+        confirmationText: '',
       };
     },
     computed: {
       bot() {
         return this.$store.getters['bots/bot'](this.$route.params.bot);
+      },
+      confirmed() {
+        if (!this.confirmationText) return false;
+        return this.confirmationText === this.bot.viewableName;
       },
     },
     created() {
@@ -60,4 +70,17 @@
     margin: 1em;
     position: relative;
 	}
+
+  .form-item__confirmation {
+    margin-bottom: 1em;
+  }
+
+  .form-item__label ::v-deep {
+    font-weight: 400;
+
+    strong {
+      font-weight: 800;
+      font-size: 120%;
+    }
+  }
 </style>
