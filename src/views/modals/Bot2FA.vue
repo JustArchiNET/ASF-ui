@@ -27,6 +27,9 @@
           <span v-else>{{ $t('2fa-reject') }}</span>
         </button>
       </div>
+      <div class="form-item__delete">
+        <a @click="$router.push({ name: 'bot-2fa-delete' })">{{ $t('2fa-delete', { name: bot.viewableName }) }}</a>
+      </div>
     </div>
   </main>
 </template>
@@ -159,6 +162,20 @@
 			outline: none;
 		}
 	}
+
+  .form-item__delete {
+    padding-top: 1em;
+    text-align: center;
+
+    a {
+      color: var(--color-text-dark);
+      cursor: pointer;
+
+      &:hover {
+        color: red;
+      }
+    }
+  }
 
 	.form-item__input-token {
 		font-size: 2.4em;
