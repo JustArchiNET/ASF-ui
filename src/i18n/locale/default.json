@@ -35,6 +35,7 @@
   "bot-create-name-asf": "You can't name your bot ASF",
   "bot-create-name-exist": "There's already a bot named {name}",
   "bot-delete": "Delete {name}?",
+  "bot-delete-confirmation": "Please type <strong>{name}</strong> to confirm.",
   "bot-delete-info": "Are you really sure you want to delete {name}?",
   "bot-fav-buttons": "Quick action button",
   "bot-fav-buttons-2fa": "2FA",
