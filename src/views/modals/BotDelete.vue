@@ -76,10 +76,13 @@
 
   .form-item__label ::v-deep {
     font-weight: 400;
+    display: block;
+    margin-bottom: 4px;
+    height: inherit;
 
     strong {
       font-weight: 800;
-      font-size: 120%;
+      color: var(--color-theme);
     }
   }
 </style>
