@@ -1,12 +1,12 @@
 <template>
   <main v-if="bot" class="main-container main-container--bot-profile">
-    <h2 v-tooltip="bot.name" class="title">{{ $t('bot-delete', { name: bot.viewableName }) }}</h2>
+    <h2 v-tooltip="bot.name" class="title">{{ $t('confirmation-title') }}</h2>
 
-    <p class="info">{{ $t('bot-delete-info', { name: bot.viewableName }) }}</p>
+    <p class="info" v-html="$t('bot-delete-warning', { name: bot.viewableName })"></p>
 
     <div class="form-item">
       <div class="form-item__confirmation">
-        <label for="input" class="form-item__label" v-html="$t('bot-delete-confirmation', { name: bot.viewableName })"></label>
+        <label for="input" class="form-item__label" v-html="$t('confirmation', { name: bot.viewableName })"></label>
         <input id="input" v-model="confirmationText" class="form-item__input" type="text" autocomplete="off">
       </div>
 
@@ -64,24 +64,28 @@
 </script>
 
 <style lang="scss" scoped>
+	.main-container--bot-profile {
+		width: 400px;
+
+		@media screen and (max-width: 530px) {
+			width: auto;
+		}
+	}
+
 	.info {
     text-align: center;
     margin: 1em;
     position: relative;
 	}
 
-  .form-item__confirmation {
-    margin-bottom: 1em;
-  }
-
   .form-item__label ::v-deep {
     font-weight: 400;
     display: block;
     margin-bottom: 4px;
     height: inherit;
+    font-size: inherit;
 
     strong {
-      font-weight: 800;
       color: var(--color-theme);
     }
   }
