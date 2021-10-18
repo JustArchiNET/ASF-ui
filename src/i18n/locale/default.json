@@ -5,6 +5,8 @@
   "2fa-delete": "Delete ASF 2FA for {name}?",
   "2fa-delete-warning": "This action <strong>cannot</strong> be undone. ASF 2FA for the bot <strong>{name}</strong> will permanently be deleted.",
   "2fa-delete-success": "ASF 2FA was deleted for {bot}!",
+  "2fa-import": "Import authenticator",
+  "2fa-import-success": "ASF 2FA was imported for {bot}!",
   "2fa-not-found": "This bot doesn't have ASF 2FA enabled! Learn more about it <a target='_blank' rel='noreferrer noopener' href='https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Two-factor-authentication#asf-2fa'>here</a>.",
   "2fa-reject": "Reject all confirmations",
   "2fa-reject-not-found": "There are no confirmations to reject!",

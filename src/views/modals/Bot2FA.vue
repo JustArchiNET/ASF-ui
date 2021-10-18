@@ -2,7 +2,17 @@
   <main v-if="bot" class="main-container">
     <h2 v-tooltip="bot.name" class="title">{{ bot.viewableName }}</h2>
 
-    <span v-if="!has2FA" v-html="$t('2fa-not-found')"></span>
+    <div v-if="!has2FA">
+      <p class="info" v-html="$t('2fa-not-found')"></p>
+
+      <div class="form-item__buttons form-item__buttons--center">
+        <input ref="file" type="file" accept=".maFile" class="hidden" @change="onImport">
+        <button class="button button--confirm" @click="$refs.file.click()">
+          <FontAwesomeIcon v-if="importing" icon="spinner" spin></FontAwesomeIcon>
+          <span v-else>{{ $t('2fa-import') }}</span>
+        </button>
+      </div>
+    </div>
 
     <div v-else class="form-item">
       <div class="form-item__token">
@@ -42,6 +52,7 @@
     name: 'Bot2fa',
     data() {
       return {
+        importing: false,
         accepting: false,
         rejecting: false,
         refreshing: false,
@@ -77,6 +88,40 @@
       if (!this.bot) this.$router.replace({ name: 'bots' });
     },
     methods: {
+      async onImport() {
+        if (this.importing) return;
+
+        this.importing = true;
+
+        try {
+          const bot = this.bot.name;
+          const maFile = this.$refs.file.files[0];
+          const reader = new FileReader();
+
+          reader.readAsText(maFile);
+
+          reader.onload = e => {
+            console.log(e.target.result);
+          };
+
+          const response = await this.$http.post(`bot/${bot}/twoFactorAuthentication`, {
+            identity_secret: 'string',
+            shared_secret: 'string',
+          });
+
+          if (response[bot].Success) {
+            this.$success(this.$t('2fa-import-success', { bot }));
+            await delay(1000);
+            this.$router.push({ name: 'bots' });
+          } else {
+            this.$error(response[bot].Message);
+          }
+        } catch (err) {
+          this.$error(err.message);
+        } finally {
+          this.importing = false;
+        }
+      },
       async acceptConfirmations() {
         if (this.accepting) return;
 
