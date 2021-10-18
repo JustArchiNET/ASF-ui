@@ -40,7 +40,6 @@
         return this.$store.getters['bots/bot'](this.$route.params.bot);
       },
       confirmed() {
-        if (!this.confirmationText) return false;
         return this.confirmationText === this.bot.viewableName;
       },
     },
