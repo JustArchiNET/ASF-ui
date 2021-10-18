@@ -64,14 +64,6 @@
 </script>
 
 <style lang="scss" scoped>
-	.main-container--bot-profile {
-		width: 400px;
-
-		@media screen and (max-width: 530px) {
-			width: auto;
-		}
-	}
-
   .form-item__label ::v-deep {
     font-weight: 400;
     display: block;

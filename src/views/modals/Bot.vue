@@ -121,14 +121,6 @@
 </script>
 
 <style lang="scss">
-	.main-container--bot-profile {
-		width: 400px;
-
-		@media screen and (max-width: 530px) {
-			width: auto;
-		}
-	}
-
 	.bot-profile {
 		display: grid;
 		grid-column-gap: 0.5em;

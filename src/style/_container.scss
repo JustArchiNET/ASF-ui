@@ -4,6 +4,14 @@
 	padding: 1em;
 }
 
+.main-container--bot-profile {
+  width: 400px;
+
+  @media screen and (max-width: 530px) {
+    width: auto;
+  }
+}
+
 .main-container--center {
 	align-items: center;
 	display: flex;
