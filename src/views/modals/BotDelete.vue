@@ -72,12 +72,6 @@
 		}
 	}
 
-	.info {
-    text-align: center;
-    margin: 1em;
-    position: relative;
-	}
-
   .form-item__label ::v-deep {
     font-weight: 400;
     display: block;
