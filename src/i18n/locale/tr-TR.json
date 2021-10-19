@@ -31,8 +31,6 @@
   "bot-create-name": "Bir isim koymalısın",
   "bot-create-name-asf": "Botunun adını ASF koyamazsın",
   "bot-create-name-exist": "Zaten {name} adında bir bot var",
-  "bot-delete": "{name} Botunu Sil?",
-  "bot-delete-info": "{name} silmek istediğinizden emin misiniz?",
   "bot-fav-buttons": "Hızlı işlem düğmesi",
   "bot-fav-buttons-2fa": "2AD",
   "bot-fav-buttons-bgr": "BGR",

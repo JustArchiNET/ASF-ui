@@ -26,8 +26,6 @@
   "bot-create-name": "Be kell írnod egy nevet",
   "bot-create-name-asf": "Nem hívhatod a botod ASF-nek",
   "bot-create-name-exist": "Már van egy {name} nevű bot",
-  "bot-delete": "{name} törlése?",
-  "bot-delete-info": "Biztosan törölni akarod a(z) {name} botot?",
   "bot-fav-buttons": "Gyors akció gomb",
   "bot-fav-buttons-2fa": "2FA",
   "bot-fav-buttons-bgr": "BGR",

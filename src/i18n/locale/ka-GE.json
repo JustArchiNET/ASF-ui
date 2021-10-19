@@ -13,8 +13,6 @@
   "bot-create-name": "უნდა შეიყვანოთ სახელი",
   "bot-create-name-asf": "ბოტს ვერ დაარქმევ სახელს ASF",
   "bot-create-name-exist": "ბოტი სახელით {name} უკვე არსებობს",
-  "bot-delete": "წაიშალოს {name}?",
-  "bot-delete-info": "დარწმუნებული ხარ რომ ბოტის {name} წაშლა გსურს?",
   "bot-fav-buttons": "სწრაფი მოქმედების ღილაკი",
   "bot-fav-buttons-2fa": "2FA",
   "bot-fav-buttons-config": "კონფიგურაცია",

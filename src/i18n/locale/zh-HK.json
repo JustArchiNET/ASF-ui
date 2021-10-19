@@ -19,7 +19,6 @@
   "bot-copy": "複製機械人",
   "bot-create-name": "您必須輸入一個名稱",
   "bot-create-name-asf": "您不能將您的機械人命名為 ASF",
-  "bot-delete": "刪除 {name}?",
   "bot-fav-buttons": "快速操作按鈕",
   "bot-fav-buttons-2fa": "雙重驗證",
   "bot-fav-buttons-bgr": "後台序號啟動器",

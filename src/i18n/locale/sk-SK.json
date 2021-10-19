@@ -27,8 +27,6 @@
   "bot-create-name": "Musíte zadať meno",
   "bot-create-name-asf": "Nemôžete pomenovať svojho bota ASF",
   "bot-create-name-exist": "Bot menom {name} už existuje",
-  "bot-delete": "Vymazať {name}?",
-  "bot-delete-info": "Naozaj chcete odstrániť toto {name}?",
   "bot-fav-buttons": "Tlačidlá rýchlej akcie",
   "bot-fav-buttons-2fa": "2FA",
   "bot-fav-buttons-bgr": "BGR",

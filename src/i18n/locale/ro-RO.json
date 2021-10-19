@@ -26,7 +26,6 @@
   "bot-create-name": "Trebuie să introduci un nume",
   "bot-create-name-asf": "Nu poți numi botul tău ASF",
   "bot-create-name-exist": "Există deja un bot numit {name}",
-  "bot-delete": "Șterge {name}?",
   "bot-fav-buttons": "Buton de acțiune rapidă",
   "bot-fav-buttons-2fa": "2FA",
   "bot-fav-buttons-bgr": "BGR",

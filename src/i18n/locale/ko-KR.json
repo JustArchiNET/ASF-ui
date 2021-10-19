@@ -20,8 +20,6 @@
   "bot-create-name": "이름을 입력하세요",
   "bot-create-name-asf": "\"ASF\"는 봇 이름으로 사용할 수 없습니다.",
   "bot-create-name-exist": "{name} 이름을 가진 봇이 이미 존재합니다.",
-  "bot-delete": "{name} 삭제?",
-  "bot-delete-info": "{name}을(를) 삭제하시겠어요?",
   "bot-fav-buttons": "빠른 실행 버튼",
   "bot-fav-buttons-2fa": "2단계 인증",
   "bot-fav-buttons-bgr": "백그라운드 게임 등록기",
