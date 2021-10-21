@@ -96,18 +96,8 @@
         try {
           const bot = this.bot.name;
           const maFile = this.$refs.file.files[0];
-          const reader = new FileReader();
-
-          reader.readAsText(maFile);
-
-          reader.onload = e => {
-            console.log(e.target.result);
-          };
-
-          const response = await this.$http.post(`bot/${bot}/twoFactorAuthentication`, {
-            identity_secret: 'string',
-            shared_secret: 'string',
-          });
+          const maFileContent = await this.readFile(maFile);
+          const response = await this.$http.post(`bot/${bot}/twoFactorAuthentication`, JSON.parse(maFileContent));
 
           if (response[bot].Success) {
             this.$success(this.$t('2fa-import-success', { bot }));
@@ -121,6 +111,16 @@
         } finally {
           this.importing = false;
         }
+      },
+      readFile(maFile) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = e => {
+            resolve(e.target.result);
+          };
+          reader.onerror = reject;
+          reader.readAsText(maFile);
+        });
       },
       async acceptConfirmations() {
         if (this.accepting) return;
