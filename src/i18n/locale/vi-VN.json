@@ -31,8 +31,6 @@
   "bot-create-name": "Bạn phải nhập tên",
   "bot-create-name-asf": "Bạn không thể đặt tên bot của bạn ASF",
   "bot-create-name-exist": "Đã có bot tên là {name}",
-  "bot-delete": "Xoá {name}?",
-  "bot-delete-info": "Bạn có thực sự muốn xóa {name}?",
   "bot-fav-buttons": "Nút hành động nhanh",
   "bot-fav-buttons-2fa": "2FA",
   "bot-fav-buttons-bgr": "BGR",

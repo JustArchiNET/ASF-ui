@@ -24,7 +24,6 @@
   "bot-create-name": "Tev ir jāievada nosaukums",
   "bot-create-name-asf": "Tu nevari nosaukt savu botu par ASF",
   "bot-create-name-exist": "Bots ar nosaukumu {name} jau eksistē",
-  "bot-delete": "Dzēst {name}?",
   "bot-fav-buttons": "Ātro darbību taustiņš",
   "bot-fav-buttons-2fa": "2FA",
   "bot-fav-buttons-bgr": "BGR",

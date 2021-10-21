@@ -31,8 +31,6 @@
   "bot-create-name": "U HAS 2 ENTR NAYM",
   "bot-create-name-asf": "U CANT NAYM UR BOT ASF",
   "bot-create-name-exist": "THARS ALREADY BOT NAMD {name}",
-  "bot-delete": "DELETE {name}?",
-  "bot-delete-info": "R U RLY SURE U WANTS 2 DELETE {name}?",
   "bot-fav-buttons": "QUICK ACSHUN BUTN",
   "bot-fav-buttons-2fa": "2FA",
   "bot-fav-buttons-bgr": "BGR",
