@@ -5,6 +5,8 @@
   "2fa-delete": "删除 {name} 的 ASF 两步验证吗？",
   "2fa-delete-warning": "此操作<strong>无法</strong>撤销。机器人 <strong>{name}</strong> 的 ASF 两步验证将会被永久删除。 ",
   "2fa-delete-success": "{bot} 的 ASF 两步验证已删除！",
+  "2fa-import": "导入验证器",
+  "2fa-import-success": "{bot} 的 ASF 两步验证已导入！",
   "2fa-not-found": "此机器人未启用 ASF 2FA！点击<a target='_blank' rel='noreferrer noopener' href='https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Two-factor-authentication-zh-CN#asf-2fa'>此处</a>了解更多。",
   "2fa-reject": "拒绝所有确认",
   "2fa-reject-not-found": "没有可拒绝的确认！",
