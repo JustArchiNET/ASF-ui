@@ -77,7 +77,7 @@
   "create": "Create",
   "customization": "Customization",
   "default-page": "Default page",
-  "default-page-description": "Decide which page you want as your default.",
+  "default-page-description": "Decide which page ASF-ui should open by default.",
   "delete": "Delete",
   "description-not-found": "No description found for this config property.",
   "discussions": "Discussions",
