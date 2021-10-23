@@ -16,6 +16,7 @@
 <script>
   import { mapGetters } from 'vuex';
   import BotCard from '../Bot/Card.vue';
+  import { BotStatus } from '../../models/Bot';
 
   export default {
     name: 'AsfBots',
@@ -25,12 +26,34 @@
         bots: 'bots/bots',
         selectedBots: 'settings/selectedBots',
         favButtons: 'settings/favButtons',
+        orderDisabledBotsLast: 'settings/orderDisabledBotsLast',
       }),
       selectedButtonsCount() {
         return Array.from(this.favButtons.toString(2)).length;
       },
       visibleBots() {
-        return this.bots.filter(bot => bot.isVisible(this.selectedBots));
+        const visibleBots = this.bots.filter(bot => bot.isVisible(this.selectedBots));
+        if (this.orderDisabledBotsLast) return visibleBots.sort(this.sortByStatus());
+        return visibleBots;
+      },
+    },
+    methods: {
+      sortByStatus() {
+        // Order: farming -> online -> offline -> disabled
+        // eslint-disable-next-line func-names
+        return function(a, b) {
+          if (a.status === b.status) return 0;
+
+          if (a.status === BotStatus.DISABLED) return 1;
+          if (b.status === BotStatus.DISABLED) return -1;
+
+          if (a.status === BotStatus.FARMING) return -1;
+          if (b.status === BotStatus.FARMING) return 1;
+
+          if (a.status === BotStatus.ONLINE) return -1;
+
+          return 1;
+        };
       },
     },
   };

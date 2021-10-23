@@ -11,6 +11,7 @@ export const state = {
   selectedBots: [],
   timestamps: false,
   tooltipDelay: 0,
+  orderDisabledBotsLast: false,
 };
 
 export const mutations = {
@@ -24,6 +25,7 @@ export const mutations = {
   setSelectedBots: (state, selectedBots) => (state.selectedBots = selectedBots),
   setTimestamps: (state, timestamps) => (state.timestamps = timestamps),
   setTooltipDelay: (state, delay) => (state.tooltipDelay = delay),
+  setOrderDisabledBotsLast: (state, orderDisabledBotsLast) => (state.orderDisabledBotsLast = orderDisabledBotsLast),
 };
 
 export const actions = {
@@ -38,6 +40,7 @@ export const actions = {
     commit('setSelectedBots', storage.get('settings:selected-bots', []));
     commit('setTimestamps', storage.get('settings:timestamps', false));
     commit('setTooltipDelay', storage.get('settings:tooltip-delay', 0));
+    commit('setOrderDisabledBotsLast', storage.get('settings:orderDisabledBotsLast', false));
   },
   setDefaultView({ commit }, value) {
     storage.set('settings:default-view', value);
@@ -79,6 +82,10 @@ export const actions = {
     storage.set('settings:tooltip-delay', value);
     commit('setTooltipDelay', value);
   },
+  setOrderDisabledBotsLast({ commit }, value) {
+    storage.set('settings:orderDisabledBotsLast', value);
+    commit('setOrderDisabledBotsLast', value);
+  },
 };
 
 export const getters = {
@@ -92,4 +99,5 @@ export const getters = {
   selectedBots: state => state.selectedBots,
   timestamps: state => state.timestamps,
   tooltipDelay: state => state.tooltipDelay,
+  orderDisabledBotsLast: state => state.orderDisabledBotsLast,
 };

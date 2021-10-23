@@ -90,6 +90,12 @@
           description: this.$t('bot-game-name-description'),
         },
         {
+          param: this.$t('bot-order-disabled'),
+          paramName: 'orderDisabledBotsLast',
+          type: 'boolean',
+          description: this.$t('bot-order-disabled-description'),
+        },
+        {
           param: this.$t('bot-fav-buttons'),
           paramName: 'favButtons',
           type: 'flag',
@@ -131,6 +137,7 @@
           gameName: this.$store.getters['settings/gameName'],
           favButtons: this.$store.getters['settings/favButtons'],
           tooltipDelay: this.$store.getters['settings/tooltipDelay'],
+          orderDisabledBotsLast: this.$store.getters['settings/orderDisabledBotsLast'],
         },
       };
     },
@@ -150,6 +157,7 @@
         this.$store.dispatch('settings/setGameName', this.model.gameName);
         this.$store.dispatch('settings/setFavButtons', this.model.favButtons);
         this.$store.dispatch('settings/setTooltipDelay', this.model.tooltipDelay);
+        this.$store.dispatch('settings/setOrderDisabledBotsLast', this.model.orderDisabledBotsLast);
 
         this.$snotify.setDefaults({
           toast: {
