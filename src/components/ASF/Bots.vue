@@ -39,26 +39,18 @@
     },
     methods: {
       sortByStatus() {
+        // Order: farming -> online -> offline -> disabled
         // eslint-disable-next-line func-names
         return function(a, b) {
           if (a.status === b.status) return 0;
 
-          // oh lord forgive me - i have no idea what i'm doing but it works...
-          switch (a.status) {
-            case BotStatus.FARMING:
-              if (b.status === BotStatus.ONLINE) return -1;
-              if (b.status === BotStatus.OFFLINE) return -1;
-              break;
+          if (a.status === BotStatus.DISABLED) return 1;
+          if (b.status === BotStatus.DISABLED) return -1;
 
-            case BotStatus.ONLINE:
-              if (b.status === BotStatus.OFFLINE) return -1;
-              if (b.status === BotStatus.DISABLED) return -1;
-              break;
+          if (a.status === BotStatus.FARMING) return -1;
+          if (b.status === BotStatus.FARMING) return 1;
 
-            case BotStatus.OFFLINE:
-              if (b.status === BotStatus.DISABLED) return -1;
-              break;
-          }
+          if (a.status === BotStatus.ONLINE) return -1;
 
           return 1;
         };
