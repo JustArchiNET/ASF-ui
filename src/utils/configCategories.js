@@ -29,7 +29,7 @@ const newBotCategories = [
 const uiCategories = [
   { name: Vue.i18n.translate('general'), fields: [Vue.i18n.translate('default-page'), Vue.i18n.translate('notification-position'), Vue.i18n.translate('notify-release'), Vue.i18n.translate('display-categories'), Vue.i18n.translate('tooltip-delay')] },
   { name: Vue.i18n.translate('commands'), fields: [Vue.i18n.translate('timestamps')] },
-  { name: Vue.i18n.translate('bots'), fields: [Vue.i18n.translate('bot-nicknames'), Vue.i18n.translate('bot-game-name'), Vue.i18n.translate('bot-fav-buttons')] },
+  { name: Vue.i18n.translate('bots'), fields: [Vue.i18n.translate('bot-nicknames'), Vue.i18n.translate('bot-game-name'), Vue.i18n.translate('bot-order-disabled'), Vue.i18n.translate('bot-fav-buttons')] },
 ];
 
 export {
