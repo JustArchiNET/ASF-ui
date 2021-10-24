@@ -54,7 +54,6 @@
   "create": "생성",
   "customization": "사용자 지정",
   "default-page": "기본 페이지",
-  "default-page-description": "기본값으로 할 페이지를 정합니다.",
   "delete": "삭제",
   "display-categories": "분류 표시",
   "display-categories-description": "환경설정 속성값을 분류할지를 결정합니다.",

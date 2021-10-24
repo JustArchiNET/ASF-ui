@@ -77,7 +77,7 @@
   "create": "Utwórz",
   "customization": "Dostosowywanie",
   "default-page": "Domyślna strona",
-  "default-page-description": "Zdecyduj, która strona ma być domyślna.",
+  "default-page-description": "Zdecyduj, która strona ASF-ui powinna otworzyć się domyślnie.",
   "delete": "Usuń",
   "description-not-found": "Nie znaleziono opisu dla tej właściwości konfiguracji.",
   "discussions": "Dyskusje",
