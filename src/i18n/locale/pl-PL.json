@@ -50,6 +50,8 @@
   "bot-new-copy": "Konfiguracja oparta na bocie: {name}",
   "bot-nicknames": "Pseudonimy",
   "bot-nicknames-description": "Pokazuj pseudonimy steam (jeśli są dostępne) zamiast nazw botów.",
+  "bot-order-disabled": "Porządkuj wyłączone boty jako ostatnie",
+  "bot-order-disabled-description": "Spowoduje to uporządkowanie wyłączonych botów jako ostatnich na stronie Boty.",
   "bot-status-disabled": "Wyłączono",
   "bot-status-farming": "Farmienie",
   "bot-status-input": "Wymaga danych wejściowych",
