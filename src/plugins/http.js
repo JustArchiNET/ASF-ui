@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import * as storage from '../utils/storage';
+
 export class NotificationError extends Error {
   constructor(message, result) {
     super();
@@ -13,6 +15,40 @@ export class NotificationError extends Error {
 
 const http = axios.create({
   baseURL: (window.__BASE_PATH__) ? `${window.__BASE_PATH__}api` : '/api',
+});
+
+http.interceptors.request.use(config => {
+  // Check what language the user is using and prepare "Accept-Language" header accordingly
+  const acceptedLanguages = [];
+
+  const locale = storage.get('locale');
+  if (locale) acceptedLanguages.push(locale);
+
+  // eslint-disable-next-line no-restricted-syntax
+  for (const language of window.navigator.languages || []) {
+    // Attempt to reconstruct default Accept-Language header using navigator.languages
+    // This may be useful if asf-ui introduces new language which is not supported by ASF
+    if (acceptedLanguages.includes(language)) continue;
+    acceptedLanguages.push(language);
+  }
+
+  const acceptLanguageHeader = acceptedLanguages.reduce((acceptLanguageHeader, language, currentIndex) => {
+    if (currentIndex === 0) {
+      // We are only starting constructing the header string, the first language does not have any q-factor (weight).
+      return language;
+    }
+
+    // Each following language should have descending q-factor.
+    // We start with 0.9 and descend until it reaches 0.1.
+    // Further languages will be used as equal.
+    return `${acceptLanguageHeader},${language};q=0.${Math.max(1, 10 - currentIndex)}`;
+  }, '');
+
+  // It is possible config.headers is always declared, but I'd rather not break production if this proven to be false.
+  config.headers = config.headers || {};
+  config.headers['Accept-Language'] = acceptLanguageHeader;
+
+  return config;
 });
 
 function extractResult(response) {
