@@ -49,7 +49,7 @@
     "flat": "5.0.2",
     "html-webpack-plugin": "5.5.0",
     "humanize-duration": "3.27.0",
-    "linkifyjs": "3.0.3",
+    "linkifyjs": "3.0.4",
     "lodash-es": "4.17.21",
     "plurals-cldr": "1.0.4",
     "svg-country-flags": "1.2.10",
