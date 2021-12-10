@@ -47,7 +47,7 @@
     computed: {
       ...mapGetters({
         favButtons: 'settings/favButtons',
-        headless: 'asf/headless',
+        isRunningHeadless: 'asf/isRunningHeadless',
       }),
       isPauseButtonSelected() {
         return this.selectedButtons.filter(e => e.name === 'pause').length > 0;
@@ -82,7 +82,7 @@
         try {
           const inputType = getUserInputType(this.bot.requiredInput);
 
-          if (this.headless && inputType !== 'None') {
+          if (this.isRunningHeadless && inputType !== 'None') {
             this.$router.push({ name: 'bot-input', params: { bot: this.bot.name, type: inputType } });
             return;
           }

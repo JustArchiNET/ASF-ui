@@ -60,7 +60,7 @@
     },
     computed: {
       ...mapGetters({
-        headless: 'asf/headless',
+        isRunningHeadless: 'asf/isRunningHeadless',
       }),
       bot() {
         return this.$store.getters['bots/bot'](this.$route.params.bot);
@@ -104,7 +104,7 @@
       async start() {
         const inputType = getUserInputType(this.bot.requiredInput);
 
-        if (this.headless && inputType !== 'None') {
+        if (this.isRunningHeadless && inputType !== 'None') {
           this.$router.push({ name: 'bot-input', params: { bot: this.bot.name, type: inputType } });
           return;
         }
