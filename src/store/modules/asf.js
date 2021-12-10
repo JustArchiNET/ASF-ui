@@ -33,6 +33,7 @@ export const state = {
   steamOwnerID: '0',
   headless: false,
   canUpdate: false,
+  service: false,
 };
 
 export const mutations = {
@@ -51,6 +52,7 @@ export const mutations = {
   updateSteamOwnerID: (state, steamOwnerID) => (state.steamOwnerID = steamOwnerID),
   updateHeadless: (state, headless) => (state.headless = headless),
   updateCanUpdate: (state, canUpdate) => (state.canUpdate = canUpdate),
+  updateService: (state, service) => (state.service = service),
 };
 
 export const actions = {
@@ -75,6 +77,7 @@ export const actions = {
       commit('updateSteamOwnerID', response.GlobalConfig.s_SteamOwnerID);
       commit('updateHeadless', response.GlobalConfig.Headless);
       commit('updateCanUpdate', response.CanUpdate);
+      commit('updateService', response.Service);
     } catch (err) {
       dispatch('auth/updateStatus', '', { root: true });
     }
@@ -96,4 +99,6 @@ export const getters = {
   headless: state => state.headless,
   updatesEnabled: state => state.updateChannel !== 0,
   canUpdate: state => state.canUpdate,
+  service: state => state.service,
+  isRunningHeadless: state => state.headless || state.service,
 };
