@@ -27,7 +27,7 @@
     "eslint-plugin-import": "2.25.4",
     "eslint-plugin-vue": "7.20.0",
     "file-loader": "6.2.0",
-    "sass": "1.45.2",
+    "sass": "1.46.0",
     "sass-loader": "12.4.0",
     "url-loader": "4.1.1",
     "vue-eslint-parser": "8.0.1",
