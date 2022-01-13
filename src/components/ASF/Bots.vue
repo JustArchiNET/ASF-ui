@@ -32,19 +32,12 @@
         return Array.from(this.favButtons.toString(2)).length;
       },
       visibleBots() {
-        const visibleBots = this.bots.filter(bot => bot.isVisible(this.selectedBots)).sort(this.sortByName());
+        const visibleBots = this.bots.filter(bot => bot.isVisible(this.selectedBots));
         if (this.orderDisabledBotsLast) return visibleBots.sort(this.sortByStatus());
         return visibleBots;
       },
     },
     methods: {
-      sortByName() {
-        // Sort bots by name to render them in same order like "status asf" command output.
-        // eslint-disable-next-line func-names
-        return function(a, b) {
-          return a.name > b.name ? 1 : -1;
-        };
-      },
       sortByStatus() {
         // Order: farming -> online -> offline -> disabled
         // eslint-disable-next-line func-names
