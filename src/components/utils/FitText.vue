@@ -19,7 +19,7 @@
         type: String,
       },
       min: {
-        default: 0.5,
+        default: 1,
         type: Number,
       },
       max: {
