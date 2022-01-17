@@ -51,7 +51,7 @@ export const actions = {
 };
 
 export const getters = {
-  bots: state => Object.values(state.bots),
+  bots: state => Object.values(state.bots).sort((a, b) => (a.name > b.name ? 1 : -1)),
   bot: state => name => state.bots[name],
   status: (state, getters) => status => getters.bots.filter(bot => bot.status === status),
   count: (state, getters) => status => getters.status(status).length,
