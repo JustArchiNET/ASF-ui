@@ -20,7 +20,7 @@
     "babel-loader": "8.2.3",
     "before-build-webpack": "0.2.12",
     "clean-webpack-plugin": "4.0.0",
-    "copy-webpack-plugin": "10.2.2",
+    "copy-webpack-plugin": "10.2.3",
     "css-loader": "6.5.1",
     "eslint": "8.8.0",
     "eslint-config-airbnb-base": "15.0.0",
