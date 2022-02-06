@@ -4,10 +4,9 @@
       <h2 class="title">{{ $t('welcome') }}</h2>
       <p class="subtitle">{{ $t('welcome-message') }}</p>
 
-      <div v-if="steamOwnerID === '0' || bots.length === 0" class="form-item">
+      <div v-if="bots.length === 0" class="form-item">
         <p class="subtitle">{{ $t('welcome-message-todo') }}</p>
         <ul class="list">
-          <li v-if="steamOwnerID === '0'" class="list-item">{{ $t('welcome-message-id') }}</li>
           <li v-if="bots.length === 0" class="list-item">{{ $t('welcome-message-bot') }}</li>
         </ul>
       </div>
@@ -38,7 +37,6 @@
     },
     computed: mapGetters({
       bots: 'bots/bots',
-      steamOwnerID: 'asf/steamOwnerID',
     }),
     mounted() {
       set('first-time', false);

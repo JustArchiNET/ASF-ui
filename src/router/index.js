@@ -16,8 +16,8 @@ const router = new VueRouter({
 
 router.beforeEach(async (routeTo, routeFrom, next) => {
   const noPasswordRequired = routeTo.matched.every(route => route.meta.noPasswordRequired);
-  if (noPasswordRequired || await store.dispatch('auth/validate')) next();
-  else if (storage.get('first-time', true) && routeTo.name !== 'welcome') next({ name: 'welcome' });
+  if (storage.get('first-time', true) && routeTo.name !== 'welcome') next({ name: 'welcome' });
+  else if (noPasswordRequired || await store.dispatch('auth/validate')) next();
   else next({ name: 'setup' });
 });
 
