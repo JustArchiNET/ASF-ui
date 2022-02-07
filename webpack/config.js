@@ -11,6 +11,22 @@ const getCommitHash = require('../scripts/getCommitHash');
 
 module.exports = {
   mode: 'development',
+  devServer: {
+    historyApiFallback: true,
+    open: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:1242',
+        ws: true,
+      },
+      '/swagger': {
+        target: 'http://localhost:1242',
+      },
+    },
+    static: {
+      directory: './src/static',
+    },
+  },
   devtool: 'inline-source-map',
   entry: {
     main: './src/index.js',
@@ -95,22 +111,6 @@ module.exports = {
       template: './src/index.html',
     }),
   ],
-  devServer: {
-    historyApiFallback: true,
-    open: true,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:1242',
-        ws: true,
-      },
-      '/swagger': {
-        target: 'http://localhost:1242',
-      },
-    },
-    static: {
-      directory: './src/static',
-    },
-  },
   watchOptions: {
     ignored: /generated/,
   },
