@@ -82,10 +82,6 @@ export const actions = {
       dispatch('auth/updateStatus', '', { root: true });
     }
   },
-  getSteamOwnerID: async ({ dispatch, getters }) => {
-    await dispatch('update');
-    return getters.steamOwnerID;
-  },
 };
 
 export const getters = {

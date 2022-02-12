@@ -14,17 +14,17 @@ export default [
     name: 'home',
     async beforeEnter(to, from, next) {
       const setupComplete = storage.get('setup-complete', false);
-
-      const steamOwnerID = await store.dispatch('asf/getSteamOwnerID');
       const botsDetected = await store.dispatch('bots/detectBots');
 
-      if (!setupComplete && from.name !== 'welcome' && (steamOwnerID === '0' || !botsDetected)) {
+      if (!setupComplete && from.name !== 'welcome' && !botsDetected) {
         return next({ name: 'welcome' });
-      } if (from.name === 'welcome' && steamOwnerID === '0') {
-        return next({ name: 'asf-config' });
-      } if (from.name === 'welcome' && !botsDetected) {
+      }
+
+      if (from.name === 'welcome' && !botsDetected) {
         return next({ name: 'bot-create' });
-      } if (steamOwnerID !== '0' || botsDetected) {
+      }
+
+      if (botsDetected) {
         storage.set('setup-complete', true);
         let defaultView = store.getters['settings/defaultView'];
         if (defaultView === '_last-visited-page') defaultView = storage.get('last-visited-page', { name: 'bots' });
