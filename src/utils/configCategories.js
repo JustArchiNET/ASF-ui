@@ -18,7 +18,7 @@ const botCategories = [
   { name: Vue.i18n.translate('access'), fields: ['SteamUserPermissions', 'SteamParentalCode'] },
   { name: Vue.i18n.translate('trade'), fields: ['SteamTradeToken', 'AcceptGifts', 'SendTradePeriod', 'SendOnFarmingFinished', 'CompleteTypesToSend', 'TradingPreferences', 'LootableTypes', 'TransferableTypes', 'MatchableTypes'] },
   { name: Vue.i18n.translate('farming'), fields: ['FarmingOrders', 'AutoSteamSaleEvent', 'FarmPriorityQueueOnly', 'SkipRefundableGames', 'FarmOffline', 'ShutdownOnFarmingFinished'] },
-  { name: Vue.i18n.translate('customization'), fields: ['RemoteCommunication', 'SteamMasterClanID', 'UserInterfaceMode', 'RedeemingPreferences', 'GamesPlayedWhileIdle', 'CustomGamePlayedWhileFarming', 'CustomGamePlayedWhileIdle'] },
+  { name: Vue.i18n.translate('customization'), fields: ['RemoteCommunication', 'SteamMasterClanID', 'UserInterfaceMode', 'OnlineFlags', 'RedeemingPreferences', 'GamesPlayedWhileIdle', 'CustomGamePlayedWhileFarming', 'CustomGamePlayedWhileIdle'] },
   { name: Vue.i18n.translate('performance'), fields: ['HoursUntilCardDrops'] },
 ];
 
