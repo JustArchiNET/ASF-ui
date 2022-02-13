@@ -239,7 +239,6 @@
   "welcome": "Добро пожаловать",
   "welcome-message": "Добро пожаловать в ASF-ui, официальный веб-интерфейс для ASF.",
   "welcome-message-bot": "Создать бота",
-  "welcome-message-id": "Установить SteamOwnerID",
   "welcome-message-todo": "Необходимо сделать следующее:",
   "wiki": "Wiki"
 }

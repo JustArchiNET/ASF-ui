@@ -239,7 +239,6 @@
   "welcome": "歡迎",
   "welcome-message": "歡迎使用 ASF-ui，這是 ASF 官方的 Web 使用者介面。",
   "welcome-message-bot": "建立一個 Bot",
-  "welcome-message-id": "設定 SteamOwnerID",
   "welcome-message-todo": "應當完成以下事項：",
   "wiki": "Wiki"
 }

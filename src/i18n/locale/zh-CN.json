@@ -239,7 +239,6 @@
   "welcome": "欢迎",
   "welcome-message": "欢迎使用 ASF-ui，官方提供的 ASF 在线管理界面。",
   "welcome-message-bot": "新建机器人",
-  "welcome-message-id": "设置 SteamOwnerID",
   "welcome-message-todo": "请完成以下操作：",
   "wiki": "Wiki"
 }
