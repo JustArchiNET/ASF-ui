@@ -40,7 +40,6 @@ jobs:
       run: npm run-script serve:ci --no-progress
 
     - name: Upload latest strings for translation on Crowdin
-      continue-on-error: true
       if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && startsWith(matrix.os, 'ubuntu-') }}
       uses: crowdin/github-action@1.4.7
       with:
