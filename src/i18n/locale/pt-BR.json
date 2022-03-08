@@ -223,7 +223,7 @@
   "timestamps-description": "Exibir data e hora no terminal.",
   "tooltip-delay": "Atraso das dicas",
   "tooltip-delay-description": "Define a duração das dicas na tela.",
-  "tooltip-delayed": "Atras de 800ms",
+  "tooltip-delayed": "Atraso de 800ms",
   "tooltip-instant": "Nenhum",
   "tooltip-hide": "Ocultar dicas",
   "trade": "Troca",
