@@ -54,6 +54,7 @@ export default [
     path: '/welcome',
     name: 'welcome',
     component: () => import('../views/Welcome.vue'),
+    meta: { noPasswordRequired: true },
   },
   {
     path: '/bots',
