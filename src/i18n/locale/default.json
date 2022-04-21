@@ -44,6 +44,8 @@
   "bot-fav-buttons-description": "Choose a button you want to be displayed on bot card for easy and quick action.",
   "bot-fav-buttons-none": "None",
   "bot-fav-buttons-pause": "Pause/Resume",
+  "bot-filter-info": "Showing {n}/{total} bots,",
+  "bot-filter-reset": "reset filters",
   "bot-game-name": "Game names only",
   "bot-game-name-description": "Only show game names (hide game banner).",
   "bot-new": "Create new bot",
