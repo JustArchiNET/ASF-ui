@@ -1,15 +1,15 @@
 <template>
   <main class="main-container main-container--fullheight bots-overview">
     <AsfFarmingInfo></AsfFarmingInfo>
-    <AsfBotFilter></AsfBotFilter>
     <AsfBots></AsfBots>
+    <AsfBotFilter></AsfBotFilter>
   </main>
 </template>
 
 <script>
   import AsfFarmingInfo from '../components/ASF/FarmingInfo.vue';
-  import AsfBotFilter from '../components/ASF/BotFilter.vue';
   import AsfBots from '../components/ASF/Bots.vue';
+  import AsfBotFilter from '../components/ASF/BotFilter.vue';
 
   export default {
     name: 'BotsOverview',
@@ -18,7 +18,7 @@
         title: this.$t('bots'),
       };
     },
-    components: { AsfBots, AsfBotFilter, AsfFarmingInfo },
+    components: { AsfBots, AsfFarmingInfo, AsfBotFilter },
   };
 </script>
 

@@ -1,7 +1,6 @@
 <template>
-  <div class="bot-filter container" v-if="selectedBots.length !== 0">
-    <h3 class="subtitle">{{ $t('bot-filter-title') }}</h3>
-    <p>{{ $t('bot-filter-info') }}</p>
+  <div v-if="isVisible" class="bot-filter container">
+    {{ infoText }}
     <a class="bot-filter__reset" @click="resetSelectedBots()">{{ $t('bot-filter-reset') }}</a>
   </div>
 </template>
@@ -12,7 +11,19 @@
   export default {
     name: 'AsfBotFilter',
     computed: {
-      ...mapGetters({ selectedBots: 'settings/selectedBots' }),
+      ...mapGetters({
+        bots: 'bots/bots',
+        selectedBots: 'settings/selectedBots',
+      }),
+      filteredBots() {
+        return this.bots.filter(bot => bot.isVisible(this.selectedBots));
+      },
+      isVisible() {
+        return this.selectedBots.length !== 0;
+      },
+      infoText() {
+        return this.$t('bot-filter-info', { n: this.filteredBots.length, total: this.bots.length });
+      },
     },
     methods: {
       resetSelectedBots() {
