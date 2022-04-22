@@ -44,6 +44,8 @@
   "bot-fav-buttons-description": "CHOOSE BUTN U WANTS 2 BE DISPLAYD ON BOT CARD 4 EASY AN QUICK ACSHUN.",
   "bot-fav-buttons-none": "NONE",
   "bot-fav-buttons-pause": "PAUSE/RESUME",
+  "bot-filter-info": "SHOWIN {n}/{total} BOTS,",
+  "bot-filter-reset": "RESET FILTERS",
   "bot-game-name": "GAME NAMEZ ONLY",
   "bot-game-name-description": "ONLY SHOW GAME NAMEZ (HIDE GAME BANNR).",
   "bot-new": "CREATE NEW BOT",

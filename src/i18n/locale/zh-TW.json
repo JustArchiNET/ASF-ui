@@ -44,6 +44,8 @@
   "bot-fav-buttons-description": "選擇要在 Bot 資訊卡上顯示的按鈕，以便快速操作。",
   "bot-fav-buttons-none": "無",
   "bot-fav-buttons-pause": "暫停/繼續",
+  "bot-filter-info": "顯示 {n}／{total} Bots,",
+  "bot-filter-reset": "重設篩選器",
   "bot-game-name": "僅遊戲名稱",
   "bot-game-name-description": "僅顯示遊戲名稱（隱藏遊戲橫幅）。",
   "bot-new": "新建 Bot",

@@ -44,6 +44,8 @@
   "bot-fav-buttons-description": "Wählen Sie eine Schaltfläche, die auf der Bot-Karte angezeigt werden soll um eine Aktion schnell und einfach durchzuführen.",
   "bot-fav-buttons-none": "Keine",
   "bot-fav-buttons-pause": "Pausieren/Wiederaufnehmen",
+  "bot-filter-info": "Zeige {n}/{total} Bots,",
+  "bot-filter-reset": "Filter zurücksetzen",
   "bot-game-name": "Nur Spiele-Namen",
   "bot-game-name-description": "Nur Spiele-Namen anzeigen (Spiele-Banner ausblenden).",
   "bot-new": "Neuen Bot erstellen",

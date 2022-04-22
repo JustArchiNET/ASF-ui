@@ -44,6 +44,8 @@
   "bot-fav-buttons-description": "Elige un botón para mostrar como acción rápida en la tarjeta del bot.",
   "bot-fav-buttons-none": "Ninguno",
   "bot-fav-buttons-pause": "Pausar/Reanudar",
+  "bot-filter-info": "Mostrando {n}/{total} bots,",
+  "bot-filter-reset": "restablecer filtros",
   "bot-game-name": "Solo nombres de juegos",
   "bot-game-name-description": "Solo mostrar el nombre de los juegos (ocultar imagen del juego).",
   "bot-new": "Crear nuevo bot",
