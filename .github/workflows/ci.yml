@@ -49,7 +49,6 @@ jobs:
         token: ${{ secrets.ASF_CROWDIN_API_TOKEN }}
 
     - name: Upload ASF-ui
-      continue-on-error: true
       uses: actions/upload-artifact@v3.0.0
       with:
         name: ${{ matrix.os }}_ASF-ui
