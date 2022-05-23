@@ -30,7 +30,7 @@
     "sass": "1.52.1",
     "sass-loader": "12.6.0",
     "url-loader": "4.1.1",
-    "vue-eslint-parser": "8.3.0",
+    "vue-eslint-parser": "9.0.2",
     "vue-loader": "15.9.8",
     "vue-template-compiler": "2.6.14",
     "webpack": "5.72.1",
@@ -54,11 +54,11 @@
     "plurals-cldr": "2.0.1",
     "svg-country-flags": "1.2.10",
     "v-tooltip": "2.1.3",
-    "vue": "2.6.14",
+    "vue": "3.2.36",
     "vue-meta": "2.4.0",
     "vue-multiselect": "2.1.6",
-    "vue-router": "3.5.4",
+    "vue-router": "4.0.15",
     "vue-snotify": "3.2.1",
-    "vuex": "3.6.2"
+    "vuex": "4.0.2"
   }
 }
