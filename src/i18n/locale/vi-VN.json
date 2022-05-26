@@ -44,6 +44,7 @@
   "bot-fav-buttons-description": "Chọn một nút bạn muốn được hiển thị trên thẻ bot để hành động dễ dàng và nhanh chóng.",
   "bot-fav-buttons-none": "Trống",
   "bot-fav-buttons-pause": "Tạm dừng/Tiếp tục",
+  "bot-filter-info": "Đang hiển thị {n}/{total} bot,",
   "bot-game-name": "Chỉ tên trò chơi",
   "bot-game-name-description": "Chỉ hiển thị tên trò chơi (ẩn biểu ngữ trò chơi).",
   "bot-new": "Tạo bot mới",
