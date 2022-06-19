@@ -8,11 +8,11 @@
       {{ statusText }}
     </h3>
 
-    <div v-for="(release, i) in releases" v-else :key="i" class="release">
+    <div v-for="release in releases" v-else :key="release.version" class="release">
       <div class="release__title">
         <span class="release__version">v{{ release.version }}</span>
         <span class="release__badge" :class="[release.stable ? 'release__badge--stable' : 'release__badge--prerelease']">{{ release.stable ? $t('stable') : $t('pre-release') }}</span>
-        <span v-if="updatesEnabled && canUpdate && isLatestForUpdateChannel(i) && isNewer(release.version)" class="release__badge release__badge--install" @click="update">{{ $t('releases-install') }}</span>
+        <span v-if="updatesEnabled && canUpdate && isNewer(release.version)" class="release__badge release__badge--install" @click="update">{{ $t('releases-install') }}</span>
         <span class="release__time">{{ getTimeText(release.publishedAt) }}</span>
       </div>
 
@@ -29,7 +29,6 @@
   import getLocaleForHD from '../../utils/getLocaleForHD';
   import * as storage from '../../utils/storage';
   import compareVersion from '../../utils/compareVersion';
-  import { UPDATECHANNEL } from '../../store/modules/asf';
 
   // We are using require here because linkify devs are mad. They are exporting a submodule
   // already included in the base module with base module as peer dependency. True madness.
@@ -49,7 +48,6 @@
     computed: {
       ...mapGetters({
         version: 'asf/version',
-        updateChannel: 'asf/updateChannel',
         updatesEnabled: 'asf/updatesEnabled',
         canUpdate: 'asf/canUpdate',
       }),
@@ -77,11 +75,6 @@
           conjunction: this.$t('released-ago-conjunction'),
         });
         return this.$t('released-ago', { time });
-      },
-      isLatestForUpdateChannel(i) {
-        if (this.updateChannel === UPDATECHANNEL.EXPERIMENTAL && i === 0) return true;
-        if (this.updateChannel === UPDATECHANNEL.STABLE && i === 1) return true;
-        return false;
       },
       isNewer(version) {
         if (version > this.version) return true;
