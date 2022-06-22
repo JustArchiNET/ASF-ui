@@ -36,9 +36,9 @@ export const actions = {
       console.warn(err.message);
     }
   },
-  changeTheme: ({ commit, state }, _theme) => {
-    commit('changeTheme', _theme);
-    storage.set('layout:theme', _theme);
+  changeTheme: ({ commit, state }, theme) => {
+    commit('changeTheme', theme);
+    storage.set('layout:theme', theme);
     http.post('/storage/asfui-settings', state);
   },
   toggleDarkMode: ({ commit, getters }) => {
