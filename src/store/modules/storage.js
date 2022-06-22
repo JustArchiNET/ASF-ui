@@ -15,23 +15,19 @@ export const mutations = {
 export const actions = {
   init: async ({ commit }) => {
     try {
-      // get setting from ASF
-      const response = await http.get('/storage/asfui-settings');
-      const { theme: asfTheme, darkMode: asfDarkmode } = response;
-
-      // get setting from local storage
+      // get and set config from local storage
       const localTheme = storage.get('layout:theme');
       const localDarkMode = storage.get('layout:dark-mode');
-
-      // set setting. local > ASF
-      const theme = localTheme ?? asfTheme;
-      const darkMode = localDarkMode ?? asfDarkmode;
-
-      commit('changeTheme', theme);
-      if (typeof darkMode === 'boolean') commit('setDarkMode', darkMode);
+      if (localTheme) commit('changeTheme', localTheme);
+      if (typeof darkMode === 'boolean') commit('setDarkMode', localDarkMode);
       else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) commit('setDarkMode', true);
 
-      http.post('/storage/asfui-settings', state);
+      // get and set config from ASF
+      // local config will be overwritten if ASF config is available
+      const response = await http.get('/storage/asfui-settings');
+      const { theme: asfTheme, darkMode: asfDarkmode } = response;
+      if (asfTheme) commit('changeTheme', asfTheme);
+      if (asfDarkmode) commit('setDarkMode', asfDarkmode);
     } catch (err) {
       console.warn(err.message);
     }
