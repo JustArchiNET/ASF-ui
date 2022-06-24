@@ -18,7 +18,7 @@
       },
       value: {
         required: true,
-        type: String,
+        type: [String, Number],
       },
       icon: {
         required: true,
