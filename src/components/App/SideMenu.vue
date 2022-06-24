@@ -29,13 +29,13 @@
       sideMenu: 'layout/sideMenu',
       availableThemes: 'layout/availableThemes',
       boxedLayout: 'layout/boxed',
-      darkMode: 'layout/darkMode',
+      darkMode: 'storage/darkMode',
     }),
     methods: {
       ...mapActions({
-        changeTheme: 'layout/changeTheme',
+        changeTheme: 'storage/changeTheme',
         toggleBoxed: 'layout/toggleBoxed',
-        toggleDarkMode: 'layout/toggleDarkMode',
+        toggleDarkMode: 'storage/toggleDarkMode',
       }),
     },
   };
