@@ -55,6 +55,9 @@
 		font-size: 0.9em;
 		margin: 0;
 		text-transform: uppercase;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
 
 	.info-card__value {

@@ -84,4 +84,10 @@
 			margin-right: 0.5em;
 		}
 	}
+
+	.navigation-link__name {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
 </style>
