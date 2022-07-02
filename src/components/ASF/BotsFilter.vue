@@ -9,7 +9,7 @@
   import { mapGetters } from 'vuex';
 
   export default {
-    name: 'AsfBotFilter',
+    name: 'AsfBotsFilter',
     computed: {
       ...mapGetters({
         bots: 'bots/bots',
