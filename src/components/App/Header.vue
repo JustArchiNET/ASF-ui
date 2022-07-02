@@ -51,6 +51,7 @@
       }),
       async logout() {
         await this.$store.dispatch('auth/setPassword');
+        window.location.reload();
       },
       onWindowClick($e) {
         const path = $e.path || $e.composedPath();
