@@ -122,6 +122,19 @@
           },
           description: this.$t('tooltip-delay-description'),
         },
+        {
+          param: this.$t('log-previous-amount'),
+          paramName: 'previousAmount',
+          type: 'enum',
+          defaultValue: '10',
+          values: {
+            10: 10,
+            25: 25,
+            50: 50,
+            75: 75,
+          },
+          description: this.$t('log-previous-amount-description'),
+        },
       ];
 
       return {
@@ -138,6 +151,7 @@
           favButtons: this.$store.getters['settings/favButtons'],
           tooltipDelay: this.$store.getters['settings/tooltipDelay'],
           orderDisabledBotsLast: this.$store.getters['settings/orderDisabledBotsLast'],
+          previousAmount: this.$store.getters['settings/previousAmount'],
         },
       };
     },
@@ -158,6 +172,7 @@
         this.$store.dispatch('settings/setFavButtons', this.model.favButtons);
         this.$store.dispatch('settings/setTooltipDelay', this.model.tooltipDelay);
         this.$store.dispatch('settings/setOrderDisabledBotsLast', this.model.orderDisabledBotsLast);
+        this.$store.dispatch('settings/setPreviousAmount', this.model.previousAmount);
 
         this.$snotify.setDefaults({
           toast: {
