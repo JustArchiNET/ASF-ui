@@ -2,7 +2,7 @@
   <div class="terminal-container">
     <div class="form-item">
       <div class="form-item__buttons">
-        <button class="button" :disabled="fullLogLoaded" @click="loadPrevious">
+        <button class="button button--link" :disabled="fullLogLoaded" @click="loadPrevious">
           <FontAwesomeIcon v-if="loading" icon="spinner" spin></FontAwesomeIcon>
           <span v-else>{{ loadLogText }}</span>
         </button>
@@ -126,16 +126,10 @@
           }
 
           const previous = await this.$http.get(`nlog/file?count=${this.count}&lastAt=${this.lastAt}`);
-
           if (this.lastAt > 0) this.lastAt -= this.count;
 
-          const newLog = [];
-
-          previous.Content.forEach(line => {
-            newLog.push({ type: 'in', message: this.parseMessage(line) });
-          });
-
-          this.log = newLog.concat(this.log);
+          const previousLog = previous.Content.map(x => ({ type: 'in', message: this.parseMessage(x) }));
+          this.log = previousLog.concat(this.log);
         } catch (err) {
           this.$error(err.message);
         } finally {
