@@ -2,11 +2,11 @@
   <div class="terminal-container">
     <div class="form-item">
       <div class="form-item__buttons">
-        <button class="button button--link" :disabled="fullLogLoaded" @click="loadPrevious">
+        <button class="button button--link" :disabled="fullLogLoaded" @click="onLoadPrevious">
           <FontAwesomeIcon v-if="loading" icon="spinner" spin></FontAwesomeIcon>
           <span v-else>{{ loadLogText }}</span>
         </button>
-        <button class="button button--link pull-right" @click="downloadLog">
+        <button class="button button--link pull-right" @click="onDownload">
           <FontAwesomeIcon v-if="downloading" icon="spinner" spin></FontAwesomeIcon>
           <span v-else>{{ $t('log-download') }}</span>
         </button>
@@ -99,7 +99,7 @@
       onClose(event) {
 
       },
-      async downloadLog() {
+      async onDownload() {
         if (this.downloading) return;
         this.downloading = true;
 
@@ -113,7 +113,7 @@
           this.downloading = false;
         }
       },
-      async loadPrevious() {
+      async onLoadPrevious() {
         if (this.loading) return;
         this.loading = true;
 
