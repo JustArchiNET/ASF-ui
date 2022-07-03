@@ -101,7 +101,7 @@
           type: 'flag',
           defaultValue: 0,
           values: {
-            [this.$t('bot-fav-buttons-none')]: 0,
+            [this.$t('none')]: 0,
             [this.$t('bot-fav-buttons-2fa')]: 1 << 0,
             [this.$t('bot-fav-buttons-bgr')]: 1 << 1,
             [this.$t('bot-fav-buttons-config')]: 1 << 2,
@@ -135,6 +135,21 @@
           },
           description: this.$t('log-previous-amount-description'),
         },
+        {
+          param: this.$t('log-layout'),
+          paramName: 'logLayout',
+          type: 'flag',
+          defaultValue: 13,
+          values: {
+            [this.$t('none')]: 0,
+            [this.$t('log-layout-time')]: 1 << 0,
+            [this.$t('log-layout-process')]: 1 << 1,
+            [this.$t('log-layout-level')]: 1 << 2,
+            [this.$t('log-layout-logger')]: 1 << 3,
+            [this.$t('all')]: 15,
+          },
+          description: this.$t('log-layout-description'),
+        },
       ];
 
       return {
@@ -152,6 +167,7 @@
           tooltipDelay: this.$store.getters['settings/tooltipDelay'],
           orderDisabledBotsLast: this.$store.getters['settings/orderDisabledBotsLast'],
           previousAmount: this.$store.getters['settings/previousAmount'],
+          logLayout: this.$store.getters['settings/logLayout'],
         },
       };
     },
@@ -173,6 +189,7 @@
         this.$store.dispatch('settings/setTooltipDelay', this.model.tooltipDelay);
         this.$store.dispatch('settings/setOrderDisabledBotsLast', this.model.orderDisabledBotsLast);
         this.$store.dispatch('settings/setPreviousAmount', this.model.previousAmount);
+        this.$store.dispatch('settings/setLogLayout', this.model.logLayout);
 
         this.$snotify.setDefaults({
           toast: {
