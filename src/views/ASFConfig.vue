@@ -37,7 +37,7 @@
   import ConfigEditor from '../components/Config/Editor.vue';
   import loadParameterDescriptions from '../utils/loadParameterDescriptions';
   import fetchConfigSchema from '../utils/fetchConfigSchema';
-  import downloadConfig from '../utils/downloadConfig';
+  import { downloadConfig } from '../utils/download';
   import { asfCategories } from '../utils/configCategories';
   import isSameConfig from '../utils/isSameConfig';
 

@@ -30,7 +30,7 @@
   import ConfigEditor from '../../components/Config/Editor.vue';
   import fetchConfigSchema from '../../utils/fetchConfigSchema';
   import loadParameterDescriptions from '../../utils/loadParameterDescriptions';
-  import downloadConfig from '../../utils/downloadConfig';
+  import { downloadConfig } from '../../utils/download';
   import delay from '../../utils/delay';
   import botExists from '../../utils/botExists';
   import { botCategories } from '../../utils/configCategories';
