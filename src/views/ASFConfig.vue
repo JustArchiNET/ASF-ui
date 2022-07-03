@@ -118,7 +118,7 @@
           this.saving = false;
         }
       },
-      async onDownload() {
+      onDownload() {
         downloadConfig(this.model, 'ASF');
       },
     },

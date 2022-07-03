@@ -114,7 +114,7 @@
           param: this.$t('tooltip-delay'),
           paramName: 'tooltipDelay',
           type: 'enum',
-          defaultValue: '1000',
+          defaultValue: '800',
           values: {
             [this.$t('tooltip-instant')]: 0,
             [this.$t('tooltip-delayed')]: 800,

@@ -308,6 +308,16 @@
 		background: transparent;
 		color: var(--color-theme-light);
 	}
+
+	&:disabled {
+		background: transparent;
+		color: var(--color-button-default);
+
+		&:hover {
+			background: transparent;
+			color: var(--color-text-disabled);
+		}
+	}
 }
 
 .button--cancel {
