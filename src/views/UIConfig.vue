@@ -136,19 +136,19 @@
           description: this.$t('log-previous-amount-description'),
         },
         {
-          param: this.$t('log-layout'),
-          paramName: 'logLayout',
+          param: this.$t('log-information'),
+          paramName: 'logInformation',
           type: 'flag',
           defaultValue: 13,
           values: {
             [this.$t('none')]: 0,
-            [this.$t('log-layout-time')]: 1 << 0,
-            [this.$t('log-layout-process')]: 1 << 1,
-            [this.$t('log-layout-level')]: 1 << 2,
-            [this.$t('log-layout-logger')]: 1 << 3,
+            [this.$t('log-information-time')]: 1 << 0,
+            [this.$t('log-information-process')]: 1 << 1,
+            [this.$t('log-information-level')]: 1 << 2,
+            [this.$t('log-information-logger')]: 1 << 3,
             [this.$t('all')]: 15,
           },
-          description: this.$t('log-layout-description'),
+          description: this.$t('log-information-description'),
         },
       ];
 
@@ -167,7 +167,7 @@
           tooltipDelay: this.$store.getters['settings/tooltipDelay'],
           orderDisabledBotsLast: this.$store.getters['settings/orderDisabledBotsLast'],
           previousAmount: this.$store.getters['settings/previousAmount'],
-          logLayout: this.$store.getters['settings/logLayout'],
+          logInformation: this.$store.getters['settings/logInformation'],
         },
       };
     },
@@ -189,7 +189,7 @@
         this.$store.dispatch('settings/setTooltipDelay', this.model.tooltipDelay);
         this.$store.dispatch('settings/setOrderDisabledBotsLast', this.model.orderDisabledBotsLast);
         this.$store.dispatch('settings/setPreviousAmount', this.model.previousAmount);
-        this.$store.dispatch('settings/setLogLayout', this.model.logLayout);
+        this.$store.dispatch('settings/setLogInformation', this.model.logInformation);
 
         this.$snotify.setDefaults({
           toast: {

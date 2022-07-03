@@ -51,7 +51,7 @@
       ...mapGetters({
         password: 'auth/password',
         count: 'settings/previousAmount',
-        logLayout: 'settings/logLayout',
+        logInformation: 'settings/logInformation',
       }),
       fullLogLoaded() {
         return this.lastAt <= 0 && this.inizialized;
@@ -61,7 +61,7 @@
         return this.$t('log-previous', { amount: this.count });
       },
       selectedLayout() {
-        return Array.from(this.logLayout.toString(2))
+        return Array.from(this.logInformation.toString(2))
           .reverse()
           .reduce((activeOptions, selected, index) => {
             if (selected === '1') activeOptions.push(layoutOptions[index]);
