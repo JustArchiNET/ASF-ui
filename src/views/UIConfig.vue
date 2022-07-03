@@ -150,6 +150,21 @@
           },
           description: this.$t('log-information-description'),
         },
+        {
+          param: this.$t('log-timestamp'),
+          paramName: 'logTimestamp',
+          type: 'enum',
+          defaultValue: 'timeOnlyEu',
+          values: {
+            [this.$t('log-timestamp-time-only-eu')]: 'timeOnlyEu',
+            [this.$t('log-timestamp-time-only-locale')]: 'timeOnlyLocale',
+            [this.$t('log-timestamp-time-only-us')]: 'timeOnlyUs',
+            [this.$t('log-timestamp-time-date-eu')]: 'timeDateEu',
+            [this.$t('log-timestamp-time-date-locale')]: 'timeDateLocale',
+            [this.$t('log-timestamp-time-date-us')]: 'timeDateUs',
+          },
+          description: this.$t('log-timestamp-description'),
+        },
       ];
 
       return {
@@ -168,6 +183,7 @@
           orderDisabledBotsLast: this.$store.getters['settings/orderDisabledBotsLast'],
           previousAmount: this.$store.getters['settings/previousAmount'],
           logInformation: this.$store.getters['settings/logInformation'],
+          logTimestamp: this.$store.getters['settings/logTimestamp'],
         },
       };
     },
@@ -190,6 +206,7 @@
         this.$store.dispatch('settings/setOrderDisabledBotsLast', this.model.orderDisabledBotsLast);
         this.$store.dispatch('settings/setPreviousAmount', this.model.previousAmount);
         this.$store.dispatch('settings/setLogInformation', this.model.logInformation);
+        this.$store.dispatch('settings/setLogTimestamp', this.model.logTimestamp);
 
         this.$snotify.setDefaults({
           toast: {

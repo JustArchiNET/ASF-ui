@@ -17,7 +17,7 @@
       <!-- eslint-disable-next-line vue/no-unused-vars -->
       <div v-for="{ type, message, index } in log" :key="index" class="terminal-message terminal-message--truncated">
         <span class="terminal-message__content">
-          <span v-if="selectedLayout.includes('time')" class="terminal-message__time">[{{ message.time.toLocaleTimeString() }}]</span>
+          <span v-if="selectedLayout.includes('time')" class="terminal-message__time">[{{ handleTime(message.time) }}]</span>
           <span v-if="selectedLayout.includes('process')" class="terminal-message__process">{{ message.process }}</span>
           <span v-if="selectedLayout.includes('level')" class="terminal-message__level" :class="`terminal-message__level--${message.level.toLowerCase()}`">{{ message.level }}</span>
           <span v-if="selectedLayout.includes('logger')" class="terminal-message__logger">{{ message.logger }}</span>
@@ -52,6 +52,7 @@
         password: 'auth/password',
         count: 'settings/previousAmount',
         logInformation: 'settings/logInformation',
+        logTimestamp: 'settings/logTimestamp',
       }),
       fullLogLoaded() {
         return this.lastAt <= 0 && this.inizialized;
@@ -148,6 +149,22 @@
         } finally {
           this.loading = false;
         }
+      },
+      handleTime(time) {
+        const timeDateOptions = {
+          year: '2-digit', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit',
+        };
+
+        const timeOnlyOptions = {
+          hour: '2-digit', minute: '2-digit', second: '2-digit',
+        };
+
+        if (this.logTimestamp === 'timeOnlyEu') return time.toLocaleTimeString('de-DE', timeOnlyOptions);
+        if (this.logTimestamp === 'timeOnlyLocale') return time.toLocaleTimeString();
+        if (this.logTimestamp === 'timeOnlyUs') return time.toLocaleTimeString('en-US', timeOnlyOptions);
+        if (this.logTimestamp === 'timeDateEu') return time.toLocaleString('de-DE', timeDateOptions);
+        if (this.logTimestamp === 'timeDateLocale') return time.toLocaleString();
+        if (this.logTimestamp === 'timeDateUs') return time.toLocaleString('en-US', timeDateOptions);
       },
     },
   };
