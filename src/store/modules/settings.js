@@ -12,7 +12,7 @@ export const state = {
   timestamps: false,
   tooltipDelay: 0,
   orderDisabledBotsLast: false,
-  previousAmount: 10,
+  previousAmount: 50,
   logInformation: 13,
   logTimestamp: 'timeOnlyEu',
 };
@@ -47,7 +47,7 @@ export const actions = {
     commit('setTimestamps', storage.get('settings:timestamps', false));
     commit('setTooltipDelay', storage.get('settings:tooltip-delay', 0));
     commit('setOrderDisabledBotsLast', storage.get('settings:orderDisabledBotsLast', false));
-    commit('setPreviousAmount', storage.get('settings:previousAmount', 10));
+    commit('setPreviousAmount', storage.get('settings:previousAmount', 50));
     commit('setLogInformation', storage.get('settings:logInformation', 13));
     commit('setLogTimestamp', storage.get('settings:logTimestamp', 'timeOnlyEu'));
   },
