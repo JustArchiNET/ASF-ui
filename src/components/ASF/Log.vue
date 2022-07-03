@@ -17,9 +17,10 @@
       <!-- eslint-disable-next-line vue/no-unused-vars -->
       <div v-for="{ type, message, index } in log" :key="index" class="terminal-message terminal-message--truncated">
         <span class="terminal-message__content">
-          <span class="terminal-message__time">[{{ message.time.toLocaleTimeString() }}]</span>
-          <span class="terminal-message__level" :class="`terminal-message__level--${message.level.toLowerCase()}`">{{ message.level }}</span>
-          <span class="terminal-message__logger">{{ message.logger }}</span>
+          <span v-if="selectedLayout.includes('time')" class="terminal-message__time">[{{ message.time.toLocaleTimeString() }}]</span>
+          <span v-if="selectedLayout.includes('process')" class="terminal-message__process">{{ message.process }}</span>
+          <span v-if="selectedLayout.includes('level')" class="terminal-message__level" :class="`terminal-message__level--${message.level.toLowerCase()}`">{{ message.level }}</span>
+          <span v-if="selectedLayout.includes('logger')" class="terminal-message__logger">{{ message.logger }}</span>
           <span>></span>
           <span class="terminal-message__text">{{ message.text }}</span>
         </span>
@@ -31,6 +32,8 @@
 <script>
   import { mapGetters } from 'vuex';
   import { downloadLog } from '../../utils/download';
+
+  const layoutOptions = ['time', 'process', 'level', 'logger'];
 
   export default {
     name: 'AsfLog',
@@ -48,6 +51,7 @@
       ...mapGetters({
         password: 'auth/password',
         count: 'settings/previousAmount',
+        logLayout: 'settings/logLayout',
       }),
       fullLogLoaded() {
         return this.lastAt <= 0 && this.inizialized;
@@ -55,6 +59,14 @@
       loadLogText() {
         if (this.fullLogLoaded) return this.$t('log-previous-done');
         return this.$t('log-previous', { amount: this.count });
+      },
+      selectedLayout() {
+        return Array.from(this.logLayout.toString(2))
+          .reverse()
+          .reduce((activeOptions, selected, index) => {
+            if (selected === '1') activeOptions.push(layoutOptions[index]);
+            return activeOptions;
+          }, []);
       },
     },
     watch: {

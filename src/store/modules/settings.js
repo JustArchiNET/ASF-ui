@@ -13,6 +13,7 @@ export const state = {
   tooltipDelay: 0,
   orderDisabledBotsLast: false,
   previousAmount: 10,
+  logLayout: 13,
 };
 
 export const mutations = {
@@ -28,6 +29,7 @@ export const mutations = {
   setTooltipDelay: (state, delay) => (state.tooltipDelay = delay),
   setOrderDisabledBotsLast: (state, orderDisabledBotsLast) => (state.orderDisabledBotsLast = orderDisabledBotsLast),
   setPreviousAmount: (state, previousAmount) => (state.previousAmount = previousAmount),
+  setLogLayout: (state, logLayout) => (state.logLayout = logLayout),
 };
 
 export const actions = {
@@ -44,6 +46,7 @@ export const actions = {
     commit('setTooltipDelay', storage.get('settings:tooltip-delay', 0));
     commit('setOrderDisabledBotsLast', storage.get('settings:orderDisabledBotsLast', false));
     commit('setPreviousAmount', storage.get('settings:previousAmount', 10));
+    commit('setLogLayout', storage.get('settings:logLayout', 15));
   },
   setDefaultView({ commit }, value) {
     storage.set('settings:default-view', value);
@@ -93,6 +96,10 @@ export const actions = {
     storage.set('settings:previousAmount', value);
     commit('setPreviousAmount', value);
   },
+  setLogLayout({ commit }, value) {
+    storage.set('settings:logLayout', value);
+    commit('setLogLayout', value);
+  },
 };
 
 export const getters = {
@@ -108,4 +115,5 @@ export const getters = {
   tooltipDelay: state => state.tooltipDelay,
   orderDisabledBotsLast: state => state.orderDisabledBotsLast,
   previousAmount: state => state.previousAmount,
+  logLayout: state => state.logLayout,
 };

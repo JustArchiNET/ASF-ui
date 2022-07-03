@@ -50,7 +50,8 @@
 	white-space: pre-line;
 }
 
-.terminal-message__time {
+.terminal-message__time,
+.terminal-message__process {
 	color: var(--color-text-disabled);
 }
 
