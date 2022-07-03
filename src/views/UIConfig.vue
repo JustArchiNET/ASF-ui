@@ -114,7 +114,7 @@
           param: this.$t('tooltip-delay'),
           paramName: 'tooltipDelay',
           type: 'enum',
-          defaultValue: '800',
+          defaultValue: 800,
           values: {
             [this.$t('tooltip-instant')]: 0,
             [this.$t('tooltip-delayed')]: 800,
@@ -126,7 +126,7 @@
           param: this.$t('log-previous-amount'),
           paramName: 'previousAmount',
           type: 'enum',
-          defaultValue: '10',
+          defaultValue: 10,
           values: {
             10: 10,
             25: 25,
