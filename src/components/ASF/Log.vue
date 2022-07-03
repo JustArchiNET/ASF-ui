@@ -109,7 +109,45 @@
         };
       },
       onClose(event) {
+        // Error code list: https://www.rfc-editor.org/rfc/rfc6455#section-11.7
+        if (event.code !== 1000) this.$error(`Websocket error! Error code: ${event.code}`);
+      },
+      async onDownload() {
+        if (this.downloading) return;
+        this.downloading = true;
 
+        try {
+          const intMaxValue = 2_147_483_647;
+          const fullLog = await this.$http.get(`nlog/file?count=${intMaxValue}`);
+          downloadLog(fullLog.Content);
+        } catch (err) {
+          this.$error(err.message);
+        } finally {
+          this.downloading = false;
+        }
+      },
+      async onLoadPrevious() {
+        if (this.loading) return;
+        this.loading = true;
+
+        try {
+          if (!this.inizialized) {
+            const initialCall = await this.$http.get(`nlog/file?count=${this.count}`);
+            this.totalLines = initialCall.TotalLines;
+            this.lastAt = this.totalLines - this.log.length;
+            this.inizialized = true;
+          }
+
+          const previous = await this.$http.get(`nlog/file?count=${this.count}&lastAt=${this.lastAt}`);
+          if (this.lastAt > 0) this.lastAt -= this.count;
+
+          const previousLog = previous.Content.map(x => ({ type: 'in', message: this.parseMessage(x) }));
+          this.log = previousLog.concat(this.log);
+        } catch (err) {
+          this.$error(err.message);
+        } finally {
+          this.loading = false;
+        }
       },
       async onDownload() {
         if (this.downloading) return;
