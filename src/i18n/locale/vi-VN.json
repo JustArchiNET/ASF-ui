@@ -123,6 +123,8 @@
   "language-translation-medium": "{percent}% của ngôn ngữ đã chọn được dịch!",
   "last-visited-page": "Trang truy cập lần cuối",
   "log": "Nhật ký",
+  "log-information-level": "Cấp",
+  "log-information-time": "Thời gian",
   "logout-title": "Đăng xuất khỏi ASF-ui",
   "mass-editor": "Chỉnh sửa hàng loạt",
   "mass-editor-bots": "Chọn bot mà bạn muốn chỉnh sửa cấu hình",
