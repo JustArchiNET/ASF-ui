@@ -17,15 +17,15 @@
 		},
 		{
 			"matchPackageNames": ["vue"],
-			"allowedVersions": "<=2.9.0"
+			"allowedVersions": "<3.0.0"
 		},
 		{
 			"matchPackageNames": ["vue-eslint-parser"],
-			"allowedVersions": "<=8.9.0"
+			"allowedVersions": "<9.0.0"
 		},
 		{
 			"matchPackageNames": ["vuex"],
-			"allowedVersions": "<=3.9.0"
+			"allowedVersions": "<4.0.0"
 		}
 	]
 }
