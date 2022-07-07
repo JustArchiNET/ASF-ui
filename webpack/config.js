@@ -17,10 +17,12 @@ module.exports = {
     proxy: {
       '/api': {
         target: 'http://localhost:1242',
+        // target: 'http://192.168.0.52:1242',
         ws: true,
       },
       '/swagger': {
-        target: 'http://localhost:1242',
+        // target: 'http://localhost:1242',
+        target: 'http://192.168.0.52:1242',
       },
     },
     static: {
