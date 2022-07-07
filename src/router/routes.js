@@ -78,7 +78,10 @@ export default [
       default: () => import('../views/Bots.vue'),
       modal: () => import('../views/modals/BotCreate.vue'),
     },
-    meta: { modal: true },
+    meta: {
+      modal: true,
+      closeRoute: 'bots',
+    },
   },
   {
     path: '/bot/:bot',
@@ -87,7 +90,11 @@ export default [
       default: () => import('../views/Bots.vue'),
       modal: () => import('../views/modals/Bot.vue'),
     },
-    meta: { modal: true, arrows: true },
+    meta: {
+      modal: true,
+      arrows: true,
+      closeRoute: 'bots',
+    },
   },
   {
     path: '/bot/:bot/config',
@@ -96,7 +103,11 @@ export default [
       default: () => import('../views/Bots.vue'),
       modal: () => import('../views/modals/BotConfig.vue'),
     },
-    meta: { modal: true, arrows: true },
+    meta: {
+      modal: true,
+      arrows: true,
+      closeRoute: 'bots',
+    },
   },
   {
     path: '/bot/:bot/bgr',
@@ -105,7 +116,11 @@ export default [
       default: () => import('../views/Bots.vue'),
       modal: () => import('../views/modals/BotBGR.vue'),
     },
-    meta: { modal: true, arrows: true },
+    meta: {
+      modal: true,
+      arrows: true,
+      closeRoute: 'bots',
+    },
   },
   {
     path: '/bot/:bot/2fa',
@@ -114,7 +129,11 @@ export default [
       default: () => import('../views/Bots.vue'),
       modal: () => import('../views/modals/Bot2FA.vue'),
     },
-    meta: { modal: true, arrows: true },
+    meta: {
+      modal: true,
+      arrows: true,
+      closeRoute: 'bots',
+    },
   },
   {
     path: '/bot/:bot/2fa/delete',
@@ -123,7 +142,11 @@ export default [
       default: () => import('../views/Bots.vue'),
       modal: () => import('../views/modals/Bot2FADelete.vue'),
     },
-    meta: { modal: true, arrows: true },
+    meta: {
+      modal: true,
+      arrows: true,
+      closeRoute: 'bots',
+    },
   },
   {
     path: '/bot/:bot/input/:type',
@@ -132,7 +155,10 @@ export default [
       default: () => import('../views/Bots.vue'),
       modal: () => import('../views/modals/BotInput.vue'),
     },
-    meta: { modal: true },
+    meta: {
+      modal: true,
+      closeRoute: 'bots',
+    },
   },
   {
     path: '/bot/:bot/delete',
@@ -141,7 +167,10 @@ export default [
       default: () => import('../views/Bots.vue'),
       modal: () => import('../views/modals/BotDelete.vue'),
     },
-    meta: { modal: true },
+    meta: {
+      modal: true,
+      closeRoute: 'bots',
+    },
   },
   {
     path: '/bot/:bot/copy',
@@ -150,7 +179,10 @@ export default [
       default: () => import('../views/Bots.vue'),
       modal: () => import('../views/modals/BotCopy.vue'),
     },
-    meta: { modal: true },
+    meta: {
+      modal: true,
+      closeRoute: 'bots',
+    },
   },
   {
     path: '/bot',

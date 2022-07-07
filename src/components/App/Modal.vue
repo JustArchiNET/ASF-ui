@@ -38,11 +38,7 @@
     },
     methods: {
       close() {
-        if (this.$route.name.startsWith('bot')) {
-          this.$router.push({ name: 'bots' });
-        } else {
-          // We could use router metadata or try to guess base page URL somehow...
-        }
+        this.$router.push({ name: this.$route.meta.closeRoute });
       },
       back() {
         this.$router.push(this.$route.path.slice(0, this.$route.path.lastIndexOf('/')));
