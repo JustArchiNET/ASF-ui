@@ -57,11 +57,6 @@ export default [
     meta: { noPasswordRequired: true },
   },
   {
-    path: '/bots',
-    name: 'bots',
-    component: () => import('../views/Bots.vue'),
-  },
-  {
     path: '/releases',
     name: 'releases',
     component: () => import('../views/Releases.vue'),
@@ -70,6 +65,11 @@ export default [
     path: '/plugins',
     name: 'plugins',
     component: () => import('../views/Plugins.vue'),
+  },
+  {
+    path: '/bots',
+    name: 'bots',
+    component: () => import('../views/Bots.vue'),
   },
   {
     path: '/bot/new',
