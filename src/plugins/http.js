@@ -79,6 +79,7 @@ function catchError(err) {
 
 export function authenticate(password) {
   if (password) http.defaults.headers.common.Authentication = password;
+  else delete axios.defaults.headers.common.Authentication;
 }
 
 export function get(endpoint, params = {}, options = {}) {

@@ -13,7 +13,10 @@ export const STATUS = {
 
 export async function getStatus() {
   const authenticationRequired = storage.get('cache:authentication-required');
-  if (authenticationRequired) return STATUS.UNAUTHORIZED;
+  if (authenticationRequired) {
+    storage.remove('ipc-password');
+    return STATUS.UNAUTHORIZED;
+  }
 
   return http.get('asf')
     .then(response => {

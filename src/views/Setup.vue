@@ -114,6 +114,9 @@
     beforeDestroy() {
       this.cancelAutoUpdate();
     },
+    mounted() {
+      this.onButtonClick();
+    },
     methods: {
       switchInputType() {
         this.inputHidden = !this.inputHidden;
