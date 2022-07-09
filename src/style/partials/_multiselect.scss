@@ -1,5 +1,19 @@
 @import '~vue-multiselect/dist/vue-multiselect.min.css';
 
+.multiselect {
+  border: 1px solid rgba(var(--color-text-dark), 0.1);
+  border-radius: 0.1875em;
+  min-height: 20px;
+}
+
+.multiselect__select {
+  height: 33px;
+}
+
+.multiselect__single {
+  vertical-align: sub;
+}
+
 .multiselect,
 .multiselect__input,
 .multiselect__single {
@@ -23,11 +37,32 @@
 }
 
 .multiselect__tags {
+  border: none;
+  min-height: 20px;
+  height: 33px;
+  padding: 5px 40px 0 8px;
+
   > input {
     color: var(--color-text-dark);
     margin-left: -5px;
     margin-top: 0.7px;
   }
+}
+
+.multiselect__tag,
+.multiselect__tag-icon:focus,
+.multiselect__tag-icon:hover {
+  background: var(--color-theme);
+}
+
+.multiselect__tag-icon:after {
+  color: var(--color-button-cancel);
+  font-size: 22px;
+}
+
+.multiselect__spinner:after,
+.multiselect__spinner:before {
+  border-top-color: var(--color-theme);
 }
 
 .multiselect__option--highlight:after {
@@ -40,20 +75,14 @@
   color: var(--color-theme);
 }
 
-.multiselect__tag,
-.multiselect__tag-icon:focus,
-.multiselect__tag-icon:hover {
-  background: var(--color-theme);
-}
-
 .multiselect__option--selected {
   color: var(--color-theme);
   background: var(--color-background);
 }
 
-.multiselect__spinner:after,
-.multiselect__spinner:before {
-  border-top-color: var(--color-theme);
+.multiselect__option--selected.multiselect__option--highlight:hover {
+  color: var(--color-button-cancel);;
+  font-weight: 700;
 }
 
 .multiselect__option--selected.multiselect__option--highlight,

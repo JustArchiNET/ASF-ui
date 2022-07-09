@@ -58,10 +58,10 @@
           multiple: true,
           options: this.options,
           closeOnSelect: false,
-          placeholder: this.$t('mass-editor-properties-placeholder'),
-          deselectLabel: this.$t('mass-editor-properties-deselect'),
-          selectLabel: this.$t('mass-editor-properties-select'),
-          selectedLabel: this.$t('mass-editor-properties-selected'),
+          placeholder: '',
+          deselectLabel: '',
+          selectLabel: '',
+          selectedLabel: '',
         },
       };
     },
@@ -87,7 +87,7 @@
         this.multiselectConfig.placeholder = this.$t('mass-editor-search');
       },
       closeSelection() {
-        this.multiselectConfig.placeholder = this.$t('mass-editor-properties-placeholder');
+        this.multiselectConfig.placeholder = '';
       },
     },
   };
