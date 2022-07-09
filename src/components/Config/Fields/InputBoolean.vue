@@ -7,7 +7,7 @@
         <button class="button" :class="{ 'button--active': value }" @click.prevent="value = true">
           ✔
         </button>
-        <button class="button" :class="{ 'button--active': !value }" @click.prevent="value = false">
+        <button class="button" :class="{ 'button--cancel': !value }" @click.prevent="value = false">
           ✖
         </button>
       </div>
