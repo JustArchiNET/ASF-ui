@@ -15,6 +15,7 @@ export const state = {
   previousAmount: 50,
   logInformation: 13,
   logTimestamp: 'timeOnlyEu',
+  orderBotsNumeric: false,
 };
 
 export const mutations = {
@@ -32,6 +33,7 @@ export const mutations = {
   setPreviousAmount: (state, previousAmount) => (state.previousAmount = previousAmount),
   setLogInformation: (state, logInformation) => (state.logInformation = logInformation),
   setLogTimestamp: (state, logTimestamp) => (state.logTimestamp = logTimestamp),
+  setOrderBotsNumeric: (state, orderBotsNumeric) => (state.orderBotsNumeric = orderBotsNumeric),
 };
 
 export const actions = {
@@ -50,6 +52,7 @@ export const actions = {
     commit('setPreviousAmount', storage.get('settings:previousAmount', 50));
     commit('setLogInformation', storage.get('settings:logInformation', 13));
     commit('setLogTimestamp', storage.get('settings:logTimestamp', 'timeOnlyEu'));
+    commit('setOrderBotsNumeric', storage.get('settings:orderBotsNumeric', false));
   },
   setDefaultView({ commit }, value) {
     storage.set('settings:default-view', value);
@@ -107,6 +110,10 @@ export const actions = {
     storage.set('settings:logTimestamp', value);
     commit('setLogTimestamp', value);
   },
+  setOrderBotsNumeric({ commit }, value) {
+    storage.set('settings:orderBotsNumeric', value);
+    commit('setOrderBotsNumeric', value);
+  },
 };
 
 export const getters = {
@@ -124,4 +131,5 @@ export const getters = {
   previousAmount: state => state.previousAmount,
   logInformation: state => state.logInformation,
   logTimestamp: state => state.logTimestamp,
+  orderBotsNumeric: state => state.orderBotsNumeric,
 };

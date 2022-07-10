@@ -27,17 +27,25 @@
         selectedBots: 'settings/selectedBots',
         favButtons: 'settings/favButtons',
         orderDisabledBotsLast: 'settings/orderDisabledBotsLast',
+        orderBotsNumeric: 'settings/orderBotsNumeric',
       }),
       selectedButtonsCount() {
         return Array.from(this.favButtons.toString(2)).length;
       },
       visibleBots() {
-        const visibleBots = this.bots.filter(bot => bot.isVisible(this.selectedBots));
+        const visibleBots = this.bots.filter(bot => bot.isVisible(this.selectedBots)).sort(this.sortDefault());
         if (this.orderDisabledBotsLast) return visibleBots.sort(this.sortByStatus());
         return visibleBots;
       },
     },
     methods: {
+      sortDefault() {
+        if (!this.orderBotsNumeric) return undefined;
+
+        return function(a, b) {
+          return a.name - b.name;
+        };
+      },
       sortByStatus() {
         // Order: farming -> online -> offline -> disabled
         // eslint-disable-next-line func-names

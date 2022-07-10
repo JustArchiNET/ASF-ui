@@ -90,6 +90,12 @@
           description: this.$t('bot-game-name-description'),
         },
         {
+          param: this.$t('bot-order-numeric'),
+          paramName: 'orderBotsNumeric',
+          type: 'boolean',
+          description: this.$t('bot-order-numeric-description'),
+        },
+        {
           param: this.$t('bot-order-disabled'),
           paramName: 'orderDisabledBotsLast',
           type: 'boolean',
@@ -184,6 +190,7 @@
           previousAmount: this.$store.getters['settings/previousAmount'],
           logInformation: this.$store.getters['settings/logInformation'],
           logTimestamp: this.$store.getters['settings/logTimestamp'],
+          orderBotsNumeric: this.$store.getters['settings/orderBotsNumeric'],
         },
       };
     },
@@ -207,6 +214,7 @@
         this.$store.dispatch('settings/setPreviousAmount', this.model.previousAmount);
         this.$store.dispatch('settings/setLogInformation', this.model.logInformation);
         this.$store.dispatch('settings/setLogTimestamp', this.model.logTimestamp);
+        this.$store.dispatch('settings/setOrderBotsNumeric', this.model.orderBotsNumeric);
 
         this.$snotify.setDefaults({
           toast: {

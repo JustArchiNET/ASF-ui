@@ -53,6 +53,8 @@
   "bot-nicknames-description": "Display steam nicknames (if available) instead of bot names.",
   "bot-order-disabled": "Order disabled bots last",
   "bot-order-disabled-description": "This will order disabled bots last on the Bots page.",
+  "bot-order-numeric": "Order bots numeric",
+  "bot-order-numeric-description": "This will arrange your bots on the Bots page numerically instead of alphabetically.",
   "bot-status-disabled": "Disabled",
   "bot-status-farming": "Farming",
   "bot-status-input": "Requires input",
