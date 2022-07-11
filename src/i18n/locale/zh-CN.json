@@ -53,6 +53,8 @@
   "bot-nicknames-description": "如果可用，显示机器人的 Steam 昵称而不是机器人名称。",
   "bot-order-disabled": "已禁用的机器人排列在最后",
   "bot-order-disabled-description": "在机器人页面上将已禁用的机器人排列在最后。",
+  "bot-order-numeric": "按数字排序机器人",
+  "bot-order-numeric-description": "在机器人页面上，按数字而非字母顺序排列您的机器人。",
   "bot-status-disabled": "禁用",
   "bot-status-farming": "挂卡",
   "bot-status-input": "必填",

@@ -53,6 +53,8 @@
   "bot-nicknames-description": "Mostrar nombre de perfil de Steam (si está disponible) en lugar del nombre del bot.",
   "bot-order-disabled": "Ordenar de último los bots deshabilitados",
   "bot-order-disabled-description": "Esto ordenará de último los bots deshabilitados en la página de bots.",
+  "bot-order-numeric": "Ordenar bots numéricamente",
+  "bot-order-numeric-description": "Esto ordernará tus bots numéricamente en lugar de alfabéticamente en la página de Bots",
   "bot-status-disabled": "Deshabilitado",
   "bot-status-farming": "Recolectando",
   "bot-status-input": "Entrada requerida",
