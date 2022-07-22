@@ -56,7 +56,8 @@
 }
 
 .form-item__label {
-	display: block;
+	display: flex;
+	align-items: center;
 	font-size: 0.9375em;
 	font-weight: 600;
 	margin-bottom: 4px;

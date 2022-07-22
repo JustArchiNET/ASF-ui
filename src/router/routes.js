@@ -110,6 +110,18 @@ export default [
     },
   },
   {
+    path: '/bot/:bot/config/:label/encrypt',
+    name: 'password-encrypt',
+    components: {
+      default: () => import('../views/Bots.vue'),
+      modal: () => import('../views/modals/PasswordEncrypt.vue'),
+    },
+    meta: {
+      modal: true,
+      closeRoute: 'bots',
+    },
+  },
+  {
     path: '/bot/:bot/bgr',
     name: 'bot-bgr',
     components: {
@@ -202,6 +214,18 @@ export default [
     path: '/asf-config',
     name: 'asf-config',
     component: () => import('../views/ASFConfig.vue'),
+  },
+  {
+    path: '/asf-config/:label/hash',
+    name: 'password-hash',
+    components: {
+      default: () => import('../views/ASFConfig.vue'),
+      modal: () => import('../views/modals/PasswordHash.vue'),
+    },
+    meta: {
+      modal: true,
+      closeRoute: 'asf-config',
+    },
   },
   {
     path: '/mass-editor',
