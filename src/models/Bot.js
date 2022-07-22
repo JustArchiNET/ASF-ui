@@ -53,7 +53,7 @@ export class Bot {
 
   get avatarURL() {
     if (!this.avatarHash) return (window.__BASE_PATH__) ? `${window.__BASE_PATH__}images/defaultAvatar.jpg` : '/images/defaultAvatar.jpg';
-    return `https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/${this.avatarHash.substr(0, 2)}/${this.avatarHash}_full.jpg`;
+    return `https://avatars.akamai.steamstatic.com/${this.avatarHash}_full.jpg`;
   }
 
   get profileURL() {
