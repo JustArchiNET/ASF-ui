@@ -1,6 +1,7 @@
 import * as humanizeDuration from 'humanize-duration';
 import Vue from 'vue';
 import * as http from '../../plugins/http';
+import { getDefinitions } from '../../utils/swagger/parse';
 
 const humanizer = humanizeDuration.humanizer({
   language: 'shortEn',
@@ -34,6 +35,7 @@ export const state = {
   headless: false,
   canUpdate: false,
   service: false,
+  currencyCodes: {},
 };
 
 export const mutations = {
@@ -53,12 +55,14 @@ export const mutations = {
   updateHeadless: (state, headless) => (state.headless = headless),
   updateCanUpdate: (state, canUpdate) => (state.canUpdate = canUpdate),
   updateService: (state, service) => (state.service = service),
+  updateCurrencyCodes: (state, currencyCodes) => (state.currencyCodes = currencyCodes),
 };
 
 export const actions = {
   init: async ({ dispatch, commit }) => {
     setInterval(() => commit('calculateUptime'), 1000);
     setInterval(() => dispatch('update'), 60000);
+    dispatch('setCurrencyCodes');
   },
   onAuth: async ({ dispatch }) => {
     await dispatch('update');
@@ -82,6 +86,10 @@ export const actions = {
       dispatch('auth/updateStatus', '', { root: true });
     }
   },
+  setCurrencyCodes: async ({ commit }) => {
+    const codes = await getDefinitions('SteamKit2.ECurrencyCode');
+    commit('updateCurrencyCodes', codes);
+  },
 };
 
 export const getters = {
@@ -97,4 +105,5 @@ export const getters = {
   canUpdate: state => state.canUpdate,
   service: state => state.service,
   isRunningHeadless: state => state.headless || state.service,
+  currencyCodes: state => state.currencyCodes,
 };

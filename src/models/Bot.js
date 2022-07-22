@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import store from '../store';
-import getCountryCode from '../utils/getCountryCode';
 
 const timeSpanRegex = /(?:(\d+).)?(\d{2}):(\d{2}):(\d{2})(?:.?(\d{7}))?/;
 
@@ -98,7 +97,7 @@ export class Bot {
   get walletInfo() {
     if (this.walletCurrency === 0) return null;
     const currency = this.walletBalance / 100;
-    const currencyCode = getCountryCode(this.walletCurrency);
+    const currencyCode = getCurrencyCode(this.walletCurrency);
     if (typeof currencyCode === 'undefined') return null;
     const options = {
       style: 'currency',
@@ -112,4 +111,9 @@ export class Bot {
     if (store.getters['settings/nicknames'] && this.nickname) return this.nickname;
     return this.name;
   }
+}
+
+function getCurrencyCode(currency) {
+  const codes = store.getters['asf/currencyCodes'];
+  return Object.keys(codes).find(value => codes[value] === currency);
 }
