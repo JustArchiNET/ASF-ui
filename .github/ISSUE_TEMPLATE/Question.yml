@@ -12,7 +12,7 @@ body:
           required: true
         - label: I also read **[FAQ](https://github.com/JustArchiNET/ASF-ui/wiki/FAQ)**
           required: true
-        - label: This is not **[ASF question](https://github.com/JustArchiNET/ArchiSteamFarm/issues/new/choose)**
+        - label: This is not **[ASF question](https://github.com/JustArchiNET/ArchiSteamFarm/discussions/new?category=Support)**
           required: true
   - type: textarea
     id: question
