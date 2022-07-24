@@ -79,7 +79,10 @@
         return availableEnumValues;
       },
       botOptions() {
-        return this.bots.map(bot => ({ label: `${bot.name} (${bot.nickname})`, key: bot.steamid }));
+        return this.bots.map(bot => {
+          const botName = (bot.nickname) ? `${bot.name} (${bot.nickname})` : bot.name;
+          return { label: botName, key: bot.steamid };
+        });
       },
     },
     created() {
