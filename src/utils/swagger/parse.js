@@ -24,6 +24,6 @@ export async function getType(name) {
 }
 
 export async function getDefinitions(name) {
-	const schema = await getSchema();
-	return schema.components.schemas[name]['x-definition'];
+  const schema = await getSchema();
+  return schema.components.schemas[name]['x-definition'];
 }

@@ -10,14 +10,14 @@ function resolveRef(path, schema) {
 }
 
 function resolve(tree, schema) {
-	for (const key of Object.keys(tree)) {
-		if (isRef(tree[key])) tree[key] = resolveRef(tree[key].$ref, schema);
-		if (isObject(tree[key])) resolve(tree[key], schema);
-	}
+  for (const key of Object.keys(tree)) {
+    if (isRef(tree[key])) tree[key] = resolveRef(tree[key].$ref, schema);
+    if (isObject(tree[key])) resolve(tree[key], schema);
+  }
 }
 
 export function dereference(schema) {
-	const localSchema = cloneDeep(schema);
-	resolve(localSchema, localSchema);
-	return localSchema;
+  const localSchema = cloneDeep(schema);
+  resolve(localSchema, localSchema);
+  return localSchema;
 }
