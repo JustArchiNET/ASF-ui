@@ -10,14 +10,14 @@
             label: 'label',
             trackBy: 'key',
             multiple: false,
-            options: this.botOptions,
+            options: botOptions,
             closeOnSelect: true,
             taggable: true,
             placeholder: '',
             deselectLabel: '',
             selectLabel: '',
             selectedLabel: '',
-            tagPlaceholder: $t('tag-placeholder'),
+            tagPlaceholder: $t('tag-placeholder')
           }"
           @tag="addSteamId"
         >
@@ -47,15 +47,15 @@
 
 <script>
   import { mapGetters } from 'vuex';
-  import Input from './Input.vue';
   import Multiselect from 'vue-multiselect';
+  import Input from './Input.vue';
 
   export default {
     name: 'InputSelect',
-    mixins: [Input],
     components: {
       Multiselect,
     },
+    mixins: [Input],
     data() {
       return {
         elementKey: null,
