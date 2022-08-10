@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { dereference } from './dereference';
 
-const endpoint = 'http://localhost:8080/swagger/ASF/swagger.json';
+const endpoint = '/swagger/ASF/swagger.json';
 let schema;
 
 async function getSchema() {
