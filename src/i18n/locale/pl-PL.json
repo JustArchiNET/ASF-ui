@@ -228,7 +228,7 @@
   "statistics-memory-usage": "Wykorzystanie pamięci",
   "statistics-uptime": "Czas działania",
   "success": "Sukces",
-  "terminal-available-commands": "Dostępne komendy ASF: {commands} \n\n Dostępne komendy ASF-ui: {uiCommands}",
+  "terminal-available-commands": "Dostępne komendy ASF: {commands}\n\n Dostępne komendy ASF-ui: {uiCommands}",
   "terminal-command-clear": "Czyści wszystkie dane wyjściowe terminala",
   "terminal-command-clear-history": "Czyści całą historię terminalu",
   "terminal-command-cleared": "Historia terminalu została wyczyszczona.",

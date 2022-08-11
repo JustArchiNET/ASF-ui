@@ -177,7 +177,6 @@
   "statistics-memory-usage": "Memoria utilizzata",
   "statistics-uptime": "Tempo di attività",
   "success": "Operazione riuscita",
-  "terminal-available-commands": "Comandi ASF disponibili: {commands} \n\n Comandi ASF-ui disponibili: {uiCommands}",
   "terminal-command-clear": "Cancella l'intero output del terminale",
   "terminal-command-oa": "Alias per 'owns ASF'",
   "terminal-command-r": "Alias per 'redeem'",

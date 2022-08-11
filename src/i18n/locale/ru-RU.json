@@ -228,7 +228,6 @@
   "statistics-memory-usage": "Использование памяти",
   "statistics-uptime": "Время работы",
   "success": "Успешно",
-  "terminal-available-commands": "Доступные команды ASF: {commands} \n\n Доступные команды ASF-ui: {uiCommands}",
   "terminal-command-clear": "Очищает терминал",
   "terminal-command-clear-history": "Очищает всю историю терминала",
   "terminal-command-cleared": "История терминала очищена.",

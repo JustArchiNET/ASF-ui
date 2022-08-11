@@ -218,7 +218,6 @@
   "statistics-memory-usage": "Sử dụng bộ nhớ",
   "statistics-uptime": "Thời gian hoạt động",
   "success": "Hoàn tất",
-  "terminal-available-commands": "Các lệnh ASF có sẵn: {commands} \n\n Các lệnh ASF-ui có sẵn: {uiCommands}",
   "terminal-command-clear": "Xoá trắng toàn bộ cửa sổ dòng lệnh",
   "terminal-command-clear-history": "Xoá toàn bộ lịch sử cửa sổ dòng lệnh",
   "terminal-command-cleared": "Đã xóa lịch sử cửa sổ dòng lệnh.",

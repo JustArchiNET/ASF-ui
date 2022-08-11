@@ -157,7 +157,6 @@
   "statistics-memory-usage": "Χρήση Mνήμης",
   "statistics-uptime": "Χρόνος σε λειτουργία",
   "success": "Επιτυχία",
-  "terminal-available-commands": "Διαθέσιμες εντολές ASF: {commands} \n\n Διαθέσιμες εντολές ASF-ui: {uiCommands}",
   "terminal-command-clear": "Καθαρίζει ολόκληρη την έξοδο τερματικού",
   "terminal-command-clear-history": "Εκκαθάριση ολόκληρου του ιστορικού τερματικού",
   "terminal-command-cleared": "Το ιστορικό τερματικών έχει εκκαθαριστεί.",

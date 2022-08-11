@@ -205,7 +205,6 @@
   "statistics-memory-usage": "Bellek kullanımı",
   "statistics-uptime": "Çalışma Süresi",
   "success": "Başarılı",
-  "terminal-available-commands": "Kullanılabilir ASF komutları: {commands} \n\n Kullanılabilir ASF-ui komutları: {uiCommands}",
   "terminal-command-clear": "Tüm terminal çıktılarını temizler",
   "terminal-command-clear-history": "Tüm komut geçmişini temizler",
   "terminal-command-cleared": "Komut geçmişi temizlendi.",

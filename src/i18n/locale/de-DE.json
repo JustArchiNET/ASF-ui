@@ -205,7 +205,6 @@
   "statistics-memory-usage": "Speicherauslastung",
   "statistics-uptime": "Laufzeit",
   "success": "Erledigt",
-  "terminal-available-commands": "Verfügbare ASF Befehle: {commands}\n\nVerfügbare ASF-ui Befehle: {uiCommands}",
   "terminal-command-clear": "Bereinigt die gesamte Terminalausgabe",
   "terminal-command-clear-history": "Löscht die gesamte Befehlshistorie",
   "terminal-command-cleared": "Befehlshistorie wurde gelöscht.",

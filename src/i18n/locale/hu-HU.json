@@ -151,7 +151,6 @@
   "statistics": "Statisztika",
   "statistics-uptime": "Üzemidő",
   "success": "Kész",
-  "terminal-available-commands": "Elérhető ASF parancsok: {commands} \n\n Elérhető ASF felület parancsok: {uiCommands}",
   "terminal-commands": "Listázza az elérhető parancsokat.",
   "terminal-help": "Listázza a segítséget.",
   "terminal-no-help": "A {command} parancsra még nincs segítség!",

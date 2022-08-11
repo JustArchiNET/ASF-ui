@@ -109,7 +109,6 @@
   "statistics": "სტატისტიკა",
   "statistics-uptime": "ჩართულია",
   "success": "წარმატება",
-  "terminal-available-commands": "ხელმისაწვდომი ASF ბრძანებები: {commands}\nხელმისაწვდომი ASF-ui ბრძანებები: {uiCommands}",
   "terminal-command-clear": "შლის მთლიან ტერმინალის ჩანაწერბეს",
   "terminal-commands": "გამოაქვს ხელმისაწვდომი ბრძანებებიდან.",
   "terminal-help": "გამოაქვს დახმარება.",

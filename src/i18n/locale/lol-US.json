@@ -228,7 +228,6 @@
   "statistics-memory-usage": "MEMS USAGE",
   "statistics-uptime": "UPTIME",
   "success": "SUCCES",
-  "terminal-available-commands": "AVAILABLE ASF COMMANDZ: {commands} \n\n AVAILABLE ASF-UI COMMANDZ: {uiCommands}",
   "terminal-command-clear": "CLEARS TEH ENTIRE TERMINAL OUTPUT",
   "terminal-command-clear-history": "CLEARS TEH ENTIRE TERMINAL HISTORY",
   "terminal-command-cleared": "TERMINAL HISTORY HAS BEEN CLEARD.",

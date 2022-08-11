@@ -205,7 +205,6 @@
   "statistics-memory-usage": "記憶體使用率",
   "statistics-uptime": "執行時間",
   "success": "成功",
-  "terminal-available-commands": "可用 ASF 指令：{commands} \n\n 可用 ASF-ui 指令：{uiCommands}",
   "terminal-command-clear": "清除全部終端輸出",
   "terminal-command-clear-history": "清除全部終端紀錄",
   "terminal-command-cleared": "終端紀錄已被清除。",

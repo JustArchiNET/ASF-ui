@@ -149,7 +149,6 @@
   "statistics": "Statistika",
   "statistics-uptime": "Darbspējas laiks",
   "success": "Veiksmīgi",
-  "terminal-available-commands": "Pieejamās ASF komandas: {commands}\n\nPieejamās ASF-UI komandas: {uiCommands}",
   "terminal-command-oa": "'owns ASF' aizstājvārds",
   "terminal-command-r": "'redeem' aizstājvārds",
   "terminal-command-r-mode": "'redeem^' aizstājvārds",

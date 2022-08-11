@@ -198,7 +198,6 @@
   "statistics-memory-usage": "Využití paměti",
   "statistics-uptime": "Doba provozu",
   "success": "Úspěch",
-  "terminal-available-commands": "Dostupné příkazy ASF: {commands} \n\n Dostupné příkazy ASF-ui: {uiCommands}",
   "terminal-command-clear": "Vymaže celý výstup terminálu",
   "terminal-command-cleared": "Historie terminálu byla vymazána.",
   "terminal-command-oa": "Alias pro 'vlastnit ASF'",
