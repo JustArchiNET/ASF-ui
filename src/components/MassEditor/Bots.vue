@@ -14,16 +14,18 @@
     </div>
 
     <div class="mass-editor__content">
+      <div class="mass-editor__content-controls">
+        <button class="button mt pull-right" @click="$emit('toggle')">
+          <span>{{ toggleBotsText }}</span>
+        </button>
+      </div>
+
       <BotsView
         :selectedBotNames="selectedBotNames"
         :selectable="selectable"
         :bots="bots"
         @update="update"
       ></BotsView>
-
-      <button class="button mt" @click="$emit('toggle')">
-        <span>{{ toggleBotsText }}</span>
-      </button>
     </div>
   </div>
 </template>
@@ -65,7 +67,11 @@
 </script>
 
 <style lang="scss">
+  .mass-editor__content-controls {
+    display: flex;
+  }
+  
   .mt {
-      margin-top: 1em;
+      margin-bottom: 1em;
     }
 </style>
