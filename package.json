@@ -57,7 +57,7 @@
     "vue": "2.7.10",
     "vue-meta": "2.4.0",
     "vue-multiselect": "2.1.6",
-    "vue-router": "3.6.3",
+    "vue-router": "3.6.4",
     "vue-snotify": "3.2.1",
     "vuex": "3.6.2"
   }
