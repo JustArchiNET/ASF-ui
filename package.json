@@ -13,10 +13,10 @@
   },
   "private": true,
   "devDependencies": {
-    "@babel/core": "7.19.1",
+    "@babel/core": "7.19.3",
     "@babel/eslint-parser": "7.19.1",
     "@babel/plugin-syntax-dynamic-import": "7.8.3",
-    "@babel/preset-env": "7.19.1",
+    "@babel/preset-env": "7.19.3",
     "babel-loader": "8.2.5",
     "before-build-webpack": "0.2.12",
     "clean-webpack-plugin": "4.0.0",
