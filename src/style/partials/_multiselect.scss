@@ -46,17 +46,22 @@
 
 .multiselect,
 .multiselect__input::placeholder,
-.multiselect__content-wrapper,
 .multiselect__placeholder,
 .multiselect__option--selected.multiselect__option--highlight {
   color: var(--color-text-dark);
 }
 
 .multiselect__tags,
-.multiselect__content-wrapper,
 .multiselect__spinner {
   background: var(--color-background);
   border-color: var(--color-border);
+}
+
+.multiselect__content-wrapper {
+  top: 35px;
+  background: var(--color-background);
+  border-color: var(--color-border);
+  color: var(--color-text-dark);
 }
 
 .multiselect__tags {
