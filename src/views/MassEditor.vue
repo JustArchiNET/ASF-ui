@@ -27,7 +27,7 @@
 
         <MassEditorBots
           v-if="status === 'bots'"
-          :bots="bots"
+          :bots="sortedBots"
           :selectedBots="selectedBots"
           @toggle="toggleSelectedBots"
           @update="updateSelectedBots"
@@ -78,6 +78,7 @@
   import fetchConfigSchema from '../utils/fetchConfigSchema';
   import loadParameterDescriptions from '../utils/loadParameterDescriptions';
   import { botCategories } from '../utils/configCategories';
+  import { BotStatus } from '../models/Bot';
 
   export default {
     name: 'MassEditor',
@@ -112,7 +113,14 @@
       ...mapGetters({
         version: 'asf/version',
         bots: 'bots/bots',
+        orderDisabledBotsLast: 'settings/orderDisabledBotsLast',
+        orderBotsNumeric: 'settings/orderBotsNumeric',
       }),
+      sortedBots() {
+        const bots = this.bots.sort(this.sortDefault());
+        if (this.orderDisabledBotsLast) return bots.sort(this.sortByStatus());
+        return bots;
+      },
     },
     watch: {
       async bots() {
@@ -128,6 +136,30 @@
       },
     },
     methods: {
+      sortDefault() {
+        if (!this.orderBotsNumeric) return undefined;
+
+        return function(a, b) {
+          return a.name - b.name;
+        };
+      },
+      sortByStatus() {
+        // Order: farming -> online -> offline -> disabled
+        // eslint-disable-next-line func-names
+        return function(a, b) {
+          if (a.status === b.status) return 0;
+
+          if (a.status === BotStatus.DISABLED) return 1;
+          if (b.status === BotStatus.DISABLED) return -1;
+
+          if (a.status === BotStatus.FARMING) return -1;
+          if (b.status === BotStatus.FARMING) return 1;
+
+          if (a.status === BotStatus.ONLINE) return -1;
+
+          return 1;
+        };
+      },
       async loadBotConfig() {
         const firstBot = this.bots[Object.keys(this.bots)[0]];
 

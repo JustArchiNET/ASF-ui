@@ -145,7 +145,6 @@
   "statistics": "Statistici",
   "statistics-uptime": "Timp de funcționare",
   "success": "Succes",
-  "terminal-available-commands": "Comenzi ASF disponibile: {commands} \n\n Comenzi ASF-ui disponibile: {uiCommands}",
   "terminal-command-oa": "Alias pentru 'owns ASF'",
   "terminal-command-r": "Alias pentru 'redeem'",
   "terminal-command-r-mode": "Alias pentru 'redeem^'",

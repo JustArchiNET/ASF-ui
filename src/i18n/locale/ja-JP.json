@@ -142,7 +142,6 @@
   "statistics": "統計",
   "statistics-uptime": "稼働時間",
   "success": "成功",
-  "terminal-available-commands": "利用可能なASFコマンド: {commands} \n\n 利用可能なASF-uiコマンド: {uiCommands}",
   "terminal-command-oa": "'owns ASF' の別称",
   "terminal-command-r": "'redeem' の別称",
   "terminal-command-r-mode": "'redeem^' の別称",

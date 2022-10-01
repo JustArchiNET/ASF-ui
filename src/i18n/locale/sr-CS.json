@@ -187,7 +187,6 @@
   "statistics": "Statistika",
   "statistics-uptime": "Vrijeme rada",
   "success": "Uspješno",
-  "terminal-available-commands": "Dostupne ASF komande: {commands}\n\n Dostupne ASF-ui komande: {uiCommands}",
   "terminal-command-clear": "Očisti cijeli terminal",
   "terminal-command-oa": "Alias za \"owns ASF\"",
   "terminal-command-r": "Alias za \"redeem\"",

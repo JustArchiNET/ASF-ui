@@ -145,7 +145,6 @@
   "statistics": "Statistika",
   "statistics-uptime": "Veikimo laikas",
   "success": "Pavyko",
-  "terminal-available-commands": "Galimos ASF komandos: {commands} \n Galimos ASF-ui komandos: {uiCommands}",
   "terminal-command-oa": "Slapyvardis šiai funkcijai: 'priklauso ASF'",
   "terminal-command-r": "Slapyvardis 'atsiėmimui'",
   "terminal-command-r-mode": "Slapyvardis 'atsiėmimui^'",

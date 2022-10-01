@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="to" :href="$router.resolve(to).href" class="navigation-link" activeClass="navigation-link--active" :exact="true">
+  <router-link :to="to" :href="$router.resolve(to).href" class="navigation-link" :class="[`navigation-link--${level}`]" activeClass="navigation-link--active" :exact="true">
     <span v-if="icon" class="navigation-link__icon"><FontAwesomeIcon :icon="icon" fixedWidth></FontAwesomeIcon></span>
     <span class="navigation-link__name">{{ name }}</span>
   </router-link>
@@ -22,6 +22,29 @@
         type: String,
       },
     },
+		data() {
+			return {
+				zoomLevel: 0,
+			};
+		},
+		computed: {
+			level() {
+				if (this.zoomLevel > 261 && this.zoomLevel < 320) return 'small';
+				if (this.zoomLevel > 321 && this.zoomLevel < 440) return 'xsmall';
+				return 'default';
+			},
+		},
+		mounted() {
+			window.addEventListener('resize', this.setZoomLevel);
+		},
+		beforeDestroy() {
+			window.removeEventListener('resize', this.setZoomLevel);
+		},
+		methods: {
+			setZoomLevel() {
+				this.zoomLevel = Math.round(window.devicePixelRatio * 100);
+			},
+		},
   };
 </script>
 
@@ -33,7 +56,6 @@
 		color: var(--color-text-secondary);
 		cursor: pointer;
 		display: flex;
-		padding: 0.95em 1.25em;
 		text-decoration: none;
 		transition: background .2s;
 		white-space: nowrap;
@@ -46,6 +68,18 @@
 
 		&.navigation-link--active {
 			border-color: var(--color-theme);
+		}
+
+		&.navigation-link--default {
+			padding: 0.95em 1.25em;
+		}
+
+		&.navigation-link--small {
+			padding: 0.8em 1.25em;
+		}
+
+		&.navigation-link--xsmall {
+			padding: 0.7em 1.25em;
 		}
 
 		.app--small-navigation & {
