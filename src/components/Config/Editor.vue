@@ -30,6 +30,7 @@
   import InputDictionary from './Fields/InputDictionary.vue';
   import InputUnknown from './Fields/InputUnknown.vue';
   import ConfigCategory from './Category.vue';
+  import InputSelect from './Fields/InputSelect.vue';
 
   export default {
     name: 'ConfigEditor',
@@ -106,6 +107,7 @@
             if (['byte', 'uint16', 'uint32', 'uint64', 'string'].includes(field.values.type)) return InputTag;
             return InputUnknown;
           case 'dictionary':
+            if (field.param === 'SteamUserPermissions') return InputSelect;
             return InputDictionary;
           default:
             return InputUnknown;
