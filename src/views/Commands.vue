@@ -241,6 +241,7 @@
       this.asfCommands = await this.loadCommands();
     },
     mounted() {
+      this.log.push({ type: 'in', time: this.getTimestamp(), message: this.$t('commands-default') });
       this.$refs['terminal-input'].focus();
     },
     methods: {

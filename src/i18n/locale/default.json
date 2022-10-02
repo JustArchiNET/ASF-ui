@@ -71,6 +71,7 @@
   "check": "Check",
   "commands": "Commands",
   "commands-send": "Click here to send your command",
+  "commands-default": "For a list of available commands type: commands",
   "config": "Config",
   "config-no-changes": "You did not make any changes!",
   "confirm": "Confirm",
