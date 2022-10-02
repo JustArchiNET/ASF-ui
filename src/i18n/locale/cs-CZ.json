@@ -52,7 +52,6 @@
   "bot-nicknames": "Přezdívky",
   "bot-nicknames-description": "Zobrazit přezdívky ze Steamu (pokud možno) místo názvu bota.",
   "bot-order-disabled": "Seřadit dle posldních zakázaných botů",
-  "bot-order-disabled-description": "Toto seřadí poslední zakázané boty na straánce botů.",
   "bot-status-disabled": "Neaktivní",
   "bot-status-farming": "Farmím",
   "bot-status-input": "Vyžaduje zadání",

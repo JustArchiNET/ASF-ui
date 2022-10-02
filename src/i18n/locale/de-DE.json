@@ -52,7 +52,6 @@
   "bot-nicknames": "Namen",
   "bot-nicknames-description": "Zeige den Steam-Namen (falls verfügbar) anstelle des Bot-Namens an.",
   "bot-order-disabled": "Deaktivierte Bots am Ende anordnen",
-  "bot-order-disabled-description": "Dies ordnet deaktivierte Bots am Ende der Liste auf der Bot-Seite.",
   "bot-status-disabled": "Deaktiviert",
   "bot-status-farming": "Sammeln",
   "bot-status-input": "Eingabe erforderlich",
