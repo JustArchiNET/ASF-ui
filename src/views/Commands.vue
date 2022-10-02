@@ -24,6 +24,11 @@
         </div>
       </div>
     </div>
+    <div class="container">
+      <div class="builder">
+        <button>Run command</button>
+      </div>
+    </div>
   </main>
 </template>
 
@@ -387,12 +392,28 @@
 <style lang="scss">
 	.commands {
 		display: grid;
-		grid-template-rows: 1fr;
+		grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
 
 		> div {
 			min-height: 0;
 		}
+
+    @media screen and (min-width: 1250px) {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: 1fr;
+      grid-column-gap: 1em;
+
+      > .container{
+        margin-bottom: 0;
+      }
+		}
 	}
+
+  .builder {
+    width: 100%;
+    height: 100%;
+  }
 
 	.sign-input {
 		cursor: pointer;
