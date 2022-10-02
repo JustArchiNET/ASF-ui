@@ -70,7 +70,7 @@
   "changelog-full": "Full changelog",
   "check": "Check",
   "commands": "Commands",
-  "commands-send": "Click here to send your command",
+  "commands-send": "Click here to send your command. If you don't type any command, all available commands will be displayed",
   "config": "Config",
   "config-no-changes": "You did not make any changes!",
   "confirm": "Confirm",

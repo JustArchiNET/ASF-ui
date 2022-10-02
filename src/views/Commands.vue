@@ -228,6 +228,9 @@
         if (!this.command) return;
         return this.allCommandsNames.find(command => command === this.command.split(' ')[0]);
       },
+      allAvailableCommands() {
+        return this.$t('terminal-available-commands', { commands: this.commandsNames.join(', '), uiCommands: this.uiCommandsNames.join(', ') });
+      },
     },
     watch: {
       log() {
@@ -248,7 +251,12 @@
         const commandToExecute = this.command.trim();
         this.command = '';
 
-        if (!commandToExecute) return;
+        if (!commandToExecute) {
+          // if the user does not specify any command we will show all available commands
+          const message = this.allAvailableCommands
+          this.log.push({ type: 'in', time: this.getTimestamp(), message });
+          return;
+        };
 
         this.commandHistoryIndex = -1;
         this.commandHistory.add(commandToExecute);
@@ -270,7 +278,7 @@
       async executeCommand(commandToExecute) {
         switch (commandToExecute.split(' ')[0]) {
           case 'commands':
-            return this.$t('terminal-available-commands', { commands: this.commandsNames.join(', '), uiCommands: this.uiCommandsNames.join(', ') });
+            return this.allAvailableCommands;
           case 'help':
             if (commandToExecute.split(' ')[1]) return this.commandHelp(commandToExecute.split(' ')[1]);
             return this.$t('terminal-help-text');
