@@ -50,7 +50,6 @@
   "bot-new": "Tạo bot mới",
   "bot-new-copy": "Cấu hình dựa trên bot: {name}",
   "bot-nicknames": "Biệt danh",
-  "bot-nicknames-description": "Hiển thị biệt danh Steam (nếu có) thay vì tên bot.",
   "bot-order-disabled": "Đặt bot bị vô hiệu hóa ở cuối",
   "bot-order-numeric": "Sắp xếp bot theo số thứ tự",
   "bot-status-disabled": "Đã tắt",

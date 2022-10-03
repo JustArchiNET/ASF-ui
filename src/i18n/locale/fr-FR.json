@@ -50,7 +50,6 @@
   "bot-new": "Créer un nouveau bot",
   "bot-new-copy": "Configuration basée sur le bot: {name}",
   "bot-nicknames": "Pseudos",
-  "bot-nicknames-description": "Afficher les surnoms Steam (si disponible) plutôt que les noms des bots.",
   "bot-order-disabled": "L'ordre des bots est désactivé",
   "bot-order-numeric": "Trier numériquement les bots",
   "bot-status-disabled": "Desactivé",

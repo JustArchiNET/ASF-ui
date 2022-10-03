@@ -38,7 +38,6 @@
   "bot-new": "Vytvoriť nového bota",
   "bot-new-copy": "Konfigurácia prevzatá od bota: {name}",
   "bot-nicknames": "Prezývky",
-  "bot-nicknames-description": "Zobraziť prezývky zo Steamu (pokiaľ možno) namiesto názvu bota.",
   "bot-status-disabled": "Vypnutý",
   "bot-status-farming": "Farmenie",
   "bot-status-input": "Povinné",

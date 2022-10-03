@@ -30,7 +30,6 @@
   "bot-game-name-description": "게임 이름만 표시합니다.(배너를 숨깁니다)",
   "bot-new": "새로운 봇 생성",
   "bot-nicknames": "별명",
-  "bot-nicknames-description": "가능한 경우 봇 이름 대신 Steam 별명을 표시합니다.",
   "bot-status-disabled": "비활성",
   "bot-status-farming": "농사중",
   "bot-status-input": "필수 입력",

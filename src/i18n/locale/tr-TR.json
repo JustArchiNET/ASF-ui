@@ -50,7 +50,6 @@
   "bot-new": "Yeni bot oluştur",
   "bot-new-copy": "Yapılandırma şu bota dayalı: {name}",
   "bot-nicknames": "Takma ad",
-  "bot-nicknames-description": "Bot isimleri yerine (mümkünse) Steam isimlerini görüntüle.",
   "bot-order-disabled": "Devre dışı botları en sona sırala",
   "bot-order-numeric": "Botları nümerik sırala",
   "bot-status-disabled": "Devre dışı",

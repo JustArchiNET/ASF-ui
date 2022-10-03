@@ -20,7 +20,6 @@
   "bot-new": "สร้างบอตใหม่",
   "bot-new-copy": "ตั้งค่าตามบอต: {name}",
   "bot-nicknames": "ชื่อ​เล่น",
-  "bot-nicknames-description": "แสดงชื่อเล่น Steam (ถ้ามี) แทนชื่อบอต",
   "bot-order-disabled": "จัดเรียงบอตที่ไม่ใช้งานไว้ล่างสุด",
   "bot-status-disabled": "ปิดใช้งาน",
   "bot-status-farming": "กำลังฟาร์ม",

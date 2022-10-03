@@ -50,7 +50,7 @@
   "bot-new": "Crear nuevo bot",
   "bot-new-copy": "Configuración basada en el bot: {name}",
   "bot-nicknames": "Apodos",
-  "bot-nicknames-description": "Mostrar nombre de perfil de Steam (si está disponible) en lugar del nombre del bot.",
+  "bot-nicknames-description": "Mostrar el alias de Steam (si está disponible) en lugar del nombre del bot.",
   "bot-order-disabled": "Ordenar de último los bots deshabilitados",
   "bot-order-disabled-description": "Esto ordenará de último los bots deshabilitados en la página de boys y en el editor en masa.",
   "bot-order-numeric": "Ordenar bots numéricamente",

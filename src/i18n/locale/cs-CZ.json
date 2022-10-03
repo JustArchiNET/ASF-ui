@@ -50,7 +50,6 @@
   "bot-new": "Vytvořit nového bota",
   "bot-new-copy": "Konfigurace založená na botu: {name}",
   "bot-nicknames": "Přezdívky",
-  "bot-nicknames-description": "Zobrazit přezdívky ze Steamu (pokud možno) místo názvu bota.",
   "bot-order-disabled": "Seřadit dle posldních zakázaných botů",
   "bot-status-disabled": "Neaktivní",
   "bot-status-farming": "Farmím",

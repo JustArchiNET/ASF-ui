@@ -50,7 +50,6 @@
   "bot-new": "CREATE NEW BOT",
   "bot-new-copy": "CONFIG BASD ON BOT: {name}",
   "bot-nicknames": "NICKNAMEZ",
-  "bot-nicknames-description": "DISPLAY STEAM NICKNAMEZ (IF AVAILABLE) INSTEAD OV BOT NAMEZ.",
   "bot-order-disabled": "ORDR DISABLD BOTS LAST",
   "bot-order-numeric": "ORDR BOTS NUMERIC",
   "bot-status-disabled": "DISABLD",

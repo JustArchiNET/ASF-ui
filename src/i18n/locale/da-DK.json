@@ -43,7 +43,6 @@
   "bot-game-name-description": "Vis kun spilnavne (skjul spilbanner).",
   "bot-new": "Opret ny bot",
   "bot-nicknames": "Brugernavn",
-  "bot-nicknames-description": "Vis Steamkaldenavne (hvis tilgænglig) i stedet for botnavne.",
   "bot-status-disabled": "Deaktiveret",
   "bot-status-farming": "Farming",
   "bot-status-offline": "Offline",

@@ -50,7 +50,6 @@
   "bot-new": "Új bot létrehozása",
   "bot-new-copy": "Beállítások egy másik bothoz mérten: {name}",
   "bot-nicknames": "Becenevek",
-  "bot-nicknames-description": "Steam becenevek mutatása (ha elérhető) a bot neve helyett.",
   "bot-order-disabled": "Letiltott botok megjelenítése utolsónak",
   "bot-order-numeric": "Botok numerikus rendezése",
   "bot-status-disabled": "Kikapcsolva",

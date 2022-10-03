@@ -50,7 +50,6 @@
   "bot-new": "Δημιουργία νέου bot",
   "bot-new-copy": "Διαμόρφωση βασισμένη στο bot: {name}",
   "bot-nicknames": "Ψευδώνυμα",
-  "bot-nicknames-description": "Εμφάνιση ψευδωνύμων steam (αν υπάρχουν) αντί για ονόματα bot.",
   "bot-order-disabled": "Ταξινόμησε απενεργοποιημένα bots τελευταία",
   "bot-order-numeric": "Αριθμητική ταξινόμηση των bots",
   "bot-status-disabled": "Απενεργοποιημένο",

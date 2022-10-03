@@ -48,7 +48,6 @@
   "bot-new": "Napravi novog bota",
   "bot-new-copy": "Konfiguracija je bazirana na botu: {name}",
   "bot-nicknames": "Nadimci",
-  "bot-nicknames-description": "Prikaži Steam nadimke (ako postoje) umjesto imena botova.",
   "bot-status-disabled": "Onemogućemo",
   "bot-status-farming": "Farmovanje",
   "bot-status-input": "Potreban unos",

@@ -50,7 +50,6 @@
   "bot-new": "Neuen Bot erstellen",
   "bot-new-copy": "Konfiguration basierend auf Bot: {name}",
   "bot-nicknames": "Namen",
-  "bot-nicknames-description": "Zeige den Steam-Namen (falls verfügbar) anstelle des Bot-Namens an.",
   "bot-order-disabled": "Deaktivierte Bots am Ende anordnen",
   "bot-status-disabled": "Deaktiviert",
   "bot-status-farming": "Sammeln",

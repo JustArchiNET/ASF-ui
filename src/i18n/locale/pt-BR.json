@@ -50,7 +50,6 @@
   "bot-new": "Criar novo bot",
   "bot-new-copy": "Configuração baseada no bot: {name}",
   "bot-nicknames": "Apelidos",
-  "bot-nicknames-description": "Mostra o apelido Steam (se disponível) em vez do nome dos bots.",
   "bot-order-disabled": "Listar bots desabilitados por último",
   "bot-order-disabled-description": "Isto classificará os bots desativados por último na página Bots e Editor em Massa.",
   "bot-order-numeric": "Listar bots por ordem numérica",

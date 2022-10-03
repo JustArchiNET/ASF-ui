@@ -35,7 +35,6 @@
   "bot-game-name-description": "ゲーム名のみ表示 (ゲームバナーを非表示)",
   "bot-new": "bot を新規作成",
   "bot-nicknames": "ニックネーム",
-  "bot-nicknames-description": "Botの名前ではなく、Steam のニックネームを表示します（可能ならば）。",
   "bot-status-disabled": "停止中",
   "bot-status-farming": "ファーム中",
   "bot-status-input": "入力が必要",

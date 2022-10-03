@@ -71,6 +71,7 @@
   "check": "检查",
   "commands": "命令",
   "commands-send": "点击此处发送您的命令",
+  "commands-default": "要获取可用命令列表，请输入：commands\n要获取命令简介，请输入：help <command>",
   "config": "配置",
   "config-no-changes": "您未进行任何更改！",
   "confirm": "确认",

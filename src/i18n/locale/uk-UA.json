@@ -33,7 +33,6 @@
   "bot-game-name-description": "Відображати лише назви ігор (приховати банер гри).",
   "bot-new": "Створити нового бота",
   "bot-nicknames": "Псевдоніми",
-  "bot-nicknames-description": "Відображати псевдоніми steam (якщо вони доступні) замість імен ботів.",
   "bot-status-disabled": "Вимкнений",
   "bot-status-farming": "Вибивання карток",
   "bot-status-input": "Потрібне введення",

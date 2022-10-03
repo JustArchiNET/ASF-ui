@@ -48,7 +48,6 @@
   "bot-new": "Crea nuovo bot",
   "bot-new-copy": "Configurazione basata sul bot: {name}",
   "bot-nicknames": "Soprannome",
-  "bot-nicknames-description": "Visualizza il nickname di steam (se disponibile) anzichè i nomi dei bot.",
   "bot-status-disabled": "Disabilitato",
   "bot-status-farming": "Farming",
   "bot-status-input": "Richiede input",

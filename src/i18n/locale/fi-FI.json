@@ -50,7 +50,6 @@
   "bot-new": "Luo uusi botti",
   "bot-new-copy": "Asetukset bottiin: {name}",
   "bot-nicknames": "Kutsumanimet",
-  "bot-nicknames-description": "Näytä Steam-pelinimet (jos mahdollista) bottien nimien sijaan.",
   "bot-order-disabled": "Järjestä käytöstäpoistetut botit viimeiseksi",
   "bot-order-disabled-description": "Tämä järjestää käytöstä poistetut botit viimeiseksi Botit-sivulla ja Massaeditorissa.",
   "bot-order-numeric": "Järjestä botit numerojärjestykseen",

@@ -29,7 +29,6 @@
   "bot-game-name-description": "僅顯示遊戲名稱（隱藏遊戲橫幅）。",
   "bot-new": "創建新的機械人",
   "bot-nicknames": "昵稱",
-  "bot-nicknames-description": "顯示 Steam 昵稱（如有）而不是機械人名稱。",
   "bot-status-disabled": "已停用",
   "bot-status-farming": "掛卡",
   "bot-status-offline": "離線",
