@@ -71,6 +71,7 @@
   "check": "Comprobar",
   "commands": "Comandos",
   "commands-send": "Haz clic aquí para enviar el comando",
+  "commands-default": "Para una lista de comandos disponibles escribe: commands\nPara una breve descripción de un tipo de comando escribe: help <command>",
   "config": "Configuración",
   "config-no-changes": "¡No hiciste ningún cambio!",
   "confirm": "Confirmar",
