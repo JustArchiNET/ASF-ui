@@ -7,15 +7,15 @@
 </template>
 
 <script>
-  import AsfPlugins from '../components/ASF/Plugins.vue';
+import AsfPlugins from "../components/ASF/Plugins.vue";
 
-  export default {
-    name: 'Plugins',
-    metaInfo() {
-      return {
-        title: this.$t('plugins'),
-      };
-    },
-    components: { AsfPlugins },
-  };
+export default {
+  name: "Plugins",
+  metaInfo() {
+    return {
+      title: this.$t("plugins"),
+    };
+  },
+  components: { AsfPlugins },
+};
 </script>

@@ -8,15 +8,15 @@
 </template>
 
 <script>
-  export default {
-    name: 'ConfigCategory',
-    props: {
-      name: String,
+export default {
+  name: "ConfigCategory",
+  props: {
+    name: String,
+  },
+  computed: {
+    isValid() {
+      return this.$children.every((child) => child.isValid);
     },
-    computed: {
-      isValid() {
-        return this.$children.every(child => child.isValid);
-      },
-    },
-  };
+  },
+};
 </script>

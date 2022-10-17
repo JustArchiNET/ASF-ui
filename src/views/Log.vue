@@ -7,26 +7,26 @@
 </template>
 
 <script>
-  import AsfLog from '../components/ASF/Log.vue';
+import AsfLog from "../components/ASF/Log.vue";
 
-  export default {
-    name: 'Log',
-    metaInfo() {
-      return {
-        title: this.$t('log'),
-      };
-    },
-    components: { AsfLog },
-  };
+export default {
+  name: "Log",
+  metaInfo() {
+    return {
+      title: this.$t("log"),
+    };
+  },
+  components: { AsfLog },
+};
 </script>
 
 <style lang="scss">
-	.log {
-		display: grid;
-		grid-template-rows: 1fr;
+.log {
+  display: grid;
+  grid-template-rows: 1fr;
 
-		> div {
-			min-height: 0;
-		}
-	}
+  > div {
+    min-height: 0;
+  }
+}
 </style>

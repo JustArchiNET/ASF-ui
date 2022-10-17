@@ -1,13 +1,17 @@
 <template>
   <div class="mass-editor">
     <div class="mass-editor__title">
-      {{ $t('mass-editor-bots') }}
+      {{ $t("mass-editor-bots") }}
 
       <div class="mass-editor__navigation pull-right">
         <div v-tooltip.left="nextTitle">
           <!-- https://stackoverflow.com/questions/53748739/v-tooltip-stops-working-when-element-is-disabled -->
-          <button class="button" :disabled="isNextDisabled" @click="$emit('next')">
-            {{ $t('next') }}
+          <button
+            class="button"
+            :disabled="isNextDisabled"
+            @click="$emit('next')"
+          >
+            {{ $t("next") }}
           </button>
         </div>
       </div>
@@ -31,47 +35,50 @@
 </template>
 
 <script>
-  import BotsView from './partials/BotsView.vue';
+import BotsView from "./partials/BotsView.vue";
 
-  export default {
-    name: 'MassEditorBots',
-    components: {
-      BotsView,
+export default {
+  name: "MassEditorBots",
+  components: {
+    BotsView,
+  },
+  props: {
+    selectedBots: { type: Array, required: true },
+    selectable: { type: Boolean, default: true },
+    bots: { type: Array, required: true },
+  },
+  computed: {
+    selectedBotNames() {
+      return this.selectedBots.map((bot) => bot.name);
     },
-    props: {
-      selectedBots: { type: Array, required: true },
-      selectable: { type: Boolean, default: true },
-      bots: { type: Array, required: true },
+    nextTitle() {
+      return this.selectedBots.length === 0
+        ? this.$t("mass-editor-bots-disabled")
+        : null;
     },
-    computed: {
-      selectedBotNames() {
-        return this.selectedBots.map(bot => bot.name);
-      },
-      nextTitle() {
-        return (this.selectedBots.length === 0) ? this.$t('mass-editor-bots-disabled') : null;
-      },
-      isNextDisabled() {
-        return this.selectedBots.length === 0;
-      },
-      toggleBotsText() {
-        if (this.selectedBots.length === this.bots.length) return this.$t('mass-editor-bots-deselect');
-        return this.$t('mass-editor-bots-select');
-      },
+    isNextDisabled() {
+      return this.selectedBots.length === 0;
     },
-    methods: {
-      update(bot) {
-        this.$emit('update', bot);
-      },
+    toggleBotsText() {
+      if (this.selectedBots.length === this.bots.length)
+        return this.$t("mass-editor-bots-deselect");
+      return this.$t("mass-editor-bots-select");
     },
-  };
+  },
+  methods: {
+    update(bot) {
+      this.$emit("update", bot);
+    },
+  },
+};
 </script>
 
 <style lang="scss">
-  .mass-editor__content-controls {
-    display: flex;
-  }
-  
-  .mt {
-      margin-bottom: 1em;
-    }
+.mass-editor__content-controls {
+  display: flex;
+}
+
+.mt {
+  margin-bottom: 1em;
+}
 </style>

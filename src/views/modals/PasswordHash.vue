@@ -1,6 +1,6 @@
 <template>
   <main v-if="label" class="main-container main-container--bot-profile">
-    <h2 class="title">{{ $t('hash') }}</h2>
+    <h2 class="title">{{ $t("hash") }}</h2>
 
     <template v-if="loading">
       <h3 class="subtitle">
@@ -18,24 +18,47 @@
         <div class="form-item__code">
           <div>
             <label for="hash" class="form-item__label">{{ label }}</label>
-            <input id="hash" v-model="hash" class="form-item__input" type="password" autocomplete="new-password" @keydown.enter="savePassword">
+            <input
+              id="hash"
+              v-model="hash"
+              class="form-item__input"
+              type="password"
+              autocomplete="new-password"
+              @keydown.enter="savePassword"
+            />
           </div>
           <div class="form-item__buttons form-item__buttons--column">
-            <button v-tooltip="$t('input-switch-visibility')" class="button button--helper" @click="switchInputType">
-              <FontAwesomeIcon v-if="inputHidden" icon="eye" size="lg"></FontAwesomeIcon>
-              <FontAwesomeIcon v-else icon="eye-slash" size="lg"></FontAwesomeIcon>
+            <button
+              v-tooltip="$t('input-switch-visibility')"
+              class="button button--helper"
+              @click="switchInputType"
+            >
+              <FontAwesomeIcon
+                v-if="inputHidden"
+                icon="eye"
+                size="lg"
+              ></FontAwesomeIcon>
+              <FontAwesomeIcon
+                v-else
+                icon="eye-slash"
+                size="lg"
+              ></FontAwesomeIcon>
             </button>
           </div>
         </div>
 
         <div class="form-item__buttons form-item__buttons--center">
           <button class="button" :disabled="!hash" @click="savePassword">
-            <FontAwesomeIcon v-if="saving" icon="spinner" spin></FontAwesomeIcon>
-            <span v-else>{{ $t('hash') }}</span>
+            <FontAwesomeIcon
+              v-if="saving"
+              icon="spinner"
+              spin
+            ></FontAwesomeIcon>
+            <span v-else>{{ $t("hash") }}</span>
           </button>
 
           <button class="button" @click="$router.back()">
-            {{ $t('cancel') }}
+            {{ $t("cancel") }}
           </button>
         </div>
       </div>
@@ -44,88 +67,89 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
-  import ConfigEditor from '../../components/Config/Editor.vue';
-  import fetchConfigSchema from '../../utils/fetchConfigSchema';
-  import loadParameterDescriptions from '../../utils/loadParameterDescriptions';
+import { mapGetters } from "vuex";
+import ConfigEditor from "../../components/Config/Editor.vue";
+import fetchConfigSchema from "../../utils/fetchConfigSchema";
+import loadParameterDescriptions from "../../utils/loadParameterDescriptions";
 
-  export default {
-    name: 'PasswordHash',
-    components: {
-      ConfigEditor,
+export default {
+  name: "PasswordHash",
+  components: {
+    ConfigEditor,
+  },
+  data() {
+    return {
+      hash: "",
+      inputHidden: true,
+      config: {},
+      loading: true,
+      fields: [],
+      saving: false,
+    };
+  },
+  computed: {
+    ...mapGetters({
+      version: "asf/version",
+    }),
+    label() {
+      return this.$route.params.label;
     },
-    data() {
-      return {
-        hash: '',
-        inputHidden: true,
-        config: {},
-        loading: true,
-        fields: [],
-        saving: false,
-      };
+    key() {
+      return `${this.$route.params.label}Format`;
     },
-    computed: {
-      ...mapGetters({
-        version: 'asf/version',
-      }),
-      label() {
-        return this.$route.params.label;
-      },
-      key() {
-        return `${this.$route.params.label}Format`;
-      },
-    },
-    async created() {
-      if (!this.label) this.$router.replace({ name: 'asf-config' });
+  },
+  async created() {
+    if (!this.label) this.$router.replace({ name: "asf-config" });
 
-      const [
-        { GlobalConfig: model },
-        { body: fields },
-        descriptions,
-      ] = await Promise.all([
-        this.$http.get('asf'),
-        fetchConfigSchema('ArchiSteamFarm.Storage.GlobalConfig'),
+    const [{ GlobalConfig: model }, { body: fields }, descriptions] =
+      await Promise.all([
+        this.$http.get("asf"),
+        fetchConfigSchema("ArchiSteamFarm.Storage.GlobalConfig"),
         loadParameterDescriptions(this.version, this.$i18n.locale),
       ]);
 
-      this.config = { [this.key]: model[this.key] };
+    this.config = { [this.key]: model[this.key] };
 
-      const description = (!descriptions[this.key])
-        ? this.$t('description-not-found')
-        : descriptions[this.key].replace(/<a href="/g, '<a target="_blank" rel="noreferrer noopener" href="');
-      this.fields = [{ description, ...fields[this.key] }];
+    const description = !descriptions[this.key]
+      ? this.$t("description-not-found")
+      : descriptions[this.key].replace(
+          /<a href="/g,
+          '<a target="_blank" rel="noreferrer noopener" href="'
+        );
+    this.fields = [{ description, ...fields[this.key] }];
 
-      this.loading = false;
+    this.loading = false;
+  },
+  methods: {
+    switchInputType() {
+      this.inputHidden = !this.inputHidden;
+      const field = document.getElementById("hash");
+
+      if (field.getAttribute("type") === "password")
+        field.setAttribute("type", "text");
+      else field.setAttribute("type", "password");
     },
-    methods: {
-      switchInputType() {
-        this.inputHidden = !this.inputHidden;
-        const field = document.getElementById('hash');
+    async savePassword() {
+      if (this.saving) return;
+      this.saving = true;
 
-        if (field.getAttribute('type') === 'password') field.setAttribute('type', 'text');
-        else field.setAttribute('type', 'password');
-      },
-      async savePassword() {
-        if (this.saving) return;
-        this.saving = true;
+      try {
+        const newPassword = await this.$http.post("asf/hash", {
+          HashingMethod: this.config[this.key],
+          StringToHash: this.hash,
+        });
 
-        try {
-          const newPassword = await this.$http.post('asf/hash', {
-            HashingMethod: this.config[this.key],
-            StringToHash: this.hash,
-          });
+        this.config[this.label] = newPassword;
 
-          this.config[this.label] = newPassword;
-
-          await this.$http.post('asf', { globalConfig: this.config });
-          this.$info(this.$t('restart-initiated'));
-          this.$router.push({ name: 'setup', params: { restart: true } });
-        } finally {
-          this.saving = false;
-        }
-      },
+        await this.$http.post("asf", { globalConfig: this.config });
+        this.$info(this.$t("restart-initiated"));
+        this.$router.push({ name: "setup", params: { restart: true } });
+      } finally {
+        this.saving = false;
+      }
     },
-  };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
