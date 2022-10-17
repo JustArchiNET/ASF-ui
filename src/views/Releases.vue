@@ -7,15 +7,15 @@
 </template>
 
 <script>
-  import AsfReleases from '../components/ASF/Releases.vue';
+import AsfReleases from "../components/ASF/Releases.vue";
 
-  export default {
-    name: 'Releases',
-    metaInfo() {
-      return {
-        title: this.$t('releases'),
-      };
-    },
-    components: { AsfReleases },
-  };
+export default {
+  name: "Releases",
+  metaInfo() {
+    return {
+      title: this.$t("releases"),
+    };
+  },
+  components: { AsfReleases },
+};
 </script>
