@@ -167,7 +167,7 @@
   "mass-editor-search-not-found": "沒有找到設定屬性，請考慮更改搜尋條件",
   "mass-editor-values": "編輯所選的設定屬性",
   "multiple-games": "多款遊戲",
-  "name-description": "這是一個無預設值的<code>string</code>屬性。這個屬性為必填項，以定義 Bot 的名字──這個名字僅在 ASF 內部起到區分作用。Bot 的名字必須是唯一的。",
+  "name-description": "這是一個無預設值的<code>string</code>屬性。這個屬性為必填項，以定義 Bot 的名字⸺這個名字只在 ASF 內部起到區分作用。Bot 的名字必須是唯一的。",
   "next": "下一步",
   "none": "無",
   "notification-position": "通知位置",
