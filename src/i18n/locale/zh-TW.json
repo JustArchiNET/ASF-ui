@@ -218,7 +218,7 @@
   "setup-update": "正在更新，請稍等…",
   "shutdown": "關閉",
   "shutdown-message": "正在關閉，再見！",
-  "sidebar-boxed-layout": "緊湊版面配置",
+  "sidebar-boxed-layout": "緊湊版面布局",
   "sidebar-dark-mode": "深色模式",
   "sidebar-info": "<a target='_blank' rel='noreferrer noopener' href='https://github.com/JustArchiNET/ASF-ui/issues/new/choose-zh-TW'>發現錯誤或想提出想法以改進 ASF-ui？</a>",
   "sidebar-theme": "佈景主題",
