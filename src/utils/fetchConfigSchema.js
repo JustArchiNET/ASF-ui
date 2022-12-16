@@ -36,6 +36,7 @@ async function resolveType(type) {
     case 'System.Boolean':
       return { type: 'boolean' };
     case 'System.String':
+    case 'System.Guid':
       return { type: 'string' };
     case 'System.Byte':
       return { type: 'byte' };
@@ -53,6 +54,8 @@ async function resolveType(type) {
     case 'System.Collections.Generic.Dictionary':
     case 'System.Collections.Immutable.ImmutableDictionary':
       return { type: 'dictionary', key: await resolveType(subtypes[0]), value: await resolveType(subtypes[1]) };
+    case 'System.Nullable':
+      return { type: 'nullable', values: await resolveType(subtypes[0]) };
     default: // Complex type
       return unwindType(type);
   }
