@@ -22,29 +22,29 @@
         type: String,
       },
     },
-		data() {
-			return {
-				zoomLevel: 0,
-			};
-		},
-		computed: {
-			level() {
-				if (this.zoomLevel > 261 && this.zoomLevel < 320) return 'small';
-				if (this.zoomLevel > 321 && this.zoomLevel < 440) return 'xsmall';
-				return 'default';
-			},
-		},
-		mounted() {
-			window.addEventListener('resize', this.setZoomLevel);
-		},
-		beforeDestroy() {
-			window.removeEventListener('resize', this.setZoomLevel);
-		},
-		methods: {
-			setZoomLevel() {
-				this.zoomLevel = Math.round(window.devicePixelRatio * 100);
-			},
-		},
+    data() {
+      return {
+        zoomLevel: 0,
+      };
+    },
+    computed: {
+      level() {
+        if (this.zoomLevel > 261 && this.zoomLevel < 320) return 'small';
+        if (this.zoomLevel > 321 && this.zoomLevel < 440) return 'xsmall';
+        return 'default';
+      },
+    },
+    mounted() {
+      window.addEventListener('resize', this.setZoomLevel);
+    },
+    beforeDestroy() {
+      window.removeEventListener('resize', this.setZoomLevel);
+    },
+    methods: {
+      setZoomLevel() {
+        this.zoomLevel = Math.round(window.devicePixelRatio * 100);
+      },
+    },
   };
 </script>
 
