@@ -111,6 +111,18 @@
             return;
           }
 
+          // check if LicenseID is valid guid
+          if (this.model.LicenseID) {
+            const pattern = new RegExp(/^[0-9a-fA-F]{8}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{12}$/);
+            const isValid = pattern.test(this.model.LicenseID);
+
+            if (!isValid) {
+              this.$error(this.$t('config-invalid-guid'));
+              this.$info(this.$t('config-not-saved'));
+              return;
+            }
+          }
+
           await this.$http.post('asf', { globalConfig: this.model });
           this.$info(this.$t('restart-initiated'));
           this.$router.push({ name: 'setup', params: { restart: true } });
