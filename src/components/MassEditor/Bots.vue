@@ -70,7 +70,7 @@
   .mass-editor__content-controls {
     display: flex;
   }
-  
+
   .mt {
       margin-bottom: 1em;
     }

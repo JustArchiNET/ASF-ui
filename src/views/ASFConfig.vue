@@ -108,7 +108,20 @@
           // we do not want to save identical config
           if (isSameConfig(this.model, oldConfig)) {
             this.$info(this.$t('config-no-changes'));
+            this.$info(this.$t('config-not-saved'));
             return;
+          }
+
+          // check if LicenseID is valid guid
+          if (this.model.LicenseID) {
+            const pattern = new RegExp(/^[0-9a-fA-F]{8}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{12}$/);
+            const isValid = pattern.test(this.model.LicenseID);
+
+            if (!isValid) {
+              this.$error(this.$t('config-invalid-license'));
+              this.$info(this.$t('config-not-saved'));
+              return;
+            }
           }
 
           await this.$http.post('asf', { globalConfig: this.model });
