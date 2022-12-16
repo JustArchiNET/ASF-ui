@@ -108,6 +108,7 @@
           // we do not want to save identical config
           if (isSameConfig(this.model, oldConfig)) {
             this.$info(this.$t('config-no-changes'));
+            this.$info(this.$t('config-not-saved'));
             return;
           }
 
