@@ -73,7 +73,7 @@
   "commands-send": "Click here to send your command",
   "commands-default": "For a list of available commands type: commands\nFor a short description of a command type: help <command>",
   "config": "Config",
-  "config-invalid-guid": "LicenseID is not a valid guid!",
+  "config-invalid-license": "LicenseID is not valid!",
   "config-no-changes": "You did not make any changes!",
   "config-not-saved": "Config was not saved.",
   "confirm": "Confirm",

@@ -118,7 +118,7 @@
             const isValid = pattern.test(this.model.LicenseID);
 
             if (!isValid) {
-              this.$error(this.$t('config-invalid-guid'));
+              this.$error(this.$t('config-invalid-license'));
               this.$info(this.$t('config-not-saved'));
               return;
             }
