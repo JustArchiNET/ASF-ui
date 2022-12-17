@@ -91,7 +91,6 @@
           case 'string':
           case 'uint64':
           case 'guid':
-          case 'nullable':
             return InputString;
           case 'boolean':
             return InputBoolean;

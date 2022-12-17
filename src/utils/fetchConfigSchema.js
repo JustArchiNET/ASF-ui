@@ -29,10 +29,10 @@ async function getTypeDefinition(type) {
   return typeDefinition;
 }
 
-async function resolveType(type) {
-  const subtypes = resolveSubtypes(type);
+async function resolveType(targetType) {
+  const subtypes = resolveSubtypes(targetType);
 
-  switch (type.split('`')[0]) {
+  switch (targetType.split('`')[0]) {
     case 'System.Boolean':
       return { type: 'boolean' };
     case 'System.String':
@@ -55,9 +55,10 @@ async function resolveType(type) {
     case 'System.Collections.Immutable.ImmutableDictionary':
       return { type: 'dictionary', key: await resolveType(subtypes[0]), value: await resolveType(subtypes[1]) };
     case 'System.Nullable':
-      return { type: 'nullable', values: await resolveType(subtypes[0]) };
+      const { type } = await resolveType(subtypes[0]);
+      return { type, nullable: true };
     default: // Complex type
-      return unwindType(type);
+      return unwindType(targetType);
   }
 }
 
