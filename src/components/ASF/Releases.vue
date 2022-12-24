@@ -92,7 +92,7 @@
         notification.on('click', toast => this.$router.push({ name: 'log' }));
 
         try {
-          await this.$http.post('asf/update');
+          await this.$http.post('asf/update', {});
           this.$router.push({ name: 'setup', params: { update: true } });
         } catch (err) {
           if (!err.result && !err.message.includes('≥')) throw err;

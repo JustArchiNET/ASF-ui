@@ -97,7 +97,6 @@
         }
 
         try {
-          await this.$http.post('asf/update');
           this.brandMenu = false;
           this.$router.push({ name: 'setup', params: { update: true } });
         } catch (err) {
@@ -108,6 +107,7 @@
         } finally {
           this.updating = false;
         }
+          await this.$http.post('asf/update', {});
       },
       async restart() {
         if (this.restarting) return;
