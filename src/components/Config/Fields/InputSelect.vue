@@ -36,7 +36,7 @@
 
       <div class="input-option__items">
         <button v-for="(keyValue, key) in value" :key="key" class="button input-option__item" @click.prevent="removeElement(key)">
-          {{ key }} => {{ resolveValue(keyValue) }}
+          {{ resolveKey(key) }} => {{ resolveValue(keyValue) }}
         </button>
       </div>
     </div>
@@ -96,6 +96,11 @@
       getDefaultValue() {
         if (this.valueIsEnum) return this.valueAvailableEnumValues[0];
         return null;
+      },
+      resolveKey(key) {
+        const bot = this.bots.find(bot => bot.steamid === key);
+        if (!bot) return key;
+        return `${key} (${bot.name})`;
       },
       resolveValue(value) {
         if (!this.valueIsEnum) return value;
