@@ -123,7 +123,8 @@
       },
       onClose(event) {
         // Error code list: https://www.rfc-editor.org/rfc/rfc6455#section-11.7
-        if (event.code !== 1000) this.$error(`Websocket error! Error code: ${event.code}`);
+        if (event.code === 1006) console.error('Websocket error! Error code: 1006');
+        else if (event.code !== 1000) this.$error(`Websocket error! Error code: ${event.code}`);
       },
       async onDownload() {
         if (this.downloading) return;
