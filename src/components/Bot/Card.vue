@@ -1,10 +1,10 @@
 <template>
   <div class="bot" :class="[`status--${bot.status}`]">
     <a v-if="bot.steamid !== '0'" target="_blank" rel="noreferrer noopener" :href="bot.profileURL">
-      <img class="bot__avatar" :src="bot.avatarURL" :alt="bot.name">
+      <img v-tooltip="bot.name" class="bot__avatar" :src="bot.avatarURL" :alt="bot.name">
     </a>
     <router-link v-else v-slot="{ navigate }" custom :to="{ name: 'bot', params: { bot: bot.name } }">
-      <img class="bot__avatar" :src="bot.avatarURL" @click="navigate">
+      <img v-tooltip="bot.name" class="bot__avatar" :src="bot.avatarURL" @click="navigate">
     </router-link>
 
     <router-link v-slot="{ navigate }" custom :to="{ name: 'bot', params: { bot: bot.name } }">

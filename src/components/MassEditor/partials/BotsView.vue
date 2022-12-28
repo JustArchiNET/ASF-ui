@@ -1,7 +1,7 @@
 <template>
   <div class="bots" :class="{ selectable }">
     <div v-for="bot in bots" :key="bot.name" class="bot" :class="[`status--${bot.status}`, { selected: botIsSelected(bot) }]" @click="select(bot)">
-      <img class="bot__avatar" :src="bot.avatarURL">
+      <img v-tooltip="bot.name" class="bot__avatar" :src="bot.avatarURL">
 
       <div class="bot__status">
         <span v-tooltip="bot.name" class="bot__status-property bot__status-property--name">{{ bot.viewableName }}</span>
