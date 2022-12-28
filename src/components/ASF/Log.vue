@@ -17,12 +17,12 @@
       <!-- eslint-disable-next-line vue/no-unused-vars -->
       <div v-for="{ type, message, index } in log" :key="index" class="terminal-message terminal-message--truncated">
         <span class="terminal-message__content">
-          <span v-if="selectedLayout.includes('time')" class="terminal-message__time">[{{ handleTime(message.time) }}]</span>
-          <span v-if="selectedLayout.includes('process')" class="terminal-message__process">{{ message.process }}</span>
-          <span v-if="selectedLayout.includes('level')" class="terminal-message__level" :class="`terminal-message__level--${message.level.toLowerCase()}`">{{ message.level }}</span>
-          <span v-if="selectedLayout.includes('logger')" class="terminal-message__logger">{{ message.logger }}</span>
+          <span v-if="message.time && selectedLayout.includes('time')" class="terminal-message__time">[{{ handleTime(message.time) }}]</span>
+          <span v-if="message.process && selectedLayout.includes('process')" class="terminal-message__process">{{ message.process }}</span>
+          <span v-if="message.level && selectedLayout.includes('level')" class="terminal-message__level" :class="`terminal-message__level--${message.level.toLowerCase()}`">{{ message.level }}</span>
+          <span v-if="message.logger && selectedLayout.includes('logger')" class="terminal-message__logger">{{ message.logger }}</span>
           <span>></span>
-          <span class="terminal-message__text">{{ message.text }}</span>
+          <span v-if="message.text" class="terminal-message__text">{{ message.text }}</span>
         </span>
       </div>
     </div>
@@ -99,6 +99,18 @@
       },
       parseMessage(message) {
         const [time, process, level, logger, ...text] = message.split('|');
+
+        // since we can't deconstruct message object properly,
+        // we have to assume that this is custom message from unofficial plugin
+        if (!process) {
+          return {
+            time: null,
+            process: null,
+            level: null,
+            logger: null,
+            text: message,
+          };
+        };
 
         return {
           // older safari versions do not support YYYY-MM-DD, that's why we replace the dashes
