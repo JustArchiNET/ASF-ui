@@ -74,6 +74,7 @@
   "commands-default": "Для списка доступных команд введите: commands\nДля краткого описания типа команды: help <command>",
   "config": "Конфигурация",
   "config-no-changes": "Вы не сделали какие-либо изменения!",
+  "config-not-saved": "Конфигурация не сохранена.",
   "confirm": "Подтвердить",
   "confirmation": "Введите <strong>{name}</strong> для подтверждения.",
   "confirmation-title": "Вы абсолютно уверены?",
