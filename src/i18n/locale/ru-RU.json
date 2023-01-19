@@ -73,6 +73,7 @@
   "commands-send": "Нажмите здесь, чтобы отправить свою команду",
   "commands-default": "Для списка доступных команд введите: commands\nДля краткого описания типа команды: help <command>",
   "config": "Конфигурация",
+  "config-invalid-license": "Неверный LicenceID!",
   "config-no-changes": "Вы не сделали какие-либо изменения!",
   "config-not-saved": "Конфигурация не сохранена.",
   "confirm": "Подтвердить",
