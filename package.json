@@ -43,7 +43,7 @@
     "@fortawesome/fontawesome-svg-core": "6.2.1",
     "@fortawesome/free-brands-svg-icons": "6.2.1",
     "@fortawesome/free-solid-svg-icons": "6.2.1",
-    "@fortawesome/vue-fontawesome": "2.0.9",
+    "@fortawesome/vue-fontawesome": "2.0.10",
     "axios": "1.2.3",
     "copy-to-clipboard": "3.3.3",
     "flat": "5.0.2",
