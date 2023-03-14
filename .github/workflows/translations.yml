@@ -15,7 +15,7 @@ jobs:
         token: ${{ secrets.ARCHIBOT_GITHUB_TOKEN }}
 
     - name: Download latest translations from Crowdin
-      uses: crowdin/github-action@v1.7.0
+      uses: crowdin/github-action@v1.7.1
       with:
         upload_sources: false
         download_translations: true
