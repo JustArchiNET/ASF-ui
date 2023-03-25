@@ -50,7 +50,7 @@
     "html-webpack-plugin": "5.5.0",
     "humanize-duration": "3.28.0",
     "linkify-html": "4.1.1",
-    "linkifyjs": "4.1.0",
+    "linkifyjs": "4.1.1",
     "lodash-es": "4.17.21",
     "plurals-cldr": "2.0.1",
     "svg-country-flags": "1.2.10",
