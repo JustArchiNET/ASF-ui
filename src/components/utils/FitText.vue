@@ -5,7 +5,7 @@
 </template>
 
 <script>
-	// https://github.com/robbeman/vue-fit-text
+  // https://github.com/robbeman/vue-fit-text
 
   export default {
     name: 'FitText',

@@ -129,12 +129,12 @@
 </script>
 
 <style lang="scss">
-	.main-container--bot-copy {
-		max-width: 1000px;
-	}
+  .main-container--bot-copy {
+    max-width: 1000px;
+  }
 
-	.container-description {
-		text-align: center;
-		margin-bottom: 2em;
-	}
+  .container-description {
+    text-align: center;
+    margin-bottom: 2em;
+  }
 </style>

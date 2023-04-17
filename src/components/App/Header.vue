@@ -64,38 +64,38 @@
 </script>
 
 <style lang="scss">
-	.upper-navigation {
-		background: var(--color-theme);
-		display: flex;
-		height: var(--navigation-height);
-		position: fixed;
-		top: 0;
-		width: 100%;
-		z-index: 1002;
+  .upper-navigation {
+    background: var(--color-theme);
+    display: flex;
+    height: var(--navigation-height);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1002;
 
-		.app--boxed-layout & {
-			@media screen and (min-width: 1250px) {
-				position: absolute;
-			}
-		}
-	}
+    .app--boxed-layout & {
+      @media screen and (min-width: 1250px) {
+        position: absolute;
+      }
+    }
+  }
 
-	.navigation__button {
-		align-items: center;
-		color: var(--color-text);
-		cursor: pointer;
-		display: flex;
-		justify-content: center;
-		padding: 0 1em;
+  .navigation__button {
+    align-items: center;
+    color: var(--color-text);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    padding: 0 1em;
 
-		&.navigation__button--active, &:hover {
-			background: var(--color-theme-dark);
-		}
-	}
+    &.navigation__button--active, &:hover {
+      background: var(--color-theme-dark);
+    }
+  }
 
-	.navigation__menu {
-		display: flex;
-		justify-content: space-between;
-		margin-left: auto;
-	}
+  .navigation__menu {
+    display: flex;
+    justify-content: space-between;
+    margin-left: auto;
+  }
 </style>

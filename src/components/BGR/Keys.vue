@@ -28,19 +28,19 @@
 </script>
 
 <style lang="scss">
-	.bgr__no-keys {
-		font-weight: bold;
-		text-align: center;
-	}
+  .bgr__no-keys {
+    font-weight: bold;
+    text-align: center;
+  }
 
-	.bgr__table {
-		min-width: 100%;
-		text-align: center;
+  .bgr__table {
+    min-width: 100%;
+    text-align: center;
 
-		td {
-			@media screen and (max-width: 335px) {
-				padding: 0.35em 0.5em;
-			}
-		}
-	}
+    td {
+      @media screen and (max-width: 335px) {
+        padding: 0.35em 0.5em;
+      }
+    }
+  }
 </style>

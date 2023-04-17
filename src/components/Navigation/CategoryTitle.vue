@@ -17,18 +17,18 @@
 </script>
 
 <style lang="scss">
-	.navigation-category__title {
-		align-items: center;
-		background: rgba(black, 0.4);
-		color: var(--color-text-disabled);
-		display: flex;
-		font-size: 0.9em;
-		padding: 0.75em 1em;
-		text-transform: uppercase;
-		width: var(--navigation-width);
+  .navigation-category__title {
+    align-items: center;
+    background: rgba(black, 0.4);
+    color: var(--color-text-disabled);
+    display: flex;
+    font-size: 0.9em;
+    padding: 0.75em 1em;
+    text-transform: uppercase;
+    width: var(--navigation-width);
 
-		.app--small-navigation & {
-			display: none;
-		}
-	}
+    .app--small-navigation & {
+      display: none;
+    }
+  }
 </style>

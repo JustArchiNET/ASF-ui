@@ -34,7 +34,7 @@
 </script>
 
 <style lang="scss">
-	.bot-filter {
+  .bot-filter {
     height: fit-content;
     text-align: center;
 
@@ -42,5 +42,5 @@
       cursor: pointer;
       color: var(--color-theme);
     }
-	}
+  }
 </style>

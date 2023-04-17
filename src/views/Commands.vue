@@ -386,20 +386,20 @@
 </script>
 
 <style lang="scss">
-	.commands {
-		display: grid;
-		grid-template-rows: 1fr;
+  .commands {
+    display: grid;
+    grid-template-rows: 1fr;
 
-		> div {
-			min-height: 0;
-		}
-	}
+    > div {
+      min-height: 0;
+    }
+  }
 
-	.sign-input {
-		cursor: pointer;
-	}
+  .sign-input {
+    cursor: pointer;
+  }
 
-	.timestamp {
-		margin-right: 0.5em;
-	}
+  .timestamp {
+    margin-right: 0.5em;
+  }
 </style>

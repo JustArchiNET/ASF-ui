@@ -43,7 +43,7 @@
 </script>
 
 <style lang="scss">
-	.bgr__check-title {
-		margin-bottom: 0.5em;
-	}
+  .bgr__check-title {
+    margin-bottom: 0.5em;
+  }
 </style>

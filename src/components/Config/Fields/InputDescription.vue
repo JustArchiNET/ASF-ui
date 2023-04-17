@@ -41,26 +41,26 @@
 </script>
 
 <style lang="scss">
-	.form-item__description {
-		backface-visibility: hidden;
-		perspective: 1000px;
-		transform: translateZ(0);
-		will-change: height;
-	}
+  .form-item__description {
+    backface-visibility: hidden;
+    perspective: 1000px;
+    transform: translateZ(0);
+    will-change: height;
+  }
 
-	.form-item__description-enter, .form-item__description-leave-to {
-		opacity: 0;
-	}
+  .form-item__description-enter, .form-item__description-leave-to {
+    opacity: 0;
+  }
 
-	.form-item__description-enter-active, .form-item__description-leave-active {
-		transition: height .25s, opacity .25s;
-	}
+  .form-item__description-enter-active, .form-item__description-leave-active {
+    transition: height .25s, opacity .25s;
+  }
 
-	.form-item__description-content {
-		display: block;
-		margin-block-start: 1em;
-		margin-block-end: 1em;
-		margin-inline-start: 0px;
-		margin-inline-end: 0px;
-	}
+  .form-item__description-content {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+  }
 </style>

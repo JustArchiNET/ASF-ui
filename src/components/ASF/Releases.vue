@@ -157,97 +157,97 @@
 </script>
 
 <style lang="scss">
-	.releases {
-		word-break: break-word;
-	}
+  .releases {
+    word-break: break-word;
+  }
 
-	.release {
-		border-bottom: 1px solid var(--color-background);
-		margin-bottom: 1em;
-		padding-bottom: 1em;
+  .release {
+    border-bottom: 1px solid var(--color-background);
+    margin-bottom: 1em;
+    padding-bottom: 1em;
 
-		&:last-child {
-			border-bottom: none;
-			margin-bottom: 0;
-			padding-bottom: 0;
-		}
-	}
+    &:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
 
-	.release__title {
-		align-items: center;
-		display: flex;
-		margin-top: 0;
+  .release__title {
+    align-items: center;
+    display: flex;
+    margin-top: 0;
 
-		@media screen and (max-width: 400px) {
-			align-items: flex-start;
-			flex-direction: column;
+    @media screen and (max-width: 400px) {
+      align-items: flex-start;
+      flex-direction: column;
       gap: 4px;
-		}
-	}
+    }
+  }
 
-	.release__version {
-		font-size: 1.3em;
-		font-weight: bold;
-	}
+  .release__version {
+    font-size: 1.3em;
+    font-weight: bold;
+  }
 
-	.release__time {
-		margin-left: auto;
+  .release__time {
+    margin-left: auto;
 
-		@media screen and (max-width: 400px) {
-			margin-left: 0;
-		}
-	}
+    @media screen and (max-width: 400px) {
+      margin-left: 0;
+    }
+  }
 
-	.release__badge {
-		background-color: var(--color-background-light);
-		border: 2px solid currentColor;
-		border-radius: 4px;
-		display: inline-block;
-		line-height: 1;
-		margin-left: 0.5em;
-		padding: 0.25em 0.5em;
-		text-align: center;
-		vertical-align: baseline;
+  .release__badge {
+    background-color: var(--color-background-light);
+    border: 2px solid currentColor;
+    border-radius: 4px;
+    display: inline-block;
+    line-height: 1;
+    margin-left: 0.5em;
+    padding: 0.25em 0.5em;
+    text-align: center;
+    vertical-align: baseline;
 
-		@media screen and (max-width: 400px) {
-			margin-left: 0;
-		}
-	}
+    @media screen and (max-width: 400px) {
+      margin-left: 0;
+    }
+  }
 
-	.release__badge--prerelease {
-		color: #a92616;
-	}
+  .release__badge--prerelease {
+    color: #a92616;
+  }
 
-	.release__badge--stable {
-		color: #00a65a;
-	}
+  .release__badge--stable {
+    color: #00a65a;
+  }
 
   .release__badge--install {
     color: var(--color-text-info);
     cursor: pointer;
-	}
+  }
 
-	.release__changelog-link {
-		color: var(--color-theme);
-		font-weight: 600;
-		text-decoration: none;
-	}
+  .release__changelog-link {
+    color: var(--color-theme);
+    font-weight: 600;
+    text-decoration: none;
+  }
 
-	.release__changes {
-		font-family: monospace, monospace;
+  .release__changes {
+    font-family: monospace, monospace;
 
-		a {
-			color: var(--color-theme);
-			text-decoration: none;
-		}
+    a {
+      color: var(--color-theme);
+      text-decoration: none;
+    }
 
-		ul {
-			@media screen and (max-width: 450px) {
-				margin-inline-end: 0.2em;
-				margin-inline-start: 0.2em;
-				padding-inline-start: 1.2em;
-			}
-		}
+    ul {
+      @media screen and (max-width: 450px) {
+        margin-inline-end: 0.2em;
+        margin-inline-start: 0.2em;
+        padding-inline-start: 1.2em;
+      }
+    }
 
     details {
       margin-bottom: 1em;
@@ -256,5 +256,5 @@
     summary {
       cursor: pointer;
     }
-	}
+  }
 </style>

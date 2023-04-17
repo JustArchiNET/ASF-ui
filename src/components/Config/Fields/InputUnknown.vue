@@ -20,8 +20,8 @@
 </script>
 
 <style lang="scss">
-	.input-unknown {
-		color: var(--color-theme);
-		font-weight: 600;
-	}
+  .input-unknown {
+    color: var(--color-theme);
+    font-weight: 600;
+  }
 </style>

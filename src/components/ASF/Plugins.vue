@@ -49,29 +49,29 @@
 </script>
 
 <style lang="scss">
-	.plugins {
-		display: flex;
-		flex-direction: column;
-	}
+  .plugins {
+    display: flex;
+    flex-direction: column;
+  }
 
-	.plugin {
-		border-bottom: 1px solid var(--color-background);
-		margin-bottom: 1em;
-		padding-bottom: 1em;
+  .plugin {
+    border-bottom: 1px solid var(--color-background);
+    margin-bottom: 1em;
+    padding-bottom: 1em;
 
-		&:last-child {
-			border-bottom: none;
-			margin-bottom: 0;
-			padding-bottom: 0;
-		}
-	}
+    &:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
 
-	.plugin__name {
-		font-size: 1.3em;
-		font-weight: bold;
-	}
+  .plugin__name {
+    font-size: 1.3em;
+    font-weight: bold;
+  }
 
-	.plugin__version {
-		padding-left: 10px;
-	}
+  .plugin__version {
+    padding-left: 10px;
+  }
 </style>
