@@ -7,7 +7,7 @@ import {
   faQuestion, faPlus, faSpinner, faKey, faTrash, faCloudDownloadAlt, faSignOutAlt, faAngleDown,
   faLanguage, faGamepad, faClone, faLock, faBookOpen, faCodeBranch, faHourglassEnd, faPaste,
   faHourglassHalf, faHourglassStart, faRedoAlt, faClipboard, faPuzzlePiece, faUndoAlt, faEye,
-  faEyeSlash, faChevronLeft, faChevronRight, faExclamation, faComments,
+  faEyeSlash, faChevronLeft, faChevronRight, faExclamation, faComments, faBan,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { FontAwesomeIcon, FontAwesomeLayers } from '@fortawesome/vue-fontawesome';
@@ -60,6 +60,7 @@ library.add(
   faChevronLeft,
   faChevronRight,
   faComments,
+  faBan,
 );
 
 export default {
