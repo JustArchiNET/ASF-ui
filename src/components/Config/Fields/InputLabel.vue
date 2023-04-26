@@ -15,7 +15,8 @@
     },
     computed: {
       showKey() {
-        return this.label === 'IPCPassword' || this.label === 'SteamPassword';
+        return this.label === 'IPCPassword' && this.$route.name === 'asf-config'
+          || this.label === 'SteamPassword' && this.$route.name === 'bot-config';
       },
     },
     methods: {

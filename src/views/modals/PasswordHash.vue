@@ -110,16 +110,15 @@
         this.saving = true;
 
         try {
-          const newPassword = await this.$http.post('asf/hash', {
+          const ipcPassword = await this.$http.post('asf/hash', {
             HashingMethod: this.config[this.key],
             StringToHash: this.hash,
           });
 
-          this.config[this.label] = newPassword;
+          const params = { ipcPassword, ipcPasswordFormat: this.config[this.key] };
 
-          await this.$http.post('asf', { globalConfig: this.config });
-          this.$info(this.$t('restart-initiated'));
-          this.$router.push({ name: 'setup', params: { restart: true } });
+          this.$info(this.$t('hash-success'));
+          this.$router.push({ name: 'asf-config', params });
         } finally {
           this.saving = false;
         }
