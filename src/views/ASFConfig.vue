@@ -51,7 +51,7 @@
     components: { ConfigEditor },
     data() {
       return {
-        loading: true,
+        loading: false,
         saving: false,
         fields: [],
         model: {},
@@ -65,38 +65,62 @@
         displayCategories: 'settings/displayCategories',
       }),
     },
-    async created() {
-      const [
-        { GlobalConfig: model },
-        { body: fields },
-        descriptions,
-      ] = await Promise.all([
-        this.$http.get('asf'),
-        fetchConfigSchema('ArchiSteamFarm.Storage.GlobalConfig'),
-        loadParameterDescriptions(this.version, this.$i18n.locale),
-      ]);
-
-      Object.keys(model).forEach(key => {
-        if (key.startsWith('s_')) delete model[key.substr(2)];
-      });
-
-      this.model = model;
-
-      const extendedFields = {
-        IPCPassword: { placeholder: this.$t('keep-unchanged') },
-      };
-
-      this.fields = Object.keys(fields).map(key => {
-        const description = (!descriptions[key])
-          ? this.$t('description-not-found')
-          : descriptions[key].replace(/<a href="/g, '<a target="_blank" rel="noreferrer noopener" href="');
-
-        return { description, ...fields[key], ...(extendedFields[key] || []) };
-      });
-
-      this.loading = false;
+    watch: {
+      $route: {
+        immediate: true,
+        async handler() {
+          if (this.$route.name !== 'asf-config') return;
+          await this.loadConfig();
+        },
+      },
     },
     methods: {
+      async loadConfig() {
+        if (this.loading) return;
+
+        this.loading = true;
+
+        try {
+          const [
+            { GlobalConfig: model },
+            { body: fields },
+            descriptions,
+          ] = await Promise.all([
+            this.$http.get('asf'),
+            fetchConfigSchema('ArchiSteamFarm.Storage.GlobalConfig'),
+            loadParameterDescriptions(this.version, this.$i18n.locale),
+          ]);
+
+          Object.keys(model).forEach(key => {
+            if (key.startsWith('s_')) delete model[key.substring(2)];
+          });
+
+          this.model = model;
+
+          // if we got routed to asf-config with params, we propably
+          // came from PasswordHash.vue and want to set ipc data from params
+          if (Object.keys(this.$route.params).length !== 0) {
+            this.model.IPCPassword = this.$route.params?.ipcPassword;
+            this.model.IPCPasswordFormat = this.$route.params?.ipcPasswordFormat;
+          }
+
+          const extendedFields = {
+            IPCPassword: { placeholder: this.$t('keep-unchanged') },
+          };
+
+          this.fields = Object.keys(fields).map(key => {
+            const description = (!descriptions[key])
+              ? this.$t('description-not-found')
+              : descriptions[key].replace(/<a href="/g, '<a target="_blank" rel="noreferrer noopener" href="');
+
+            return { description, ...fields[key], ...(extendedFields[key] || []) };
+          });
+        } catch (err) {
+          this.$error(err.message);
+        } finally {
+          this.loading = false;
+        }
+      },
       async onSave() {
         if (this.saving) return;
         this.saving = true;
