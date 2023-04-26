@@ -92,7 +92,7 @@
           ]);
 
           Object.keys(model).forEach(key => {
-            if (key.startsWith('s_')) delete model[key.substring(2)];
+            if (key.startsWith('s_')) delete model[key.substr(2)];
           });
 
           this.model = model;
