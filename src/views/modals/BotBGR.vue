@@ -128,46 +128,46 @@
 </script>
 
 <style lang="scss">
-	.bgr__info {
-		align-items: center;
-		display: flex;
-		justify-content: center;
-	}
+  .bgr__info {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
 
-	.bgr__info-icon {
-		padding-right: 0.5em;
-	}
+  .bgr__info-icon {
+    padding-right: 0.5em;
+  }
 
-	.hourglass-spin {
-		[class*="fa-hourglass"] {
-			animation: showHide 4s steps(1) infinite;
-			opacity: 0;
-		}
+  .hourglass-spin {
+    [class*="fa-hourglass"] {
+      animation: showHide 4s steps(1) infinite;
+      opacity: 0;
+    }
 
-		.fa-hourglass-half {
-			animation-delay: 1s;
-		}
-		.fa-hourglass-start {
-			animation-delay: 0s;
-		}
-		.fa-hourglass-end {
-			animation-delay: 2s;
-		}
+    .fa-hourglass-half {
+      animation-delay: 1s;
+    }
+    .fa-hourglass-start {
+      animation-delay: 0s;
+    }
+    .fa-hourglass-end {
+      animation-delay: 2s;
+    }
 
-		.fa-hourglass-end.fa-spin {
-			animation: showHideSpin 4s linear infinite;
-		}
-	}
+    .fa-hourglass-end.fa-spin {
+      animation: showHideSpin 4s linear infinite;
+    }
+  }
 
-	@keyframes showHide {
-		0% { opacity: 1 }
-		25% { opacity: 0 }
-	}
+  @keyframes showHide {
+    0% { opacity: 1 }
+    25% { opacity: 0 }
+  }
 
-	@keyframes showHideSpin {
-		0% { opacity: 0 }
-		74.99% { opacity: 0 }
-		75% { opacity: 1; transform: rotate(0deg); }
-		100% { opacity: 1; transform: rotate(180deg); }
-	}
+  @keyframes showHideSpin {
+    0% { opacity: 0 }
+    74.99% { opacity: 0 }
+    75% { opacity: 1; transform: rotate(0deg); }
+    100% { opacity: 1; transform: rotate(180deg); }
+  }
 </style>

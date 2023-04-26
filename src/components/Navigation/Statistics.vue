@@ -23,8 +23,8 @@
 </script>
 
 <style lang="scss">
-	.navigation-statistics {
-		display: flex;
-		flex-direction: column;
-	}
+  .navigation-statistics {
+    display: flex;
+    flex-direction: column;
+  }
 </style>

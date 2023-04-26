@@ -106,68 +106,68 @@
 </script>
 
 <style lang="scss" scoped>
-	.bot {
-		background: var(--color-background-light);
-		border-radius: 0 0 4px 4px;
-		border-top: 3px solid var(--color-status);
-		display: grid;
-		grid-template-areas: 'avatar meta buttons';
-		grid-template-columns: min-content 1fr auto;
-		padding: 0.5em;
-		transition: border .3s;
-	}
+  .bot {
+    background: var(--color-background-light);
+    border-radius: 0 0 4px 4px;
+    border-top: 3px solid var(--color-status);
+    display: grid;
+    grid-template-areas: 'avatar meta buttons';
+    grid-template-columns: min-content 1fr auto;
+    padding: 0.5em;
+    transition: border .3s;
+  }
 
-	.bot__avatar {
-		cursor: pointer;
-		display: block;
-		height: 2.25em; // (1em + 0.8em) * 1.25
-		padding-right: 0.5em;
-		width: 2.25em;
-	}
+  .bot__avatar {
+    cursor: pointer;
+    display: block;
+    height: 2.25em; // (1em + 0.8em) * 1.25
+    padding-right: 0.5em;
+    width: 2.25em;
+  }
 
-	.bot__status {
-		cursor: pointer;
-		display: flex;
-		flex-direction: column;
-		overflow: hidden;
-	}
+  .bot__status {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
 
-	.bot__status-property {
-		display: inline-block;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-	}
+  .bot__status-property {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 
-	.bot__status-property--name {
-		font-weight: 600;
-	}
+  .bot__status-property--name {
+    font-weight: 600;
+  }
 
-	.bot__status-property--text {
-		font-size: 0.8em;
-		font-style: italic;
-	}
+  .bot__status-property--text {
+    font-size: 0.8em;
+    font-style: italic;
+  }
 
-	.bot__actions {
-		align-items: center;
-		display: flex;
-		grid-area: buttons;
-		justify-content: space-around;
-	}
+  .bot__actions {
+    align-items: center;
+    display: flex;
+    grid-area: buttons;
+    justify-content: space-around;
+  }
 
-	.bot__action {
-		color: var(--color-text-disabled);
-		cursor: pointer;
-		display: block;
-		padding: 0.5em;
-		transition: color .3s;
+  .bot__action {
+    color: var(--color-text-disabled);
+    cursor: pointer;
+    display: block;
+    padding: 0.5em;
+    transition: color .3s;
 
-		&:hover {
-			color: var(--color-text-dark);
+    &:hover {
+      color: var(--color-text-dark);
 
-			.app--dark-mode & {
-				color: var(--color-text);
-			}
-		}
-	}
+      .app--dark-mode & {
+        color: var(--color-text);
+      }
+    }
+  }
 </style>

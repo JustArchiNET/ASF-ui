@@ -123,7 +123,7 @@
 </script>
 
 <style lang="scss">
-	.main-container--bot-create {
-		max-width: 1000px;
-	}
+  .main-container--bot-create {
+    max-width: 1000px;
+  }
 </style>

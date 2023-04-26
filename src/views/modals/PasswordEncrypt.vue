@@ -118,15 +118,15 @@
         this.saving = true;
 
         try {
-          const newPassword = await this.$http.post('asf/encrypt', {
+          const steamPassword = await this.$http.post('asf/encrypt', {
             CryptoMethod: this.config[this.key],
             StringToEncrypt: this.password,
           });
 
-          this.config[this.label] = newPassword;
+          const params = { steamPassword, passwordFormat: this.config[this.key] };
 
-          await this.$http.post(`bot/${this.bot.name}`, { botConfig: this.config });
-          this.$router.back();
+          this.$info(this.$t('encrypt-success'));
+          this.$router.push({ name: 'bot-config', params });
         } finally {
           this.saving = false;
         }

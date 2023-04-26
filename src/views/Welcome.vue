@@ -45,9 +45,9 @@
 </script>
 
 <style lang="scss">
-	.list {
-		display: table;
-		margin: 0 auto;
-		padding-bottom: 20px;
-	}
+  .list {
+    display: table;
+    margin: 0 auto;
+    padding-bottom: 20px;
+  }
 </style>

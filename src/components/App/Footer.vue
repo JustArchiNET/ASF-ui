@@ -73,37 +73,37 @@
 </script>
 
 <style lang="scss">
-	.footer {
-		align-items: center;
-		background: var(--color-background-light);
-		border-top: 1px solid var(--color-border);
-		box-sizing: border-box;
-		display: flex;
-		font-size: 0.9em;
-		grid-area: footer;
-		height: var(--navigation-height);
-		padding: 0 0.5em;
-		width: 100%;
-	}
+  .footer {
+    align-items: center;
+    background: var(--color-background-light);
+    border-top: 1px solid var(--color-border);
+    box-sizing: border-box;
+    display: flex;
+    font-size: 0.9em;
+    grid-area: footer;
+    height: var(--navigation-height);
+    padding: 0 0.5em;
+    width: 100%;
+  }
 
-	.footer__links {
-		display: flex;
-		height: 100%;
-	}
+  .footer__links {
+    display: flex;
+    height: 100%;
+  }
 
-	.footer__statistic {
-		margin-left: auto;
-		text-align: center;
-	}
+  .footer__statistic {
+    margin-left: auto;
+    text-align: center;
+  }
 
-	.footer__statistic-name {
-		color: var(--color-theme);
-		font-weight: 700;
-	}
+  .footer__statistic-name {
+    color: var(--color-theme);
+    font-weight: 700;
+  }
 
-	.footer__statistic-notify {
-		color: var(--color-text-info);
+  .footer__statistic-notify {
+    color: var(--color-text-info);
     padding-right: 0.2em;
     cursor: pointer;
-	}
+  }
 </style>

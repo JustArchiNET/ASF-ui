@@ -23,10 +23,10 @@
 </script>
 
 <style lang="scss">
-	.bots-overview {
-		display: grid;
-		grid-gap: 1rem;
-		grid-template-columns: 1fr;
-		grid-template-rows: min-content min-content;
-	}
+  .bots-overview {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content min-content;
+  }
 </style>

@@ -35,13 +35,13 @@
 </script>
 
 <style lang="scss">
-	.info-cards {
-		display: grid;
-		grid-gap: 1em;
-		grid-template-columns: repeat(3, 1fr);
+  .info-cards {
+    display: grid;
+    grid-gap: 1em;
+    grid-template-columns: repeat(3, 1fr);
 
-		@media screen and (max-width: 600px) {
-			grid-template-columns: 1fr;
-		}
-	}
+    @media screen and (max-width: 600px) {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>

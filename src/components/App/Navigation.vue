@@ -71,32 +71,32 @@
 </script>
 
 <style lang="scss">
-	.side-navigation {
-		background: var(--color-navigation);
-		bottom: 0;
-		display: flex;
-		flex-direction: column;
-		left: 0;
-		overflow: hidden;
-		padding-top: var(--navigation-height);
-		position: fixed;
-		top: 0;
-		transition: ease-in-out width .3s;
-		width: var(--navigation-width);
-		z-index: 1001;
+  .side-navigation {
+    background: var(--color-navigation);
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    left: 0;
+    overflow: hidden;
+    padding-top: var(--navigation-height);
+    position: fixed;
+    top: 0;
+    transition: ease-in-out width .3s;
+    width: var(--navigation-width);
+    z-index: 1001;
 
-		.app--small-navigation & {
-			overflow: initial;
-		}
+    .app--small-navigation & {
+      overflow: initial;
+    }
 
-		.app--boxed-layout & {
-			@media screen and (min-width: 1250px) {
-				position: absolute;
-			}
-		}
-	}
+    .app--boxed-layout & {
+      @media screen and (min-width: 1250px) {
+        position: absolute;
+      }
+    }
+  }
 
-	.navigation-category--pull-bottom {
-		margin-top: auto;
-	}
+  .navigation-category--pull-bottom {
+    margin-top: auto;
+  }
 </style>

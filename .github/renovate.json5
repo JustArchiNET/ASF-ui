@@ -16,6 +16,10 @@
 			"matchManagers": [ "github-actions" ]
 		},
 		{
+			"matchPackageNames": ["@fortawesome/vue-fontawesome"],
+			"allowedVersions": "<3.0.0"
+		},
+		{
 			"matchPackageNames": ["vue"],
 			"allowedVersions": "<3.0.0"
 		},

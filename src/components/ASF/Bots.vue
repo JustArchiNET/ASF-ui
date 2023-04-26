@@ -68,51 +68,51 @@
 </script>
 
 <style lang="scss">
-	.bots {
-		display: grid;
-		grid-gap: 1em;
-		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-		min-height: 0;
-		margin-bottom: 1em;
+  .bots {
+    display: grid;
+    grid-gap: 1em;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    min-height: 0;
+    margin-bottom: 1em;
 
     @media screen and (max-width: 1366px) {
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     }
 
-		@media screen and (max-width: 400px) {
-			grid-template-columns: 1fr;
-		}
-	}
+    @media screen and (max-width: 400px) {
+      grid-template-columns: 1fr;
+    }
+  }
 
-	.bot-placeholder {
-		align-items: center;
-		background: var(--color-background-light);
-		border-radius: 0 0 4px 4px;
-		border-top: 3px solid var(--color-status);
-		cursor: pointer;
-		display: flex;
-		height: 2.25em;
-		justify-content: center;
-		padding: 0.5em;
-		transition: border .3s;
+  .bot-placeholder {
+    align-items: center;
+    background: var(--color-background-light);
+    border-radius: 0 0 4px 4px;
+    border-top: 3px solid var(--color-status);
+    cursor: pointer;
+    display: flex;
+    height: 2.25em;
+    justify-content: center;
+    padding: 0.5em;
+    transition: border .3s;
 
-		&--big {
-			font-size: 1.25rem;
-			height: auto;
-		}
-	}
+    &--big {
+      font-size: 1.25rem;
+      height: auto;
+    }
+  }
 
-	.bot-placeholder__button {
-		align-items: center;
-		display: flex;
-	}
+  .bot-placeholder__button {
+    align-items: center;
+    display: flex;
+  }
 
-	.bot-placeholder__name {
-		font-size: 0.8em;
-		font-weight: 600;
-	}
+  .bot-placeholder__name {
+    font-size: 0.8em;
+    font-weight: 600;
+  }
 
-	.bot-placeholder__icon {
-		margin-right: 0.5em;
-	}
+  .bot-placeholder__icon {
+    margin-right: 0.5em;
+  }
 </style>

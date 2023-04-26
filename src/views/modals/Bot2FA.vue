@@ -196,17 +196,17 @@
 </script>
 
 <style lang="scss">
-	.form-item__token {
-		display: grid;
-		grid-column-gap: 0.75em;
-		grid-template-columns: 1fr auto;
-		justify-content: center;
-		padding-bottom: 1em;
+  .form-item__token {
+    display: grid;
+    grid-column-gap: 0.75em;
+    grid-template-columns: 1fr auto;
+    justify-content: center;
+    padding-bottom: 1em;
 
-		:focus {
-			outline: none;
-		}
-	}
+    :focus {
+      outline: none;
+    }
+  }
 
   .form-item__delete {
     padding-top: 1em;
@@ -222,23 +222,23 @@
     }
   }
 
-	.form-item__input-token {
-		font-size: 2.4em;
-		font-weight: bold;
-		height: 2.3em;
-		letter-spacing: 0.3em;
-		text-align: center;
-		text-indent: 0.3em;
-		width: 6em;
+  .form-item__input-token {
+    font-size: 2.4em;
+    font-weight: bold;
+    height: 2.3em;
+    letter-spacing: 0.3em;
+    text-align: center;
+    text-indent: 0.3em;
+    width: 6em;
 
-		.app--dark-mode & {
-			border-color: var(--color-text-dark);
-		}
-	}
+    .app--dark-mode & {
+      border-color: var(--color-text-dark);
+    }
+  }
 
-	.button--helper {
-		max-width: 2em;
-	}
+  .button--helper {
+    max-width: 2em;
+  }
 
   a {
     color: var(--color-theme);

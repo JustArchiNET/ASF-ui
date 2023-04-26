@@ -59,49 +59,49 @@
 </script>
 
 <style lang="scss">
-	.bot-cards {
-		display: grid;
-		grid-gap: 0.5em;
-		grid-template-columns: 1fr 1fr;
-		padding: 0.5em;
+  .bot-cards {
+    display: grid;
+    grid-gap: 0.5em;
+    grid-template-columns: 1fr 1fr;
+    padding: 0.5em;
 
-		.app--small-navigation & {
-			grid-template-columns: 1fr;
+    .app--small-navigation & {
+      grid-template-columns: 1fr;
 
-			.bot-card__name {
-				display: none;
-			}
-		}
-	}
+      .bot-card__name {
+        display: none;
+      }
+    }
+  }
 
-	.bot-card {
-		align-items: center;
-		background: var(--color-status);
-		border: 1px solid var(--color-navigation);
-		border-radius: 2px;
-		color: var(--color-text);
-		cursor: pointer;
-		display: flex;
-		flex-direction: column;
-		min-width: 0;
-		overflow: hidden;
-		padding: 0.25em 0.1em;
-		text-shadow: 0 0 1px var(--color-text-dark);
-	}
+  .bot-card {
+    align-items: center;
+    background: var(--color-status);
+    border: 1px solid var(--color-navigation);
+    border-radius: 2px;
+    color: var(--color-text);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
+    padding: 0.25em 0.1em;
+    text-shadow: 0 0 1px var(--color-text-dark);
+  }
 
-	.bot-card__value {
-		font-size: 1.2em;
-		font-weight: 600;
-		word-break: break-all;
-	}
+  .bot-card__value {
+    font-size: 1.2em;
+    font-weight: 600;
+    word-break: break-all;
+  }
 
-	.bot-card__name {
-		font-size: 0.9em;
-		text-transform: capitalize;
-	}
+  .bot-card__name {
+    font-size: 0.9em;
+    text-transform: capitalize;
+  }
 
-	.bot-card--selected {
-		border: 1px solid #fff;
-		box-shadow: 0 0 0.5em #0dc10a;
-	}
+  .bot-card--selected {
+    border: 1px solid #fff;
+    box-shadow: 0 0 0.5em #0dc10a;
+  }
 </style>

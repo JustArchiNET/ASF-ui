@@ -121,74 +121,74 @@
 </script>
 
 <style lang="scss">
-	.bot-profile {
-		display: grid;
-		grid-column-gap: 0.5em;
-		grid-template-areas: 'avatar meta' 'avatar actions';
-		grid-template-columns: auto 1fr;
-		grid-template-rows: auto auto;
-	}
+  .bot-profile {
+    display: grid;
+    grid-column-gap: 0.5em;
+    grid-template-areas: 'avatar meta' 'avatar actions';
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+  }
 
-	.bot-profile__avatar-wrapper {
-		background: var(--color-status);
-		grid-area: avatar;
-		height: 75px;
-		padding: 2px;
-		width: 75px;
-	}
+  .bot-profile__avatar-wrapper {
+    background: var(--color-status);
+    grid-area: avatar;
+    height: 75px;
+    padding: 2px;
+    width: 75px;
+  }
 
-	.bot-profile__avatar {
-		height: 100%;
-		width: 100%;
-	}
+  .bot-profile__avatar {
+    height: 100%;
+    width: 100%;
+  }
 
-	.bot-profile__meta {
-		min-width: 0;
-	}
+  .bot-profile__meta {
+    min-width: 0;
+  }
 
-	.bot-profile__info {
-		display: flex;
-		align-items: center;
-	}
+  .bot-profile__info {
+    display: flex;
+    align-items: center;
+  }
 
-	.bot-profile__name {
-		margin: 0;
-	}
+  .bot-profile__name {
+    margin: 0;
+  }
 
-	.bot-profile__status {
-		font-style: italic;
-		margin: 0;
-	}
+  .bot-profile__status {
+    font-style: italic;
+    margin: 0;
+  }
 
-	.bot-profile__name,
-	.bot-profile__status {
-		display: inline-block;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-		width: 100%;
-	}
+  .bot-profile__name,
+  .bot-profile__status {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+  }
 
-	.bot-profile__buttons {
-		grid-area: buttons;
-	}
+  .bot-profile__buttons {
+    grid-area: buttons;
+  }
 
-	.bot-profile__actions {
-		align-items: center;
-		grid-area: actions;
-		display: flex;
-	}
+  .bot-profile__actions {
+    align-items: center;
+    grid-area: actions;
+    display: flex;
+  }
 
-	.bot-farming-info {
-		display: grid;
-		grid-gap: 0.7em;
-		grid-template-columns: repeat(3, 1fr);
-		margin: 1em 0 0;
-		width: 100%;
+  .bot-farming-info {
+    display: grid;
+    grid-gap: 0.7em;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 1em 0 0;
+    width: 100%;
 
-		@media screen and (max-width: 530px) {
-			grid-gap: 0.5em;
-			grid-template-columns: 1fr;
-		}
-	}
+    @media screen and (max-width: 530px) {
+      grid-gap: 0.5em;
+      grid-template-columns: 1fr;
+    }
+  }
 </style>

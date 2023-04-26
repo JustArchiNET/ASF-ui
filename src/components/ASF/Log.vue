@@ -110,7 +110,7 @@
             logger: null,
             text: message,
           };
-        };
+        }
 
         return {
           // older safari versions do not support YYYY-MM-DD, that's why we replace the dashes
