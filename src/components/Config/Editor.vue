@@ -119,8 +119,9 @@
         const defaultCheck = this.deleteDefaultValues && fieldSchema && typeof fieldSchema.defaultValue !== 'undefined' && this.isDefault(value, fieldSchema);
 
         if (defaultCheck) {
+          // eslint-disable-next-line vue/no-mutating-props
           delete this.model[field];
-        } else if (this.model[field] && this.model[field].constructor === Array && fieldSchema.type !== 'dictionary') {
+        } else if (this.model[field] && this.model[field].constructor === Array && !['dictionary', 'list'].includes(fieldSchema.type)) {
           // eslint-disable-next-line vue/no-mutating-props
           this.model[field] = value.sort((a, b) => a - b);
         } else if (this.model[field] && this.model[field].constructor === Object && fieldSchema.type !== 'dictionary') {
