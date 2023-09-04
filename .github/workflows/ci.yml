@@ -17,6 +17,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4.0.0
+      with:
+        show-progress: false
 
     - name: Setup Node.js with npm
       uses: actions/setup-node@v3.8.1
