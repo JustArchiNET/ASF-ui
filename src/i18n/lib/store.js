@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import flatten from 'flat';
+import { flatten } from 'flat';
 
 export default {
   namespaced: true,
