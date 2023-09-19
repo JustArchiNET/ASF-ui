@@ -46,7 +46,7 @@
     "@fortawesome/vue-fontawesome": "2.0.10",
     "axios": "1.5.0",
     "copy-to-clipboard": "3.3.3",
-    "flat": "6.0.0",
+    "flat": "6.0.1",
     "html-webpack-plugin": "5.5.3",
     "humanize-duration": "3.30.0",
     "linkify-html": "4.1.1",
