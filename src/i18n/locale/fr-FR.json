@@ -224,7 +224,7 @@
   "terminal-command-sa": "Alias pour \"statut d'ASF\"",
   "terminal-commands": "Affiche les commandes disponibles.",
   "terminal-help": "Affiche l'aide.",
-  "terminal-help-text": "Utilisation: help <Command>, pour une liste des commandes disponibles : commandes",
+  "terminal-help-text": "Utilisation: help <Command>, pour une liste des commandes disponibles : commands",
   "terminal-no-help": "Il n'y a pas encore d'aide pour la commande {command} !",
   "timestamps": "Date et heure",
   "timestamps-description": "Afficher la date et l'heure dans le terminal.",
