@@ -17,6 +17,7 @@
             @keydown.up="historyPrevious"
             @keydown.down="historyNext"
             @keydown.ctrl.65.prevent="jumpToStart"
+            @keydown.ctrl.67.prevent="clearCommand"
             @keydown.ctrl.75.prevent="removeAfterCursor"
             @keydown.ctrl.76.prevent="clearTerminal"
           >
@@ -334,7 +335,7 @@
           this.command = this.commandHistory.get(this.commandHistoryIndex);
         } else if (this.commandHistoryIndex === 0) {
           this.commandHistoryIndex = -1;
-          this.command = '';
+          this.clearCommand();
         }
       },
       clearTerminal() {
@@ -342,6 +343,9 @@
       },
       jumpToStart() {
         this.$refs['terminal-input'].setSelectionRange(0, 0);
+      },
+      clearCommand() {
+        this.command = "";
       },
       removeAfterCursor() {
         const pos = this.$refs['terminal-input'].selectionStart;
