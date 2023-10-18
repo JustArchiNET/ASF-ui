@@ -31,7 +31,7 @@
     "sass-loader": "13.3.2",
     "url-loader": "4.1.1",
     "vue-eslint-parser": "8.3.0",
-    "vue-loader": "15.10.2",
+    "vue-loader": "15.11.1",
     "vue-template-compiler": "2.7.14",
     "webpack": "5.89.0",
     "webpack-bundle-analyzer": "4.9.1",
