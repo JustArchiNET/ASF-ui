@@ -57,7 +57,7 @@
     "v-tooltip": "2.1.3",
     "vue": "2.7.15",
     "vue-meta": "2.4.0",
-    "vue-multiselect": "2.1.7",
+    "vue-multiselect": "2.1.8",
     "vue-router": "3.6.5",
     "vue-snotify": "3.2.1",
     "vuex": "3.6.2"
