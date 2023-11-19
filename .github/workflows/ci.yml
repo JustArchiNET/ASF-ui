@@ -5,6 +5,8 @@ on: [push, pull_request]
 env:
   NODE_JS_VERSION: 'lts/*'
 
+permissions: {}
+
 jobs:
   build:
     strategy:
