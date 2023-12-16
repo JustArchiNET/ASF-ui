@@ -27,6 +27,7 @@
   import { mapGetters } from 'vuex';
   import humanizeDuration from 'humanize-duration';
   import linkifyHtml from 'linkify-html';
+  import { checkText } from 'smile2emoji';
   import getLocaleForHD from '../../utils/getLocaleForHD';
   import * as storage from '../../utils/storage';
   import compareVersion from '../../utils/compareVersion';
@@ -114,12 +115,19 @@
           releases.forEach(r => {
             const cl = r.changelog;
             if (!cl || !cl.startsWith('<p>Changes since')) isReadable = false;
+
+            // replace emoji short codes with real emojis
+            r.changelog = cl.replace(/<li>:\w+:/g, match => `<li>${checkText(match.substring(4))}`);
           });
 
           if (version === this.version && timestamp > currentTimestamp && isReadable) return releases;
         }
 
         const releases = await this.fetchReleases();
+        releases.forEach(r => {
+          // replace emoji short codes with real emojis
+          r.changelog = r.changelog.replace(/<li>:\w+:/g, match => `<li>${checkText(match.substring(4))}`);
+        });
         storage.set('cache:releases', { timestamp: Date.now(), releases, version: this.version });
         return releases;
       },
