@@ -5,6 +5,8 @@ on: [push, pull_request]
 env:
   NODE_JS_VERSION: 'lts/*'
 
+permissions: {}
+
 jobs:
   build:
     strategy:
@@ -16,10 +18,12 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3.5.2
+      uses: actions/checkout@v4.1.1
+      with:
+        show-progress: false
 
     - name: Setup Node.js with npm
-      uses: actions/setup-node@v3.6.0
+      uses: actions/setup-node@v4.0.0
       with:
         check-latest: true
         node-version: ${{ env.NODE_JS_VERSION }}
@@ -41,7 +45,7 @@ jobs:
 
     - name: Upload latest strings for translation on Crowdin
       if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && startsWith(matrix.os, 'ubuntu-') }}
-      uses: crowdin/github-action@v1.8.0
+      uses: crowdin/github-action@v1.15.2
       with:
         crowdin_branch_name: main
         config: '.github/crowdin.yml'
@@ -49,7 +53,7 @@ jobs:
         token: ${{ secrets.ASF_CROWDIN_API_TOKEN }}
 
     - name: Upload ASF-ui
-      uses: actions/upload-artifact@v3.1.2
+      uses: actions/upload-artifact@v4.0.0
       with:
         name: ${{ matrix.os }}_ASF-ui
         path: dist

@@ -2,5 +2,17 @@
   "2fa-accept": "قبول همه تاییدیه ها",
   "2fa-accept-not-found": "هیچ تاییدیه ای برای قبول وجود ندارد!",
   "2fa-delete-success": "تایید دو مرحله ای ASF برای {bot} حذف شد!",
+  "access": "دسترسی",
+  "add": "افزودن",
+  "advanced": "پیشرفته",
+  "basic": "پایه",
+  "bot-status-farming": "فارم کردن",
+  "connection": "اتصالات",
+  "customization": "شخصی سازی",
+  "farming": "فارم کردن",
+  "performance": "کارایی",
+  "remote-access": "دسترسی از راه دور",
+  "security": "امنیت",
+  "updates": "به‌روزرسانی‌ها",
   "wiki": "ویکی پدیا"
 }
