@@ -1,7 +1,7 @@
 import { cloneDeep, get, isObject } from 'lodash-es';
 
 function isRef(node) {
-  return node.$ref;
+  return node?.$ref;
 }
 
 function resolveRef(path, schema) {
