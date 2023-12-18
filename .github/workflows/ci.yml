@@ -23,7 +23,7 @@ jobs:
         show-progress: false
 
     - name: Setup Node.js with npm
-      uses: actions/setup-node@v4.0.0
+      uses: actions/setup-node@v4.0.1
       with:
         check-latest: true
         node-version: ${{ env.NODE_JS_VERSION }}
