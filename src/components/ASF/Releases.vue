@@ -27,7 +27,7 @@
   import { mapGetters } from 'vuex';
   import humanizeDuration from 'humanize-duration';
   import linkifyHtml from 'linkify-html';
-  import { checkText } from 'smile2emoji';
+  import uEmojiParser from 'universal-emoji-parser';
   import getLocaleForHD from '../../utils/getLocaleForHD';
   import * as storage from '../../utils/storage';
   import compareVersion from '../../utils/compareVersion';
@@ -42,6 +42,10 @@
         releases: [],
         releaseCount: 5,
         updating: false,
+        emojiSettings: {
+          parseToHtml: false,
+          parseToUnicode: true,
+        },
       };
     },
     computed: {
@@ -117,7 +121,7 @@
             if (!cl || !cl.startsWith('<p>Changes since')) isReadable = false;
 
             // replace emoji short codes with real emojis
-            r.changelog = cl.replace(/<li>:\w+:/g, match => `<li>${checkText(match.substring(4))}`);
+            r.changelog = cl.replace(/<li>:\w+:/g, match => `<li>${uEmojiParser.parse(match.substring(4), this.emojiSettings)}`);
           });
 
           if (version === this.version && timestamp > currentTimestamp && isReadable) return releases;
@@ -126,7 +130,7 @@
         const releases = await this.fetchReleases();
         releases.forEach(r => {
           // replace emoji short codes with real emojis
-          r.changelog = r.changelog.replace(/<li>:\w+:/g, match => `<li>${checkText(match.substring(4))}`);
+          r.changelog = r.changelog.replace(/<li>:\w+:/g, match => `<li>${uEmojiParser.parse(match.substring(4), this.emojiSettings)}`);
         });
         storage.set('cache:releases', { timestamp: Date.now(), releases, version: this.version });
         return releases;
