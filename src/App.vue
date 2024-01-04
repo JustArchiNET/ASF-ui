@@ -140,13 +140,13 @@
     margin: 0;
   }
 
-  @media screen and (max-height: 725px), screen and (max-width: 1366px) {
+  @media screen and (max-height: 835px), screen and (max-width: 1366px) {
     html {
       font-size: 14px;
     }
   }
 
-  @media screen and (max-height: 640px), screen and (max-width: 1000px) {
+  @media screen and (max-height: 720px), screen and (max-width: 1000px) {
     html {
       font-size: 12px;
     }

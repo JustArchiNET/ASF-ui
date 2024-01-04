@@ -216,6 +216,11 @@ export default [
     component: () => import('../views/ASFConfig.vue'),
   },
   {
+    path: '/asf-bans',
+    name: 'asf-bans',
+    component: () => import('../views/ASFBans.vue'),
+  },
+  {
     path: '/asf-config/:label/hash',
     name: 'password-hash',
     components: {
