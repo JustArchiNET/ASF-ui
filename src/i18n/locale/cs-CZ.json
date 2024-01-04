@@ -51,7 +51,7 @@
   "bot-new-copy": "Konfigurace založená na botu: {name}",
   "bot-nicknames": "Přezdívky",
   "bot-nicknames-description": "Zobrazit přezdívky Steam (pokud jsou k dispozici) místo názvů botů.",
-  "bot-order-disabled": "Seřadit dle posldních zakázaných botů",
+  "bot-order-disabled": "Seřadit dle posledních zakázaných botů",
   "bot-order-disabled-description": "Toto seřadí seznam, zakázané boti se zobrazí jako poslední na stránce botů v hromadném editoru.",
   "bot-order-numeric": "Seřadit boty číselně",
   "bot-order-numeric-description": "Toto uspořádá boty číselně místo abecedně na stránce robotů a v hromadném editoru.",
