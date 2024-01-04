@@ -15,7 +15,7 @@
 
     <div class="mass-editor__content">
       <div class="mass-editor__content-controls">
-        <button class="button mt pull-right" @click="$emit('toggle')">
+        <button class="button button--small mb pull-right" @click="$emit('toggle')">
           <span>{{ toggleBotsText }}</span>
         </button>
       </div>
@@ -71,7 +71,7 @@
     display: flex;
   }
 
-  .mt {
+  .mb {
       margin-bottom: 1em;
     }
 </style>
