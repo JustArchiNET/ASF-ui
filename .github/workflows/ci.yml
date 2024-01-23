@@ -53,7 +53,7 @@ jobs:
         token: ${{ secrets.ASF_CROWDIN_API_TOKEN }}
 
     - name: Upload ASF-ui
-      uses: actions/upload-artifact@v4.2.0
+      uses: actions/upload-artifact@v4.3.0
       with:
         name: ${{ matrix.os }}_ASF-ui
         path: dist
