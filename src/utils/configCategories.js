@@ -9,15 +9,15 @@ const asfCategories = [
   { name: Vue.i18n.translate('farming'), fields: ['FarmingDelay', 'IdleFarmingPeriod', 'MaxFarmingTime', 'MinFarmingDelayAfterBlock'] },
   { name: Vue.i18n.translate('performance'), fields: ['OptimizationMode', 'ConfirmationsLimiterDelay', 'GiftsLimiterDelay', 'InventoryLimiterDelay', 'LoginLimiterDelay', 'WebLimiterDelay'] },
   { name: Vue.i18n.translate('updates'), fields: ['UpdateChannel', 'UpdatePeriod'] },
-  { name: Vue.i18n.translate('advanced'), fields: ['Debug'] },
+  { name: Vue.i18n.translate('advanced'), fields: ['Debug', 'DefaultBot'] },
 ];
 
 const botCategories = [
-  { name: Vue.i18n.translate('basic'), fields: ['Name', 'SteamLogin', 'SteamPassword', 'Enabled', 'Paused', 'OnlineStatus', 'BotBehaviour'] },
+  { name: Vue.i18n.translate('basic'), fields: ['Name', 'SteamLogin', 'SteamPassword', 'Enabled', 'OnlineStatus', 'BotBehaviour'] },
   { name: Vue.i18n.translate('security'), fields: ['PasswordFormat', 'UseLoginKeys'] },
   { name: Vue.i18n.translate('access'), fields: ['SteamUserPermissions', 'SteamParentalCode'] },
-  { name: Vue.i18n.translate('trade'), fields: ['SteamTradeToken', 'AcceptGifts', 'TradeCheckPeriod', 'SendTradePeriod', 'SendOnFarmingFinished', 'CompleteTypesToSend', 'TradingPreferences', 'LootableTypes', 'TransferableTypes', 'MatchableTypes'] },
-  { name: Vue.i18n.translate('farming'), fields: ['FarmingOrders', 'AutoSteamSaleEvent', 'FarmPriorityQueueOnly', 'SkipRefundableGames', 'FarmOffline', 'ShutdownOnFarmingFinished'] },
+  { name: Vue.i18n.translate('trade'), fields: ['SteamTradeToken', 'AcceptGifts', 'TradeCheckPeriod', 'SendTradePeriod', 'CompleteTypesToSend', 'TradingPreferences', 'LootableTypes', 'TransferableTypes', 'MatchableTypes'] },
+  { name: Vue.i18n.translate('farming'), fields: ['FarmingPreferences', 'FarmingOrders'] },
   { name: Vue.i18n.translate('customization'), fields: ['RemoteCommunication', 'SteamMasterClanID', 'UserInterfaceMode', 'OnlineFlags', 'RedeemingPreferences', 'GamesPlayedWhileIdle', 'CustomGamePlayedWhileFarming', 'CustomGamePlayedWhileIdle'] },
   { name: Vue.i18n.translate('performance'), fields: ['HoursUntilCardDrops'] },
 ];
