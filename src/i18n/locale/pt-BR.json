@@ -20,7 +20,7 @@
   "all": "Todos",
   "asf-config": "Configuração do ASF",
   "asf-bans": "Banimentos IP",
-  "asf-bans-deleted": "IP ban removido: {ip}",
+  "asf-bans-deleted": "Endereço IP banido removido: {ip}",
   "asf-bans-deleted-all": "Todos os endereços IP banidos foram removidos",
   "asf-bans-empty": "Nenhum IP banido para mostrar",
   "asf-bans-refresh": "Atualizar",
