@@ -193,7 +193,7 @@
   "notification-position-right-top": "Arriba a la derecha",
   "notify-release": "Notificación de nueva versión",
   "notify-release-description": "Notificarme cuando una nueva versión esté disponible (dependiendo de la propiedad de configuración <code>UpdateChannel</code> en la configuración de ASF).",
-  "other": "Otro",
+  "other": "Otros",
   "password": "Contraseña",
   "password-invalid": "¡Contraseña inválida!",
   "performance": "Rendimiento",
