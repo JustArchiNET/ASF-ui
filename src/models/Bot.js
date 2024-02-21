@@ -18,6 +18,7 @@ export class Bot {
     this.avatarHash = data.AvatarHash;
     this.bgrCount = data.GamesToRedeemInBackgroundCount;
     this.walletBalance = data.WalletBalance;
+    this.walletBalanceDelayed = data.WalletBalanceDelayed;
     this.walletCurrency = data.WalletCurrency;
     this.has2FA = data.HasMobileAuthenticator;
     this.requiredInput = data.RequiredInput;
@@ -96,15 +97,18 @@ export class Bot {
 
   get walletInfo() {
     if (this.walletCurrency === 0) return null;
-    const currency = this.walletBalance / 100;
-    const currencyCode = getCurrencyCode(this.walletCurrency);
-    if (typeof currencyCode === 'undefined') return null;
+    const balance = this.walletBalance / 100;
+    const balanceDelayed = this.walletBalanceDelayed / 100;
+    const currency = getCurrencyCode(this.walletCurrency);
+    if (typeof currency === 'undefined') return null;
     const options = {
       style: 'currency',
-      currency: currencyCode,
+      currency,
       maximumFractionDigits: 2,
     };
-    return currency.toLocaleString(Vue.i18n.locale, options);
+    const formattedBalance = balance.toLocaleString(Vue.i18n.locale, options);
+    const formattedBalanceDelayed = balanceDelayed.toLocaleString(Vue.i18n.locale, options)
+    return `${formattedBalance} (${formattedBalanceDelayed})`;
   }
 
   get viewableName() {

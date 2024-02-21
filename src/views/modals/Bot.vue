@@ -151,6 +151,11 @@
     align-items: center;
   }
 
+  .bot-profile__wallet {
+    text-align: right;
+    white-space: nowrap;
+  }
+
   .bot-profile__name {
     margin: 0;
   }
