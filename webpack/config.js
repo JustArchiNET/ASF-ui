@@ -14,15 +14,13 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     open: true,
-    proxy: {
-      '/api': {
+    proxy: [
+      {
+        context: ['/api', '/swagger'],
         target: 'http://localhost:1242',
         ws: true,
       },
-      '/swagger': {
-        target: 'http://localhost:1242',
-      },
-    },
+    ],
     static: {
       directory: './src/static',
     },
