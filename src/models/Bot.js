@@ -97,18 +97,28 @@ export class Bot {
 
   get walletInfo() {
     if (this.walletCurrency === 0) return null;
+
     const balance = this.walletBalance / 100;
-    const balanceDelayed = this.walletBalanceDelayed / 100;
     const currency = getCurrencyCode(this.walletCurrency);
+
     if (typeof currency === 'undefined') return null;
+
     const options = {
       style: 'currency',
       currency,
       maximumFractionDigits: 2,
     };
+
     const formattedBalance = balance.toLocaleString(Vue.i18n.locale, options);
-    const formattedBalanceDelayed = balanceDelayed.toLocaleString(Vue.i18n.locale, options)
-    return `${formattedBalance} (${formattedBalanceDelayed})`;
+
+    if (this.walletBalanceDelayed !== 0) {
+      const balanceDelayed = this.walletBalanceDelayed / 100;
+      const formattedBalanceDelayed = balanceDelayed.toLocaleString(Vue.i18n.locale, options);
+
+      return `${formattedBalance} (${formattedBalanceDelayed})`;
+    }
+
+    return formattedBalance;
   }
 
   get viewableName() {
