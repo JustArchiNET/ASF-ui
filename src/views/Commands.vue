@@ -355,7 +355,7 @@
       },
       parseCommandsHTML(commandsWikiRaw) {
         const virtualDOM = createVirtualDOM(commandsWikiRaw);
-        const commandsTableHTML = virtualDOM.querySelector('h2 > a').parentElement.nextElementSibling;
+        const commandsTableHTML = virtualDOM.querySelector('.markdown-heading > h2').parentElement.nextElementSibling;
 
         return Array.from(commandsTableHTML.querySelectorAll('tbody tr'))
           .map(tableRow => tableRow.textContent.trim().split('\n'))
