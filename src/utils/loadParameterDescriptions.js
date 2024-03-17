@@ -11,16 +11,14 @@ export default async function loadParameterDescriptions(version, locale) {
   }
 
   const descriptions = {};
-
   const configWiki = await fetchWiki('Configuration', version, locale);
   const virtualDOM = createVirtualDOM(configWiki);
   const parametersHTML = Array.from(virtualDOM.querySelectorAll('h3 > code'));
 
   parametersHTML.forEach(parameterHTML => {
     const parameterName = parameterHTML.innerText;
-
     const parameterDescription = [];
-    let description = parameterHTML.parentElement.nextElementSibling;
+    let description = parameterHTML.parentElement.parentElement.nextElementSibling;
 
     while (description && description.tagName.toLowerCase() !== 'hr') {
       const wikiLinks = description.querySelectorAll('a[href^="#"]');
