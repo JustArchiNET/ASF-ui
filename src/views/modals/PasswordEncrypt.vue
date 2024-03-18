@@ -21,7 +21,7 @@
             <input id="password" v-model="password" class="form-item__input" type="password" autocomplete="new-password" @keydown.enter="savePassword">
           </div>
           <div class="form-item__buttons form-item__buttons--column">
-            <button v-tooltip="$t('input-switch-visibility')" class="button button--helper" @click="switchInputType">
+            <button v-tooltip="tooltip" class="button button--helper" @click="switchInputType">
               <FontAwesomeIcon v-if="inputHidden" icon="eye" size="lg"></FontAwesomeIcon>
               <FontAwesomeIcon v-else icon="eye-slash" size="lg"></FontAwesomeIcon>
             </button>
@@ -77,6 +77,9 @@
       },
       bot() {
         return this.$store.getters['bots/bot'](this.$route.params.bot);
+      },
+      tooltip() {
+        return this.inputHidden ? this.$t('input-switch-show') : this.$t('input-switch-hide');
       },
     },
     async created() {
