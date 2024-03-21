@@ -130,6 +130,8 @@
   "input-no-code-twofactorauthentication": "U HAS 2 ENTR 2FA CODE",
   "input-select-enum-value": "SELECT OPSHUN",
   "input-submit": "SUBMIT",
+  "input-switch-show": "SHOW PASWORD",
+  "input-switch-hide": "HIDE PASWORD",
   "input-unknown-type": "UNKNOWN FIELD TYPE",
   "keep-unchanged": "<KEEP UNCHANGD>",
   "keys-copied": "COPID KEYS 2 CLIPBORD!",
