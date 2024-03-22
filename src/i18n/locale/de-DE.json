@@ -130,6 +130,8 @@
   "input-no-code-twofactorauthentication": "Sie müssen einen 2FA-Code eingeben",
   "input-select-enum-value": "Option auswählen",
   "input-submit": "Übermitteln",
+  "input-switch-show": "Passwort anzeigen",
+  "input-switch-hide": "Passwort verbergen",
   "input-unknown-type": "Unbekannter Feldtyp",
   "keep-unchanged": "<unverändert lassen>",
   "keys-copied": "Produktschlüssel in die Zwischenablage kopiert!",
