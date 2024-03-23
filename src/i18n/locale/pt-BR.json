@@ -130,6 +130,8 @@
   "input-no-code-twofactorauthentication": "Você precisa inserir um código 2FA",
   "input-select-enum-value": "Selecione uma opção",
   "input-submit": "Enviar",
+  "input-switch-show": "Mostrar senha",
+  "input-switch-hide": "Ocultar senha",
   "input-unknown-type": "Tipo de campo desconhecido",
   "keep-unchanged": "<não modificar>",
   "keys-copied": "Códigos copiados para a área de transferência!",
