@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { dereference } from './dereference';
 
-const endpoint = `${window.__BASE_PATH__ ?? "/"}swagger/ASF/swagger.json`;
+const endpoint = `${window.__BASE_PATH__ ?? '/'}swagger/ASF/swagger.json`;
 let schema;
 
 async function getSchema() {
