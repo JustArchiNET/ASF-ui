@@ -130,6 +130,8 @@
   "input-no-code-twofactorauthentication": "Вы должны ввести код 2ФА",
   "input-select-enum-value": "Выбрать опцию",
   "input-submit": "Отправить",
+  "input-switch-show": "Показать пароль",
+  "input-switch-hide": "Скрыть пароль",
   "input-unknown-type": "Неизвестный тип поля",
   "keep-unchanged": "<оставить без изменений>",
   "keys-copied": "Ключи скопированы в буфер обмена!",
