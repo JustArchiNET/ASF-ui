@@ -130,6 +130,8 @@
   "input-no-code-twofactorauthentication": "Vous devez renseigner un code 2FA",
   "input-select-enum-value": "Sélectionner une option",
   "input-submit": "Valider",
+  "input-switch-show": "Afficher le mot de passe",
+  "input-switch-hide": "Masquer le mot de passe",
   "input-unknown-type": "Type de champ inconnu",
   "keep-unchanged": "<keep unchanged>",
   "keys-copied": "Clés copiées dans le presse-papier !",
