@@ -106,6 +106,7 @@
 
           const extendedFields = {
             IPCPassword: { placeholder: this.$t('keep-unchanged') },
+            LicenseID: { sensitive: true },
           };
 
           this.fields = Object.keys(fields).map(key => {

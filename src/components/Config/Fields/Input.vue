@@ -54,6 +54,9 @@
       errorText() {
         return this.errors.map(error => `Value is ${error}!`).join(' ');
       },
+      sensitive() {
+        return !!this.schema.sensitive;
+      },
     },
     watch: {
       value: {
