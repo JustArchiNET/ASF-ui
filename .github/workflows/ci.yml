@@ -43,15 +43,6 @@ jobs:
     - name: Test ASF-ui dev environment
       run: npm run-script serve:ci --no-progress
 
-    - name: Upload latest strings for translation on Crowdin
-      if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && startsWith(matrix.os, 'ubuntu-') }}
-      uses: crowdin/github-action@v1.20.4
-      with:
-        crowdin_branch_name: main
-        config: '.github/crowdin.yml'
-        project_id: ${{ secrets.ASF_CROWDIN_PROJECT_ID }}
-        token: ${{ secrets.ASF_CROWDIN_API_TOKEN }}
-
     - name: Upload ASF-ui
       uses: actions/upload-artifact@v4.3.3
       with:
