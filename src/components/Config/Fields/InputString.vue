@@ -3,7 +3,7 @@
     <input-label :label="label" :hasDescription="hasDescription"></input-label>
 
     <div class="form-item__value">
-      <input :id="field" v-model="value" class="form-item__input" type="text" :name="field" :placeholder="placeholder" @blur="onBlur" @keypress="onKeyPress">
+      <input :id="field" v-model="value" class="form-item__input" :type="fieldType" :name="field" :placeholder="placeholder" @focus="onFocus" @blur="onBlur" @keypress="onKeyPress">
       <span v-if="hasErrors" class="form-item__error">{{ errorText }}</span>
     </div>
 
@@ -17,11 +17,31 @@
   export default {
     name: 'InputString',
     mixins: [Input],
+    data() {
+      return {
+        active: false,
+      };
+    },
+    computed: {
+      fieldType() {
+        if (this.sensitive && !this.active) {
+          return 'password';
+        }
+
+        return 'text';
+      },
+    },
     methods: {
+      onFocus() {
+        this.active = true;
+      },
       onBlur() {
+        this.active = false;
         if (this.value === '') this.value = this.defaultValue;
       },
       onKeyPress($event) {
+        this.active = true;
+
         if (this.schema.type !== 'uint64') return true;
 
         const charCode = ($event.which) ? $event.which : $event.keyCode;
