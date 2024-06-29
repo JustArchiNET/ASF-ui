@@ -54,7 +54,7 @@
     "lodash-es": "4.17.21",
     "plurals-cldr": "2.0.1",
     "svg-country-flags": "1.2.10",
-    "universal-emoji-parser": "^1.0.124",
+    "universal-emoji-parser": "^2.0.0",
     "v-tooltip": "2.1.3",
     "vue": "2.7.16",
     "vue-meta": "2.4.0",
