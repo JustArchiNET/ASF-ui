@@ -44,7 +44,7 @@ jobs:
       run: npm run-script serve:ci --no-progress
 
     - name: Upload ASF-ui
-      uses: actions/upload-artifact@v4.3.4
+      uses: actions/upload-artifact@v4.3.5
       with:
         if-no-files-found: error
         name: ${{ matrix.os }}_ASF-ui
