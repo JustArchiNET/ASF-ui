@@ -6,6 +6,7 @@ module.exports = function generateFlags() {
   const countries = files
     .filter(fileName => fileName.endsWith('.json'))
     .filter(fileName => fileName !== 'lol-US.json') // Ignore LOLCAT file since 'svg-country-flags' does not support it
+    .filter(fileName => fileName !== 'ca-ES.json') // Ignore Catalan file since 'svg-country-flags' does not support it
     .map(fileName => ((fileName === 'default.json') ? 'en-US' : fileName.replace('.json', '')))
     .map(locale => ((locale === 'sr-CS') ? 'rs' : locale.split('-')[1].toLowerCase()));
 
