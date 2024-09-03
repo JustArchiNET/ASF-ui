@@ -36,7 +36,7 @@
     "webpack": "5.94.0",
     "webpack-bundle-analyzer": "4.10.2",
     "webpack-cli": "5.1.4",
-    "webpack-dev-server": "5.0.4",
+    "webpack-dev-server": "5.1.0",
     "webpack-subresource-integrity": "5.1.0"
   },
   "dependencies": {
