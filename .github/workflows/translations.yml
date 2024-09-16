@@ -39,7 +39,7 @@ jobs:
         git_user_signingkey: true
         git_commit_gpgsign: true
 
-    - name: Commit the changes
+    - name: Commit and push the changes
       shell: sh
       run: |
         set -eu
@@ -48,10 +48,6 @@ jobs:
 
         if ! git diff --cached --quiet; then
             git commit -m "Automatic translations update"
-        fi
 
-    - name: Push changes
-      uses: ad-m/github-push-action@v0.8.0
-      with:
-        github_token: ${{ secrets.ARCHIBOT_ASF_UI_GITHUB_TOKEN }}
-        branch: ${{ github.ref }}
+            git push
+        fi
