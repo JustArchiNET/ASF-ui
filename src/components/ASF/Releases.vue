@@ -76,7 +76,7 @@
         return this.$t('released-ago', { time });
       },
       isLatestForUpdateChannel(i) {
-        if (this.updateChannel === UPDATECHANNEL.EXPERIMENTAL && i === 0) return true;
+        if (this.updateChannel === UPDATECHANNEL.PRERELEASE && i === 0) return true;
         if (this.updateChannel === UPDATECHANNEL.STABLE && i === 1) return true;
         return false;
       },

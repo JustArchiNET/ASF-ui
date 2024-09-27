@@ -21,7 +21,7 @@ const humanizer = humanizeDuration.humanizer({
 export const UPDATECHANNEL = {
   NONE: 0,
   STABLE: 1,
-  EXPERIMENTAL: 2,
+  PRERELEASE: 2,
 };
 
 export const state = {
