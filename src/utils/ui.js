@@ -13,7 +13,7 @@ export async function isReleaseAvailable() {
     return (latestCachedVersion > asf.version);
   }
 
-  const endpoint = (asf.updateChannel === UPDATECHANNEL.EXPERIMENTAL) ? 'www/github/release' : 'www/github/release/latest';
+  const endpoint = (asf.updateChannel === UPDATECHANNEL.PRERELEASE) ? 'www/github/release' : 'www/github/release/latest';
   const release = await http.get(endpoint);
 
   set('latest-release', release.Version);
