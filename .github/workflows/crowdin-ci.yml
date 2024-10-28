@@ -19,7 +19,7 @@ jobs:
         show-progress: false
 
     - name: Upload latest strings for translation on Crowdin
-      uses: crowdin/github-action@v2.2.0
+      uses: crowdin/github-action@v2.3.0
       with:
         crowdin_branch_name: main
         config: '.github/crowdin.yml'
