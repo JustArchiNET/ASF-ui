@@ -19,6 +19,7 @@
             @keydown.ctrl.65.prevent="jumpToStart"
             @keydown.ctrl.75.prevent="removeAfterCursor"
             @keydown.ctrl.76.prevent="clearTerminal"
+            @keydown.ctrl.85.prevent="deleteBeforeCursorAndJumpToStart"
           >
           <input v-model="autocompleteSuggestion" type="text" spellcheck="false" class="terminal__input terminal__input--autocomplete">
         </div>
@@ -341,17 +342,28 @@
         this.log = [];
       },
       jumpToStart() {
-        this.$refs['terminal-input'].setSelectionRange(0, 0);
+        const el = this.$refs['terminal-input'];
+
+        if (el.setSelectionRange) setTimeout(() => el.setSelectionRange(0, 0), 0);
       },
       removeAfterCursor() {
         const pos = this.$refs['terminal-input'].selectionStart;
         this.command = this.command.substr(0, pos);
+      },
+      removeBeforeCursor() {
+        const pos = this.$refs['terminal-input'].selectionStart;
+        const inputLength = this.$refs['terminal-input'].value.length;
+        this.command = this.command.substr(pos, inputLength);
       },
       moveCursorToEnd() {
         const el = this.$refs['terminal-input'];
         const len = this.command.length;
 
         if (el.setSelectionRange) setTimeout(() => el.setSelectionRange(len, len), 0);
+      },
+      deleteBeforeCursorAndJumpToStart() {
+        this.removeBeforeCursor();
+        this.jumpToStart();
       },
       parseCommandsHTML(commandsWikiRaw) {
         const virtualDOM = createVirtualDOM(commandsWikiRaw);
