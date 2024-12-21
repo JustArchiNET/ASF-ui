@@ -102,8 +102,13 @@
           // if we got routed to bot-config with params, we propably
           // came from PasswordEncrypt.vue and want to set password data from params
           if (Object.keys(this.$route.params).length !== 0) {
-            this.model.SteamPassword = this.$route.params?.steamPassword;
-            this.model.PasswordFormat = this.$route.params?.passwordFormat;
+            // only set the values if they exist in the params
+            if (typeof this.$route.params.steamPassword !== 'undefined') {
+              this.model.SteamPassword = this.$route.params.steamPassword;
+            }
+            if (typeof this.$route.params.passwordFormat !== 'undefined') {
+              this.model.PasswordFormat = this.$route.params.passwordFormat;
+            }
           }
 
           const extendedFields = {
