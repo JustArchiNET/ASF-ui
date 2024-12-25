@@ -191,12 +191,15 @@
           case '[bots]':
           case '<targetbot>':
             // eslint-disable-next-line no-case-declarations
-            const suggestedBot = [...this.$store.getters['bots/bots'].map(bot => bot.name), 'ASF']
+            const botGroups = ['ASF', '@ALL', '@FARMING', '@IDLE', '@OFFLINE', '@ONLINE'];
+
+            // eslint-disable-next-line no-case-declarations
+            const suggestedBot = [...this.$store.getters['bots/bots'].map(bot => bot.name), ...botGroups]
               .find(name => name.startsWith(this.currentParameterValue));
 
             if (suggestedBot) return suggestedBot;
 
-            return [...this.$store.getters['bots/bots'].map(bot => bot.name), 'ASF']
+            return [...this.$store.getters['bots/bots'].map(bot => bot.name), ...botGroups]
               .find(name => name.toLowerCase().startsWith(this.currentParameterValue.toLowerCase()));
           case '<command>':
             return this.allCommandsNames.find(name => name.startsWith(this.currentParameterValue));
