@@ -9,6 +9,7 @@ const asfCategories = [
   { name: Vue.i18n.translate('farming'), fields: ['FarmingDelay', 'IdleFarmingPeriod', 'MaxFarmingTime', 'MinFarmingDelayAfterBlock'] },
   { name: Vue.i18n.translate('performance'), fields: ['OptimizationMode', 'ConfirmationsLimiterDelay', 'GiftsLimiterDelay', 'InventoryLimiterDelay', 'LoginLimiterDelay', 'WebLimiterDelay'] },
   { name: Vue.i18n.translate('updates'), fields: ['UpdateChannel', 'UpdatePeriod'] },
+  { name: Vue.i18n.translate('plugins'), fields: ['PluginsUpdateMode', 'PluginsUpdateList'] },
   { name: Vue.i18n.translate('advanced'), fields: ['Debug', 'DefaultBot'] },
 ];
 
