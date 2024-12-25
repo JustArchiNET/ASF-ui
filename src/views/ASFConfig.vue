@@ -100,12 +100,18 @@
           // if we got routed to asf-config with params, we propably
           // came from PasswordHash.vue and want to set ipc data from params
           if (Object.keys(this.$route.params).length !== 0) {
-            this.model.IPCPassword = this.$route.params?.ipcPassword;
-            this.model.IPCPasswordFormat = this.$route.params?.ipcPasswordFormat;
+            // only set the values if they exist in the params
+            if (typeof this.$route.params.ipcPassword !== 'undefined') {
+              this.model.IPCPassword = this.$route.params.ipcPassword;
+            }
+            if (typeof this.$route.params.ipcPasswordFormat !== 'undefined') {
+              this.model.IPCPasswordFormat = this.$route.params.ipcPasswordFormat;
+            }
           }
 
           const extendedFields = {
             IPCPassword: { placeholder: this.$t('keep-unchanged') },
+            LicenseID: { placeholder: this.$t('keep-unchanged') },
           };
 
           this.fields = Object.keys(fields).map(key => {
