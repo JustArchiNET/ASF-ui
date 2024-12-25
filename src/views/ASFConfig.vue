@@ -101,11 +101,11 @@
           // came from PasswordHash.vue and want to set ipc data from params
           if (Object.keys(this.$route.params).length !== 0) {
             // only set the values if they exist in the params
-            if (typeof this.$route.params?.ipcPassword !== 'undefined') {
-              this.model.IPCPassword = this.$route.params?.ipcPassword;
+            if (typeof this.$route.params.ipcPassword !== 'undefined') {
+              this.model.IPCPassword = this.$route.params.ipcPassword;
             }
-            if (typeof this.$route.params?.ipcPasswordFormat !== 'undefined') {
-              this.model.IPCPasswordFormat = this.$route.params?.ipcPasswordFormat;
+            if (typeof this.$route.params.ipcPasswordFormat !== 'undefined') {
+              this.model.IPCPasswordFormat = this.$route.params.ipcPasswordFormat;
             }
           }
 
