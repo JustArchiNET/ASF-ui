@@ -27,7 +27,7 @@ export default [
       if (botsDetected) {
         storage.set('setup-complete', true);
         let defaultView = store.getters['settings/defaultView'];
-        if (defaultView === '_last-visited-page') defaultView = storage.get('last-visited-page', { name: 'bots' });
+        if (defaultView === '_last-visited-page' || defaultView === 'home') defaultView = storage.get('last-visited-page', { name: 'bots' });
         const page = (typeof defaultView === 'string') ? { name: defaultView } : defaultView;
         return next(page);
       }
