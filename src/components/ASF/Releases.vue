@@ -206,8 +206,6 @@
     line-height: 1;
     margin-left: 0.5em;
     padding: 0.25em 0.5em;
-    text-align: center;
-    vertical-align: baseline;
 
     @media screen and (max-width: 400px) {
       margin-left: 0;
