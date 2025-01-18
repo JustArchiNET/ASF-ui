@@ -12,6 +12,7 @@
       <div class="plugin__title">
         <span class="plugin__name">{{ plugin.Name }}</span>
         <span class="plugin__version">{{ plugin.Version }}</span>
+        <span v-if="plugin.IsOfficialPlugin" class="plugin__label">{{ $t('official') }}</span>
       </div>
     </div>
   </div>
@@ -35,14 +36,26 @@
     },
     async created() {
       try {
-        this.plugins = await this.$http.get('Plugins');
+        const officialPlugins = await this.$http.get('Plugins', { official: true, custom: false });
+        officialPlugins.forEach(plugin => {
+          plugin.IsOfficialPlugin = true;
+        });
+
+        const customPlugins = await this.$http.get('Plugins', { official: false, custom: true });
+        customPlugins.forEach(plugin => {
+          plugin.IsOfficialPlugin = false;
+        });
+
+        this.plugins = [...officialPlugins, ...customPlugins];
+
         this.plugins.forEach((plugin, i) => {
           if (!Object.prototype.hasOwnProperty.call(plugin, 'Name')) plugin.Name = this.$t('plugin-unknown-name', { number: i });
           if (!Object.prototype.hasOwnProperty.call(plugin, 'Version')) plugin.Version = this.$t('plugin-unknown-version');
         });
-        this.loading = false;
       } catch (err) {
         this.error = err.message;
+      } finally {
+        this.loading = false;
       }
     },
   };
@@ -66,12 +79,42 @@
     }
   }
 
+  .plugin__title {
+    display: flex;
+    align-items: baseline;
+
+    @media screen and (max-width: 400px) {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 4px;
+    }
+  }
+
   .plugin__name {
     font-size: 1.3em;
     font-weight: bold;
   }
 
   .plugin__version {
-    padding-left: 10px;
+    padding-left: 0.8em;
+
+    @media screen and (max-width: 400px) {
+      padding-left: 0;
+    }
+  }
+
+  .plugin__label {
+    color: #00a65a;
+    background-color: var(--color-background-light);
+    border: 2px solid currentColor;
+    border-radius: 4px;
+    display: inline-block;
+    line-height: 1;
+    margin-left: 0.8em;
+    padding: 0.25em 0.5em;
+
+    @media screen and (max-width: 400px) {
+      margin-left: 0;
+    }
   }
 </style>
