@@ -48,6 +48,14 @@
 
         this.plugins = [...officialPlugins, ...customPlugins];
 
+        this.plugins.sort((a, b) => {
+          const nameA = a.Name.toLowerCase();
+          const nameB = b.Name.toLowerCase();
+          if (nameA < nameB) return -1;
+          if (nameA > nameB) return 1;
+          return 0;
+        });
+
         this.plugins.forEach((plugin, i) => {
           if (!Object.prototype.hasOwnProperty.call(plugin, 'Name')) plugin.Name = this.$t('plugin-unknown-name', { number: i });
           if (!Object.prototype.hasOwnProperty.call(plugin, 'Version')) plugin.Version = this.$t('plugin-unknown-version');
