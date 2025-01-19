@@ -51,9 +51,7 @@
         this.plugins.sort((a, b) => {
           const nameA = a.Name.toLowerCase();
           const nameB = b.Name.toLowerCase();
-          if (nameA < nameB) return -1;
-          if (nameA > nameB) return 1;
-          return 0;
+          return nameA.localeCompare(nameB);
         });
 
         this.plugins.forEach((plugin, i) => {
