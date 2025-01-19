@@ -194,6 +194,7 @@
   "notification-position-right-top": "頂部居右",
   "notify-release": "新版本更新通知",
   "notify-release-description": "當新版本可用時通知我（取決於 ASF 設定檔內 <code>UpdateChannel</code> 的設定屬性）。",
+  "official": "官方",
   "other": "其他",
   "password": "密碼",
   "password-invalid": "密碼錯誤！",

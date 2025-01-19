@@ -194,6 +194,7 @@
   "notification-position-right-top": "Prawy górny róg",
   "notify-release": "Powiadomienie o nowej wersji",
   "notify-release-description": "Powiadom mnie, gdy nowa wersja jest dostępna (w zależności od właściwości <code>UpdateChannel</code> w konfiguracji ASF).",
+  "official": "Oficjalny",
   "other": "Inne",
   "password": "Hasło",
   "password-invalid": "Nieprawidłowe hasło!",
