@@ -194,6 +194,7 @@
   "notification-position-right-top": "Sağ üst",
   "notify-release": "Yeni sürüm bildirimi",
   "notify-release-description": "Yeni sürüm geldiğinde bana bildir (Genel Yapılandırmadaki <code>UpdateChannel</code> yapılandırma özelliğine göre değişir).",
+  "official": "Resmi",
   "other": "Diğer",
   "password": "Parola",
   "password-invalid": "Geçersiz parola!",
