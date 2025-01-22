@@ -194,6 +194,7 @@
   "notification-position-right-top": "Справа сверху",
   "notify-release": "Уведомление о новой версии",
   "notify-release-description": "Уведомлять меня, когда будет доступен новый релиз (в зависимости от параметра <code>UpdateChannel</code> в глобальной конфигурации ASF).",
+  "official": "Официальный",
   "other": "Другое",
   "password": "Пароль",
   "password-invalid": "Неверный пароль!",
