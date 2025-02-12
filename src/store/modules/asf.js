@@ -87,7 +87,7 @@ export const actions = {
     }
   },
   setCurrencyCodes: async ({ commit }) => {
-    const codes = await getDefinitions('SteamKit2.ECurrencyCode');
+    const codes = await getDefinitions('ECurrencyCode');
     commit('updateCurrencyCodes', codes);
   },
 };
