@@ -9,10 +9,13 @@ function resolveRef(path, schema) {
   return get(schema, lodashPath);
 }
 
-function resolve(tree, schema) {
+function resolve(tree, schema, resolved = new WeakSet()) {
+  if (resolved.has(tree)) return;  // Prevent infinite loop
+  resolved.add(tree);
+
   for (const key of Object.keys(tree)) {
     if (isRef(tree[key])) tree[key] = resolveRef(tree[key].$ref, schema);
-    if (isObject(tree[key])) resolve(tree[key], schema);
+    if (isObject(tree[key])) resolve(tree[key], schema, resolved);
   }
 }
 
