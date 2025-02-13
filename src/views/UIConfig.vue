@@ -224,12 +224,8 @@
 
         this.$success(this.$t('settings-saved'));
 
-        // It's currently not possible to change tooltip-options in runtime
-        // Open issue: https://github.com/Akryum/v-tooltip/pull/773
-        //
-        // this.$VTooltip.options.defaultDelay = {
-        //   show: this.model.tooltipDelay,
-        // };
+        // The vue2 version of v-tooltip does not support changing tooltip-options in runtime
+        // Ref issue: https://github.com/Akryum/v-tooltip/pull/773
         //
         // So we have to do it the ugly way:
         await delay(1000);
