@@ -194,6 +194,7 @@
   "notification-position-right-top": "Phải trên",
   "notify-release": "Thông báo phiên bản mới",
   "notify-release-description": "Thông báo cho tôi khi có bản phát hành mới (tùy thuộc vào thuộc tính cấu hình <code>UpdateChannel</code> trong Cấu hình ASF).",
+  "official": "Chính thức",
   "other": "Khác",
   "password": "Password",
   "password-invalid": "Mật khẩu không hợp lệ!",
