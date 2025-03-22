@@ -194,6 +194,7 @@
   "notification-position-right-top": "RITE TOP",
   "notify-release": "NEW RELEASE NOTIFICASHUN",
   "notify-release-description": "NOTIFY ME WHEN NEW RELEASE IZ AVAILABLE (DEPENDIN ON CONFIG PROPERTY <code>UpdateChannel</code> IN ASF CONFIG).",
+  "official": "OFFISHUL",
   "other": "OTHR",
   "password": "PASWORD",
   "password-invalid": "INVALID PASWORD!",
