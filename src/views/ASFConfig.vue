@@ -121,6 +121,9 @@
 
             return { description, ...fields[key], ...(extendedFields[key] || []) };
           });
+
+          // Sort the config properties alphabetically to make them easier to find when not using config categories
+          if (!this.displayCategories) this.fields = this.fields.sort((a, b) => a.paramName.localeCompare(b.paramName));
         } catch (err) {
           this.$error(err.message);
         } finally {
