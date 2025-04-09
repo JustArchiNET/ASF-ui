@@ -172,7 +172,7 @@
   "mass-editor-check-not-saved": "{PLURAL:n|A propriedade|As propriedades} dessa configuração já tem {PLURAL:n|o mesmo valor|os mesmos valores} para {PLURAL:m|o bot selecionado |os bots selecionados}!",
   "mass-editor-check-saved": "{PLURAL:n|A configuração do bot selecionado foi salva|As configurações dos bots selecionados foram salvas}!",
   "mass-editor-check-saving": "Salvando {current}/{all}...",
-  "mass-editor-check-values": "{PLURAL:n|A seguinte propriedade de configuração será salva|As seguntes propriedades de configuração serão salvas}:",
+  "mass-editor-check-values": "{PLURAL:n|A seguinte propriedade de configuração será salva|As seguintes propriedades de configuração serão salvas}:",
   "mass-editor-create-bot": "Deseja criar um novo bot?",
   "mass-editor-no-bots": "Nenhum bot encontrado",
   "mass-editor-properties": "Selecione as propriedades de configuração que você deseja editar",
