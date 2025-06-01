@@ -44,6 +44,7 @@
   "cancel": "취소",
   "check": "확인",
   "commands": "명령어",
+  "commands-send": "여기를 클릭하여 명령어를 보내십시오",
   "config": "환경설정",
   "confirm": "확인",
   "connection": "연결",
