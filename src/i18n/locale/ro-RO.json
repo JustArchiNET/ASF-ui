@@ -194,6 +194,7 @@
   "notification-position-right-top": "Dreapta sus",
   "notify-release": "Notificare lansare nouă",
   "notify-release-description": "Anunță-mă când este disponibilă o nouă versiune (în funcție de proprietatea de configurare <code>UpdateChannel</code> în Configurare globală).",
+  "official": "Oficial",
   "other": "Altele",
   "password": "Parolă",
   "password-invalid": "Parolă incorectă!",

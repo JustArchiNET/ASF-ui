@@ -194,6 +194,7 @@
   "notification-position-right-top": "Vpravo nahoře",
   "notify-release": "Oznámení nového vydání",
   "notify-release-description": "Upozornit mě, když je k dispozici nová verze (v závislosti na vlastnosti konfigurace <code>UpdateChannel</code> v konfiguraci ASF).",
+  "official": "Úředník",
   "other": "Jiné",
   "password": "Heslo",
   "password-invalid": "Neplatné heslo!",
