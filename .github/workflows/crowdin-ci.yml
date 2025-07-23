@@ -14,12 +14,12 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4.2.2
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       with:
         show-progress: false
 
     - name: Upload latest strings for translation on Crowdin
-      uses: crowdin/github-action@v2.9.0
+      uses: crowdin/github-action@9fd07c1c5b36b15f082d1d860dc399f16f849bd7 # v2.9.0
       with:
         crowdin_branch_name: main
         config: '.github/crowdin.yml'
