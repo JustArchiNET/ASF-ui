@@ -48,7 +48,7 @@
     "copy-to-clipboard": "3.3.3",
     "flat": "6.0.1",
     "html-webpack-plugin": "5.6.4",
-    "humanize-duration": "3.33.0",
+    "humanize-duration": "3.33.1",
     "linkify-html": "4.3.2",
     "linkifyjs": "4.3.2",
     "lodash-es": "4.17.21",
