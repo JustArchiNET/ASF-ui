@@ -121,7 +121,7 @@
   "input-label-login": "Steam-Anmeldename",
   "input-label-password": "Steam-Passwort",
   "input-label-steamguard": "Steam Guard-Code",
-  "input-label-steamparentalcode": "Steam-Familienansicht-PIN",
+  "input-label-steamparentalcode": "Steam-Familienansicht (PIN)",
   "input-label-twofactorauthentication": "2FA-Code",
   "input-no-code-login": "Sie müssen einen Steam-Anmeldenamen eingeben",
   "input-no-code-password": "Sie müssen einen Steam-Passwort eingeben",
