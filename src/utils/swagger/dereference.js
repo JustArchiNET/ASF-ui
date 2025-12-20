@@ -10,7 +10,7 @@ function resolveRef(path, schema) {
 }
 
 function resolve(tree, schema, resolved = new WeakSet()) {
-  if (resolved.has(tree)) return;  // Prevent infinite loop
+  if (resolved.has(tree)) return; // Prevent infinite loop
   resolved.add(tree);
 
   for (const key of Object.keys(tree)) {

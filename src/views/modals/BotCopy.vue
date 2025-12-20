@@ -18,7 +18,7 @@
 
         <div class="form-item">
           <div v-if="error" class="form-error">
-            <FontAwesomeIcon icon="exclamation-circle" />
+            <FontAwesomeIcon icon="exclamation-circle"></FontAwesomeIcon>
             {{ error }}
           </div>
 
@@ -29,7 +29,7 @@
               :disabled="creating || !isFormValid"
               :class="{ 'button--loading': creating }"
             >
-              <FontAwesomeIcon v-if="creating" icon="spinner" spin />
+              <FontAwesomeIcon v-if="creating" icon="spinner" spin></FontAwesomeIcon>
               <span v-else>{{ $t("create") }}</span>
             </button>
 
@@ -55,224 +55,220 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import ConfigEditor from "../../components/Config/Editor.vue";
-import delay from "../../utils/delay";
-import botExists from "../../utils/botExists";
-import { get } from "../../utils/storage";
-import { newBotCategories } from "../../utils/configCategories";
+  import { mapGetters } from 'vuex';
+  import ConfigEditor from '../../components/Config/Editor.vue';
+  import delay from '../../utils/delay';
+  import botExists from '../../utils/botExists';
+  import { get } from '../../utils/storage';
+  import { newBotCategories } from '../../utils/configCategories';
 
-// Cache for parameter descriptions
-const paramDescriptionCache = new Map();
+  // Cache for parameter descriptions
+  const paramDescriptionCache = new Map();
 
-/**
- * Get parameter description with caching
- * @param {string} locale - Current locale
- * @param {string} param - Parameter name
- * @returns {string} Parameter description
- */
-const getParamDescription = (locale, param) => {
-  const cacheKey = `${locale}:${param}`;
+  /**
+   * Get parameter description with caching
+   * @param {string} locale - Current locale
+   * @param {string} param - Parameter name
+   * @returns {string} Parameter description
+   */
+  const getParamDescription = (locale, param) => {
+    const cacheKey = `${locale}:${param}`;
 
-  if (!paramDescriptionCache.has(cacheKey)) {
-    const descriptions =
-      get(`cache:parameter-descriptions:${locale}`)?.descriptions || {};
-    paramDescriptionCache.set(cacheKey, descriptions[param] || "");
-  }
+    if (!paramDescriptionCache.has(cacheKey)) {
+      const descriptions = get(`cache:parameter-descriptions:${locale}`)?.descriptions || {};
+      paramDescriptionCache.set(cacheKey, descriptions[param] || '');
+    }
 
-  return paramDescriptionCache.get(cacheKey);
-};
+    return paramDescriptionCache.get(cacheKey);
+  };
 
-export default {
-  name: "BotCopy",
-  components: { ConfigEditor },
+  export default {
+    name: 'BotCopy',
+    components: { ConfigEditor },
 
-  data() {
-    // Initialize fields with default values and descriptions
-    const fields = [
-      {
-        defaultValue: "",
-        param: "Name",
-        paramName: "Name",
-        type: "string",
-        required: true,
-        description: this.$t("name-description"),
-        validate: value =>
-          (value && value.trim().length > 0) || this.$t("validation.required")
+    data() {
+      // Initialize fields with default values and descriptions
+      const fields = [
+        {
+          defaultValue: '',
+          param: 'Name',
+          paramName: 'Name',
+          type: 'string',
+          required: true,
+          description: this.$t('name-description'),
+          validate: value => (value && value.trim().length > 0) || this.$t('validation.required'),
+        },
+        {
+          defaultValue: '',
+          param: 'SteamLogin',
+          paramName: 'SteamLogin',
+          type: 'string',
+          required: true,
+          description: getParamDescription(this.$i18n.locale, 'SteamLogin'),
+          validate: value => (value && value.trim().length > 0) || this.$t('validation.required'),
+        },
+        {
+          defaultValue: '',
+          param: 'SteamPassword',
+          paramName: 'SteamPassword',
+          type: 'password',
+          required: true,
+          description: getParamDescription(this.$i18n.locale, 'SteamPassword'),
+          validate: value => (value && value.trim().length > 0) || this.$t('validation.required'),
+        },
+      ];
+
+      return {
+        creating: false,
+        categories: newBotCategories,
+        fields,
+        model: {},
+        error: null,
+      };
+    },
+    computed: {
+      ...mapGetters({
+        displayCategories: 'settings/displayCategories',
+        bots: 'bots/bots',
+      }),
+
+      /**
+       * Get the current bot from the store
+       * @returns {Object|null} The bot object or null if not found
+       */
+      bot() {
+        return this.$store.getters['bots/bot'](this.$route.params.bot);
       },
-      {
-        defaultValue: "",
-        param: "SteamLogin",
-        paramName: "SteamLogin",
-        type: "string",
-        required: true,
-        description: getParamDescription(this.$i18n.locale, "SteamLogin"),
-        validate: value =>
-          (value && value.trim().length > 0) || this.$t("validation.required")
-      },
-      {
-        defaultValue: "",
-        param: "SteamPassword",
-        paramName: "SteamPassword",
-        type: "password",
-        required: true,
-        description: getParamDescription(this.$i18n.locale, "SteamPassword"),
-        validate: value =>
-          (value && value.trim().length > 0) || this.$t("validation.required")
-      }
-    ];
 
-    return {
-      creating: false,
-      categories: newBotCategories,
-      fields,
-      model: {},
-      error: null
-    };
-  },
-  computed: {
-    ...mapGetters({
-      displayCategories: "settings/displayCategories",
-      bots: "bots/bots"
-    }),
-
-    /**
-     * Get the current bot from the store
-     * @returns {Object|null} The bot object or null if not found
-     */
-    bot() {
-      return this.$store.getters["bots/bot"](this.$route.params.bot);
-    },
-
-    /**
-     * Check if the form is valid
-     * @returns {boolean} True if all required fields are filled
-     */
-    isFormValid() {
-      if (!this.$refs.configEditor) return false;
-      return this.fields.every(field => {
-        if (!field.required) return true;
-        const value = this.model[field.param];
-        return value && value.toString().trim().length > 0;
-      });
-    }
-  },
-
-  watch: {
-    /**
-     * Watch for route changes to update the model
-     */
-    $route: {
-      immediate: true,
-      deep: true,
-      async handler() {
-        if (!this.bot) return;
-        // Create a clean copy of the bot config
-        this.model = JSON.parse(JSON.stringify(this.bot.config));
-        this.error = null;
-      }
-    },
-
-    /**
-     * Watch for locale changes to update field descriptions
-     */
-    "$i18n.locale"() {
-      this.updateFieldDescriptions();
-    }
-  },
-
-  created() {
-    if (!this.bot) {
-      this.$router.replace({ name: "bots" });
-      return;
-    }
-    this.updateFieldDescriptions();
-  },
-  methods: {
-    /**
-     * Update field descriptions based on current locale
-     */
-    updateFieldDescriptions() {
-      this.fields = this.fields.map(field => ({
-        ...field,
-        description:
-          field.param === "Name"
-            ? this.$t("name-description")
-            : getParamDescription(this.$i18n.locale, field.param)
-      }));
-    },
-
-    /**
-     * Handle form submission for creating a new bot
-     */
-    async onCreate() {
-      if (this.creating) return;
-
-      this.creating = true;
-      this.error = null;
-
-      try {
-        // Validate bot name
-        const botName = this.model.Name?.trim();
-
-        if (!botName) {
-          throw new Error(this.$t("bot-create-name"));
-        }
-
-        if (botName === "ASF") {
-          throw new Error(this.$t("bot-create-name-asf"));
-        }
-
-        if (botExists(this.bots, botName)) {
-          throw new Error(this.$t("bot-create-name-exist", { name: botName }));
-        }
-
-        // Create a clean config object without the name
-        const config = { ...this.model };
-        delete config.Name;
-
-        // Make API call to create bot
-        await this.$http.post(`bot/${encodeURIComponent(botName)}`, {
-          botConfig: config
+      /**
+       * Check if the form is valid
+       * @returns {boolean} True if all required fields are filled
+       */
+      isFormValid() {
+        if (!this.$refs.configEditor) return false;
+        return this.fields.every(field => {
+          if (!field.required) return true;
+          const value = this.model[field.param];
+          return value && value.toString().trim().length > 0;
         });
+      },
+    },
 
-        // Update bot list and close modal
-        await this.$store.dispatch("bots/updateBot", { name: botName });
-        this.$parent?.close?.();
-      } catch (error) {
-        this.error = error.message || this.$t("error-unknown");
-        this.$error(error.message);
-      } finally {
-        this.creating = false;
-      }
+    watch: {
+      /**
+       * Watch for route changes to update the model
+       */
+      '$route': {
+        immediate: true,
+        deep: true,
+        async handler() {
+          if (!this.bot) return;
+          // Create a clean copy of the bot config
+          this.model = JSON.parse(JSON.stringify(this.bot.config));
+          this.error = null;
+        },
+      },
 
-      if (this.model.Name === "ASF") {
-        this.$error(this.$t("bot-create-name-asf"));
+      /**
+       * Watch for locale changes to update field descriptions
+       */
+      '$i18n.locale': function() {
+        this.updateFieldDescriptions();
+      },
+    },
+
+    created() {
+      if (!this.bot) {
+        this.$router.replace({ name: 'bots' });
         return;
       }
+      this.updateFieldDescriptions();
+    },
+    methods: {
+      /**
+       * Update field descriptions based on current locale
+       */
+      updateFieldDescriptions() {
+        this.fields = this.fields.map(field => ({
+          ...field,
+          description:
+            field.param === 'Name'
+              ? this.$t('name-description')
+              : getParamDescription(this.$i18n.locale, field.param),
+        }));
+      },
 
-      if (botExists(this.bots, this.model.Name)) {
-        this.$error(
-          this.$t("bot-create-name-exist", { name: this.model.Name })
-        );
-        return;
-      }
+      /**
+       * Handle form submission for creating a new bot
+       */
+      async onCreate() {
+        if (this.creating) return;
 
-      this.creating = true;
+        this.creating = true;
+        this.error = null;
 
-      try {
-        await this.$http.post(`bot/${this.model.Name}`, { botConfig: config });
-        await delay(1000);
-        await this.$store.dispatch("bots/updateBot", { name: this.model.Name });
-        this.$parent.close();
-      } catch (err) {
-        this.$error(err.message);
-      } finally {
-        this.creating = false;
-      }
-    }
-  }
-};
+        try {
+          // Validate bot name
+          const botName = this.model.Name?.trim();
+
+          if (!botName) {
+            throw new Error(this.$t('bot-create-name'));
+          }
+
+          if (botName === 'ASF') {
+            throw new Error(this.$t('bot-create-name-asf'));
+          }
+
+          if (botExists(this.bots, botName)) {
+            throw new Error(this.$t('bot-create-name-exist', { name: botName }));
+          }
+
+          // Create a clean config object without the name
+          const config = { ...this.model };
+          delete config.Name;
+
+          // Make API call to create bot
+          await this.$http.post(`bot/${encodeURIComponent(botName)}`, {
+            botConfig: config,
+          });
+
+          // Update bot list and close modal
+          await this.$store.dispatch('bots/updateBot', { name: botName });
+          this.$parent?.close?.();
+        } catch (error) {
+          this.error = error.message || this.$t('error-unknown');
+          this.$error(error.message);
+        } finally {
+          this.creating = false;
+        }
+
+        if (this.model.Name === 'ASF') {
+          this.$error(this.$t('bot-create-name-asf'));
+          return;
+        }
+
+        if (botExists(this.bots, this.model.Name)) {
+          this.$error(
+            this.$t('bot-create-name-exist', { name: this.model.Name }),
+          );
+          return;
+        }
+
+        this.creating = true;
+
+        try {
+          await this.$http.post(`bot/${this.model.Name}`, { botConfig: config });
+          await delay(1000);
+          await this.$store.dispatch('bots/updateBot', { name: this.model.Name });
+          this.$parent.close();
+        } catch (err) {
+          this.$error(err.message);
+        } finally {
+          this.creating = false;
+        }
+      },
+    },
+  };
 </script>
 
 <style lang="scss">
