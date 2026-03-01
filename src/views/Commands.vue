@@ -249,11 +249,22 @@
       this.$refs['terminal-input'].focus();
     },
     methods: {
+      // Converts Steam URLs into the game's numeric ID
+      processSteamUrls(command) {
+        if (typeof command !== 'string' || !command) return command;
+
+        // Only game URLs (/app/). Includes steamdb.info.
+        const steamUrlRegex = /https?:\/\/(?:www\.)?(?:store\.steampowered\.com|steamcommunity\.com|steamdb\.info)\/app\/(\d+)(?:[\/?#][^\s]*)?/gi;
+
+        return command.replace(steamUrlRegex, '$1');
+      },
       async sendCommand() {
-        const commandToExecute = this.command.trim();
+        let commandToExecute = this.command.trim();
         this.command = '';
 
         if (!commandToExecute) return;
+
+        commandToExecute = this.processSteamUrls(commandToExecute);
 
         this.commandHistoryIndex = -1;
         this.commandHistory.add(commandToExecute);
