@@ -22,7 +22,7 @@
 </template>
 
 <script>
-  import * as copy from 'copy-to-clipboard';
+  import copy from 'copy-to-clipboard';
   import BgrKeys from './Keys.vue';
 
   export default {
@@ -38,7 +38,7 @@
       },
     },
     methods: {
-      copyKeys() {
+      async copyKeys() {
         let keysToCopy = '';
 
         // eslint-disable-next-line no-restricted-syntax
@@ -46,7 +46,7 @@
           keysToCopy += `${value}\t${key}\n`;
         }
 
-        copy(keysToCopy);
+        await copy(keysToCopy);
         this.$info(this.$t('keys-copied'));
       },
     },

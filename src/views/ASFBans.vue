@@ -39,7 +39,7 @@
 </template>
 
 <script>
-  import * as copy from 'copy-to-clipboard';
+  import copy from 'copy-to-clipboard';
 
   export default {
     name: 'ASFBans',
@@ -60,8 +60,8 @@
       this.refresh();
     },
     methods: {
-      copyIp(ip) {
-        copy(ip);
+      async copyIp(ip) {
+        await copy(ip);
         this.$info(this.$t('asf-bans-copied'));
       },
       async removeBan(bannedIp = null) {

@@ -45,7 +45,7 @@
 </template>
 
 <script>
-  import * as copy from 'copy-to-clipboard';
+  import copy from 'copy-to-clipboard';
   import delay from '../../utils/delay';
 
   export default {
@@ -187,8 +187,8 @@
           this.refreshing = false;
         }
       },
-      copyToken() {
-        copy(this.token);
+      async copyToken() {
+        await copy(this.token);
         this.$info(this.$t('2fa-token-copied'));
       },
     },
