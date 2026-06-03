@@ -13,7 +13,7 @@
   "2fa-reject-success": "{bot} için {PLURAL:n|{n} onaylama|{n} onaylama} reddedildi!",
   "2fa-token-copied": "Kod panoya kopyalandı!",
   "2fa-token-copy": "Kodu panoya kopyala",
-  "2fa-token-refresh": "Kodu yenile",
+  "2fa-token-refresh": "Token'i yenile",
   "access": "Erişim",
   "add": "Ekle",
   "advanced": "Gelişmiş",
