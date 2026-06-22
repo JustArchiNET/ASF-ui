@@ -8,8 +8,7 @@
 		":automergeMinor",
 		":disableDependencyDashboard",
 		":disableRateLimiting",
-		":label(🤖 Automatic)",
-		":reviewer(MrBurrBurr)"
+		":label(🤖 Automatic)"
 	],
 
 	"packageRules": [
