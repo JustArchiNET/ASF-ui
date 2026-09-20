@@ -60,6 +60,13 @@
       };
     },
     computed: {
+      botIdentifier() {
+        const { botName } = this.schema;
+        if (!/[\s,]/.test(botName)) return botName;
+
+        // Whitespaces and commas would split the command, such bots can only be targeted with a regex
+        return `r!^${botName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/[\s,]/g, '.')}$`;
+      },
       gameNames() {
         const gameNames = {};
         this.games.forEach(game => { gameNames[game.appid] = game.name; });
@@ -83,6 +90,10 @@
         return [exactOption, ...options.filter(game => game !== exactOption)];
       },
     },
+    created() {
+      // Already selected games should show their names right away, otherwise the library is loaded once the search is opened
+      if (this.value.length) this.loadGames();
+    },
     methods: {
       async loadGames() {
         if (this.loading || this.games.length) return;
@@ -90,7 +101,7 @@
         this.loading = true;
 
         try {
-          const response = await this.$http.command('owns', this.schema.botName, 'regex/.');
+          const response = await this.$http.command('owns', this.botIdentifier, 'regex/.');
           const games = parseOwnedGames(response, this.schema.botName);
 
           this.games = Object.freeze(games.sort((a, b) => a.name.localeCompare(b.name)));
