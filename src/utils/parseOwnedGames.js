@@ -1,6 +1,5 @@
-// Parses the response of the "owns" command into a list of owned games
-// The wording and the separator between appID and name are localized by ASF, so we only rely on the "app/<appID> <separator> <name>" structure
-// Lines without bot prefix are skipped, since ASF appends a localized overview per game that mentions the same identifiers
+// Response of the "owns" command is localized, so we only rely on the "<bot> ... app/<appID> <separator> <name>" structure
+// Lines of other bots and the overview that ASF appends per game are skipped
 export default function parseOwnedGames(response, botName) {
   if (typeof response !== 'string') return [];
 

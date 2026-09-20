@@ -104,7 +104,7 @@
           const response = await this.$http.command('owns', this.botIdentifier, 'regex/.');
           const games = parseOwnedGames(response, this.schema.botName);
 
-          this.games = Object.freeze(games.sort((a, b) => a.name.localeCompare(b.name)));
+          this.games = games.sort((a, b) => a.name.localeCompare(b.name));
           this.unavailable = !games.length;
         } catch (err) {
           // Bot is most likely offline, adding games by appID still works
