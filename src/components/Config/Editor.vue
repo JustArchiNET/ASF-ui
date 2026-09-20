@@ -31,6 +31,7 @@
   import InputUnknown from './Fields/InputUnknown.vue';
   import ConfigCategory from './Category.vue';
   import InputSelect from './Fields/InputSelect.vue';
+  import InputGames from './Fields/InputGames.vue';
 
   export default {
     name: 'ConfigEditor',
@@ -104,6 +105,7 @@
             return InputEnum;
           case 'hashSet':
           case 'list':
+            if (field.param === 'GamesPlayedWhileIdle' && field.botName) return InputGames;
             if (['enum'].includes(field.values.type)) return (field.type === 'list') ? InputList : InputSet;
             if (['byte', 'uint16', 'uint32', 'uint64', 'string'].includes(field.values.type)) return InputTag;
             return InputUnknown;

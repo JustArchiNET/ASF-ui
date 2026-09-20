@@ -112,6 +112,7 @@
           }
 
           const extendedFields = {
+            GamesPlayedWhileIdle: { botName: this.bot.name },
             SteamLogin: { placeholder: this.$t('keep-unchanged') },
             SteamPassword: { placeholder: this.$t('keep-unchanged') },
             SteamParentalCode: { placeholder: this.$t('keep-unchanged') },
