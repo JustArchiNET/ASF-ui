@@ -35,12 +35,3 @@ export async function isReleaseAvailable() {
 
   return isNewerVersion(release.Version, asf.version);
 }
-
-  const endpoint = (asf.updateChannel === UPDATECHANNEL.PRERELEASE) ? 'www/github/release' : 'www/github/release/latest';
-  const release = await http.get(endpoint);
-
-  set('latest-release', release.Version);
-  set('last-checked-for-update', Date.now());
-
-  return (release.Version > asf.version);
-}
