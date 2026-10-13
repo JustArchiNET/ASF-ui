@@ -1,7 +1,7 @@
 import * as humanizeDuration from 'humanize-duration';
 import Vue from 'vue';
 import * as http from '../../plugins/http';
-import { getDefinitions } from '../../utils/swagger/parse';
+import { getResponseBody } from '../../utils/swagger/parse';
 
 const humanizer = humanizeDuration.humanizer({
   language: 'shortEn',
@@ -87,7 +87,9 @@ export const actions = {
     }
   },
   setCurrencyCodes: async ({ commit }) => {
-    const codes = await getDefinitions('ECurrencyCode');
+    // Currency codes are the x-definition of the WalletCurrency enum of a bot, looked up through the response of GET /Api/Bot/{botNames}
+    const { properties: { Result: bots } } = await getResponseBody('/Api/Bot/{botNames}');
+    const codes = bots.additionalProperties.properties.WalletCurrency['x-definition'];
     commit('updateCurrencyCodes', codes);
   },
 };

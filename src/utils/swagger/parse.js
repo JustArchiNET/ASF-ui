@@ -17,20 +17,21 @@ async function getSchema() {
   return schema;
 }
 
-export async function getType(name) {
-  const schema = await getSchema();
-  const { [name]: type } = schema.components.schemas;
-  return type.properties;
-}
-
-export async function getDefinitions(name) {
-  const schema = await getSchema();
-  return schema.components.schemas[name]['x-definition'];
-}
-
-export async function getRequestBody(path, method = 'post') {
+// ASF may inline a schema where it's used or reference it from components, depending on the version and the usage,
+// so schemas must always be looked up through the operation that uses them and never by component name
+async function getOperation(path, method) {
   const schema = await getSchema();
   const operation = schema.paths[path]?.[method];
   if (!operation) throw new Error(`No ${method.toUpperCase()} ${path} operation in OpenAPI document`);
+  return operation;
+}
+
+export async function getRequestBody(path, method = 'post') {
+  const operation = await getOperation(path, method);
   return operation.requestBody.content['application/json'].schema;
+}
+
+export async function getResponseBody(path, method = 'get', status = '200') {
+  const operation = await getOperation(path, method);
+  return operation.responses[status].content['application/json'].schema;
 }
