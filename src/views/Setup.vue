@@ -151,6 +151,9 @@
         }
       },
       async updatePassword() {
+        // Nothing to validate yet, e.g. right after logout when the page mounts with an empty password
+        if (!this.password) return;
+
         this.processing = true;
 
         storage.remove('cache:authentication-required');
