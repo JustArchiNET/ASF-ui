@@ -88,12 +88,6 @@ function resolvePassthrough(schema) {
   return passthrough;
 }
 
-function resolveDefaultValue(schema, param, objectDefaults) {
-  // Properties carry their own default, the object-level default of the whole config is the fallback for the few that don't
-  const defaultValue = (typeof schema.default !== 'undefined') ? schema.default : objectDefaults[param];
-  return cloneDeep(defaultValue);
-}
-
 async function unwindType(type) {
   const configSchema = configSchemas[type];
   if (!configSchema) throw new Error(`No OpenAPI schema known for type ${type}`);
@@ -101,8 +95,6 @@ async function unwindType(type) {
   const requestBody = await getRequestBody(configSchema.path);
   const { [configSchema.property]: schema } = requestBody.properties;
   if (!schema?.properties) throw new Error(`No ${configSchema.property} schema in ${configSchema.path} request body`);
-
-  const objectDefaults = schema.default || {};
 
   const resolvedStructure = {
     type: 'object',
@@ -119,7 +111,7 @@ async function unwindType(type) {
     const paramName = (resolvedType.type !== 'uint64') ? param : `s_${param}`;
 
     resolvedStructure.body[param] = {
-      defaultValue: resolveDefaultValue(propertySchema, param, objectDefaults),
+      defaultValue: cloneDeep(propertySchema.default),
       paramName,
       param,
       ...resolvedType,
