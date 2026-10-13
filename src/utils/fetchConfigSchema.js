@@ -1,27 +1,29 @@
-import * as http from '../plugins/http';
-import { getType } from './swagger/parse';
+import { cloneDeep } from 'lodash-es';
+import { getRequestBody } from './swagger/parse';
 
-const cachedStructureDefinitions = new Map();
-
-// unwindType() keeps accepting the .NET type names the views always passed; they're mapped to OpenAPI component schemas here
-const schemaNames = {
-  'ArchiSteamFarm.Steam.Storage.BotConfig': 'BotConfig',
-  'ArchiSteamFarm.Storage.GlobalConfig': 'GlobalConfig',
+// unwindType() keeps accepting the .NET type names the views always passed
+// The config schemas are read from the request bodies the UI posts them with, which is where ASF inlines them in its OpenAPI document
+const configSchemas = {
+  'ArchiSteamFarm.Steam.Storage.BotConfig': { path: '/Api/Bot/{botNames}', property: 'BotConfig' },
+  'ArchiSteamFarm.Storage.GlobalConfig': { path: '/Api/ASF', property: 'GlobalConfig' },
 };
-
-// OpenAPI describes every collection as "array", but ASF uses ImmutableList (ordered) for these properties and ImmutableHashSet for all others
-// Verified against /Api/Type of ASF 6.3.9.6
-const orderedListProperties = new Set(['FarmingOrders', 'GamesPlayedWhileIdle']);
-
-// OpenAPI describes every dictionary key as a string, but ASF uses ImmutableDictionary<ulong, ...> for these properties
-// Verified against /Api/Type of ASF 6.3.9.6
-const uint64KeyedProperties = new Set(['SteamUserPermissions']);
 
 const numericFormats = {
   uint8: 'byte',
   uint16: 'uint16',
   uint32: 'uint32',
   uint64: 'uint64',
+};
+
+// CLR key types ASF reports for dictionaries in x-key-type
+const keyTypes = {
+  'System.Boolean': 'boolean',
+  'System.Byte': 'byte',
+  'System.Guid': 'string',
+  'System.String': 'string',
+  'System.UInt16': 'uint16',
+  'System.UInt32': 'uint32',
+  'System.UInt64': 'uint64',
 };
 
 // Constraints carried over from the OpenAPI schema for future use (#1445, #1650), not consumed by the editor yet
@@ -33,28 +35,19 @@ const passthroughKeys = {
   'x-security-critical': 'securityCritical',
 };
 
-async function getStructureDefinition(type) {
-  if (cachedStructureDefinitions.has(type)) return cachedStructureDefinitions.get(type);
-
-  const structureDefinition = http.get(`structure/${encodeURIComponent(type)}`);
-  cachedStructureDefinitions.set(type, structureDefinition);
-
-  return structureDefinition;
-}
-
 function getTypes(schema) {
   if (Array.isArray(schema.type)) return schema.type;
   return (schema.type) ? [schema.type] : [];
 }
 
-function resolveType(schema, param) {
-  const types = getTypes(schema);
-  const nullable = (types.includes('null')) ? { nullable: true } : {};
-
-  // Enums are $ref'ed component schemas (already dereferenced) carrying their name → value map in x-definition
+function resolveType(schema) {
+  // Enums carry their name → value map in x-definition, either as $ref'ed component schemas (already dereferenced) or inlined
   if (schema['x-definition']) {
     return { type: (schema.format === 'flags') ? 'flag' : 'enum', values: { ...schema['x-definition'] } };
   }
+
+  const types = getTypes(schema);
+  const nullable = (types.includes('null')) ? { nullable: true } : {};
 
   if (Object.prototype.hasOwnProperty.call(numericFormats, schema.format)) return { type: numericFormats[schema.format], ...nullable };
 
@@ -65,8 +58,9 @@ function resolveType(schema, param) {
   if (types.includes('string')) return { type: 'string', ...nullable };
 
   if (types.includes('array')) {
+    // ASF marks sets with uniqueItems, every other collection is an ordered list
     return {
-      type: (orderedListProperties.has(param)) ? 'list' : 'hashSet',
+      type: (schema.uniqueItems) ? 'hashSet' : 'list',
       values: resolveType(schema.items || {}),
       ...nullable,
     };
@@ -75,7 +69,7 @@ function resolveType(schema, param) {
   if (types.includes('object') && schema.additionalProperties) {
     return {
       type: 'dictionary',
-      key: { type: (uint64KeyedProperties.has(param)) ? 'uint64' : 'string' },
+      key: { type: keyTypes[schema['x-key-type']] || 'unknown' },
       value: resolveType(schema.additionalProperties),
       ...nullable,
     };
@@ -88,40 +82,48 @@ function resolvePassthrough(schema) {
   const passthrough = {};
 
   Object.keys(passthroughKeys).forEach(key => {
-    if (typeof schema[key] !== 'undefined') passthrough[passthroughKeys[key]] = schema[key];
+    if (typeof schema[key] !== 'undefined') passthrough[passthroughKeys[key]] = cloneDeep(schema[key]);
   });
 
   return passthrough;
 }
 
-async function unwindType(type) {
-  const schemaName = schemaNames[type];
-  if (!schemaName) throw new Error(`No OpenAPI schema known for type ${type}`);
+function resolveDefaultValue(schema, param, objectDefaults) {
+  // Properties carry their own default, the object-level default of the whole config is the fallback for the few that don't
+  const defaultValue = (typeof schema.default !== 'undefined') ? schema.default : objectDefaults[param];
+  return cloneDeep(defaultValue);
+}
 
-  const [properties, structureDefinition] = await Promise.all([
-    getType(schemaName),
-    getStructureDefinition(type),
-  ]);
+async function unwindType(type) {
+  const configSchema = configSchemas[type];
+  if (!configSchema) throw new Error(`No OpenAPI schema known for type ${type}`);
+
+  const requestBody = await getRequestBody(configSchema.path);
+  const { [configSchema.property]: schema } = requestBody.properties;
+  if (!schema?.properties) throw new Error(`No ${configSchema.property} schema in ${configSchema.path} request body`);
+
+  const objectDefaults = schema.default || {};
 
   const resolvedStructure = {
     type: 'object',
     body: {},
   };
 
-  Object.keys(properties).forEach(param => {
+  Object.keys(schema.properties).forEach(param => {
     // uint64 properties are listed twice, the "s_" copy is the string representation ASF serializes to avoid precision loss in JS
     // We derive paramName from the numeric property instead of exposing the copy as a separate field
     if (param.startsWith('s_')) return;
 
-    const resolvedType = resolveType(properties[param], param);
+    const propertySchema = schema.properties[param];
+    const resolvedType = resolveType(propertySchema);
     const paramName = (resolvedType.type !== 'uint64') ? param : `s_${param}`;
 
     resolvedStructure.body[param] = {
-      defaultValue: structureDefinition[param],
+      defaultValue: resolveDefaultValue(propertySchema, param, objectDefaults),
       paramName,
       param,
       ...resolvedType,
-      ...resolvePassthrough(properties[param]),
+      ...resolvePassthrough(propertySchema),
     };
   });
 

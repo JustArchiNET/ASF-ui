@@ -27,3 +27,10 @@ export async function getDefinitions(name) {
   const schema = await getSchema();
   return schema.components.schemas[name]['x-definition'];
 }
+
+export async function getRequestBody(path, method = 'post') {
+  const schema = await getSchema();
+  const operation = schema.paths[path]?.[method];
+  if (!operation) throw new Error(`No ${method.toUpperCase()} ${path} operation in OpenAPI document`);
+  return operation.requestBody.content['application/json'].schema;
+}
