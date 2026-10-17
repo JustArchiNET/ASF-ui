@@ -1,120 +1,125 @@
-import * as http from '../plugins/http';
+import { cloneDeep } from 'lodash-es';
+import { getRequestBody } from './swagger/parse';
 
-const cachedTypeDefinitions = new Map();
-const cachedStructureDefinitions = new Map();
+// unwindType() keeps accepting the .NET type names the views always passed
+// The config schemas are read from the request bodies the UI posts them with, which is where ASF inlines them in its OpenAPI document
+const configSchemas = {
+  'ArchiSteamFarm.Steam.Storage.BotConfig': { path: '/Api/Bot/{botNames}', property: 'BotConfig' },
+  'ArchiSteamFarm.Storage.GlobalConfig': { path: '/Api/ASF', property: 'GlobalConfig' },
+};
 
-const subtypeRegex = /\[[^\]]+]/g;
+const numericFormats = {
+  uint8: 'byte',
+  uint16: 'uint16',
+  uint32: 'uint32',
+  uint64: 'uint64',
+};
 
-function resolveSubtypes(type) {
-  const subtypes = type.match(subtypeRegex);
-  if (!subtypes) return [];
-  return subtypes.map(subtype => subtype.slice(1, subtype.length - 1));
+// CLR key types ASF reports for dictionaries in x-key-type
+const keyTypes = {
+  'System.Boolean': 'boolean',
+  'System.Byte': 'byte',
+  'System.Guid': 'string',
+  'System.String': 'string',
+  'System.UInt16': 'uint16',
+  'System.UInt32': 'uint32',
+  'System.UInt64': 'uint64',
+};
+
+// Constraints carried over from the OpenAPI schema for future use (#1445, #1650), not consumed by the editor yet
+const passthroughKeys = {
+  'minimum': 'minimum',
+  'maximum': 'maximum',
+  'maxItems': 'maxItems',
+  'x-valid-values': 'validValues',
+  'x-security-critical': 'securityCritical',
+};
+
+function getTypes(schema) {
+  if (Array.isArray(schema.type)) return schema.type;
+  return (schema.type) ? [schema.type] : [];
 }
 
-async function getStructureDefinition(type) {
-  if (cachedStructureDefinitions.has(type)) return cachedStructureDefinitions.get(type);
-
-  const structureDefinition = http.get(`structure/${encodeURIComponent(type)}`);
-  cachedStructureDefinitions.set(type, structureDefinition);
-
-  return structureDefinition;
-}
-
-async function getTypeDefinition(type) {
-  if (cachedTypeDefinitions.has(type)) return cachedTypeDefinitions.get(type);
-
-  const typeDefinition = http.get(`type/${encodeURIComponent(type)}`);
-  cachedTypeDefinitions.set(type, typeDefinition);
-
-  return typeDefinition;
-}
-
-async function resolveType(targetType) {
-  const subtypes = resolveSubtypes(targetType);
-
-  switch (targetType.split('`')[0]) {
-    case 'System.Boolean':
-      return { type: 'boolean' };
-    case 'System.String':
-    case 'System.Guid':
-      return { type: 'string' };
-    case 'System.Byte':
-      return { type: 'byte' };
-    case 'System.UInt32':
-      return { type: 'uint32' };
-    case 'System.UInt16':
-      return { type: 'uint16' };
-    case 'System.Collections.Generic.HashSet':
-    case 'System.Collections.Immutable.ImmutableHashSet':
-      return { type: 'hashSet', values: await resolveType(subtypes[0]) };
-    case 'System.Collections.Immutable.ImmutableList':
-      return { type: 'list', values: await resolveType(subtypes[0]) };
-    case 'System.UInt64':
-      return { type: 'uint64' };
-    case 'System.Collections.Generic.Dictionary':
-    case 'System.Collections.Immutable.ImmutableDictionary':
-      return { type: 'dictionary', key: await resolveType(subtypes[0]), value: await resolveType(subtypes[1]) };
-    case 'System.Nullable':
-      const { type } = await resolveType(subtypes[0]);
-      return { type, nullable: true };
-    default: // Complex type
-      return unwindType(targetType);
+function resolveType(schema) {
+  // Enums carry their name → value map in x-definition, either as $ref'ed component schemas (already dereferenced) or inlined
+  if (schema['x-definition']) {
+    return { type: (schema.format === 'flags') ? 'flag' : 'enum', values: { ...schema['x-definition'] } };
   }
+
+  const types = getTypes(schema);
+  const nullable = (types.includes('null')) ? { nullable: true } : {};
+
+  if (Object.prototype.hasOwnProperty.call(numericFormats, schema.format)) return { type: numericFormats[schema.format], ...nullable };
+
+  // Guid is edited as a plain string, same as before the OpenAPI migration
+  if (schema.format === 'uuid') return { type: 'string', ...nullable };
+
+  if (types.includes('boolean')) return { type: 'boolean', ...nullable };
+  if (types.includes('string')) return { type: 'string', ...nullable };
+
+  if (types.includes('array')) {
+    // ASF marks sets with uniqueItems, every other collection is an ordered list
+    return {
+      type: (schema.uniqueItems) ? 'hashSet' : 'list',
+      values: resolveType(schema.items || {}),
+      ...nullable,
+    };
+  }
+
+  if (types.includes('object') && schema.additionalProperties) {
+    return {
+      type: 'dictionary',
+      key: { type: keyTypes[schema['x-key-type']] || 'unknown' },
+      value: resolveType(schema.additionalProperties),
+      ...nullable,
+    };
+  }
+
+  return { type: 'unknown' };
 }
 
-async function unwindObject(type, typeDefinition) {
+function resolvePassthrough(schema) {
+  const passthrough = {};
+
+  Object.keys(passthroughKeys).forEach(key => {
+    if (typeof schema[key] !== 'undefined') passthrough[passthroughKeys[key]] = cloneDeep(schema[key]);
+  });
+
+  return passthrough;
+}
+
+async function unwindType(type) {
+  const configSchema = configSchemas[type];
+  if (!configSchema) throw new Error(`No OpenAPI schema known for type ${type}`);
+
+  const requestBody = await getRequestBody(configSchema.path);
+  const { [configSchema.property]: schema } = requestBody.properties;
+  if (!schema?.properties) throw new Error(`No ${configSchema.property} schema in ${configSchema.path} request body`);
+
   const resolvedStructure = {
     type: 'object',
     body: {},
   };
 
-  const [structureDefinition, resolvedTypes] = await Promise.all([
-    getStructureDefinition(type),
-    Promise.all(Object.keys(typeDefinition.Body).map(async param => ({ param, type: await resolveType(typeDefinition.Body[param]) }))),
-  ]);
+  Object.keys(schema.properties).forEach(param => {
+    // uint64 properties are listed twice, the "s_" copy is the string representation ASF serializes to avoid precision loss in JS
+    // We derive paramName from the numeric property instead of exposing the copy as a separate field
+    if (param.startsWith('s_')) return;
 
-  resolvedTypes.forEach(resolvedType => {
-    const { param, type } = resolvedType;
-    const paramName = (typeDefinition.Body[param] !== 'System.UInt64') ? param : `s_${param}`;
+    const propertySchema = schema.properties[param];
+    const resolvedType = resolveType(propertySchema);
+    const paramName = (resolvedType.type !== 'uint64') ? param : `s_${param}`;
 
     resolvedStructure.body[param] = {
-      defaultValue: structureDefinition[param],
+      defaultValue: cloneDeep(propertySchema.default),
       paramName,
       param,
-      ...type,
+      ...resolvedType,
+      ...resolvePassthrough(propertySchema),
     };
   });
 
   return resolvedStructure;
-}
-
-function parseEnumValues(rawValues) {
-  const enumValues = {};
-
-  Object.keys(rawValues).forEach(key => {
-    enumValues[key] = parseInt(rawValues[key], 10);
-  });
-
-  return enumValues;
-}
-
-async function unwindType(type) {
-  if (type === 'ArchiSteamFarm.Steam.Storage.BotConfig') getStructureDefinition(type); // Dirty trick, but 30% is 30%
-  const typeDefinition = await getTypeDefinition(type);
-
-  switch (typeDefinition.Properties.BaseType) {
-    case 'System.Object':
-      return unwindObject(type, typeDefinition);
-    case 'System.Enum':
-      return {
-        type: ((typeDefinition.Properties.CustomAttributes || []).includes('System.FlagsAttribute')) ? 'flag' : 'enum',
-        values: parseEnumValues(typeDefinition.Body),
-      };
-    default: {
-      const structureDefinition = await getStructureDefinition(type);
-      return { type: 'unknown', typeDefinition, structureDefinition };
-    }
-  }
 }
 
 export default unwindType;
