@@ -88,6 +88,13 @@ function resolvePassthrough(schema) {
   return passthrough;
 }
 
+function resolveDefaultValue(schema) {
+  // ASF never reveals the current value of security-critical properties, so the UI can't tell whether one is set
+  // They get no default: an untouched field then stays out of the request and ASF keeps the existing value, while a null would clear it
+  if (schema['x-security-critical']) return undefined;
+  return cloneDeep(schema.default);
+}
+
 async function unwindType(type) {
   const configSchema = configSchemas[type];
   if (!configSchema) throw new Error(`No OpenAPI schema known for type ${type}`);
@@ -111,7 +118,7 @@ async function unwindType(type) {
     const paramName = (resolvedType.type !== 'uint64') ? param : `s_${param}`;
 
     resolvedStructure.body[param] = {
-      defaultValue: cloneDeep(propertySchema.default),
+      defaultValue: resolveDefaultValue(propertySchema),
       paramName,
       param,
       ...resolvedType,
