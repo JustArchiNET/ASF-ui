@@ -13,6 +13,7 @@
         <span class="plugin__name">{{ plugin.Name }}</span>
         <span class="plugin__version">{{ plugin.Version }}</span>
         <span v-if="plugin.IsOfficialPlugin" class="plugin__label">{{ $t('official') }}</span>
+        <a v-if="webInterfaceUrl(plugin)" class="plugin__link" :href="webInterfaceUrl(plugin)">{{ $t('plugin-web-interface') }}</a>
       </div>
     </div>
   </div>
@@ -64,6 +65,17 @@
         this.loading = false;
       }
     },
+    methods: {
+      webInterfaceUrl(plugin) {
+        // Plugins implementing IWebInterface report the WebPath their files are served under, e.g. "/MyPlugin"
+        // A WebPath of "/" replaces ASF-ui itself, so there is nothing to link to
+        const webPath = (plugin.WebPath ?? '').replace(/^\/+|\/+$/g, '');
+        if (!webPath) return null;
+
+        // The trailing slash matters, otherwise ASF-ui's router handles the address instead of the plugin
+        return `${window.__BASE_PATH__ ?? '/'}${webPath}/`;
+      },
+    },
   };
 </script>
 
@@ -105,6 +117,19 @@
     padding-left: 0.8em;
 
     @media screen and (max-width: 400px) {
+      padding-left: 0;
+    }
+  }
+
+  .plugin__link {
+    color: var(--color-theme);
+    font-weight: 600;
+    margin-left: auto;
+    padding-left: 0.8em;
+    text-decoration: none;
+
+    @media screen and (max-width: 400px) {
+      margin-left: 0;
       padding-left: 0;
     }
   }
