@@ -204,6 +204,7 @@
   "performance": "Výkon",
   "plugin-unknown-name": "Neznámý plugin #{number}",
   "plugin-unknown-version": "Neznámá verze",
+  "plugin-web-interface": "Otevřít webové rozhraní",
   "plugins": "Pluginy",
   "plugins-not-loaded": "Žádné pluginy nebyly načteny",
   "pre-release": "Předběžná verze",

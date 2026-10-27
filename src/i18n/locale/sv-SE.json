@@ -204,6 +204,7 @@
   "performance": "Prestanda",
   "plugin-unknown-name": "Okänd plugin #{number}",
   "plugin-unknown-version": "Okänd version",
+  "plugin-web-interface": "Öppna webbgränssnitt",
   "plugins": "Plugins",
   "plugins-not-loaded": "Inga Plugins laddade",
   "pre-release": "Förhandssläpp",

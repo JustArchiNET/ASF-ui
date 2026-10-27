@@ -203,6 +203,7 @@
   "performance": "Επιδόσεις",
   "plugin-unknown-name": "Άγνωστο πρόσθετο #{number}",
   "plugin-unknown-version": "Άγνωστη Έκδοση",
+  "plugin-web-interface": "Άνοιγμα διεπαφής ιστού",
   "plugins": "Πρόσθετα",
   "plugins-not-loaded": "Δεν φορτώθηκαν πρόσθετα",
   "pre-release": "Προ-έκδοση",

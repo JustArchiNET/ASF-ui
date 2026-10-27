@@ -204,6 +204,7 @@
   "performance": "Performanță",
   "plugin-unknown-name": "Plugin necunoscut #{number}",
   "plugin-unknown-version": "Versiune necunoscută",
+  "plugin-web-interface": "Deschide interfața web",
   "plugins": "Pluginuri",
   "plugins-not-loaded": "Nici un plugin încărcat",
   "pre-release": "Pre-lansare",

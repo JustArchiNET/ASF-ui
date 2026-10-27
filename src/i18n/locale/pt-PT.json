@@ -204,6 +204,7 @@
   "performance": "Desempenho",
   "plugin-unknown-name": "Plugin desconhecido #{number}",
   "plugin-unknown-version": "Versão desconhecida",
+  "plugin-web-interface": "Abrir interface web",
   "plugins": "Plugins",
   "plugins-not-loaded": "Nenhum plugin carregado",
   "pre-release": "Pré-lançamento",

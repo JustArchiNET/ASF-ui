@@ -202,6 +202,7 @@
   "performance": "Ytelse",
   "plugin-unknown-name": "Ukjent plugin #{number}",
   "plugin-unknown-version": "Ukjent versjon",
+  "plugin-web-interface": "Åpne webgrensesnitt",
   "plugins": "Utvidelser",
   "plugins-not-loaded": "Ingen utvidelser lastet",
   "pre-release": "Forhåndsversjon",

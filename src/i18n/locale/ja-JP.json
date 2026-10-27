@@ -204,6 +204,7 @@
   "performance": "パフォーマンス",
   "plugin-unknown-name": "不明なプラグイン #{number}",
   "plugin-unknown-version": "不明なバージョン",
+  "plugin-web-interface": "Web インターフェイスを開く",
   "plugins": "プラグイン",
   "plugins-not-loaded": "プラグインが読み込まれていない",
   "pre-release": "事前リリース",

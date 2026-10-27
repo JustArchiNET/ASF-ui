@@ -204,6 +204,7 @@
   "performance": "性能",
   "plugin-unknown-name": "未知插件 #{number}",
   "plugin-unknown-version": "未知版本",
+  "plugin-web-interface": "打开网页界面",
   "plugins": "插件",
   "plugins-not-loaded": "没有加载插件",
   "pre-release": "预览版",

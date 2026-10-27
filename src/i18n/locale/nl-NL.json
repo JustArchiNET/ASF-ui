@@ -204,6 +204,7 @@
   "performance": "Uitvoering",
   "plugin-unknown-name": "Onbekende plug-in #{number}",
   "plugin-unknown-version": "Onbekende versie",
+  "plugin-web-interface": "Open webinterface",
   "plugins": "Plugins",
   "plugins-not-loaded": "Geen plugins geladen",
   "pre-release": "Bètaversie",

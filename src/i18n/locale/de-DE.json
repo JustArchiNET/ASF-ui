@@ -204,6 +204,7 @@
   "performance": "Leistung",
   "plugin-unknown-name": "Unbekannte Erweiterung #{number}",
   "plugin-unknown-version": "Unbekannte Version",
+  "plugin-web-interface": "Webinterface öffnen",
   "plugins": "Erweiterungen (Plugins)",
   "plugins-not-loaded": "Keine Erweiterungen geladen",
   "pre-release": "Vorabveröffentlichung",

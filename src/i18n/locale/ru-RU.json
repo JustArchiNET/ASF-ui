@@ -204,6 +204,7 @@
   "performance": "Производительность",
   "plugin-unknown-name": "Неизвестный плагин #{number}",
   "plugin-unknown-version": "Неизвестная версия",
+  "plugin-web-interface": "Открыть веб-интерфейс",
   "plugins": "Плагины",
   "plugins-not-loaded": "Плагины не загружены",
   "pre-release": "Предварительная",

@@ -204,6 +204,7 @@
   "performance": "Ydeevne",
   "plugin-unknown-name": "Ukendt plugin #{number}",
   "plugin-unknown-version": "Ukendt version",
+  "plugin-web-interface": "Åbn webgrænseflade",
   "plugins": "Plugins",
   "plugins-not-loaded": "Ingen plugins indlæst",
   "pre-release": "Pre-Release",

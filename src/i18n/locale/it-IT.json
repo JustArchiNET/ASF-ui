@@ -203,6 +203,7 @@
   "performance": "Prestazioni",
   "plugin-unknown-name": "Plugin sconosciuto #{number}",
   "plugin-unknown-version": "Versione sconosciuta",
+  "plugin-web-interface": "Apri interfaccia web",
   "plugins": "Plugin",
   "plugins-not-loaded": "Nessun plugin caricato",
   "pre-release": "Pre-Release",

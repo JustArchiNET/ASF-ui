@@ -204,6 +204,7 @@
   "performance": "Suorityskyky",
   "plugin-unknown-name": "Tuntematon laajennus #{number}",
   "plugin-unknown-version": "Tuntematon versio",
+  "plugin-web-interface": "Avaa web-käyttöliittymä",
   "plugins": "Liitännäiset",
   "plugins-not-loaded": "Ei laajennuksia ladattu",
   "pre-release": "Esiversio",
