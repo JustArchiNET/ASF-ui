@@ -204,6 +204,7 @@
   "performance": "성능",
   "plugin-unknown-name": "알 수 없는 플러그인 #{number}",
   "plugin-unknown-version": "알 수 없는 버전",
+  "plugin-web-interface": "웹 인터페이스 열기",
   "plugins": "플러그인",
   "plugins-not-loaded": "로드된 플러그인이 없습니다.",
   "pre-release": "사전 릴리스",
