@@ -113,6 +113,8 @@
   "hash-success": "Karma başarıyla oluşturuldu, yapılandırmanızı kaydetmeyi unutmayın.",
   "info": "Bilgi",
   "input-all-selected": "Tüm değerler seçildi",
+  "input-games-no-result": "Sahip olunan oyun bulunamadı. Başka bir oyun eklemek için bir AppID girin.",
+  "input-games-placeholder": "Adına göre ara veya appID'yi gir",
   "input-info-login": "Bu hesap için bir kullanıcı adı belirlemediniz.",
   "input-info-password": "Bu hesap için bir parola belirlemediniz.",
   "input-info-steamguard": "Bu hesap şu anda Steam Guard kullanıyor.",
