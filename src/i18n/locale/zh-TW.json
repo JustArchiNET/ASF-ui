@@ -115,7 +115,7 @@
   "input-all-selected": "已選定所有的值",
   "input-games-no-result": "找不到已擁有的遊戲。請輸入 appID 以新增其他遊戲。",
   "input-games-placeholder": "依名稱搜尋或輸入 appID",
-  "input-games-unavailable": "無法載入此 Bot 的遊戲清單（需保持上線）。您仍可透過 appID 新增遊戲。",
+  "input-games-unavailable": "無法載入這個 Bot 的遊戲清單，Bot 需要在線上。您仍可透過 appID 新增遊戲。",
   "input-info-login": "您尚未為此帳號設定使用者名稱。",
   "input-info-password": "您尚未為此帳號設定密碼。",
   "input-info-steamguard": "此帳號已啟用 Steam Guard。",
