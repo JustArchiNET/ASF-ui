@@ -9,14 +9,40 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600" rel="stylesheet">
     <link href="/manifest.json" rel="manifest" crossorigin="use-credentials">
     <link href="/images/logo.png" rel="shortcut icon">
-  </head>
-  <body>
-    <div id="app"></div>
 
     <script>
-      const mainScript = document.querySelector('script[src^="/scripts/main"]');
-      mainScript.onerror = createErrorHandler(window.location.pathname, mainScript.getAttribute('src'), mainScript.getAttribute('integrity'));
-      mainScript.onload = createLoadHandler(mainScript.onerror);
+      // ASF may be served under a path prefix (Kestrel PathBase) that it does not tell us about (#1635).
+      // If the main script fails to load from "/", we walk the current path backwards and retry from each parent.
+      // html-webpack-plugin injects the main <script> right after this block, and the browser may dispatch its
+      // error event before any later inline script could attach a handler, so we listen before the tag exists.
+      // Listeners sit on document rather than window: "load" fired at an element never reaches window, even when capturing.
+      window.__BASE_URL__ = window.location.origin + '/';
+      window.__BASE_PATH__ = '/';
+
+      document.addEventListener('error', onMainScriptError, true);
+      document.addEventListener('load', onMainScriptLoad, true);
+
+      function onMainScriptError(event) {
+        const onError = resolveMainScript(event);
+        if (onError) onError();
+      }
+
+      function onMainScriptLoad(event) {
+        const onError = resolveMainScript(event);
+        if (onError) createLoadHandler(onError)();
+      }
+
+      // Returns the error handler for the parser-inserted main script, or null for any other element
+      // Runs at most once, retries created in createErrorHandler carry their own handlers
+      function resolveMainScript(event) {
+        const script = event.target;
+        if (!(script instanceof HTMLScriptElement) || !(script.getAttribute('src') || '').startsWith('/scripts/main')) return null;
+
+        document.removeEventListener('error', onMainScriptError, true);
+        document.removeEventListener('load', onMainScriptLoad, true);
+
+        return createErrorHandler(window.location.pathname, script.getAttribute('src'), script.getAttribute('integrity'));
+      }
 
       function addScript(path, integrity) {
         const scriptElement = document.createElement('script');
@@ -28,7 +54,13 @@
           scriptElement.crossOrigin = 'anonymous';
         }
 
-        document.head.appendChild(scriptElement);
+        // The bundle mounts on #app synchronously, never let a retry run before the body is parsed
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', () => document.head.appendChild(scriptElement), { once: true });
+        } else {
+          document.head.appendChild(scriptElement);
+        }
+
         return scriptElement;
       }
 
@@ -43,15 +75,8 @@
           // Check if the script is indeed working can be achieved by testing __ASF_UI_LOADED__ property set in index.js
           if (!window.__ASF_UI_LOADED__) return onError();
 
-          // It is possible we loaded main script on first attempt
-          if (!window.__BASE_PATH__) {
-            // Other parts of the app use __BASE_PATH__ and __BASE_URL__, set it anyway
-            window.__BASE_URL__ = window.location.origin + '/';
-            window.__BASE_PATH__ = '/';
-
-            // We do not need to update resources, as the default path is already good
-            return;
-          }
+          // It is possible we loaded main script on first attempt, resources already use the default path then
+          if (window.__BASE_PATH__ === '/') return;
 
           document.querySelector('link[rel="shortcut icon"]').setAttribute('href', `${__BASE_PATH__}images/logo.png`);
           document.querySelector('link[rel="manifest"]').setAttribute('href', `${__BASE_PATH__}manifest.json`);
@@ -90,5 +115,8 @@
         };
       }
     </script>
+  </head>
+  <body>
+    <div id="app"></div>
   </body>
 </html>
